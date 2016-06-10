@@ -1,0 +1,36 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>bin/</path>
+      <name>ActionForm.Authorize.dll</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/</path>
+      <name>AuthorizeNetSimpleCheckoutFwd.aspx</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/Config/Actions/</path>
+      <name>authorizeNet.config</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/Config/Templates/</path>
+      <name>Pay With Credit Card, Authorize.Net.config</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/Config/Templates/</path>
+      <name>Pay With eCheck ARC, Authorize.Net.config</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/Config/Templates/</path>
+      <name>Pay With eCheck PPD, Authorize.Net.config</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/Config/Templates/</path>
+      <name>Pay With eCheck TEL, Authorize.Net.config</name>
+    </file>
+    <file>
+      <path>DesktopModules/AvatarSoft/ActionForm/Config/Templates/</path>
+      <name>Pay With eCheck WEB, Authorize.Net.config</name>
+    </file>
+  </files>
+</dotnetnuke>
