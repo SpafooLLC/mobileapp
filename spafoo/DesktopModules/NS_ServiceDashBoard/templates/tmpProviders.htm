@@ -1,0 +1,32 @@
+<div class="prolist">
+    {#foreach $T as S}
+    <li>
+        <a onclick="NSD_ShowProviderDetail({$T.S.UserID},event);">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <img onerror="NS_UserOnError(this)" src='{$T.S.Profile.PhotoURL}' />
+                        </td>
+                        <td class="middle">
+                            <h3><label id="NSD_UName_{$T.S.UserID}">{$T.S.LastName} {NS_IntialLetter($T.S.FirstName)}</label></h3>
+                            <p><label id="lblUserTagLine_{$T.S.UserID}">{GetUserTagLine($T.S.UserID)}</label></p>
+                            <div class="stars stars-example-bootstrap">
+                                {NS_GetMyRating($T.S.UserID,NS_GetProRating)}
+                                <div id="NSD_starRating_{$T.S.UserID}"  class="ratting-0"></div>
+                            </div>
+                        </td>
+                        <td class="right">
+                            <i class="fa fa-map-marker fa-2x"></i>
+                            <h4 id="NSD_dvUserDistance_{$T.S.UserID}">
+                                {NSD_GetDistance($T.S.Profile.Street, $T.S.Profile.City, $T.S.Profile.Region, $T.S.Profile.Country, $T.S.UserID)}
+                            </h4>
+                            <span>miles</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </a>
+    </li>
+    {#/for}
+</div>

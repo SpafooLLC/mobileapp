@@ -1,0 +1,29 @@
+﻿<ul>
+    {#foreach $T as S}
+    <li id="NS_Service_{$T.S.ServiceID}_{$T.S.ParentID}" class="parent">
+        <a onclick="NS_OnNodeClick(this,event);">{$T.S.ServiceName}</a>
+        {#foreach $T.S.Children as C}
+        <ul>
+            <li id="NS_Service_{$T.C.ServiceID}_{$T.C.ParentID}" class="parent">
+                <a onclick="NS_OnNodeClick(this,event);">{$T.C.ServiceName}</a>
+                {#foreach $T.C.Children as D}
+                <ul>
+                    <li id="NS_Service_{$T.D.ServiceID}_{$T.D.ParentID}" class="parent">
+                        <a onclick="NS_OnNodeClick(this,event);">{$T.D.ServiceName}</a>
+                        <ul>
+                            {#foreach $T.D.Children as E}
+                            <li id="NS_Service_{$T.E.ServiceID}_{$T.E.ParentID}" class="parent">
+                                <a onclick="NS_OnNodeClick(this,event);">{$T.E.ServiceName}</a>
+                            </li>
+
+                            {#/for}
+                        </ul>
+                    </li>
+                </ul>
+                {#/for}
+            </li>
+        </ul>
+        {#/for}
+    </li>
+    {#/for}
+</ul>

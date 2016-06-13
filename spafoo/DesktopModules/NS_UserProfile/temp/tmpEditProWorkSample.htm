@@ -1,0 +1,9 @@
+<ul class="sample tmar-md">
+    {#foreach $T as S}
+        <li>
+            <img src="{$T.S.OptionText}" alt="">
+            <input type="file" class="NSR_FileControl" FileID="{$T.S.ID}" />
+            <div class="ns-sremove" onclick="RemoveMySample('{$T.S.OptionText}')"><i class="fa fa-trash-o fa-lg"></i></div> 
+        </li>
+    {#/for}
+</ul>

@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="agreeToTerms.text" xml:space="preserve">
+    <value>Accetta &lt;a href="{0}" target="_blank"&gt;Termini e Condizioni&lt;/a&gt;</value>
+  </data>
+  <data name="agreeToTermsPopup1.text" xml:space="preserve">
+    <value>Accettare</value>
+  </data>
+  <data name="agreeToTermsPopup2.text" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;Termini e condizioni&lt;/a&gt;</value>
+  </data>
+  <data name="button.pleaseWait" xml:space="preserve">
+    <value>Attendere...</value>
+  </data>
+  <data name="button.selectFile" xml:space="preserve">
+    <value>Seleziona il file</value>
+  </data>
+  <data name="jquery.datepicker.closeText" xml:space="preserve">
+    <value>Fatto</value>
+  </data>
+  <data name="jquery.datepicker.currentText" xml:space="preserve">
+    <value>Oggi</value>
+  </data>
+  <data name="jquery.datepicker.dateFormat" xml:space="preserve">
+    <value>mm/dd/yy</value>
+  </data>
+  <data name="jquery.datepicker.dayNames" xml:space="preserve">
+    <value>["Domenica", "Lunedi", "Martedi", "Mercoledi", "Giovedi", "Venerdi", "Sabato"]</value>
+  </data>
+  <data name="jquery.datepicker.dayNamesMin" xml:space="preserve">
+    <value>["Do","Lu","Ma","Me","Gi","Ve","Sa"]</value>
+  </data>
+  <data name="jquery.datepicker.dayNamesShort" xml:space="preserve">
+    <value>["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"]</value>
+  </data>
+  <data name="jquery.datepicker.firstDay" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="jquery.datepicker.isRTL" xml:space="preserve">
+    <value>false</value>
+  </data>
+  <data name="jquery.datepicker.monthNames" xml:space="preserve">
+    <value>["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno",
+			"Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"]</value>
+  </data>
+  <data name="jquery.datepicker.monthNamesShort" xml:space="preserve">
+    <value>["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"]</value>
+  </data>
+  <data name="jquery.datepicker.nextText" xml:space="preserve">
+    <value>Prossimo</value>
+  </data>
+  <data name="jquery.datepicker.prevText" xml:space="preserve">
+    <value>Precedente</value>
+  </data>
+  <data name="jquery.datepicker.weekHeader" xml:space="preserve">
+    <value>Wk</value>
+  </data>
+  <data name="jquery.datepicker.yearSuffix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="message.pleaseWait" xml:space="preserve">
+    <value>Attendere prego...</value>
+  </data>
+  <data name="validation.captcha" xml:space="preserve">
+    <value>Codice di sicurezza non valido</value>
+  </data>
+  <data name="validation.date" xml:space="preserve">
+    <value>Inserisci una data valida.</value>
+  </data>
+  <data name="validation.dateISO" xml:space="preserve">
+    <value>Si prega di inserire una data valida (ISO).</value>
+  </data>
+  <data name="validation.dateUS" xml:space="preserve">
+    <value>La data deve essere nel formato mm/gg/aaaa.</value>
+  </data>
+  <data name="validation.digits" xml:space="preserve">
+    <value>Si prega di inserire solo cifre.</value>
+  </data>
+  <data name="validation.email" xml:space="preserve">
+    <value>Si prega di inserire una e-mail valida.</value>
+  </data>
+  <data name="validation.equalTo" xml:space="preserve">
+    <value>Ripeti lo stesso valore.</value>
+  </data>
+  <data name="validation.letters" xml:space="preserve">
+    <value>Sono consentite solo lettere.</value>
+  </data>
+  <data name="validation.max" xml:space="preserve">
+    <value>Si prega di inserire un valore inferiore o uguale a {0}.</value>
+  </data>
+  <data name="validation.maxlength" xml:space="preserve">
+    <value>Si prega di inserire non più di {0} caratteri.</value>
+  </data>
+  <data name="validation.min" xml:space="preserve">
+    <value>Si prega di inserire un valore maggiore o uguale a {0}.</value>
+  </data>
+  <data name="validation.minlength" xml:space="preserve">
+    <value>Si prega di inserire almeno {0} caratteri</value>
+  </data>
+  <data name="validation.nowhitespace" xml:space="preserve">
+    <value>Gli spazi non sono consentiti</value>
+  </data>
+  <data name="validation.number" xml:space="preserve">
+    <value>Si prega di inserire un numero valido.</value>
+  </data>
+  <data name="validation.phoneUS" xml:space="preserve">
+    <value>Il numero di telefono deve essere nel formato (###) ###-####.</value>
+  </data>
+  <data name="validation.range" xml:space="preserve">
+    <value>Si prega di inserire un valore compreso tra {0} e {1}.</value>
+  </data>
+  <data name="validation.rangelength" xml:space="preserve">
+    <value>Si prega di inserire un valore compreso tra {0} e {1} caratteri.</value>
+  </data>
+  <data name="validation.remote" xml:space="preserve">
+    <value>Si prega di correggere questo campo.</value>
+  </data>
+  <data name="validation.required" xml:space="preserve">
+    <value>Questo campo è obbligatorio.</value>
+  </data>
+  <data name="validation.required-cblist" xml:space="preserve">
+    <value>Deve essere selezionato almeno un elemento</value>
+  </data>
+  <data name="validation.required-file" xml:space="preserve">
+    <value>Il file è obbligatorio</value>
+  </data>
+  <data name="validation.requiredServerMessage" xml:space="preserve">
+    <value>Manca un campo obbligatorio: {0}.</value>
+  </data>
+  <data name="validation.url" xml:space="preserve">
+    <value>Si prega di inserire un URL valido.</value>
+  </data>
+  <data name="wysiwyg.bold" xml:space="preserve">
+    <value>Grassetto</value>
+  </data>
+  <data name="wysiwyg.code" xml:space="preserve">
+    <value>Pezzo di codice</value>
+  </data>
+  <data name="wysiwyg.indent" xml:space="preserve">
+    <value>Indent</value>
+  </data>
+  <data name="wysiwyg.italic" xml:space="preserve">
+    <value>Corsivo</value>
+  </data>
+  <data name="wysiwyg.outdent" xml:space="preserve">
+    <value>Outdent</value>
+  </data>
+  <data name="wysiwyg.removeFormat" xml:space="preserve">
+    <value>Rimuovi la formattazione</value>
+  </data>
+  <data name="wysiwyg.strikeThrough" xml:space="preserve">
+    <value>Barrato</value>
+  </data>
+  <data name="wysiwyg.underline" xml:space="preserve">
+    <value>Sottolineato</value>
+  </data>
+  <data name="validation.passwordNoMatch" xml:space="preserve">
+    <value>Password non corrispondenti.</value>
+  </data>
+  <data name="errors.LoginFailed" xml:space="preserve">
+    <value>Accesso non riuscito! Nome utente o password non valido (stato {0})</value>
+  </data>
+  <data name="validation.invalidfilesize" xml:space="preserve">
+    <value>Dimensione del file è troppo grande.</value>
+  </data>
+</root>

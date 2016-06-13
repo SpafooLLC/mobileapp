@@ -1,0 +1,13 @@
+2016-03-29 04:42:33,717 [THD-01][Thread:37][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-03-29 05:29:26,779 [THD-01][Thread:32][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-03-29 05:37:55,717 [THD-01][Thread:26][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-03-29 05:42:58,420 [THD-01][Thread:31][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid script resource request.
+   at System.Web.Handlers.ScriptResourceHandler.ProcessRequest(HttpContextBase context, VirtualFileReader fileReader, Action`2 logAction, Boolean validatePath)
+   at System.Web.Handlers.ScriptResourceHandler.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-03-29 10:51:07,686 [THD-01][Thread:26][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-03-29 11:38:43,904 [THD-01][Thread:27][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

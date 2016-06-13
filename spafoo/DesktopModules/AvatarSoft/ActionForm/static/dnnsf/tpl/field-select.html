@@ -1,0 +1,5 @@
+
+<select class="form-control" data-ng-model="model" data-ng-options="c.BoundName as c.BoundName for c in fields | filter:byType(filterType,c) | filter:exceptItem(currentItem.BoundName)">
+    <option value="">--</option>
+</select>
+

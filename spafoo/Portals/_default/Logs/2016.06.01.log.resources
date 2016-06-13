@@ -1,0 +1,75 @@
+2016-06-01 00:52:16,531 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-01 00:54:25,547 [THD-01][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-01 01:22:47,672 [THD-01][Thread:18][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-01 01:31:50,719 [THD-01][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-01 01:32:12,891 [THD-01][Thread:19][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.52
+	Port: 9760
+	Referer: http://dev.spafoo.com/Host/Extensions/ctl/Install/rtab/36/portalid/0?popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+	ViewState: b933y8jWIhrIq5nYOYxiPnBG2M9ivBANiMu8zKqcXPSET2GPtdpsFIYwYujL16KuSn9vVAeu79E8G0m58ikElonIBrHmf32r6g43fByLKoDuNgwBPsbaMnN7/Ygr5tClPks5BYIKLYyxHUeZtZgFduRowKcPsJkhY/KnKnoS/9p4wrrn1PgAav8wJuP7cSeK1fSoeVx9Vepn7LI13S+CEdvbONqbEM5Fs5in159yp3bQEWL2hnqb+opfZU8BHbk9R4IYzcWu/UWIzM26UMszV9pRQ3S5PZqf8fD6u2I61jKn31Ek25syY+vmc0e1arEbSJM2EQ5+rTm3XzUnHFmB5sfmAoYmLB/4GPSmq2ci7Q5ak++7NrUcIjW+9pWZCSzOo2gIISnEyI9VhchfBgR/EjlwDbRdfAee0MIMx8Qd5L23X4ASnJbWDXWaspd5YWGR65hXmrrkcN4vz9CyySnLgZxiJhxgJHCAdt+31mJFhUntmz3D
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-01 01:32:12,969 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: The client disconnected. ---> System.Web.HttpException: The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.52
+	Port: 9760
+	Referer: http://dev.spafoo.com/Host/Extensions/ctl/Install/rtab/36/portalid/0?popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+	ViewState: b933y8jWIhrIq5nYOYxiPnBG2M9ivBANiMu8zKqcXPSET2GPtdpsFIYwYujL16KuSn9vVAeu79E8G0m58ikElonIBrHmf32r6g43fByLKoDuNgwBPsbaMnN7/Ygr5tClPks5BYIKLYyxHUeZtZgFduRowKcPsJkhY/KnKnoS/9p4wrrn1PgAav8wJuP7cSeK1fSoeVx9Vepn7LI13S+CEdvbONqbEM5Fs5in159yp3bQEWL2hnqb+opfZU8BHbk9R4IYzcWu/UWIzM26UMszV9pRQ3S5PZqf8fD6u2I61jKn31Ek25syY+vmc0e1arEbSJM2EQ5+rTm3XzUnHFmB5sfmAoYmLB/4GPSmq2ci7Q5ak++7NrUcIjW+9pWZCSzOo2gIISnEyI9VhchfBgR/EjlwDbRdfAee0MIMx8Qd5L23X4ASnJbWDXWaspd5YWGR65hXmrrkcN4vz9CyySnLgZxiJhxgJHCAdt+31mJFhUntmz3D
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---
+2016-06-01 01:34:10,578 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-01 03:29:58,031 [THD-01][Thread:35][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 110.37.217.6
+	Port: 4961
+	Referer: http://dev.spafoo.com/Admin/CodeEdit
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0
+	ViewState:  ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inputString
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-01 03:29:58,203 [THD-01][Thread:35][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: The client disconnected. ---> System.Web.HttpException: The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 110.37.217.6
+	Port: 4961
+	Referer: http://dev.spafoo.com/Admin/CodeEdit
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0
+	ViewState:  ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inputString
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---
+2016-06-01 08:28:13,578 [THD-01][Thread:49][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-01 22:16:10,125 [THD-01][Thread:16][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

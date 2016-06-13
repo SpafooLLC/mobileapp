@@ -1,0 +1,75 @@
+2016-05-29 06:05:13,172 [THD-01][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-29 10:08:46,750 [THD-01][Thread:6][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-29 10:08:46,875 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-29 10:15:46,094 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-29 11:09:15,344 [THD-01][Thread:6][ERROR] DotNetNuke.Data.SqlDataProvider - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CCNumber'.
+Invalid column name 'Expiry'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DotNetNuke.Data.SqlDataProvider.ExecuteScriptInternal(String connectionString, String script)
+ClientConnectionId:a3dfe1d2-4c37-4a11-8561-c37f4b7bba73
+2016-05-29 23:20:49,500 [THD-01][Thread:6][ERROR] DotNetNuke.Data.SqlDataProvider - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CCNumber'.
+Invalid column name 'Expiry'.
+Invalid column name 'CCNumber'.
+Invalid column name 'Expiry'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DotNetNuke.Data.SqlDataProvider.ExecuteScriptInternal(String connectionString, String script)
+ClientConnectionId:2c29bd19-566f-4091-ad36-06b812a098db
+2016-05-29 23:21:09,016 [THD-01][Thread:13][ERROR] DotNetNuke.Data.SqlDataProvider - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CCNumber'.
+Invalid column name 'Expiry'.
+Invalid column name 'CCNumber'.
+Invalid column name 'Expiry'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DotNetNuke.Data.SqlDataProvider.ExecuteScriptInternal(String connectionString, String script)
+ClientConnectionId:1049f2c8-32ab-4134-a609-e1584678493e
+2016-05-29 23:39:44,203 [THD-01][Thread:59][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-29 23:43:14,906 [THD-01][Thread:59][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-29 23:48:22,453 [THD-01][Thread:58][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-29 23:57:46,813 [THD-01][Thread:7][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-29 23:57:46,984 [THD-01][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-29 23:59:11,766 [THD-01][Thread:14][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-29 23:59:11,766 [THD-01][Thread:14][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

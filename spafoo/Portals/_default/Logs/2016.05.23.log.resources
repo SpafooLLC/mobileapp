@@ -1,0 +1,13 @@
+2016-05-23 00:04:20,235 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-23 00:04:20,454 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Installer.Installer - Exception deleting folder C:\webDataDNN\spafoo\Install\Temp\afhp43jp while installing NS_MakeAppointment.dnn
+System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-05-23 00:04:20,454 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-05-23 00:05:37,220 [THD-01][Thread:8][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

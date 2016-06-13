@@ -1,0 +1,45 @@
+﻿<img class="mainimg" onerror="NS_UserOnError(this)" src='{$T.Profile.PhotoURL}'>
+<div class="bar">
+    <div class="fleft">
+        <i class="fa fa-map-marker fa-lg"></i>
+        <label id="NSD_lblUserDistance_{$T.UserID}">
+            &nbsp;
+            {NSD_GetDistance($T.Profiletreet, $T.Profile.City, $T.Profile.Region, $T.Profile.Country, $T.UserID)}
+        </label>
+    </div>
+    <div class="fright"><a href="MakeAppointment.html">Make Appointment</a></div>
+</div>
+<div class="infobox">
+    <h1 id ="NSD_UName_{$T.UserID}">{$T.LastName} {NS_IntialLetter($T.FirstName)}</h1>
+    <h3>Have a great hair day!</h3>
+    <div class="stars stars-example-bootstrap">
+        <select id="NSD_starRating" name="rating" class="NSD_starRating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div>from 234 users</div>
+</div>
+<div class="offered">
+    <h4>Services offered:</h4>
+    <div id="NSD_dvProviderService">
+        {NSD_GetProviderServices($T.UserID)}
+    </div>
+</div>
+{#if $T.Profile.Biography!=''} 
+    <div class="bio">
+        <span>Bio: </span>
+        {$T.Profile.Biography}
+    </div>
+{#/if}
+<div class="sample">
+    <h4>Work Samples</h4>
+    <div id="NSD_dvProviderWorkSamples">{NSD_GetProviderSamples($T.UserID)}</div>
+</div>
+<div class="action">
+    <div class="col-xs-6 nopad"><a class="green-btn block mr1px" href="OrderSummary.html">ASAP - I'm Ready Now!</a></div>
+    <div class="col-xs-6 nopad" onclick="NS_GotoMakeAppointment();"><a class="bluesm-btn block ml1px" href="#">Schedule Appointment</a></div>
+</div>

@@ -1,0 +1,80 @@
+2016-05-30 00:00:06,766 [THD-01][Thread:6][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:00:06,766 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:01:56,781 [THD-01][Thread:14][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:01:56,781 [THD-01][Thread:14][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:06:25,875 [THD-01][Thread:7][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:06:25,875 [THD-01][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:06:56,766 [THD-01][Thread:51][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:06:56,766 [THD-01][Thread:51][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:07:20,984 [THD-01][Thread:51][ERROR] DotNetNuke.Services.Installer.Installer - Exception deleting folder C:\webDataDNN\spafoo\Install\Temp\hamffch4 while installing NS_MakeAppointment.dnn
+System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-05-30 00:07:21,000 [THD-01][Thread:51][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-05-30 00:14:47,359 [THD-01][Thread:53][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 00:15:36,797 [THD-01][Thread:41][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 00:15:36,797 [THD-01][Thread:41][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-30 02:46:49,078 [THD-01][Thread:48][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 02:51:08,172 [THD-01][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 03:03:02,609 [THD-01][Thread:46][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 05:14:44,656 [THD-01][Thread:14][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 05:27:54,781 [THD-01][Thread:49][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 05:38:12,359 [THD-01][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 13:04:13,313 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-30 13:05:57,469 [THD-01][Thread:15][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

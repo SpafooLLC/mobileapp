@@ -1,0 +1,29 @@
+﻿<div class="inbody osummery">
+    <div class="head">
+        <h3><label id="NSD_MA_lblOrderDate"></label></h3>
+        <p><strong><label id="NSD_MA_lblOrderTime"></label></strong> &nbsp;at <a href="#" class="norblue"><label id="NSD_MA_lblUserLocation"></label></a></p>
+        <p style="margin-top:10px;">With: <a href="ProviderPortfolio.html" class="norblue"><label id="NSD_MA_lblProviderName"></label></a></p>
+    </div>
+    <div class="cart">
+        <div class="heading">Selected Services</div>
+        <ul>
+            {#foreach $T as S}
+            <li>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="sname"><a href="" class="trashw" onclick="NS_RemoveItem(this,event); return false;"><span class="trash"><span></span><i></i></span></a> &nbsp;&nbsp;&nbsp;{$T.S.name}</td>
+                        <td class="qbox"><input onblur="NSD_MA_ReTotal();" type="text" value="1" rate="{$T.S.price}" id="txtOrderQty_{$T.S.ID}" class="NSOrderInput form-control center" placeholder="1"></td>
+                        <td class="price">$<label id="lblItemTotal_{$T.S.ID}">{$T.S.price}</label></td>
+                    </tr>
+                </table>
+            </li>
+            {#/for}
+        </ul>
+        <div class="finfo">
+            <span>Total</span><label id="NSD_MA_lblOrderTotal">0.00</label><span class="usd">USD</span>
+        </div>
+    </div>
+</div>
+<div class="enter">
+    <a href="#" onclick="NSD_MA_ShowPaymentMethod(event);" class="block-btn">continue</a>
+</div>

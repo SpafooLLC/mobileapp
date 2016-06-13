@@ -1,0 +1,26 @@
+2016-05-28 03:44:28,063 [THD-01][Thread:23][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-28 03:47:40,126 [THD-01][Thread:10][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentException: Unknown web method ListRootBottomService.
+Parameter name: methodName
+   at System.Web.Script.Services.RestHandler.CreateHandler(WebServiceData webServiceData, String methodName)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-05-28 03:48:22,938 [THD-01][Thread:11][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentException: Unknown web method ListRootBottomService.
+Parameter name: methodName
+   at System.Web.Script.Services.RestHandler.CreateHandler(WebServiceData webServiceData, String methodName)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-05-28 03:51:22,126 [THD-01][Thread:26][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-28 03:52:16,673 [THD-01][Thread:22][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-05-28 03:52:16,735 [THD-01][Thread:22][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

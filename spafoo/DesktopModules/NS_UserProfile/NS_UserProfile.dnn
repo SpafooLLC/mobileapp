@@ -1,0 +1,154 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="NS_UserProfile" type="Module" version="1.0.0">
+  <friendlyName>NS_UserProfile</friendlyName>
+  <description>Provider and Client User Profile Module</description>
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes />
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>NS_UserProfile</moduleName>
+        <foldername>NS_UserProfile</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>NS_UserProfile</friendlyName>
+            <definitionName>NS_UserProfile</definitionName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/NS_UserProfile/View.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>NS_UserProfile.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\NS_UserProfile</basePath>
+        <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>rh.asmx</name>
+        </file>
+        <file>
+          <path>Scripts\pace</path>
+          <name>dataurl.css</name>
+        </file>
+        <file>
+          <path>Scripts\pace</path>
+          <name>pace.min.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>provider.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>user.js</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>userCards.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>editProUser.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpEditProWorkSample.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpProWorkSample.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>editClientUser.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>userClient.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>userPro.htm</name>
+        </file>
+        <file>
+          <path>UC</path>
+          <name>ucClient.ascx</name>
+        </file>
+        <file>
+          <path>UC</path>
+          <name>ucProvider.ascx</name>
+        </file>
+        <file>
+          <name>View.ascx</name>
+        </file>
+        <file>
+          <name>NS_UserProfile.dnn</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>Handler.ashx</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>ProfileHandler.ashx</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

@@ -1,0 +1,4 @@
+<span style="white-space: pre;"><a href="" data-ng-click="folder.$_isExpanded = !folder.$_isExpanded" class="expand" onclick="return false;">{{ folder.Children.length ? (folder.$_isExpanded ? '-' : '+') : '&#160;'}}</a> <a href="#" class="name" data-ng-click="openFolder(folder)" onclick="return false;">{{folder.Text}}</a> <span class="label label-primary" data-ng-if="folder.selectedCount && folder.$_isExpanded" title="{{folder.selectedCount}} files selected in this folder">{{folder.selectedCount}}</span><span class="label label-primary" data-ng-if="folder.fullTreeSelectedCount && !folder.$_isExpanded" title="{{folder.fullTreeSelectedCount}} files selected in this folder and subfolders">{{folder.fullTreeSelectedCount}}</span></span>
+<ul data-ng-if="folder.Children" data-ng-show="folder.$_isExpanded" class="subfolders af-slide">
+    <li ng-repeat="folder in folder.Children" ng-include="'static/dnnsf/tpl/folder-list.html?v=' + dnnsf.env.version"></li>
+</ul>

@@ -1,0 +1,62 @@
+﻿<div class="inbody-simple">
+    <div class="myschedule">
+        {#foreach $T as S}
+        {#if $T.S.Status==0}
+            <div class="sce">
+                <div class="newapp"></div>
+                <a href="#" onclick="ShowAppointmentID({$T.S.AppointmentID});return false;">
+                    <div class="left">
+                        <div class="date">{NS_FormatDate($T.S.ForDate,'dd')} <span>{NS_FormatDate($T.S.ForDate,'MM')}</span></div>
+                        <div class="time">{$T.S.AtTime}</div>
+                    </div>
+                    <div class="right">
+                        <h2>{NS_FormatDate($T.S.ForDate,'DD dd MM yy')}</h2>
+                        <p>At: <span class="blue">{$T.S.Location.City}, {$T.S.Location.State} </span></p>
+                        <p>With: <span class="blue">{$T.S.ClientInfo.LastName} {$T.S.ClientInfo.FirstName}</span></p>
+                        <p>
+                            Service(s): <span class="blue">
+                                {#foreach $T.S.Services as C}
+                                {$T.C.ServiceName},&nbsp;
+                                {#/for}
+                            </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        {#/if}
+        {#/for}
+        <div class="bar">Accomplished</div>
+        {#foreach $T as S}
+        {#if $T.S.Status==1}
+        <div class="acc">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="left">
+                        <div class="date">{NS_FormatDate($T.S.ForDate,'dd')} <span>{NS_FormatDate($T.S.ForDate,'MM')}</span></div>
+                        <div class="time">{$T.S.AtTime}</div>
+                    </td>
+                    <td class="middle">
+                        <h2>{NS_FormatDate($T.S.ForDate,'DD dd MM yyyy')}</h2>
+                        <p>With: {$T.S.ClientInfo.LastName} {$T.S.ClientInfo.FirstName}</p>
+                        <p>
+                            Service(s): <span class="blue">
+                                {#foreach $T.S.Services as C}
+                                {$T.C.ServiceName},&nbsp;
+                                {#/for}
+                            </span>
+                        </p>
+                    </td>
+                    <td class="right">
+                        <a href="#" onclick="ShowProviderRating();return false;">
+                            <i class="fa fa-star-o fa-2x"></i>
+                            <p>Rate this client</p>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {#/if}
+        {#/for}
+    </div>
+</div>
+

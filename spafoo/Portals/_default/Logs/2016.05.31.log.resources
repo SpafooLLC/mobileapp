@@ -1,0 +1,16 @@
+2016-05-31 03:02:46,875 [THD-01][Thread:17][ERROR] DotNetNuke.Data.SqlDataProvider - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'NS_SDB_GetProviderWorkSamples' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DotNetNuke.Data.SqlDataProvider.ExecuteScriptInternal(String connectionString, String script)
+ClientConnectionId:756b0988-9c75-4835-8a78-cabe51002d39
+2016-05-31 03:15:11,828 [THD-01][Thread:37][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-31 13:58:41,453 [THD-01][Thread:16][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-31 14:14:57,063 [THD-01][Thread:40][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-31 14:33:17,078 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-31 14:38:25,000 [THD-01][Thread:28][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-31 23:01:25,391 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-05-31 23:26:27,281 [THD-01][Thread:52][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

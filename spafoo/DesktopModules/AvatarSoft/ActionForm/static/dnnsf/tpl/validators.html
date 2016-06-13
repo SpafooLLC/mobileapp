@@ -1,0 +1,69 @@
+<div class="ctl-validators">
+    <div class="action-list sortable-list panel-group form-horizontal" data-ui-sortable="{placeholder: 'alert alert-warning', handle: '.handle', change: changed}" data-ng-model="validators">
+        <div class="panel panel-default action-root" data-ng-repeat="item in validators" data-ng-class="{deleted: item.IsDeleted}">
+            <div class="panel-heading btn-link-animate-trigger">
+
+                <button class="btn btn-link btn-sm btn-link-animate show-70 pull-right" type="button" data-link-animate="danger" style="margin: -5px 6px 0 0;" data-ng-click="item.IsDeleted = !item.IsDeleted;" title="Note that the action is not actually deleted until you click the save button.">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+
+                <i class="show-50 handle .col-sm-col-sm-pull-left glyphicon glyphicon-align-justify" title="Drag to define order of execution..."></i>
+
+                <a href="" class="accordion-toggle" data-toggle="collapse" data-target="#collapse{{item.$_uid}}">
+                    {{localize(vldDefs[item.Type].Title)}}
+                    <span data-ng-show="item.Description">({{item.Description}})</span>
+                </a>
+                <small data-ng-id="item.Id > 0" style="color: #999;"> #{{item.Id}} </small>
+            </div>
+            <div id="collapse{{item.$_uid}}" class="panel-collapse collapse" data-ng-class="{in: item.$_isOpen}">
+                <div class="panel-body">
+
+                    <p class="text-muted" style="margin-bottom: 20px;" data-ng-bind-html="$sce.trustAsHtml(localize(vldDefs[item.Type].HelpText))">
+                    </p>
+
+                    <!--<div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" data-ng-model="item.Description" placeholder="something so you'd quickly know what this action is about..." />
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Condition</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" data-ng-model="item.Condition" placeholder="" />
+                            <p class="text-muted help">
+                                This boolean expression is used to determine if this validator will run. Use it to enable or disable validators programatically.
+                                A common example is [HasRole:Administrators|true] or [SomeField] == "Some Value".
+                                This field supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a>;
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--Render parameters-->
+                    <div data-ng-repeat="p in vldDefs[item.Type].Parameters" data-ng-include="$sce.getTrustedResourceUrl('static/dnnsf/tpl/parameter.html?v=' + sharedData.resourceVersion)">
+                    </div>
+
+                    <!--<div class="" data-ng-bind-html="$sce.trustAsHtml(vldDefs[item.Type].FooterHtml)"></div>-->
+
+                </div>
+            </div>
+
+            <div class="label label-danger" data-ng-show="checkFinal(item)">
+                Actions below this line may never execute. Drag them above this action.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="alert panel-group" style="padding: 4px;">
+
+        <div class="btn-group">
+            <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+                Add Validation <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li data-ng-repeat="def in vldDefs"><a data-ng-click="addValidator(def);">{{localize(def.Title)}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

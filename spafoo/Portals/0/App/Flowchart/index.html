@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SpaFoo - Mobile App flow chart</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="lib/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="source/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+			$('.fancybox-media')
+				.attr('rel', 'media-gallery')
+				.fancybox({
+					openEffect : 'none',
+					closeEffect : 'none',
+					prevEffect : 'none',
+					nextEffect : 'none',
+
+					arrows : false,
+					helpers : {
+						media : {},
+						buttons : {}
+					}
+				});
+
+			/*
+			 *  Open manually
+			 */
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+		});
+	</script>
+
+</head>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<style>
+ html { height: 100%; }
+    body { margin: 0 0 0 0; background:#ffffff; -webkit-font-smoothing: antialiased; }
+	.sfoo { width:100%; margin:0 0 -20px 0; }
+  .thumb-wrapper { width:1300px; margin:0 auto; background:url(Images/path.png) top center no-repeat;}
+  .thumb-wrapper td { padding:15px; text-align:center; vertical-align:top; font-family: 'Roboto', sans-serif; font-size:14px; color:#333333; font-weight:500; }
+  .thumb-wrapper td img { width:75px; }
+  .thumb-wrapper td p { max-width:200px; background:#e0e0e0; padding:5px 8px; display:block; margin:0 auto 10px auto; text-align:center; -webkit-border-radius: 5px; -moz-border-radius:5px; border-radius:5px; }
+  
+</style>
+
+<body>
+
+
+	<table class="thumb-wrapper" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="11"><img src="Images/Spafoo-Logo.png" style="width:211px; height:124px;">
+        <br><div style="font-size:24px; text-transform:uppercase; font-weight:300;">Mobile App flow chart</div>
+        <div style="height:1px; background:#cccccc; margin:20px 0;"></div>        </td>
+      </tr>
+      <tr>
+        <td colspan="11"><p>Home</p><a class="fancybox" href="Images/01 - Home.png" data-fancybox-group="gallery"><img src="Images/01 - Home.png"></a></td>
+      </tr>
+      <tr>
+        <td colspan="11"><p>Login</p><a class="fancybox" href="Images/22 - Login.png" data-fancybox-group="gallery"><img src="Images/22 - Login.png"></a></td>
+      </tr>
+      <tr>
+        <td><p>Register User</p><a class="fancybox" href="Images/02 -  Register.png" data-fancybox-group="gallery"><img src="Images/02 -  Register.png"></a></td>
+        <td colspan="5" style="padding-right:96px;"><p>Client Navigation</p><a class="fancybox" href="Images/04 - Navigation.png" data-fancybox-group="gallery"><img src="Images/04 - Navigation.png"></a></td>
+        <td colspan="5"><p>Provider Navigation</p><a class="fancybox" href="Images/04 - Provider Navigation.png" data-fancybox-group="gallery"><img src="Images/04 - Provider Navigation.png"></a></td>
+      </tr>
+      <tr>
+        <td><p>Privacy Statement</p><a class="fancybox" href="Images/03 - Register - Privacy Statement.png" data-fancybox-group="gallery"><img src="Images/03 - Register - Privacy Statement.png"></a></td>
+        <td><p>Search Provider</p><a class="fancybox" href="Images/08  - Search Provider.png" data-fancybox-group="gallery"><img src="Images/08  - Search Provider.png"></a></td>
+       <td><p>My Profile</p><a class="fancybox" href="Images/05 - My Profile View.png" data-fancybox-group="gallery"><img src="Images/05 - My Profile View.png"></a></td>
+        <td><p>Services</p><a class="fancybox" href="Images/11 - Services.png" data-fancybox-group="gallery"><img src="Images/11 - Services.png"></a></td>
+        <td colspan="2"><p>My Schedule</p><a class="fancybox" href="Images/06 - My Schedule.png" data-fancybox-group="gallery"><img src="Images/06 - My Schedule.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>My Schedule</p><a class="fancybox" href="Images/23 - Provider - My Appointments.png" data-fancybox-group="gallery"><img src="Images/23 - Provider - My Appointments.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>My Profile</p><a class="fancybox" href="Images/28 - Provider Profile.png" data-fancybox-group="gallery"><img src="Images/28 - Provider Profile.png"></a></td>
+      </tr>
+      <tr>
+        <td><p>ASAP - I'M Ready Now</p><a class="fancybox" href="Images/09 -NASAP I am Ready.png" data-fancybox-group="gallery"><img src="Images/09 -NASAP I am Ready.png"></a></td>
+        <td><p>Schedule  Appointment</p><a class="fancybox" href="Images/09 - Making An Appointment.png" data-fancybox-group="gallery"><img src="Images/09 - Making An Appointment.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>Women</p><a class="fancybox" href="Images/12 - Services.png" data-fancybox-group="gallery"><img src="Images/12 - Services.png"></a></td>
+        <td><p>Schedule Details</p><a class="fancybox" href="Images/07 - My Schedule Detail.png" data-fancybox-group="gallery"><img src="Images/07 - My Schedule Detail.png"></a></td>
+        <td><p>Add Review&nbsp;</p><a class="fancybox" href="Images/20 - Provider Review.png" data-fancybox-group="gallery"><img src="Images/20 - Provider Review.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>Appointments List</p><a class="fancybox" href="Images/24 - Provider - Appointments List.png" data-fancybox-group="gallery"><img src="Images/24 - Provider - Appointments List.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>My Availability</p><a class="fancybox" href="Images/29 - Provider My Availability.png" data-fancybox-group="gallery"><img src="Images/29 - Provider My Availability.png"></a></td>
+        <td><p>Edit Profile</p><a class="fancybox" href="Images/28 - Provider Edit Profile.png" data-fancybox-group="gallery"><img src="Images/28 - Provider Edit Profile.png"></a></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><p>Address Control</p><a class="fancybox" href="Images/10 - Making An Appointment (Address).png" data-fancybox-group="gallery"><img src="Images/10 - Making An Appointment (Address).png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>Hair</p><a class="fancybox" href="Images/13 - Services.png" data-fancybox-group="gallery"><img src="Images/13 - Services.png"></a></td>
+        <td><p>Cancel Appointment</p><a class="fancybox" href="Images/07 - My Schedule Detail - Cancel.png" data-fancybox-group="gallery"><img src="Images/07 - My Schedule Detail - Cancel.png"></a></td>
+        <td><p>&nbsp;&nbsp;&nbsp;&nbsp;Thanks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><a class="fancybox" href="Images/21 - Provider Review Thanks.png" data-fancybox-group="gallery"><img src="Images/21 - Provider Review Thanks.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>Appointment Detail</p><a class="fancybox" href="Images/25 - Provider - Appointments Detail.png" data-fancybox-group="gallery"><img src="Images/25 - Provider - Appointments Detail.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>Time Selector</p><a class="fancybox" href="Images/30 - Provider My Availability.png" data-fancybox-group="gallery"><img src="Images/30 - Provider My Availability.png"></a></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Straight</p><a class="fancybox" href="Images/14 - Services.png" data-fancybox-group="gallery"><img src="Images/14 - Services.png"></a></td>
+        <td><p>Edit Appointment</p><a class="fancybox" href="Images/09 - Edit Appointment.png" data-fancybox-group="gallery"><img src="Images/09 - Edit Appointment.png"></a></td>
+        <td><p>Set Soonest Appointment</p><a class="fancybox" href="Images/29 - Set Schedule.png" data-fancybox-group="gallery"><img src="Images/29 - Set Schedule.png"></a></td>
+        <td>&nbsp;</td>
+        <td><p>Appointment Completed</p><a class="fancybox" href="Images/26 - Provider - Appointment Completed.png" data-fancybox-group="gallery"><img src="Images/26 - Provider - Appointment Completed.png"></a></td>
+        <td><p>Rate Client</p><a class="fancybox" href="Images/27 - Provider - Client Review.png" data-fancybox-group="gallery"><img src="Images/27 - Provider - Client Review.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Providers</p><a class="fancybox" href="Images/12 - Providers.png" data-fancybox-group="gallery"><img src="Images/12 - Providers.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Provider Portfolio</p><a class="fancybox" href="Images/13  - Provider Portfolio.png" data-fancybox-group="gallery"><img src="Images/13  - Provider Portfolio.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Order Summary</p><a class="fancybox" href="Images/14 - Order Summary.png" data-fancybox-group="gallery"><img src="Images/14 - Order Summary.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Payment Method</p><a class="fancybox" href="Images/15 - Payment Method.png" data-fancybox-group="gallery"><img src="Images/15 - Payment Method.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Credit Card</p><a class="fancybox" href="Images/16 - Credit Card.png" data-fancybox-group="gallery"><img src="Images/16 - Credit Card.png"></a></td>
+        <td><p>Credit Card Terms</p><a class="fancybox" href="Images/18 - Credit Card - Terms.png" data-fancybox-group="gallery"><img src="Images/18 - Credit Card - Terms.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Confirm Payment</p><a class="fancybox" href="Images/17 - Confirm Payment.png" data-fancybox-group="gallery"><img src="Images/17 - Confirm Payment.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><p>Payment Done</p><a class="fancybox" href="Images/19 - Payment Done.png" data-fancybox-group="gallery"><img src="Images/19 - Payment Done.png"></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+<p><img src="Images/placeit-31.jpg" class="sfoo"></p>
+</body>
+</html>

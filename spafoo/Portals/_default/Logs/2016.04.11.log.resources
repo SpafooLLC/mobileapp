@@ -1,0 +1,24 @@
+2016-04-11 01:27:06,019 [THD-01][Thread:41][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-04-11 01:27:06,144 [THD-01][Thread:41][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-04-11 06:20:05,988 [THD-01][Thread:45][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-04-11 06:20:06,035 [THD-01][Thread:45][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

@@ -1,0 +1,12 @@
+2016-03-24 05:15:29,404 [THD-01][Thread:11][ERROR] DotNetNuke.Data.SqlDataProvider - System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'dbo.NSR_AddUpdateUserRegister'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DotNetNuke.Data.SqlDataProvider.ExecuteScriptInternal(String connectionString, String script)
+ClientConnectionId:bf966b6a-fa1a-4a0b-ad0c-4856976c4eff
+2016-03-24 05:35:52,248 [THD-01][Thread:46][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-03-24 22:24:22,248 [THD-01][Thread:15][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-03-24 22:54:20,326 [THD-01][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

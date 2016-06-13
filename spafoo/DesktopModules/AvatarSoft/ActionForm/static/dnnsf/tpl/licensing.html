@@ -1,0 +1,20 @@
+<div>
+
+    <div class="alert alert-danger" data-ng-if="license.Status.Type == 2">
+        <p data-ng-bind-html="$sce.trustAsHtml(license.Status.Message)"></p>
+        <p>
+            If you already have a license, download latst build from <a target="top" href="http://www.dnnsharp.com/my-account">dnnsharp.com/my-account</a>.<br />
+            If you need a license, you can purchase one from <a href="{{dnnsf.buyUrl}}" class="" target="_blank">DNN Store</a>.
+        </p>
+    </div>
+
+    <div class="alert alert-warning" data-ng-if="license.Status.Type == 1">
+        <p data-ng-bind-html="$sce.trustAsHtml(license.Status.Message)" style="margin-bottom: 6px;"></p>
+        <a href="{{dnnsf.buyUrl}}" class="" target="_blank">Need another license?</a>
+    </div>
+
+    <div class="" data-ng-if="license.Status.Type == 0">
+        <p data-ng-bind-html="$sce.trustAsHtml(license.Status.Message)" style="margin-bottom: 6px;"></p>
+    </div>
+
+</div>

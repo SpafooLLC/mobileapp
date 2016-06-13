@@ -1,0 +1,37 @@
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">Type</label>
+    <div class="col-sm-9">
+        <select class="form-control" data-ng-model="bg.type">
+            <option>None</option>
+            <option>Color</option>
+            <option>Pattern</option>
+            <option>Image</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group" data-ng-show="bg.type=='Color'">
+    <label class="col-sm-3 control-label">Color</label>
+    <div class="col-sm-9">
+        <input type="text" class="form-control" data-ng-model="bg.color" /> <!--data-slk-colorpicker="model.CssStyles['background-color']" />-->
+    </div>
+</div>
+
+<div class="form-group" data-ng-show="bg.type=='Pattern'">
+    <label class="col-sm-3 control-label">Pattern</label>
+    <div class="col-sm-9">
+        <select class="form-control" data-ng-model="bg.pattern" data-ng-options="c.Value as c.Text for c in patterns"></select>
+        {{bgs[currentBg]}}
+        <!--<input type="text" class="form-control" data-slk-colorpicker="model.CssStyles['background-image']" />-->
+    </div>
+</div>
+
+<div class="form-group" data-ng-show="bg.type=='Image'">
+    <label class="col-sm-3 control-label">Image</label>
+    <div class="col-sm-9">
+        <select class="form-control" data-ng-model="bg.image" data-ng-options="c.Value as c.Text for c in images"></select>
+        {{bgs[currentBg]}}
+        <!--<input type="text" class="form-control" data-slk-colorpicker="model.CssStyles['background-image']" />-->
+    </div>
+</div>

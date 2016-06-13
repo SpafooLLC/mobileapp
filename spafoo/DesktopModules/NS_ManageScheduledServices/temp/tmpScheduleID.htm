@@ -1,0 +1,18 @@
+﻿<div class="inbody pprofile">
+    <div class="baruprovider">Your Provider</div>
+    <img class="mainimg" src="{$T.ProviderInfo.Profile.PhotoURL}">
+    <div class="bar">
+        <div class="fleft"><i class="fa fa-info green"></i> &nbsp;Booked</div>
+        <div class="fright"><a href="#" onclick="NS_CancelAppointment(); return false;"><i class="fa fa-trash-o"></i> &nbsp;Cancel</a> &nbsp;&nbsp;&nbsp;<a href="#" onclick="return false;"><i class="fa fa-edit"></i> &nbsp;Edit</a></div>
+    </div>
+    <div class="scdetail">
+        <h1>{NS_FormatDate($T.ForDate,'DD dd MM yy')}</h1>
+        <p class="blue">{$T.AtTime} at {$T.Location.City}, {$T.Location.State}</p>
+        <p><span>With: </span> {$T.ProviderInfo.LastName} {$T.ProviderInfo.FirstName}</p>
+        <p>
+            <span>Service(s): </span>{#foreach $T.Services as C}
+            {$T.C.ServiceName},&nbsp;
+            {#/for}
+        </p>
+    </div>
+</div>

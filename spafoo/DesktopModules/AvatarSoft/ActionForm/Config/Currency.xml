@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <Item>
+        <Value>USD</Value>
+        <Text>U.S. Dollars (USD)</Text>
+    </Item>
+    <Item>
+        <Value>EUR</Value>
+        <Text>Euros (EUR)</Text>
+    </Item>
+    <Item>
+        <Value>CAD</Value>
+        <Text>Canadian Dollars (CAD)</Text>
+    </Item>
+    <Item>
+        <Value>GBP</Value>
+        <Text>Pounds Sterling (GBP)</Text>
+    </Item>
+    <Item>
+        <Value>AUD</Value>
+        <Text>Australian Dollar (AUD)</Text>
+    </Item>
+    <Item>
+        <Value>CHF</Value>
+        <Text>Swiss Franc (CHF)</Text>
+    </Item>
+     <Item>
+        <Value>SGD</Value>
+        <Text>Singapore Dollar (SGD)</Text>
+    </Item>
+</Items>

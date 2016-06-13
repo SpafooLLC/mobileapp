@@ -1,0 +1,411 @@
+﻿SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- Binding options
+---------------------------------------------------------------------------------------------------------------------------------------
+
+IF NOT EXISTS(select * from sys.columns where Name = N'BindValue' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD BindValue ntext NULL
+GO
+IF NOT EXISTS(select * from sys.columns where Name = N'BindOnChange' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD BindOnChange ntext NULL
+GO
+IF NOT EXISTS(select * from sys.columns where Name = N'BindShow' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD BindShow ntext NULL
+GO
+IF NOT EXISTS(select * from sys.columns where Name = N'BindPreserveLayout' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD BindPreserveLayout BIT DEFAULT 0
+GO
+
+IF NOT EXISTS(select * from sys.columns where Name = N'ShowCondition' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD ShowCondition ntext NULL
+GO
+
+IF NOT EXISTS(select * from sys.columns where Name = N'EnableCondition' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD EnableCondition ntext NULL
+GO
+
+-- v3 migration
+---------------------------------------------------------------------------------------------------------------------------------------
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_{objectQualifier}avtActionForm_FormActions_{objectQualifier}Modules]') AND OBJECTPROPERTY(id, N'IsForeignKey') = 1)
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormActions] DROP CONSTRAINT [FK_{objectQualifier}avtActionForm_FormActions_{objectQualifier}Modules]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormActions]  WITH CHECK ADD  CONSTRAINT [FK_{objectQualifier}avtActionForm_FormActions_{objectQualifier}Modules] FOREIGN KEY([ModuleId])
+REFERENCES {databaseOwner}[{objectQualifier}Modules] ([ModuleID])
+ON DELETE CASCADE
+GO
+
+
+-- migrate buttons
+---------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO {databaseOwner}[{objectQualifier}avtActionForm_FormFields]
+	   ([ModuleId],[Name],[Title],[HelpText],[InputTypeStr],[InputData],[IsRequired],[IsActive],[CssClass],[CssStyles]
+	   ,[DefaultValue],[DateCreated],[LabelCssClass],[LabelCssStyles],[IsEnabled],[CustomValidator1],[CustomValidator2]
+	   ,[ShortDesc],[DisableAutocomplete],[ValidationGroup],[GroupValidator]
+	   ,[ViewOrder],[ColIndex],[RowIndex],[ColSpan],[ColOffset],[ShowCondition])
+
+    SELECT
+           main.ModuleId
+           ,NULL
+           ,(select Value from {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where ModuleId = main.ModuleID and Name='SubmitText')
+           ,''
+           ,'button'
+           ,'{"CausesValidation":true,"ShowIn":{"ButtonsPane":true},"ButtonSize":"btn-normal","ButtonType":"btn-info","Actions":""}'
+           ,0,1,'','','',getdate(),'','',1,'','','',0,'','',9999,0,0,3,0,''
+	FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] main 
+	WHERE main.Name = 'SubmitType' and cast(main.Value as nvarchar(MAX)) = 'text'
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}avtActionForm_FormFields]
+		([ModuleId],[Name],[Title],[HelpText],[InputTypeStr],[InputData],[IsRequired],[IsActive],[CssClass],[CssStyles]
+	   ,[DefaultValue],[DateCreated],[LabelCssClass],[LabelCssStyles],[IsEnabled],[CustomValidator1],[CustomValidator2]
+	   ,[ShortDesc],[DisableAutocomplete],[ValidationGroup],[GroupValidator]
+	   ,[ViewOrder],[ColIndex],[RowIndex],[ColSpan],[ColOffset],[ShowCondition])
+	SELECT
+           main.ModuleId
+           ,NULL
+           ,'Submit'
+           ,''
+           ,'image-button'
+           ,'{"CausesValidation":true,"ShowIn":{"ButtonsPane":true},"ImageURL":"'+ (select cast(Value as nvarchar(MAX)) from {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where ModuleId = main.ModuleID and Name='SubmitText') +'","Actions":""}'
+           ,0,1,'','','',getdate(),'','',1,'','','',0,'','',9999,0,0,3,0,''
+	FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] main 
+	WHERE main.Name = 'SubmitType' and cast(main.Value as nvarchar(MAX)) = 'image'
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}avtActionForm_FormFields]
+		([ModuleId],[Name],[Title],[HelpText],[InputTypeStr],[InputData],[IsRequired],[IsActive],[CssClass],[CssStyles]
+	   ,[DefaultValue],[DateCreated],[LabelCssClass],[LabelCssStyles],[IsEnabled],[CustomValidator1],[CustomValidator2]
+	   ,[ShortDesc],[DisableAutocomplete],[ValidationGroup],[GroupValidator]
+	   ,[ViewOrder],[ColIndex],[RowIndex],[ColSpan],[ColOffset],[ShowCondition])
+    SELECT
+           main.ModuleId
+           ,NULL
+           ,(select Value from {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where ModuleId = main.ModuleID and Name='CancelText')
+           ,''
+           ,'button'
+           ,'{"CausesValidation":false,"ShowIn":{"ButtonsPane":true},"ButtonSize":"btn-normal","ButtonType":"btn-link","Actions":""}'
+           ,0,1,'','','',getdate(),'','',1,'','','',0,'','',9999,0,0,3,0,''
+	FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] main 
+	WHERE main.Name = 'CancelType' and cast(main.Value as nvarchar(MAX)) = 'text'
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}avtActionForm_FormFields]
+		([ModuleId],[Name],[Title],[HelpText],[InputTypeStr],[InputData],[IsRequired],[IsActive],[CssClass],[CssStyles]
+	   ,[DefaultValue],[DateCreated],[LabelCssClass],[LabelCssStyles],[IsEnabled],[CustomValidator1],[CustomValidator2]
+	   ,[ShortDesc],[DisableAutocomplete],[ValidationGroup],[GroupValidator]
+	   ,[ViewOrder],[ColIndex],[RowIndex],[ColSpan],[ColOffset],[ShowCondition])
+	SELECT
+           main.ModuleId
+           ,NULL
+           ,'Cancel'
+           ,''
+           ,'image-button'
+           ,'{"CausesValidation":false,"ShowIn":{"ButtonsPane":true},"ImageURL":"'+ (select cast(Value as nvarchar(MAX)) from {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where ModuleId = main.ModuleID and Name='CancelText') +'","Actions":""}'
+           ,0,1,'','','',getdate(),'','',1,'','','',0,'','',9999,0,0,3,0,''
+	FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] main 
+	WHERE main.Name = 'CancelType' and cast(main.Value as nvarchar(MAX)) = 'image'
+GO
+
+
+-- migrate actions
+---------------------------------------------------------------------------------------------------------------------------------------
+
+IF NOT EXISTS(select * from sys.columns where Name = N'FieldId' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormActions]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormActions] ADD FieldId int NULL
+GO
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormActions] SET EventName='click', 
+	FieldId = (select top 1 FormFieldId from {databaseOwner}[{objectQualifier}avtActionForm_FormFields] where (InputTypeStr='button' or InputTypeStr='image-button') and ModuleId = {databaseOwner}[{objectQualifier}avtActionForm_FormActions].ModuleId and CHARINDEX('"CausesValidation":true', InputData) != 0)
+	where EventName = 'submit'
+GO
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormActions] SET EventName='click', 
+	FieldId = (select top 1 FormFieldId from {databaseOwner}[{objectQualifier}avtActionForm_FormFields] where (InputTypeStr='button' or InputTypeStr='image-button') and ModuleId = {databaseOwner}[{objectQualifier}avtActionForm_FormActions].ModuleId and CHARINDEX('"CausesValidation":false', InputData) != 0)
+	where EventName = 'cancel'
+GO
+
+-- remove old settings
+---------------------------------------------------------------------------------------------------------------------------------------
+
+delete FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where Name='SubmitType'
+delete FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where Name='SubmitText'
+delete FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where Name='CancelText'
+delete FROM {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] where Name='CancelType'
+GO
+
+-- migrate default values
+---------------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputData = 
+	 CASE 
+		WHEN InputData IS NULL OR cast(InputData as nvarchar(max)) = '' OR cast(InputData as nvarchar(max)) = '{}' THEN '{Value:"'+ REPLACE(REPLACE(Cast(DefaultValue as nvarchar(MAX)), '\', '\\'), '"', '\"') +'"}' 
+		ELSE LEFT(cast(InputData as nvarchar(max)), LEN(cast(InputData as nvarchar(max))) - 1) + ',Value:"'+ REPLACE(REPLACE(Cast(DefaultValue as nvarchar(MAX)), '\', '\\'), '"', '\"') +'"}' 
+	 END
+  where DefaultValue IS NOT NULL and LEN(CAST(DefaultValue as NVARCHAR(max))) > 0
+GO
+
+-- Aproximate label width in 12 column grid
+---------------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormSettings]
+  SET Value = cast(12 - ROUND(1000/cast(cast(Value as nvarchar(MAX)) as int),0) as nvarchar(MAX))
+	where Name = 'LabelWidth' and ISNUMERIC(cast(Value as nvarchar(MAX))) = 1 and cast(cast(Value as nvarchar(MAX)) as int) > 12
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormSettings]
+  SET Value = '1'
+	where Name = 'LabelWidth' and ISNUMERIC(cast(Value as nvarchar(MAX))) = 1 and cast(cast(Value as nvarchar(MAX)) as int) < 1
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormSettings]
+  SET Value = '12'
+	where Name = 'LabelWidth' and ISNUMERIC(cast(Value as nvarchar(MAX))) = 1 and cast(cast(Value as nvarchar(MAX)) as int) > 12
+GO
+
+-- retreat Horizontal checkboxes and radios, they're now options into their respective fields
+---------------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] 
+	SET InputTypeStr = 'closed-multiple-checkbox', 
+		InputData = LEFT(cast(InputData as nvarchar(MAX)), LEN(cast(InputData as nvarchar(MAX))) - 1) + ',"Horizontal":true}'
+	where InputTypeStr = 'closed-multiple-checkbox-horiz'
+GO
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] 
+	SET InputTypeStr = 'closed-multiple-radio', 
+		InputData = LEFT(cast(InputData as nvarchar(MAX)), LEN(cast(InputData as nvarchar(MAX))) - 1) + ',"Horizontal":true}'
+	where InputTypeStr = 'closed-multiple-radio-horiz'
+GO
+
+-- migrate address fields
+---------------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputTypeStr = 'address-country'
+	where InputTypeStr = 'address-countryname' or InputTypeStr = 'address-countrycode'
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputTypeStr = 'address-region'
+	where InputTypeStr = 'address-regionname' or InputTypeStr = 'address-regioncode'
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputTypeStr = 'address-usstate'
+	where InputTypeStr = 'address-usstate-name'
+GO
+
+-- migrate password confirm field - not it's an option of the password field
+---------------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputTypeStr = 'open-password'
+	where InputTypeStr = 'open-password-confirm'
+GO
+
+-- migrate buttons so ShowIn is a radio
+---------------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputData = REPLACE(cast(InputData as nvarchar(max)), '"ShowIn":{"ButtonsPane":true,"Form":false}', '"ShowIn":"ButtonsPane"')
+	where InputTypeStr = 'button'
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputData = REPLACE(cast(InputData as nvarchar(max)), '"ShowIn":{"ButtonsPane":true,"Form":true}', '"ShowIn":"ButtonsPane"')
+	where InputTypeStr = 'button'
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputData = REPLACE(cast(InputData as nvarchar(max)), '"ShowIn":{"ButtonsPane":false,"Form":false}', '"ShowIn":"Neither"')
+	where InputTypeStr = 'button'
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputData = REPLACE(cast(InputData as nvarchar(max)), '"ShowIn":{"ButtonsPane":false,"Form":true}', '"ShowIn":"Form"')
+	where InputTypeStr = 'button'
+GO
+UPDATE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] SET InputData = REPLACE(cast(InputData as nvarchar(max)), '"ButtonAlign":"block"', '"ButtonAlign":"left"')
+	where InputTypeStr = 'button' and CHARINDEX('"ShowIn":"Neither"', cast(InputData as nvarchar(max))) > 1
+GO
+
+-- Offset all buttons that have a LabelOffset
+---------------------------------------------------------------------------------------------------------------------------------------
+
+update {databaseOwner}[{objectQualifier}avtActionForm_FormFields]
+SET ColOffset = cast ( cast( coalesce( (Select top 1 Value from {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] WHERE ModuleId = {databaseOwner}[{objectQualifier}avtActionForm_FormFields].ModuleId and Name = 'LabelWidth'), '0') as nvarchar(max)) as int)
+Where CHARINDEX('"LabelOffset":true', InputData) != 0 and cast( coalesce( (Select top 1 Value from {databaseOwner}[{objectQualifier}avtActionForm_FormSettings] WHERE ModuleId = {databaseOwner}[{objectQualifier}avtActionForm_FormFields].ModuleId and Name = 'LabelAlign'), 'Left') as nvarchar(max)) in ('Left', 'Right', 'Center')
+GO
+
+IF NOT EXISTS(select * from sys.columns where Name = N'ValidationCondition' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormFields]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormFields] ADD ValidationCondition ntext NULL
+GO
+
+---------------------------------------------------------------------------------------------------------------------------------------
+-- end migration
+
+
+
+
+-- Add helper function for splitting strings
+---------------------------------------------------------------------------------------------------------------------------------------
+
+IF object_id(N'{databaseOwner}[{objectQualifier}avtActionForm_SplitString]') IS NOT NULL
+	DROP FUNCTION {databaseOwner}[{objectQualifier}avtActionForm_SplitString]
+GO
+	
+CREATE FUNCTION {databaseOwner}[{objectQualifier}avtActionForm_SplitString]
+(
+   @List NVARCHAR(MAX),
+   @Delimiter NVARCHAR(255)
+)
+RETURNS TABLE
+WITH SCHEMABINDING AS
+RETURN
+  WITH E1(N)        AS ( SELECT 1 UNION ALL SELECT 1 UNION ALL SELECT 1 UNION ALL SELECT 1 
+                         UNION ALL SELECT 1 UNION ALL SELECT 1 UNION ALL SELECT 1 
+                         UNION ALL SELECT 1 UNION ALL SELECT 1 UNION ALL SELECT 1),
+       E2(N)        AS (SELECT 1 FROM E1 a, E1 b),
+       E4(N)        AS (SELECT 1 FROM E2 a, E2 b),
+       E42(N)       AS (SELECT 1 FROM E4 a, E2 b),
+       cteTally(N)  AS (SELECT 0 UNION ALL SELECT TOP (DATALENGTH(ISNULL(@List,1))) 
+                         ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) FROM E42),
+       cteStart(N1) AS (SELECT t.N+1 FROM cteTally t
+                         WHERE (SUBSTRING(@List,t.N,1) = @Delimiter OR t.N = 0))
+  SELECT Item = SUBSTRING(@List, s.N1, ISNULL(NULLIF(CHARINDEX(@Delimiter,@List,s.N1),0)-s.N1,8000))
+    FROM cteStart s;
+
+GO
+
+
+-- Fix System.Collections.ArrayList occurances in JSON
+---------------------------------------------------------------------------------------------------------------------------------------
+
+update {databaseOwner}[{objectQualifier}avtActionForm_FormActions]
+    SET [ActionData] = REPLACE(cast([ActionData] as nvarchar(MAX)), '"System.Collections.ArrayList"', '[]')
+
+-- Fix region/country name/code/id problem cause by dnn upgrade
+---------------------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+DECLARE @dnnCurrentVerion varchar(50);
+
+select top 1 @dnnCurrentVerion = Cast(Major as varchar) + Cast(Minor as varchar) + Cast(Build as varchar) from {databaseOwner}[{objectQualifier}version] order by VersionId desc;
+
+if (@dnnCurrentVerion in ('733','734'))
+BEGIN
+
+	--country
+	update {databaseOwner}[{objectQualifier}UserProfile] 
+	set PropertyValue=
+		case 
+		when (@dnnCurrentVerion = '734') then
+			IsNull
+			(
+				(
+					select Cast(EntryID as nvarchar) from {databaseOwner}[{objectQualifier}Lists]
+					where (value=PropertyValue or Text=PropertyValue or Cast(EntryID as varchar(50))=PropertyValue) and ListName='country'
+				),
+				PropertyValue
+			)
+		else
+			IsNull
+			(
+				(
+					select Value from {databaseOwner}[{objectQualifier}Lists]
+					where (value=PropertyValue or Text=PropertyValue or Cast(EntryID as varchar(50))=PropertyValue) and ListName='country'
+				),
+				PropertyValue
+			)
+		end
+	where
+		PropertyDefinitionID in 
+		(
+			select PropertyDefinitionID
+			from {databaseOwner}[{objectQualifier}ProfilePropertyDefinition]
+			where PropertyName='Country'
+		)
+
+	--region
+	update Regions
+	set PropertyValue=
+	case
+	when (@dnnCurrentVerion = '734') then
+			IsNull
+			(
+				(
+				select Cast(EntryID as nvarchar) from {databaseOwner}[{objectQualifier}Lists]
+				where (value=PropertyValue or Text=PropertyValue or Cast(EntryID as varchar(50))=PropertyValue) and ListName='region' and ParentID=
+					(
+						--country entryid
+						select entryid
+						from {databaseOwner}[{objectQualifier}Lists]
+							where listname='country' and 
+							( 
+								value = 
+									(
+										select PropertyValue from {databaseOwner}[{objectQualifier}UserProfile] 
+										where 
+											UserID = Regions.UserID
+											and
+											ProfileId = Regions.ProfileID + 1  
+									)
+								or
+									cast(EntryID as varchar) = 
+									cast(
+									(
+										select PropertyValue from {databaseOwner}[{objectQualifier}UserProfile] 
+										where 
+											UserID = Regions.UserID
+											and
+											ProfileId = Regions.ProfileID + 1  
+									)
+									as nvarchar)
+							)
+					)
+				),
+				PropertyValue
+			)
+	else
+			IsNull
+			(
+				(
+				select Value from {databaseOwner}[{objectQualifier}Lists]
+				where (value=PropertyValue or Text=PropertyValue or Cast(EntryID as varchar(50))=PropertyValue) and ListName='region' and ParentID=
+					(
+					--country entryid
+						select entryid
+						from {databaseOwner}[{objectQualifier}Lists]
+								where listname='country' and 
+								( 
+									value = 
+									(
+										select PropertyValue from {databaseOwner}[{objectQualifier}UserProfile] where 											
+											UserID = Regions.UserID
+											and
+											ProfileId = Regions.ProfileID + 1    
+									)
+									or
+									cast(EntryID as varchar) = 
+									cast(
+									(
+										select PropertyValue from {databaseOwner}[{objectQualifier}UserProfile] where 											
+											UserID = Regions.UserID
+											and
+											ProfileId = Regions.ProfileID + 1  
+									)
+									as nvarchar)
+								)
+					)
+				),
+				PropertyValue
+			)
+	end
+	from {databaseOwner}[{objectQualifier}UserProfile] Regions
+	where
+		PropertyDefinitionID in 
+		(
+			select PropertyDefinitionID
+			from {databaseOwner}[{objectQualifier}ProfilePropertyDefinition]
+			where PropertyName='region'
+		)
+
+END
+GO
+IF NOT EXISTS(select * from sys.columns where Name = N'ActionErrorMessage' and Object_ID = Object_ID(N'{databaseOwner}[{objectQualifier}avtActionForm_FormActions]'))
+	ALTER TABLE {databaseOwner}[{objectQualifier}avtActionForm_FormActions] ADD ActionErrorMessage nvarchar(MAX) NULL
+GO

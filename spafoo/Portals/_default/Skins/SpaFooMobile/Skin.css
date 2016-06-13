@@ -1,0 +1,183 @@
+/* =======================================================*/
+@import url( Bootstrap/css/bootstrap.css ); 
+@import url( flexslider.css ); 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800); 
+/*========================================================*/
+/*  Default HTML                                          */
+/*========================================================*/
+    html { height: 100%; }
+    body { height:100%; margin: 0 0 0 0; -webkit-font-smoothing: antialiased; background: -moz-radial-gradient(center, ellipse cover, #14338f 0%, #001a66 100%); background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#14338f), color-stop(100%,#001a66)); background: -webkit-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%); background: -o-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%);background: -ms-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%); background: radial-gradient(ellipse at center, #14338f 0%,#001a66 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#14338f', endColorstr='#001a66',GradientType=1 );}
+    form { height:100%; margin:0; padding:0; }
+    table, tr, td {font-family:'Open Sans', sans-serif; color:#222222; line-height:24px; font-weight:400; font-size:14px;  }
+    p { font-family:'Open Sans', sans-serif; color:#222222; line-height:24px; font-weight:400; font-size:14px; margin:0 0 20px 0; }
+	div { font-family:'Open Sans', sans-serif; color:#222222; line-height:24px; font-weight:400; font-size:14px; padding:0px; margin:0px;}
+    span { }
+	figure { margin:0;}
+    hr { margin:10px 0; padding:0px; border-bottom:1px dashed #8f8f8f; border-top:0px; border-left:0px; border-right:0px; line-height:0px; height:1px; display:block;  }
+    img { border:none;}
+/*========================================================*/
+/*  Main SKIN Elements                                    */
+/*========================================================*/
+	.clear { clear:both;}
+	.fleft { float:left;}
+	.fright { float:right; }
+	.xs-logo { margin:0; padding:25px 0 0 0; z-index:11; text-align:center;}
+	.paneOutline { border:1px dashed #666666; }	
+	.hfleft { float:left; padding-top:4px; }
+	.hfright { float:right; }
+	.menuright { float:right; margin:0 47px 0 0; }
+	.pixmenu { border-left:1px solid #a8a8a8;  min-height:35px; }
+	.header { min-height:265px; background:url(Images/mobile-crv.png) top center no-repeat;}
+	.wrapper { overflow:hidden;   }
+	.main-body { margin:45px 20px; overflow:hidden; background:url(Images/cont-cro.png) center center no-repeat; }
+	.mnav { width:370px; margin:0 auto; }
+	.mnav ul { margin:0 auto; padding:0; text-align:center; }
+	.mnav li { list-style:none; display:inline-block; text-align:center; width:138px; vertical-align:top; }
+	.mnav li a { list-style:none; display:block; text-align:center; }
+	.mnav li p { font-size:14px; color:#ffffff !important; margin:0 !important; }
+	.mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:75px 0 0 0; } .mnav li.for {  margin:75px 0 0 85px; }
+/*========================================================*/
+/*  Site Contents                                         */
+/*========================================================*/	
+	.center { text-align:center;}
+	.tpad-normal { padding-top:15px; }
+	.tpad-mid { padding-top:30px; }
+	.tpad-big { padding-top:45px; }
+	.rpad-big { padding-right:75px; }
+	.bmar-small { margin-bottom:10px !important;}
+	.bmar-normal { margin-bottom:20px;}
+	.bmar-midd { margin-bottom:30px;}
+	.margin-tb-sm { margin:15px;} .margin-tb-normal { margin:30px;}
+	.block { display:block;}
+	.bold { font-weight:600;}
+	.red { color:#fe0000; }
+	.blue { color:#0000fd; }
+	.black { color:#000000;}
+	.gray { color:#555555;}
+	.line-big { line-height:26px !important; }
+	.no-margin  { margin:0 !important;}
+	.hspace-small { height:15px;}
+	.hspace-normal { height:30px;}
+	.comments {  color: #888888; font-family:'Open Sans', sans-serif; font-weight:500; font-size:12px;}
+	.heading { font-size:24px; line-height:34px;}
+
+/*========================================================*/
+/*  Form Hack                                             */
+/*========================================================*/
+
+/*========================================================*/
+/*  Bootstrap Class                                       */
+/*========================================================*/
+	.container {}
+	.thumbnail {}
+	.img-responsive {}
+	.clearfix {}
+/*========================================================*/
+/*  Default DNN Hack                                      */
+/*========================================================*/
+	.DnnModule { z-index: 92;}
+	#dnnCommonTasks .megaborder { width:300px !important; }
+/*========================================================*/
+/*  DNN7 Control Bar                                      */
+/*========================================================*/
+	#ControlBar { height:53px !important;}	
+	.dnn_mact > li.actionMenuMove > ul li, ul#ControlBar_Module_ModulePosition li { height:30px !important;}
+/*========================================================*/
+/*  Default DNN Links Tokens                              */
+/*========================================================*/
+    a:link, a:visited, a:active { color: #066bbb; font-family:'Open Sans', sans-serif; font-weight:400; font-size:14px; text-decoration:none; line-height:24px; }
+    a:hover { color:#222222 !important; text-decoration:none !important; }
+    a:active { outline:none !important; } :focus {outline:0 !important; }
+    .terms_privacy, a.terms_privacy:link, a.terms_privacy:visited, a.terms_privacy:active { color:#c6c6c6; font-family:'Open Sans', sans-serif; font-size:13px; font-weight:400; text-decoration:none; }
+    a.terms_privacy:hover { text-decoration:underline; color:#ffffff !important; }
+	.bottomlinks, a.bottomlinks:link, a.bottomlinks:visited, a.bottomlinks:active { text-transform:uppercase; color:#c6c6c6; font-family:'Roboto', sans-serif; font-size:16px; font-weight:300; text-decoration: none; transition:color 0.5s; -moz-transition:color 0.5s; -webkit-transition:color 0.5s;	-o-transition:color 0.5s; }
+    a.bottomlinks:hover { text-decoration:none !important; color:#ffffff !important;} .bottomlinks span { color:#ffffff;}
+    .breadcrumb, a.breadcrumb:link, a.breadcrumb:visited, a.breadcrumb:active { color:#fe0000; font-family:Arial; font-size:13px; font-weight:normal; text-decoration: none;}
+    a.breadcrumb:hover { color:#0000fd; }
+    .reg_login, a.reg_login, a.reg_login:link, a.reg_login:visited, a.reg_login:active { text-transform:uppercase; font-family:'Open Sans', sans-serif; font-weight:500; font-size:13px; color:#ffffff; text-decoration:none; padding:5px 15px 5px 15px; background:#219962; border:1px solid #ffffff; } 
+    a.reg_login:hover { text-decoration:none; color:#000000 !important; }
+	.more, a.more, a.more:link, a.more:visited, a.more:active { font-family:'Open Sans', sans-serif; font-weight:600; font-size:14px; color:#ffffff; text-decoration:none; padding:12px 30px; background:#066bbb; text-transform:uppercase; text-align:center; } 
+    a.more:hover { text-decoration:underline; color:#ffffff !important; background:#3d3d3d; }
+/*========================================================*/
+/*  Default DNN Static Tokens                             */
+/*========================================================*/
+    .Copyright { font-family:'Open Sans', sans-serif; font-size:13px; font-weight:400; color:#c6c6c6;}
+    .SubHead { font-family:'Open Sans', sans-serif;font-size: 12px; font-weight:500; color: #444444;}
+	.SubHead span { font-family:'Open Sans', sans-serif; font-size: 12px; font-weight:500; color: #222222;}
+    .Head { font-family:'Open Sans', sans-serif; font-size: 15px; color: #6787b4; font-weight:500; padding:0 0 2px 0;}
+/*========================================================*/
+/*  Other used Text                                       */
+/*========================================================*/
+    .Normal { font-family:'Open Sans', sans-serif;color: #222222; line-height:24px; font-size:14px; font-weight:400;}
+    .NormalBold { font-family:'Open Sans', sans-serif;font-size:14px; font-weight:700; color: #222222; line-height:24px;}
+    .NormalRed { color: #e02429; font-weight: normal; font-family:Arial; font-size: 14px; }
+     UL LI { list-style:inside none disc;  font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; color:#222222; }
+	 ul, ol { margin-bottom:0px !important; }
+/*========================================================*/
+/*  Content Panes                                         */
+/*========================================================*/
+	.hcp { }
+	.hlp { padding:0 15px 0 0 !important;  }
+	.hrp { padding:0 0 0 15px !important;  }
+	.mlp { padding:0 10px 0 0 !important; }
+	.mmp { padding:0 10px 0 10px !important; }
+	.mrp { padding:0 0 0 10px !important; }
+/*========================================================*/
+/*  Default HTML Headings                                 */
+/*========================================================*/
+     H1 { margin:0 0 10px 0; line-height:54px; font-weight: normal; font-size:28px; color: #066bbb; font-family:'Open Sans', sans-serif;}
+     H2 { margin:0 0 10px 0; line-height:36px; font-weight: normal; font-size:24px; color: #066bbb; font-family:'Open Sans', sans-serif;}
+     H3 { margin:0 0 10px 0; line-height:32px; font-weight: normal; font-size:20px; color: #066bbb; font-family:'Open Sans', sans-serif;}
+     H4 { margin:0 0 10px 0; line-height:26px; font-weight: normal; font-size:18px; color: #066bbb; font-family:'Open Sans', sans-serif;}
+     H5 { margin:0 0 10px 0; line-height:18px; font-weight: normal; font-size:16px; color: #066bbb; font-family:'Open Sans', sans-serif;}
+     H6 { margin:0 0 6px 0; line-height:16px; font-weight: bold; font-size:14px; color: #066bbb; font-family:'Open Sans', sans-serif;}
+/*========================================================*/
+/*  Form Object                                           */
+/*========================================================*/
+    select, input { font-family:Arial; font-size:14px; color:#484848; }
+    .NormalTextBox { color: #414141; padding-left: 4px; line-height: 12px; font-family:Arial; font-weight: normal; font-size: 12px; border:1px solid #414141; background:#ffffff; }
+    td.NormalTextBox { padding: 0; margin: 0; background: transparent; border: 0; }
+    .StandardButton { border:#414141 0px solid; font-size: 11px; font-family:'Open Sans', sans-serif;background:#e31836; padding:3px 10px; color:#ffffff; }
+
+/*========================================================*/
+/*  Search                                                */
+/*========================================================*/
+     .search_bg {  background:#ffffff; float:right; width:225px; height:30px; position:relative; margin:0px 5px 0 0;}
+     .search, a.search:link, a.search:active, a.search:visited {  background:url(Images/search-btn.png) right top no-repeat; width:24px; height:30px;  position:absolute; right:3px; top:0px; text-indent:-99999px; overflow:hidden;}
+     a.search:hover{ background:url(Images/search-btn.png) right bottom no-repeat; }
+     #dnn_dnnSEARCH_txtSearch{ border:0px solid #ff0000; font-size:14px; color:#222222; font-family:Arial; text-align:left; height:26px; background:none; width:190px; line-height:20px; padding:5px 0 0 10px; }
+/*========================================================*/
+/*  Social Icons                                          */
+/*========================================================*/
+	.list {list-style:none; padding:0 0 0 0; margin:2px 0 0 0; position:relative; float:right;}
+	.list li a {color:#808080;}
+	.list li {line-height:28px; width:auto; float:none; color:#808080; padding:0; margin:0;}
+	.social-icons li {width:38px;height:28px;float:left; list-style:none; background:none;}
+	.social-icons li a {width:28px;height:28px;background:url(Images/social-icons.png) no-repeat 0 0;display:inline-block;float:none;}
+	.social-icons li .facebook {background-position:0 0;}
+	.social-icons li .facebook:hover {background-position:-28px 0 ;}
+	.social-icons li .twitter {background-position:0 -28px;}
+	.social-icons li .twitter:hover {background-position:-28px -28px;}
+/*========================================================*/
+/*  Media Styles                                          */
+/*========================================================*/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+}
+
+@media (min-width:240px) and (max-width:766px){
+
+	
+}
+@media (min-width:240px) and (max-width:459px){
+	.mnav { width:auto; margin:0 auto; }
+	.mnav ul { margin:0 auto; padding:0; text-align:center; }
+	.mnav li { text-align:center; width:30%; }
+	.mnav li img { width:100%; }
+	
+}

@@ -1,0 +1,154 @@
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_ClientRegistration.View" %>
+<div class="bread">
+    <a href="#" onClick="NS_GoBack(); return false;" class="pback">
+        <i class="fa fa-angle-left fa-2x"></i>
+    </a>
+    <div class="ptitle"><label id="lblHeader">Basic Profile Information</label></div>
+</div>
+<div class="inbody">
+    <div id="dvClientStep1">
+        <div class="center" style="display:none;">
+            <p class="blue bold">Profile Picture</p>
+            <div class="profile-pic">
+                <div class="round"><a href="#">
+                    <img src="/DesktopModules/NS_MakeAppointment/Images/Site/register-default.png" alt="" draggable="false"></a></div>
+            </div>
+        </div>
+        <div class="fcell">
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbFirstName" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+            <asp:TextBox ID="NS_tbFirstName" placeholder="First Name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbLastName" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+            <asp:TextBox ID="NS_tbLastName" placeholder="Last Name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbUserName" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+            <asp:TextBox ID="NS_tbUserName" placeholder="Username" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+            <div class="pwd-block">
+                <div class="left">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbPassword" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="NS_tbPassword" placeholder="Password" runat="server" CssClass="dnnFormRequired form-control" TextMode="Password"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="NS_tbPassword" Display="Dynamic" ErrorMessage="8 character atleast" ForeColor="Red" SetFocusOnError="True" ValidationExpression="^[\s\S]{8,}$" ValidationGroup="NSR"></asp:RegularExpressionValidator>
+                </div>
+                <div class="right">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbConfirmPassword" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="NS_tbConfirmPassword" placeholder="Confirm password" runat="server" CssClass="dnnFormRequired form-control" TextMode="Password"></asp:TextBox>
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" CssClass="informat" ControlToCompare="NS_tbPassword" ControlToValidate="NS_tbConfirmPassword" Display="Dynamic" ErrorMessage="Password does not match" ValidationGroup="NSR" ForeColor="Red"></asp:CompareValidator>
+                </div>
+                <p>8 Character minimum</p>
+            </div>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbEmail" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+            <asp:TextBox ID="NS_tbEmail" placeholder="Email Address" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="informat" ControlToValidate="NS_tbEmail" Display="Dynamic" ErrorMessage="Invalid email format" ForeColor="Red" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="NSR"></asp:RegularExpressionValidator>
+            <div class="checkbox checkbox-primary">
+                <input id="chkUserAcceptance" type="checkbox" checked="checked" />
+                <label for="chkUserAcceptance">By creating a Spafoo account, you agree to our
+                    <br />
+                    <a href="#" onclick="ShowTermsNPolicy();return false;">Terms & Conditions and Payment Policy</a></label>
+            </div>
+        </div>
+    </div>
+    <div id="dvClientStep2" style="display:none;">
+        <div class="fcell">
+            <div class="nsrow">
+                <div class="NS_Caption">Credit Card Number</div>
+                <div class="NS_Input">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_txtClientCC" ValidationGroup="NSR_CC"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="NS_txtClientCC" placeholder="Credit Card Number" runat="server" data-mask="0000000000000000" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server"
+                        ControlToValidate="NS_txtClientCC"
+                        Display="Dynamic"
+                        ErrorMessage="16 character atleast"
+                        ForeColor="Red"
+                        SetFocusOnError="True"
+                        ValidationExpression="^[\s\S]{16,}$"
+                        ValidationGroup="NSR_CC"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5"
+                        ControlToValidate="NS_txtClientCC"
+                        ValidationExpression="\d+"
+                        Display="Dynamic"
+                        EnableClientScript="true"
+                        ValidationGroup="NSR_CC"
+                        ErrorMessage="Please enter numbers only"
+                        runat="server"></asp:RegularExpressionValidator>
+                </div>
+            </div>
+            <div class="nsrow">
+            <div class="NS_Caption">Expiry :</div>
+            <div class="NS_Input">
+                <div class="col-xs-6 nopadl">
+                    <select id="ddlCCMonth" class="form-control w100">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 nopadr">
+                    <select id="ddlCCYear" class="form-control w100">
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2023">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="nsrow">
+            <div class="NS_Caption">Card Code :</div>
+            <div class="NS_Input">
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_txtCardCode" ValidationGroup="NSR_CC"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="NS_txtCardCode" runat="server" placeholder="3 or 4 digit number on back of a credit card" data-mask="0000" CssClass="form-control" style="width:100%; " />
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
+                    ControlToValidate="NS_txtCardCode" 
+                    Display="Dynamic" 
+                    ErrorMessage="3 character atleast" 
+                    ForeColor="Red" 
+                    SetFocusOnError="True" 
+                    ValidationExpression="^[\s\S]{3,}$" 
+                    ValidationGroup="NSR_CC"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator id="RegularExpressionValidator4"
+                   ControlToValidate="NS_txtCardCode"
+                   ValidationExpression="\d+"
+                   Display="Dynamic"
+                   EnableClientScript="true"
+                   ErrorMessage="Please enter numbers only"
+                    ValidationGroup="NSR_CC"
+                   runat="server"></asp:RegularExpressionValidator>
+            </div>
+        </div>
+            <div class="nsrow">
+                <input type="checkbox" id="chkAddPaymentLater"/>&nbsp;
+                <label for="chkAddPaymentLater">Add Payment Later</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="btnend">
+    <a href="#" onclick="NSR_CheckUserInput1();return false;" class="block-btn" id="btnRegContinue">Continue</a>
+<a href="#" onclick="NSR_CheckUserInput2();return false;" class="block-btn" id="btnRegSave" style="display:none;">Update</a>
+</div>               
+<link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css"  rel="stylesheet" type="text/css"/>
+<script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js" type="text/javascript"></script>
+<script src="/DesktopModules/NS_Registration/Scripts/jquery.mask.min.js"></script>
+<script src="/DesktopModules/NS_MakeAppointment\Scripts/bootstrap.js"></script>
+<script src="/desktopmodules/NS_ClientRegistration/Script/Module.js"></script>
+<script>
+    var NSR_HTBUrl = '<%=this.HomeTabUrl%>';
+    var NSR_PID=<%=this.PortalId%>;
+</script>

@@ -1,0 +1,128 @@
+2016-06-05 21:36:01,282 [THD-01][Thread:57][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-05 21:55:03,767 [THD-01][Thread:54][ERROR] DotNetNuke.Services.Installer.Installer - Exception deleting folder C:\webDataDNN\spafoo\Install\Temp\yatjvbjo while installing NS_MakeAppointment.dnn
+System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-06-05 21:55:03,829 [THD-01][Thread:54][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-06-05 21:55:51,532 [THD-01][Thread:42][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.52
+	Port: 2622
+	Referer: http://dev.spafoo.com/Host/Extensions/ctl/Install/rtab/36/portalid/0?popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+	ViewState: wDJpj+qz8snuOerLA0h+5XgQCr10vYfPLDpFG/rRDSLu7K09yZH70MsGg4RoEnYsjebP5Fd68PIBHYpbBAQUyy/Wzt6nEfLz1kgbmNmL/mcqE04fxbd8itOgJM2UFl0E/DcUNJ5E4KOBLGVUam2Nt/4TX3RuITy4YLEPrHSeMGBKpro1NKB7c4hg8E09mm/YpIgqZG1xuXKKEuwDwpAZd/55yANuj++p0pS30FcQIGMz5qwhMy+6buroHx2MbdTxTowPIwfWBGJpTQ3PEo9pGn7nWX5rXRD0WLDOj6CLLBhVkkrORncbT8TwG5g5uQH40n08QKPOikmyvUNxLhPgNlVGCRkaZLNrJH7BHKGQ9tX8jwHWtaNAXKneAOi8oa8OIz/SKNrPOfOwKiRh2bYwnSt1sEzIAlXkmKfIjZ0bWkQ+leSy2x/GKSPDio0C/gpbJi2w8q9efTNGTEZ21Dni4mw571BSkfV7UZM/huWALwAaAmqz
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-05 21:55:51,610 [THD-01][Thread:42][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: The client disconnected. ---> System.Web.HttpException: The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.52
+	Port: 2622
+	Referer: http://dev.spafoo.com/Host/Extensions/ctl/Install/rtab/36/portalid/0?popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+	ViewState: wDJpj+qz8snuOerLA0h+5XgQCr10vYfPLDpFG/rRDSLu7K09yZH70MsGg4RoEnYsjebP5Fd68PIBHYpbBAQUyy/Wzt6nEfLz1kgbmNmL/mcqE04fxbd8itOgJM2UFl0E/DcUNJ5E4KOBLGVUam2Nt/4TX3RuITy4YLEPrHSeMGBKpro1NKB7c4hg8E09mm/YpIgqZG1xuXKKEuwDwpAZd/55yANuj++p0pS30FcQIGMz5qwhMy+6buroHx2MbdTxTowPIwfWBGJpTQ3PEo9pGn7nWX5rXRD0WLDOj6CLLBhVkkrORncbT8TwG5g5uQH40n08QKPOikmyvUNxLhPgNlVGCRkaZLNrJH7BHKGQ9tX8jwHWtaNAXKneAOi8oa8OIz/SKNrPOfOwKiRh2bYwnSt1sEzIAlXkmKfIjZ0bWkQ+leSy2x/GKSPDio0C/gpbJi2w8q9efTNGTEZ21Dni4mw571BSkfV7UZM/huWALwAaAmqz
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---
+2016-06-05 22:08:03,095 [THD-01][Thread:54][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-05 22:10:37,595 [THD-01][Thread:54][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-05 22:13:33,329 [THD-01][Thread:47][ERROR] DotNetNuke.Services.Installer.Installer - Exception deleting folder C:\webDataDNN\spafoo\Install\Temp\5dqe3r5d while installing NS_MakeAppointment.dnn
+System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-06-05 22:13:33,376 [THD-01][Thread:47][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The directory is not empty.
+
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-06-05 22:20:21,485 [THD-01][Thread:54][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-05 22:20:21,610 [THD-01][Thread:54][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-05 22:30:54,970 [THD-01][Thread:16][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-05 22:37:16,485 [THD-01][Thread:54][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-05 22:46:30,517 [THD-01][Thread:8][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2016-06-05 22:54:01,595 [THD-01][Thread:8][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.52
+	Port: 3831
+	Referer: http://dev.spafoo.com/Host/Extensions/ctl/Install/rtab/36/portalid/0?popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+	ViewState: 2+M8dbV9X2WOvRdUTVJiQ5sqSuLCL1Pl8vN5KFpCN8+0Bs9Rm1OrJtKuPHY+Z6hVsyq1vQb8NttO4ot1R4HqFoKq6D7rPYFf3LAk/PMVgPrqAtOuei7Ut4/TiJ+RXawHfojNbcxOuCVUwdr8vZ0rqSUIFqVQ2tk0jk1XVC5NtdxQZ7hWVXBf49/VqEVAoWVDmuNIKzZvZ9uhc1w+pYTvA8dsUhEMGw5dagRLtjdIEe8gPigrWNYnXd6Dxrm7TprYa8v1VGH43Me7eDtDpXIoo6zf9ea2QMYekJYeRWIMi8QBLHHUoYI5LGkFyceECcVtjr1PvrhI7wEb/Tdiu0VO8fpLCN6jOxEQIlwBWNHc5DAc1saq4QNMXGmWCratIsFlIS8XbyX3tXruMxE/VRnhs06q0VV2ePyx2WuxsIKKi0mVEYVbJs+IW/tUUf4r1JPXlNLckBKwaG/xx2ZOrAWe+QGZ8rWHJZxIOrK0RIY1eaBBSFjP
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-05 22:54:01,689 [THD-01][Thread:8][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: The client disconnected. ---> System.Web.HttpException: The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.52
+	Port: 3831
+	Referer: http://dev.spafoo.com/Host/Extensions/ctl/Install/rtab/36/portalid/0?popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+	ViewState: 2+M8dbV9X2WOvRdUTVJiQ5sqSuLCL1Pl8vN5KFpCN8+0Bs9Rm1OrJtKuPHY+Z6hVsyq1vQb8NttO4ot1R4HqFoKq6D7rPYFf3LAk/PMVgPrqAtOuei7Ut4/TiJ+RXawHfojNbcxOuCVUwdr8vZ0rqSUIFqVQ2tk0jk1XVC5NtdxQZ7hWVXBf49/VqEVAoWVDmuNIKzZvZ9uhc1w+pYTvA8dsUhEMGw5dagRLtjdIEe8gPigrWNYnXd6Dxrm7TprYa8v1VGH43Me7eDtDpXIoo6zf9ea2QMYekJYeRWIMi8QBLHHUoYI5LGkFyceECcVtjr1PvrhI7wEb/Tdiu0VO8fpLCN6jOxEQIlwBWNHc5DAc1saq4QNMXGmWCratIsFlIS8XbyX3tXruMxE/VRnhs06q0VV2ePyx2WuxsIKKi0mVEYVbJs+IW/tUUf4r1JPXlNLckBKwaG/xx2ZOrAWe+QGZ8rWHJZxIOrK0RIY1eaBBSFjP
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---
+2016-06-05 23:21:46,610 [THD-01][Thread:32][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-05 23:21:46,610 [THD-01][Thread:32][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=36&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Modules.Admin.Extensions.Install.wizInstall_NextButtonClick(Object sender, WizardNavigationEventArgs e)
+   at System.Web.UI.WebControls.Wizard.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-06-05 23:23:34,751 [THD-01][Thread:26][ERROR] DotNetNuke.Services.Installer.Installer - Exception deleting folder C:\webDataDNN\spafoo\Install\Temp\tqqjw2z3 while installing NS_MakeAppointment.dnn
+System.IO.IOException: The directory is not empty.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-06-05 23:23:34,751 [THD-01][Thread:26][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The directory is not empty.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at DotNetNuke.Services.Installer.Installer.DeleteTempFolder()
+2016-06-05 23:29:23,485 [THD-01][Thread:45][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting

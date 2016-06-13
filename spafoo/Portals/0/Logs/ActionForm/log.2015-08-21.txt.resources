@@ -1,0 +1,173 @@
+06:08:48.724 | Errors | 08076ba1 | Independent Contractor #425 | Could not send email from support@netsam.com to adnan@netsam.com
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+There is a problem with the configuration of your SMTP Server. Mail was not sent.
+   at DnnSharp.Common.Actions.Communications.SendEmail.Authenticate(SmtpClient smtpClient, Dictionary`2 portalSettings, ActionContext context)
+   at DnnSharp.Common.Actions.Communications.SendEmail.SendMailInternal(MailMessage mailMessage, ActionContext context)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+
+07:08:47.341 | Errors | d594410f | Independent Contractor #425 | The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+10:08:44.516 | Errors | a092a8a1 | Independent Contractor #426 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+10:08:44.703 | Errors | 8ef6e47b | Independent Contractor #426 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+12:08:30.799 | Errors | 133bb989 | Independent Contractor #425 | The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+12:08:51.360 | Errors | c98b942b | Independent Contractor #425 | The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+12:08:28.752 | Errors | d18926c8 | Independent Contractor #425 | The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+15:08:24.506 | Errors | 7ba1a90a | Independent Contractor #427 | There was an error evaluating conditional expression ic-step1 ic-step2 ic-step3
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+There was an error evaluating conditional expression ic-step1 ic-step2 ic-step3
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+Parser error at position 2: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+
+15:08:23.784 | Errors | 22bbd63c | Independent Contractor #427 | There was an error evaluating conditional expression ic-step1
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+There was an error evaluating conditional expression ic-step1
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+Parser error at position 2: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+
+15:08:37.936 | Errors | 13c07e22 | Independent Contractor #427 | There was an error evaluating conditional expression ic-step1
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+There was an error evaluating conditional expression ic-step1
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+Parser error at position 2: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+
+15:08:16.525 | Errors | 79be573c | Independent Contractor #427 | There was an error evaluating conditional expression ic-step1
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+There was an error evaluating conditional expression ic-step1
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+Parser error at position 2: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+
+15:08:14.052 | Errors | b6f72087 | Independent Contractor #427 | There was an error evaluating conditional expression ic-step1
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+There was an error evaluating conditional expression ic-step1
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+Parser error at position 2: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+
+15:08:01.206 | Errors | 634ef8b8 | Independent Contractor #427 | The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddress..ctor(String address, String displayName, Encoding displayNameEncoding)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+15:08:55.843 | Errors | cf64a4ff | Independent Contractor #427 | The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddress..ctor(String address, String displayName, Encoding displayNameEncoding)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+22:08:04.810 | Errors | 6e0bcd00 | Independent Contractor #424 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:04.810 | Errors | e86568e5 | Independent Contractor #424 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:56.195 | Errors | 9449d8db | Independent Contractor #425 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:56.242 | Errors | 02f67d93 | Independent Contractor #425 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:08.350 | Errors | c1ff0a58 | Independent Contractor #426 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:08.428 | Errors | 9612b2fe | Independent Contractor #426 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:11.256 | Errors | f17b9532 | Independent Contractor #427 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+22:08:11.303 | Errors | 35161eae | Independent Contractor #427 | Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+

@@ -1,0 +1,300 @@
+<div class="panel-heading btn-link-animate-trigger" data-ng-class="{deleted: item.IsDeleted}">
+
+    <button class="btn btn-link btn-sm btn-link-animate show-70 pull-right" type="button" data-link-animate="danger" style="margin: -5px 6px 0 0;" data-ng-click="item.IsDeleted = !item.IsDeleted;" title="Note that the field is not actually deleted until you click the save button.">
+        <i class="glyphicon glyphicon-trash"></i>
+    </button>
+
+    <button class="btn btn-link btn-sm btn-link-animate show-70 pull-right" type="button" data-link-animate="info" 
+            style="margin: -5px 6px 0 0;" data-ng-click="cloneField(item);" title="Clone field">
+        <i class="glyphicon glyphicon-duplicate"></i>
+    </button>
+
+    <a class="accordion-toggle" data-toggle="collapse" href="#collapse{{item.$_uid}}" data-ng-click="item.$_isLoaded = true;">{{item.BoundName}}
+        <small style="color: #777;">({{fieldDefs[item.InputTypeStr].Title}})</small>
+    </a>
+    <span class="label label-warning" data-ng-if="isDuplicate(item)" title="This field has the same ID like another field. If this is intended, please ignore this warning.">Duplicate ID</span>
+</div>
+
+<div id="collapse{{item.$_uid}}" class="panel-collapse collapse" data-ng-class="{in: item.$_isOpen}">
+    <div class="panel-body" data-ng-if="item.$_isLoaded">
+
+        <p class="text-muted">{{localize(fieldDefs[item.InputTypeStr].HelpText)}}</p>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+                <div class="btn-group">
+                    <button class="btn btn-info dropdown-toggle " data-toggle="dropdown">
+                        {{fieldDefs[item.InputTypeStr].Title}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="(key, def) in fieldDefGroups" class="dropdown-submenu">
+                            <a href="#" onclick="return false;">{{key}}</a>
+                            <ul class="dropdown-menu">
+                                <li data-ng-repeat="fieldDef in fieldDefGroups[key]"><a data-ng-click="item.InputTypeStr = fieldDef.Name;">{{fieldDef.Title}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" data-ng-model="item.Title" data-ng-change="computeName(item)" />
+                <p class="text-muted">Displayed on front-end</p>
+            </div>
+            <div class="col-sm-6">
+                <label class="col-sm-1 control-label">ID</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" data-ng-model="item.BoundName" data-ng-disabled="item.AutoName" 
+                           data-ng-change="computeName(item)" />
+                </div>
+                <div class="col-sm-3">
+                    <label class="checkbox-inline col-sm-4" style="margin-left: 20px;">
+                        <input class="ng-pristine ng-valid" type="checkbox" data-ng-model="item.AutoName" data-ng-change="computeName(item)" />
+                        Auto
+                    </label>
+                </div>
+                <div class="col-sm-11 col-sm-offset-1">
+                    <p class="text-muted">
+                        Used to reference fields using [ID] syntax. 
+                                                    This field supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a>.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Show Conditionally</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" data-ng-model="item.ShowCondition" placeholder="e.g. [FirstName] == &quot;John&quot;" />
+                <p class="text-muted help">
+                    This boolean expression is used to determine if this field will be used in the form. Note that this is not the same as hiding it visually.
+                    This is evaluated both initially and after submit.
+                    It supports C# syntax.
+                    A common example is [HasRole:Administrators|true] or [SomeField] == "Some Value" or [SomeField].IndexOf("something") == 0.
+                    This field supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Enable Conditionally</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" data-ng-model="item.EnableCondition" placeholder="e.g. [LastName] == &quot;Doe&quot;" />
+                <p class="text-muted help">
+                    This boolean expression is used to determine if this field will be enabled (accepting input) in the form.
+                    If specified, this field overrides the Enabled flag below.
+                    It supports C# syntax.
+                    A common example is [HasRole:Administrators|true] or [SomeField] == "Some Value" or [SomeField].IndexOf("something") == 0..
+                    This field supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a>. Note that My Tokens is required to use the [HasRole] token.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Short Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" data-ng-model="item.ShortDesc" placeholder="e.g. Hello world" />
+                <p class="text-muted">This is a tooltip or placeholder that helps users fill the form. Supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a></p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Other Options</label>
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-default btn-sm" data-toggle="button" data-ng-model="item.IsEnabled" data-dnnsf-checkbox="">Enabled</button>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="button" data-ng-model="item.DisableAutocomplete" data-dnnsf-checkbox="">Disable Auto Complete</button>
+            </div>
+        </div>
+
+        <!--Render parameters-->
+        <div data-dnnsf-params="fieldDefs[item.InputTypeStr].Parameters"
+             data-dnnsf-item="item"
+             data-dnnsf-fields="sharedData.form.Fields">
+        </div>
+
+        <!--<div class="form-group">
+            <div class="col-sm-6 col-sm-offset-2">
+                <label class="checkbox-inline">
+                    <input type="checkbox" data-ng-model="item.SaveFieldToReports" />
+                    {{item.SaveFieldToReports}}
+                    Save Field to Reports
+                </label>
+            </div>
+        </div>-->
+
+        <!--<div data-ng-repeat="p in fieldDefs[item.InputTypeStr].Parameters" data-ng-include="'static/dnnsf/tpl/parameter.html?v=' + sharedData.resourceVersion">
+        </div>-->
+
+        <fieldset>
+            <legend style="margin-bottom: 4px;">Bind Expressions</legend>
+            <p class="text-muted" style="margin-bottom: 12px;">
+                These expressions run on the client side to dynamically control fields.
+                                            Reference fields by their token syntax, for example [FirstName].
+            </p>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Show</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" data-ng-model="item.BindShow" placeholder="e.g. [Price] == &quot;25&quot;" />
+                    <p class="text-muted help">
+                        Dynamically show or hide this field. This must be a boolean expression.
+                        Use standard javascript boolean operators (==, !=, <, >, !).
+                        For example, use <em>[PaymentMethod] == 'CreditCard'</em> to show the credit card field only when the Payment Method is set accordingly.
+                    </p>
+                </div>
+            </div>
+
+            <!--<div class="form-group">
+                <label class="col-sm-2 control-label">Enable</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" data-ng-model="item.BindEnable" placeholder="" />
+                    <p class="text-muted help">
+                        Dynamically enable or disable this field. This must be a boolean expression.
+                        Use standard javascript boolean operators (==, !=, <,>
+                            , !).
+                            For example, use <em>[PaymentMethod] == 'CreditCard'</em> to enable the credit card field only when the Payment Method is set accordingly.
+                    </p>
+                </div>
+            </div>-->
+
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-2">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" data-ng-model="item.BindPreserveLayout" />
+                        Preserve Layout
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Value</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" data-ng-model="item.BindValue" placeholder="e.g. [Price] * 3" />
+                    <p class="text-muted help">
+                        Dynamically compute the value of this field. So when other fields change this fields updates automatically. 
+                        Use standard javascript operators where needed (+, -, *, /).
+                        For example, use [FirstName] + ' ' + [LastName] to automatically fill the Display Name field.
+                        Note that once the value is edited manually, the automatic synchronization stops.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">On Change/Click</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" data-ng-model="item.BindOnChange" placeholder="e.g. [TextBox] == &lsquo;[DateTime:Now]&lsquo;" rows="5"></textarea>
+                    <p class="text-muted help">
+                        Bind some javascript code to execute when the value in this field changes or when a button is clicked.
+                        Access the form fields by using syntax [FieldId] which maps to the js object form.fields.<em>FieldId</em>.value.
+                        For buttons, you can "return false;" to prevent the form from submitting.
+                    </p>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset data-ng-if="fieldDefs[item.InputTypeStr].Settings.HasUi != 'false'">
+            <legend>UI Settings</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Label CSS Classes</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" data-ng-model="item.LabelCssClass" />
+                    <p class="text-muted">Supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a></p>
+                </div>
+                <label class="col-sm-1 control-label">Styles</label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" data-ng-model="item.LabelCssStyles" />
+                    <p class="text-muted">Additional CSS styles. Supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Control CSS Classes</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" data-ng-model="item.CssClass" />
+                    <p class="text-muted">Supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a></p>
+                </div>
+                <label class="col-sm-1 control-label">Styles</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" data-ng-model="item.CssStyles" />
+                    <p class="text-muted">Additional CSS styles. Supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a></p>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset data-ng-if="fieldDefs[item.InputTypeStr].Settings.HasInputValidation != 'false'">
+            <legend>Validation</legend>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Condition</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" data-ng-model="item.ValidationCondition" placeholder="" />
+                    <p class="text-muted help">
+                        This boolean expression is used to determine if this field validation will execute. 
+                        It supports C# syntax.
+                        A common example is [HasRole:Administrators|true] or [SomeField] == "Some Value" or [SomeField].IndexOf("something") == 0.
+                        This field supports <a href="http://www.dnnsharp.com/dnn/modules/my-custom-tokens" target="_blank" tabindex="-1">My Tokens</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-2">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" data-ng-model="item.IsRequired" />
+                        Required
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Custom Validator #1</label>
+                <div class="col-sm-4">
+                    <select data-ng-options="k as k for (k, o) in validatorDefs" class="form-control" data-ng-model="item.CustomValidator1">
+                        <option value="">-- No Validator --</option>
+                    </select>
+                </div>
+
+                <label class="col-sm-2 control-label">Custom Validator #2</label>
+                <div class="col-sm-4 ">
+                    <select data-ng-options="k as k for (k, o) in validatorDefs" class="form-control" data-ng-model="item.CustomValidator2">
+                        <option value="">-- No Validator --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Group Validation</label>
+                <div class="col-sm-4">
+                    <select class="form-control" data-ng-model="item.ValidationGroup">
+                        <option value="">- No group validation -</option>
+                        <option>group1</option>
+                        <option>group2</option>
+                        <option>group3</option>
+                        <option>group4</option>
+                        <option>group5</option>
+                        <option>group6</option>
+                        <option>group7</option>
+                        <option>group8</option>
+                        <option>group9</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-6" data-ng-show="item.ValidationGroup">
+                    <select data-ng-options="k as k for (k, o) in groupValidatorDefs" class="form-control" data-ng-model="item.GroupValidator">
+                        <option value="">-- No Validator --</option>
+                    </select>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>

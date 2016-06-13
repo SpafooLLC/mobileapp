@@ -1,0 +1,90 @@
+<div class="inbody-simple mprofile">
+    <div class="center">
+        <p><a href="#" onclick="NS_CancelEdit(); return false;" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Cancel</a></p>
+        <div class="profile-pic">
+            <div class="round">
+                <a href="#"><img src="{$T.Profile.PhotoURL}" alt=""></a>
+                <input type="file" class="NS_uplDiv NSR_ProfilePicControl" />
+            </div>
+        </div>
+        <h3 class="bmar-xs">{$T.FirstName} {$T.LastName}</h3>
+        <p class="green bmar-sm fs-sm"> {$T.Email}</p>
+        <p><span>Joined Date:</span> {NS_FormatJSONDate($T.CreatedOnDate,'dd MM yy')}</p>
+    </div>
+    <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">First Name:</div>
+        <div class="NS_Input">
+            <input id="txtFN" type="text" {#if $T.FirstName!=null} value ="{$T.FirstName}" {#/if} class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Last Name:</div>
+        <div class="NS_Input">
+            <input id="txtLN" type="text" {#if $T.LastName!=null} value="{$T.LastName}" {#/if} class="form-control" style="width:100%; " />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Display Name:</div>
+        <div class="NS_Input">
+            <input id="txtDN" type="text" {#if $T.DisplayName!=null} value="{$T.DisplayName}" {#/if} class="form-control" style="width: 100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Email:</div>
+        <div class="NS_Input">
+            <input id="txtE" type="text" value="{$T.Email}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
+ 
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Street:</div>
+        <div class="NS_Input">
+            <input id="txtStr" type="text" {#if $T.Profile.Street!=null} value="{$T.Profile.Street}" {#/if} class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">City:</div>
+        <div class="NS_Input">
+            <input id="txtCity" type="text" value="{$T.Profile.City}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Region:</div>
+        <div class="NS_Input">
+            <input id="txtRegion" type="text" value="{$T.Profile.Region}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">PostalCode:</div>
+        <div class="NS_Input">
+            <input id="txtPC" type="text" value="{$T.Profile.PostalCode}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Phone:</div>
+        <div class="NS_Input">
+            <input id="txtP" type="text" value="{$T.Profile.Telephone}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Bio</div>
+    <div class="NS_InputRow" style="width:100%;height:130px;">
+        <div class="NS_Input">
+            <textarea id="txtBio" rows="4" class="form-control" style="width:100%;">{#if $T.Profile.Biography!=null}{NS_ParseString($T.Profile.Biography)}{#/if}</textarea>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Tag Line</div>
+    <p><input id="txtTagLine" type="text" class="form-control"  style="width:100%;" maxlength="200" />{GetUserTagLine()}</p>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
+    <div id="dvProEditWorkSample" class="pprofile">
+        {GetUserWorkSample(0)}
+    </div>
+    <div>
+        <a onclick="NS_UpdateUser(); return false;" class="block-btn">Update</a>
+    </div>
+</div>

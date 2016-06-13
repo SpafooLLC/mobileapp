@@ -1,0 +1,289 @@
+2015-08-21 05:27:37,842 [TS-WEB03][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - avt.ActionForm.Core.FormException: Failed to initialize form: The '`' character, hexadecimal value 0x60, cannot be included in a name. ---> System.Xml.XmlException: The '`' character, hexadecimal value 0x60, cannot be included in a name.
+   at System.Xml.ValidateNames.ThrowInvalidName(String s, Int32 offsetStartChar, Int32 offsetBadChar)
+   at System.Xml.ValidateNames.ParseQNameThrow(String s, String& prefix, String& localName)
+   at System.Xml.Xsl.Runtime.XmlQueryRuntime.ParseTagName(String tagName, Int32 idxPrefixMappings, String& prefix, String& localName, String& ns)
+   at System.Xml.Xsl.Runtime.XmlQueryOutput.WriteStartComputed(XPathNodeType nodeType, String tagName, Int32 prefixMappingsIndex)
+   at <xsl:template name="ctl-title">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current)
+   at <xsl:template name="compiler:generated"> (104)(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current)
+   at <xsl:template name="form">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current)
+   at <xsl:template match="/">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current)
+   at Root(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.XmlILCommand.Execute(Object defaultDocument, XmlResolver dataSources, XsltArgumentList argumentList, XmlWriter writer)
+   at System.Xml.Xsl.XslCompiledTransform.Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results)
+   at avt.ActionForm.Templating.XslTemplate.Render(Control inControl)
+   at avt.ActionForm.Main.BindData()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+2015-08-21 06:15:58,155 [TS-WEB03][Thread:33][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Security.Permissions.PermissionController.<>c__DisplayClassc.<GetPermissionsByModule>b__b(PermissionInfo p)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at DotNetNuke.Security.Permissions.PermissionController.GetPermissionsByModule(Int32 moduleId, Int32 tabId)
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.GetPermissions()
+   at DotNetNuke.Security.Permissions.Controls.PermissionsGrid.CreateChildControls()
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.CreateChildControls()
+   at System.Web.UI.Control.EnsureChildControls()
+   at System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   at System.Web.UI.Page.ProcessPostData(NameValueCollection postData, Boolean fBeforeLoad)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2015-08-21 06:15:58,186 [TS-WEB03][Thread:33][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=98&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Security.Permissions.PermissionController.<>c__DisplayClassc.<GetPermissionsByModule>b__b(PermissionInfo p)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at DotNetNuke.Security.Permissions.PermissionController.GetPermissionsByModule(Int32 moduleId, Int32 tabId)
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.GetPermissions()
+   at DotNetNuke.Security.Permissions.Controls.PermissionsGrid.CreateChildControls()
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.CreateChildControls()
+   at System.Web.UI.Control.EnsureChildControls()
+   at System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   at System.Web.UI.Page.ProcessPostData(NameValueCollection postData, Boolean fBeforeLoad)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2015-08-21 06:20:13,959 [TS-WEB03][Thread:21][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Security.Permissions.PermissionController.<>c__DisplayClassc.<GetPermissionsByModule>b__b(PermissionInfo p)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at DotNetNuke.Security.Permissions.PermissionController.GetPermissionsByModule(Int32 moduleId, Int32 tabId)
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.GetPermissions()
+   at DotNetNuke.Security.Permissions.Controls.PermissionsGrid.CreateChildControls()
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.CreateChildControls()
+   at System.Web.UI.Control.EnsureChildControls()
+   at System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   at System.Web.UI.Page.ProcessPostData(NameValueCollection postData, Boolean fBeforeLoad)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2015-08-21 06:20:13,959 [TS-WEB03][Thread:21][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=98&error=Object+reference+not+set+to+an+instance+of+an+object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Security.Permissions.PermissionController.<>c__DisplayClassc.<GetPermissionsByModule>b__b(PermissionInfo p)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at DotNetNuke.Security.Permissions.PermissionController.GetPermissionsByModule(Int32 moduleId, Int32 tabId)
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.GetPermissions()
+   at DotNetNuke.Security.Permissions.Controls.PermissionsGrid.CreateChildControls()
+   at DotNetNuke.Security.Permissions.Controls.ModulePermissionsGrid.CreateChildControls()
+   at System.Web.UI.Control.EnsureChildControls()
+   at System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   at System.Web.UI.Page.ProcessPostData(NameValueCollection postData, Boolean fBeforeLoad)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2015-08-21 06:48:48,708 [TS-WEB03][Thread:33][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Could not send email from support@netsam.com to adnan@netsam.com ---> System.Exception: There is a problem with the configuration of your SMTP Server. Mail was not sent.
+   at DnnSharp.Common.Actions.Communications.SendEmail.Authenticate(SmtpClient smtpClient, Dictionary`2 portalSettings, ActionContext context)
+   at DnnSharp.Common.Actions.Communications.SendEmail.SendMailInternal(MailMessage mailMessage, ActionContext context)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 07:37:50,294 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2015-08-21 07:38:53,555 [TS-WEB03][Thread:56][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpException: Mailbox unavailable. The server response was: Cannot receive from specified address <support@netsam.com>: Unauthenticated senders not allowed
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2015-08-21 07:39:08,396 [TS-WEB03][Thread:62][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpException: Mailbox unavailable. The server response was: Cannot receive from specified address <support@netsam.com>: Unauthenticated senders not allowed
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2015-08-21 07:40:53,592 [TS-WEB03][Thread:66][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2015-08-21 07:41:07,842 [TS-WEB03][Thread:55][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpException: Mailbox unavailable. The server response was: Cannot receive from specified address <support@netsam.com>: Unauthenticated senders not allowed
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2015-08-21 07:44:47,341 [TS-WEB03][Thread:55][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 10:23:44,453 [TS-WEB03][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 10:23:44,453 [TS-WEB03][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 10:23:44,703 [TS-WEB03][Thread:9][ERROR] DotNetNuke.Services.Log.EventLog.DBLoggingProvider - System.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Exceptions'. Cannot insert duplicate key in object 'dbo.Exceptions'. The duplicate key value is (TU5S0u3LMMKsIxzuVTur6A==).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at PetaPoco.Database.Execute(String sql, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteNonQuery(String connectionString, CommandType type, String sql, Object[] args)
+   at DotNetNuke.Data.DataProvider.AddLog(String logGUID, String logTypeKey, Int32 logUserID, String logUserName, Int32 logPortalID, String logPortalName, DateTime logCreateDate, String logServerName, String logProperties, Int32 logConfigID, ExceptionInfo exception)
+   at DotNetNuke.Services.Log.EventLog.DBLoggingProvider.WriteLog(LogQueueItem logQueueItem)
+ClientConnectionId:ff1d4494-0d5e-4c45-a2a9-dc3d518f1a8e
+Error Number:2627,State:1,Class:14
+2015-08-21 12:14:21,842 [TS-WEB03][Thread:30][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2015-08-21 12:19:30,736 [TS-WEB03][Thread:34][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 12:19:51,360 [TS-WEB03][Thread:32][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 12:22:28,752 [TS-WEB03][Thread:30][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:02:24,444 [TS-WEB03][Thread:53][ERROR] DotNetNuke.Services.Exceptions.Exceptions - avt.ActionForm.Core.FormException: There was an error evaluating conditional expression ic-step1 ic-step2 ic-step3 ---> DnnSharp.Common.InternalException: There was an error evaluating conditional expression ic-step1 ic-step2 ic-step3 ---> System.Exception: Parser error at position 2: Unknown type or identifier 'ic' ---> System.Exception: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:03:23,784 [TS-WEB03][Thread:40][ERROR] DotNetNuke.Services.Exceptions.Exceptions - avt.ActionForm.Core.FormException: There was an error evaluating conditional expression ic-step1 ---> DnnSharp.Common.InternalException: There was an error evaluating conditional expression ic-step1 ---> System.Exception: Parser error at position 2: Unknown type or identifier 'ic' ---> System.Exception: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:04:37,936 [TS-WEB03][Thread:38][ERROR] DotNetNuke.Services.Exceptions.Exceptions - avt.ActionForm.Core.FormException: There was an error evaluating conditional expression ic-step1 ---> DnnSharp.Common.InternalException: There was an error evaluating conditional expression ic-step1 ---> System.Exception: Parser error at position 2: Unknown type or identifier 'ic' ---> System.Exception: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:06:16,525 [TS-WEB03][Thread:39][ERROR] DotNetNuke.Services.Exceptions.Exceptions - avt.ActionForm.Core.FormException: There was an error evaluating conditional expression ic-step1 ---> DnnSharp.Common.InternalException: There was an error evaluating conditional expression ic-step1 ---> System.Exception: Parser error at position 2: Unknown type or identifier 'ic' ---> System.Exception: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:07:14,052 [TS-WEB03][Thread:37][ERROR] DotNetNuke.Services.Exceptions.Exceptions - avt.ActionForm.Core.FormException: There was an error evaluating conditional expression ic-step1 ---> DnnSharp.Common.InternalException: There was an error evaluating conditional expression ic-step1 ---> System.Exception: Parser error at position 2: Unknown type or identifier 'ic' ---> System.Exception: Unknown type or identifier 'ic'
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.ExpressionEvaluator.Parser.Parse()
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   --- End of inner exception stack trace ---
+   at DnnSharp.Common.TokenUtil.EvaluateTokenExpression(String expression, TokenParameters parameters)
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.Form.FormData.ApplyAllTokensAsBool(String input, ModuleInfo module)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:08:01,190 [TS-WEB03][Thread:34][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddress..ctor(String address, String displayName, Encoding displayNameEncoding)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 15:08:55,843 [TS-WEB03][Thread:34][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.ReadCfwsAndThrowIfIncomplete(String data, Int32 index)
+   at System.Net.Mail.MailAddressParser.ParseAddress(String data, Boolean expectMultipleAddresses, Int32& index)
+   at System.Net.Mail.MailAddress..ctor(String address, String displayName, Encoding displayNameEncoding)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2015-08-21 22:26:04,748 [TS-WEB03][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:26:04,748 [TS-WEB03][Thread:8][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:26:56,195 [TS-WEB03][Thread:10][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:26:56,242 [TS-WEB03][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:27:08,350 [TS-WEB03][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:27:08,428 [TS-WEB03][Thread:12][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:27:11,241 [TS-WEB03][Thread:10][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+
+2015-08-21 22:27:11,303 [TS-WEB03][Thread:10][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Access denied!
+(error type System.UnauthorizedAccessException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+

@@ -1,0 +1,51 @@
+2015-08-14 00:06:55,448 [TS-WEB03][Thread:18][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error: Site Settings is currently unavailable." ctrl="ASP.desktopmodules_admin_portals_sitesettings_ascx" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DesktopModules.Admin.Portals.SiteSettings.UpdatePortal(Object sender, EventArgs e)"
+2015-08-14 00:07:36,804 [TS-WEB03][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error: Site Settings is currently unavailable." ctrl="ASP.desktopmodules_admin_portals_sitesettings_ascx" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DesktopModules.Admin.Portals.SiteSettings.UpdatePortal(Object sender, EventArgs e)"
+2015-08-14 00:08:23,613 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,629 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,629 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,629 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,676 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.desktopmodules_ddrmenu_menu_ascx" exc="System.ApplicationException: Couldn't load menu style 'DNNStandard': System.ArgumentNullException: Value cannot be null.
+Parameter name: path1
+   at System.IO.Path.Combine(String path1, String path2)
+   at DotNetNuke.Web.DDRMenu.DNNCommon.PathResolver.Resolve(String path, RelativeTo[] roots)
+   at DotNetNuke.Web.DDRMenu.MenuBase.Instantiate(String menuStyle)
+   at DotNetNuke.Web.DDRMenu.MenuBase.Instantiate(String menuStyle)
+   at DotNetNuke.Web.DDRMenu.SkinObject.OnPreRender(EventArgs e)"
+2015-08-14 00:08:23,691 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,707 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,707 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,707 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,707 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,723 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,723 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,723 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,723 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,723 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,738 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,738 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,738 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,754 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:23,769 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2015-08-14 00:08:24,051 [TS-WEB03][Thread:43][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.desktopmodules_ddrmenu_menu_ascx" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.DDRMenu.SkinObject.Render(HtmlTextWriter writer)"

@@ -1,0 +1,30 @@
+<div class="inbody-simple mprofile">
+    <div class="center">
+        <p><a href="#" onclick="NS_EditUser(); return false;" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+        <div class="profile-pic">
+            <div class="round"><a href="#"><img src="{$T.Profile.PhotoURL}" alt=""></a></div>
+        </div>
+        <h3 class="bmar-xs">{$T.FirstName} {$T.LastName}</h3>
+        <p class="green bmar-sm fs-sm">{$T.Email}</p>
+        <p><span>Joined Date:</span> {NS_FormatJSONDate($T.CreatedOnDate,'dd MM yy')}</p>
+    </div>
+    <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
+    <p><span>Name:</span> {$T.FirstName} {$T.LastName}</p>
+    <p><span>Display Name:</span> {$T.DisplayName}</p>
+    <p><span>Password:</span> ********</p>
+    <p><span>Email:</span> {$T.Email}</p>
+    <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
+    <p><span>Phone:</span> {$T.Profile.Telephone}</p>
+    <p><span>Email:</span> {$T.Email}</p>
+    <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs">{$T.Profile.Street}<br />{$T.Profile.City}, {$T.Profile.Region} {$T.Profile.PostalCode}</div></p>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Tag Line</div>
+    <p><label id="lblUserTagLine"></label>{GetUserTagLine()}</p>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Bio</div>
+    <p>{NS_ParseString($T.Profile.Biography)}</p>
+    <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
+    <div id="dvProWorkSample" class="pprofile">
+        {GetUserWorkSample(1)}
+    </div>
+</div>

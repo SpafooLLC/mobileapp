@@ -1,0 +1,9 @@
+﻿<ul class="sample tmar-md">
+    {#foreach $T as S}
+        {#if $T.S.OptionText!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'}
+            <li>
+                <img src="{$T.S.OptionText}" alt="">
+            </li>
+        {#/if}
+    {#/for}
+</ul>
