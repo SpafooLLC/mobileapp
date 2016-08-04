@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.MakeAppointment.View" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.MakeAppointment.View" %>
 <div class="bread">
     <div class="pback" onclick="NS_GoBack(event); return false;"><i class="fa fa-angle-left fa-2x"></i></div>
     <div class="ptitle">
@@ -6,8 +6,7 @@
     </div>
 </div>
 <div id="dvMakeAppointment" class="inbody NS_On" title="Make Appointment With">
-    <div class="makeapp" style="margin-bottom:10px;"><a href="#" title="View Profile" id="NS_lblProName"></a></div>
-    
+    <div class="makeapp" style="margin-bottom:10px;"><a href="#" onclick="ShowProID();return false;" title="View Profile" id="NS_lblProName"></a></div>
     <select class="nsmasa maddcont" id="NS_MA_SelectAddress" onchange="NS_MA_GetUserAddress(this);" >
         <option class="fa fa-location-arrow" value="MyCurrent">&nbsp;&nbsp; My Current Location</option>
         <option class="fa fa-map-marker" selected value="MyProfile">&nbsp;&nbsp; My Profile Address</option>
@@ -27,10 +26,10 @@
     </div>
     <div class="clearfix"></div>
     <div class="fcell" style="margin-top:30px;">
-        <div class="col-md-6 nopadl">
+        <div class="col-md-6 nopadl NS_Soon">
              <input type="text" id="txtOrderDate" placeholder="Select Date" class="form-control" data-role="datebox" data-options='{"mode":"flipbox","overrideDateFormat": "%m/%d/%Y"}' />
         </div>
-        <div class="col-md-6 nopadr">
+        <div class="col-md-6 nopadr NS_Soon">
             <input type="text" id="txtOrderTime" placeholder="Select Time" data-options='{"mode":"timeflipbox"}' data-role="datebox" class="form-control" readonly="readonly">
         </div>
         <div class="clear h30"></div>
@@ -42,7 +41,7 @@
         <a href="#" class="green-rounded" style="display:none;">ASAP</a>
     </div>
     <div class="clear h30"></div>
-    <a class="block-btn" onclick="NSD_MA_SaveNOrderSummary(event);">Continue</a>
+    <a class="block-btn" id="btnAppUpdate" onclick="NSD_MA_SaveNOrderSummary(event);">Continue</a>
 </div>
 <div id="dvOrderSummary" class="inbody NS_Off" title="Order Summary"></div>
 <div id="dvPaymentMethod" class="inbody NS_Off" title="Payment Method"></div>
@@ -62,9 +61,11 @@ td, th {padding: 10px !important;}
 <link href="/DesktopModules/NS_UserProfile/Scripts/pace/dataurl.css" rel="stylesheet" />
 <script src="/DesktopModules/NS_UserProfile/Scripts/pace/pace.min.js"></script>
 <link href="/DesktopModules/NS_MakeAppointment/Styles/checkbox.css" rel="stylesheet" />
+<link href="/DesktopModules/NS_Registration/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="http://cdn.jtsage.com/jtsage-datebox/4.0.0/jtsage-datebox-4.0.0.bootstrap.min.css" />
 <link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css" rel="stylesheet" />
 <link href="/DesktopModules/NS_ServiceDashBoard/Styles/bootstrap-select.css" rel="stylesheet" type="text/css" />
+<script src="/DesktopModules/NS_ServiceDashBoard/Scripts/NS_Common.js" ></script>
 <script src="/DesktopModules/NS_MakeAppointment/Scripts/bootstrap.js"></script>
 <script type="text/javascript" src="http://cdn.jtsage.com/jtsage-datebox/4.0.0/jtsage-datebox-4.0.0.bootstrap.min.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
@@ -72,7 +73,7 @@ td, th {padding: 10px !important;}
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery-fancybox/bootstrap-select.js"></script>
 <script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery.cookie/jquery.cookie.js"></script>
-<script src="/DesktopModules/NS_MakeAppointment/Scripts/Module_v1.0.js"></script>
+<script src="/DesktopModules/NS_MakeAppointment/Scripts/Module_v1.5.js"></script>
 <script src="/DesktopModules/NS_Registration/Scripts/jquery.mask.min.js"></script>
 <script >
     function NSR_MA_MakeRequest(WBurl, WBData, SuccessCB, FailedCB, vAsync) {
@@ -88,4 +89,6 @@ td, th {padding: 10px !important;}
     }
     var NS_MA_ClientID=<%=this.UserId%>;
     var NS_MyScheduleTab='<%=this.MyScheduleTab%>';
+    var NSR_DashboardTab='<%=this.DashboardTab%>';
+    var NSR_MyProfile='<%=this.MyProfileTab%>';
 </script>
