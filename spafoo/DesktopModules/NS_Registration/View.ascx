@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_Registration.View" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_Registration.View" %>
 <asp:Panel ID="pnlAdmin" runat="server" Visible="false" >
     <div id="NSR_Admin" style="width:100%;" class="dnnForm">
         <ul class="dnnAdminTabNav">
@@ -6,6 +6,18 @@
             <li><a href="#NSR_ManageQuestion">Manage Questions</a></li>
         </ul>
         <div id="NSR_ManageResponse" class="dnnClear">
+            <div style="width: 100%;">
+                <div style="width:60%;float:left;">
+                    <input type="radio" id="rblStatusP" name="rblStatus" checked="checked" onclick="NSR_SetStatus('Pending')" value="Pending" /><label for="rblStatusP">Pending</label>
+                    <input type="radio" id="rblStatusA" name="rblStatus" onclick="NSR_SetStatus('Approved')" value="Approved" /><label for="rblStatusA">Approved</label>
+                    <input type="radio" id="rblStatusR" name="rblStatus" onclick="NSR_SetStatus('Rejected')" value="Rejected" /><label for="rblStatusR">Rejected</label>
+                    <input type="radio" id="rblStatusAL" name="rblStatus" onclick="NSR_SetStatus('All')" value="All" /><label for="rblStatusAL">All</label>
+                </div>
+                <div style="width:40%;float:left;">
+                    <input type="text" id="NSR_txtKeyword" placeholder="user first name / last name" style="width:70%;" />
+                    <input type="button" id="NSR_btnSearchUser" value="Search" onclick="NSR_GetUsers();" />
+                </div>
+            </div>
             <div style="width: 100%;" id="NSR_dvUserList">
             </div>
 
@@ -36,8 +48,8 @@
             <div style="width: 75%; float: left;">
                 <input type="text" id="txtQuestionText" style="width: 92%;" />
             </div>
-            <div style="width: 25%; float: left;height:40px;">&nbsp;</div>
-            <div style="width: 75%; float: left; height: 40px;">
+            <div style="width: 25%; float: left;height:70px;">&nbsp;</div>
+            <div style="width: 75%; float: left; height:70px;">
                 <input type="checkbox" id="chkRequired" />&nbsp;<label for="chkRequired">Required ?</label>&nbsp;&nbsp;
                 <input type="checkbox" id="chkVisible" checked="checked" />&nbsp;<label for="chkVisible">Visible ?</label>
                 <br />
@@ -61,6 +73,7 @@
                     <option value="Date">Date</option>
                     <option value="CheckBox">CheckBox</option>
                     <option value="File">File</option>
+                    <option value="Images">Images</option>
                     <option value="IAgree">I Agree</option>
                 </select>
                     <br />
@@ -80,8 +93,8 @@
             <div style="width: 75%; float: left;">
                 <input type="text" id="txtEQuestionText" style="width: 92%;" />
             </div>
-            <div style="width: 25%; float: left;height:40px;">&nbsp;</div>
-            <div style="width: 75%; float: left; height: 40px;">
+            <div style="width: 25%; float: left;height:70px;">&nbsp;</div>
+            <div style="width: 75%; float: left; height:70px;">
                 <div style="float: left; width: 69%;">
                     <input type="checkbox" id="chkERequired" />&nbsp;<label for="chkERequired">Required ?</label>&nbsp;&nbsp;
                 <input type="checkbox" id="chkEVisible" checked="checked" />&nbsp;<label for="chkEVisible">Visible ?</label>
@@ -111,6 +124,7 @@
                     <option value="Date">Date</option>
                     <option value="CheckBox">CheckBox</option>
                     <option value="File">File</option>
+                    <option value="Images">Images</option>
                     <option value="IAgree">I Agree</option>
                 </select>
                     <br />
@@ -345,22 +359,23 @@
     </div>
 </div>
     </asp:Panel>
+<input type="button" value="Click Me" onclick="NSR_SaveUserResponse();"/>
 <style>
-    .NS_RequiredCap{ font-size:12px; font-weight:bold; line-height:12px; margin:7px 0 0 4px; position:absolute; }
-    .NS_On {display:block;}
-    .NS_Off {display:none;}
-    .NSR_ALink{
-        font-size:11px;font-weight:bold;color:blue !important;
-    }
-    .NSR_ALink:hover{
-        font-size:11px;font-weight:bold;color:blue !important;text-decoration:underline !important;
-    }
-    textarea.blur{color:Gray;font-size:11px;}
-    input.blur{color:Gray;font-size:11px;}
-    
+.NS_RequiredCap{ font-size:12px; font-weight:bold; line-height:12px; margin:7px 0 0 4px; position:absolute; }
+.NS_On {display:block;}
+.NS_Off {display:none;}
+.NSR_ALink{font-size:11px;font-weight:bold;color:blue !important;}
+.NSR_ALink:hover{font-size:11px;font-weight:bold;color:blue !important;text-decoration:underline !important;
+}
+textarea.blur{color:Gray;font-size:11px;}
+input.blur{color:Gray;font-size:11px;}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="/DesktopModules/NS_Registration/bootstrap.css" rel="stylesheet" />
 <script src="/DesktopModules/NS_Registration/Scripts/jquery-jtemplates/jquery-jtemplates.js"></script>
+<script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js" type="text/javascript"></script>
+<script src="/DesktopModules/NS_MakeAppointment\Scripts/bootstrap.js"></script>
+<script src="/DesktopModules/NS_ServiceDashBoard/Scripts/NS_Common.js"></script>
 <asp:Literal ID="ltUserScripts" runat="server">
 <script src="/DesktopModules/NS_Registration/Scripts/jquery-hint.js"></script>
 <script src="/DesktopModules/NS_Registration/Scripts/module.js"></script>
@@ -470,8 +485,8 @@
         var daysInMonth = NSR_DaysArray(12)
         var pos1 = dtStr.indexOf(dtCh)
         var pos2 = dtStr.indexOf(dtCh, pos1 + 1)
-        var strDay = dtStr.substring(0, pos1)
-        var strMonth = dtStr.substring(pos1 + 1, pos2)
+        var strMonth = dtStr.substring(0, pos1)
+        var strDay = dtStr.substring(pos1 + 1, pos2)
         var strYear = dtStr.substring(pos2 + 1)
         strYr = strYear
         if (strDay.charAt(0) == "0" && strDay.length > 1) strDay = strDay.substring(1)
@@ -483,7 +498,7 @@
         day = parseInt(strDay)
         year = parseInt(strYr)
         if (pos1 == -1 || pos2 == -1) {
-            rValue="The date format should be : dd/mm/yyyy";
+            rValue="The date format should be : mm/dd/yyyy";
         }
         if (strMonth.length < 1 || month < 1 || month > 12) {
             rValue="Please enter a valid month";
@@ -499,5 +514,17 @@
             rValue="Please enter a valid date";
         }
         return rValue
+    }
+    function NSR_CheckFileExt(t,d) {
+        if (t=='File'){
+            var S=d.lastIndexOf('.');
+            var C=d.length;
+            var _ext=d.substr(S,10);
+            
+            if (_ext=='.gif' || (_ext=='.png') || (_ext=='.jpeg') || (_ext=='.jpg'))
+            {return 'Image';}
+            if ((_ext=='.doc') || (_ext=='.docx') || (_ext=='.pdf'))
+            {return 'Doc';}
+        }
     }
 </script>

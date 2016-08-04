@@ -68,6 +68,9 @@
           <name>License.txt</name>
         </file>
         <file>
+          <name>module.css</name>
+        </file>
+        <file>
           <name>ReleaseNotes.txt</name>
         </file>
         <file>
@@ -91,18 +94,10 @@
         </file>
         <file>
           <path>Scripts</path>
-          <name>jquery.mask.min.js</name>
-        </file>
-        <file>
-          <path>Scripts</path>
           <name>module.js</name>
         </file>
         <file>
           <name>Settings.ascx</name>
-        </file>
-        <file>
-          <path>Templates</path>
-          <name>tmpServiceTree.htm</name>
         </file>
         <file>
           <path>Templates</path>

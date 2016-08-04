@@ -74,21 +74,21 @@
     <div id="NSR_dvMQuestion_{$T.Q.QuestionID}" class="dnnFormItem NSR_Questions NSR_Row">
         {#if $T.Q.QType!='IAgree'}
         <div class="NSR_RCol1">
-            {$T.Q.QuestionText}
+            {NS_ParseString($T.Q.QuestionText)}
         </div>
         {#/if}
         <div id="NSR_QContainer_{$T.Q.QuestionID}" class="NSR_RCol2">
             {#if $T.Q.QType=='IAgree'}
-            <div style="width:100%;padding-right:5px;margin-right:5px;margin-bottom:10px;font-weight:bold;color:seagreen">
-                {$T.Q.QuestionText}
+            <div style="width:80%;padding-right:5px;margin-right:5px;margin-bottom:10px;font-weight:bold;color:seagreen;margin-left:10px;">
+                {NS_ParseString($T.Q.QuestionText)}
             </div>
             <div style="min-width:100px;padding-left:10px;padding-right:5px;margin-left:10px;padding-bottom:15px;margin-bottom:10px;">
                 {NSR_ToBR($T.Q.OptionText)}
             </div>
             {#/if}
             {#if $T.Q.QType == 'TextBox'}
-            <div style="width: 100%; padding-right: 5px;margin-right: 5px; float: left; height: 50px;">
-                {#if $T.Q.OptionText==''}&nbsp;{#/if}  {$T.Q.OptionText}
+            <div style="width:80%; padding-right: 5px;margin-right: 5px; float: left; height: 50px;margin-left:10px;">
+                {#if $T.Q.OptionText==''}&nbsp;{#/if}  {NS_ParseString($T.Q.OptionText)}
             </div>
             {#elseif $T.Q.QType=='Radio'}
             <div style="width:auto;padding-right:5px;margin-right:5px;float:left;">
@@ -100,17 +100,32 @@
             </div>
             {#elseif $T.Q.QType=='File'}
             <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                {#if NSR_CheckFileExt($T.Q.QType,$T.Q.OptionText)=='Image'}
+                <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" />
+                {#/if}
+                {#if NSR_CheckFileExt($T.Q.QType,$T.Q.OptionText)=='Doc'}
+                <a href="/images/ns_registration/{$T.Q.OptionText}" target="_blank">view document</a>
+                {#/if}
+            </div>
+            {#elseif $T.Q.QType=='Images'}
+            {#if $T.Q.QuestionID=='14'}
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                <img src="{$T.rs.UserDetail.Profile.PhotoURL}" style="width:200px;height:150px;" />
+            </div>
+            {#else}
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
                 <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" />
             </div>
             {#/if}
+            {#/if}
             {#if $T.Q.QType=='Date'}
-            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;height:50px;">
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;height:50px;margin-left:10px;">
                 {#if $T.Q.OptionText==''}&nbsp;{#/if}{$T.Q.OptionText}
             </div>
             {#/if}
             {#if $T.Q.QType == 'Multiline'}
-            <div style="width: 100%; padding-right: 5px;margin-right: 5px; float: left; height: 50px;">
-                {#if $T.Q.OptionText==''}&nbsp;{#/if}  {$T.Q.OptionText}
+            <div style="width: 80%; padding-right: 5px;margin-right: 5px; float: left; height: 50px;margin-left:10px;">
+                {#if $T.Q.OptionText==''}&nbsp;{#/if}  {NS_ParseString($T.Q.OptionText)}
             </div>
             {#/if}
         </div>

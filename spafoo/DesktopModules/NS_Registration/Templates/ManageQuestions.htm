@@ -9,13 +9,13 @@
     <div style="margin-left: 10px; width: 98%; margin-bottom: 20px; margin-top: 20px; min-height: 50px;" class="dnnFormItem">
         {#if $T.Q.QType!='IAgree'}
         <div style="width:25%;float:left;text-align:right;">
-            <label>{$T.Q.QuestionText}</label>
+            <label>{NS_ParseString($T.Q.QuestionText)}</label>
         </div>
         {#/if}
         <div id="NSR_QContainer_{$T.Q.QuestionID}" style="width: 75%; float: left;">
         {#if $T.Q.QType=='IAgree'}
         <div style="float:left;width:100%;padding-left:5px;padding-right:5px;margin-right:5px;margin-bottom:10px;">
-            <label id="lbl{$T.Q.QuestionID}">{$T.Q.QuestionText}</label> &nbsp;
+            <label id="lbl{$T.Q.QuestionID}">{NS_ParseString($T.Q.QuestionText)}</label> &nbsp;
             <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />
             <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
         </div>
@@ -70,6 +70,11 @@
         </div>
         {#/for}<input type="button" value="Edit" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" />&nbsp;<input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
         {#elseif $T.Q.QType=='File'}
+        <div style="min-width:100px;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+            <input type="file" id="NSR_File{$T.Q.QuestionID}" class="NSR_FileControl" /> &nbsp;
+            <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />
+        </div>
+        {#elseif $T.Q.QType=='Images'}
         <div style="min-width:100px;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
             <input type="file" id="NSR_File{$T.Q.QuestionID}" class="NSR_FileControl" /> &nbsp;
             <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />

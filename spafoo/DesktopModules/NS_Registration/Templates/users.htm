@@ -31,6 +31,14 @@
                 <a href="#" onclick="return NSR_OpenReason({$T.U.UserID})" class="NSR_ALink">Reject</a>
             {#/if}
         </td>
+        <td>
+            {#if $T.U.Status=='Approved'}
+                <select id="slStatus_{$T.U.UserID}" onchange="NSR_ConfirmChange(this,{$T.U.UserID});" >
+                    <option value="1" {#if $T.U.IsApproved==true}selected{#/if} >Active</option>
+                    <option value="2" {#if $T.U.IsApproved==false}selected{#/if}>In-Active</option>
+                </select>
+            {#/if}
+        </td>
     </tr>
     {#/for}
 </table>

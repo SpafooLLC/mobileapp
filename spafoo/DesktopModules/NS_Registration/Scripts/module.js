@@ -53,7 +53,6 @@ function NS_LoadServices() {
     var _data = "{'SID':'-1'}";
     NSR_MakeRequest(_URL, _data, NS_LoadServices_SuCB);
 }
-
 function NS_LoadServices_SuCB(d) {
     $("#NSR_dvFixedStepOuter").show();
     $("#NSR_dvFixedStep1").setTemplateURL('/DesktopModules/NS_Registration/templates/tmpServiceTree.htm');
@@ -61,22 +60,40 @@ function NS_LoadServices_SuCB(d) {
     $(".NSRAccor").accordion({
         heightStyle: "content", collapsible: true, event: "click hoverintent"
     });
-
+    $("#NSR_dvFixedStep1 > DIV > DIV").addClass("ServiceTL");
 }
 function NSR_BindQuestions(data) {
     var o = $("#NSR_dvDynamicStep1");
     o.setTemplateURL('/DesktopModules/NS_Registration/Templates/UserQuestions.htm?v='+$.now());
     o.processTemplate(data);
     $("#NSR_ModuleOuter").restoreForm();
-        $(".NSR_FileControl").on('change', function () {
+    $(".NSR_FileControl").on('change', function () {
+        var ext = $(this).val().split('.').pop().toLowerCase();
+        var QType = $(this).attr('qtype');
+        var aryFile = "";
+        var validExt = "*.gif, *.png, *.jpg, *.jpeg, *.doc, *.docx, *.pdf";
+        if (QType == 'File') {
+            aryFile = ['gif', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'pdf'];        }
+        else
+        {
+            var validExt = "*.gif, *.png, *.jpg, *.jpeg";
+            aryFile = ['gif', 'png', 'jpg', 'jpeg'];
+        }
+        
+        if ($.inArray(ext, aryFile) == -1) {
+            bootbox.alert('Invalid file extension found, could NOT upload.<br/><br/> You can upload file(s) having extension of ' + validExt);
+            return false;
+        }
+        else {
             var file;
             if ((file = this.files[0])) {
                 NSR_sendFile(file, this);
             }
+        }
         });
     // Initialize Date control
         $(".NSR_Date").datepicker({
-            dateFormat: "dd/mm/yy"
+            dateFormat: "mm/dd/yy"
         });
 
         $("#NSR_ModuleOuter").tooltip({
@@ -97,22 +114,30 @@ function NSR_BindQuestions(data) {
 function NSR_sendFile(file, fileCtrl) {
     var formData = new FormData();
     formData.append('file', $(fileCtrl)[0].files[0]);
-    $(fileCtrl).after('<div class="NSR_UplNotify" style="font-weight:bold">Uploading...</div>')
+    $(fileCtrl).after('<div class="NSR_UplNotify"><img src="/images/dnnanim.gif"/></div>')
+    var QID = $(fileCtrl).attr('qid');
+    formData.append('QuestionID', QID);
     $.ajax({
-        type: 'post',
+        type: 'post',data: formData,
         url: '/DesktopModules/NS_Registration/Scripts/jquery-uploadify/Handler.ashx',
-        data: formData,
         success: function (status) {
             if (status != 'error') {
-                $(fileCtrl).attr('uploadedFile', NSR_SID + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
-                $(".NSR_UplNotify").hide();
-                alert('File uplaoded successfully');
+                if (status == "") {
+                    $(fileCtrl).attr('uploadedFile', NSR_SID + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
+                }
+                else {// if DNN FileID is returned by handler
+                    $(fileCtrl).attr('uploadedFile', status);
+                }
+                //$(".NSR_UplNotify").hide();
+                $(fileCtrl).next().children("img").attr('src', '/images/grant.gif');
+                bootbox.alert('File uplaoded successfully');
             }
         },
         processData: false,
         contentType: false,
         error: function () {
-            alert("Whoops something went wrong!");
+            $(fileCtrl).next().children("img").attr('src', '/images/red-error_16px.gif');
+            bootbox.alert("Whoops something went wrong!");
         }
     });
 }
@@ -121,7 +146,7 @@ function NSR_ValidateForm() {
     var NSR_DNNProfileIsValid = Page_ClientValidate('NSR');
     if (NSR_DNNProfileIsValid) {
         if ($("[id$='NS_tbPassword']").val().length < 7) {
-            alert('Password should be minimum of 7 character in length')
+            bootbox.alert('Password should be minimum of 7 character in length')
             return false;
         }
     }
@@ -179,7 +204,7 @@ function NSR_ValidateForm() {
         if ($('#NSR_dvFixedStep1 input:checked').length == 0) {
             if (NSR_IsValid) {
                 NSR_IsValid = false;
-                alert('Please specify what service(s) do you offer');
+                bootbox.alert('Please specify what service(s) do you offer');
             }
         }
     }
@@ -195,7 +220,22 @@ function NSR_SaveUserResponse() {
         var ID = v.id.split('_')[1];
         if ((v.type == 'radio' || v.type == 'checkbox') && (v.checked)) {
             var OptID = v.id.split('_')[2];
+            if (v.type == 'checkbox') {
+                if ($(v).is('[selectid]') == false) {
+                    NSR_GlobalUserSelections += "|" + ID + "_" + OptID;
+                }
+                else {
+                    if (($(v).attr('selectid') != '-1') && ($(v).attr('selectid') != '')) {
+                        NSR_GlobalUserSelections += "|" + ID + "_" + OptID + "_" + $(v).attr('selectid');
+                    }
+                    else {
+                        NSR_GlobalUserSelections += "|" + ID + "_" + OptID;
+                    }
+                }
+            }
+            else {
                 NSR_GlobalUserSelections += "|" + ID + "_" + OptID;
+            }
         }
         else if (((v.type == 'text' || v.type == 'textarea')) && (v.value.trim() != '')) {
                 NSR_GlobalUserSelections += "|" + ID + "_-1_" + escape(v.value);
@@ -206,7 +246,7 @@ function NSR_SaveUserResponse() {
         var ID = v.id.split('_')[1];
         var _FileName = $(v).attr('uploadedFile');
         if (_FileName != null || _FileName != undefined) {
-            NSR_GlobalUserSelections += "|" + ID + "_-1_" + _FileName;
+               NSR_GlobalUserSelections += "|" + ID + "_-1_" + _FileName;
         }
     });
     var _SRVCInputs = $('#NSR_dvFixedStep1 input:checked');
@@ -214,17 +254,17 @@ function NSR_SaveUserResponse() {
     $.each(_SRVCInputs, function (i, v) {
         var ID = v.id.split('_')[1];
         if (ID != null || ID != undefined) {
-            _SRVC += "|" + ID;
+                _SRVC += "|" + ID;
         }
     });
-    //$('div[id*="mpeEmpresa"]')
+   //$('div[id*="mpeEmpresa"]')
     var UN = $("input[id*='NS_tbUserName']").val().trim();
     var FN = $("input[id*='NS_tbFirstName']").val().trim();
     var LN = $("input[id*='NS_tbLastName']").val().trim();
     var EM = $("input[id*='NS_tbEmail']").val().trim();
     var P = $("input[id*='NS_tbPassword']").val().trim();
     var PH = $("input[id*='NS_Phone']").val().trim();
-    var MB = $("input[id*='NS_Phone']").val().trim();
+    var MB = $("input[id*='NS_txtMobilePhone']").val().trim();
     var STR = $("input[id*='tbStreet']").val().trim();
     var City = $("input[id*='NS_tbCity']").val().trim();
     var State = $("select[id*='ddlState']").val().trim();
@@ -238,8 +278,9 @@ function NSR_SaveUserResponse() {
 
 function NSR_OnRegistration(r) {
     if (r == '1') {
-        alert('Thank you , your information has been recorded successfully.');
-        window.location = NSR_HTBUrl;
+        bootbox.alert('Thank you , your information has been recorded successfully.', function (r) {
+                window.location = NSR_HTBUrl;
+        });
     }
     else {
         var aryR = r.split(":");
@@ -248,11 +289,12 @@ function NSR_OnRegistration(r) {
         $("#NSR_UR_Step_1").show(); $("#NSR_UR_Step_4").hide();
         $("#NSR_pnlFirst").show();
         NSR_ShowStepInfo();
-        alert(_info.replace(/([A-Z])/g, ' $1').trim());//insert spaces before Capital letters
+        bootbox.alert(_info.replace(/([A-Z])/g, ' $1').trim());//insert spaces before Capital letters
     }
 }
 
 function NSR_SaveMyDetail() {
     $("#NSR_ModuleOuter").saveForm();
-    alert("Your detail is saved successfully");
+    bootbox.alert("Your detail is saved successfully");
 }
+

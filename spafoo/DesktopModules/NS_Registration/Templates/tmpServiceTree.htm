@@ -1,4 +1,4 @@
-{#template MAIN}
+﻿{#template MAIN}
 <div>
     {#include entry root=$T}
 </div>
@@ -8,14 +8,14 @@
 {#template entry}
 {#foreach $T as S}
     {#if $T.S.Children.length>0}
-       <div class="NSRAccor ServiceTL" style="margin-bottom:15px;">
+       <div class="NSRAccor" style="margin-bottom:15px;">
     <h3>{$T.S.ServiceName}</h3>
     <div>
         {#include entry root=$T.S.Children}
     </div>
 </div>
     {#else}
-<div style="width:100%;margin-bottom:10px;" class="ServiceTL">
+<div style="width:100%;margin-bottom:10px;">
     <label style="font-weight:normal;margin:0px;"><input id="chkSRVC_{$T.S.ServiceID}" type="checkbox" style="margin:0px;" />&nbsp;{$T.S.ServiceName}</label>
 </div> 
     {#/if}

@@ -4,6 +4,7 @@ var _CurrentQID;
 var NSR_CUID = -1;
 var _HaveOptions = false;
 var NSR_IsUpdated=false;
+var _CurrStatus = 'Pending';
 // When document finished its loading
 $(document).ready(function () {
     $('#NSR_Admin').tabs({
@@ -169,7 +170,7 @@ function NSR_GetQuestion(ID) {
     NSR_MakeRequest(_URL, _Data, NSR_BindEditQuestion);
 }
 function NSR_BindEditQuestion(r) {//Function.r.QuestionText
-    $("#txtEQuestionText").val(r.QuestionText);
+    $("#txtEQuestionText").val(NS_ParseString(r.QuestionText));
     $("#ddlEQuestionType").val(r.QType);
     $("#chkEVisible").attr('checked', r.IsVisible);
     $("#chkERequired").attr('checked', r.IsRequired);
@@ -245,14 +246,14 @@ function NSR_CreateCategory() {
         NSR_MakeRequest(_URL, _Data, NSR_OnCategoryAdded);
     }
     else {
-        alert('Please specify the Header Text');
+        bootbox.alert('Please specify the Header Text');
     }
     return false;
 }
 function NSR_OnCategoryAdded() {
     $("#txtHeaderText").val('');
     NSR_IsUpdated = true;
-    alert('Created successfully');
+    bootbox.alert('Created successfully');
 }
 function NSR_UpdateCategory() {
     var _URL = NSR_WSUrl + 'UpdateCategory';
@@ -260,7 +261,7 @@ function NSR_UpdateCategory() {
     var _OrderID = $("#txtQCatOrder").val().trim();
     if (_OrderID == '') { alert('Please specify Order'); return false; }
     if (_Desc == '') {
-        alert('Please specify the Header Text'); return false;
+        bootbox.alert('Please specify the Header Text'); return false;
     }
     var _Data = "{'CatID':" + _CurrentQCategory + ",'Desc':'" + _Desc + "','OrderID':'"+_OrderID+"'}";
     NSR_MakeRequest(_URL, _Data, NSR_OnCategoryUpdated);
@@ -268,7 +269,7 @@ function NSR_UpdateCategory() {
 }
 function NSR_OnCategoryUpdated(e) {
     NSR_IsUpdated = true;
-    alert('Updated successfully');
+    bootbox.alert('Updated successfully');
 }
 function NSR_CreateQuestion() {
     var _URL = NSR_WSUrl + 'AddQuestion';
@@ -278,7 +279,7 @@ function NSR_CreateQuestion() {
     var _HText = $("#txtHintText").val().trim();
     if (_HaveOptions) {
         if (ddlSubOption.options.length == 0) {
-            alert("Please add options for this question.");
+            bootbox.alert("Please add options for this question.");
             return false;
         }
     }
@@ -291,7 +292,7 @@ function NSR_OnQuestionAdded(r) {
     NSR_AddOptions(r);
 
     NSR_IsUpdated = true;
-    alert('Question created successfully');
+    bootbox.alert('Question created successfully');
 }
 function NSR_ShowSubOptions() {
     var OptionVal=$("#ddlQuestionType").val();
@@ -317,7 +318,7 @@ function NSR_GetOptions() {
         $("#txtOptionText").val('');
     }
     else {
-        alert("Please specify value for 'Option Text'");
+        bootbox.alert("Please specify value for 'Option Text'");
         return false;
     }
 }
@@ -336,7 +337,7 @@ function NSR_GetEditOptions() {
         var _URL = NSR_WSUrl + 'AddOption';
         var _Data = "{'QID':'" + _CurrentQID + "','OptionText':'" + escape(_OptionText) + "','OnSelect':'" + _RoleID + "'}";
         NSR_MakeRequest(_URL, _Data);
-        alert('Option added successfully');
+        bootbox.alert('Option added successfully');
     }
 }
 function NSR_AddOptions(ID) {
@@ -361,27 +362,27 @@ function NSR_DeleteOption() {
 function NSR_OnOptionRemoval() {
     $("#ddlESubOption option:selected").remove();
     NSR_IsUpdated = true;
-    alert('Removed successfull');
+    bootbox.alert('Removed successfull');
 }
 
 function NSR_RemoveQuestion(ID) {
     if (confirm('Are you sure to remove this question?') == true) {
         var _URL = NSR_WSUrl + 'RemoveQuestion';
         var _Data = "{'QID':'" + ID + "'}";
-        NSR_MakeRequest(_URL, _Data, function () { NSR_IsUpdated = true; alert("Question removed successfully"); NSR_LoadCategories(); });
+        NSR_MakeRequest(_URL, _Data, function () { NSR_IsUpdated = true; bootbox.alert("Question removed successfully"); NSR_LoadCategories(); });
     }
 }
 function NSR_UpdateQuestion() {
     var _URL = NSR_WSUrl + 'UpdateQuestion';
     var _QT = $("#txtEQuestionText").val().trim();
-    if (_QT == '') { alert('Please specify question text'); return false; }
+    if (_QT == '') { bootbox.alert('Please specify question text'); return false; }
     var _QType = $("#ddlEQuestionType").val();
     var _HText = $("#txtEHintText").val().trim();
     var _Order = $("#txtEOrder").val().trim();
-    if (_Order == '') { alert('Please specify the question order'); return false;}
+    if (_Order == '') { bootbox.alert('Please specify the question order'); return false; }
     if (_HaveOptions) {
         if (ddlESubOption.options.length == 0) {
-            alert("Please add options for this question.");
+            bootbox.alert("Please add options for this question.");
             return false;
         }
     }
@@ -391,7 +392,7 @@ function NSR_UpdateQuestion() {
 
 function NSR_OnQuestionUpdated(d) {
     NSR_IsUpdated = true;
-    alert('Question updated successfully');
+    bootbox.alert('Question updated successfully');
 }
 
 function NSR_LoadCategories() {
@@ -411,8 +412,13 @@ function NSR_BindCategories(data) {
 
 function NSR_GetUsers() {
     var _URL = NSR_WSUrl + 'ListOfUsers';
-    var _Data = "";
+    var Keyword = $("#NSR_txtKeyword").val().trim();
+    var _Data = "{'S':'" + _CurrStatus + "','K':'" + Keyword + "'}";
     NSR_MakeRequest(_URL, _Data, NSR_BindUsers);
+}
+function NSR_SetStatus(S) {
+    _CurrStatus = S;
+    NSR_GetUsers();
 }
 
 function NSR_BindUsers(r) {
@@ -426,6 +432,7 @@ function NSR_BindUsers(r) {
     }
 }
 function NSR_ShowReason(reason) {
+    reason = NS_ParseString(reason);
     var $dialog = $('<div></div>').html(reason)
     .dialog({
         autoOpen: true,
@@ -446,12 +453,12 @@ function NSR_UpdateStatus(UID, Status, R) {
     var _URL = NSR_WSUrl + 'UpdateUserStatus';
     if (Status == 0) {
         R = $("#txtRejectReason").val().trim();
-        if (R == '') { alert('Please specify reason for rejection'); return false; }
+        if (R == '') { bootbox.alert('Please specify reason for rejection'); return false; }
     } else { R = '';}
     var _Data = "{'PID':'" + NSR_PID + "','UID':'" + NSR_CUID + "','Status':'" + Status + "','R':'" + escape(R) + "'}";
     NSR_MakeRequest(_URL, _Data, function () {
         NSR_IsUpdated = true;
-        alert('Updated successfully');
+        bootbox.alert('Updated successfully');
         NSR_GetUsers();
     });
 }
@@ -506,4 +513,28 @@ function NSR_OpenUserNotes() {
 
 function NSR_BindUserNotes(r) {
     $("#txtUserText").val(r);
+}
+function NSR_ConfirmChange(o,i) {
+    bootbox.confirm('Are you sure to change the status ??', function (r) {
+        if (r) {
+            var _status = $("#" + o.id + " :selected").val();
+            NSR_UpdateActiveStatus(i, _status);
+        }
+    })
+}
+
+function NSR_UpdateActiveStatus(ID,S) {
+    var url = '/DesktopModules/NS_Registration/rh.asmx/UpdateActiveStatus';
+    var data = "{'UID':'" + ID + "','Status':'" + S + "'}";
+    NSR_MakeRequest(url, data, function () {
+        bootbox.alert("Status updated successfully.");
+    });
+}
+
+function NSR_btnSearchUser() {
+    var url = '/DesktopModules/NS_Registration/rh.asmx/UpdateActiveStatus';
+    var data = "{'UID':'" + ID + "','Status':'" + S + "'}";
+    NSR_MakeRequest(url, data, function () {
+        bootbox.alert("Status updated successfully.");
+    });
 }

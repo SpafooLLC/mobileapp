@@ -1,4 +1,4 @@
-{#foreach $T as rs}
+﻿{#foreach $T as rs}
 <div id="NSR_UR_Step_{$T.rs.StepID}" style="width:100%;margin-bottom:20px;margin-top:20px;min-height
 :18px;"
 {#if $T.rs$iteration=='0' } class='NS_On' {#else} class='NS_Off' {#/if} >
@@ -11,7 +11,7 @@
          {#if $T.Q.IsFullWidth==true} style="clear:both; overflow: hidden;" {#/if}>
     {#if $T.Q.QType!='IAgree'}
     <div class="label-right col-sm-2">
-        <label>{$T.Q.QuestionText}
+        <label>{NS_ParseString($T.Q.QuestionText)}
         {#if $T.Q.IsRequired==true}
         <span id="NSR_lblRequired_{$T.Q.QuestionID}" class="NS_RequiredCap" style="color:red;display:none;">*</span>
         {#/if}</label>
@@ -32,7 +32,7 @@
     {#if $T.Q.QType=='IAgree'}
     <div style="width:100%;">
     <label id="lbl{$T.Q.QuestionID}">
-        {$T.Q.QuestionText}
+        {NS_ParseString($T.Q.QuestionText)}
         {#if $T.Q.IsRequired==true}
         <span id="NSR_lblRequired_{$T.Q.QuestionID}" class="NS_RequiredCap" style="display:none;">*</span>
         {#/if}
@@ -48,10 +48,9 @@
     {#/for}
     {#/if}
     {#if $T.Q.QType == 'TextBox'}
-        <input type="text" id="tb_{$T.Q.QuestionID}" class="form-control"aa title="{$T.Q.HintText}" maxlength="1000" name="tb_{$T.Q.QuestionID}" />
+        <input type="text" id="tb_{$T.Q.QuestionID}" class="form-control" title="{$T.Q.HintText}" maxlength="1000" name="tb_{$T.Q.QuestionID}" />
     {#elseif $T.Q.QType=='Multiline'}
-            <textarea id="tb_{$T.Q.QuestionID}" name="tb_{$T.Q.QuestionID}" title="{$T.Q.HintText}" maxlength="1000" rows="6" cols="80" class="form-control"></textarea>
-
+            <textarea id="tb_{$T.Q.QuestionID}" class="form-control"  name="tb_{$T.Q.QuestionID}" title="{$T.Q.HintText}" maxlength="1000" rows="6" cols="80"></textarea>
     {#elseif $T.Q.QType=='Radio' }
         {#foreach $T.Q.Options as O}
             <input type="radio" id="rbl_{$T.Q.QuestionID}_{$T.O.OptionID}" name="rbl_{$T.Q.QuestionID}" />
@@ -62,17 +61,18 @@
     <tr>
         {#foreach $T.Q.Options as O}
         <td style="width:25%;height:30px;">
-            <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" name="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" class="dnnFormItem" />
+            <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" selectid="{$T.O.OnSelect}" name="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" class="dnnFormItem" />
             <label for="chk_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
         </td>
    {#if (($T.O$iteration+1)%4)==0} </tr>{#/if}
     {#/for}
 </table>
     {#elseif $T.Q.QType=='File'}
-        <input type="file" id="NSRFile_{$T.Q.QuestionID}" class="NSR_FileControl" />
+        <input type="file" id="NSRFile_{$T.Q.QuestionID}" class="NSR_FileControl" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
+    {#elseif $T.Q.QType=='Images'}
+        <input type="file" id="NSRFile_{$T.Q.QuestionID}" class="NSR_FileControl" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
     {#elseif $T.Q.QType=='Date'}
         <input type="text" id="tb_{$T.Q.QuestionID}" class="NSR_Date" name="tb_{$T.Q.QuestionID}" />
-
     {#/if}
 </div>
     </div>
