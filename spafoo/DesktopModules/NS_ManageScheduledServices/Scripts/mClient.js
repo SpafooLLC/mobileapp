@@ -107,20 +107,81 @@ function NS_CancelAppointment() {
 function NS_DoCancelAppointment() {
     //RefundCard(string TxnID, string CCNumber, string Expiry,decimal Amount)
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/RefundCard";
-    var _data = "{'AID':'" + oAppointment.AppointmentID + "','TxnID':'" + oAppointment.PayTxnID + "','CCNumber':'" + oAppointment.CCNumber + "','Expiry':'" + oAppointment.Expiry + "','Amount':'" + oAppointment.Amount + "'}";
+    var _data = "{'AID':'" + oAppointment.AppointmentID + "','TxnID':'" + oAppointment.AuthTxnID + "','Amount':'" + oAppointment.Amount + "'}";
     NSR_MSS_MakeRequest(_URL, _data, NS_DoCancelAppointment_SuCB);
 }
 function NS_DoCancelAppointment_SuCB(d) {
-    debugger;
-    if (d.transactionResponse.errors == null) {
-        if (d.transactionResponse.responseCode == 1) {
-            bootbox.alert("Your appointment is cancelled successfully.", function () {
-                window.location.reload(); // reload the page
-            })
+    if (d.transactionResponse != undefined) {
+        if (d.transactionResponse.errors == null) {
+            if (d.transactionResponse.responseCode == 1) {
+                bootbox.alert("Your appointment is cancelled successfully.", function () {
+                    window.location.reload(); // reload the page
+                });
+            }
+        }
+        else {
+            bootbox.alert("Sorry, the transaction was NOT successfull cause of the following reason <br/><br/>" + d.transactionResponse.errors[0].errorText);
+            return false
         }
     }
     else {
-        bootbox.alert("Sorry, the transaction was NOT successfull cause of the following reason <br/><br/>" + d.transactionResponse.errors[0].errorText);
-        return false
+        if (d.messages.message[0].code == 'Removed') {
+            bootbox.alert("Your appointment is cancelled successfully.", function () {
+                window.location.reload(); // reload the page
+            });
+        }
+        if (d.messages.message[0].code == 'Expired') {
+            bootbox.alert(d.messages.message[0].text);
+        }
+    }
+}
+function NS_EditAppointment() {
+    $.cookie('NS_MA_IsEditMode', true);
+    $.cookie('NS_MA_EditSRVC', JSON.stringify(oAppointment.Services));
+    oAppointment.ClientInfo.Profile.PreferredTimeZone = null;
+    oAppointment.ClientInfo.Profile.ProfileProperties = null;
+
+    oAppointment.ProviderInfo.Profile.PreferredTimeZone = null;
+    oAppointment.ProviderInfo.Profile.ProfileProperties = null;
+    $.cookie('NS_MA_EditClient', JSON.stringify(oAppointment.ClientInfo))
+    $.cookie('NS_MA_EditProv', JSON.stringify(oAppointment.ProviderInfo))
+    oAppointment.ClientInfo = null;
+    oAppointment.ProviderInfo = null;
+    oAppointment.Location = null; oAppointment.Services = null;
+    $.cookie('NS_MA_oApp', JSON.stringify(oAppointment));
+    window.location = NS_MSS_AppointmentTab; // goto Appointment tab for editing
+}
+function NS_React2Response(AID, Status) {
+    if (Status == 1) {
+        bootbox.confirm('Are you sure to accept ??', function (r) {
+            if (r) {
+                var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/UpdateAppStatus";
+                var _data = "{'AppID':'" + AID + "','Status':'0'}";
+                NSR_MSS_MakeRequest(
+                    _URL, _data,
+                    function (d) {
+                        bootbox.alert('Appointment updated successfully', function () {
+                            window.location.reload();
+                        });
+                    }
+                )
+            }
+        });
+    }
+    if (Status == 0) {
+        bootbox.confirm('Are you sure to deny ??', function (r) {
+            if (r) {
+                var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/RemoveApp";
+                var _data = "{'ID':'" + AID + "'}";
+                NSR_MSS_MakeRequest(
+                    _URL, _data,
+                    function (d) {
+                        bootbox.alert('Appointment updated successfully', function () {
+                            window.location.reload();
+                        });
+                    }
+                );
+            }
+        });
     }
 }

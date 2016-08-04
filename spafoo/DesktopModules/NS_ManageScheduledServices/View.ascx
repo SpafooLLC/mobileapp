@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.ManageScheduledServices.View" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.ManageScheduledServices.View" %>
 <asp:Panel ID="pnlOuter" runat="server"></asp:Panel>
 <link rel="stylesheet" href="http://cdn.jtsage.com/jtsage-datebox/4.0.0/jtsage-datebox-4.0.0.bootstrap.min.css" />
 <link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css" rel="stylesheet" />
@@ -7,6 +7,7 @@
 <script src="/DesktopModules/NS_MakeAppointment/Scripts/bootstrap.js"></script>
 <script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery.cookie/jquery.cookie.js"></script>
+<script src="/DesktopModules/NS_ServiceDashBoard/Scripts/ns_Common.js"></script>
 <script>
     var NS_MSS_UID=<%=this.UserId%>;
     var NSR_SEID='<%=this.Session.SessionID%>';
@@ -31,18 +32,26 @@
             error: function (a, b) { if (FailedCB != undefined) { FailedCB(a, b); } }
         });
     }
-    function NSR_sendFile(file, fileCtrl) {
+    function NSR_sendFile(file, fileCtrl,SB) {
         var formData = new FormData();
         formData.append('file', $(fileCtrl)[0].files[0]);
+        formData.append('UID',NS_MSS_UID);
+        formData.append('AID',_CurrentAppointmentID)
         $(fileCtrl).after('<div class="NSR_UplNotify" style="font-weight:bold">Uploading...</div>')
         $.ajax({
             type: 'post',data: formData,processData: false, contentType: false,
             url: '/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/Handler.ashx',
             success: function (status) {
                 if (status != 'error') {
-                    $(fileCtrl).attr('uploadedFile', NSR_SEID + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
+                    var _BasePath="/Images/NS_Appointments/";
+                    var _FilePath=NSR_SEID + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~');
+                    var _FinalPath=_BasePath+_FilePath;
+                    $(fileCtrl).attr('uploadedFile', _FinalPath);
+                    $(fileCtrl).prev().attr('src',_FinalPath);
                     $(".NSR_UplNotify").hide();
-                    bootbox.alert('File uplaoded successfully');
+                    if (SB!=undefined){
+                        SB(_FinalPath);
+                    }
                 }
             },
             error: function () {
@@ -52,7 +61,7 @@
     }
     function NS_FormatDate(d,f) {
         var SCB_Date = new Date(d);
-       return $.datepicker.formatDate(f, SCB_Date);
+        return $.datepicker.formatDate(f, SCB_Date);
     }
     function NS_FormatJSONDate(d,f) {
         // parse JSON formatted date to javascript date object

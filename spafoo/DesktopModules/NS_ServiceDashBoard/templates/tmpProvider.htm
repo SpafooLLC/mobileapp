@@ -1,4 +1,4 @@
-<img class="mainimg" onerror="NS_UserOnError(this)" src='{$T.Profile.PhotoURL}'>
+﻿<img class="mainimg" onerror="NS_UserOnError(this)" src='{$T.Profile.PhotoURL}'>
 <div class="bar">
     <div class="fleft">
         <i class="fa fa-map-marker fa-lg"></i>
@@ -10,12 +10,12 @@
     <div class="fright"><a href="#" onclick="NS_GotoMakeAppointment(event);">Make Appointment</a></div>
 </div>
 <div class="infobox">
-    <h1 id ="NSD_UName_{$T.UserID}">{$T.LastName} {NS_IntialLetter($T.FirstName)}</h1>
+    <h1 id ="NSD_UName_{$T.UserID}">{$T.FirstName} {NS_IntialLetter($T.LastName)}</h1>
     <h3><label id="lblUserTagLineID_{$T.UserID}">{GetUserTagLine($T.UserID)}</label></h3>
     <div class="stars stars-example-bootstrap">{NS_GetMyRating($T.UserID,NS_GetIDRating)}
-        <div id="NSD_starRatingID_{$T.UserID}" class="ratting-0 mcenter"></div>   
+        <div id="NSD_starRatingID_{$T.UserID}" class="ratting-0"></div>   
     </div>
-    <div><label id="NSD_lblRatingID_{$T.UserID}"></label></div>
+    <div><label id="NSD_lblRatingID_{$T.UserID}" style="cursor:pointer;" class="lblUserView" onclick='NS_OpenUserReview()'></label></div>
 </div>
 <div class="offered">
     <h4>Services offered:</h4>
@@ -26,7 +26,7 @@
 {#if $T.Profile.Biography!=null} 
     <div class="bio">
         <span>Bio: </span>
-         {NS_ParseString($T.Profile.Biography)}
+        {NS_ParseString($T.Profile.Biography)}
     </div>
 {#/if}
 <div class="sample">
@@ -34,6 +34,6 @@
     <div id="NSD_dvProviderWorkSamples">{NSD_GetProviderSamples($T.UserID)}</div>
 </div>
 <div class="action">
-    <div class="col-xs-6 nopad"><a class="green-btn block mr1px" href="#" onclick="NS_GotoMakeAppointment(event);">ASAP - I'm Ready Now!</a></div>
+    <div class="col-xs-6 nopad"><a class="green-btn block mr1px" href="#" onclick="NS_GotoASAP(event);">ASAP - I'm Ready Now!</a></div>
     <div class="col-xs-6 nopad" onclick="NS_GotoMakeAppointment(event);"><a class="bluesm-btn block ml1px" href="#">Schedule Appointment</a></div>
 </div>

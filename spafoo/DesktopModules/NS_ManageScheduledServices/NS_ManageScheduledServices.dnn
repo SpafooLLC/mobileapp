@@ -58,9 +58,6 @@
           <name>License.txt</name>
         </file>
         <file>
-          <name>module.css</name>
-        </file>
-        <file>
           <name>ReleaseNotes.txt</name>
         </file>
         <file>
@@ -88,6 +85,10 @@
         </file>
         <file>
           <name>Settings.ascx</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpAppointmentPhotos.htm</name>
         </file>
         <file>
           <path>temp</path>

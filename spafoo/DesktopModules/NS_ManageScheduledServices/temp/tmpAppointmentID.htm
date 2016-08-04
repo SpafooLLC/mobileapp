@@ -5,17 +5,21 @@
     </div>
     <div class="bar">
         <div class="fleft"><i class="fa fa-info green"></i> &nbsp;Not Complete</div>
-        <div class="fright"><a href="#"><i class="fa fa-mobile-phone fa-lg"></i> &nbsp;Make a Call</a></div>
+        <div class="fright"><a href="tel:{$T.ClientInfo.Profile.Telephone}"><i class="fa fa-mobile-phone fa-lg"></i> &nbsp;Make a Call</a></div>
     </div>
     <div class="scdetail">
         <h1>{NS_FormatDate($T.ForDate,'DD dd MM yy')}</h1>
         <p class="blue">{$T.AtTime} at {$T.Location.City}, {$T.Location.State}</p>
         <p><span>With: </span>{$T.ClientInfo.LastName} {$T.ClientInfo.FirstName}</p>
         <p>
-            <span>Service(s): </span>  {#foreach $T.Services as C}
+            <span>Service(s): </span>
+            {#foreach $T.Services as C}
             {$T.C.ServiceName},&nbsp;
             {#/for}
         </p>
+        {#if $T.Comments!=""}
+        <p><span>Comment: </span>{$T.Comments}</p>
+        {#/if}
     </div>
 </div>
 <p>&nbsp;</p>

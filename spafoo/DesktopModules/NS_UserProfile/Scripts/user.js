@@ -1,4 +1,4 @@
-var PayProfileID = "";
+﻿var PayProfileID = "";
 var NS_UserInfo = "";
 $(document).ready(function () {
     ShowMyProfile();
@@ -29,19 +29,21 @@ function CheckMyPaymentProfile() {
     NSR_UP_MakeRequest(_URL, _data, CheckMyPaymentProfile_SuCB);
 }
 function CheckMyPaymentProfile_SuCB(d) {
-setTimeout(function(){ 
-    PayProfileID = d.profile.customerProfileId;
-    $("#dvCCList").setTemplateURL('/DesktopModules/NS_UserProfile/temp/userCards.htm?q=' + $.now());
-    if (d.profile.paymentProfiles!=null) {
-        $("#dvCCList").show().processTemplate(d.profile.paymentProfiles);
-        $("#dvNoPaymentMethod").hide();
-        $("#dvCCList").show();
-    }
-    else {
-        $("#dvCCList").show().processTemplate("");
-        $("#dvNoPaymentMethod").show();
-        $("#dvCCList").hide();
-    }
+    setTimeout(function () {
+        if (d.profile != null) {
+            PayProfileID = d.profile.customerProfileId;
+        }
+        $("#dvCCList").setTemplateURL('/DesktopModules/NS_UserProfile/temp/userCards.htm?q=' + $.now());
+        if ((d.profile != null) && (d.profile.paymentProfiles != null)) {
+            $("#dvCCList").show().processTemplate(d.profile.paymentProfiles);
+            $("#dvNoPaymentMethod").hide();
+            $("#dvCCList").show();
+        }
+        else {
+            $("#dvCCList").show().processTemplate("");
+            $("#dvNoPaymentMethod").show();
+            $("#dvCCList").hide();
+        }
     }, 2000);
 }
 function NS_GoBack() {
@@ -57,31 +59,6 @@ function CloseCCForm(e) {
 function ShowAddCCForm(e) {
     e.preventDefault();
     $("#dvAddCCForm").slideToggle();
-    //return false;
-    //e.preventDefault();
-    //bootbox.dialog({
-    //    title: 'Add Card >',
-    //    message: $("#dvAddCCForm").html(),
-    //    buttons: {
-    //        main: {
-    //            label: 'Save',
-    //            className: 'blue-btn',
-    //            callback: function () {
-    //                UpdateCCInfo();
-    //                return false;
-    //            }
-    //        }
-    //    }
-    //});
-    //$("#dvAddCCForm").dialog({
-    //    autoOpen: true, title: 'Add new card',
-    //    open: function (event, ui) {
-    //        $("#txtCardNumber").mask('0000000000000000');
-    //        $("#txtCardCode").mask('0000');
-    //    },
-    //    buttons: [{ text: "Save", click: function () { UpdateCCInfo(); } }]
-    //});
-    //$("#dvAddCCForm").dialog("open");
 }
 function NS_CCProfile() {
     this.CCNumber = '';
@@ -117,16 +94,16 @@ function NS_CCInfoIsValid() {
     return true;
 }
 function CreateCCProfile(o) {
-   // $(o).text('Wait...');
+    // $(o).text('Wait...');
     if (PayProfileID == '') {
         var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/CreateCustomerProfile";
-        var _data = "{'UID':'" + NS_UProfile.UserID + "','CCNumber':'" + NS_UProfile.CCNumber + "','Expiry':'" + NS_UProfile.Expiry + "','CVV':'" + NS_UProfile.CVV + "','Email':'"+NS_UserInfo.Email+"'}";
+        var _data = "{'UID':'" + NS_UProfile.UserID + "','CCNumber':'" + NS_UProfile.CCNumber + "','Expiry':'" + NS_UProfile.Expiry + "','CVV':'" + NS_UProfile.CVV + "','Email':'" + NS_UserInfo.Email + "'}";
         NSR_UP_MakeRequest(_URL, _data, CreateCCProfile_SuCB);
     }
     else {
         //string PID, string CCNumber, string Expiry, string CVV  
         var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/CreateCustomerPaymentProfile";
-        var _data = "{'PID':'" + PayProfileID+ "','CCNumber':'" + NS_UProfile.CCNumber + "','Expiry':'" + NS_UProfile.Expiry + "','CVV':'" + NS_UProfile.CVV + "'}";
+        var _data = "{'PID':'" + PayProfileID + "','CCNumber':'" + NS_UProfile.CCNumber + "','Expiry':'" + NS_UProfile.Expiry + "','CVV':'" + NS_UProfile.CVV + "'}";
         NSR_UP_MakeRequest(_URL, _data, CreateCCProfile_SuCB);
     }
 }
@@ -140,7 +117,7 @@ function CreateCCProfile_SuCB(d) {
         bootbox.alert(d.message[0].text)
     }
 }
-function RemovePayProfile(PPID, e,o) {
+function RemovePayProfile(PPID, e, o) {
     e.preventDefault();
     bootbox.confirm('Are you sure to remove this card?', function (r) {
         if (r) {

@@ -1,7 +1,9 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.ServiceDashBoard.View" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.ServiceDashBoard.View" %>
 <asp:Panel ID="NS_SDB_Outer" runat="server"></asp:Panel>
 <link href="/DesktopModules/NS_UserProfile/Scripts/pace/dataurl.css" rel="stylesheet" />
-<script src="/DesktopModules/NS_UserProfile/Scripts/pace/pace.min.js"></script>
+<link href="/DesktopModules/NS_ServiceDashBoard/Styles/jquery.fancybox.css" rel="stylesheet" />
+<script src="/DesktopModules/NS_UserProfile/Scripts/pace/pace1.min.js"></script>
+<script src="/DesktopModules/NS_MakeAppointment/Scripts/bootstrap.js"></script>
 <script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/NS_Common.js"></script>
 <script lang="javascript" >
@@ -39,14 +41,31 @@
                         _File = _File.replace(/~/g, '_');
                         SuCB(_File);
                     }
-                    alert('File uplaoded successfully');
+                    bootbox.alert('File uplaoded successfully');
                 }
             },
             processData: false,
             contentType: false,
             error: function () {
-                alert("Whoops something went wrong!");
+               bootbox.alert("Whoops something went wrong!");
             }
         });
     }
+</script>
+<script>
+   $('.fancybox').fancybox({
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            },
+            beforeShow:function(){ 
+                $('html').css('overflowX', 'visible'); 
+                $('body').css('overflowY', 'hidden'); 
+            },
+            afterClose:function(){ 
+                $('html').css('overflowX', 'hidden');
+                $('body').css('overflowY', 'visible'); 
+            }
+        });
 </script>

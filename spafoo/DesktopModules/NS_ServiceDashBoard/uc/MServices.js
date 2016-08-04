@@ -41,7 +41,7 @@ var NS_SDB_SaveStatus = -1;
 
     function NS_ShowServiceInfo_SuCB(d) {
         $("#NS_dvServiceInfo").setTemplateURL('/DesktopModules/NS_ServiceDashBoard/templates/tmpManageService.htm?q='+$.now());
-        $("#NS_dvServiceInfo").processTemplate(d);
+        $("#NS_dvServiceInfo").show().processTemplate(d);
         $(".NSR_FileControl").on('change', function () {
             var file;
             if ((file = this.files[0])) {
@@ -60,7 +60,7 @@ var NS_SDB_SaveStatus = -1;
         var Pre = "#NS_SDB_";
         var _SN = $(Pre + "txtServiceName").val().trim();
         if (_SN == '') {
-            alert('Service name is a required field, please provide it');
+            bootbox.alert('Service name is a required field, please provide it');
             $(Pre + "txtServiceName").focus();
             return false;
         }
@@ -69,8 +69,10 @@ var NS_SDB_SaveStatus = -1;
         if ($(Pre + "File").attr("uploadedFile") != undefined) {
             _Img = $(Pre + "File").attr("uploadedFile");
         }
-        var _Price = $(Pre + "txtPrice").val();
-        var _Tax = $(Pre + "txtTax").val();
+        var _Price = $(Pre + "txtPrice").val().trim();
+        var _Tax = $(Pre + "txtTax").val().trim();
+        if (_Price == '') { _Price = 0; }
+        if (_Tax == '') { _Tax = 0; }
         var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/AddService";
         //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
         var _data = "{'SID':'" + NS_SDB_CurrentServiceID + "','SN':'" + _SN + "','SD':'" + _SD + "','Image':'" + _Img + "','PID':'" + NS_SDB_CParentID + "','Price':'" + _Price + "','Tax':'" + _Tax + "'}";
@@ -82,7 +84,25 @@ var NS_SDB_SaveStatus = -1;
         NS_LoadServices(-1);
         bootbox.alert('The provided information has been updated successfully');
     }
+
+    function NS_RemoveService(e) {
+        e.preventDefault();
+        var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/RemoveService";
+        var _data = "{'SID':'" + NS_SDB_CurrentServiceID + "'}";
+        bootbox.confirm('Are you sure to remove this information ?', function (r) {
+            if (r) {
+                NSR_SDB_MakeRequest(_URL, _data, function (d) {
+                    bootbox.alert("Service removed successfully", function (d) {
+                        NS_LoadServices(-1);
+                        $("#NS_dvServiceInfo").hide();
+                        $("#NS_SDB_AddNewWithin").hide();
+                    });
+                });
+            }
+        })
+    }
     function NS_ClearForm(IsAtTop) {
+        $("#NS_dvServiceInfo").show();
         if (IsAtTop == true) {
             NS_SDB_CurrentServiceID = -1; NS_SDB_CParentID = -1;
         }

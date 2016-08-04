@@ -1,4 +1,4 @@
-/*
+﻿/*
     Script to handle all the ManageDashboard.ascx related user control features
      NSR_SDB_MakeRequest(WBurl,WBData,SuccessCB,FailedCB);
 */
@@ -73,10 +73,17 @@ function NS_OnPreviousClick(e) {
     // var oPreviousService = NS_GetService(NS_SDB_lstServices, CNode.ParentID);
     var oPreviousService = NS_GetService(CNode.ParentID);
     if (NS_SDB_CLevel > 2) {
-        NS_LoadServices(CNode.ParentID);
-        // CNode = NS_GetService(NS_SDB_lstServices, CNode.ParentID);
-        CNode = NS_GetService(CNode.ParentID);
-        $("#NS_TopBarlblHeader").text(oPreviousService.ServiceName); // change the header
+        if ($("#NS_dvDBProProfile").is(":visible")) {
+            // if user is provider In-Depth view, go back to provider's list
+            NS_LoadProviders(CNode.ServiceID);
+            $("#NS_TopBarlblHeader").text('Select Provider');
+        }
+        else {
+            NS_LoadServices(CNode.ParentID);
+            // CNode = NS_GetService(NS_SDB_lstServices, CNode.ParentID);
+            CNode = NS_GetService(CNode.ParentID);
+            $("#NS_TopBarlblHeader").text(oPreviousService.ServiceName); // change the header
+        }
     }
     if (NS_SDB_CLevel == 2) { NS_LoadServices(-1); $("#NS_TopBarlblHeader").text('Select Service'); }
     if ($("#NS_dvDBServiceBar").is(":visible")) {
@@ -85,6 +92,7 @@ function NS_OnPreviousClick(e) {
     }
     e.preventDefault();
 }
+
 function NS_ServiceOnError(o) {
     $(o).attr('src', '/DesktopModules/NS_ServiceDashBoard/imgs/NA.jpg');
 }
@@ -104,7 +112,8 @@ function NS_LoadProviders(id) {// get all the providers who deal with the given 
 }
 
 function NS_LoadProviders_SuCB(d) {
-    NSD_lstUsers = d;
+   d= NSD_ProcessProviderDistance(d);
+   NSD_lstUsers = d;
     $("#NS_dvDBServiceBar").hide();
     if (d.length > 0) {
         $("#NS_dvDBProProfile").hide();
@@ -168,40 +177,30 @@ function GetUserTagLine(id) {
     var _ID = '#lblUserTagLine_' + id;
     $(_ID).text("Loading...");
     NSR_SDB_MakeRequest(_URL, _data, function (d) {
-         d = NS_ParseString(d);
+        d = NS_ParseString(d);
         $(_ID).text(d);
         $("#lblUserTagLineID_" + id).text(d);
     });
 }
 function NSD_GetDistance(Street, City, Region, Country, elementID) {
     var destination = Street + ", " + City + ", " + Region + ", " + Country;
-    var service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix({
-        origins: [NSD_SourceAddress],
-        destinations: [destination],
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: false,
-        avoidTolls: false
-    }, function (response, status) {
-        if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-            try {
-                var distance = response.rows[0].elements[0].distance.text.split(' ')[0];
-                var duration = response.rows[0].elements[0].duration;
-                $("#NSD_dvUserDistance_" + elementID).html(distance);
-                $("#NSD_lblUserDistance_" + elementID).html(distance+ " miles from you");
-            } catch (e) {
-               // $("#NSD_dvUserDistance_" + elementID).text("");
-            }
-        }
-        else {
-            $("#NSD_dvUserDistance_" + elementID).text("");
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': destination }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            // use D I R E C T I O N   S E R V I C E  to calcualte the duration from current position of the user
+          //  var destination = address;
+            var p1 = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+            var distance = calcDistance(p2, p1);
+            $("#NSD_dvUserDistance_" + elementID).html(distance);
+            $("#NSD_lblUserDistance_" + elementID).html(distance + " miles from you");
         }
     });
 }
 
+var p2 = "";
 function NSD_GetMyPosition() {
     navigator.geolocation.getCurrentPosition(function (position) {
+        p2 = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({
             "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -218,6 +217,22 @@ function NSD_GetMyPosition() {
         enableHighAccuracy: true,
         timeout: 10 * 1000 // 10 seconds
     });
+}
+
+function NSD_ProcessProviderDistance(lstUsers) {
+    var tmpUsers = JSON.parse(JSON.stringify(lstUsers));;
+    $.each(lstUsers, function (i, o) {
+        var Lat = o.DisplayName.split(":")[0];
+        var Lng = o.DisplayName.split(":")[1];
+        var p1 = new google.maps.LatLng(Lat, Lng);
+        // to check the distance between Client's & Provider's Lat Lang
+        var distance = calcDistance(p2, p1);
+        if (distance > 50) {
+            o.DisplayName = "D";
+            tmpUsers[i] = o;
+        }
+    });
+    return tmpUsers;
 }
 
 function NSD_GetProviderServices(UID) {
@@ -249,7 +264,7 @@ function NSD_GetProviderSamples_SuCB(d) {
 }
 function NS_GotoMakeAppointment(e) {
     e.preventDefault();
-    $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text());
+    $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text() + ":" + CNode.ServiceID);
     window.location = NSR_SDB_AppointmentTab;
 }
 
@@ -273,4 +288,27 @@ function NS_GetIDRating(ID,R, P) {
         $("#NSD_starRatingID_" + ID).addClass('ratting-' + R).removeClass('ratting-0');
         $("#NSD_lblRatingID_" + ID).text("from " + P + " users");
     }
+}
+function NS_GotoASAP(e) {
+    e.preventDefault();
+    $.cookie('NSD_Soonest', "1");
+    $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text());
+    window.location = NSR_SDB_AppointmentTab;
+}
+
+function NS_OpenUserReview() {
+    // lblUserView
+    var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetMyReview";
+    var _data = "{'UserID':'" + NS_SDN_CurrentUser.UserID + "'}";
+    NSR_SDB_MakeRequest(_URL, _data, function (d) {
+        $("#dlgUserReview").setTemplateURL('/DesktopModules/NS_ServiceDashBoard/templates/tmpUserReview.htm?q=' + $.now());
+        $("#dlgUserReview").show().processTemplate(d);
+    });
+    var _title="Past Client Reviews for " + NS_SDN_CurrentUser.FirstName + " " + NS_SDN_CurrentUser.LastName;
+    bootbox.dialog({
+        message: '<div id="dlgUserReview">Please wait while we are loading information.</div>',
+        title: _title
+    });
+    
+    
 }

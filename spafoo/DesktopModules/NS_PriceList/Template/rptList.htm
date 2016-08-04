@@ -1,0 +1,32 @@
+﻿<div >
+    <div style="width:100%;">
+        <table class="NS_tblReport" width="100%" cellpadding="15" cellspacing="10">
+            <thead>
+                <tr style="background-color:#808080;color:#FFF;padding:10px;">
+                    <td>Name</td>
+                    <td>Date</td>
+                    <td align="center">No. Of Appointment</td>
+                    <td align="center">Completed Appointments</td>
+                    <td align="right">Amount Paid</td>
+                </tr>
+            </thead>
+            {#foreach $T as S}
+            <tr>
+                <td>
+                    {$T.S.Name}
+                </td>
+                <td>
+                    {$T.S.ForDate}
+                </td>
+                <td align="center">{$T.S.Total}</td>
+                <td align="center">
+                    {$T.S.Completed}
+                </td>
+                <td align="right">
+                    {NS_ToZeroDec($T.S.Paid)}
+                </td>
+            </tr>
+            {#/for}
+        </table>
+    </div>
+</div>

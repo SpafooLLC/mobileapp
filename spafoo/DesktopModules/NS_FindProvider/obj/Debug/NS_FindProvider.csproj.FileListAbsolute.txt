@@ -1,0 +1,5 @@
+D:\work\Foodesk\website\bin\NS_FindProvider.dll
+D:\work\Foodesk\website\bin\NS_FindProvider.pdb
+D:\work\Foodesk\website\DesktopModules\NS_FindProvider\obj\Debug\NS_FindProvider.csprojResolveAssemblyReference.cache
+D:\work\Foodesk\website\DesktopModules\NS_FindProvider\obj\Debug\NS_FindProvider.dll
+D:\work\Foodesk\website\DesktopModules\NS_FindProvider\obj\Debug\NS_FindProvider.pdb

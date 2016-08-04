@@ -1,0 +1,118 @@
+﻿{#param name=CUser}
+<div class="notiwrapper">
+<ul>
+{#foreach $T as S}
+{#if $T.S.NotificationTypeID==2} {* Provider Registered *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    {$T.S.DisplayText}
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==3} {* Profile Updated *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    {$T.S.DisplayText}
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==4} {* Appointment fixed *}
+{#if $T.S.ActivityByID!=$P.CUser}
+    <li id="dvNotiRow_{$T.S.ID}">
+        <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+        <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">Appointment</a> fixed by 
+        <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a>
+        <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+    </li>
+{#else}
+    <li id="dvNotiRow_{$T.S.ID}">
+        <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+        Your <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">Appointment</a> has been fixed. For more information, please check 'My Schedule' section.
+        <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+    </li>
+{#/if}
+{#/if}
+{#if $T.S.NotificationTypeID==5} {* Before 24hrs of appointment *}
+<li id="dvNotiRow_{$T.S.ID}" style="width:100%;">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    {$T.S.DisplayText}
+       <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==6}{* Before 2hrs of appointment *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    {$T.S.DisplayText}
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==7}{* Provider Says "I Have Arrived" *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Provider <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has arrived to your <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> location
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==8} {* Appointment is completed *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Provider <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has completed the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==9} {* Appointment is cancelled *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Client <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has cancelled the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==10}{* ASAP appointment requested *}
+    {#if $T.S.ActivityByID!=$P.CUser}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Client <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has requested for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#else}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    You requested for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#/if}
+{#if $T.S.NotificationTypeID==11} {* ASAP, Provider given date and time to Appointment *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Provider <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has given Date & Time for requested, ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==12} {* Client Accepted ASAP appointment *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Client <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has accepted the Date & Time given by you for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==13}{* Client denied ASAP appointment *}
+<li id="dvNotiRow_{$T.S.ID}" style="width:100%;">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Client <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> did NOT accepted the Date & Time given by you for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==14} {* Client given review to you *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    Client <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has given review to you
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID})"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#/for}
+</ul>
+    <div style="width:100%;height:50px;" id="dvClearAll">
+        <div style="width:150px;height:30px;background-color:red;color:white;cursor:pointer;" onclick="NS_ClearAll();">Clear All</div>
+    </div>
+</div>

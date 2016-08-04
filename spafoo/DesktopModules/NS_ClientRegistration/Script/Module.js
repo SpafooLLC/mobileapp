@@ -55,10 +55,17 @@ function NSR_SaveUserApplication(IsLater) {
     var LN = $("input[id*='NS_tbLastName']").val().trim();
     var EM = $("input[id*='NS_tbEmail']").val().trim();
     var P = $("input[id*='NS_tbPassword']").val().trim();
+    var S = $("input[id*='NS_tbStreet']").val().trim();
+    var Ph = $("input[id*='NS_tbPhone']").val().trim();
+    var C = $("input[id*='NS_tbCity']").val().trim();
+    var R = $("#NS_ddlRegion option:selected").val();
+    if (R=='-1'){R = "";}
+    var Z = $("input[id*='NS_tbZip']").val().trim();
+    var Mo=$("input[id*='NS_tbCell']").val().trim();
     NS_UProfile.Email = EM;
     var url = '/DesktopModules/NS_ClientRegistration/rh.asmx/RegisterUser';
     //UN, FN, LN, EM, P, PID
-    var data = "{'UN':'" + UN + "','FN':'" + FN + "','LN':'" + LN + "','EM':'" + EM + "','P':'" + P + "','PID':'" + NSR_PID + "'}";
+    var data = "{'UN':'" + UN + "','FN':'" + FN + "','LN':'" + LN + "','EM':'" + EM + "','P':'" + P + "','PID':'" + NSR_PID + "','S':'" + S + "','C':'" + C + "','R':'" + R + "','Z':'" + Z + "','Ph':'" + Ph + "','Mo':'" + Mo + "'}";
     NSR_MakeRequest(url, data, NSR_OnRegistration);
 }
 

@@ -1,0 +1,33 @@
+﻿<div class="prolist">
+    {#foreach $T as S}
+    <li>
+        <div style='width:100%'>
+            {$T.S.Comments}
+        </div>
+        <div style='width:100%;'>
+            <div class="stars stars-example-bootstrap">
+                <div class="ratting-{$T.S.RatingValue}"></div>
+                &nbsp;<span>
+                {#if $T.S.DisplayName==1}
+                    {* First name and last name initial*}
+                    {$T.S.ByUser.FirstName} {$T.S.ByUser.LastName} - {$T.S.ByUser.City}
+                {#/if}
+                {#if $T.S.DisplayName==2}
+                    {* First name only*}
+                    {$T.S.ByUser.FirstName} - {$T.S.ByUser.City}
+                {#/if}
+                {#if $T.S.DisplayName==3}
+                    {* Last name only *}
+                   {$T.S.ByUser.LastName} - {$T.S.ByUser.City}
+                {#/if}
+                {#if $T.S.DisplayName==4}    
+                    {* Full name*}
+                    {$T.S.ByUser.FirstName} {$T.S.ByUser.LastName} - {$T.S.ByUser.City}
+                {#/if}
+                </span>
+            </div>
+
+        </div>
+    </li>
+    {#/for}
+</div>

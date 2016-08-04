@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_ClientRegistration.View" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_ClientRegistration.View" %>
 <div class="bread">
     <a href="#" onClick="NS_GoBack(); return false;" class="pback">
         <i class="fa fa-angle-left fa-2x"></i>
@@ -14,7 +14,7 @@
                     <img src="/DesktopModules/NS_MakeAppointment/Images/Site/register-default.png" alt="" draggable="false"></a></div>
             </div>
         </div>
-        <div class="fcell">
+        <div class="fcell2 form600 mcenter">
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbFirstName" ValidationGroup="NSR"></asp:RequiredFieldValidator>
             <asp:TextBox ID="NS_tbFirstName" placeholder="First Name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
 
@@ -39,16 +39,126 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbEmail" ValidationGroup="NSR"></asp:RequiredFieldValidator>
             <asp:TextBox ID="NS_tbEmail" placeholder="Email Address" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="informat" ControlToValidate="NS_tbEmail" Display="Dynamic" ErrorMessage="Invalid email format" ForeColor="Red" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="NSR"></asp:RegularExpressionValidator>
-            <div class="checkbox checkbox-primary">
+            <asp:TextBox ID="NS_tbStreet" runat="server" placeholder="Street" CssClass="dnnFormRequired form-control"></asp:TextBox>
+            <asp:TextBox ID="NS_tbCity" runat="server" placeholder="City" CssClass="dnnFormRequired form-control"></asp:TextBox>
+            <select id="NS_ddlRegion" class="dnnFormRequired form-control">
+                <option value="-1">Select State</option>
+                        <option value="Alabama">
+							Alabama
+						</option><option value="Alaska">
+							Alaska
+						</option><option value="Arizona">
+							Arizona
+						</option><option value="Arkansas">
+							Arkansas
+						</option><option value="California">
+							California
+						</option><option value="Colorado">
+							Colorado
+						</option><option value="Connecticut">
+							Connecticut
+						</option><option value="Delaware">
+							Delaware
+						</option><option value="District of Columbia">
+							District of Columbia
+						</option><option value="Florida">
+							Florida
+						</option><option value="Georgia">
+							Georgia
+						</option><option value="Hawaii">
+							Hawaii
+						</option><option value="Idaho">
+							Idaho
+						</option><option value="Illinois">
+							Illinois
+						</option><option value="Indiana">
+							Indiana
+						</option><option value="Iowa">
+							Iowa
+						</option><option value="Kansas">
+							Kansas
+						</option><option value="Kentucky">
+							Kentucky
+						</option><option value="Louisiana">
+							Louisiana
+						</option><option value="Maine">
+							Maine
+						</option><option value="Maryland">
+							Maryland
+						</option><option value="Massachusetts">
+							Massachusetts
+						</option><option value="Michigan">
+							Michigan
+						</option><option value="Minnesota">
+							Minnesota
+						</option><option value="Mississippi">
+							Mississippi
+						</option><option value="Missouri">
+							Missouri
+						</option><option value="Montana">
+							Montana
+						</option><option value="Nebraska">
+							Nebraska
+						</option><option value="Nevada">
+							Nevada
+						</option><option value="New Hampshire">
+							New Hampshire
+						</option><option value="New Jersey">
+							New Jersey
+						</option><option value="New Mexico">
+							New Mexico
+						</option><option value="New York">
+							New York
+						</option><option value="North Carolina">
+							North Carolina
+						</option><option value="North Dakota">
+							North Dakota
+						</option><option value="Ohio">
+							Ohio
+						</option><option value="Oklahoma">
+							Oklahoma
+						</option><option value="Oregon">
+							Oregon
+						</option><option value="Pennsylvania">
+							Pennsylvania
+						</option><option value="Rhode Island">
+							Rhode Island
+						</option><option value="South Carolina">
+							South Carolina
+						</option><option value="South Dakota">
+							South Dakota
+						</option><option value="Tennessee">
+							Tennessee
+						</option><option value="Texas">
+							Texas
+						</option><option value="Utah">
+							Utah
+						</option><option value="Vermont">
+							Vermont
+						</option><option value="Virginia">
+							Virginia
+						</option><option value="Washington">
+							Washington
+						</option><option value="West Virginia">
+							West Virginia
+						</option><option value="Wisconsin">
+							Wisconsin
+						</option><option value="Wyoming">
+							Wyoming
+						</option>
+					</select>
+            <asp:TextBox ID="NS_tbZip" runat="server" placeholder="Zip" CssClass="dnnFormRequired form-control"></asp:TextBox>
+            <asp:TextBox ID="NS_tbPhone" runat="server" placeholder="Phone" CssClass="dnnFormRequired form-control"></asp:TextBox>
+            <asp:TextBox ID="NS_tbCell" runat="server" placeholder="Phone" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                   <div class="checkbox checkbox-primary">
                 <input id="chkUserAcceptance" type="checkbox" checked="checked" />
-                <label for="chkUserAcceptance">By creating a Spafoo account, you agree to our
-                    <br />
-                    <a href="#" onclick="ShowTermsNPolicy();return false;">Terms & Conditions and Payment Policy</a></label>
+                <label for="chkUserAcceptance">By creating a Spafoo account, you agree to our <a href="#" onclick="ShowTermsNPolicy();return false;">Terms & Conditions and Payment Policy</a></label>
             </div>
+            <div class="h30"></div>
         </div>
     </div>
     <div id="dvClientStep2" style="display:none;">
-        <div class="fcell">
+        <div class="fcell form600 mcenter">
             <div class="nsrow">
                 <div class="NS_Caption">Credit Card Number</div>
                 <div class="NS_Input">
@@ -110,6 +220,7 @@
             </div>
         </div>
         <div class="nsrow">
+            <div class="h15"></div>
             <div class="NS_Caption">Card Code :</div>
             <div class="NS_Input">
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_txtCardCode" ValidationGroup="NSR_CC"></asp:RequiredFieldValidator>
@@ -143,6 +254,7 @@
     <a href="#" onclick="NSR_CheckUserInput1();return false;" class="block-btn" id="btnRegContinue">Continue</a>
 <a href="#" onclick="NSR_CheckUserInput2();return false;" class="block-btn" id="btnRegSave" style="display:none;">Update</a>
 </div>               
+<link rel="stylesheet" type="text/css" href="/DesktopModules/NS_MakeAppointment/Styles/Bootstrap.min.css" />
 <link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css"  rel="stylesheet" type="text/css"/>
 <script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js" type="text/javascript"></script>
 <script src="/DesktopModules/NS_Registration/Scripts/jquery.mask.min.js"></script>

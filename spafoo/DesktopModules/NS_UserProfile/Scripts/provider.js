@@ -1,11 +1,11 @@
-
+﻿var NS_UserInfo = "";
 $(document).ready(function () {
     NS_IsProvider = true;
     ShowMyProfile();
 });
 
 function ShowMyProfile() {
-    if (NS_UP_UID == -1) { bootbox.alert('You need to login to access this area.'); return false;}
+    if (NS_UP_UID == -1) { bootbox.alert('You need to login to access this area.'); return false; }
     $("#lblTopHeader").text('My Profile');
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetUser";
     var _data = "{'UID':'" + NS_UP_UID + "'}";
@@ -14,8 +14,16 @@ function ShowMyProfile() {
 }
 
 function ShowMyProfile_SuCB(d) {
+    NS_UserInfo = d;
     $("#dvProviderInfo").setTemplateURL('/DesktopModules/NS_UserProfile/temp/userPro.htm?q=' + $.now());
     $("#dvProviderInfo").show().processTemplate(d);
+    var UserRoles = ""; 
+    for (i = 0; i < NS_UserInfo.Roles.length; i++) {
+        if ((NS_UserInfo.Roles[i] != 'Providers') && (NS_UserInfo.Roles[i] != 'Subscribers') &&(NS_UserInfo.Roles[i] != 'Registered Users')) {
+            UserRoles += NS_UserInfo.Roles[i] + ', ';
+        }
+    }
+   $("#lblUPos").text(UserRoles.replace( /([a-z])([A-Z])/g, "$1 $2"));
 }
 
 function GetUserTagLine() {
@@ -24,7 +32,7 @@ function GetUserTagLine() {
     var _data = "{'UID':'" + NS_UP_UID + "'}";
     $("#lblUserTagLine").show().text("Loading...");
     NSR_UP_MakeRequest(_URL, _data, function (d) {
-      d = NS_ParseString(d);
+        d = NS_ParseString(d);
         $("#lblUserTagLine").text(d);
         $("#txtTagLine").val(d);
     });
@@ -55,9 +63,9 @@ function GetUserWorkSample_SuCB(d) {
 }
 
 function NS_GoBack() {
-$(".dvEditClientInfo").hide();
-$("#dvProviderInfo").show();
-$("#lblTopHeader").text("My Profile");
+    $(".dvEditClientInfo").hide();
+    $("#dvProviderInfo").show();
+    $("#lblTopHeader").text("My Profile");
 }
 function RemoveMySample(FP) {
     var _URL = "/DesktopModules/NS_UserProfile/rh.asmx/RemoveMySample";
@@ -69,3 +77,8 @@ function RemoveMySample(FP) {
         }
     })
 }
+
+//function ShowMyProfile_SuCB(d) {
+//    $("#dvProviderInfo").setTemplateURL('/DesktopModules/NS_UserProfile/temp/userPro.htm?q=' + $.now());
+//    $("#dvProviderInfo").show().processTemplate(d);
+//}

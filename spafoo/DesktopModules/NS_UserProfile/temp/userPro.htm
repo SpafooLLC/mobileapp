@@ -1,4 +1,4 @@
-<div class="inbody-simple mprofile">
+﻿<div class="inbody-simple mprofile">
     <div class="center">
         <p><a href="#" onclick="NS_EditUser(); return false;" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
         <div class="profile-pic">
@@ -12,11 +12,18 @@
     <p><span>Name:</span> {$T.FirstName} {$T.LastName}</p>
     <p><span>Display Name:</span> {$T.DisplayName}</p>
     <p><span>Password:</span> ********</p>
-    <p><span>Email:</span> {$T.Email}</p>
+    <p><span>Gender:</span> {$T.Profile.ProfileProperties[0].PropertyValue}</p>
     <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
     <p><span>Phone:</span> {$T.Profile.Telephone}</p>
     <p><span>Email:</span> {$T.Email}</p>
     <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs">{$T.Profile.Street}<br />{$T.Profile.City}, {$T.Profile.Region} {$T.Profile.PostalCode}</div></p>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Professional Information</div>
+    <p><span>Type Of Entity:&nbsp;</span>{#if $T.Profile.ProfileProperties[2].PropertyValue=='1'}Individual {#else}Business{#/if}</p>
+    <p><span>Professional License:</span> {$T.Profile.ProfileProperties[3].PropertyValue}</p>
+    <p><span>SSN:</span> {$T.Profile.ProfileProperties[4].PropertyValue}</p>
+    <p><span>EIN:</span> {$T.Profile.ProfileProperties[5].PropertyValue}</p>
+    <p><span>Positions :</span>&nbsp;<label id="lblUPos">Loading...</label></p>
     <div class="clearfix"></div>
     <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Tag Line</div>
     <p><label id="lblUserTagLine"></label>{GetUserTagLine()}</p>
@@ -26,5 +33,11 @@
     <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
     <div id="dvProWorkSample" class="pprofile">
         {GetUserWorkSample(1)}
+    </div>
+    <div class="clearfix"></div>
+    <div id="dvNotificationSec" class="bar-head"><i class="fa fa-bell-o"></i> &nbsp;Notification Center<a id="noti"></a></div>
+    <div class="nsrow MyNotifications">
+        {GetMyNotification()}
+        <p>Hey! This is your notification center. Expect to get fun updates about the app from the team at SpaFoo! And, if you ever miss a notification, you can head back here to check it out.</p>
     </div>
 </div>

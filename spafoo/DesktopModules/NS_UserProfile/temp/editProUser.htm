@@ -1,4 +1,4 @@
-<div class="inbody-simple mprofile">
+﻿<div class="inbody-simple mprofile">
     <div class="center">
         <p><a href="#" onclick="NS_CancelEdit(); return false;" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Cancel</a></p>
         <div class="profile-pic">
@@ -37,6 +37,17 @@
         </div>
     </div>
     <div class="clearfix"></div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Gender:</div>
+        <div class="NS_Input">
+            <select  id="ddlGender" class="form-control" style="width:100%;" >
+                <option value="Male" {#if $T.Profile.ProfileProperties[0].PropertyValue=='Male' } selected {#/if}>Male</option>
+                <option value="Female" {#if $T.Profile.ProfileProperties[0].PropertyValue=='Female'} selected{#/if}>Female</option>
+               
+            </select>
+        </div>
+    </div>
+    <div class="clearfix"></div>
     <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
  
     <div class="NS_InputRow">
@@ -67,6 +78,41 @@
         <div class="NS_Caption">Phone:</div>
         <div class="NS_Input">
             <input id="txtP" type="text" value="{$T.Profile.Telephone}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="clearfix"></div>
+	    <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Professionl Information</div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Type Of Entity:</div>
+        <div class="NS_Input">
+            <select id="ddlEntity" class="form-control" style="width:100%;">
+                <option value="1" {#if $T.Profile.ProfileProperties[2].PropertyValue=='1' } selected {#/if}>Individual</option>
+                <option value="2" {#if $T.Profile.ProfileProperties[2].PropertyValue=='2' } selected{#/if}>Business</option>
+            </select>
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Professional License:</div>
+        <div class="NS_Input">
+            <input id="txtLicense" type="text" {#if $T.Profile.ProfileProperties[3]!=null} value="{$T.Profile.ProfileProperties[3].PropertyValue}" {#/if} class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">SSN:</div>
+        <div class="NS_Input">
+            <input id="txtSSN" type="text" {#if $T.Profile.ProfileProperties[4]!=null} value="{$T.Profile.ProfileProperties[4].PropertyValue}" {#/if} class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">EIN:</div>
+        <div class="NS_Input">
+            <input id="txtEIN" type="text" {#if $T.Profile.ProfileProperties[5]!=null} value="{$T.Profile.ProfileProperties[5].PropertyValue}" {#/if} class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Position Applied:</div>
+        <div class="NS_Input" id="dvUserPositions">
+
         </div>
     </div>
     <div class="clearfix"></div>

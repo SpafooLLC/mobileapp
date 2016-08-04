@@ -1,0 +1,5 @@
+D:\work\Foodesk\website\bin\NS_UserProfile.dll
+D:\work\Foodesk\website\bin\NS_UserProfile.pdb
+D:\work\Foodesk\website\DesktopModules\NS_UserProfile\obj\Debug\NS_UserProfile.csprojResolveAssemblyReference.cache
+D:\work\Foodesk\website\DesktopModules\NS_UserProfile\obj\Debug\NS_UserProfile.dll
+D:\work\Foodesk\website\DesktopModules\NS_UserProfile\obj\Debug\NS_UserProfile.pdb

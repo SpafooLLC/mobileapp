@@ -2,27 +2,92 @@
     <div class="myschedule">
         {#foreach $T as S}
         {#if $T.S.Status==0}
-            <div class="sce">
-                <div class="newapp"></div>
-                <a href="#" onclick="ShowAppointmentID({$T.S.AppointmentID});return false;">
-                    <div class="left">
-                        <div class="date">{NS_FormatDate($T.S.ForDate,'dd')} <span>{NS_FormatDate($T.S.ForDate,'MM')}</span></div>
-                        <div class="time">{$T.S.AtTime}</div>
-                    </div>
-                    <div class="right">
-                        <h2>{NS_FormatDate($T.S.ForDate,'DD dd MM yy')}</h2>
-                        <p>At: <span class="blue">{$T.S.Location.City}, {$T.S.Location.State} </span></p>
-                        <p>With: <span class="blue">{$T.S.ClientInfo.LastName} {$T.S.ClientInfo.FirstName}</span></p>
-                        <p>
-                            Service(s): <span class="blue">
-                                {#foreach $T.S.Services as C}
-                                {$T.C.ServiceName},&nbsp;
-                                {#/for}
-                            </span>
-                        </p>
-                    </div>
-                </a>
+        <div class="sce">
+            <div class="newapp"></div>
+            <a href="#" onclick="ShowAppointmentID({$T.S.AppointmentID});return false;">
+                <div class="left">
+                    <div class="date">{NS_FormatDate($T.S.ForDate,'dd')} <span>{NS_FormatDate($T.S.ForDate,'MM')}</span></div>
+                    <div class="time">{$T.S.AtTime}</div>
+                </div>
+                <div class="right">
+                    <h2>{NS_FormatDate($T.S.ForDate,'DD dd MM yy')}</h2>
+                    <p>At: <span class="blue">{$T.S.Location.City}, {$T.S.Location.State} </span></p>
+                    <p>With: <span class="blue">{$T.S.ClientInfo.LastName} {$T.S.ClientInfo.FirstName}</span></p>
+                    <p>
+                        Service(s): <span class="blue">
+                            {#foreach $T.S.Services as C}
+                            {$T.C.ServiceName},&nbsp;
+                            {#/for}
+                        </span>
+                    </p>
+                </div>
+            </a>
+        </div>
+        {#/if}
+        {#if $T.S.Status==3}
+        <div class="ccancled">
+            <div class="left">
+                <div class="date">
+                {#if $T.S.ForDate!=''}
+                    {NS_FormatDate($T.S.ForDate,'dd')} <span>{NS_FormatDate($T.S.ForDate,'MM')}</span>
+                {#else}
+                    00 <span>00</span>
+                    {#/if}
+                </div>
+                <div class="time">
+                    {#if $T.S.ForDate!=''}
+                        {$T.S.AtTime}
+                    {#else}
+                        00:00
+                    {#/if}
+                </div>
             </div>
+            <div class="right">
+                <h2>
+                    {#if $T.S.ForDate!=''}
+                        {NS_FormatDate($T.S.ForDate,'DD dd MM yy')} 
+                    {#/if}
+                    <span class="chead">(Cancelled)</span>
+                </h2>
+                <p>At: <span class="blue">{$T.S.Location.City}, {$T.S.Location.State} </span></p>
+                <p>With: <span class="blue">{$T.S.ClientInfo.LastName} {$T.S.ClientInfo.FirstName}</span></p>
+                <p>
+                    Service(s): <span class="blue">
+                        {#foreach $T.S.Services as C}
+                        {$T.C.ServiceName},&nbsp;
+                        {#/for}
+                    </span>
+                </p>
+            </div>
+            <div class="cinfo">
+                <a class="clearlist" title="Remove form list" onclick="RemoveCancelled({$T.S.AppointmentID})"><i class="fa fa-times-circle"></i></a>
+                <div class="sadface"><i class="fa fa-frown-o fa-2x"></i></div>
+                <p>Cancelled from client side</p>
+            </div>
+        </div>
+        {#/if}
+        {#if $T.S.Status==4}
+        <div class="sce">
+            <div class="newapp"></div>
+            <a href="#" onclick="ShowSoonestAppointment({$T.S.AppointmentID});return false;">
+                <div class="left">
+                    <div class="date">00 <span>-- -- --</span></div>
+                    <div class="time">00:00 --</div>
+                </div>
+                <div class="right">
+                    <h2 style="color:red;">Soonest Appointment</h2>
+                    <p>At: <span class="blue">{$T.S.Location.City}, {$T.S.Location.State} </span></p>
+                    <p>With: <span class="blue">{$T.S.ClientInfo.LastName} {$T.S.ClientInfo.FirstName}</span></p>
+                    <p>
+                        Service(s): <span class="blue">
+                            {#foreach $T.S.Services as C}
+                            {$T.C.ServiceName},&nbsp;
+                            {#/for}
+                        </span>
+                    </p>
+                </div>
+            </a>
+        </div>
         {#/if}
         {#/for}
         <div class="bar">Accomplished</div>
