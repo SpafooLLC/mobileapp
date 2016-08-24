@@ -1,0 +1,72 @@
+<ion-view view-title="Make Appointment">
+    <ion-content>
+
+
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Make appointment with </div>
+        </div>
+        <div class="makeapp"><a href="ProviderPortfolio.html">scott r.</a></div>
+
+        <select id="basic2" class="show-tick maddcont form-control" multiple>
+            <option selected class="fa fa-location-arrow">&nbsp;&nbsp;My Current Location</option>
+            <option class="fa fa-map-marker">&nbsp;&nbsp;My Profile Address</option>
+            <option class="fa fa-cog">&nbsp;&nbsp;Custom Address</option>
+        </select>
+
+        <div class="inbody">
+            <div class="fcell">
+                <div class="has-feedback">
+                    <input type="date" class="form-control" placeholder="Select Date">
+                    <span class="fa fa-calendar fa-lg form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="has-feedback">
+                    <input type="time" class="form-control" placeholder="Select Time">
+                    <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <p class="bmar-sm">Select Service(s)</p>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox1" type="checkbox">
+                    <label for="checkbox1">Men</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox2" type="checkbox">
+                    <label for="checkbox2">Women</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox3" type="checkbox">
+                    <label for="checkbox3">Kids</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox4" type="checkbox">
+                    <label for="checkbox4">Cuts</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox5" type="checkbox">
+                    <label for="checkbox5">Women</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox6" type="checkbox">
+                    <label for="checkbox6">Iron</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox7" type="checkbox">
+                    <label for="checkbox7">Styles </label>
+                </div>
+                <div class="bmar-md"></div>
+                <textarea name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
+                <p class="bmar-xs">Soonest appointment available?</p>
+                <a href="OrderSummary.html" class="green-rounded">ASAP</a>
+            </div>
+        </div>
+
+        <a href="OrderSummary.html" class="block-btn">Continue</a>
+
+
+ 
+        <script type="text/javascript">app.initialize();</script>
+        
+       
+    </ion-content>
+</ion-view>

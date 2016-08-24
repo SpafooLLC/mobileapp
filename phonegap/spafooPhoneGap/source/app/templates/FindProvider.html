@@ -1,0 +1,43 @@
+﻿
+<ion-view view-title="FindProvider">
+    <ion-content>
+
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Find Provider</div>
+        </div>
+        <div class="fpselect">
+            <p class="bmar-sm blue bold">Select Service For</p>
+            <select class="customimg" id="ddlServices" ng-model="findpro.service" ng-change="findpro.getProviders(findpro.service)">
+
+                <!--<optgroup label="{{}}"> </optgroup>
+
+
+        <option ng-if="findpro.getServicesName.ParentID==-1" value="">All</option>-->
+
+            </select>
+        </div>
+        <div class="provermap">
+            <div class="overlay"></div>
+           <div style="height:auto;width:auto" id="map_canvas">
+
+           </div>
+        </div>
+        <div class="fpbottom">
+            <div class="proinfo">
+                <img src="Images/Provider/Icon/scott.jpg">
+                <h3>Scott R.</h3>
+                <p>Have a great hair day!</p>
+            </div>
+            <div class="action">
+                <div class="col-xs-6 nopad"><a href="MakeAppointment.html" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+                <div class="col-xs-6 nopad"><a class="green-btn block ml1px">Schedule Appointment</a></div>
+            </div>
+        </div>
+
+  
+        <script type="text/javascript">app.initialize();</script>
+       
+    </ion-content>
+</ion-view>
