@@ -1,0 +1,72 @@
+
+<ion-view view-title="User Registration" scroll="true">
+    <ion-content>
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">My Profile</div>
+            <div class="pnotification">
+                <div class="ico">
+                    <a href="#noti"><i class="fa blue fa-bell fa-1x"></i></a>
+                </div>
+                <div id='notification'>{{mp.NotificationCount}}</div>
+            </div>
+        </div>
+        <div class="inbody-simple mprofile">
+            <div class="center">
+                <p><a href="RegisterUser.html" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+                <div class="profile-pic">
+                    <div class="round">
+                    
+                        <a ng-if="mp.profilePic==''"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
+                        <a ng-if="mp.profilePic!=''"><img ng-src="{{mp.profilePic}}" alt="" draggable="false"></a>
+
+                       </div>
+                </div>
+                <h3 class="bmar-xs">{{mp.ServiceData.displayNameField}}</h3>
+                <p class="green bmar-sm fs-sm">{{mp.ServiceData.emailField}}</p>
+                <p><span>Joined Date:</span> {{mp.ServiceData.membershipField.createdDateField}}</p>
+            </div>
+            <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
+            <p><span>Name:</span> {{mp.ServiceData.displayNameField}}</p>
+            <p><span>Display Name:</span>{{mp.ServiceData.usernameField}}</p>
+            <p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
+            <p><span>Email:</span> {{mp.ServiceData.emailField}}</p>
+
+            <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
+            <p><span>Phone:</span> {{mp.ServiceData.profileField.cellField}}</p>
+            <p><span>Email:</span>{{mp.ServiceData.emailField}}</p>
+            <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{mp.ServiceData.profileField.streetField}}<br />{{mp.ServiceData.profileField.cityField}}<br />{{mp.ServiceData.profileField.countryField}},{{mp.ServiceData.regionField}} {{mp.ServiceData.postalCodeField}}</div></p>
+            <div class="clearfix"></div>
+
+            <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Payment Method</div>
+            <div class="center">
+                <p class="red2">No Payment Method Found</p>
+                <p>Add a credit card so you can easily book and pay!</p>
+                <a ui-sref="BasicCreditCard" class="blue-btn">Add New card</a>
+            </div>
+
+            <div class="bar-head"><i class="fa fa-bell-o"></i> &nbsp;Notification Center<a id="noti"></a></div>
+            <div ng-if="mp.NotificaitonData!=''" class="nsrow MyNotifications">
+                <div class="notiwrapper">
+                    <ul>
+                        <li ng-repeat="sr in mp.NotificaitonData">
+                            <span>{{sr.datedField}}</span> <label ng-bind-html="sr.typeNameField"></label> <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                        </li>
+
+                    </ul>
+                    <div align="center" id="dvClearAll">
+                        <div ng-click="mp.RemoveUserNotification()" class="clearnoti">Clear All Notifications</div>
+                    </div>
+                </div>
+            </div>
+            <p ng-if="mp.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at SpaFoo! And, if you ever miss a notification, you can head back here to check it out.</p>
+ </div>
+
+
+
+        <script type="text/javascript">app.initialize();</script>
+
+    </ion-content>
+</ion-view>

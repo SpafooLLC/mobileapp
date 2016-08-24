@@ -1,0 +1,31 @@
+
+<ion-view view-title="Services">
+    <ion-content>
+
+
+        <div class="bread">
+            <a ng-model="PreviousID" ng-click="s.getParentData({{s.PreviousID}})" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Services</div>
+        </div>
+        <div class="inbody-simple">
+            <div class="services">
+                
+                <ul>
+                    <li ng-repeat="sr in s.ServiceData">
+                        <a ng-click="s.getServiceList({{sr.serviceIDField}})">
+                            <h2>{{sr.serviceNameField}} </h2>
+                            <h3>{{sr.shortDescriptionField}}</h3>
+                            <img ng-if="sr.imageField!=''" ng-src="http://www.spafoo.com/images/NS_ServiceDB/{{sr.imageField}}">
+                            <img ng-if="sr.imageField==''" ng-src="http://www.spafoo.com/DesktopModules/NS_ServiceDashBoard/imgs/NA.jpg">
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <script type="text/javascript">app.initialize();</script>
+
+
+    </ion-content>
+</ion-view>

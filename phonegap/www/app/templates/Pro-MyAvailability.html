@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link href="Styles/style.css" rel="stylesheet" type="text/css" />
+    <title>Spafoo</title>
+  </head>
+<body>
+<div class="in-logo"><a href="index.html"><img src="Images/Site/SpaFoo-sm.png" /></a></div>
+<div class="inheader">
+  <div class="titre">
+    <button type="button" class="tcon tcon-menu--xbutterfly" aria-label="toggle menu"><span class="tcon-menu__lines" aria-hidden="true"></span><span class="tcon-visuallyhidden">toggle menu</span></button>
+  </div>
+  <div class="image_trombi">
+    <div class="nav-wrapper">
+      <div class="vmenu">   
+        <ul class="top">
+          <li><a href="Pro-MySchedule.html"><img src="Images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+          <li><a href="Pro-MyProfile.html"><img src="Images/Site/vm-user.png"><p>Scott Reynaud</p></a></li>
+          <li><a href="Pro-Appointments.html">
+            <div class="pnotification2">
+              <div class="ico2">
+                <i class="fa white fa-bell fa-1x"></i>
+              </div>
+              <div id='notification2'>1</div>
+            </div>
+            <p>Notification</p>
+          </a></li>
+        </ul>
+        <ul class="bottom">
+          <li><a href="About.html"><img src="Images/Site/vm-about.png"><p>About Spafoo</p></a></li>
+          <li><a href="ShareApp.html"><img src="Images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
+          <li><a href="#" class="signout"><img src="Images/Site/vm-signout.png"><p>Signout</p></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bread">
+  <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+  <div class="ptitle">My Appointments</div>
+</div>
+<div class="inbody mavai">
+  <h3 class="center"><i class="fa green fa-square"></i> &nbsp;I am available</h3>
+  <div class="cal">
+    <a data-toggle="modal" data-target="#TimePicker"><img src="Images/Other/calendar.png"></a>
+  </div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="cdatetime">
+    <tr>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <td>Oct 01</td>
+      <td><input type="text" class="form-control" value="12:35 PM"></td>
+      <td><input type="text" class="form-control" value="06:00 AM"></td>
+      <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+    </tr>
+    <tr>
+      <td>Oct 07</td>
+      <td><input type="text" class="form-control" value="02:30 AM"></td>
+      <td><input type="text" class="form-control" value="08:00 AM"></td>
+      <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+    </tr>
+    <tr>
+      <td>Oct 12</td>
+      <td><input type="text" class="form-control" value="01:15 AM"></td>
+      <td><input type="text" class="form-control" value="08:00 AM"></td>
+      <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+    </tr>
+    <tr>
+      <td>Oct 17</td>
+      <td><input type="text" class="form-control" value="09:00 AM"></td>
+      <td><input type="text" class="form-control" value="06:00 AM"></td>
+      <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+    </tr>
+    <tr>
+      <td>Oct 27</td>
+      <td><input type="text" class="form-control" value="06:30 AM"></td>
+      <td><input type="text" class="form-control" value="01:00 PM"></td>
+      <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+    </tr>
+    <tr>
+      <td>Oct 29</td>
+      <td><input type="text" class="form-control" value="11:45 AM"></td>
+      <td><input type="text" class="form-control" value="09:15 AM"></td>
+      <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<!-- Time Picker -->
+<div class="modal fade" id="TimePicker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog w90" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+        <h4 class="modal-title" id="myModalLabel">Select Time</h4>
+      </div>
+      <div class="modal-cpbody">
+        <img class="img-responsive" src="Images/Other/time-picker.png">
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="Bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">app.initialize();</script>
+<script>transformicons.add('.tcon');</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.image_trombi').hide();
+    $('.titre').click(function() {     
+      $(this).next().slideToggle();
+      return false;
+    });
+});
+</script>
+</body>
+</html>
