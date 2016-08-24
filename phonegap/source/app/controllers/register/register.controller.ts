@@ -45,7 +45,7 @@
                 var data = Regdata;
 
                 self.$ionicLoading.show();
-                self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
+                self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
 
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);

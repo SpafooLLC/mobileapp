@@ -45,7 +45,11 @@
             <div class="nav-wrapper">
                 <div class="vmenu">
                     <ul class="top">
-                        <li><a ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
+                        <li>
+                            <a ng-if="UserProfileName!='Welcome to Spafoo'"  class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
+                            <a ng-if="UserProfileName=='Welcome to Spafoo'" class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
+
+                        </li>
                         <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
                         <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
                         <li><a class="clsmenu" href="MySchedule.html"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>

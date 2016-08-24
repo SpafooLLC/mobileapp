@@ -28,7 +28,7 @@
         getUserInfo() {
             var self = this;
             var customerID = self.$window.localStorage.getItem('CustomerID');
-            self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response) {
+            self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response: any) {
                 self.ServiceData = response.GetUserInfoResult;
                 self.ServiceData.membershipField.createdDateField = self.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
@@ -46,7 +46,7 @@
 
         getProfilePics(customerID:any) {
             var self = this;
-            self.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response) {
+            self.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response: any) {
 
                 self.profilePic = "http://dev.spafoo.com" + response.GetProfilePicResult;
                 self.$ionicLoading.hide();
@@ -61,7 +61,7 @@
         }
         getUserNotificationInfo(customerID:any) {
             var self = this;
-            self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response) {
+            self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response: any) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {

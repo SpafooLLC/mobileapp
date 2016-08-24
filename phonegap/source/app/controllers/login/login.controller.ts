@@ -43,7 +43,7 @@
             };
 
           
-            self.CustomerHttp.post(data, '/LoginUser').then(function (response) {
+            self.CustomerHttp.post(data, '/LoginUser').then(function (response:any) {
                 if (parseInt(response.Source)) {
                     self.$window.localStorage.setItem('CustomerID', response.Source);
                     self.$window.localStorage.setItem('LoginStatus', "true");                    
@@ -79,7 +79,7 @@
             var self = this;
 
             //  var UserID = self.$window.localStorage.getItem('CustomerID');
-            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
+            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response:any) {
                 self.$rootScope.UserProfileName = response.GetUserInfoResult.displayNameField;
                 self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
                 self.$rootScope.GetLoginStatus = true;

@@ -23,7 +23,7 @@
       getServiceList(ParentServiceID: any) {           
           var self = this;         
           //alert(ParentServiceID);
-          self.CustomerHttp.get('/GetServiceList/' + ParentServiceID).then(function (response) {            
+          self.CustomerHttp.get('/GetServiceList/' + ParentServiceID).then(function (response: any) {            
               self.ServiceData = response.GetServiceListResult;
              // alert(JSON.stringify(response.GetServiceListResult));
               if (response.GetServiceListResult.length === 0)
@@ -50,7 +50,7 @@
  getParentData(ParentServiceID: any) {           
           var self = this;         
         //  alert("getParentData : " + self.pdata);
-          self.CustomerHttp.get('/GetSpecificServiceRecord/' + self.pdata).then(function (response) {       
+          self.CustomerHttp.get('/GetSpecificServiceRecord/' + self.pdata).then(function (response: any) {       
                            //   alert(JSON.stringify(response.GetSpecificServiceRecordResult[0].parentIDField));
               self.getServiceList(response.GetSpecificServiceRecordResult[0].parentIDField);
               self.$ionicLoading.hide();
@@ -64,10 +64,6 @@
               });
           self.PreviousID = ParentServiceID;  
       }
-
-
-
-
 
     }
 

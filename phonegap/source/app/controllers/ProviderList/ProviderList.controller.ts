@@ -25,7 +25,7 @@
         getProviderList(ServiceID: any) {
             var self = this;
             
-            self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response) {
+            self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response: any) {
                 
                 self.ServiceData = response.ListProvidersByServicesResult;
                 self.getProfilePics(self.ServiceData.profileField.photoField);
@@ -42,7 +42,7 @@
         }
         getProfilePics(customerID: any) {
             var self = this;
-            self.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response) {
+            self.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response: any) {
 
                 self.profilePic = "http://dev.spafoo.com" + response.GetProfilePicResult;
                 self.$ionicLoading.hide();
