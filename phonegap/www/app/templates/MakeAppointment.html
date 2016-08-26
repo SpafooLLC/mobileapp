@@ -26,10 +26,14 @@
                     <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <p class="bmar-sm">Select Service(s)</p>
-                <div class="checkbox checkbox-primary checkbox-inline">
-                    <input id="checkbox1" type="checkbox">
-                    <label for="checkbox1">Men</label>
+
+
+                <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in service_list">
+                    <input id="checkbox{{$index+1}}" type="checkbox" ng-model="checked_services[$index]" ng-value="service.serviceIDField">
+                    <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
                 </div>
+                
+                <!-- 
                 <div class="checkbox checkbox-primary checkbox-inline">
                     <input id="checkbox2" type="checkbox">
                     <label for="checkbox2">Women</label>
@@ -53,7 +57,9 @@
                 <div class="checkbox checkbox-primary checkbox-inline">
                     <input id="checkbox7" type="checkbox">
                     <label for="checkbox7">Styles </label>
-                </div>
+                </div> -->
+
+
                 <div class="bmar-md"></div>
                 <textarea name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
                 <p class="bmar-xs">Soonest appointment available?</p>
