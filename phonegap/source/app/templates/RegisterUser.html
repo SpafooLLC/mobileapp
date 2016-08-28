@@ -20,7 +20,9 @@
             <div class="center">
                 <p class="blue bold">Profile Picture</p>
                 <div class="profile-pic">
-                    <div class="round"><a href="#"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a></div>
+                    <div class="round"><a href="#" ng-click="Reg.cameraOption();"><img ng-if="!Reg.imageURL" ng-src="images/Site/register-default.png" alt="" draggable="false"><img ng-if="Reg.imageURL" id="myImage" src="{{Reg.imageURL}}" " alt="" draggable="false"></a></div>
+                    <div ng-if="Reg.isImageClick"><button ng-click="Reg.capturePhoto('C')">Camera Image</button><button ng-click="Reg.capturePhoto('G')">Galary Image</button></div>
+                    <input type="text" ng-hide="{{true}}" ng-model="data.picFID" ng-init="data.picFID ='test'">
                 </div>
             </div>
             <div class="fcell2">
@@ -28,7 +30,7 @@
                 <input type="text" class="form-control" placeholder="Last Name" maxlength="50"  ng-model="data.LastName">
                 <input type="text" class="form-control" placeholder="User Name" maxlength="50"  ng-model="data.Username">
                 <div class="pwd-block">
-                    <div class="left"><input type="password" ng-model="data.primarypassword" maxlength="50" class="form-control" placeholder="Password"   ng-model="data.Password" ></div>
+                    <div class="left"><input type="password"  maxlength="50" class="form-control" placeholder="Password"   ng-model="data.Password" ></div>
                     <div class="right"><input type="password" class="form-control" maxlength="50"  placeholder="Confirrm Password"  ng-model="data.ConfirmPassword"></div>
                     <p>8 Character minimum</p>
                    

@@ -19,7 +19,9 @@
         'spafoo.module.RegisterProvider',
         'spafoo.module.ChangePassword',
         'spafoo.module.FindProvider',
-        'spafoo.module.ProviderList'
+        'spafoo.module.ProviderList', 'spafoo.httpsharedservice',
+        'spafoo.module.ProviderPortfolio',
+        'spafoo.module.ProReviewListing', 'spafoo.module.ScheduleDetail'
          ];
 
     angular

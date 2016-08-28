@@ -32,6 +32,9 @@
             this.$state.go('home');
         }
 
+    dotest(userid:any) {
+        alert("this is test " + userid);
+    }
 
 
     }

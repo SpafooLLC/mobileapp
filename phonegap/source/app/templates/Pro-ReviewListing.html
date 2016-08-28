@@ -1,0 +1,51 @@
+﻿
+<ion-view view-title="Provider Review">
+    <ion-content>
+
+        <div class="bread">
+            <a onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">{{prl.ServiceData.displayNameField}}</div>
+        </div>
+        <div class="inbody reviewlist">
+            <div class="center">
+                <div class="topspace"></div>
+                <div class="profile-pic">
+                    <div class="round">
+                        <a href="#"><img ng-src="{{prl.profilePic}}" alt=""></a>
+                        <a ng-if="prl.profilePic==''"><img ng-src="images/Site/register-default.png"></a>
+                        <a ng-if="prl.profilePic!=''"><img ng-src="{{prl.profilePic}}" alt=""></a>
+
+                    </div>
+                </div>
+                <h2>Past Client Reviews for {{prl.ServiceData.displayNameField}}</h2>
+                <div class="big-ratting-{{prl.RatingField}}"></div>
+                <p class="bmar-xs">from {{prl.Rateperson}} user(s)</p>
+            </div>
+            <div class="allrev">
+
+                <blockquote ng-repeat="s in prl.ReviewData">
+                    <p>{{s.commentsField}} </p>
+                    <div class="rinfo">
+                        <ul>
+                            <li>{{s.displayNameField}} </li>
+                            <li>- {{s.RegionField}}</li>
+                            <li>- {{s.datedField}}</li>
+                            <li><div class="ratting-{{s.ratingValueField}}"></div></li>
+                        </ul>
+                    </div>
+                </blockquote>
+
+
+
+            </div>
+
+        </div>
+        <div class="center">
+            <a onClick="window.history.go(-1); return false;" class="block-btn">Back</a>
+        </div>
+
+
+        <script type="text/javascript">app.initialize();</script>
+
+    </ion-content>
+</ion-view>

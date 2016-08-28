@@ -23,7 +23,7 @@
 /*  Main SKIN Elements                                    */
 /*========================================================*/
 .BgDisplay {display: none;width: 100%;z-index: 999999;position: fixed;left: 0px; top: 0px;bottom: 0px;text-align: center;background: rgba(0, 0, 0, 0);}
-#showload > img {margin-top: 50%; }
+#showload > img {margin-top: 60%; }
   .clear { clear:both; }
   .fleft { float:left; }
   .fright { float:right; }
@@ -75,6 +75,26 @@
   .fcell .w70 { width:69%; }
   .fcell .w80 { width:79%; }
 
+  .reviewlist { }
+	.reviewlist .topspace { height:30px;  }
+	.reviewlist .allrev { margin:40px 0 40px 0; }
+	.reviewlist .allrev blockquote { margin:0 0 40px 0; }
+	.reviewlist .allrev blockquote p { margin:0 0 10px 0; }
+	.reviewlist .allrev blockquote .rinfo ul { margin:0; padding:0; }
+	.reviewlist .allrev blockquote .rinfo li { list-style:none; display:inline-block; }
+	.reviewlist .allrev blockquote .rinfo li:first-child { font-weight:600; }
+	.reviewlist .allrev blockquote .rinfo li:last-child { margin:0 0 -5px 10px; }
+	.big-ratting-0 { width:170px; height:36px; background:url(../images/Site/bratting-0.png) top left no-repeat; margin:0 auto; }
+  .big-ratting-1 { width:170px; height:36px; background:url(../images/Site/bratting-1.png) top left no-repeat; margin:0 auto; }
+  .big-ratting-2 { width:170px; height:36px; background:url(../images/Site/bratting-2.png) top left no-repeat; margin:0 auto; }
+  .big-ratting-3 { width:170px; height:36px; background:url(../images/Site/bratting-3.png) top left no-repeat; margin:0 auto; }
+  .big-ratting-4 { width:170px; height:36px; background:url(../images/Site/bratting-4.png) top left no-repeat; margin:0 auto; }
+.big-ratting-5 {
+    width: 170px;
+    height: 36px;
+    background: url(../images/Site/bratting-5.png) top left no-repeat;
+    margin: 0 auto;
+}
  
 .redclose { color:#ff0000 !important; cursor:pointer; font-size:20px; margin:1px 0 0 10px; }
 	.notiwrapper ul { margin:30px 0 0 0; padding:10px 0; }
