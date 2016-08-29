@@ -436,11 +436,11 @@
       var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
       var searchbox = this.options.liveSearch ?
       '<div class="bs-searchbox">' +
-      '<input type="text" class="form-control" placeholder="Address">' +
-	  '<div class="col-xs-6 nopad"><input type="text" class="form-control" placeholder="City"></div>' +
-      '<div class="col-xs-4 bsstate"><input type="text" class="form-control" placeholder="State"></div>' +
-      '<div class="col-xs-2 nopad"><input type="text" class="form-control" placeholder="Zip"></div>' +
-	  '<div class="center"><a href="#" class="green-rounded">Save</a></div>' +
+      '<input type="text" class="form-control" ng-model="ma.Address" placeholder="Address">' +
+	  '<div class="col-xs-6 nopad"><input type="text"  ng-model="ma.City" class="form-control" placeholder="City"></div>' +
+      '<div class="col-xs-4 bsstate"><input type="text" class="form-control" ng-model="ma.State"  placeholder="State"></div>' +
+      '<div class="col-xs-2 nopad"><input type="text" class="form-control" ng-model="ma.Zip"  placeholder="Zip"></div>' +
+	  '<div class="center"><a href="" ng-click="ma.CustomSaveAddress(ma.Address,ma.City,ma.State,ma.Zip)" class="green-rounded">Save</a></div>' +
       '</div>'
           : '';
       var actionsbox = this.multiple && this.options.actionsBox ?
@@ -1701,7 +1701,7 @@
 
   $(document)
       .data('keycount', 0)
-      .on('keydown.bs.select', '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input', Selectpicker.prototype.keydown)
+      //.on('keydown.bs.select', '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input', Selectpicker.prototype.keydown)
       .on('focusin.modal', '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input', function (e) {
         e.stopPropagation();
       });

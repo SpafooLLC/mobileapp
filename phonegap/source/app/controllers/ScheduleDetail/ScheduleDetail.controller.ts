@@ -53,9 +53,9 @@
         CancelSchdule() {
             var self = this;
             var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField }
-            alert(JSON.stringify(PostData));
+          //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-                //alert(JSON.stringify(response));
+             //  alert(JSON.stringify(response));
                 self.messages = response.messages.messageField[0].textField;
                 $("#PDone").modal();
             }, function (error) {

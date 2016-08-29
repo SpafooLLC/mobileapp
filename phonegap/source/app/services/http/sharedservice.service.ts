@@ -1,13 +1,15 @@
 ﻿module spafoo.httpsharedservice {
 
     export interface ISharedHttp {
-
+        LoginStatus: boolean;
         deviceName: string;
         customerId: string;
         userType: string;
         uuid: string; dates: Date; picId: string;picPath: string;
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string;
         Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any;
+        getLoginStatus(): any;
+        setLoginStatus(value: any): any;
         getuserType(): any;
         setuserType(value: any): any;
         getUuid(): any;
@@ -33,6 +35,7 @@
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp'];
         constructor(private $q: ng.IQService, private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp) { }
+        LoginStatus: boolean;
         dates: Date;
         deviceName: string;
         customerId: string;
@@ -77,7 +80,12 @@
         setPicPath(value: any): any {
             this.picPath = value;
         }
-
+  getLoginStatus(): any {
+      return this.LoginStatus;
+        }
+  setLoginStatus(value: any): any {
+      this.LoginStatus = value;
+        }
         getFormatedTime(timeString:any): any {
             
             var hourEnd = timeString.indexOf(":");

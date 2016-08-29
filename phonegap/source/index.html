@@ -46,8 +46,8 @@
                 <div class="vmenu">
                     <ul class="top">
                         <li>
-                            <a ng-if="UserProfileName!='Welcome to Spafoo'"  class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
-                            <a ng-if="UserProfileName=='Welcome to Spafoo'" class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
+                            <a ng-if="GetLoginStatus==true"  class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
+                            <a ng-if="GetLoginStatus==false" class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p> Welcome to Spafoo</p></a>
 
                         </li>
                         <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
@@ -68,8 +68,8 @@
                     <ul class="bottom">
                         <li><a class="clsmenu" href="About.html"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
                         <li><a class="clsmenu" href="ShareApp.html"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-                        <li><a ui-sref="login" class="signout clsmenu" ng-hide="GetLoginStatus"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
-                        <li><a class="signout clsmenu" ng-show="GetLoginStatus" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
+                        <li><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false" ><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
+                        <li><a class="signout clsmenu" ng-if="GetLoginStatus==true"  ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
 
                     </ul>
                 </div>

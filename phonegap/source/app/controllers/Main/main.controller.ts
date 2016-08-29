@@ -1,9 +1,5 @@
-﻿module mainController {
-    export interface IMain {
-
-
-    }
-    class MainController implements IMain {
+﻿module mainController { 
+    class MainController {
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster','$rootScope'];
         GetLoginStatus: boolean; 
         constructor(
@@ -20,21 +16,23 @@
 
         ) { 
             this.$rootScope.UserProfileName = this.$window.localStorage.getItem('CustomerName');
-            this.$rootScope.GetLoginStatus = Boolean( this.$window.localStorage.getItem('LoginStatus'));   
+            this.$rootScope.GetLoginStatus = (this.$window.localStorage.getItem('LoginStatus')=="true" ?true:false);
+            // alert(this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
         }
 
 
     doLogOut() {
         this.$rootScope.GetLoginStatus = false;
+
         this.$window.localStorage.setItem('LoginStatus', "false");
         this.$rootScope.UserProfileName = "Welcome to Spafoo";
         this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");
+      //  alert("LogOut :: "+this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
+
             this.$state.go('home');
         }
 
-    dotest(userid:any) {
-        alert("this is test " + userid);
-    }
+   
 
 
     }
