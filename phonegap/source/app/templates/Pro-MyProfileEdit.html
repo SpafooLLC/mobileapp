@@ -1,0 +1,129 @@
+<ion-view view-title="Provider Profile Edit" scroll="true">
+    <ion-content>
+<div class="bread">
+  <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+  <div class="ptitle">Edit Profile</div>
+  <div class="pnotification">
+    <div class="ico">
+      <a href="Pro-Appointments.html"><i class="fa blue fa-bell fa-1x"></i></a>
+    </div>
+    <div id='notification'>{{pep.NotificationCount}}</div>
+  </div>
+</div>
+<div class="inbody-simple mprofileedit">
+  <div class="center">
+    <p><a href="#/ProMyProfile" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Cancel</a></p>
+    <div class="profile-pic">
+      <div class="round">
+        <a ng-if="!pep.proProfilePic" ng-click="pep.cameraOption();"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
+        <a ng-if="pep.proProfilePic" ng-click="pep.cameraOption();"><img ng-src="{{pep.proProfilePic}}" alt="" draggable="false"></a>
+      </div>
+      <div ng-if="pep.isImageClick"><button ng-click="pep.capturePhoto('C')">Camera Image</button><button ng-click="pep.capturePhoto('G')">Galary Image</button></div>
+    </div>
+    <h3 class="bmar-xs">{{pep.ServiceData.DisplayName}}</h3>
+    <p class="green bmar-sm fs-sm">{{pep.ServiceData.Email}}</p>
+    <p><span>Joined Date:</span>{{pep.ServiceData.Membership.CreatedDate}}</p>
+  </div>
+  <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="exampleInputName2">First Name:</label>
+        <input ng-model="pep.ServiceData.FirstName" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">Last Name:</label>
+        <input ng-model="pep.ServiceData.LastName" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">Display Name:</label>
+        <input ng-model="pep.ServiceData.DisplayName" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">Email:</label>
+        <input ng-model="pep.ServiceData.Email" type="text" class="form-control">
+      </div>
+      <div class="col-md-12">
+        <label for="exampleInputName2">Gender:</label>
+          <select ng-model="pep.ServiceData.Profile.ProfileProperties[0].PropertyValue" class="form-control" id="ddlGender">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+      </div>
+    </div>
+  <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
+  <div class="row">
+      <div class="col-md-6">
+        <label for="exampleInputName2">Street:</label>
+        <input ng-model="pep.ServiceData.Profile.Street" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">City:</label>
+        <input ng-model="pep.ServiceData.Profile.City" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">Region:</label>
+        <input ng-model="pep.ServiceData.Profile.Country" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">PostalCode:</label>
+        <input ng-model="pep.ServiceData.Profile.PostalCode" type="text" class="form-control">
+      </div>
+      <div class="col-md-12">
+        <label for="exampleInputName2">Phone:</label>
+          <input ng-model="pep.ServiceData.Profile.Cell" type="text" class="form-control">
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  <div class="bar-head"><i class="fa fa-scissors"></i> &nbsp;Professionl Information</div>
+  <div class="row">
+      <div class="col-md-6">
+        <label for="exampleInputName2">Type Of Entity::</label>
+        <select ng-model="pep.ServiceData.Profile.ProfileProperties[2].PropertyValue" class="form-control" id="ddlGender">
+          <option selected="" value="1">Individual</option>
+          <option value="2">Business</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">Professional License:</label>
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[3].PropertyValue" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">SSN:</label>
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" type="text" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">EIN:</label>
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[5].PropertyValue" type="text" class="form-control">
+      </div>
+      <div class="col-md-12">
+        <label for="exampleInputName2">Position Applied:</label><br />
+        <div ng-repeat="role in pep.ServiceData.Social.Roles track by $index" class="checkbox checkbox-primary checkbox-inline">
+          
+          <input id="checkbox_{{$index}}" type="checkbox" value="{{role.RoleID}}" ng-checked="pep.rolePosition.indexOf({{role['RoleID']}}) > -1"  ng-click="pep.upDatePosition($event, $index)">
+          <label for="checkbox_{{$index}}">{{role.RoleName}}</label>
+        </div>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Bio</div>
+  <textarea ng-model="pep.ServiceData.Profile.Biography" class="form-control" rows="4" id="txtBio">
+  </textarea>
+  <div class="clearfix"></div>
+  <div class="bar-head"><i class="fa fa-magic"></i> &nbsp;Tag Line</div>
+      <input type="text" class="form-control" ng-model="pep.TagField">
+  <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
+  <div class="pprofile">
+    <ul class="sample tmar-md">
+      <li ng-repeat="s in pep.WorkSamplesList"><img src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<a href="#" ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && pep.ServiceData.Profile.ProfileProperties[0].PropertyValue && pep.ServiceData.Profile.Street && pep.ServiceData.Profile.City && pep.ServiceData.Profile.Country && pep.ServiceData.Profile.PostalCode && pep.ServiceData.Profile.Cell && pep.ServiceData.Profile.ProfileProperties[2].PropertyValue && pep.ServiceData.Profile.ProfileProperties[3].PropertyValue && pep.ServiceData.Profile.ProfileProperties[4].PropertyValue && pep.ServiceData.Profile.ProfileProperties[5].PropertyValue && pep.ServiceData.Profile.Biography && pep.TagField" ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Country, pep.ServiceData.Profile.PostalCode, pep.ServiceData.Profile.Cell, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField );" class="block-btn">Update</a>
+
+    
+
+    </ion-content>
+</ion-view>

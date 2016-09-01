@@ -11,7 +11,8 @@
     }
     class BasicCreditCardController implements IBasicCreditCard {
         messages: string;
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster'];
+        Succmesg: string;
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
 
         constructor(
             private $q: ng.IQService,
@@ -22,8 +23,8 @@
             private $location: ng.ILocationService,
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
-            private toaster: ngtoaster.IToasterService
-
+            private toaster: ngtoaster.IToasterService,
+              private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
 
         }
@@ -41,22 +42,16 @@
                 data.Expiry = data.Month + "/" + data.Year; 
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
-                    self.$ionicLoading.hide();                     
-                    self.messages = "Registration Completed Successfully";
-                    $("#PDone").modal();  
-                }, function (error) {
-                    if (error === null) {
-                          self.$ionicLoading.hide();
-                    } else {
-                        console.log(error);                      
-                        self.$ionicLoading.hide();
-                    }
-
-                });
+                                    
+                    self.Succmesg = "Credit Card Information Added Successfully.";
+                    $("#PSuccess").modal();  
+                }, function (error) { });
             }
         }
 
-
+        redirectTo(href: any) {
+            this.SharedHttp.redirectTo(href, 'PSuccess');          
+        }
         DoValidation(Regdata: any) {
             var self = this;
 

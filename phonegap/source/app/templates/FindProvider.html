@@ -18,22 +18,23 @@
 
             </select>
         </div>
-        <div class="provermap inbody">
+        <div class="provermap" >
        
-           <div style="height:400px; width:auto;" id="map_canvas">
+           <div style="height:250px;width:auto" id="map_canvas">
 
            </div>
         </div>
-        <!--<div class="fpbottom ">-->
-        <div class="fource-bottom center">
+        <div class="fpbottom" id="infowindow">
             <div class="proinfo">
-                <img ng-src="images/Provider/Icon/scott.jpg">
-                <h3>Scott R.</h3>
-                <p>Have a great hair day!</p>
+                <p>{{findpro.infoWindow}}</p>
+                <img ng-src="{{findpro.profilePic}}">
+                <h3>{{findpro.userName}}</h3>
+                <p>{{findpro.TagField}}</p>
             </div>
             <div class="action">
-                <div class="col-xs-6 nopad"><a href="MakeAppointment.html" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
-                <div class="col-xs-6 nopad"><a class="green-btn block ml1px">Schedule Appointment</a></div>
+                <div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:{{findpro.userId}}})" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+                <!--<div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:83})" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>-->
+                <div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:{{findpro.userId}}})" class="green-btn block ml1px">Schedule Appointment</a></div>
             </div>
         </div>
 

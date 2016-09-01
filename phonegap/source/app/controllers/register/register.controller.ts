@@ -23,7 +23,7 @@
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp'];
         username: string;
         password: string;
-        messages: string;
+        messages: string; messagessuc: string;
         profileImage: string;
         imageURL: string;
         isImageClick: boolean;
@@ -65,7 +65,8 @@
 
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
-                        self.$state.go("BasicCreditCard");
+                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) { self.$state.go("home"); });;
+                        //self.$state.go("BasicCreditCard");
                     }
                     self.$ionicLoading.hide();
                 }, function (error) {
@@ -112,9 +113,14 @@
                 $("#PDone").modal();
                 return false;
             }
-            if (Regdata.Password === null || Regdata.Password === '' || Regdata.Password == undefined) {
+         if (Regdata.Password === null || Regdata.Password === '' || Regdata.Password == undefined) {
 
                 self.messages = "Please Enter Password.";
+                $("#PDone").modal();
+                return false;
+            }
+            else if (Regdata.Password.length <8) {
+             self.messages = "Password should be minimum Eight Character.";
                 $("#PDone").modal();
                 return false;
             }
@@ -165,6 +171,11 @@
             }
             if (Regdata.Zipcode === null || Regdata.Zipcode === '' || Regdata.Zipcode == undefined) {
                 self.messages = "Please Enter Zip code.";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.termscondition === null || Regdata.termscondition === '' || Regdata.termscondition == undefined) {
+                self.messages = "Please check the Payment terms";
                 $("#PDone").modal();
                 return false;
             }

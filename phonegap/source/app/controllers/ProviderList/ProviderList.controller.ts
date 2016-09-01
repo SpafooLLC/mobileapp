@@ -1,11 +1,12 @@
 ﻿module ProviderListController {
 
     class ProviderListController {
-        ServiceData: {};
+        ServiceData: any;
         pdata: number = 0;
         PreviousID: string;
         ServiceIDs: number;
         profilePic: string;
+        static currentlatlong: any;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         constructor(
             private $q: ng.IQService,
@@ -21,8 +22,16 @@
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-            self.getProviderList(this.ServiceIDs);
-
+           
+         
+            
+         
+            var options = {
+                enableHighAccuracy: true,
+                maximumAge: 3600000
+            };
+            navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
+            setTimeout(function () { self.getProviderList(self.ServiceIDs); }, 1000);
         }
         getProviderList(ServiceID: any) {
             var self = this;
@@ -31,18 +40,22 @@
 
                 self.ServiceData = response.ListProvidersByServicesResult;
                 for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
-
+                   
                     if (self.ServiceData[i].profileField.photoField != null) {
 
                         self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
-                        self.GetProTagLine(self.ServiceData[i].userIDField, i)
+                        self.GetProTagLine(self.ServiceData[i].userIDField, i);
                         self.GetMyRating(self.ServiceData[i].userIDField, i);
+                       
 
                     }
                     else
                     { self.ServiceData[i].profileField.photoField = ""; };
+                    console.log(self.ServiceData[i].vanityUrlField)
+                    self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
 
                 }
+              
 
 
             }, function (error) {
@@ -53,6 +66,36 @@
                     self.$ionicLoading.hide();
                 }
             });
+
+        }
+        GetDistanceBetween(latlong: any, index: any)
+        {
+            var lat1 = latlong.substring(0, latlong.indexOf(':'));
+            var long1 = latlong.substring(latlong.indexOf(':') + 1);
+            var self = this;
+           var lat2= ProviderListController.currentlatlong.coords.latitude;
+           var long2= ProviderListController.currentlatlong.coords.longitude;
+           var R = 6378137; // Earth’s mean radius in meter
+           var dLat = self.rad(lat2 - lat1);
+           var dLong = self.rad(long2 - long1);
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(self.rad(lat1)) * Math.cos(self.rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            self.ServiceData[index].distance = (d / 1609.344).toFixed(1);
+          
+           // returns the distance in meter
+      
+        }
+        onSuccess(position: any) {
+          
+            ProviderListController.currentlatlong = position;
+         //   alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
+        }
+        rad(x: any) {
+            return x * Math.PI / 180;
+        };
+        onError() {
 
         }
         getProfilePics(photoID: any, index: any) {

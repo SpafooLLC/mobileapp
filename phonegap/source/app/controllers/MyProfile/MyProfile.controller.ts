@@ -1,8 +1,9 @@
 ﻿module MyProfileController {
 
     class MyProfileController {
-        ServiceData: {};
-        NotificaitonData: {};
+        ServiceData: any;
+        NotificaitonData: any;
+        GetCreditCardData: any;
         profilePic: string;
         NotificationCount: number;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
@@ -30,7 +31,7 @@
                 self.ServiceData.membershipField.createdDateField = self.SharedHttp.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres;});
-             
+                self.GetCustomerProfile(customerID);
 
             }, function (error) {
                 if (error === null) {
@@ -41,8 +42,22 @@
                 }
             });
         }
-
-
+        GetCustomerProfile(customerID: any) {
+            var self = this;
+            self.CustomerHttp.get('/GetCustomerProfile/' + customerID).then(function (response: any) {
+                self.GetCreditCardData = JSON.parse( response.GetCustomerProfileResult);
+            });
+        }
+        RemovePayProfile(PID:any,PPID:any) {
+            var self = this;
+            var GetConfirm = confirm("Are you sure want to remove ?");
+            if (GetConfirm) {
+                self.CustomerHttp.get('/DeleteCustomerPayProfile/' + PID + '/' + PPID).then(function (response: any) {
+                    var customerID = self.$window.localStorage.getItem('CustomerID');
+                    self.GetCustomerProfile(customerID);
+                });
+            }
+        }
         getUserNotificationInfo(customerID: any) {
             var self = this;
             self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response: any) {

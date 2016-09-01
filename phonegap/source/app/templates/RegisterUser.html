@@ -40,7 +40,8 @@
                 <input type="text" class="form-control" placeholder="Address"  maxlength="50" ng-model="data.Street">
                 <input type="text" class="form-control" placeholder="City"  maxlength="50"  ng-model="data.City">
                 <select class="form-control w70 fleft"  ng-model="data.State">
-                    <option value="AL">Alabama</option>
+                    <option value="" selected="selected">-Select Region-</option>
+                      <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
@@ -94,8 +95,8 @@
                 </select>
                 <input type="text" class="form-control w30 fright" placeholder="Zip Code" maxlength="5"  ng-model="data.Zipcode">
                 <div class="checkbox checkbox-primary">
-                    <input id="checkbox2" type="checkbox" checked>
-                    <label for="checkbox2">With payment, I accept the <a class="modals" data-toggle="modal" data-target="#PaymentTerms">payment terms</a>.</label>
+                    <input id="checkbox2" type="checkbox"  ng-model="data.termscondition"   checked>
+                    <label for="checkbox2">With payment, I accept the</label> <a class="modals" data-toggle="modal" data-target="#PaymentTerms">payment terms</a>.
                 </div>
                 <p>&nbsp;</p>
                 <div align="center"><a class="modals" data-toggle="modal" data-target="#Privacy">Privacy Statement</a></div>
@@ -131,6 +132,7 @@
                 </div>
             </div>
         </div>
+
  
         <script type="text/javascript">app.initialize();</script>
 
@@ -151,6 +153,22 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="Psuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{Reg.messagessuc}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" ui-sref="BasicCreditCard" data-toggle="modal" class="green-rounded btnblock">Add Credit Card</a>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
