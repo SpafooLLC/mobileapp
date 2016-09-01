@@ -19,7 +19,12 @@
         'spafoo.module.RegisterProvider',
         'spafoo.module.ChangePassword',
         'spafoo.module.FindProvider',
-        'spafoo.module.ProviderList'
+        'spafoo.module.ProviderList', 'spafoo.httpsharedservice',
+        'spafoo.module.ProviderPortfolio',
+        'spafoo.module.ProReviewListing', 'spafoo.module.ScheduleDetail',
+         
+        'spafoo.module.AddProviderReview', 'spafoo.module.About', 'spafoo.module.ShareApp',
+        'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile'
          ];
 
     angular

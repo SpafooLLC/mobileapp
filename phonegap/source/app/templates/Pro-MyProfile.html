@@ -1,45 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-    <link href="Styles/style.css" rel="stylesheet" type="text/css" />
-    <title>Spafoo</title>
-  </head>
-<body>
-<div class="in-logo"><a href="index.html"><img src="Images/Site/SpaFoo-sm.png" /></a></div>
-<div class="inheader">
-  <div class="titre">
-    <button type="button" class="tcon tcon-menu--xbutterfly" aria-label="toggle menu"><span class="tcon-menu__lines" aria-hidden="true"></span><span class="tcon-visuallyhidden">toggle menu</span></button>
-  </div>
-  <div class="image_trombi">
-    <div class="nav-wrapper">
-      <div class="vmenu">   
-        <ul class="top">
-          <li><a href="Pro-MySchedule.html"><img src="Images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-          <li><a href="Pro-MyProfile.html"><img src="Images/Site/vm-user.png"><p>Scott Reynaud</p></a></li>
-          <li><a href="Pro-Appointments.html">
-            <div class="pnotification2">
-              <div class="ico2">
-                <i class="fa white fa-bell fa-1x"></i>
-              </div>
-              <div id='notification2'>1</div>
-            </div>
-            <p>Notification</p>
-          </a></li>
-        </ul>
-        <ul class="bottom">
-          <li><a href="About.html"><img src="Images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-          <li><a href="ShareApp.html"><img src="Images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-          <li><a href="#" class="signout"><img src="Images/Site/vm-signout.png"><p>Signout</p></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<ion-view view-title="Provider Profile Edit" scroll="true">
+    <ion-content>
 <div class="bread">
   <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
   <div class="ptitle">My Profile</div>
@@ -47,65 +7,45 @@
     <div class="ico">
       <a href="Pro-Appointments.html"><i class="fa blue fa-bell fa-1x"></i></a>
     </div>
-    <div id='notification'>1</div>
+    <div id='notification'>{{pmp.NotificationCount}}</div>
   </div>
 </div>
 <div class="inbody-simple mprofile">
   <div class="center">
-    <p><a href="RegisterUser.html" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+    <p><a href="#/ProEditProfile" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
     <div class="profile-pic">
-      <div class="round"><a href="#"><img src="Images/Provider/Preview/ScottR.jpg" alt=""></a></div>
+      <div class="round">
+        <a ng-if="pmp.proProfilePic==''"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
+        <a ng-if="pmp.proProfilePic!=''"><img ng-src="{{pmp.proProfilePic}}" alt="" draggable="false"></a>
+      </div>
     </div>
-    <h3 class="bmar-xs">Scott Reynaud</h3>
-    <p class="green bmar-sm fs-sm">scott@jupitersalon.com</p>
-    <p><span>Joined Date:</span>28 December 2014</p>
+    <h3 class="bmar-xs">{{pmp.ServiceData.displayNameField}}</h3>
+    <p class="green bmar-sm fs-sm">{{pmp.ServiceData.emailField}}</p>
+    <p><span>Joined Date:</span> {{pmp.ServiceData.membershipField.createdDateField}}</p>
   </div>
-  <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
-  <p><span>Name:</span> Scott Reynaud</p>
-  <p><span>Display Name:</span> Scott R.</p>
-  <p><span>Password:</span> ********</p>
-  <p><span>Email:</span> scott@jupitersalon.com</p>
-  
-  <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
-  <p><span>Phone:</span> 504-606-5086</p>
-  <p><span>Email:</span> scott@jupitersalon.com</p>
-  <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> 1101 Tchoupitoulas<br />New Orleans, Louisiana  70130</div></p> 
+<div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
+<p><span>Name:</span> {{pmp.ServiceData.displayNameField}}</p>
+<p><span>Display Name:</span>{{pmp.ServiceData.usernameField}}</p>
+<p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
+<p><span>Email:</span> {{pmp.ServiceData.emailField}}</p>
+
+<div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
+<p><span>Phone:</span> {{pmp.ServiceData.profileField.cellField}}</p>
+<p><span>Email:</span>{{pmp.ServiceData.emailField}}</p>
+<p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{pmp.ServiceData.profileField.streetField}}<br />{{pmp.ServiceData.profileField.cityField}}<br />{{pmp.ServiceData.profileField.countryField}},{{pmp.ServiceData.regionField}} {{pmp.ServiceData.postalCodeField}}</div></p>
   <div class="clearfix"></div>
   
   <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Bio</div>
-  <p>After receiving my professional license in 1995 I attended numerous hands on advanced training classes with the Jacques Dessange  team in New York, Annie Humphries in London, Yosh Toya in Minneapolis to name a few. Round brush blow outs are a specialty.</p>
+  <p>{{pmp.ServiceData.profileField.biographyField}}</p>
   
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li><img src="Images/Provider/Samples/ScottR/2-twist-and-pin-updo-for-medium-length-hair.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/19c139825a08a755354fe8cff70b9a5d.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/diy-wedding-hairstyle-wavy-updo-006.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/haircut-for-kids1.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/Mens-Modern-Haircuts-2012-12.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/party-hairstyles-for-long-hair.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/Trendy-Short-Hairstyle.jpg" alt="" /></li>
-      <li><img src="Images/Provider/Samples/ScottR/Vintage-updo.jpg" alt="" /></li>
+      <li ng-repeat="s in pmp.WorkSamplesList"><img src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /></li>
     </ul>
   </div>
   
 </div>
+   </ion-content>
+</ion-view>
 
-
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">app.initialize();</script>
-<script>transformicons.add('.tcon');</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.image_trombi').hide();
-    $('.titre').click(function() {     
-      $(this).next().slideToggle();
-      return false;
-    });
-});
-</script>
-</body>
-</html>

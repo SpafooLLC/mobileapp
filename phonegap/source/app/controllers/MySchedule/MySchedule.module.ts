@@ -11,7 +11,7 @@
         var MyScheduleState: angular.ui.IState = {
             name: 'MySchedule',
             url: '/MySchedule',
-            templateUrl: 'app/templates/Pro-MySchedule.html',
+            templateUrl: 'app/templates/MySchedule.html',
             controller: 'MySchedule as ms'
         };
 

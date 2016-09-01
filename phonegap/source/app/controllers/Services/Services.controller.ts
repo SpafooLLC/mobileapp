@@ -28,7 +28,7 @@
              // alert(JSON.stringify(response.GetServiceListResult));
               if (response.GetServiceListResult.length === 0)
               {
-                 // alert("getServiceList : " + self.pdata + " " + self.PreviousID);
+            //  alert("getServiceList : " + self.pdata + " " + self.PreviousID);
                   self.$window.localStorage.setItem('ServiceIDs', self.PreviousID);
                   self.$state.go("ProviderList");
               }

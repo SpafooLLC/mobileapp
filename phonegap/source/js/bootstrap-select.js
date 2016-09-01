@@ -436,10 +436,10 @@
       var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
       var searchbox = this.options.liveSearch ?
       '<div class="bs-searchbox">' +
-      '<input type="text" class="form-control" placeholder="Address">' +
-	  '<div class="col-xs-6 nopad"><input type="text" class="form-control" placeholder="City"></div>' +
-      '<div class="col-xs-4 bsstate"><input type="text" class="form-control" placeholder="State"></div>' +
-      '<div class="col-xs-2 nopad"><input type="text" class="form-control" placeholder="Zip"></div>' +
+      '<input type="text" class="form-control" placeholder="Address" ng-model="ma.address" id="addressfield">' +
+	  '<div class="col-xs-6 nopad"><input type="text" class="form-control" placeholder="City" ng-model="ma.city"  id="cityfield"></div>' +
+      '<div class="col-xs-4 bsstate"><input type="text" class="form-control" placeholder="State" ng-model="ma.state"  id="statefield"></div>' +
+      '<div class="col-xs-2 nopad"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.zip"  id="zipfield"></div>' +
 	  '<div class="center"><a href="#" class="green-rounded">Save</a></div>' +
       '</div>'
           : '';
