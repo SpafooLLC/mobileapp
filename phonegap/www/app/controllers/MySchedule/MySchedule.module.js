@@ -8,7 +8,7 @@
         var MyScheduleState = {
             name: 'MySchedule',
             url: '/MySchedule',
-            templateUrl: 'app/templates/Pro-MySchedule.html',
+            templateUrl: 'app/templates/MySchedule.html',
             controller: 'MySchedule as ms'
         };
         $stateProvider.state(MyScheduleState);

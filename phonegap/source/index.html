@@ -7,6 +7,8 @@
     <!-- 3rd party css -->
     <!-- inject:css -->
     <!-- endinject -->
+    <!-- bower:css -->
+    <!--endbower-->
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet"> -->
     <!--For users deploying their apps to Windows 8.1 or Android Gingerbread, platformOverrided.js
@@ -18,7 +20,6 @@
     <!-- endbuild -->
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
 
     <link href="styles/bootstrap-select.css" rel="stylesheet" />
@@ -73,14 +74,14 @@
                     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
-                        <li><a class="clsmenu"  ui-sref="MySchedule" ><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <li><a class="clsmenu"  ui-sref="ProMyScheduleLanding" ><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li>
                             <a class="clsmenu" href="MyProfile.html#noti">
                                 <div class="pnotification2">
                                     <div class="ico2">
                                         <i class="fa white fa-bell fa-1x"></i>
                                     </div>
-                                    <div id='notification2'>3</div>
+                                    <div id='notification2'>{{NotifiCount}}</div>
                                 </div>
                                 <p>Notification</p>
                             </a>

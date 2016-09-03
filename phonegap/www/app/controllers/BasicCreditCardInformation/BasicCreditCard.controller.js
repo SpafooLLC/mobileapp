@@ -1,7 +1,7 @@
 var BasicCreditCardController;
 (function (BasicCreditCardController_1) {
     var BasicCreditCardController = (function () {
-        function BasicCreditCardController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster) {
+        function BasicCreditCardController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -11,6 +11,7 @@ var BasicCreditCardController;
             this.CustomerHttp = CustomerHttp;
             this.$window = $window;
             this.toaster = toaster;
+            this.SharedHttp = SharedHttp;
         }
         BasicCreditCardController.prototype.SubmitCreditCardInfo = function (CData) {
             var self = this;
@@ -24,19 +25,13 @@ var BasicCreditCardController;
                 data.Expiry = data.Month + "/" + data.Year;
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
-                    self.$ionicLoading.hide();
-                    self.messages = "Registration Completed Successfully";
-                    $("#PDone").modal();
-                }, function (error) {
-                    if (error === null) {
-                        self.$ionicLoading.hide();
-                    }
-                    else {
-                        console.log(error);
-                        self.$ionicLoading.hide();
-                    }
-                });
+                    self.Succmesg = "Credit Card Information Added Successfully.";
+                    $("#PSuccess").modal();
+                }, function (error) { });
             }
+        };
+        BasicCreditCardController.prototype.redirectTo = function (href) {
+            this.SharedHttp.redirectTo(href, 'PSuccess');
         };
         BasicCreditCardController.prototype.DoValidation = function (Regdata) {
             var self = this;
@@ -67,7 +62,7 @@ var BasicCreditCardController;
             }
             return true;
         };
-        BasicCreditCardController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster'];
+        BasicCreditCardController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         return BasicCreditCardController;
     }());
     angular.module('spafoo.ctrl.BasicCreditCard', []).controller('BasicCreditCard', BasicCreditCardController);

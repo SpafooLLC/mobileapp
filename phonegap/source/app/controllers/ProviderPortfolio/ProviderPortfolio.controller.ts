@@ -9,7 +9,7 @@
         TagField: string;
         ProviderServiceList: {};
         WorkSamplesList: {};
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -20,12 +20,13 @@
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
             private toaster: ngtoaster.IToasterService,
-            private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
+            private $stateParams: angular.ui.IStateParamsService
         ) {
           
-            this.UserID = this.$window.localStorage.getItem('ProviderIDs');
-         
-           this.getProviderPortfolio(this.UserID);
+            //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
+            this.UserID = $stateParams.userId;
+            this.getProviderPortfolio(this.UserID);
            $('.fancybox').fancybox();
         }
 
@@ -61,10 +62,10 @@
 
 
         GoToProviderReview() {
-            var self = this;                      
-            self.$state.go("ProReviewListing");
-        }
+            var self = this;
+            self.$state.go('ProReviewListing', { userId: this.$stateParams.userId });
 
+        }
     }
 
 

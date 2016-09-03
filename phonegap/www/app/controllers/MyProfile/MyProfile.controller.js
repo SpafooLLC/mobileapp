@@ -1,7 +1,7 @@
 var MyProfileController;
 (function (MyProfileController_1) {
     var MyProfileController = (function () {
-        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster) {
+        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -11,6 +11,7 @@ var MyProfileController;
             this.CustomerHttp = CustomerHttp;
             this.$window = $window;
             this.toaster = toaster;
+            this.SharedHttp = SharedHttp;
             this.getUserInfo();
         }
         MyProfileController.prototype.getUserInfo = function () {
@@ -18,34 +19,33 @@ var MyProfileController;
             var customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response) {
                 self.ServiceData = response.GetUserInfoResult;
-                self.ServiceData.membershipField.createdDateField = self.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
+                self.ServiceData.membershipField.createdDateField = self.SharedHttp.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
-                self.getProfilePics(self.ServiceData.profileField.photoField);
-                self.$ionicLoading.hide();
+                self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
+                self.GetCustomerProfile(customerID);
             }, function (error) {
                 if (error === null) {
-                    self.$ionicLoading.hide();
                 }
                 else {
                     console.log(error);
-                    self.$ionicLoading.hide();
                 }
             });
         };
-        MyProfileController.prototype.getProfilePics = function (customerID) {
+        MyProfileController.prototype.GetCustomerProfile = function (customerID) {
             var self = this;
-            self.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response) {
-                self.profilePic = "http://dev.spafoo.com" + response.GetProfilePicResult;
-                self.$ionicLoading.hide();
-            }, function (error) {
-                if (error === null) {
-                    self.$ionicLoading.hide();
-                }
-                else {
-                    console.log(error);
-                    self.$ionicLoading.hide();
-                }
+            self.CustomerHttp.get('/GetCustomerProfile/' + customerID).then(function (response) {
+                self.GetCreditCardData = JSON.parse(response.GetCustomerProfileResult);
             });
+        };
+        MyProfileController.prototype.RemovePayProfile = function (PID, PPID) {
+            var self = this;
+            var GetConfirm = confirm("Are you sure want to remove ?");
+            if (GetConfirm) {
+                self.CustomerHttp.get('/DeleteCustomerPayProfile/' + PID + '/' + PPID).then(function (response) {
+                    var customerID = self.$window.localStorage.getItem('CustomerID');
+                    self.GetCustomerProfile(customerID);
+                });
+            }
         };
         MyProfileController.prototype.getUserNotificationInfo = function (customerID) {
             var self = this;
@@ -53,7 +53,7 @@ var MyProfileController;
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
-                    self.NotificaitonData[i].datedField = self.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy");
+                    self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy");
                     switch (self.NotificaitonData[i].typeNameField) {
                         case "AppointmentFixed":
                             self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
@@ -81,7 +81,6 @@ var MyProfileController;
                             break;
                     }
                 }
-                self.$ionicLoading.hide();
             }, function (error) {
                 if (error === null) {
                     self.$ionicLoading.hide();
@@ -91,46 +90,6 @@ var MyProfileController;
                     self.$ionicLoading.hide();
                 }
             });
-        };
-        MyProfileController.prototype.getFormatedDate = function (joindates, formatType) {
-            var abcDate = (joindates).replace("/Date(", "").replace(")/", "");
-            var dates = new Date(parseInt(abcDate));
-            var month = new Array();
-            switch (formatType) {
-                case "dd MMMM yyyy":
-                    month[0] = "January";
-                    month[1] = "February";
-                    month[2] = "March";
-                    month[3] = "April";
-                    month[4] = "May";
-                    month[5] = "June";
-                    month[6] = "July";
-                    month[7] = "August";
-                    month[8] = "September";
-                    month[9] = "October";
-                    month[10] = "November";
-                    month[11] = "December";
-                    break;
-                case "dd-MMM-yyyy":
-                    month[0] = "January";
-                    month[1] = "Feb";
-                    month[2] = "Mar";
-                    month[3] = "April";
-                    month[4] = "May";
-                    month[5] = "June";
-                    month[6] = "July";
-                    month[7] = "Aug";
-                    month[8] = "Sept";
-                    month[9] = "Oct";
-                    month[10] = "Nov";
-                    month[11] = "Dec";
-                    break;
-            }
-            switch (formatType) {
-                case "dd MMMM yyyy": return (dates.getDate() + " " + month[dates.getMonth()] + " " + dates.getFullYear());
-                case "dd-MMM-yyyy": return (dates.getDate() + "-" + month[dates.getMonth()] + "-" + dates.getFullYear());
-            }
-            return (dates.getDate() + " " + month[dates.getMonth()] + " " + dates.getFullYear());
         };
         MyProfileController.prototype.RemoveUserNotification = function () {
             var confirmations = confirm("Are you Sure Want to remove ? ");
@@ -170,7 +129,7 @@ var MyProfileController;
                 });
             }
         };
-        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster'];
+        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         return MyProfileController;
     }());
     angular.module('spafoo.ctrl.MyProfile', []).controller('MyProfile', MyProfileController);

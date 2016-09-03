@@ -217,6 +217,7 @@
   .myschedule .sce .right p {  color:#219962; font-weight:600; font-size:15px; margin:0 0 1px 0; }
   .myschedule .sce .right p a { font-weight:600; }
   .myschedule .bar { background:#e7e7e7; color:#112173; font-weight:500; font-size:20px; text-transform:uppercase; padding:10px 0; display:block; text-align:center; margin:20px 0 15px 0;}
+.acc {margin-bottom:10px;}
   .myschedule .acc .left { width:90px; vertical-align:top; } 
   .myschedule .acc .left img { max-width:100%; width:100%;  }
   .myschedule .acc .left .date { text-align:center; padding:10px 0 10px 0; background:#d0d0d0; color:#ffffff; font-family:'Open Sans', sans-serif; font-size:40px; line-height:50px; font-weight:300; }

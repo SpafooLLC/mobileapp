@@ -1,7 +1,7 @@
 var loginController;
 (function (loginController_1) {
     var loginController = (function () {
-        function loginController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, $rootScope) {
+        function loginController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, $rootScope, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,6 +12,7 @@ var loginController;
             this.$window = $window;
             this.toaster = toaster;
             this.$rootScope = $rootScope;
+            this.SharedHttp = SharedHttp;
         }
         loginController.prototype.doLogin = function (username, password) {
             var self = this;
@@ -32,56 +33,33 @@ var loginController;
             self.CustomerHttp.post(data, '/LoginUser').then(function (response) {
                 if (parseInt(response.Source)) {
                     self.$window.localStorage.setItem('CustomerID', response.Source);
+                    self.$window.localStorage.setItem('Role', response.Usertype);
                     self.$window.localStorage.setItem('LoginStatus', "true");
                     self.getLoggedUser(response.Source);
+                    self.$rootScope.getRole = (self.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
                 }
                 else {
                     self.$window.localStorage.setItem('CustomerID', "0");
                     self.$window.localStorage.setItem('LoginStatus', "false");
+                    self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
                     $("#PDone").modal();
                 }
             }, function (error) {
-                if (error === null) {
-                    //self.toastr.error('No internet connections. Check your connection settings', 'Error');
-                    self.$ionicLoading.hide();
-                }
-                else {
-                    console.log(error);
-                    //self.toastr.error(error.Failure, 'Error');
-                    //self.$ionicPopup.alert({
-                    //    title: 'Error', template: error.Failure
-                    //});
-                    self.$ionicLoading.hide();
-                }
             });
         };
         loginController.prototype.getLoggedUser = function (UserID) {
             var self = this;
-            //  var UserID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
                 self.$rootScope.UserProfileName = response.GetUserInfoResult.displayNameField;
                 self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
                 self.$rootScope.GetLoginStatus = true;
+                self.SharedHttp.GetMyNotification(UserID).then(function (res) { self.$rootScope.NotifiCount = res.length; });
                 self.$state.go("home");
-                self.$ionicLoading.hide();
-            }, function (error) {
-                if (error === null) {
-                    //self.toastr.error('No internet connections. Check your connection settings', 'Error');
-                    self.$ionicLoading.hide();
-                }
-                else {
-                    console.log(error);
-                    //self.toastr.error(error.Failure, 'Error');
-                    //self.$ionicPopup.alert({
-                    //    title: 'Error', template: error.Failure
-                    //});
-                    self.$ionicLoading.hide();
-                }
-            });
+            }, function (error) { });
         };
-        loginController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', '$rootScope'];
+        loginController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', '$rootScope', 'SharedHttp'];
         return loginController;
     }());
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);

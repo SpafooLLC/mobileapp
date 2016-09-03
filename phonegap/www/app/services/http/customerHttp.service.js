@@ -9,8 +9,8 @@ var spafoo;
                 this.$q = $q;
                 this.$window = $window;
                 this.$location = $location;
-                //  this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
-                this.WebURL = 'http://localhost:61884/SpaServices.svc';
+                this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
+                //  this.WebURL = 'http://localhost:61874/SpaServices.svc';
             }
             // *** create customer ***
             CustomerScreenHttp.prototype.post = function (data, url) {
@@ -24,6 +24,7 @@ var spafoo;
                     $("#showload").hide();
                 }).error(function (error) {
                     deferred.reject(error);
+                    $("#showload").hide();
                     alert('Connection : Please Check Internate Connection.');
                 });
                 return deferred.promise;
@@ -37,6 +38,7 @@ var spafoo;
                     $("#showload").hide();
                 }).error(function (error) {
                     deferred.reject(error);
+                    $("#showload").hide();
                     alert('Connection : Please Check Internate Connection.');
                 });
                 return deferred.promise;

@@ -1,116 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-    <link href="Styles/style.css" rel="stylesheet" type="text/css" />
-    <link href="Styles/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-    <title>Spafoo</title>
-  </head>
-<body>
-<div class="in-logo"><a href="index.html"><img src="Images/Site/SpaFoo-sm.png" /></a></div>
-<div class="inheader">
-  <div class="titre">
-    <button type="button" class="tcon tcon-menu--xbutterfly" aria-label="toggle menu"><span class="tcon-menu__lines" aria-hidden="true"></span><span class="tcon-visuallyhidden">toggle menu</span></button>
-  </div>
-  <div class="image_trombi">
-    <div class="nav-wrapper">
-      <div class="vmenu">   
-        <ul class="top">
-          <li><a href="MyProfile.html"><img src="Images/Site/vm-user.png"><p>Matthew Lee</p></a></li>
-          <li><a href="FindProvider.html"><img src="Images/Site/vm-find.png"><p>Find Provider</p></a></li>
-          <li><a href="Services.html"><img src="Images/Site/vm-services.png"><p>Services</p></a></li>
-          <li><a href="MySchedule.html"><img src="Images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-          <li><a href="MyProfile.html#noti">
-            <div class="pnotification2">
-              <div class="ico2">
-                <i class="fa white fa-bell fa-1x"></i>
-              </div>
-              <div id='notification2'>3</div>
+<ion-view view-title="Provider List" scroll="true">
+    <ion-content>
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Provider</div>
+        </div>
+        <div class="inbody pprofile">
+            <img class="mainimg" ng-src="{{PvP.profilePic}}">
+            <div class="bar">
+                <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;0.8 miles form you</div>
+                <div class="fright"><a href="MakeAppointment.html">Make Appointment</a></div>
             </div>
-            <p>Notification</p>
-          </a></li>
-        </ul>
-        <ul class="bottom">
-          <li><a href="About.html"><img src="Images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-          <li><a href="ShareApp.html"><img src="Images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-          <li><a href="#" class="signout"><img src="Images/Site/vm-signout.png"><p>Signout</p></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="bread">
-  <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-  <div class="ptitle">Provider</div>
-</div>
-<div class="inbody pprofile">
-  <img class="mainimg" src="Images/Provider/Profile/ScottR.jpg">
-  <div class="bar">
-    <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;0.8 miles form you</div>
-    <div class="fright"><a href="MakeAppointment.html">Make Appointment</a></div>
-  </div>
-  <div class="infobox">
-    <h1>Scott R.</h1>
-    <h3>Have a great hair day!</h3>
-    <div class="ratting-5 mcenter"></div>
-    <span>from 234 users</span>
-  </div>
-  <div class="offered">
-    <h4>Services offered:</h4>
-    <ul>
-      <li>Men</li>
-      <li>Women</li>
-      <li>Kids</li>
-      <li>Cuts</li>
-      <li>Women</li>
-      <li>Styles (blowout and iron) updo</li>
-    </ul>
-  </div>
-  <div class="bio">
-    <span>Bio: </span>After receiving my professional license in 1995 I attended numerous hands on advanced training classes with the Jacques Dessange  team in New York, Annie Humphries in London, Yosh Toya in Minneapolis to name a few. Round brush blow outs are a specialty.
-  </div>
-  <div class="sample">
-    <h4>Work Samples</h4>
-    <ul>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/2-twist-and-pin-updo-for-medium-length-hair.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/2-twist-and-pin-updo-for-medium-length-hair.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/19c139825a08a755354fe8cff70b9a5d.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/19c139825a08a755354fe8cff70b9a5d.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/diy-wedding-hairstyle-wavy-updo-006.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/diy-wedding-hairstyle-wavy-updo-006.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/haircut-for-kids1.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/haircut-for-kids1.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/Mens-Modern-Haircuts-2012-12.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/Mens-Modern-Haircuts-2012-12.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/party-hairstyles-for-long-hair.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/party-hairstyles-for-long-hair.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/Trendy-Short-Hairstyle.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/Trendy-Short-Hairstyle.jpg" alt="" /></a></li>
-      <li><a class="fancybox" href="Images/Provider/Samples/ScottR/Vintage-updo.jpg" data-fancybox-group="gallery"><img src="Images/Provider/Samples/ScottR/Vintage-updo.jpg" alt="" /></a></li>
-    </ul>
-  </div>
-</div>
-<div class="action">
-      <div class="col-xs-6 nopad"><a href="OrderSummary.html" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
-      <div class="col-xs-6 nopad"><a href="MakeAppointment.html" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
-    </div>
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">app.initialize();</script>
-<script>transformicons.add('.tcon');</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.image_trombi').hide();
-    $('.titre').click(function() {     
-      $(this).next().slideToggle();
-      return false;
-    });
-});
-</script>
-<script type="text/javascript" src="js/jquery.fancybox.js"></script>
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('.fancybox').fancybox();
-		});
-	</script>
-</body>
-</html>
+            <div class="infobox">
+                <h1>{{PvP.ServiceData.displayNameField}}</h1>
+                <h3>{{PvP.TagField}}</h3>
+                <!--<div ng-click="PvP.GoToProviderReview()" class="ratting-{{PvP.RatingField}} mcenter"></div>
+                <span ng-click="PvP.GoToProviderReview()" >from {{PvP.Rateperson}} users</span>-->
+                <div ng-click="PvP.GoToProviderReview()" class="ratting-{{PvP.RatingField}} mcenter"></div>
+                <span ng-click="PvP.GoToProviderReview()">from {{PvP.Rateperson}} users</span>
+            </div>
+            <div class="offered">
+                <h4>Services offered:</h4>
+                <ul>
+                    <li ng-repeat="s in PvP.ProviderServiceList">{{s.serviceNameField}}</li>
+                </ul>
+            </div>
+            <div class="bio">
+                <span>Bio: </span>
+                {{PvP.ServiceData.profileField.biographyField}}
+            </div>
+            <div class="sample">
+                <h4>Work Samples</h4>
+                <ul>
+                    <li ng-repeat="s in PvP.WorkSamplesList">
+                        <a class="fancybox" href="http://dev.spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
+                            <img ng-src="http://dev.spafoo.com{{s.optionTextField}}" alt="" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="action">
+            <div class="col-xs-6 nopad"><a href="OrderSummary.html" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+            <div class="col-xs-6 nopad"><a href="MakeAppointment.html" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
+        </div>
+
+        <script type="text/javascript">app.initialize();</script>
+
+
+        <link href="../../styles/jquery.fancybox.css" rel="stylesheet" />
+        <script src="../../js/jquery.fancybox.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.fancybox').fancybox();
+            });
+        </script>
+    </ion-content>
+</ion-view>

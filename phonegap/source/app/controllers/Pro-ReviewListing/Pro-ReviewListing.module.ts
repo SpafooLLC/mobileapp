@@ -10,7 +10,7 @@
     function configProReviewListing($stateProvider: angular.ui.IStateProvider) {
         var ProReviewListingState: angular.ui.IState = {
             name: 'ProReviewListing',
-            url: '/ProReviewListing',
+            url: '/ProReviewListing/:userId',
             templateUrl: 'app/templates/Pro-ReviewListing.html',
             controller: 'ProReviewListing as prl'
         };

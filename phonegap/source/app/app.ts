@@ -22,9 +22,10 @@
         'spafoo.module.ProviderList', 'spafoo.httpsharedservice',
         'spafoo.module.ProviderPortfolio',
         'spafoo.module.ProReviewListing', 'spafoo.module.ScheduleDetail',
-         
+        'spafoo.module.ProMyAvailability', 'spafoo.module.ProMyScheduleLanding',
         'spafoo.module.AddProviderReview', 'spafoo.module.About', 'spafoo.module.ShareApp',
-        'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile'
+        'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
+        'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail'
          ];
 
     angular
