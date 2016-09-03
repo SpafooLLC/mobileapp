@@ -30,6 +30,9 @@
                 </div>
                 <p class="bmar-sm">Select Service(s)</p>
 
+<<<<<<< HEAD
+                <!--<div class="checkbox checkbox-primary checkbox-inline">
+=======
 
                 <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in service_list">
                     <input id="checkbox{{$index+1}}" type="checkbox" ng-model="checked_services[$index]" ng-value="service.serviceIDField">
@@ -38,9 +41,16 @@
                 
                 <!-- 
                 <div class="checkbox checkbox-primary checkbox-inline">
+>>>>>>> f0f76bb73e85d7fe8df97c25811547965f48d93f
                     <input id="checkbox2" type="checkbox">
                     <label for="checkbox2">Women</label>
+                </div>-->
+                <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in ma.ProviderServiceList">
+                    <input id="checkbox{{$index+1}}" type="checkbox" ng-model="checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
+                    <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
                 </div>
+<<<<<<< HEAD
+=======
                 <div class="checkbox checkbox-primary checkbox-inline">
                     <input id="checkbox3" type="checkbox">
                     <label for="checkbox3">Kids</label>
@@ -62,6 +72,7 @@
                     <label for="checkbox7">Styles </label>
                 </div> -->
 
+>>>>>>> f0f76bb73e85d7fe8df97c25811547965f48d93f
 
                 <div class="bmar-md"></div>
                 <textarea name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
