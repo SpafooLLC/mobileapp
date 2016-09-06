@@ -14,7 +14,7 @@
         </div>
         <div class="inbody-simple mprofile">
             <div class="center">
-                <p><a  class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+                <p><a  class="bold" ui-sref="MyProfileEdit" ><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
                 <div class="profile-pic">
                     <div class="round">
 
@@ -36,7 +36,7 @@
             <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
             <p><span>Phone:</span> {{mp.ServiceData.profileField.cellField}}</p>
             <p><span>Email:</span>{{mp.ServiceData.emailField}}</p>
-            <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{mp.ServiceData.profileField.streetField}}<br />{{mp.ServiceData.profileField.cityField}}<br />{{mp.ServiceData.profileField.countryField}},{{mp.ServiceData.regionField}} {{mp.ServiceData.postalCodeField}}</div></p>
+            <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{mp.ServiceData.profileField.streetField}}<br />{{mp.ServiceData.profileField.cityField}}<br /> {{mp.ServiceData.profileField.regionField}}-{{mp.ServiceData.profileField.postalCodeField}}</div></p>
             <div class="clearfix"></div>
 
             <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Payment Method</div>

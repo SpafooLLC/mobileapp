@@ -17,6 +17,7 @@
         ischecked:boolean;
         Roles:any;
         rolesData: any;
+        logOb: any;
 
 
     }
@@ -38,6 +39,7 @@
         ischecked:boolean;
         Roles:any;
         rolesData: any;
+        logOb: any;
         
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$timeout'];
         constructor(
@@ -141,18 +143,18 @@
             try {
                 if (choice === 'G') {
                     //alert(choice);
-                    navigator.camera.getPicture(function (imageURI) {
+                    navigator.camera.getPicture(function (imageURI:any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //alert(extension);
-                            self.$timeout(function () {
+                            //self.$timeout(function () {
                                 //self.proProfilePic = 'file://' + imageURI;
                                 //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage(self.proProfilePic);
+                                self.SharedHttp.setProfileImage('file://' + imageURI);
                                 self.postImage();
                                // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
-                            }, 1000);
+                            //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             alert('PNG,JPEG,JPG images allowed');
@@ -166,17 +168,17 @@
                             correctOrientation: true
                         });
                 } else {
-                    navigator.camera.getPicture(function (imageURI) {
+                    navigator.camera.getPicture(function (imageURI:any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                            self.$timeout(function () {
+                            //self.$timeout(function () {
                                 //self.proProfilePic = imageURI;
                                 //alert(self.proProfilePic);
                                 self.SharedHttp.setProfileImage(imageURI);
                                 self.postImage();
                                 
-                            }, 1000);
+                            //}, 1000);
 
 
                         } else {
@@ -230,7 +232,9 @@
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
-                    self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                    self.$timeout(function () {
+                        self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                    }, 2000);
                     $("#showload").hide();
                 } else {
                     alert('Something went wrong with the server ');
@@ -251,8 +255,8 @@
             }
             console.log(self.applPosition);
         }
-
-        EditProfile(FirstName:string, LastName:string, DisplayName:string, Email:string, Gender:string, Street:string, City:string, Country:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string ){
+        
+        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string ){
             var self= this;
             var uPos='';
             if(self.doValidation(Email)){
@@ -269,7 +273,7 @@
                     'Gender':Gender,
                     'Str':Street,
                     'City':City,
-                    'Region':Country,
+                    'Region': Region,
                     'PC':PostalCode,
                     'P':Cell,
                     'TOE':typeOfEntity,
@@ -352,7 +356,7 @@
                                 self.toaster.error('exception generated:' + ex, 'Error');
                             }
                         
-                            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {
+                            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
                                 alert(JSON.stringify(r));
                                 if (r.responseCode === '200' || r.responseCode === 200) {
                                     self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
@@ -396,10 +400,10 @@
         RemoveSampleImage(filePath: any) {
             var self = this;
             var params = {
-                'UID': self.customerID,
+                'UserID': self.customerID,
                 'FilePath': filePath
             };
-            self.CustomerHttp.get('/RemoveMySample/' + params.UID + '/' + params.FilePath).then(function (res) {
+            self.CustomerHttp.post(params,'/RemoveMySample').then(function (res) {
                     self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
                         self.$timeout(function () {
                             self.WorkSamplesList = res;

@@ -53,7 +53,7 @@
                         <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
                         <li><a class="clsmenu"  ui-sref="MySchedule" ><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li>
-                            <a class="clsmenu" >
+                            <a class="clsmenu" ui-sref="Notification" >
                                 <div class="pnotification2">
                                     <div class="ico2">
                                         <i class="fa white fa-bell fa-1x"></i>
@@ -76,15 +76,16 @@
                         <li><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
                         <li><a class="clsmenu"  ui-sref="ProMyScheduleLanding" ><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li>
-                            <a class="clsmenu" href="MyProfile.html#noti">
-                                <div class="pnotification2">
-                                    <div class="ico2">
-                                        <i class="fa white fa-bell fa-1x"></i>
+                            <a class="clsmenu" ui-sref="Notification">
+                                <!--<a class="clsmenu" href="MyProfile.html#noti">-->
+                                    <div class="pnotification2">
+                                        <div class="ico2">
+                                            <i class="fa white fa-bell fa-1x"></i>
+                                        </div>
+                                        <div id='notification2'>{{NotifiCount}}</div>
                                     </div>
-                                    <div id='notification2'>{{NotifiCount}}</div>
-                                </div>
-                                <p>Notification</p>
-                            </a>
+                                    <p>Notification</p>
+                                </a>
                         </li>
                     </ul>
                     <ul class="bottom">

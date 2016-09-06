@@ -97,13 +97,11 @@ var ProEditProfileController;
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //alert(extension);
-                            self.$timeout(function () {
-                                //self.proProfilePic = 'file://' + imageURI;
-                                //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage(self.proProfilePic);
-                                self.postImage();
-                                // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
-                            }, 1000);
+                            //self.$timeout(function () {
+                            //self.proProfilePic = 'file://' + imageURI;
+                            //alert(self.proProfilePic);
+                            self.SharedHttp.setProfileImage('file://' + imageURI);
+                            self.postImage();
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
@@ -122,12 +120,11 @@ var ProEditProfileController;
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                            self.$timeout(function () {
-                                //self.proProfilePic = imageURI;
-                                //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage(imageURI);
-                                self.postImage();
-                            }, 1000);
+                            //self.$timeout(function () {
+                            //self.proProfilePic = imageURI;
+                            //alert(self.proProfilePic);
+                            self.SharedHttp.setProfileImage(imageURI);
+                            self.postImage();
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
@@ -175,7 +172,9 @@ var ProEditProfileController;
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
-                    self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                    self.$timeout(function () {
+                        self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                    }, 2000);
                     $("#showload").hide();
                 }
                 else {
@@ -197,7 +196,7 @@ var ProEditProfileController;
             }
             console.log(self.applPosition);
         };
-        ProEditProfileController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Country, PostalCode, Cell, typeOfEntity, professionalLicense, sSN, eIN, biography, tagField) {
+        ProEditProfileController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Region, PostalCode, Cell, typeOfEntity, professionalLicense, sSN, eIN, biography, tagField) {
             var self = this;
             var uPos = '';
             if (self.doValidation(Email)) {
@@ -213,7 +212,7 @@ var ProEditProfileController;
                     'Gender': Gender,
                     'Str': Street,
                     'City': City,
-                    'Region': Country,
+                    'Region': Region,
                     'PC': PostalCode,
                     'P': Cell,
                     'TOE': typeOfEntity,
@@ -332,10 +331,10 @@ var ProEditProfileController;
         ProEditProfileController.prototype.RemoveSampleImage = function (filePath) {
             var self = this;
             var params = {
-                'UID': self.customerID,
+                'UserID': self.customerID,
                 'FilePath': filePath
             };
-            self.CustomerHttp.get('/RemoveMySample/' + params.UID + '/' + params.FilePath).then(function (res) {
+            self.CustomerHttp.post(params, '/RemoveMySample').then(function (res) {
                 self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
                     self.$timeout(function () {
                         self.WorkSamplesList = res;
