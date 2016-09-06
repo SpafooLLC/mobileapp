@@ -1,7 +1,7 @@
 var BasicCreditCardController;
 (function (BasicCreditCardController_1) {
     var BasicCreditCardController = (function () {
-        function BasicCreditCardController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
+        function BasicCreditCardController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,7 +12,13 @@ var BasicCreditCardController;
             this.$window = $window;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
+            this.$stateParams = $stateParams;
+            this.init();
         }
+        BasicCreditCardController.prototype.init = function () {
+            var self = this;
+            self.from = self.$stateParams.from;
+        };
         BasicCreditCardController.prototype.SubmitCreditCardInfo = function (CData) {
             var self = this;
             //alert(CData.PayLater)
@@ -62,7 +68,7 @@ var BasicCreditCardController;
             }
             return true;
         };
-        BasicCreditCardController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        BasicCreditCardController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         return BasicCreditCardController;
     }());
     angular.module('spafoo.ctrl.BasicCreditCard', []).controller('BasicCreditCard', BasicCreditCardController);

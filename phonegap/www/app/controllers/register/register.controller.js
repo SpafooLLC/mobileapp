@@ -25,14 +25,16 @@ var registerController;
                     Regdata.picFID = self.SharedHttp.getPicID();
                     self.SharedHttp.setPicID(null);
                 }
-                alert(JSON.stringify(Regdata));
+                //alert(JSON.stringify(Regdata));
                 var data = Regdata;
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
-                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) { self.$state.go("home"); });
-                        ;
+                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                            //self.$state.go("home");
+                            self.$state.go("BasicCreditCard", { from: 'reg' });
+                        });
                     }
                     self.$ionicLoading.hide();
                 }, function (error) {

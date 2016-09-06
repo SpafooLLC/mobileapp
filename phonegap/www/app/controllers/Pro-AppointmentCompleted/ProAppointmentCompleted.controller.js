@@ -1,7 +1,7 @@
 var ProAppointmentCompletedController;
 (function (ProAppointmentCompletedController_1) {
     var ProAppointmentCompletedController = (function () {
-        function ProAppointmentCompletedController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp, $stateParams) {
+        function ProAppointmentCompletedController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp, $stateParams, $timeout) {
             this.$q = $q;
             this.$state = $state;
             this.$scope = $scope;
@@ -10,6 +10,7 @@ var ProAppointmentCompletedController;
             this.$window = $window;
             this.SharedHttp = SharedHttp;
             this.$stateParams = $stateParams;
+            this.$timeout = $timeout;
             this.getClientInfo();
         }
         ProAppointmentCompletedController.prototype.getClientInfo = function () {
@@ -21,15 +22,17 @@ var ProAppointmentCompletedController;
             self.payTxnIDField = self.$stateParams.payTxnIDField;
             self.amountField = self.$stateParams.amountField;
             self.getAppointmentPhotos(self.appointmentIDField).then(function (res) {
-                self.serviceData = res;
-                console.log(self.serviceData);
+                self.$timeout(function () {
+                    self.appointmentPhotoList = res;
+                }, 2000);
+                console.log(self.appointmentPhotoList);
             });
         };
         ProAppointmentCompletedController.prototype.getAppointmentPhotos = function (appId) {
             var deferred = this.$q.defer();
             var self = this;
             self.CustomerHttp.get('/GetAppointmentPhotos/' + self.appointmentIDField).then(function (response) {
-                deferred.resolve(response);
+                deferred.resolve(response.GetAppointmentPhotosResult);
             }, function (error) {
                 deferred.reject(error);
             });
@@ -90,8 +93,8 @@ var ProAppointmentCompletedController;
                         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
                         options.mimeType = 'application/pdf';
                         var params = {
-                            'UID': self.customerID,
-                            'FileId': fileID
+                            'UID': self.UserID,
+                            'AID': self.appointmentIDField
                         };
                         alert(JSON.stringify(params));
                         options.params = params;
@@ -99,29 +102,33 @@ var ProAppointmentCompletedController;
                             var ft = new FileTransfer();
                         }
                         catch (ex) {
-                            self.toaster.error('exception generated:' + ex, 'Error');
                         }
                         ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
                             alert(JSON.stringify(r));
                             if (r.responseCode === '200' || r.responseCode === 200) {
-                                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+                                self.getAppointmentPhotos(self.appointmentIDField).then(function (res) {
                                     self.$timeout(function () {
-                                        self.WorkSamplesList = res;
-                                    }, 3000);
+                                        self.appointmentPhotoList = res;
+                                    }, 2000);
+                                    console.log(self.appointmentPhotoList);
                                 });
                                 $("#showload").hide();
                             }
                             else {
-                                alert('Something went wrong with the server ');
+                                self.message = "Something went wrong with the server ";
+                                //alert('Something went wrong with the server ');
+                                $("#PDone").modal();
                                 $("#showload").hide();
                             }
                         }), (function (msg) {
-                            alert("Sample Image can\'t upload : " + JSON.stringify(msg));
+                            self.message = "Sample Image can\'t upload ";
+                            $("#PDone").modal();
+                            //alert("Sample Image can\'t upload ");
                             $("#showload").hide();
                         }), options);
                     }
                     else {
-                        self.messages = "PNG,JPEG,JPG images allowed";
+                        //self.messages = "PNG,JPEG,JPG images allowed";
                         alert('PNG,JPEG,JPG images allowed');
                     }
                 }, self.onFail, {
@@ -133,8 +140,8 @@ var ProAppointmentCompletedController;
                 });
             }
             catch (ex) {
-                self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                self.message = "Can\'nt upload image";
+                $("#PDone").modal();
             }
             finally {
                 self.isImageClick = false;
@@ -145,17 +152,20 @@ var ProAppointmentCompletedController;
             var params = {
                 'ID': fileId
             };
-            self.CustomerHttp.post(params, '/RemoveAppointmentPhoto').then(function (res) {
-                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+            self.CustomerHttp.get('/RemoveAppointmentPhoto/' + params.ID).then(function (res) {
+                self.getAppointmentPhotos(self.appointmentIDField).then(function (res) {
                     self.$timeout(function () {
-                        self.WorkSamplesList = res;
-                    }, 3000);
+                        self.appointmentPhotoList = res;
+                    }, 2000);
+                    console.log(self.appointmentPhotoList);
                 });
             }, function (error) {
-                alert('Something went wrong with the server');
+                self.message = 'Something went wrong with the server';
+                $("#PDone").modal();
+                // alert('Something went wrong with the server');
             });
         };
-        ProAppointmentCompletedController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', '$stateParams'];
+        ProAppointmentCompletedController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', '$stateParams', '$timeout'];
         return ProAppointmentCompletedController;
     }());
     angular.module('spafoo.ctrl.ProAppointmentCompleted', []).controller('ProAppointmentCompleted', ProAppointmentCompletedController);

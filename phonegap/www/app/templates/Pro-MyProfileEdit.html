@@ -63,7 +63,7 @@
       <div class="col-md-6">
         <label for="exampleInputName2">Region:</label>
         <!--<input ng-model="pep.ServiceData.Profile.Country" type="text" class="form-control">-->
-          <select class="form-control w70 fleft" ng-model="pep.ServiceData.Profile.Region">
+          <select class="form-control" ng-model="pep.ServiceData.Profile.Region">
               <option value="" selected="selected">-Select Region-</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -168,7 +168,7 @@
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /><button ng-click="pep.RemoveSampleImage(s.optionTextField);">Remove</button></li>
+      <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /><a ng-click="pep.RemoveSampleImage(s.optionTextField);"><i class="fa red fa-trash fa-lg"></i></a></li>
       <li ng-click="pep.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" /></li>
     </ul>
   </div>

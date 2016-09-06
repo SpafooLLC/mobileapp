@@ -7,8 +7,8 @@
         <div class="inbody appcompt">
             <p class="bmar-sm">Appointment Photos</p>
             <ul class="appimggrid">
-                <li ng-repeat="photo in pac.serviceData.appointmentList" ng-if="photo.id!=0"><img ng-click="pep.AddSampleImage(photo.id)" src="http://dev.spafoo.com{{s.optionTextField}}"><button ng-click="pep.RemoveAppointmentImage(photo.id);">Remove</button></li>
-                <li ng-click="pep.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" /></li>                
+                <li ng-repeat="photo in pac.appointmentPhotoList" ng-if="photo.idField!=0"><img src="http://dev.spafoo.com{{photo.filePathField}}"><a ng-click="pac.RemoveAppointmentImage(photo.idField);"><i class="fa red fa-trash fa-lg"></i></a></li>
+                <li ng-click="pac.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" /></li>                
             </ul>
             <div class="tpad-mid"></div>
             <p class="bmar-sm">Comments</p>

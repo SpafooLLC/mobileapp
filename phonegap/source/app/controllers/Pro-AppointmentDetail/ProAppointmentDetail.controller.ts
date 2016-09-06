@@ -19,6 +19,7 @@
             private $window: ng.IWindowService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
+            var self = this;
             this.AppID = this.$window.localStorage.getItem('AppointmentIDs');
             this.getClientSchedular(this.AppID);
             document.addEventListener("deviceready", function () {
@@ -73,10 +74,11 @@
         onSuccess(position: any) {
 
             var self = this;
+
+            alert('Suces cal');
+
             ProAppointmentDetailController.currentLatLong = position;
             self.mapDiv = document.getElementById("map_canvas");
-
-
             const init = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             self.mapOptions = {
                 'backgroundColor': 'white',
@@ -101,20 +103,16 @@
                 }
             };
             ProAppointmentDetailController.map = plugin.google.maps.Map.getMap(self.mapDiv, self.mapOptions);
-            ProAppointmentDetailController.map.on(plugin.google.maps.event.MAP_CLICK, function () {
-
-                $("#infowindow").hide();
-                //self.infoWindow = false;
-
-            });
+            
 
             // You have to wait the MAP_READY event.
 
             var request = {
-                'address': 'bangali square, indore , india'
+                'address': 'Bengali Square, Indore, Madhya Pradesh'
             };
 
             plugin.google.maps.Geocoder.geocode(request, function (results: any) {
+                alert(JSON.stringify(result));
                 if (results.length) {
                     var result = results[0];
                     var position = result.position;
@@ -127,8 +125,10 @@
                             'font-weight': 'bold',
                             'color': 'green'
                         }
-                    }, function (marker:any) {
-
+                    }, function (marker: any) {
+                        alert(self.ServiceData.displayNameField);
+                        //marker.setTitle(self.ServiceData.displayNameField);
+                        //marker.showInfoWindow();
                         ProAppointmentDetailController.map.animateCamera({
                             'target': position,
                             'zoom': 17
@@ -144,7 +144,7 @@
 
         }
         onError(e: any) {
-            alert(JSON.stringify(e));
+            alert(JSON.stringify('err:'+ e));
         }
 
        

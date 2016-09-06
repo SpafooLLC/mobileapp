@@ -9,6 +9,7 @@ var ProAppointmentDetailController;
             this.CustomerHttp = CustomerHttp;
             this.$window = $window;
             this.SharedHttp = SharedHttp;
+            var self = this;
             this.AppID = this.$window.localStorage.getItem('AppointmentIDs');
             this.getClientSchedular(this.AppID);
             document.addEventListener("deviceready", function () {
@@ -54,6 +55,7 @@ var ProAppointmentDetailController;
         };
         ProAppointmentDetailController.prototype.onSuccess = function (position) {
             var self = this;
+            alert('Suces cal');
             ProAppointmentDetailController.currentLatLong = position;
             self.mapDiv = document.getElementById("map_canvas");
             var init = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -77,15 +79,12 @@ var ProAppointmentDetailController;
                 }
             };
             ProAppointmentDetailController.map = plugin.google.maps.Map.getMap(self.mapDiv, self.mapOptions);
-            ProAppointmentDetailController.map.on(plugin.google.maps.event.MAP_CLICK, function () {
-                $("#infowindow").hide();
-                //self.infoWindow = false;
-            });
             // You have to wait the MAP_READY event.
             var request = {
-                'address': 'bangali square, indore , india'
+                'address': 'Bengali Square, Indore, Madhya Pradesh'
             };
             plugin.google.maps.Geocoder.geocode(request, function (results) {
+                alert(JSON.stringify(result));
                 if (results.length) {
                     var result = results[0];
                     var position = result.position;
@@ -98,6 +97,9 @@ var ProAppointmentDetailController;
                             'color': 'green'
                         }
                     }, function (marker) {
+                        alert(self.ServiceData.displayNameField);
+                        //marker.setTitle(self.ServiceData.displayNameField);
+                        //marker.showInfoWindow();
                         ProAppointmentDetailController.map.animateCamera({
                             'target': position,
                             'zoom': 17
@@ -112,7 +114,7 @@ var ProAppointmentDetailController;
             });
         };
         ProAppointmentDetailController.prototype.onError = function (e) {
-            alert(JSON.stringify(e));
+            alert(JSON.stringify('err:' + e));
         };
         ProAppointmentDetailController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         return ProAppointmentDetailController;

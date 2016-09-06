@@ -10,35 +10,57 @@
             <div class="myschedule">
 
                 <div ng-repeat="s in papp.ServiceData">
-                  
-                        <div ng-if="s.statusField==3">
-                            <div class="acc">
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <td class="left">
-                                            <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
-                                            <div class="time">{{s.atTimeField}}</div>
-                                        </td>
-                                        <td class="middle">
-                                            <h2>{{s.orderDateField}}</h2>
-                                            <p>At: {{s.addressField}}</p>
-                                            <p>With:  {{s.displayNameField}}</p>
-                                            <p>Service(s): {{s.ServiceList}}</p>
-                                        </td>
-                                        <td class="right">
-                                            <div class="cinfo">
-                                                <a ng-click="papp.RemoveCancelled({{s.appointmentIDField}})" title="Remove form list" class="clearlist">
-                                                    <i class="fa fa-times-circle"></i>
-                                                </a>
-                                                <div class="sadface"><i class="fa fa-frown-o fa-2x"></i></div>
-                                                <p>Cancelled from client side</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+
+                    <div ng-if="s.statusField==3">
+                        <div class="acc">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="left">
+                                        <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
+                                        <div class="time">{{s.atTimeField}}</div>
+                                    </td>
+                                    <td class="middle">
+                                        <h2>{{s.orderDateField}}</h2>
+                                        <p>At: {{s.addressField}}</p>
+                                        <p>With:  {{s.displayNameField}}</p>
+                                        <p>Service(s): {{s.ServiceList}}</p>
+                                    </td>
+                                    <td class="right">
+                                        <div class="cinfo">
+                                            <a ng-click="papp.RemoveCancelled({{s.appointmentIDField}})" title="Remove form list" class="clearlist">
+                                                <i class="fa fa-times-circle"></i>
+                                            </a>
+                                            <div class="sadface"><i class="fa fa-frown-o fa-2x"></i></div>
+                                            <p>Cancelled from client side</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <div ng-if="s.statusField==0">
+                        <div class="sce">
+
+                            <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})">{{s.seenStatusField}}</div>
+
+
+                            <a href="" ng-click="papp.GoToScheduleDetail({{s.appointmentIDField}})">
+                                <div class="left">
+                                    <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
+                                    <div class="time">{{s.atTimeField}}</div>
+                                </div>
+                            </a>
+
+                            <div class="right">
+                                <h2>{{s.orderDateField}}</h2>
+                                <p>At: <a href="">{{s.addressField}}</a></p>
+                                <p>With: <a href="">{{s.displayNameField}}</a></p>
+                                <p>Service(s): <a href="" ng-click="papp.GoToProviderPortfolio({{s.providerIDField}})">{{s.ServiceList}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="s.statusField==4">
+                        <div class="bar" ng-if="$index==0">Soonest Appointment</div>
                         <div class="sce">
 
                             <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})">{{s.seenStatusField}}</div>
@@ -83,12 +105,12 @@
                                         </a>
                                     </td>
                                 </tr>
-										  
+
                             </table>
                         </div>
-                       
+
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
         <p>&nbsp;</p>
