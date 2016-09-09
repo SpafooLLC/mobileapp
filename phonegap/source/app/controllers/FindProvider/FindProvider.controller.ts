@@ -115,7 +115,7 @@
         }
         onError(e: any)
         {
-            alert(JSON.stringify(e));
+            alert(JSON.stringify('test:'+ e));
         }
         getProviders(serviceId: any) {
             var self = this;

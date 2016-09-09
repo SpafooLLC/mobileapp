@@ -32,19 +32,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="exampleInputName2">First Name:</label>
-                    <input ng-model="mpe.ServiceData.FirstName" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.FirstName" type="text" maxlength="50" class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Last Name:</label>
-                    <input ng-model="mpe.ServiceData.LastName" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.LastName" type="text"  maxlength="50" class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Display Name:</label>
-                    <input ng-model="mpe.ServiceData.DisplayName" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.DisplayName" type="text"  maxlength="100" class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Email:</label>
-                    <input ng-model="mpe.ServiceData.Email" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Email" type="text"   maxlength="100" class="form-control">
                 </div>
                 <div class="col-md-12">
                     <label for="exampleInputName2">Gender:</label>
@@ -59,11 +59,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="exampleInputName2">Street:</label>
-                    <input ng-model="mpe.ServiceData.Profile.Street" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.Street" type="text"  maxlength="100"  class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">City:</label>
-                    <input ng-model="mpe.ServiceData.Profile.City" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.City" type="text"  maxlength="50"  class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Region:</label>
@@ -125,11 +125,11 @@
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">PostalCode:</label>
-                    <input ng-model="mpe.ServiceData.Profile.PostalCode" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.PostalCode" maxlength="5"  type="text" class="form-control">
                 </div>
                 <div class="col-md-12">
                     <label for="exampleInputName2">Phone:</label>
-                    <input ng-model="mpe.ServiceData.Profile.Cell" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.Cell" type="text" maxlength="12"  class="form-control">
                 </div>
             </div>
             <div class="clearfix"></div>

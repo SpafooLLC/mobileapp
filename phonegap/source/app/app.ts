@@ -26,7 +26,8 @@
         'spafoo.module.AddProviderReview', 'spafoo.module.About', 'spafoo.module.ShareApp',
         'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
-        'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit'
+        'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
+        'spafoo.module.ProSetSoonest'
          ];
 
     angular

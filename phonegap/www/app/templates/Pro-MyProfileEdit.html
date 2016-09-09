@@ -28,19 +28,19 @@
     <div class="row">
       <div class="col-md-6">
         <label for="exampleInputName2">First Name:</label>
-        <input ng-model="pep.ServiceData.FirstName" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.FirstName" type="text" maxlength="50"  class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">Last Name:</label>
-        <input ng-model="pep.ServiceData.LastName" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.LastName" type="text" maxlength="50"  class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">Display Name:</label>
-        <input ng-model="pep.ServiceData.DisplayName" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.DisplayName" type="text"  maxlength="100"  class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">Email:</label>
-        <input ng-model="pep.ServiceData.Email" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Email" type="text"  maxlength="100" class="form-control">
       </div>
       <div class="col-md-12">
         <label for="exampleInputName2">Gender:</label>
@@ -54,11 +54,11 @@
   <div class="row">
       <div class="col-md-6">
         <label for="exampleInputName2">Street:</label>
-        <input ng-model="pep.ServiceData.Profile.Street" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.Street" type="text" maxlength="100"  class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">City:</label>
-        <input ng-model="pep.ServiceData.Profile.City" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.City" type="text"  maxlength="50" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">Region:</label>
@@ -120,11 +120,11 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">PostalCode:</label>
-        <input ng-model="pep.ServiceData.Profile.PostalCode" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.PostalCode" type="text" maxlength="5"  class="form-control">
       </div>
       <div class="col-md-12">
         <label for="exampleInputName2">Phone:</label>
-          <input ng-model="pep.ServiceData.Profile.Cell" type="text" class="form-control">
+          <input ng-model="pep.ServiceData.Profile.Cell" type="text" maxlength="12"  class="form-control">
       </div>
     </div>
   <div class="clearfix"></div>
@@ -139,15 +139,15 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">Professional License:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[3].PropertyValue" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[3].PropertyValue"  maxlength="50"  type="text" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">SSN:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" maxlength="50"  type="text" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">EIN:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[5].PropertyValue" type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[5].PropertyValue"  maxlength="50" type="text" class="form-control">
       </div>
       <div class="col-md-12">
         <label for="exampleInputName2">Position Applied:</label><br />
@@ -169,7 +169,9 @@
   <div class="pprofile">
     <ul class="sample tmar-md">
       <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /><a ng-click="pep.RemoveSampleImage(s.optionTextField);"><i class="fa red fa-trash fa-lg"></i></a></li>
-      <li ng-click="pep.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" /></li>
+      <li ng-click="pep.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" />
+          <a >&nbsp;</a>
+        </li>
     </ul>
   </div>
 </div>

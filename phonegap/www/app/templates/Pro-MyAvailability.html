@@ -1,6 +1,6 @@
 <ion-view>
     <ion-content>
-      
+
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">My Appointments</div>
@@ -8,10 +8,11 @@
         <div class="inbody mavai">
             <h3 class="center"><i class="fa green fa-square"></i> &nbsp;I am available</h3>
             <div class="cal">
-                
-                <div ui-calendar="pma.uiConfig.calendar" class="span8 calendar" ng-model="pma.staticEvents"></div>
-              
-</div>
+
+                <div ui-calendar="pma.uiConfig.calendar" class="span8 calendar" ng-model="pma.staticEvents1" calendar="myCalendar1"></div>
+
+
+            </div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="cdatetime">
                 <tr>
                     <th>Date</th>
@@ -19,48 +20,51 @@
                     <th>End Time</th>
                     <th>&nbsp;</th>
                 </tr>
-                <tr>
-                    <td>Oct 01</td>
-                    <td><input type="text" class="form-control" value="12:35 PM"></td>
-                    <td><input type="text" class="form-control" value="06:00 AM"></td>
-                    <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
+                <tr ng-repeat="p in pma.staticEvents1[0].events">
+
+                    <td>{{p.dateField}}</td>
+                    <td class="input-append bootstrap-timepicker-component">
+                        <input type="text" class="timepicker-default input-small" ng-model="p.startTime" onclick="$('.timepicker-default').timepicker({ disableFocus: false });" />
+                        <span class="add-on">
+                        </span>
+                    </td>
+                    <td class="input-append bootstrap-timepicker-component">
+                        <input type="text" class="timepicker-default input-small" ng-model="p.endTime" onclick="$('.timepicker-default').timepicker({ disableFocus: false });" />
+                        <span class="add-on">
+                        </span>
+                    </td>
+                    
+                    <td><a ng-click="pma.deleteEvent(p.id,p.proId,$index)" data-dismiss="modal" data-toggle="modal" data-target="#PDone"><i class="fa red fa-trash fa-lg"></i></a></td>
+                    <td><input type="text" hidden ng-model="p.dateFieldHidden" /></td>
+                    <td><input type="text" hidden ng-model="p.proId" /></td>
+
                 </tr>
-                <tr>
-                    <td>Oct 07</td>
-                    <td><input type="text" class="form-control" value="02:30 AM"></td>
-                    <td><input type="text" class="form-control" value="08:00 AM"></td>
-                    <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Oct 12</td>
-                    <td><input type="text" class="form-control" value="01:15 AM"></td>
-                    <td><input type="text" class="form-control" value="08:00 AM"></td>
-                    <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Oct 17</td>
-                    <td><input type="text" class="form-control" value="09:00 AM"></td>
-                    <td><input type="text" class="form-control" value="06:00 AM"></td>
-                    <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Oct 27</td>
-                    <td><input type="text" class="form-control" value="06:30 AM"></td>
-                    <td><input type="text" class="form-control" value="01:00 PM"></td>
-                    <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Oct 29</td>
-                    <td><input type="text" class="form-control" value="11:45 AM"></td>
-                    <td><input type="text" class="form-control" value="09:15 AM"></td>
-                    <td><a data-toggle="modal" data-target="#TimePicker"><i class="fa green fa-edit fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa red fa-trash fa-lg"></i></a></td>
-                </tr>
+
             </table>
+        </div>
+
+        <div class="fource-bottom center">
+
+            <a class="block-btn" data-ng-click="pma.doUpdate(pma.staticEvents1[0].events)">Update</a>
+        </div>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{pma.message}}</p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <p>&nbsp;</p>
         <!-- Time Picker -->
-        
+
     </ion-content>
 </ion-view>
-
-

@@ -25,10 +25,28 @@
                 self.ServiceData = response.ListAppointmentByClientResult;
                 $.each(self.ServiceData, function (i, item) {
                     var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
-                    self.ServiceData[i].orderDateField = orderdt;
-                    self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
-                    self.ServiceData[i].DayField = orderdt.split(' ')[1];
-                    self.ServiceData[i].MonthField = orderdt.split(' ')[2];
+                    //self.ServiceData[i].orderDateField = orderdt;
+                    //self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
+                    //self.ServiceData[i].DayField = orderdt.split(' ')[1];
+                    //self.ServiceData[i].MonthField = orderdt.split(' ')[2];
+                    if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
+                        self.ServiceData[i].orderDateField = '';
+                        self.ServiceData[i].DayField = '00';
+                        self.ServiceData[i].MonthField = '-- -- --';
+                    } else {
+                        var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
+                        self.ServiceData[i].orderDateField = orderdt;
+                        self.ServiceData[i].DayField = orderdt.split(' ')[1];
+                        self.ServiceData[i].MonthField = orderdt.split(' ')[2];
+                    }
+
+                    if (item.atTimeField === 'undefined' || item.atTimeField === undefined || item.atTimeField === null || item.atTimeField === '') {
+                        self.ServiceData[i].atTimeField = '00:00 --'
+                    } else {
+                        self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
+                    }
+
+
                     var serviceName = "";
                     $.each(item.servicesField, function (ig, sitem) {
                         serviceName += sitem.serviceNameField + ",";
@@ -52,6 +70,14 @@
             var self = this;
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ScheduleDetail");
+        }
+        acceptAppointment(data: any)
+        {
+            this.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { alert(JSON.stringify(res)) });
+        }
+        denyAppointment(data: any)
+        {
+            this.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { alert(JSON.stringify(res)) });
         }
     }
 
