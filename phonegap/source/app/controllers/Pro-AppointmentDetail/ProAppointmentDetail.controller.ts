@@ -5,6 +5,10 @@
         ServiceData: any;
         amountField: any;
         authTxnIDField: any;
+        mapDiv: any;
+        mapOptions: any;
+        static map: any;
+        static currentLatLong: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         constructor(
             private $q: ng.IQService,
@@ -15,8 +19,49 @@
             private $window: ng.IWindowService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
+            var self = this;
             this.AppID = this.$window.localStorage.getItem('AppointmentIDs');
             this.getClientSchedular(this.AppID);
+
+            document.addEventListener("deviceready", function () {
+
+                var self = this;
+                self.mapDiv = document.getElementById("map_area");
+
+
+                const init = new plugin.google.maps.LatLng(-1, -1);
+                self.mapOptions = {
+                    'backgroundColor': 'white',
+                    'mapType': plugin.google.maps.MapTypeId.ROADMAP,
+                    'controls': {
+                        'compass': true,
+                        'myLocationButton': true,
+                        'indoorPicker': true,
+                        'zoom': true
+                    },
+                    'gestures': {
+                        'scroll': true,
+
+                        'rotate': true,
+                        'zoom': true
+                    },
+                    'camera': {
+                        'latLng': init,
+
+                        'zoom': 15,
+                        //'bearing': 50
+                    }
+                };
+                ProAppointmentDetailController.map = plugin.google.maps.Map.getMap(self.mapDiv, self.mapOptions);
+                ProAppointmentDetailController.map.on(plugin.google.maps.event.MAP_CLICK, function () {
+
+                    $("#infowindow").hide();
+                    //self.infoWindow = false;
+
+                });
+                // You have to wait the MAP_READY event.
+            });
+
         }
 
         getClientSchedular(AppID: any) {
@@ -41,12 +86,55 @@
                     //self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
 
                 });
-                //console.log(response);
+                self.addMarkers();
+
+                //self.CustomerHttp.get('/GetUserJSON/' + self.ServiceData.clientIDField).then(function (res: any) {
+                //    var userInf = JSON.parse(res.GetUserJSONResult);
+                //    console.log(userInf);
+                //    self.ServiceData.displayNameField = userInf.DisplayName;
+                //}, function (error: any) { 
+                //})
+
+                console.log(response);
             }, function (error) {
             });
         }
 
-       
+
+        addMarkers() {
+
+            var self = this;
+            //var currentlatlong = { latitude: FindProviderController.currentLatLong.coords.latitude, longitude: FindProviderController.currentLatLong.coords.longitude };
+            var request = {
+                'address': self.ServiceData.profileField.streetField + ', ' + self.ServiceData.profileField.cityField + ', ' + self.ServiceData.profileField.regionField + ', '+ self.ServiceData.profileField.postalCodeField
+            };
+            plugin.google.maps.Geocoder.geocode(request, function (results: any) {
+                alert(JSON.stringify(results));
+                if (results.length) {
+                    var result = results[0];
+                    var position = result.position;
+
+                    ProAppointmentDetailController.map.addMarker({
+                        'position': position,
+                        'title': self.ServiceData.displayNameField
+                    }, function (marker) {
+
+                        ProAppointmentDetailController.map.animateCamera({
+                            'target': position,
+                            'zoom': 17
+                        }, function () {
+                            marker.showInfoWindow();
+                        });
+
+                    });
+                } else {
+                    //alert("Not found");
+                }
+
+            });
+            
+        }
+
     }
 
 

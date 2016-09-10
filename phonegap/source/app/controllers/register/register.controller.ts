@@ -56,7 +56,7 @@
                     Regdata.picFID = self.SharedHttp.getPicID();
                     self.SharedHttp.setPicID(null);
                 }
-              //  alert(JSON.stringify(Regdata));
+                //alert(JSON.stringify(Regdata));
 
                 var data = Regdata;
 
@@ -65,8 +65,11 @@
 
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
-                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) { self.$state.go("home"); });;
-                        //self.$state.go("BasicCreditCard");
+                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                            //self.$state.go("home");
+                            self.$state.go("BasicCreditCard", {from:'reg'});
+                        });
+                        
                     }
                     self.$ionicLoading.hide();
                 }, function (error) {
@@ -192,17 +195,17 @@
             try {
                 if (choice === 'G') {
                     //alert(choice);
-                    navigator.camera.getPicture(function (imageURI) {
+                    navigator.camera.getPicture(function (imageURI:any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(extension);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //alert(extension);
-                            self.$timeout(function () {
-                                self.imageURL = 'file://' + imageURI;
-                                self.SharedHttp.setProfileImage(self.imageURL);
+                            //self.$timeout(function () {
+                                //self.imageURL = 'file://' + imageURI;
+                                self.SharedHttp.setProfileImage('file://' + imageURI);
                                 self.postImage();
                                // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
-                            }, 1000);
+                            //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
@@ -216,7 +219,7 @@
                             correctOrientation: true
                         });
                 } else {
-                    navigator.camera.getPicture(function (imageURI) {
+                    navigator.camera.getPicture(function (imageURI:any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                        // alert(extension);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
@@ -253,8 +256,10 @@
 
         }
         postImage(): void {
+            $("#showload").show();
             var self = this;
             var imageURI = self.SharedHttp.getProfileImage();
+            self.SharedHttp.setProfileImage(null);
             var options = new FileUploadOptions();
             options.fileKey = 'file';
             options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -274,12 +279,19 @@
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
+                    self.$timeout(function () {
+                        self.imageURL = "http://dev.spafoo.com" + resArr[1];
+                    }, 2000);
+                    $("#showload").hide();
+                    alert(JSON.stringify(r));
                 } else {
                     self.toaster.error('Something went wrong with the server', 'Error');
+                    $("#showload").hide();
                 } 
             }), (function (msg) {
                     self.messages = "Profile Image can\'t updated";
                     $("#PDone").modal();
+                    $("#showload").hide();
                
                 return msg;
 

@@ -7,7 +7,7 @@
     function configBasicCreditCard($stateProvider) {
         var BasicCreditCardState = {
             name: 'BasicCreditCard',
-            url: '/BasicCreditCard',
+            url: '/BasicCreditCard/:from',
             templateUrl: 'app/templates/CreditCardInformation.html',
             controller: 'BasicCreditCard as cc'
         };

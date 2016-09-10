@@ -24,6 +24,36 @@
                             <p>Service(s): <a href="" ng-click="ms.GoToProviderPortfolio({{s.providerIDField}})">{{s.ServiceList}}</a></p>
                         </div>
                     </div>
+                    <div class="sce" ng-if="s.statusField==5">
+                       
+                        <a href="">
+                            <div class="left">
+                                <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
+                                <div class="time">{{s.atTimeField}}</div>
+                            </div>
+                        </a>
+                        <div class="right">
+                            <h2 style="color:red">{{s.orderDateField}}(<a style="color:green" ng-click="ms.acceptAppointment({{s.appointmentIDField}})">Accept</a>-<a style="color:red" ng-click="ms.denyAppointment({{s.appointmentIDField}})">Deny</a>)</h2>
+                            <p>At: <a href="">{{s.addressField}}</a></p>
+                            <p>With: <a href="" ng-click="ms.GoToProviderPortfolio({{s.providerIDField}})">{{s.displayNameField}}</a></p>
+                            <p>Service(s): <a href="" ng-click="ms.GoToProviderPortfolio({{s.providerIDField}})">{{s.ServiceList}}</a></p>
+                        </div>
+                    </div>
+                    <div class="sce" ng-if="s.statusField==4">
+
+                        <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
+                            <div class="left">
+                                <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
+                                <div class="time">{{s.atTimeField}}</div>
+                            </div>
+                        </a>
+                        <div class="right">
+                            <h2 style="color:red">Waiting provider response</h2>
+                            <p>At: <a href="">{{s.addressField}}</a></p>
+                            <p>With: <a href="" ng-click="ms.GoToProviderPortfolio({{s.providerIDField}})">{{s.displayNameField}}</a></p>
+                            <p>Service(s): <a href="" ng-click="ms.GoToProviderPortfolio({{s.providerIDField}})">{{s.ServiceList}}</a></p>
+                        </div>
+                    </div>
 
                 </div>
                 <div ng-repeat="s in ms.ServiceData">

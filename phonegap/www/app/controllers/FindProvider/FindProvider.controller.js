@@ -80,7 +80,7 @@ var FindProviderController;
             // You have to wait the MAP_READY event.
         };
         FindProviderController.prototype.onError = function (e) {
-            alert(JSON.stringify(e));
+            alert(JSON.stringify('test:' + e));
         };
         FindProviderController.prototype.getProviders = function (serviceId) {
             var self = this;

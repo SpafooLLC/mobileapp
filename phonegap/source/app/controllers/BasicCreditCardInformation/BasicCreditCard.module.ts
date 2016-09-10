@@ -10,7 +10,7 @@
     function configBasicCreditCard($stateProvider: angular.ui.IStateProvider) {
         var BasicCreditCardState: angular.ui.IState = {
             name: 'BasicCreditCard',
-            url: '/BasicCreditCard',
+            url: '/BasicCreditCard/:from',
             templateUrl: 'app/templates/CreditCardInformation.html',
             controller: 'BasicCreditCard as cc'
         };

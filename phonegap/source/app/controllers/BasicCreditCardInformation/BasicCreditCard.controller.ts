@@ -9,10 +9,15 @@
 
 
     }
+
+    interface IStateParams extends angular.ui.IStateParamsService {
+    }
+
     class BasicCreditCardController implements IBasicCreditCard {
         messages: string;
         Succmesg: string;
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        from: string;
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
 
         constructor(
             private $q: ng.IQService,
@@ -24,10 +29,17 @@
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
             private toaster: ngtoaster.IToasterService,
-              private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
+            private $stateParams: IStateParams
         ) {
-
+            this.init();
         }
+
+        init() {
+            var self = this;
+            self.from = self.$stateParams.from;
+        }
+
         SubmitCreditCardInfo(CData: any) {
             var self = this;
             //alert(CData.PayLater)

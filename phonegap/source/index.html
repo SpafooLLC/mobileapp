@@ -33,14 +33,20 @@
     <script src="js/jquery.fancybox.js"></script>
     <script src="js/rangeslider.js"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="styles/bootstrap-select.css" rel="stylesheet" />
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
     <!-- inject:js -->
     <!-- endinject -->
 
 </head>
 <body ng-app="spafoo" ng-controller="Main as m">
- 
+
     <div class="BgDisplay" id="showload">
-        <img ng-src="images/Site/reload.gif" alt="Processing..." />  
+        <img ng-src="images/Site/reload.gif" alt="Processing..." />
     </div>
 
     <div class="in-logo"><a href="index.html"><img ng-src="images/Site/SpaFoo-sm.png" /></a></div>
@@ -54,13 +60,13 @@
                 <div class="vmenu">
                     <ul class="top" ng-if="getRole=='C' && GetLoginStatus==true">
                         <li>
-                            <a ng-if="GetLoginStatus==true"  class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
+                            <a ng-if="GetLoginStatus==true" class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
                         </li>
                         <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
                         <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
-                        <li><a class="clsmenu"  ui-sref="MySchedule" ><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <li><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li>
-                            <a class="clsmenu" >
+                            <a class="clsmenu" ui-sref="Notification">
                                 <div class="pnotification2">
                                     <div class="ico2">
                                         <i class="fa white fa-bell fa-1x"></i>
@@ -77,13 +83,14 @@
                         </li>
                         <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
                         <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
-                      
+
                     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
-                        <li><a class="clsmenu"  ui-sref="ProMyScheduleLanding" ><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <li><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li>
-                            <a class="clsmenu" href="MyProfile.html#noti">
+                            <a class="clsmenu" ui-sref="Notification">
+                                <!--<a class="clsmenu" href="MyProfile.html#noti">-->
                                 <div class="pnotification2">
                                     <div class="ico2">
                                         <i class="fa white fa-bell fa-1x"></i>
@@ -97,8 +104,8 @@
                     <ul class="bottom">
                         <li><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
                         <li><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-                        <li><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false" ><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
-                        <li><a class="signout clsmenu" ng-if="GetLoginStatus==true"  ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
+                        <li><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
+                        <li><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
 
                     </ul>
                 </div>
