@@ -9,7 +9,8 @@
         'spafoo.module.login',
         'spafoo.module.register',
         'spafoo.httpservice',
-        'toaster',       
+        'toaster',
+        'ui.rCalendar',
         'spafoo.ctrl.Main',
         'spafoo.module.MakeAppointment',
         'spafoo.module.MySchedule',
@@ -25,7 +26,7 @@
         'spafoo.module.ProMyAvailability', 'spafoo.module.ProMyScheduleLanding',
         'spafoo.module.AddProviderReview', 'spafoo.module.About', 'spafoo.module.ShareApp',
         'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
-        'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail'
+          'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail'
          ];
 
     angular
