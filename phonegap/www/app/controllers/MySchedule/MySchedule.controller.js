@@ -9,8 +9,9 @@ var MyScheduleController;
             this.CustomerHttp = CustomerHttp;
             this.$window = $window;
             this.SharedHttp = SharedHttp;
-            this.UserID = this.$window.localStorage.getItem('CustomerID');
-            this.getClientSchedular(this.UserID);
+            var self = this;
+            self.UserID = this.$window.localStorage.getItem('CustomerID');
+            self.getClientSchedular(self.UserID);
         }
         MyScheduleController.prototype.getClientSchedular = function (UserID) {
             var self = this;
@@ -63,10 +64,12 @@ var MyScheduleController;
             self.$state.go("ScheduleDetail");
         };
         MyScheduleController.prototype.acceptAppointment = function (data) {
-            this.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { alert(JSON.stringify(res)); });
+            var self = this;
+            self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getClientSchedular(self.UserID); });
         };
         MyScheduleController.prototype.denyAppointment = function (data) {
-            this.CustomerHttp.get("/RemoveApp/" + data).then(function (res) { alert(JSON.stringify(res)); });
+            var self = this;
+            self.CustomerHttp.get("/RemoveApp/" + data).then(function (res) { self.getClientSchedular(self.UserID); });
         };
         MyScheduleController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         return MyScheduleController;

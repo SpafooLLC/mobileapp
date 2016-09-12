@@ -19,8 +19,8 @@
                 </tr>
                 <tr ng-repeat="s in pss.staticEvents[0].events">
                     <td>{{s.dateField}}</td>
-                    <td><input type="text" class="form-control" ng-model="s.startTime"></td>
-                    <td><input type="text" class="form-control" ng-model="s.endTime"></td>
+                    <td><input type="time" class="form-control" ng-model="s.startTime"></td>
+                    <td><input type="time" class="form-control" ng-model="s.endTime"></td>
                     <td><a ng-click="pss.deleteEvent($index)"><i class="fa red fa-trash fa-lg"></i></a></td>
                 </tr>
             </table>

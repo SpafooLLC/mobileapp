@@ -76,7 +76,7 @@
                     if (error === null) {
                         self.$ionicLoading.hide();
                     } else {
-                        console.log(error);
+                        //console.log(error);
                         self.$ionicLoading.hide();
                     }
 
@@ -283,7 +283,7 @@
                         self.imageURL = "http://dev.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
-                    alert(JSON.stringify(r));
+                    //alert(JSON.stringify(r));
                 } else {
                     self.toaster.error('Something went wrong with the server', 'Error');
                     $("#showload").hide();

@@ -72,7 +72,7 @@
                 if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
                 }
             });
             self.CustomerHttp.get('/ListRating/1').then(function(response:any){
@@ -82,7 +82,7 @@
                  if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
                 }
             });
             

@@ -141,26 +141,26 @@
                     alert("Not found");
                 }
             });
-            alert(JSON.stringify(position));
+            //alert(JSON.stringify(position));
         }
 
        
 
 
         onError(e: any) {
-            alert(JSON.stringify(e));
+            //alert(JSON.stringify(e));
         }
         CustomSaveAddress(Address: string, City: string, State: string, Zip: string)
         {
-            alert("Address :: " + Address + " City :: " + City + ", State :: " + State + ", Zip :: " + Zip);
+            //alert("Address :: " + Address + " City :: " + City + ", State :: " + State + ", Zip :: " + Zip);
         }
         CreateAppointment(Rcd: any) {
-            alert(JSON.stringify(Rcd));
+            //alert(JSON.stringify(Rcd));
 
             var valuesArray = $('input[name="serviceChk"]:checked').map(function () {
                 return this.value;
             }).get().join("|");
-            alert(valuesArray);
+            //alert(valuesArray);
         }
    
 

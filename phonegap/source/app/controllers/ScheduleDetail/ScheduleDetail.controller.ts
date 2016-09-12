@@ -59,7 +59,7 @@
                 self.messages = response.messages.messageField[0].textField;
                 $("#PDone").modal();
             }, function (error) {
-                alert(error)
+                //alert(error)
             });
         }
 

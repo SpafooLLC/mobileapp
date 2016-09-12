@@ -27,7 +27,6 @@ var AddClientReviewController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
             self.CustomerHttp.get('/ListRating/1').then(function (response) {
@@ -37,7 +36,6 @@ var AddClientReviewController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };

@@ -39,7 +39,7 @@
               if (error === null) {
                   self.$ionicLoading.hide();
               } else {
-                  console.log(error);
+                  //console.log(error);
                   self.$ionicLoading.hide();
               }
               });

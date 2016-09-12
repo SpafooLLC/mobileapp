@@ -45,7 +45,7 @@ var ScheduleDetailController;
                 self.messages = response.messages.messageField[0].textField;
                 $("#PDone").modal();
             }, function (error) {
-                alert(error);
+                //alert(error)
             });
         };
         ScheduleDetailController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];

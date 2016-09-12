@@ -51,7 +51,7 @@ var ProAppointmentsController;
         ProAppointmentsController.prototype.RemoveCancelled = function (AppointmentID) {
             var self = this;
             self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response) {
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
                 self.getProviderSchedular(this.UserID);
             }, function (error) {
             });
@@ -59,7 +59,7 @@ var ProAppointmentsController;
         ProAppointmentsController.prototype.UnSeenStatus = function (AppointmentID) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
                 self.getProviderSchedular(this.UserID);
             }, function (error) {
             });

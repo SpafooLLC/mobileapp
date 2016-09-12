@@ -44,7 +44,6 @@ var ProReviewListingController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };

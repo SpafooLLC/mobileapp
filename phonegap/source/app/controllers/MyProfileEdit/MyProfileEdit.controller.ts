@@ -6,7 +6,7 @@
         messages: string;
         customerID: number;
         profilePic: string;
-
+        isImageClick:boolean;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$timeout'];
         constructor(
             private $q: ng.IQService,
@@ -37,9 +37,9 @@
 
             }, function (error) {
                 if (error === null) {
-
+                  
                 } else {
-                    console.log(error);
+                    //console.log(error);
 
                 }
             });
@@ -70,9 +70,9 @@
                         self.$state.go("MyProfile");
                     } self.$state.go("MyProfile");
                 }, function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
-                console.log(data);
+                //console.log(data);
             }
 
 
@@ -83,15 +83,15 @@
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
-                alert('Please Enter Email Address');
+                //alert('Please Enter Email Address');
                 $("#PDone").modal();
                 return false;
             } else {
                 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                 if (!filter.test(Email)) {
                     self.messages = "Invalid email address.";
-                    alert('Invalid email address');
-                    //$("#PDone").modal();
+                    //alert('Invalid email address');
+                    $("#PDone").modal();
                     return false;
                 }
             }
@@ -124,8 +124,8 @@
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
-
+                            $("#PDone").modal();
+                            
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -150,7 +150,8 @@
 
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
+                            //alert('PNG,JPEG,JPG images allowed');
 
                         }
                     }, self.onFail, {
@@ -165,8 +166,8 @@
                 // Take picture using device camera and retrieve image as base64-encoded string
 
             } catch (ex) {
-                self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                self.messages= 'Profile Image can\'t update';
+                $("#PDone").modal();
             } finally {
                 self.isImageClick = false;
             }
@@ -190,7 +191,6 @@
             try {
                 var ft = new FileTransfer();
             } catch (ex) {
-                self.toaster.error('exception generated:' + ex, 'Error');
             }
 
             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
@@ -204,11 +204,13 @@
                     }, 2000);
                     $("#showload").hide();
                 } else {
-                    alert('Something went wrong with the server ');
+                    self.messages='Something went wrong with the server';
+                    $("#PDone").modal();
                     $("#showload").hide();
                 }
             }), (function (msg) {
-                alert("Profile Image can\'t update");
+                self.messages= 'Profile Image can\'t update';
+                $("#PDone").modal();
                 $("#showload").hide();
             }), options);
 

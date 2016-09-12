@@ -45,7 +45,7 @@ var FindProviderController;
                 $('#ddlServices').html(_Final);
                 self.getServicesName = response.ListRootBottomServiceResult;
             }, function (e) {
-                alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
+                //alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
             });
         };
         FindProviderController.prototype.onSuccess = function (position) {
@@ -80,7 +80,7 @@ var FindProviderController;
             // You have to wait the MAP_READY event.
         };
         FindProviderController.prototype.onError = function (e) {
-            alert(JSON.stringify('test:' + e));
+            //alert(JSON.stringify('test:'+ e));
         };
         FindProviderController.prototype.getProviders = function (serviceId) {
             var self = this;
@@ -188,7 +188,6 @@ var FindProviderController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
             return deferred.promise;

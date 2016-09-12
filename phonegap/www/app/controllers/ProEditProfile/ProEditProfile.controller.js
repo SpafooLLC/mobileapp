@@ -31,10 +31,10 @@ var ProEditProfileController;
                 self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) { self.WorkSamplesList = res; });
                 self.SharedHttp.GetProTagLine(self.customerID).then(function (res) { self.TagField = res; });
                 self.rolePosition = self.ServiceData.Profile.ProfileProperties[1].PropertyValue.split('|').map(Number);
-                console.log(self.rolePosition);
+                //console.log(self.rolePosition);
                 self.getRoles().then(function (res) {
                     self.Roles = res;
-                    console.log(self.Roles);
+                    //console.log(self.Roles);
                     var rArr = new Array(self.Roles.GetQuestionResult.optionsField.length);
                     for (var i = 0; i < self.Roles.GetQuestionResult.optionsField.length; i++) {
                         if (self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField) > -1) {
@@ -44,17 +44,16 @@ var ProEditProfileController;
                             rArr[i] = '0';
                         }
                     }
-                    console.log(rArr);
+                    //console.log(rArr);
                     self.applPosition = rArr;
                 }, function (error) {
-                    alert(error);
+                    //alert(error);
                 });
                 //console.log(self.ServiceData);
             }, function (error) {
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };
@@ -105,7 +104,7 @@ var ProEditProfileController;
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -128,7 +127,7 @@ var ProEditProfileController;
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -141,7 +140,8 @@ var ProEditProfileController;
             }
             catch (ex) {
                 self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                //alert('Can\'nt upload image');
+                $("#PDone").modal();
             }
             finally {
                 self.isImageClick = false;
@@ -164,7 +164,6 @@ var ProEditProfileController;
                 var ft = new FileTransfer();
             }
             catch (ex) {
-                self.toaster.error('exception generated:' + ex, 'Error');
             }
             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
@@ -178,11 +177,15 @@ var ProEditProfileController;
                     $("#showload").hide();
                 }
                 else {
-                    alert('Something went wrong with the server ');
+                    //alert('Something went wrong with the server ');
+                    self.messages = 'Something went wrong with the server';
+                    $("#PDone").modal();
                     $("#showload").hide();
                 }
             }), (function (msg) {
-                alert("Profile Image can\'t update");
+                self.messages = 'Profile Image can\'t update';
+                $("#PDone").modal();
+                //alert("Profile Image can\'t update");
                 $("#showload").hide();
             }), options);
         };
@@ -194,7 +197,7 @@ var ProEditProfileController;
             else {
                 self.applPosition[index] = '0';
             }
-            console.log(self.applPosition);
+            //console.log(self.applPosition);
         };
         ProEditProfileController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Region, PostalCode, Cell, typeOfEntity, professionalLicense, sSN, eIN, biography, tagField) {
             var self = this;
@@ -237,14 +240,13 @@ var ProEditProfileController;
                         self.$ionicLoading.hide();
                     }
                 });
-                console.log(data);
             }
         };
         ProEditProfileController.prototype.doValidation = function (Email) {
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
-                alert('Please Enter Email Address');
+                //alert('Please Enter Email Address');
                 $("#PDone").modal();
                 return false;
             }
@@ -252,13 +254,15 @@ var ProEditProfileController;
                 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                 if (!filter.test(Email)) {
                     self.messages = "Invalid email address.";
-                    alert('Invalid email address');
-                    //$("#PDone").modal();
+                    //alert('Invalid email address');
+                    $("#PDone").modal();
                     return false;
                 }
             }
             if (self.applPosition.indexOf("1") == -1) {
-                alert('Select atleast one applying position');
+                self.messages = 'Select atleast one applying position';
+                $("#PDone").modal();
+                //alert('Select atleast one applying position');
                 return false;
             }
             return true;
@@ -281,13 +285,12 @@ var ProEditProfileController;
                             'UID': self.customerID,
                             'FileId': fileID
                         };
-                        alert(JSON.stringify(params));
+                        //alert(JSON.stringify(params));
                         options.params = params;
                         try {
                             var ft = new FileTransfer();
                         }
                         catch (ex) {
-                            self.toaster.error('exception generated:' + ex, 'Error');
                         }
                         ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
                             alert(JSON.stringify(r));
@@ -300,17 +303,21 @@ var ProEditProfileController;
                                 $("#showload").hide();
                             }
                             else {
-                                alert('Something went wrong with the server ');
+                                self.messages = 'Something went wrong with the server';
+                                //alert('Something went wrong with the server ');
+                                $("#PDone").modal();
                                 $("#showload").hide();
                             }
                         }), (function (msg) {
-                            alert("Sample Image can\'t upload : " + JSON.stringify(msg));
+                            self.messages = 'Sample Image can\'t upload';
+                            $("#PDone").modal();
+                            //alert("Sample Image can\'t upload : " + JSON.stringify(msg));
                             $("#showload").hide();
                         }), options);
                     }
                     else {
                         self.messages = "PNG,JPEG,JPG images allowed";
-                        alert('PNG,JPEG,JPG images allowed');
+                        $("#PDone").modal();
                     }
                 }, self.onFail, {
                     quality: 50,
@@ -322,7 +329,7 @@ var ProEditProfileController;
             }
             catch (ex) {
                 self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                $("#PDone").modal();
             }
             finally {
                 self.isImageClick = false;
@@ -341,7 +348,9 @@ var ProEditProfileController;
                     }, 3000);
                 });
             }, function (error) {
-                alert('Something went wrong with the server');
+                self.messages = 'Something went wrong with the server';
+                $("#PDone").modal();
+                //alert('Something went wrong with the server');
             });
         };
         ProEditProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$timeout'];

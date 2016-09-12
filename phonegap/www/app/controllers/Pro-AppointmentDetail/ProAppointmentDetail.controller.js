@@ -54,7 +54,7 @@ var ProAppointmentDetailController;
                 self.ServiceData.MonthField = orderdt.split(' ')[2];
                 self.amountField = self.ServiceData.amountField;
                 self.authTxnIDField = self.ServiceData.authTxnIDField;
-                self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e) { self.ServiceData.addressField = e; });
+                self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e) { self.ServiceData.addressField = e; self.addMarkers(); });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {
                     serviceName += sitem.serviceNameField + ",";
@@ -64,14 +64,13 @@ var ProAppointmentDetailController;
                     self.ServiceData.displayNameField = res.displayNameField;
                     //self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
                 });
-                self.addMarkers();
                 //self.CustomerHttp.get('/GetUserJSON/' + self.ServiceData.clientIDField).then(function (res: any) {
                 //    var userInf = JSON.parse(res.GetUserJSONResult);
                 //    console.log(userInf);
                 //    self.ServiceData.displayNameField = userInf.DisplayName;
                 //}, function (error: any) { 
                 //})
-                console.log(response);
+                //console.log(response);
             }, function (error) {
             });
         };
@@ -79,10 +78,10 @@ var ProAppointmentDetailController;
             var self = this;
             //var currentlatlong = { latitude: FindProviderController.currentLatLong.coords.latitude, longitude: FindProviderController.currentLatLong.coords.longitude };
             var request = {
-                'address': self.ServiceData.profileField.streetField + ', ' + self.ServiceData.profileField.cityField + ', ' + self.ServiceData.profileField.regionField + ', ' + self.ServiceData.profileField.postalCodeField
+                'address': self.ServiceData.addressField
             };
             plugin.google.maps.Geocoder.geocode(request, function (results) {
-                alert(JSON.stringify(results));
+                //alert(JSON.stringify(results));
                 if (results.length) {
                     var result = results[0];
                     var position = result.position;

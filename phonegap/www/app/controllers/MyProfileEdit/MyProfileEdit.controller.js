@@ -26,7 +26,6 @@ var MyProfileEditController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };
@@ -54,16 +53,15 @@ var MyProfileEditController;
                     }
                     self.$state.go("MyProfile");
                 }, function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
-                console.log(data);
             }
         };
         MyProfileEditController.prototype.doValidation = function (Email) {
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
-                alert('Please Enter Email Address');
+                //alert('Please Enter Email Address');
                 $("#PDone").modal();
                 return false;
             }
@@ -71,8 +69,8 @@ var MyProfileEditController;
                 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                 if (!filter.test(Email)) {
                     self.messages = "Invalid email address.";
-                    alert('Invalid email address');
-                    //$("#PDone").modal();
+                    //alert('Invalid email address');
+                    $("#PDone").modal();
                     return false;
                 }
             }
@@ -102,7 +100,7 @@ var MyProfileEditController;
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -125,7 +123,7 @@ var MyProfileEditController;
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -137,8 +135,8 @@ var MyProfileEditController;
                 }
             }
             catch (ex) {
-                self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                self.messages = 'Profile Image can\'t update';
+                $("#PDone").modal();
             }
             finally {
                 self.isImageClick = false;
@@ -161,7 +159,6 @@ var MyProfileEditController;
                 var ft = new FileTransfer();
             }
             catch (ex) {
-                self.toaster.error('exception generated:' + ex, 'Error');
             }
             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
@@ -175,11 +172,13 @@ var MyProfileEditController;
                     $("#showload").hide();
                 }
                 else {
-                    alert('Something went wrong with the server ');
+                    self.messages = 'Something went wrong with the server';
+                    $("#PDone").modal();
                     $("#showload").hide();
                 }
             }), (function (msg) {
-                alert("Profile Image can\'t update");
+                self.messages = 'Profile Image can\'t update';
+                $("#PDone").modal();
                 $("#showload").hide();
             }), options);
         };

@@ -42,7 +42,7 @@ var registerController;
                         self.$ionicLoading.hide();
                     }
                     else {
-                        console.log(error);
+                        //console.log(error);
                         self.$ionicLoading.hide();
                     }
                 });
@@ -230,7 +230,6 @@ var registerController;
                         self.imageURL = "http://dev.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
-                    alert(JSON.stringify(r));
                 }
                 else {
                     self.toaster.error('Something went wrong with the server', 'Error');

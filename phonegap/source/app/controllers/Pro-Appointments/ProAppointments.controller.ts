@@ -63,7 +63,7 @@
         RemoveCancelled(AppointmentID: any) {
             var self = this;
             self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response: any) {
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
                 self.getProviderSchedular(this.UserID);
 
             }, function (error) {
@@ -73,7 +73,7 @@
         UnSeenStatus(AppointmentID: any) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
                 self.getProviderSchedular(this.UserID);
 
             }, function (error) {

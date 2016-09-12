@@ -108,20 +108,20 @@ var MakeAppointmentController;
                     alert("Not found");
                 }
             });
-            alert(JSON.stringify(position));
+            //alert(JSON.stringify(position));
         };
         MakeAppointmentController.prototype.onError = function (e) {
-            alert(JSON.stringify(e));
+            //alert(JSON.stringify(e));
         };
         MakeAppointmentController.prototype.CustomSaveAddress = function (Address, City, State, Zip) {
-            alert("Address :: " + Address + " City :: " + City + ", State :: " + State + ", Zip :: " + Zip);
+            //alert("Address :: " + Address + " City :: " + City + ", State :: " + State + ", Zip :: " + Zip);
         };
         MakeAppointmentController.prototype.CreateAppointment = function (Rcd) {
-            alert(JSON.stringify(Rcd));
+            //alert(JSON.stringify(Rcd));
             var valuesArray = $('input[name="serviceChk"]:checked').map(function () {
                 return this.value;
             }).get().join("|");
-            alert(valuesArray);
+            //alert(valuesArray);
         };
         MakeAppointmentController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', '$stateParams'];
         return MakeAppointmentController;
