@@ -8,8 +8,9 @@
     "ionic": "*",
     "AngularJS-Toaster": "2.0.0",
     "ng-password-strength": "0.2.1",
+    "ionic-calendar": "*",
     "angular-ui-calendar": "latest",
-     "bootstrap-timepicker": "0.5.2"
+    "bootstrap-timepicker": "0.5.2"
   },
   "resolutions": {
     "angular": ">= 1.0.8",

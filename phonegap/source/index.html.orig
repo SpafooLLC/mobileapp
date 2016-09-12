@@ -26,12 +26,19 @@
     <!-- endbuild -->
     <!-- cordova script (this will be a 404 during development) -->
 
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/bootstrap.js"></script>
+<<<<<<< HEAD
 
-
-  
+=======
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
     <script src="js/rangeslider.js"></script>
 
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+>>>>>>> biswabranch
     <link href="styles/bootstrap-select.css" rel="stylesheet" />
     <script src="js/bootstrap-select.js"></script>
     <script src="js/jquery.fancybox.js"></script>
