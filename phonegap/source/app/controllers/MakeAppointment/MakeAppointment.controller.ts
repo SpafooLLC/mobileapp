@@ -244,8 +244,8 @@
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
                 var tTime = self.totalDuration;
-                self.from = moment('09.00', "HH:mm").format("HH:mm");
-                self.to = moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
+                self.from = self.onlyDate+' '+moment('09.00', "HH:mm").format("HH:mm");
+                self.to = self.onlyDate+' '+moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
                 var popUp = self.$ionicPopup.show({
                     scope: self.$scope,
                     title: 'Choose your time slot',
@@ -281,8 +281,8 @@
                         type: "double",
                         drag_interval: true,
                         onFinish: function (data) {
-                            self.from = moment(data.from, "X").format("hh:mm A");
-                            self.to = moment(data.to, "X").format("hh:mm A");
+                            self.from = self.onlyDate+' '+moment(data.from, "X").format("HH:mm");
+                            self.to = self.onlyDate+' '+moment(data.to, "X").format("HH:mm");
                             self.isSlotAvailable();
                         },
                     });
