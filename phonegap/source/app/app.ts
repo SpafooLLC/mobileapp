@@ -10,11 +10,10 @@
         'spafoo.module.register',
         'spafoo.httpservice',
         'toaster',
-        'ui.rCalendar',
         'spafoo.ctrl.Main',
         'spafoo.module.MakeAppointment',
         'spafoo.module.MySchedule',
-        'spafoo.module.BasicCreditCard',  
+        'spafoo.module.BasicCreditCard',
         'spafoo.module.Services',
         'spafoo.module.MyProfile',
         'spafoo.module.RegisterProvider',
@@ -26,18 +25,17 @@
         'spafoo.module.ProMyAvailability', 'spafoo.module.ProMyScheduleLanding',
         'spafoo.module.AddProviderReview', 'spafoo.module.About', 'spafoo.module.ShareApp',
         'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
-        'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail'
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
         'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
         'spafoo.module.ProSetSoonest'
-         ];
+    ];
 
     angular
         .module('spafoo', moduleDependencies)
         .config(configAppUrl)
-      .config(function ($ionicConfigProvider: any) {
-          $ionicConfigProvider.views.maxCache(0);
-          $ionicConfigProvider.views.swipeBackEnabled(true);
+        .config(function ($ionicConfigProvider: any) {
+            $ionicConfigProvider.views.maxCache(0);
+            $ionicConfigProvider.views.swipeBackEnabled(true);
         })
 
     configAppUrl.$inject = ['$urlRouterProvider'];
