@@ -10,7 +10,7 @@
     function configMakeAppointment($stateProvider: angular.ui.IStateProvider) {
         var MakeAppointmentState: angular.ui.IState = {
             name: 'MakeAppointment',
-            url: '/MakeAppointment/:userId',
+            url: '/MakeAppointment/:userId/:appointmentId',
             templateUrl: 'app/templates/MakeAppointment.html',
             controller: 'MakeAppointment as ma'
         };

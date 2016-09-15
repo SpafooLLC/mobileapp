@@ -56,7 +56,7 @@
                 </div>-->
 
                 <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in ma.ProviderServiceList">
-                    <input id="checkbox{{$index+1}}" class="serviceChecks" type="checkbox" ng-model="checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
+                    <input id="checkbox{{$index+1}}" class="serviceChecks" type="checkbox" ng-model="ma.checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
                     <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
                 </div>
 
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <a ng-click="ma.CreateAppointment(data)" class="block-btn">ASAP</a>
+        <a ng-click="ma.CreateAppointment(data)" class="block-btn">continue</a>
         <script type="text/javascript">app.initialize();</script>
 
     </ion-content>
@@ -92,8 +92,8 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="sname"><a href="#"><i class="fa fa-trash-o fa-lg"></i></a> &nbsp; {{service.serviceNameField}}</td>
-                                <td class="qbox"><input type="text" class="form-control center" placeholder="1"></td>
-                                <td class="price">${{service.priceField}}</td>
+                                <td class="qbox"><input required ng-change="ma.changeSummery()" type="number" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
+                                <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
                             </tr>
                         </table>
                     </li>
@@ -122,13 +122,13 @@
         </div>
         <div class="inbody osummery">
             <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
-                <calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
-                          range-changed="reloadSource(startTime, endTime)"
-                          event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
-                          time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
+            <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
+            <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
+                      range-changed="reloadSource(startTime, endTime)"
+                      event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
+                      time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
 
-                </calendar>
-
+            </calendar>-->
         </div>
     </ion-content>
 </ion-view>
