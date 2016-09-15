@@ -21,7 +21,7 @@
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-          
+            
         }
 
 
@@ -41,14 +41,16 @@
             var data = {
                 Username: username,
                 Password: password,
+                HardwareName: device.model,
+                DeviceToken: this.$window.localStorage.getItem('DeviceToken')
             };
 
             self.CustomerHttp.post(data, '/LoginUser').then(function (response:any) {
                 if (parseInt(response.Source)) {
                     self.$window.localStorage.setItem('CustomerID', response.Source);
                     self.$window.localStorage.setItem('Role', response.Usertype);
-                    self.$window.localStorage.setItem('LoginStatus', "true");
-                    self.getLoggedUser(response.Source);
+                    self.$window.localStorage.setItem('LoginStatus', "true");                    
+                     self.getLoggedUser(response.Source);
                     self.$rootScope.getRole = (self.$window.localStorage.getItem('Role')=="P" ?"P":"C");
                 }
                 else {
@@ -71,10 +73,7 @@
                 self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
                 self.$rootScope.GetLoginStatus = true;
                 self.SharedHttp.GetMyNotification(UserID).then(function (res:any) { self.$rootScope.NotifiCount = res.length; });
-                //self.$state.go("home");
-                if(!self.$rootScope.$ionicGoBack()){
-                    self.$state.go("home");
-                }
+                self.$state.go("home");
             }, function (error) {});
         }
 

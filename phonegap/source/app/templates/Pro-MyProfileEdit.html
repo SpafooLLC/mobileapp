@@ -5,7 +5,7 @@
   <div class="ptitle">Edit Profile</div>
   <div class="pnotification">
     <div class="ico">
-      <a href="Pro-Appointments.html"><i class="fa blue fa-bell fa-1x"></i></a>
+      <a  href="#/Notification"><i class="fa blue fa-bell fa-1x"></i></a>
     </div>
     <div id='notification'>{{pep.NotificationCount}}</div>
   </div>
@@ -124,7 +124,7 @@
       </div>
       <div class="col-md-12">
         <label for="exampleInputName2">Phone:</label>
-          <input ng-model="pep.ServiceData.Profile.Cell" type="text" maxlength="12"  class="form-control">
+          <input ng-model="pep.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
       </div>
     </div>
   <div class="clearfix"></div>
@@ -180,11 +180,11 @@
 
 <a href="#" ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
    pep.ServiceData.Profile.ProfileProperties[0].PropertyValue && pep.ServiceData.Profile.Street && pep.ServiceData.Profile.City && 
-   pep.ServiceData.Profile.Region && pep.ServiceData.Profile.PostalCode && pep.ServiceData.Profile.Cell 
+   pep.ServiceData.Profile.Region && pep.ServiceData.Profile.PostalCode && pep.ServiceData.Profile.ProfileProperties[12].PropertyValue 
    && pep.ServiceData.Profile.ProfileProperties[2].PropertyValue && pep.ServiceData.Profile.ProfileProperties[3].PropertyValue
     && pep.ServiceData.Profile.ProfileProperties[4].PropertyValue && pep.ServiceData.Profile.ProfileProperties[5].PropertyValue 
    && pep.ServiceData.Profile.Biography && pep.TagField" 
-   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode, pep.ServiceData.Profile.Cell, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField );" class="block-btn">Update</a>
+   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode, pep.ServiceData.Profile.ProfileProperties[12].PropertyValue, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField );" class="block-btn">Update</a>
 
     <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">

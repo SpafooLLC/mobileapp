@@ -3,6 +3,7 @@
     class ProAppointmentsController  {
         UserID: number;
         ServiceData: any;
+        isRated:boolean;
 
 
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
@@ -53,6 +54,15 @@
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res: any) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;
+                        if(self.ServiceData[i].statusField == 1){
+                            self.CustomerHttp.get('/DidIRated/'+self.ServiceData[i].clientIDField+'/'+self.ServiceData[i].appointmentIDField).then(function(res: any){
+                                self.ServiceData[i].isRate=res.DidIRatedResult;                    
+                            },function(error: any){
+
+                            });
+                        }
+                        
+                        
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e: any) { self.ServiceData[i].addressField = e; });
                 });
@@ -90,11 +100,28 @@
             self.$state.go("ProAppointmentDetail");
         }
         GoToProviderReview(userid: any) {
-            alert("called" + userid);
+            //alert("called" + userid);
             var self = this;
             self.$state.go('ProReviewListing', { userId: userid });
 
         }
+
+        // getRateStatus(clientID:string, AppID:string ){
+        //     var self=this;
+        //     // self.CustomerHttp.get('/DidIRated/'+clientID+'/'+AppID).then(function(res: any){
+        //     //     self.isRated=res.DidIRatedResult;
+        //     //     // if(res.DidIRatedResult==true){
+        //     //     //     self.isRated=true;    
+        //     //     // } else {
+        //     //     //     self.isRated=false;
+        //     //     // }
+        //     //     alert(typeof(self.isRated));
+        //         return true;                
+        //     // },function(error: any){
+
+        //     // })
+            
+        // }
     }
 
 

@@ -1,4 +1,4 @@
-﻿﻿module MakeAppointmentController {
+﻿module MakeAppointmentController {
     interface IMakeAppointmentController {
         UserID: number;
         ServiceData: {};
@@ -10,7 +10,7 @@
         ServiceData: {};
         MainView: string;
         ProviderServiceList: {};
-        address: string; city: string; state: string; zip: string; AppID: any;
+        address: string; city: string; state: string; zip: string;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', '$rootScope', 'SharedHttp','$stateParams', '$ionicPopup'];
         constructor(
             private $q: ng.IQService,
@@ -25,10 +25,8 @@
             private $ionicPopup: ionic.popup.IonicPopupService
         ) {
             this.UserID = this.$window.localStorage.getItem('ProviderIDs');
-            this.AppID = 0;
             var status = this.$window.localStorage.getItem('LoginStatus');
             this.customerId = null;
-            this.checked_services = [];
             if(!status || status == "false"){
                 var providerData = {providerId: this.UserID};
                 this.$state.go("login", providerData);
@@ -46,91 +44,33 @@
                 mySelect.selectpicker('refresh');
             });
 
+            $scope.init = function(){
+                $scope.calendar.fullCalendar();
+            };
             /*$('#basic2').selectpicker({
-             liveSearch: false,
-             maxOptions: 1,
-             change: function(){
-             console.log(this);
-             }
-             });*/
+                liveSearch: false,
+                maxOptions: 1,
+                change: function(){
+                    console.log(this);
+                }
+            });*/
+
             this.isOpenSelectAdress = '';
             this.info = {};
             this.addressId = '';
             this.comment = '';
+            this.getProviderPortfolio($stateParams.userId);
             this.MainView = 'Basic-Info';
             this.addressText = 'My Profile Address';
             this.selectedServices = [];
             this.totalPrice = 0;
             this.totalDuration = 0;
-            this.isEdit = false;
-            if(this.$stateParams.appointmentId != "null"){
-                this.AppointmentID = this.$stateParams.appointmentId;
-                this.isEdit = true;
-                this.AppID = this.AppointmentID;
-            }
-            this.getProviderPortfolio($stateParams.userId);
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-            var self = this;
-            this.uiConfig = {
-                calendar: {
-                    height: 450,
-
-                    header: {
-                        right: 'today prev,next'
-                    },
-                    dayClick: function(date: any, jsEvent: any, view: any){
-                        self.onTimeSelected(date, jsEvent);
-                    },
-                    eventDrop: $scope.alertOnDrop,
-                    eventResize: $scope.alertOnResize
-                }
-            };
-            this.staticEvents = [
-
-                // your event source
-                {
-                    events: [ // put the array in the `events` property
-
-                       /* {
-                            title: 'event2',
-                            start: '2016-09-01',
-                            end: '2016-09-01'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-03',
-                            end: '2016-09-03'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-05',
-                            end: '2016-09-05'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-07',
-                            end: '2016-09-07'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-09',
-                            end: '2016-09-09'
-                        },*/
-
-                    ],
-                    color: 'green',     // an option!
-                    textColor: 'black' // an option!
-                }
-
-                // any other event sources...
-
-            ];
-            this.eventSource = this.staticEvents;
             /*this.renderCalender = function() {
 
-             /!*if($calender.calendars[$calender]){
-             $calender.calendars[$calender].fullCalendar('render');
-             }*!/
-             };*/
+                /!*if($calender.calendars[$calender]){
+                    $calender.calendars[$calender].fullCalendar('render');
+                }*!/
+            };*/
             //$("#addressfield").val('result.subThoroughfare + " " + result.thoroughfare;');
             //setTimeout(function () {
             //    $("#addressfield").val('result.subThoroughfare + " " + result.thoroughfare;');
@@ -139,8 +79,9 @@
             //    this.state = 'result.adminArea';
             //    this.zip = 'result.postalCode';
             //}, 5000);
-
+            
         }
+
         openDropdown(){
             this.isOpenSelectAdress = this.isOpenSelectAdress == '' ? 'open' : '';
         }
@@ -155,50 +96,34 @@
                     self.info.city = self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
                     self.info.state = self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
                     self.info.zip = self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
-                    if(self.isEdit){
-                        self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response: any) {
-                            self.ServiceData.appointment = response.GetAppointmentResult;
-                            self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response: any) {
-                                var e = response.GetAppLocationResult;
-                                self.info.address = e.addressField;
-                                self.info.city = e.cityField;
-                                self.info.state = e.stateField;
-                                self.info.zip = e.zipField;
-
-                            });
-                            self.appointment = self.ServiceData.appointment;
-                            self.appointment.servicesField.map(function(serv: any){
-                                var serviceString = serv.serviceIDField+':'+1+':'+serv.priceField;
-                                $('input[value="'+serviceString+'"]').prop('checked', 'checked');
-                                self.comment = self.appointment.commentsField;
-                            })
-                        });
-                    }
                 })
+
+             }, function (error) {
+
             });
         }
 
         changedValue(data: any, text: any) {
             var self = this;
-            // alert(data);
+           // alert(data);
             self.addressText = text;
             switch ( parseInt( data))
             {
                 case 1:
-                    self.GetGPSLocation(); break;
+                   self.GetGPSLocation(); break;
                 case 2:
+                    
+                        //self.address = self.ServiceData.profileField.streetField;
+                        //self.city = self.ServiceData.profileField.cityField;
+                        //self.state = self.ServiceData.profileField.regionField;
+                        //self.zip = self.ServiceData.profileField.postalCodeField;
 
-                    //self.address = self.ServiceData.profileField.streetField;
-                    //self.city = self.ServiceData.profileField.cityField;
-                    //self.state = self.ServiceData.profileField.regionField;
-                    //self.zip = self.ServiceData.profileField.postalCodeField;
-
-                    //alert(self.address);
+                        //alert(self.address);
                     $("#addressfield").val(self.ServiceData.profileField.streetField);
                     $("#cityfield").val(self.ServiceData.profileField.cityField);
                     $("#statefield").val(self.ServiceData.profileField.regionField);
                     $("#zipfield").val(self.ServiceData.profileField.postalCodeField);
-
+                   
                     break;
 
                 case 3:
@@ -227,15 +152,14 @@
             var self = this;
             //const GOOGLE = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             /*$.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+ position.coords.longitude+'&sensor=true', function(resp){
-             var addressObj = resp.results[0].address_components;
-             self.info.address = addressObj[0].long_name + " " + addressObj[1].long_name;
-             self.info.city = addressObj[4].long_name;
-             self.info.state = addressObj[5].long_name;
-             self.info.zip = addressObj[7].long_name;
-             });*/
-            //    alert("onsuccess navigation called");
+                var addressObj = resp.results[0].address_components;
+                self.info.address = addressObj[0].long_name + " " + addressObj[1].long_name;
+                self.info.city = addressObj[4].long_name;
+                self.info.state = addressObj[5].long_name;
+                self.info.zip = addressObj[7].long_name;
+            });*/
+        //    alert("onsuccess navigation called");
             /*var request = {
-<<<<<<< HEAD
                 'position': GOOGLE
             };
             plugin.google.maps.Geocoder.geocode(request, function (results: any) {
@@ -264,53 +188,40 @@
                     alert("Not found");
                 }
             });
-            alert(JSON.stringify(position));
+<<<<<<< HEAD
+            //alert(JSON.stringify(position));
 =======
-             'position': GOOGLE
-             };
-             plugin.google.maps.Geocoder.geocode(request, function (results: any) {
-             if (results.length) {
-             var result = results[0];
-             var position = result.position;
-             var addressfield = [
-             result.subThoroughfare || "",
-             result.thoroughfare || "",
-             result.locality || "",
-             result.adminArea || "",
-             result.postalCode || "",
-             result.country || ""].join(", ");
-
-             /!* $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
-             $("#cityfield").val(result.locality);
-             $("#statefield").val(result.adminArea);
-             $("#zipfield").val(result.postalCode);*!/
-             self.info.address = result.subThoroughfare + " " + result.thoroughfare;
-             self.info.city = result.locality;
-             self.info.state = result.adminArea;
-             self.info.zip = result.postalCode;
-
-             }
-             else {
-             alert("Not found");
-             }
-             });
-             alert(JSON.stringify(position));*/
->>>>>>> 6f6e8c38135b6fb222f5479ccea622f5096de508
+            alert(JSON.stringify(position));*/
+>>>>>>> biswabranch
         }
         onError(e: any) {
             //alert(JSON.stringify(e));
         }
+<<<<<<< HEAD
+        CustomSaveAddress(Address: string, City: string, State: string, Zip: string)
+        {
+            //alert("Address :: " + Address + " City :: " + City + ", State :: " + State + ", Zip :: " + Zip);
+=======
 
         viewSelect(view: any){
-            alert("Address :: " + Address + " City :: " + City + ", State :: " + State + ", Zip :: " + Zip);
+            this.MainView = view;
+>>>>>>> biswabranch
         }
 
         CreateAppointment(Rcd: any) {
+<<<<<<< HEAD
+            //alert(JSON.stringify(Rcd));
+
+            var valuesArray = $('input[name="serviceChk"]:checked').map(function () {
+                return this.value;
+            }).get().join("|");
+            //alert(valuesArray);
+=======
             var self = this;
             var status = self.SharedHttp.getLoginStatus();
             var servLists = [];
             self.totalDuration = 0;
-            alert(JSON.stringify(Rcd));
+            self.totalPrice = 0;
             $('.serviceChecks:checked').map(function () {
                 var ServId = this.value.split(':')[0];
                 self.ProviderServiceList.map(function(serv){
@@ -324,37 +235,16 @@
             self.selectedServices = servLists;
             if(self.selectedServices.length) {
                 self.MainView = 'Order-Summary';
-                self.selectedServices.map(function(ser){
-                   ser.qtyField = 1;
-                });
+                self.serviceString = $('.serviceChecks:checked').map(function () {
+                    return this.value;
+                }).get().join("|");
             } else{
                 self.showIonicAlert('Please select the Service(s) for Appointment');
             }
         }
-        changeSummery(){
-            var self = this;
-            self.totalDuration = 0;
-            self.totalPrice = 0;
-            self.serviceString = self.selectedServices.map(function(serv){
-                self.totalDuration+= isNaN(serv.durationField * serv.qtyField) ? serv.durationField : serv.durationField * serv.qtyField;
-                self.totalPrice+= isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;
-                //servLists.push(serv);
-            });
-            self.serviceString = '';
-            self.selectedServices.map(function(srvc) {
-                var str = srvc.serviceIDField+':'+srvc.qtyField+':'+srvc.priceField;
-                if(self.serviceString == ''){
-                    self.serviceString = str;
-                } else{
-                    self.serviceString+='|'+str;
-                }
-            });
-        }
+
         appointmentView(){
             var self = this;
-            self.changeSummery();
-            self.eventSource = [];
-            //self.eventSource.push(self.appointment.forDateField);
             self.MainView = 'Appointment-DateTime'
 
         }
@@ -372,8 +262,8 @@
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
                 var tTime = self.totalDuration;
-                self.from = self.onlyDate+' '+moment('09.00', "HH:mm").format("HH:mm");
-                self.to = self.onlyDate+' '+moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
+                self.from = moment('09.00', "HH:mm").format("HH:mm");
+                self.to = moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
                 var popUp = self.$ionicPopup.show({
                     scope: self.$scope,
                     title: 'Choose your time slot',
@@ -398,20 +288,19 @@
                 self.isSlotAvailable();
                 setTimeout(function(){
                     $("#range").ionRangeSlider({
-                        type: "double",
                         min: +moment('09:00', 'HH:mm').format("X"),
                         max: +moment('21:00', 'HH:mm').format("X"),
                         from: +moment('09:00', 'HH:mm').format("X"),
                         to: +moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X"),
-                        //step: +moment('05', 'mm').format('hh:mm A'),
-                        //step: 300000,
-                        drag_interval: true,
                         prettify: function (num) {
                             return moment(num, "X").format("hh:mm A");
                         },
+                        //step: +moment('05', 'mm').format('hh:mm A'),
+                        type: "double",
+                        drag_interval: true,
                         onFinish: function (data) {
-                            self.from = self.onlyDate+' '+moment(data.from, "X").format("HH:mm");
-                            self.to = self.onlyDate+' '+moment(data.to, "X").format("HH:mm");
+                            self.from = moment(data.from, "X").format("hh:mm A");
+                            self.to = moment(data.to, "X").format("hh:mm A");
                             self.isSlotAvailable();
                         },
                     });
@@ -450,17 +339,16 @@
             var appId = self.$window.localStorage.getItem('AppointmentIDs');
             var providerId = self.$stateParams.userId;
             var postObj = {
-                AppID: self.AppID,
+                AppID:appId,
                 EndDateTime:self.from,
                 ProID:providerId,
                 StartDateTime:self.to
             };
-            var url = self.isEdit ? '/IsProviderSlotFreeEM' : '/IsProviderSlotFree';
-            self.CustomerHttp.post(postObj, url).then(function (response: any) {
+            self.CustomerHttp.post(postObj, '/IsProviderSlotFree').then(function (response: any) {
                 if(response === true){
                     self.selectedFrom = self.from;
                     self.selectedTo = self.to;
-            alert(valuesArray);
+                    self.availability = true;
                 }else{
                     self.availability = false;
                 }
@@ -468,8 +356,8 @@
         }
 
         isToday (time) {
-            var today = new Date(),
-                currentCalendarDate = new Date(time);
+           var today = new Date(),
+            currentCalendarDate = new Date(time);
 
             today.setHours(0, 0, 0, 0);
             currentCalendarDate.setHours(0, 0, 0, 0);
@@ -568,6 +456,7 @@
                     }
                 }
             });
+>>>>>>> biswabranch
         }
 
         finalMakeAppointment(){
@@ -589,7 +478,7 @@
                     CSVSRVC: self.serviceString+'|',
                     ClientID: self.customerId,
                     Comment: self.comment,
-                    EditAppID: self.AppID,
+                    EditAppID: 0,
                     EndTime: moment(self.selectedTo, 'hh:mm A').format('HH:mm'),
                     Expriry: '',
                     ForDate: self.onlyDate,

@@ -52,13 +52,11 @@
 
         CancelSchdule() {
             var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
+            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField }
           //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
              //  alert(JSON.stringify(response));
-                console.log(response);
-
-                self.messages = JSON.parse(response).messages.message[0].text;
+                self.messages = response.messages.messageField[0].textField;
                 $("#PDone").modal();
             }, function (error) {
                 //alert(error)

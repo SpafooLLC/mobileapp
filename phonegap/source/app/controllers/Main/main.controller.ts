@@ -27,6 +27,53 @@
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res: any) { seldf.$rootScope.NotifiCount = res.length; });
             }
+            document.addEventListener('deviceready', seldf.onDeviceReady, false);
+        }
+
+        onDeviceReady() {
+
+            var push = PushNotification.init({
+                android: {
+                    senderID: "24553703183"
+                },
+                browser: {
+                    pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+                },
+                ios: {
+                    alert: "true",
+                    badge: "true",
+                    sound: "true"
+                },
+                windows: {}
+            });
+
+            push.on('registration', function (data:any) {
+             alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+                try
+                {
+                    localStorage.setItem('DeviceToken', data.registrationId);
+                }
+                catch (e) {
+                    alert(JSON.stringify("Error :: "+e));
+                } 
+                
+            });
+
+            push.on('notification', function (data) {
+                alert(JSON.stringify(data));
+                // data.message,
+                // data.title,
+                // data.count,
+                // data.sound,
+                // data.image,
+                // data.additionalData
+            });
+
+            push.on('error', function (e) {
+                alert(JSON.stringify(e));
+                // e.message
+            });
+
         }
 
 

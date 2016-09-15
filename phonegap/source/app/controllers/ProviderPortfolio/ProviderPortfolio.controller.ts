@@ -2,13 +2,14 @@
     
     class ProviderPortfolioController {
         UserID: number;
-        ServiceData: {};
+        ServiceData: any;
         profilePic: string;
         RatingField: string;
         Rateperson: string;
         TagField: string;
-        ProviderServiceList: {};
-        WorkSamplesList: {};
+        ProviderServiceList: any;
+        WorkSamplesList: any;
+        distance: string;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         constructor(
             private $q: ng.IQService,
@@ -26,6 +27,7 @@
           
             //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
             this.UserID = $stateParams.userId;
+            this.distance = $stateParams.distance;
             this.getProviderPortfolio(this.UserID);
            $('.fancybox').fancybox();
         }
@@ -58,7 +60,6 @@
                 }
             });
         }
-
 
 
         GoToProviderReview() {

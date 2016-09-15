@@ -19,8 +19,6 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private moment: any,
             private uiCalendarConfig: any
-          
-
         ) {
            
             var self = this;
@@ -32,8 +30,6 @@
                     height: 450,
                     editable: true,
                     header: {
-
-
                         right: 'today prev,next'
                     },
                     dayClick: function (date: any, jsEvent: any, view: any) {

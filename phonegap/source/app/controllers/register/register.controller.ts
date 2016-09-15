@@ -59,7 +59,8 @@
                 //alert(JSON.stringify(Regdata));
 
                 var data = Regdata;
-
+                data.HardwareName = device.model;
+                data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
 
@@ -67,9 +68,9 @@
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
-                            self.$state.go("BasicCreditCard", {from:'reg'});
+                            self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
-                        
+
                     }
                     self.$ionicLoading.hide();
                 }, function (error) {
@@ -92,7 +93,7 @@
 
         DoValidation(Regdata: any) {
             var self = this;
-           // alert(JSON.stringify(Regdata.Password));
+            // alert(JSON.stringify(Regdata.Password));
             if (Regdata == undefined) {
 
                 self.messages = "Please Enter First Name.";
@@ -116,14 +117,14 @@
                 $("#PDone").modal();
                 return false;
             }
-         if (Regdata.Password === null || Regdata.Password === '' || Regdata.Password == undefined) {
+            if (Regdata.Password === null || Regdata.Password === '' || Regdata.Password == undefined) {
 
                 self.messages = "Please Enter Password.";
                 $("#PDone").modal();
                 return false;
             }
-            else if (Regdata.Password.length <8) {
-             self.messages = "Password should be minimum Eight Character.";
+            else if (Regdata.Password.length < 8) {
+                self.messages = "Password should be minimum Eight Character.";
                 $("#PDone").modal();
                 return false;
             }
@@ -195,21 +196,21 @@
             try {
                 if (choice === 'G') {
                     //alert(choice);
-                    navigator.camera.getPicture(function (imageURI:any) {
+                    navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(extension);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //alert(extension);
                             //self.$timeout(function () {
-                                //self.imageURL = 'file://' + imageURI;
-                                self.SharedHttp.setProfileImage('file://' + imageURI);
-                                self.postImage();
-                               // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
+                            //self.imageURL = 'file://' + imageURI;
+                            self.SharedHttp.setProfileImage('file://' + imageURI);
+                            self.postImage();
+                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
-                           
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -219,22 +220,22 @@
                             correctOrientation: true
                         });
                 } else {
-                    navigator.camera.getPicture(function (imageURI:any) {
+                    navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
-                       // alert(extension);
+                        // alert(extension);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             self.$timeout(function () {
                                 self.imageURL = imageURI;
                                 self.SharedHttp.setProfileImage(imageURI);
                                 self.postImage();
-                                
+
                             }, 1000);
 
 
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
-                           
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -249,7 +250,7 @@
 
             } catch (ex) {
                 self.messages = "Can\'nt upload image";
-                $("#PDone").modal(); 
+                $("#PDone").modal();
             } finally {
                 self.isImageClick = false;
             }
@@ -264,15 +265,15 @@
             options.fileKey = 'file';
             options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
             options.mimeType = 'application/pdf';
-       
+
             try {
                 var ft = new FileTransfer();
             } catch (ex) {
                 self.toaster.error('exception generated:' + ex, 'Error');
             }
-           
+
             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ClientRegistration/Script/jquery-uploadify/rhprofilepic.ashx', (function (r) {
-               
+
                 //self.messages = "Profile Image updated";
                 //$("#PDone").modal();               
                 if (r.responseCode === '200' || r.responseCode === 200) {
@@ -287,12 +288,12 @@
                 } else {
                     self.toaster.error('Something went wrong with the server', 'Error');
                     $("#showload").hide();
-                } 
+                }
             }), (function (msg) {
-                    self.messages = "Profile Image can\'t updated";
-                    $("#PDone").modal();
-                    $("#showload").hide();
-               
+                self.messages = "Profile Image can\'t updated";
+                $("#PDone").modal();
+                $("#showload").hide();
+
                 return msg;
 
             }), options);

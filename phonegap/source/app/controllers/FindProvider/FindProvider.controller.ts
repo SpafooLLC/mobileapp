@@ -120,9 +120,14 @@
         getProviders(serviceId: any) {
             var self = this;
             FindProviderController.map.clear();
-            self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response:any) {
-                for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
-                    self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
+            self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response: any) {
+                if (response.ListProvidersByServicesResult.length != 0) {
+                    for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
+                        self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
+                    }
+                } else {
+                    self.messages = 'No provider found for the service you have chosen';
+                    $("#PDone").modal();
                 }
             }, function (e) {
 

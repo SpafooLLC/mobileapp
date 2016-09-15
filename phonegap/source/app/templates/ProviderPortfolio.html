@@ -7,8 +7,8 @@
         <div class="inbody pprofile">
             <img class="mainimg" ng-src="{{PvP.profilePic}}">
             <div class="bar">
-                <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;0.8 miles form you</div>
-                <div class="fright"><a href="MakeAppointment.html">Make Appointment</a></div>
+                <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;{{PvP.distance}} miles form you</div>
+                <div class="fright"><a href="#/MakeAppointment/{{PvP.ServiceData.userIDField}}">Make Appointment</a></div>
             </div>
             <div class="infobox">
                 <h1>{{PvP.ServiceData.displayNameField}}</h1>
@@ -39,13 +39,11 @@
                 </ul>
             </div>
         </div>
-
         <div class="action">
-            <div class="col-xs-6 nopad"><a href="#/MakeAppointment/{{PvP.UserID}}/null" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
-            <div class="col-xs-6 nopad"><a href="#/MakeAppointment/{{PvP.UserID}}/null" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
-            <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==true"><a href="#/MakeAppointment/{{PvP.UserID}}" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
-            <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==false"><aa ui-sref="login"" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
+            <div class="col-xs-6 nopad"><a  href="#/MakeAppointment/{{PvP.ServiceData.userIDField}}" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+            <div class="col-xs-6 nopad"><a  href="#/MakeAppointment/{{PvP.ServiceData.userIDField}}" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
         </div>
+
         <script type="text/javascript">app.initialize();</script>
 
 
@@ -58,5 +56,4 @@
             });
         </script>
     </ion-content>
-
 </ion-view>
