@@ -23,6 +23,10 @@
 
         getScheduleDetail(AppointmentID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetAppointment/' + AppointmentID).then(function (response: any) {
                 self.ServiceData = response.GetAppointmentResult;
 
@@ -50,23 +54,18 @@
             });
         }
 
-    
-
         CancelSchdule() {
             var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
-            //  alert(JSON.stringify(PostData));
+            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField }
+          //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-                //  alert(JSON.stringify(response));
-                console.log(response);
-
-                self.messages = JSON.parse(response).messages.message[0].text;
+             //  alert(JSON.stringify(response));
+                self.messages = response.messages.messageField[0].textField;
                 $("#PDone").modal();
             }, function (error) {
                 //alert(error)
             });
         }
-
 
 
     }

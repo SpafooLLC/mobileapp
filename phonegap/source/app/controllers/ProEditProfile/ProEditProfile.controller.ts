@@ -60,6 +60,10 @@
         }
         getUserInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserJSON/' + self.customerID).then(function (response: any) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
@@ -263,7 +267,7 @@
             //console.log(self.applPosition);
         }
         
-        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string ){
+        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string, Mob:string ){
             var self= this;
             var uPos='';
             if(self.doValidation(Email)){
@@ -289,7 +293,8 @@
                     'EIN':eIN,
                     'Bio':biography,
                     'TagLine':tagField,
-                    'uPOS':uPos
+                    'uPOS':uPos,
+                    'Mo':Mob
                 }
 
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {

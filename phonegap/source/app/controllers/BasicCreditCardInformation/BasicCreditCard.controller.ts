@@ -36,11 +36,16 @@
             private $stateParams: IStateParams
         ) {
             this.init();
+            
         }
 
         init() {
             var self = this;
             self.from = self.$stateParams.from;
+             var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
         }
 
         SubmitCreditCardInfo(CData: any) {

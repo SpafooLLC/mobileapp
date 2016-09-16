@@ -23,7 +23,10 @@
            
             var self = this;
 
-         
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.userId = window.localStorage.getItem('CustomerID');
             self.uiConfig = {
                 calendar: {

@@ -24,6 +24,10 @@
         }
         getUserInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             var customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response: any) {
 

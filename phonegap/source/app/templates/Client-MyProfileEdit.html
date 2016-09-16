@@ -127,17 +127,21 @@
                     <label for="exampleInputName2">PostalCode:</label>
                     <input ng-model="mpe.ServiceData.Profile.PostalCode" maxlength="5"  type="text" class="form-control">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="exampleInputName2">Phone:</label>
                     <input ng-model="mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
+                </div>
+                <div class="col-md-12">
+                    <label for="exampleInputName2">Cell:</label>
+                    <input ng-model="mpe.ServiceData.Profile.Cell" type="text" maxlength="12"  class="form-control">
                 </div>
             </div>
             <div class="clearfix"></div>
             <!--<a href="#" class="block-btn">Update</a>-->
             <a href="#" ng-show="(mpe.ServiceData.FirstName && mpe.ServiceData.LastName && mpe.ServiceData.DisplayName && mpe.ServiceData.Email && mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue && mpe.ServiceData.Profile.Street
-					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue );"
+					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue && mpe.ServiceData.Profile.Cell );"
 					ng-click="mpe.EditProfile(mpe.ServiceData.FirstName , mpe.ServiceData.LastName , mpe.ServiceData.DisplayName , mpe.ServiceData.Email , mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue , mpe.ServiceData.Profile.Street
-					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue)"
+					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue, mpe.ServiceData.Profile.Cell)"
 					
 					 class="block-btn">Update</a>
        </div> 
@@ -150,6 +154,23 @@
                     <div class="modal-header">
                         <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
                         <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{pep.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal"  class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
                         <p >{{pep.messages}} </p>

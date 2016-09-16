@@ -22,6 +22,10 @@
 
         getClientSchedular(UserID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/ListAppointmentByClient/' + UserID).then(function (response: any) {
                 self.ServiceData = response.ListAppointmentByClientResult;
                 $.each(self.ServiceData, function (i, item) {

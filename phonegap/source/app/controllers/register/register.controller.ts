@@ -156,6 +156,12 @@
                 self.messages = "Please Enter Mobile Number.";
                 $("#PDone").modal();
                 return false;
+            } 
+
+            if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
+                self.messages = "Please Enter Phone Number.";
+                $("#PDone").modal();
+                return false;
             }
 
             if (Regdata.Street === null || Regdata.Street === '' || Regdata.Street == undefined) {

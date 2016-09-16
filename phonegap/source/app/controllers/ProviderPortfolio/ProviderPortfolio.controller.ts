@@ -34,7 +34,10 @@
 
         getProviderPortfolio(UserID:any) {
             var self = this;
-          
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
                  self.ServiceData = response.GetUserInfoResult;  
                  self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
