@@ -122,9 +122,13 @@
         <label for="exampleInputName2">PostalCode:</label>
         <input ng-model="pep.ServiceData.Profile.PostalCode" type="text" maxlength="5"  class="form-control">
       </div>
-      <div class="col-md-12">
+      <div class="col-md-6">
         <label for="exampleInputName2">Phone:</label>
           <input ng-model="pep.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
+      </div>
+      <div class="col-md-12">
+        <label for="exampleInputName2">Cell:</label>
+          <input ng-model="pep.ServiceData.Profile.Cell" type="text" maxlength="10"  class="form-control">
       </div>
     </div>
   <div class="clearfix"></div>
@@ -183,15 +187,15 @@
    pep.ServiceData.Profile.Region && pep.ServiceData.Profile.PostalCode && pep.ServiceData.Profile.ProfileProperties[12].PropertyValue 
    && pep.ServiceData.Profile.ProfileProperties[2].PropertyValue && pep.ServiceData.Profile.ProfileProperties[3].PropertyValue
     && pep.ServiceData.Profile.ProfileProperties[4].PropertyValue && pep.ServiceData.Profile.ProfileProperties[5].PropertyValue 
-   && pep.ServiceData.Profile.Biography && pep.TagField" 
-   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode, pep.ServiceData.Profile.ProfileProperties[12].PropertyValue, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField );" class="block-btn">Update</a>
+   && pep.ServiceData.Profile.Biography && pep.TagField && pep.ServiceData.Profile.Cell" 
+   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode, pep.ServiceData.Profile.ProfileProperties[12].PropertyValue, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField, pep.ServiceData.Profile.Cell );" class="block-btn">Update</a>
 
     <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
                         <p >{{pep.messages}} </p>

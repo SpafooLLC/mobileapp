@@ -13,14 +13,15 @@
         userId: number;
         static currentLatLong: any;
         static map: any=0;
-        $inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', '$q']
+        $inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', '$q', '$window']
         constructor(
-            private $state: angular.ui.IState,
+            private $state: angular.ui.IStateService,
             private $scope: angular.IScope,
             private $ionicLoading: ionic.loading.IonicLoadingService,
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
-            private $q: ng.IQService) {
+            private $q: ng.IQService,
+            private $window: ng.IWindowService) {
             var self = this;
           
             document.addEventListener("deviceready", function () {
@@ -48,6 +49,10 @@
         {
           
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             this.CustomerHttp.get("/ListRootBottomService").then(function (response:any) {
                 var _Final = ""
                 $.each(response.ListRootBottomServiceResult, function (i, o) {

@@ -23,6 +23,10 @@
 
         getScheduleDetail(AppointmentID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetAppointment/' + AppointmentID).then(function (response: any) {
                 self.ServiceData = response.GetAppointmentResult;
 
@@ -44,33 +48,27 @@
                     self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
 
                 });
-
-
             }, function (error) {
             });
         }
 
-    
-
         CancelSchdule() {
             var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
-            //  alert(JSON.stringify(PostData));
+            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField }
+          //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
 <<<<<<< HEAD
-                //  alert(JSON.stringify(response));
-                console.log(response);
-
-=======
->>>>>>> af8fb5da741e8df4fd5a53a03f04655d1eff5d89
                 self.messages = JSON.parse(response).messages.message[0].text;
+=======
+             //  alert(JSON.stringify(response));
+                self.messages = response.messages.messageField[0].textField;
+>>>>>>> 3bf8b4ad6d97b41f7cbc7ebd2d1491b72bc93cc4
                 $("#PDone").modal();
-                self.$state.go('MySchedule');
+              //  self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });
         }
-
 
 
     }

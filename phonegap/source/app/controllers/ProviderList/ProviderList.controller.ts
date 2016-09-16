@@ -22,7 +22,10 @@
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-           
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
          
             
          

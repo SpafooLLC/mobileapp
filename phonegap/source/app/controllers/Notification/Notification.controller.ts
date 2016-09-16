@@ -24,7 +24,10 @@
     
         getUserNotificationInfo() {
             var self = this;
-          
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetMyNotification/' + self.customerID).then(function (response: any) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;

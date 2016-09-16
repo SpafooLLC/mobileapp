@@ -23,6 +23,10 @@
 
         getScheduleDetail(AppointmentID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetAppointment/' + AppointmentID).then(function (response: any) {
                 self.ServiceData = response.GetAppointmentResult;
 
@@ -57,12 +61,14 @@
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
                 self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
-              //  self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });
         }
 
+        dismissAndThen() {
+            this.$state.go('MySchedule');
+        }
 
 
     }

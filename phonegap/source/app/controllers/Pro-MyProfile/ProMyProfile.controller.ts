@@ -24,11 +24,16 @@
 
         }
         getUserInfo() {
+
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             var customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserJSON/' + customerID).then(function (response: any) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
-                console.log(self.ServiceData);
+                //console.log(self.ServiceData);
                 self.ServiceData.Membership.CreatedDate = self.SharedHttp.getFormatedDate(self.ServiceData.Membership.CreatedDate, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 var str = self.ServiceData.Profile.Biography;

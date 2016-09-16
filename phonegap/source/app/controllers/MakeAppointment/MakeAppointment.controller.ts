@@ -1,4 +1,4 @@
-﻿﻿module MakeAppointmentController {
+﻿module MakeAppointmentController {
     interface IMakeAppointmentController {
         UserID: number;
         ServiceData: {};
@@ -69,6 +69,7 @@
                 this.isEdit = true;
                 this.AppID = this.AppointmentID;
             }
+            this.ASAP = this.$stateParams.type == 'ASAP';
             this.getProviderPortfolio($stateParams.userId);
             var date = new Date();
             var d = date.getDate();
@@ -221,7 +222,27 @@
                 maximumAge: 3600000
             };
             navigator.geolocation.getCurrentPosition(function(position){
-                $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+ position.coords.longitude+'&sensor=true', function(resp){
+                var self = this;
+                const GOOGLE = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                //    alert("onsuccess navigation called");
+                var request = {
+                    'position': GOOGLE
+                };
+                plugin.google.maps.Geocoder.geocode(request, function (results: any) {
+                    if (results.length) {
+                        var result = results[0];
+                        var position = result.position;
+                        $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
+                        $("#cityfield").val(result.locality);
+                        $("#statefield").val(result.adminArea);
+                        $("#zipfield").val(result.postalCode);
+                        self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                        self.info.city = result.locality;
+                        self.info.state = result.adminArea;
+                        self.info.zip = result.postalCode;
+                    }
+                });
+               /* $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+ position.coords.longitude+'&sensor=true', function(resp){
                     var addressObj = resp.results[0].address_components;
                     self.info.address = addressObj[0].long_name + " " + addressObj[1].long_name;
                     self.info.city = addressObj[4].long_name;
@@ -231,7 +252,7 @@
                     $("#cityfield").val(addressObj[4].long_name);
                     $("#statefield").val(addressObj[5].long_name);
                     $("#zipfield").val(addressObj[7].long_name);
-                });
+                });*/
             }, self.onError, options);
 
         }
@@ -294,8 +315,11 @@
             self.changeSummery();
             self.eventSource = [];
             //self.eventSource.push(self.appointment.forDateField);
-            self.MainView = 'Appointment-DateTime'
-
+            if(self.ASAP){
+                self.paymentMethod();
+            } else{
+                self.MainView = 'Appointment-DateTime'
+            }
         }
 
         onViewTitleChanged = function (title) {
@@ -521,17 +545,20 @@
                 self.addressId = response;
             });
             self.showIonicAlert('<i class="fa fa-check-circle fa-3x"></i>', 'Your Appointment has been confirmed!').then(function(){
+                var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'hh:mm A').format('HH:mm');
+                var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'hh:mm A').format('HH:mm');
+                var ForDate = self.ASAP ? '' : self.onlyDate;
                 var obj = {
                     AddressID: self.addressId,
-                    AtTime: moment(self.selectedFrom, 'hh:mm A').format('HH:mm'),
+                    AtTime: AtTime,
                     CCNumber: '',
                     CSVSRVC: self.serviceString+'|',
                     ClientID: self.customerId,
                     Comment: self.comment,
                     EditAppID: self.AppID,
-                    EndTime: moment(self.selectedTo, 'hh:mm A').format('HH:mm'),
+                    EndTime: EndTime,
                     Expriry: '',
-                    ForDate: self.onlyDate,
+                    ForDate: ForDate,
                     PayTxnID: '',
                     ProviderID: self.$stateParams.userId,
                     oAuthTxn: self.transId

@@ -59,7 +59,7 @@
                 //alert(JSON.stringify(Regdata));
 
                 var data = Regdata;
-                data.HardwareName = device.model;
+                data.HardwareName = self.$window.localStorage.getItem('DeviceName');
                 data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
@@ -154,6 +154,12 @@
             }
             if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
                 self.messages = "Please Enter Mobile Number.";
+                $("#PDone").modal();
+                return false;
+            } 
+
+            if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
+                self.messages = "Please Enter Phone Number.";
                 $("#PDone").modal();
                 return false;
             }
