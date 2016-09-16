@@ -7,8 +7,10 @@
         <div class="inbody pprofile">
             <img class="mainimg" ng-src="{{PvP.profilePic}}">
             <div class="bar">
-                <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;{{PvP.distance}} miles form you</div>
-                <div class="fright"><a href="#/MakeAppointment/{{PvP.ServiceData.userIDField}}">Make Appointment</a></div>
+                <div class="fleft" ng-if="PvP.distance!='null'" ><i class="fa fa-map-marker fa-lg"></i>
+                 &nbsp;{{PvP.distance}} miles form you
+                </div>
+                <div class="fright"><a href="#/MakeAppointment/{{PvP.ServiceData.userIDField}}/null">Make Appointment</a></div>
             </div>
             <div class="infobox">
                 <h1>{{PvP.ServiceData.displayNameField}}</h1>

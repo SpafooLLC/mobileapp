@@ -44,8 +44,6 @@
                     self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
 
                 });
-
-
             }, function (error) {
             });
         }
@@ -57,11 +55,9 @@
             var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
             //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-                //  alert(JSON.stringify(response));
-                console.log(response);
-
                 self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
+              //  self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });

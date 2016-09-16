@@ -168,49 +168,19 @@ var MakeAppointmentController;
                 enableHighAccuracy: true,
                 maximumAge: 3600000
             };
-            navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
-        };
-        MakeAppointmentController.prototype.onSuccess = function (position) {
-            var self = this;
-            //const GOOGLE = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            /*$.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+ position.coords.longitude+'&sensor=true', function(resp){
-             var addressObj = resp.results[0].address_components;
-             self.info.address = addressObj[0].long_name + " " + addressObj[1].long_name;
-             self.info.city = addressObj[4].long_name;
-             self.info.state = addressObj[5].long_name;
-             self.info.zip = addressObj[7].long_name;
-             });*/
-            //    alert("onsuccess navigation called");
-            /*var request = {
-             'position': GOOGLE
-             };
-             plugin.google.maps.Geocoder.geocode(request, function (results: any) {
-             if (results.length) {
-             var result = results[0];
-             var position = result.position;
-             var addressfield = [
-             result.subThoroughfare || "",
-             result.thoroughfare || "",
-             result.locality || "",
-             result.adminArea || "",
-             result.postalCode || "",
-             result.country || ""].join(", ");
-
-             /!* $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
-             $("#cityfield").val(result.locality);
-             $("#statefield").val(result.adminArea);
-             $("#zipfield").val(result.postalCode);*!/
-             self.info.address = result.subThoroughfare + " " + result.thoroughfare;
-             self.info.city = result.locality;
-             self.info.state = result.adminArea;
-             self.info.zip = result.postalCode;
-
-             }
-             else {
-             alert("Not found");
-             }
-             });
-             alert(JSON.stringify(position));*/
+            navigator.geolocation.getCurrentPosition(function (position) {
+                $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true', function (resp) {
+                    var addressObj = resp.results[0].address_components;
+                    self.info.address = addressObj[0].long_name + " " + addressObj[1].long_name;
+                    self.info.city = addressObj[4].long_name;
+                    self.info.state = addressObj[5].long_name;
+                    self.info.zip = addressObj[7].long_name;
+                    $("#addressfield").val(addressObj[0].long_name + " " + addressObj[1].long_name);
+                    $("#cityfield").val(addressObj[4].long_name);
+                    $("#statefield").val(addressObj[5].long_name);
+                    $("#zipfield").val(addressObj[7].long_name);
+                });
+            }, self.onError, options);
         };
         MakeAppointmentController.prototype.onError = function (e) {
             alert(JSON.stringify(e));
