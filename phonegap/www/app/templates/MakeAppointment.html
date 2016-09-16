@@ -1,57 +1,170 @@
-<ion-view view-title="Make Appointment">
+<ion-view view-title="Make Appointment" ng-if="ma.MainView == 'Basic-Info'" >
     <ion-content>
-
-
-
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">Make appointment with </div>
         </div>
-        <div class="makeapp"><a href="ProviderPortfolio.html">{{ma.ServiceData.displayNameField}}</a></div>
+        <div class="makeapp"><a onClick="window.history.go(-1); return false;">{{ma.ServiceData.displayNameField}}</a></div>
 
-        <select ng-model="AppointAddress" ng-change="ma.changedValue(AppointAddress)" id="basic2" class="show-tick maddcont form-control" multiple>
+       <!--<select ng-model="AppointAddress" ng-change="ma.changedValue(AppointAddress)" id="basic2" class="show-tick maddcont form-control">
             <option selected class="fa fa-location-arrow" value="1">&nbsp;&nbsp;My Current Location</option>
             <option class="fa fa-map-marker" value="2">&nbsp;&nbsp;My Profile Address</option>
             <option class="fa fa-cog" value="3">&nbsp;&nbsp;Custom Address</option>
-        </select>
+        </select>-->
+        <div class="btn-group bootstrap-select show-tick maddcont form-control {{ma.isOpenSelectAdress}}">
+            <button ng-click="ma.openDropdown()" type="button" class="btn dropdown-toggle btn-default" data-id="basic2" title="&amp;nbsp;&amp;nbsp;My Current Location" aria-expanded="true">
+                <span class="filter-option pull-left">&nbsp;&nbsp;{{ma.addressText}}</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
+            </button>
 
-
-
+            <div class="dropdown-menu open" style="overflow: hidden; min-height: 100px;">
+                <!--<div class="bs-searchbox"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield">
+                    <div class="col-xs-6 nopad"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
+                    <div class="col-xs-4 bsstate"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
+                    <div class="col-xs-2 nopad"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
+                    <div class="center"><a ng-click="ma.saveAddress()" class="green-rounded">Save</a></div>
+                </div>-->
+                <ul class="dropdown-menu inner" role="menu" style="height: 120px">
+                    <li data-original-index="0" class="selected">
+                        <a ng-click="ma.changedValue(1, 'My Current Location')" tabindex="0" class="fa fa-location-arrow" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;My Current Location</span><span class="glyphicon fa fa-check check-mark"></span></a></li>
+                    <li data-original-index="1">
+                        <a ng-click="ma.changedValue(2, 'My Profile Address')" tabindex="0" class="fa fa-map-marker" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;My Profile Address</span><span class="glyphicon fa fa-check check-mark"></span></a></li>
+                    <li data-original-index="2">
+                        <a ng-click="ma.changedValue(3, 'Custom Address')" tabindex="0" class="fa fa-cog" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;Custom Address</span><span class="glyphicon fa fa-check check-mark"></span></a></li>
+                </ul>
+            </div>
+        </div>
 
         <div class="inbody">
             <div class="fcell">
-                <div class="has-feedback">
+               <!-- <div class="has-feedback">
                     <input type="date" class="form-control" ng-model="data.AppointDate" placeholder="Select Date">
                     <span class="fa fa-calendar fa-lg form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="has-feedback">
                     <input type="time" class="form-control" ng-model="data.Appointtime" placeholder="Select Time">
                     <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
-                </div>
+                </div>-->
+                <div class="col-xs-12"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield"></div>
+                <div class="col-xs-6"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
+                <div class="col-xs-4"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
+                <div class="col-xs-2"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
                 <p class="bmar-sm">Select Service(s)</p>
 
                 <!--<div class="checkbox checkbox-primary checkbox-inline">
                     <input id="checkbox2" type="checkbox">
                     <label for="checkbox2">Women</label>
                 </div>-->
+
                 <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in ma.ProviderServiceList">
-                    <input id="checkbox{{$index+1}}" type="checkbox" ng-model="checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
+                    <input id="checkbox{{$index+1}}" class="serviceChecks" type="checkbox" ng-model="ma.checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
                     <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
                 </div>
 
                 <div class="bmar-md"></div>
-                <textarea name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
+                <textarea name="textarea" id="textarea" ng-model="ma.comment" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
                 <p class="bmar-xs">Soonest appointment available?</p>
                 <!--<a href="OrderSummary.html" class="green-rounded">ASAP</a>-->
             </div>
         </div>
 
-        <a href="OrderSummary.html" ng-click="ma.CreateAppointment(data)" class="block-btn">ASAP</a>
-
-
-
+        <a ng-click="ma.CreateAppointment(data)" class="block-btn">continue</a>
         <script type="text/javascript">app.initialize();</script>
 
+    </ion-content>
+</ion-view>
+<ion-view view-title="Order Summary" ng-if="ma.MainView == 'Order-Summary'">
+    <ion-content>
+        <div class="bread">
+            <a href="" ng-click="ma.viewSelect('Basic-Info')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">order summary</div>
+        </div>
+        <div class="inbody osummery">
+            {{ma.renderCalender()}}
+            <div class="head">
+                <h3>Service Session: {{ma.totalDuration}}min</h3>
+                <p><!--<strong>06:30</strong> pm-->at <a href="#">{{ma.addressText}}</a></p>
+                <p>With: <a href="#" onClick="window.history.go(-1); return false;">{{ma.ServiceData.displayNameField}}</a></p>
+            </div>
+            <div class="cart">
+                <div class="heading">Selected Services</div>
+                <ul>
+                    <li ng-repeat="service in ma.selectedServices">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="sname"><a href="#"><i class="fa fa-trash-o fa-lg"></i></a> &nbsp; {{service.serviceNameField}}</td>
+                                <td class="qbox"><input required ng-change="ma.changeSummery()" type="number" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
+                                <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
+                <div class="finfo">
+                    <span>Total</span>{{ma.totalPrice}}<span class="usd">USD</span>
+                </div>
+            </div>
+        </div>
+        <div class="enter">
+            <a href="" ng-click="ma.appointmentView()" class="block-btn">continue</a>
+        </div>
+    </ion-content>
+</ion-view>
+<ion-view view-title="APPOINTMENT DATE & TIME" ng-if="ma.MainView == 'Appointment-DateTime'">
+    <ion-content>
+        <style>
+            .no-event-label, .event-detail-table, .event-detail-container{
+                display: none !important;
+                visibility: hidden !important;
+            }
+        </style>
+        <div class="bread">
+            <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">APPOINTMENT DATE & TIME</div>
+        </div>
+        <div class="inbody osummery">
+            <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
+            <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
+            <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
+                      range-changed="reloadSource(startTime, endTime)"
+                      event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
+                      time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
 
+            </calendar>-->
+        </div>
+    </ion-content>
+</ion-view>
+
+
+<ion-view view-title="PAYMENT METHOD" ng-if="ma.MainView == 'Payment-Method'">
+    <ion-content>
+        <div class="bread">
+            <a href="" ng-click="ma.viewSelect('Appointment-DateTime')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Payment Method</div>
+        </div>
+        <div class="inbody">
+            <div class="pmethod">
+                <img src="Images/Site/ccard.png">
+                <h2>CREDIT CARD</h2>
+                <p>Select your card for payment</p>
+            </div>
+        </div>
+        <div class="inbody osummery">
+            <div class="pmethod">
+                <div class="blue bold center">Card number ending with</div>
+            </div>
+            <div class="pmethod" ng-repeat="card in ma.CCards">
+                <div class="radio radio-info"><input ng-model="ma.selectedCard" type="radio" name="rblUserCard" value="{{card.customerPaymentProfileId}}" id="rblUserCard_{{card.customerPaymentProfileId}}" ppid="{{card.customerPaymentProfileId}}"><label>{{card.payment.Item.cardNumber}}</label></div>
+            </div>
+            <div class="pmethod">
+                <div class="radio radio-info"><input ng-model="ma.selectedCard" type="radio" name="rblUserCard" value="0" id="rblUserCard_0" ppid="0"><label>Specify new card information in Next step</label></div>
+            </div>
+        </div>
+        <div class="fource-bottom center">
+            <a ng-click="ma.validatePaymentMethod()" class="block-btn">Continue</a>
+        </div>
+    </ion-content>
+</ion-view>
+<ion-view view-title="PAYMENT INFORMATION" ng-if="ma.MainView == 'Payment-Information'">
+    <ion-content>
+        <ng-include src="'app/templates/CreditCard.html'"></ng-include>
     </ion-content>
 </ion-view>

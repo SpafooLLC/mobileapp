@@ -42,7 +42,8 @@ var ScheduleDetailController;
             //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response) {
                 //  alert(JSON.stringify(response));
-                self.messages = response.messages.messageField[0].textField;
+                console.log(response);
+                self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
             }, function (error) {
                 //alert(error)

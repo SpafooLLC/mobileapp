@@ -11,7 +11,7 @@
         'spafoo.httpservice',
         'toaster',       
         'spafoo.ctrl.Main',
-        'spafoo.module.MakeAppointment',
+        'spafoo.module.MakeAppointment', 
         'spafoo.module.MySchedule',
         'spafoo.module.BasicCreditCard',  
         'spafoo.module.Services',

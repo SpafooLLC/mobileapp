@@ -15,6 +15,7 @@ var ProviderPortfolioController;
             this.$stateParams = $stateParams;
             //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
             this.UserID = $stateParams.userId;
+            this.distance = $stateParams.distance;
             this.getProviderPortfolio(this.UserID);
             $('.fancybox').fancybox();
         }

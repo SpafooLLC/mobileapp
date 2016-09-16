@@ -29,6 +29,8 @@ var loginController;
             var data = {
                 Username: username,
                 Password: password,
+                HardwareName: "",
+                DeviceToken: this.$window.localStorage.getItem('DeviceToken')
             };
             self.CustomerHttp.post(data, '/LoginUser').then(function (response) {
                 if (parseInt(response.Source)) {

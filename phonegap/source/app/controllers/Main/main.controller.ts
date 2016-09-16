@@ -48,7 +48,7 @@
             });
 
             push.on('registration', function (data:any) {
-             alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+           //  alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try
                 {
                     localStorage.setItem('DeviceToken', data.registrationId);
@@ -59,8 +59,9 @@
                 
             });
 
-            push.on('notification', function (data) {
-                alert(JSON.stringify(data));
+            push.on('notification', function (data :any) {
+                //   alert(JSON.stringify(data));
+                window.location.href = "#/Notification";  
                 // data.message,
                 // data.title,
                 // data.count,
@@ -69,7 +70,7 @@
                 // data.additionalData
             });
 
-            push.on('error', function (e) {
+            push.on('error', function (e:any) {
                 alert(JSON.stringify(e));
                 // e.message
             });

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -12,6 +12,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bowercomponents/AngularJS-Toaster/toaster.css" />
     <link rel="stylesheet" href="bowercomponents/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="bowercomponents/ionic-calendar/dist/css/calendar.css" />
     <!--endbower-->
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet"> -->
@@ -24,8 +25,8 @@
     <script src="bowercomponents/angular-animate/angular-animate.js"></script>
     <script src="bowercomponents/angular-sanitize/angular-sanitize.js"></script>
     <script src="bowercomponents/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bowercomponents/ionic/js/ionic.js"></script>
-    <script src="bowercomponents/ionic/js/ionic-angular.js"></script>
+    <script src="bowercomponents/ionic/release/js/ionic.js"></script>
+    <script src="bowercomponents/ionic/release/js/ionic-angular.js"></script>
     <script src="bowercomponents/AngularJS-Toaster/toaster.js"></script>
     <script src="bowercomponents/lodash/lodash.js"></script>
     <script src="bowercomponents/ng-password-strength/dist/scripts/ng-password-strength.js"></script>
@@ -36,14 +37,20 @@
     <script src="bowercomponents/angular-ui-calendar/src/calendar.js"></script>
     <script src="bowercomponents/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bowercomponents/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+    <script src="bowercomponents/ionic-calendar/dist/js/calendar-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <script src="js/bootstrap.js"></script>
 
+
     <link href="styles/bootstrap-select.css" rel="stylesheet" />
     <script src="js/bootstrap-select.js"></script>
+    <link rel="stylesheet" href="styles/jquery-ui.min.css">
+    <script src="js/rangeslider.js"></script>
+    <link href="styles/rangeSlider.css" rel="stylesheet" />
+    <link href="styles/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
     <script src="js/jquery.fancybox.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 
@@ -53,10 +60,10 @@
     <script src="app/controllers/About/About.module.js"></script>
     <script src="app/controllers/AddClientRating/AddClientReview.controller.js"></script>
     <script src="app/controllers/AddClientRating/AddClientReview.module.js"></script>
-    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.controller.js"></script>
-    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.module.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.controller.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.module.js"></script>
+    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.controller.js"></script>
+    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.module.js"></script>
     <script src="app/controllers/ChangePassword/ChangePassword.controller.js"></script>
     <script src="app/controllers/ChangePassword/ChangePassword.module.js"></script>
     <script src="app/controllers/FindProvider/FindProvider.controller.js"></script>
@@ -86,11 +93,11 @@
     <script src="app/controllers/Pro-MyAvailability/Pro-MyAvailability.module.js"></script>
     <script src="app/controllers/Pro-MyProfile/ProMyProfile.controller.js"></script>
     <script src="app/controllers/Pro-MyProfile/ProMyProfile.module.js"></script>
-    <script src="app/controllers/Pro-ReviewListing/Pro-ReviewListing.controller.js"></script>
-    <script src="app/controllers/Pro-ReviewListing/Pro-ReviewListing.module.js"></script>
     <script src="app/controllers/ProEditProfile/ProEditProfile.controller.js"></script>
     <script src="app/controllers/ProEditProfile/ProEditProfile.module.js"></script>
     <script src="app/controllers/ProMyScheduleLanding/ProMyScheduleLanding.module.js"></script>
+    <script src="app/controllers/Pro-ReviewListing/Pro-ReviewListing.controller.js"></script>
+    <script src="app/controllers/Pro-ReviewListing/Pro-ReviewListing.module.js"></script>
     <script src="app/controllers/ProSetSoonest/ProSetSoonest.controller.js"></script>
     <script src="app/controllers/ProSetSoonest/ProSetSoonest.module.js"></script>
     <script src="app/controllers/ProviderList/ProviderList.controller.js"></script>
@@ -101,10 +108,10 @@
     <script src="app/controllers/register/register.module.js"></script>
     <script src="app/controllers/RegisterProvider/RegisterProvider.controller.js"></script>
     <script src="app/controllers/RegisterProvider/RegisterProvider.module.js"></script>
-    <script src="app/controllers/ScheduleDetail/ScheduleDetail.controller.js"></script>
-    <script src="app/controllers/ScheduleDetail/ScheduleDetail.module.js"></script>
     <script src="app/controllers/Services/Services.controller.js"></script>
     <script src="app/controllers/Services/Services.module.js"></script>
+    <script src="app/controllers/ScheduleDetail/ScheduleDetail.controller.js"></script>
+    <script src="app/controllers/ScheduleDetail/ScheduleDetail.module.js"></script>
     <script src="app/controllers/ShareApp/ShareApp.controller.js"></script>
     <script src="app/controllers/ShareApp/ShareApp.module.js"></script>
     <script src="app/services/http/customerHttp.service.js"></script>
@@ -132,7 +139,7 @@
                             <a ng-if="GetLoginStatus==true" class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
                         </li>
                         <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
+                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
                         <li><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li>
                             <a class="clsmenu" ui-sref="Notification">
@@ -151,12 +158,13 @@
                             <a class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p> Welcome to Spafoo</p></a>
                         </li>
                         <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
+                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
 
                     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
                         <li><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
                         <li>
                             <a class="clsmenu" ui-sref="Notification">
                                 <!--<a class="clsmenu" href="MyProfile.html#noti">-->

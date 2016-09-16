@@ -22,7 +22,47 @@ var mainController;
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res) { seldf.$rootScope.NotifiCount = res.length; });
             }
+            document.addEventListener('deviceready', seldf.onDeviceReady, false);
         }
+        MainController.prototype.onDeviceReady = function () {
+            var push = PushNotification.init({
+                android: {
+                    senderID: "24553703183"
+                },
+                browser: {
+                    pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+                },
+                ios: {
+                    alert: "true",
+                    badge: "true",
+                    sound: "true"
+                },
+                windows: {}
+            });
+            push.on('registration', function (data) {
+                //  alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+                try {
+                    localStorage.setItem('DeviceToken', data.registrationId);
+                }
+                catch (e) {
+                    alert(JSON.stringify("Error :: " + e));
+                }
+            });
+            push.on('notification', function (data) {
+                //   alert(JSON.stringify(data));
+                window.location.href = "#/Notification";
+                // data.message,
+                // data.title,
+                // data.count,
+                // data.sound,
+                // data.image,
+                // data.additionalData
+            });
+            push.on('error', function (e) {
+                alert(JSON.stringify(e));
+                // e.message
+            });
+        };
         MainController.prototype.doLogOut = function () {
             this.$rootScope.GetLoginStatus = false;
             this.$window.localStorage.setItem('LoginStatus', "false");
