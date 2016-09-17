@@ -21,7 +21,7 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
             this.getUserInfo();
-
+            $('.fancybox').fancybox();
         }
         getUserInfo() {
 

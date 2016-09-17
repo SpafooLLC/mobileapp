@@ -75,20 +75,24 @@
         }
 
         RemoveCancelled(AppointmentID: any) {
-            var self = this;
-            self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response: any) {
-                //alert(JSON.stringify(response));
-                self.getProviderSchedular(this.UserID);
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response: any) {
+                    //alert(JSON.stringify(response));
+                    //    alert(self.UserID);
+                    self.getProviderSchedular(self.UserID);
 
-            }, function (error) {
-            });
+                }, function (error) {
+                });
+            }
         }
 
         UnSeenStatus(AppointmentID: any) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
                 //alert(JSON.stringify(response));
-                self.getProviderSchedular(this.UserID);
+            //    self.getProviderSchedular(this.UserID);
 
             }, function (error) {
             });
@@ -100,6 +104,7 @@
         }
         GoToScheduleDetail(AppointmentID: any) {
             var self = this;
+            self.UnSeenStatus(AppointmentID)
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ProAppointmentDetail");
         }
@@ -110,22 +115,6 @@
 
         }
 
-        // getRateStatus(clientID:string, AppID:string ){
-        //     var self=this;
-        //     // self.CustomerHttp.get('/DidIRated/'+clientID+'/'+AppID).then(function(res: any){
-        //     //     self.isRated=res.DidIRatedResult;
-        //     //     // if(res.DidIRatedResult==true){
-        //     //     //     self.isRated=true;    
-        //     //     // } else {
-        //     //     //     self.isRated=false;
-        //     //     // }
-        //     //     alert(typeof(self.isRated));
-        //         return true;                
-        //     // },function(error: any){
-
-        //     // })
-            
-        // }
     }
 
 

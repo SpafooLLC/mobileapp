@@ -55,15 +55,18 @@
     
 
         CancelSchdule() {
-            var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
-            //  alert(JSON.stringify(PostData));
-            self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-                self.messages = JSON.parse(response).messages.message[0].text;
-                $("#PDone").modal();
-            }, function (error) {
-                //alert(error)
-            });
+            var conf = confirm("Are you sure want to Cancel ?");
+            if (conf) {
+                var self = this;
+                var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
+                //  alert(JSON.stringify(PostData));
+                self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
+                    self.messages = JSON.parse(response).messages.message[0].text;
+                    $("#PDone").modal();
+                }, function (error) {
+                    //alert(error)
+                });
+            }
         }
 
         dismissAndThen() {

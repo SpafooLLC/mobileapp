@@ -54,10 +54,23 @@
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li ng-repeat="s in pmp.WorkSamplesList"><img src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /></li>
+      <li ng-repeat="s in pmp.WorkSamplesList">
+          <a class="fancybox" href="http://dev.spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
+              <img ng-src="http://dev.spafoo.com{{s.optionTextField}}" alt="" />
+          </a>
+       
+      </li>
     </ul>
   </div>
-  
+
+    <link href="../../styles/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../../js/jquery.fancybox.js"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.fancybox').fancybox();
+            });
+    </script>
 </div>
    </ion-content>
 </ion-view>

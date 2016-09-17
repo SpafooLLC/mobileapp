@@ -49,10 +49,7 @@
         {
           
             var self = this;
-            var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
-                self.$state.go('login');
-            }
+            
             this.CustomerHttp.get("/ListRootBottomService").then(function (response:any) {
                 var _Final = ""
                 $.each(response.ListRootBottomServiceResult, function (i, o) {

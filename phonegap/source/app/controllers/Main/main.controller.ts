@@ -48,10 +48,10 @@
             });
 
             push.on('registration', function (data:any) {
-             alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+            // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try
                 {
-                    alert(JSON.stringify(data));
+                  //  alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
              }
@@ -63,10 +63,11 @@
 
             push.on('notification', function (data) {
                 var i = 2;
-                alert(JSON.stringify(data));
-                cordova.plugins.notification.badge.set(i);
-                window.location.href = "#/Notification";
-               
+               // alert(JSON.stringify(data));
+                if (!data.additionalData.foreground) {
+                    cordova.plugins.notification.badge.set(i);
+                    window.location.href = "#/Notification";
+                }
                 // data.message,
                 // data.title,
                 // data.count,

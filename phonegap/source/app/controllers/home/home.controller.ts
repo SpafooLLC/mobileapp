@@ -29,7 +29,7 @@
                     if (window.location.href.substr(window.location.href.lastIndexOf('/') + 1) != 'home') {
                         window.history.go(-1);                                               
                     }
-                    setTimeout(function () { tabClick = 0; alert('time execute: ' + tabClick); }, 2000);
+                    setTimeout(function () { tabClick = 0;}, 2000);
                    
                 } else {
                     //alert(tabClick + ':else');
