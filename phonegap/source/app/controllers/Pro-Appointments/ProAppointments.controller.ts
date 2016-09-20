@@ -18,6 +18,7 @@
         ) {
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
+             
         }
 
         getProviderSchedular(UserID: any) {

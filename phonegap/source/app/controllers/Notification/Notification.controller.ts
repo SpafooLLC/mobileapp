@@ -20,6 +20,7 @@
         ) {
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserNotificationInfo();
+            
         }
     
         getUserNotificationInfo() {

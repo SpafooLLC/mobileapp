@@ -22,6 +22,7 @@
         ) {
             this.getUserInfo();
             $('.fancybox').fancybox();
+          
         }
         getUserInfo() {
 

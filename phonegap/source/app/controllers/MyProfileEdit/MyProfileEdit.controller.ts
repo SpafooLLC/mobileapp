@@ -51,6 +51,7 @@
         EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Country: string, PostalCode: string, Phone: string, Mob:string) {
             var self = this;
             var uPos = '';
+           
             if (self.doValidation(Email)) {
 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
 
@@ -65,10 +66,10 @@
                     'City': City,
                     'Region': Country,
                     'PC': PostalCode,
-                    'P': Phone,
+                    'p': Phone,
                     'Mo': Mob
                 }
-
+             
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {
                     if (response.Success === 'Success') {
                         self.$state.go("MyProfile");
@@ -83,23 +84,19 @@
         }
 
         doValidation(Email: string) {
-
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
-                //alert('Please Enter Email Address');
                 $("#PDoneError").modal();
                 return false;
             } else {
                 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                 if (!filter.test(Email)) {
                     self.messages = "Invalid email address.";
-                    //alert('Invalid email address');
                     $("#PDoneError").modal();
                     return false;
                 }
             }
-
             return true;
         }
 

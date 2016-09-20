@@ -59,6 +59,13 @@
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.SharedHttp.GetUserInfo(item.providerIDField).then(function (res: any) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
+                        if (self.ServiceData[i].statusField == 1) {
+                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
+                                self.ServiceData[i].isRate = res.DidIRatedResult;
+                            }, function (error: any) {
+
+                            });
+                        }
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e: any) { self.ServiceData[i].addressField = e;   });
                 });

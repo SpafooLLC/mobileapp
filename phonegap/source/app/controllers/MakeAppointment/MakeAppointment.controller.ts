@@ -155,31 +155,33 @@
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
                 self.ServiceData = response.GetUserInfoResult;
                 self.SharedHttp.GetProviderServices(UserID).then(function (res) { self.ProviderServiceList = res; });
-                self.CustomerHttp.get('/GetUserInfo/' + self.customerId).then(function (response: any) {
-                    self.info.address = self.ServiceData.profileField.streetField = response.GetUserInfoResult.profileField.streetField;
-                    self.info.city = self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
-                    self.info.state = self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
-                    self.info.zip = self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
-                    if(self.isEdit){
-                        self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response: any) {
-                            self.ServiceData.appointment = response.GetAppointmentResult;
-                            self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response: any) {
-                                var e = response.GetAppLocationResult;
-                                self.info.address = e.addressField;
-                                self.info.city = e.cityField;
-                                self.info.state = e.stateField;
-                                self.info.zip = e.zipField;
+                if (self.customerId != null) {
+                    self.CustomerHttp.get('/GetUserInfo/' + self.customerId).then(function (response: any) {
+                        self.info.address = self.ServiceData.profileField.streetField = response.GetUserInfoResult.profileField.streetField;
+                        self.info.city = self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
+                        self.info.state = self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
+                        self.info.zip = self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
+                        if (self.isEdit) {
+                            self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response: any) {
+                                self.ServiceData.appointment = response.GetAppointmentResult;
+                                self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response: any) {
+                                    var e = response.GetAppLocationResult;
+                                    self.info.address = e.addressField;
+                                    self.info.city = e.cityField;
+                                    self.info.state = e.stateField;
+                                    self.info.zip = e.zipField;
 
+                                });
+                                self.appointment = self.ServiceData.appointment;
+                                self.appointment.servicesField.map(function (serv: any) {
+                                    var serviceString = serv.serviceIDField + ':' + 1 + ':' + serv.priceField;
+                                    $('input[value="' + serviceString + '"]').prop('checked', 'checked');
+                                    self.comment = self.appointment.commentsField;
+                                })
                             });
-                            self.appointment = self.ServiceData.appointment;
-                            self.appointment.servicesField.map(function(serv: any){
-                                var serviceString = serv.serviceIDField+':'+1+':'+serv.priceField;
-                                $('input[value="'+serviceString+'"]').prop('checked', 'checked');
-                                self.comment = self.appointment.commentsField;
-                            })
-                        });
-                    }
-                })
+                        }
+                    });
+                }
             });
         }
 
@@ -324,6 +326,26 @@
             if(self.ASAP){
                 self.paymentMethod();
             } else{
+                var startDate = '08/28/2016';
+                var endDate = '10/09/2016';
+
+                var postObj = {
+                    EndDateTime: endDate,
+                    //EndDateTime:self.from,
+                    ProID: self.$stateParams.userId,
+                    //StartDateTime:self.to
+                    StartDateTime: startDate,
+                };
+                self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (response: any) {
+
+                    console.log(response);
+                    if(response.length){
+                        response.map(function(slot){
+                            self.staticEvents[0].events.push({/*title: slot.atTimeField+' - 'slot.endTimeField, */start: slot.forDateField+' '+slot.atTimeField, end: slot.forDateField+' '+slot.endTimeField, startTime: slot.atTimeField, endTime: slot.endTimeField, color: 'green'});
+                        });
+                    }
+
+                });
                 self.MainView = 'Appointment-DateTime'
             }
         }
@@ -401,9 +423,9 @@
 
         showIonicAlert(text, template){
             var self = this;
-            $(".modal").hide();
+            $(".modal").modal('hide');
             self.messages = text;
-            $("#PDone").css('visibility', 'visible').modal();
+            $("#PDone").modal();
             /*var template = template || '';
             return self.$ionicPopup.alert({
                 title: text,
@@ -469,7 +491,6 @@
         validatePaymentMethod(){
             var self = this;
             if(self.selectedCard == 0){
-                alert(1);
                 self.MainView = 'Payment-Information';
                 self.nameOnCard = '';
                 self.cardNumber = '';
@@ -477,9 +498,15 @@
                 self.paymentTerm = '';
                 self.cvv = '';
                 self.expMonth = '01';
-                self.expYear = '2015';
+                self.modalGoback = false;
+                self.years = [];
+                var date = new Date();
+                var year = parseInt(date.getFullYear());
+                self.expYear = year;
+                for(var i = 0; i < 20; i++){
+                    self.years.push(year++);
+                }
             }else{
-                alert(2);
                 self.showIonicConfirmation();
             }
         }
@@ -487,18 +514,22 @@
             var self = this;
             if(self.nameOnCard == '' || !self.nameOnCard.trim().length){
                 self.showIonicAlert('Name on card is required');
+            } else if(self.nameOnCard.trim().length > 150){
+                self.showIonicAlert('Name of card should be max lenth 150');
             } else if(self.cardNumber == '' || !self.cardNumber.trim().length){
                 self.showIonicAlert('Card number is required');
-            } else if(isNaN(parseInt(self.cardNumber))){
+            }  else if(isNaN(parseInt(self.cardNumber))){
                 self.showIonicAlert('Card number must be numeric');
+            }  else if(self.cardNumber.length < 14 || self.cardNumber.length > 16){
+                self.showIonicAlert('Card number should be between 14-16');
             } else if(self.radioInline == '' || !self.radioInline.trim().length){
                 self.showIonicAlert('Card type is required');
             } else if(self.cvv == '' || !self.cvv.trim().length){
                 self.showIonicAlert('CVV is required');
             } else if(isNaN(parseInt(self.cvv))){
                 self.showIonicAlert('CVV must be numeric');
-            } else if(self.cvv.trim().length !== 3){
-                self.showIonicAlert('CVV must be 3 digits');
+            } else if(self.cvv.trim().length < 3 || self.cvv.trim().length > 4){
+                self.showIonicAlert('CVV shuld be 3-4');
             } else if(self.paymentTerm == ''){
                 self.showIonicAlert('You need to agree with our payment terms');
             } else{
@@ -506,24 +537,21 @@
             }
         }
         showIonicConfirmation(customCard){
-            alert(3);
             var self = this;
+
             self.type = customCard || false;
             if(!self.type) {
-                alert(4);
                 var card = self.CCards.filter(function (cc) {
                     return cc.customerPaymentProfileId === self.selectedCard;
                 });
                 self.card = card[0];
                 self.mainCard = self.card.payment.Item.cardNumber;
             } else{
-                alert(5);
                 var cFull = self.cardNumber;
                 self.mainCard = 'XXXX'+cFull.slice(cFull.length -  4, cFull.length);
             }
-
             self.messages = 'Your card ending with '+self.mainCard+' will be charge for amount of '+self.totalPrice+' USD';
-            $("#PDonePayment").css('visibility', 'visible').modal();
+            $("#PDonePayment").modal();
 
             /*var confirmPopup = self.$ionicPopup.confirm({
                 title: '<i style="color: #112173" class="fa fa-info-circle fa-3x"></i>',
@@ -598,10 +626,15 @@
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
                     } else {
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason', resp.transactionResponse.errors[0].errorText);
+                        self.modalGoback = true;
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason '+resp.transactionResponse.errors[0].errorText);
                     }
                 })
             }
+        }
+        wronInfoGoBack(){
+            var self = this;
+            if(self.modalGoback) self.MainView = 'Payment-Method';
         }
         finalMakeAppointment(){
             var self = this;
@@ -616,8 +649,7 @@
             });
             self.action = 'redirectAfterAppointment';
             $("#PDonePayment").modal('hide');
-            self.showIonicAlert('Your Appointment has been confirmed!')
-
+            self.showIonicAlert(/*'<i class="fa fa-check-circle fa-3x"></i>', */'Your Appointment has been confirmed!')
         }
 
         redirectAfterAppointment(){

@@ -13,7 +13,7 @@
         userId: number;
         static currentLatLong: any;
         static map: any=0;
-        $inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', '$q', '$window']
+        $inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp','SharedHttp', '$q', '$window']
         constructor(
             private $state: angular.ui.IStateService,
             private $scope: angular.IScope,
@@ -25,7 +25,7 @@
             var self = this;
           
             document.addEventListener("deviceready", function () {
-           
+            
                
                 // Initialize the map plugin
                 var options = {
@@ -44,6 +44,7 @@
             }
             self.doSearchProvider();
             self.userId = 0;
+          
         }
         doSearchProvider()
         {

@@ -21,7 +21,7 @@
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-            
+           
         }
 
 

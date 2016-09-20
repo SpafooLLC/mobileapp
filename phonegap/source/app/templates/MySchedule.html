@@ -74,7 +74,8 @@
                                 <td class="right">
                                     <a href="#/AddProviderReview/{{s.appointmentIDField}}/{{s.providerIDField}}">
                                         <i class="fa fa-star-o fa-2x"></i>
-                                        <p>Rate this activity</p>
+                                        <p ng-if="s.isRate">Already Rated!</p>
+                                        <p ng-if="!s.isRate">Rate this client</p>
                                     </a>
                                 </td>
                             </tr>

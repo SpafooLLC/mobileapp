@@ -20,7 +20,7 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
             this.getUserInfo();
-
+            
         }
         getUserInfo() {
             var self = this;

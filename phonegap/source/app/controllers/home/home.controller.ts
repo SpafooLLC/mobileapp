@@ -6,15 +6,17 @@
     }
     class homeController implements Ihome {
 
-        $inject = ['$state', '$scope', '$ionicLoading', '$timeout']
+        $inject = ['$state', '$scope', '$ionicLoading', '$timeout',  'SharedHttp']
         constructor(
             private $state: angular.ui.IState,
             private $scope: angular.IScope,
             private $ionicLoading: ionic.loading.IonicLoadingService,
-            private $timeout: ITimeoutService) {
+            private $timeout: ITimeoutService
+            , private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+        ) {
 
             document.addEventListener("deviceready", this.onDeviceReady, false);
-
+            
         }
         doLogin() {
 
