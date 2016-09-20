@@ -27,7 +27,7 @@
             private $ionicPopup: ionic.popup.IonicPopupService
         ) {
 
-            this.UserID = this.$window.localStorage.getItem('ProviderIDs');
+            this.UserID = this.$stateParams.userId;
             this.AppID = 0;
             var status = this.$window.localStorage.getItem('LoginStatus');
             this.customerId = null;
@@ -50,13 +50,6 @@
                 mySelect.selectpicker('refresh');
             });
 
-            /*$('#basic2').selectpicker({
-             liveSearch: false,
-             maxOptions: 1,
-             change: function(){
-             console.log(this);
-             }
-             });*/
             this.isOpenSelectAdress = '';
             this.info = {};
             this.addressId = '';
@@ -79,72 +72,6 @@
             var m = date.getMonth();
             var y = date.getFullYear();
             var self = this;
-            this.uiConfig = {
-                calendar: {
-                    height: 450,
-
-                    header: {
-                        right: 'today prev,next'
-                    },
-                    dayClick: function(date: any, jsEvent: any, view: any){
-                        self.onTimeSelected(date, jsEvent);
-                    },
-                    eventDrop: $scope.alertOnDrop,
-                    eventResize: $scope.alertOnResize
-                }
-            };
-            this.staticEvents = [
-
-                // your event source
-                {
-                    events: [ // put the array in the `events` property
-
-                       /* {
-                            title: 'event2',
-                            start: '2016-09-01',
-                            end: '2016-09-01'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-03',
-                            end: '2016-09-03'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-05',
-                            end: '2016-09-05'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-07',
-                            end: '2016-09-07'
-                        }, {
-                            title: 'event2',
-                            start: '2016-09-09',
-                            end: '2016-09-09'
-                        },*/
-
-                    ],
-                    color: 'green',     // an option!
-                    textColor: 'black' // an option!
-                }
-
-                // any other event sources...
-
-            ];
-            this.eventSource = this.staticEvents;
-            /*this.renderCalender = function() {
-
-             /!*if($calender.calendars[$calender]){
-             $calender.calendars[$calender].fullCalendar('render');
-             }*!/
-             };*/
-            //$("#addressfield").val('result.subThoroughfare + " " + result.thoroughfare;');
-            //setTimeout(function () {
-            //    $("#addressfield").val('result.subThoroughfare + " " + result.thoroughfare;');
-            //    this.address = 'result.subThoroughfare + " " + result.thoroughfare;'
-            //    this.city = 'result.locality';
-            //    this.state = 'result.adminArea';
-            //    this.zip = 'result.postalCode';
-            //}, 5000);
-
         }
         openDropdown(){
             this.isOpenSelectAdress = this.isOpenSelectAdress == '' ? 'open' : '';
@@ -263,7 +190,7 @@
         }
 
         onError(e: any) {
-            alert(JSON.stringify(e));
+            //alert(JSON.stringify(e));
         }
 
         viewSelect(view: any){
@@ -318,6 +245,14 @@
                 }
             });
         }
+
+        removeService(index){
+            var self = this;
+            self.selectedServices.splice(index, 1);
+            !self.selectedServices.length ? self.MainView = 'Basic-Info' : self.changeSummery();
+
+        }
+
         appointmentView(){
             var self = this;
             self.changeSummery();
@@ -326,29 +261,89 @@
             if(self.ASAP){
                 self.paymentMethod();
             } else{
-                var startDate = '08/28/2016';
-                var endDate = '10/09/2016';
-
-                var postObj = {
-                    EndDateTime: endDate,
-                    //EndDateTime:self.from,
-                    ProID: self.$stateParams.userId,
-                    //StartDateTime:self.to
-                    StartDateTime: startDate,
-                };
-                self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (response: any) {
-
-                    console.log(response);
-                    if(response.length){
-                        response.map(function(slot){
-                            self.staticEvents[0].events.push({/*title: slot.atTimeField+' - 'slot.endTimeField, */start: slot.forDateField+' '+slot.atTimeField, end: slot.forDateField+' '+slot.endTimeField, startTime: slot.atTimeField, endTime: slot.endTimeField, color: 'green'});
-                        });
+                var startDate = new Date('08/28/2016');
+                var endDate = new Date('10/09/2016');
+                self.uiConfig = {
+                    calendar: {
+                        height: 500,
+                        header: { left: 'prev,next today', /*center: 'title',*/ right: 'title' },
+                        defaultView: 'month', selectable: true,
+                        defaultDate: (new Date()),
+                        selectHelper: true,
+                        dayClick: function(date: any, jsEvent: any, view: any){
+                            self.onTimeSelected(date, jsEvent);
+                        },
+                        editable: true,
+                        slotEventOverlap: false,
+                        eventLimit: 3,
+                        /*events: function (start, end, timezone, callback) {
+                            getOccupiedSlots(moment(start).format('MM-DD-YYYY'), moment(end).format('MM-DD-YYYY'), timezone, callback)
+                        }*/
+                        viewRender: function(view, element) { self.getOccupiedSlots(view.start, view.end); }
                     }
-
-                });
+                };
+                self.staticEvents = [
+                    {
+                        events: [],
+                    }
+                ];
+                //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
             }
         }
+
+        getOccupiedSlots(start, end) {
+
+            var self = this;
+            var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+            var start = moment(start).format('MM/DD/YYYY');
+            var end = moment(end).format('MM/DD/YYYY');
+            //var firstDay = new Date(y, m, 1);
+            //var lastDay = new Date(y, m + 1, 0);
+            var postObj = {
+                EndDateTime: end,
+                //EndDateTime:self.from,
+                ProID: self.$stateParams.userId,
+                //StartDateTime:self.to
+                StartDateTime: start,
+            };
+            self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
+                var _Today = new Date();
+                var strToday = ((_Today.getMonth() + 1) < 10 ? '0' : '') + (_Today.getMonth() + 1) + "/" + ((_Today.getDate() < 10) ? '0' : '') + _Today.getDate() + "/" + _Today.getFullYear();
+                $.each(d, function (i, o) {
+                    //if (o.ForDate >= strToday) {
+                        self.staticEvents[0].events.push({ title: o.atTimeField + ' - ' + o.endTimeField, start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#ff0000', textColor: 'white' });
+                    //}
+                });
+            });
+            self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res: any) {
+
+                var aviles = JSON.parse(res.ListMyAvailResult);
+                for (var i = 0; i < aviles.length; i++) {
+                    var starthours = aviles[i].StartTime.Hours > 9 ? aviles[i].StartTime.Hours : '0'+aviles[i].StartTime.Hours;
+                    var startminutes = aviles[i].StartTime.Minutes > 9 ? aviles[i].StartTime.Minutes : '0'+aviles[i].StartTime.Minutes;
+                    var endhours = aviles[i].EndTime.Hours > 9 ? aviles[i].EndTime.Hours : '0'+aviles[i].EndTime.Hours;
+                    var endminutes = aviles[i].EndTime.Minutes > 9 ? aviles[i].EndTime.Minutes : '0'+aviles[i].EndTime.Minutes;
+                    var dateMonth = aviles[i].Date;
+                    var dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
+                    var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
+                    var getmonth = '';
+
+                    self.staticEvents[0].events.push({
+                        start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
+                        title: starthours+':'+startminutes+' - '+endhours+':'+endminutes,
+                        startTime: new Date(1970, 0, 1, starthours, aviles[i].StartTime.Minutes),
+                        endTime: new Date(1970, 0, 1, endhours, aviles[i].EndTime.Minutes),
+                        id: aviles[i].AvailID,
+                        proId: aviles[i].ProviderID,
+                        dateField: dateMonth1,
+                        dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
+                        color: '#1e319b'
+                    });
+                }
+            });
+        }
+
 
         onViewTitleChanged = function (title) {
             this.viewTitle = title;
@@ -399,7 +394,7 @@
                         //step: 300000,
                         drag_interval: true,
                         prettify: function (num) {
-                            return moment(num, "X").format("hh:mm A");
+                            return moment(num, "X").format("HH:mm");
                         },
                         onFinish: function (data) {
                             self.from = self.onlyDate+' '+moment(data.from, "X").format("HH:mm");

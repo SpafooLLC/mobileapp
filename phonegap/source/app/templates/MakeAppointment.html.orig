@@ -103,7 +103,11 @@
                 <h3>Service Session: {{ma.totalDuration}}min</h3>
                 <p><!--<strong>06:30</strong> pm-->at <a href="#">{{ma.addressText}}</a></p>
                 <p>With: <a href="#" onClick="window.history.go(-1); return false;">{{ma.ServiceData.displayNameField}}</a></p>
+<<<<<<< HEAD
+            </div><div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+=======
             </div><!--<div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+>>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -119,7 +123,11 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+        </div>
+=======
         </div>-->
+>>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
             <div class="cart">
                 <div class="heading">Selected Services</div>
                 <ul>
@@ -194,6 +202,14 @@
                     </div>
                     <div class="modal-cpbody center">
                         <style>
+<<<<<<< HEAD
+                            .popup-container .popup {
+                                width: 90% !important;
+                            }
+                            .ui-widget-content {
+                                border: none !important;
+                            }
+=======
                             .popup-container .popup {  width: 90% !important;  }
                             .ui-widget-content {  border: none !important;  }
                             .tsinfo {  color: #ff0000;  font-weight: 600;  font-size: 12px;  text-align: center;  width: 100%;  padding-top: 6px;  }
@@ -205,6 +221,7 @@
                             .tsbottom .ava {  color: #219962;  font-weight: 600;  }
                             .tsbottom .avano {  color: #ff0000;  font-weight: 600;  }
                             .tsbottom #lblAvailability {  color: #112173;  font-weight: 600;  font-size: 15px;  display: block;  }
+>>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
                         </style>
                         <div id="NS_dvSliderOuter" style="padding: 10px 0; width: auto; min-height: 0; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
                             <div class="times-header text-center">
@@ -218,7 +235,11 @@
                             <div class="tsbottom text-center">
                                 <span id="lblAvailability" class="positive">Availability:</span><br>
                                 <label class="balanced" id="lblAvail" style="display: inline-block;" ng-if="ma.availability"><span class="ava">This slot is available</span></label>
+<<<<<<< HEAD
+                                <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="ava">This slot is not available</span></label><br>
+=======
                                 <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="avano">This slot is not available</span></label><br>
+>>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
                                 <img ng-if="ma.availability" style="" id="imgAvail" ng-src="images/Other/tsgrant.png">
                                 <img ng-if="!ma.availability" style="" id="imgAvai2" ng-src="images/Other/tserror.png">
                             </div>

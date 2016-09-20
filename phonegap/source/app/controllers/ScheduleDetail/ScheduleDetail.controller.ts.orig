@@ -52,22 +52,41 @@
             });
         }
 
+    
+
         CancelSchdule() {
+<<<<<<< HEAD
+            var conf = confirm("Are you sure want to Cancel ?");
+            if (conf) {
+                var self = this;
+                var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
+                //  alert(JSON.stringify(PostData));
+                self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
+                    self.messages = JSON.parse(response).messages.message[0].text;
+                    $("#PDone").modal();
+                }, function (error) {
+                    //alert(error)
+                });
+            }
+        }
+
+        dismissAndThen() {
+            this.$state.go('MySchedule');
+=======
             var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField }
+            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
           //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-<<<<<<< HEAD
                 self.messages = JSON.parse(response).messages.message[0].text;
-=======
-             //  alert(JSON.stringify(response));
-                self.messages = response.messages.messageField[0].textField;
->>>>>>> 3bf8b4ad6d97b41f7cbc7ebd2d1491b72bc93cc4
                 $("#PDone").modal();
-              //  self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });
+>>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
+        }
+
+        dismissAndThen(){
+            this.$state.go('MySchedule');
         }
 
 
