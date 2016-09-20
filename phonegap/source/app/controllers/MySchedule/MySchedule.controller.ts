@@ -15,8 +15,9 @@
             private $window: ng.IWindowService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-            this.UserID = this.$window.localStorage.getItem('CustomerID');
-            this.getClientSchedular(this.UserID);
+            var self = this;
+            self.UserID = this.$window.localStorage.getItem('CustomerID');
+            self.getClientSchedular(self.UserID);
         }
 
         getClientSchedular(UserID: any) {
@@ -73,11 +74,13 @@
         }
         acceptAppointment(data: any)
         {
-            this.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { alert(JSON.stringify(res)) });
+            var self = this;
+            self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getClientSchedular(self.UserID); });
         }
         denyAppointment(data: any)
         {
-            this.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { alert(JSON.stringify(res)) });
+            var self = this;
+            self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getClientSchedular(self.UserID) });
         }
     }
 

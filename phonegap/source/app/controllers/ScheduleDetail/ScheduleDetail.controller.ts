@@ -57,10 +57,13 @@
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
                 self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
-                self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });
+        }
+
+        dismissAndThen(){
+            this.$state.go('MySchedule');
         }
 
 

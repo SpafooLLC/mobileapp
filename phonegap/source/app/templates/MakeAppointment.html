@@ -16,7 +16,7 @@
                 <span class="filter-option pull-left">&nbsp;&nbsp;{{ma.addressText}}</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
             </button>
 
-            <div class="dropdown-menu open" style="overflow: hidden; min-height: 100px;">
+            <div class="dropdown-menu open" style="overflow: hidden; max-height: 120px;">
                 <!--<div class="bs-searchbox"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield">
                     <div class="col-xs-6 nopad"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
                     <div class="col-xs-4 bsstate"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
@@ -69,11 +69,30 @@
 
         <a ng-click="ma.CreateAppointment(data)" class="block-btn">continue</a>
         <script type="text/javascript">app.initialize();</script>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
 <ion-view view-title="Order Summary" ng-if="ma.MainView == 'Order-Summary'">
     <ion-content>
+        <style>
+            .deleteadd { text-align: right;  color: #cc0000;  cursor: pointer;  }
+        </style>
         <div class="bread">
             <a href="" ng-click="ma.viewSelect('Basic-Info')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">order summary</div>
@@ -84,14 +103,30 @@
                 <h3>Service Session: {{ma.totalDuration}}min</h3>
                 <p><!--<strong>06:30</strong> pm-->at <a href="#">{{ma.addressText}}</a></p>
                 <p>With: <a href="#" onClick="window.history.go(-1); return false;">{{ma.ServiceData.displayNameField}}</a></p>
+            </div><!--<div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>-->
             <div class="cart">
                 <div class="heading">Selected Services</div>
                 <ul>
                     <li ng-repeat="service in ma.selectedServices">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="sname"><a href="#"><i class="fa fa-trash-o fa-lg"></i></a> &nbsp; {{service.serviceNameField}}</td>
+                                <td class="sname"><a ng-click="ma.removeService($index)"><i class="fa fa-trash-o fa-lg deleteadd "></i></a> &nbsp; {{service.serviceNameField}}</td>
                                 <td class="qbox"><input required ng-change="ma.changeSummery()" type="number" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
                                 <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
                             </tr>
@@ -106,15 +141,35 @@
         <div class="enter">
             <a href="" ng-click="ma.appointmentView()" class="block-btn">continue</a>
         </div>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
 <ion-view view-title="APPOINTMENT DATE & TIME" ng-if="ma.MainView == 'Appointment-DateTime'">
     <ion-content>
         <style>
-            .no-event-label, .event-detail-table, .event-detail-container{
-                display: none !important;
-                visibility: hidden !important;
-            }
+            .no-event-label, .event-detail-table, .event-detail-container{  display: none !important;  visibility: hidden !important;  }
+            .fc-day-grid-event .fc-time{  display: none !important;  }
+            .fc-event-container .fc-title{  color: #ffffff !important;  font-weight: 600 !important;  }
+            .fc-day-grid-event .fc-content{  text-align: center !important;  }
+            H2 {  margin: 0 0 10px 0;  line-height: 36px;  font-weight: normal;  font-size: 28px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
+            .fc th {  border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
+            .fc td {  border-style: solid;  border-width: 1px;  padding: 0;  font-weight: 600;  vertical-align: top;  color: #112173;  }
         </style>
         <div class="bread">
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
@@ -130,6 +185,70 @@
 
             </calendar>-->
         </div>
+        <div class="modal fade" id="PDoneSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <!--<h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>-->
+                    </div>
+                    <div class="modal-cpbody center">
+                        <style>
+                            .popup-container .popup {  width: 90% !important;  }
+                            .ui-widget-content {  border: none !important;  }
+                            .tsinfo {  color: #ff0000;  font-weight: 600;  font-size: 12px;  text-align: center;  width: 100%;  padding-top: 6px;  }
+                            .irs-single {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
+                            .irs-to {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
+                            .irs-from {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
+                            .times-header {  font-weight: 600;  font-size: 15px;  color: #112173;  text-align: center;  margin-bottom: 15px;  }
+                            .times-header span {  font-weight: 600;  font-size: 15px;  color: #219962;  }
+                            .tsbottom .ava {  color: #219962;  font-weight: 600;  }
+                            .tsbottom .avano {  color: #ff0000;  font-weight: 600;  }
+                            .tsbottom #lblAvailability {  color: #112173;  font-weight: 600;  font-size: 15px;  display: block;  }
+                        </style>
+                        <div id="NS_dvSliderOuter" style="padding: 10px 0; width: auto; min-height: 0; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
+                            <div class="times-header text-center">
+                                Time slot for date: <span class="balanced"><label id="lblSlotDate">{{ma.onlyDate}}</label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Service Session: <span class="balanced"><label id="lblServiceSession">{{ma.totalDuration}} minute(s)</label></span>
+                            </div>
+                            <div class="chosens text-center">Chosen slot: [<label id="NS_lblStartHour">{{ma.from}}</label> &nbsp;-&nbsp;<label id="NS_lblEndHour">{{ma.to}}</label>]</div>
+                            <div class="padding">
+                                <input type="text" name="volume" id="range">
+                            </div>
+                            <div class="tsinfo assertive text-center">(move the blue handle, to select the slot of your preference)</div>
+                            <div class="tsbottom text-center">
+                                <span id="lblAvailability" class="positive">Availability:</span><br>
+                                <label class="balanced" id="lblAvail" style="display: inline-block;" ng-if="ma.availability"><span class="ava">This slot is available</span></label>
+                                <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="avano">This slot is not available</span></label><br>
+                                <img ng-if="ma.availability" style="" id="imgAvail" ng-src="images/Other/tsgrant.png">
+                                <img ng-if="!ma.availability" style="" id="imgAvai2" ng-src="images/Other/tserror.png">
+                            </div>
+
+                        </div>
+                        <div class="cpaction">
+                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+                            <div class="col-xs-6 nopad"><a ng-click="ma.dateTimeChooseDone()" class="bluesm-btn block">Ok</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
 
@@ -142,7 +261,7 @@
         </div>
         <div class="inbody">
             <div class="pmethod">
-                <img src="Images/Site/ccard.png">
+                <img ng-src="images/Site/ccard.png">
                 <h2>CREDIT CARD</h2>
                 <p>Select your card for payment</p>
             </div>
@@ -161,10 +280,78 @@
         <div class="fource-bottom center">
             <a ng-click="ma.validatePaymentMethod()" class="block-btn">Continue</a>
         </div>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="PDonePayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+                            <div class="col-xs-6 nopad"><a ng-click="ma.actionPayment()" class="bluesm-btn block">Ok</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
 <ion-view view-title="PAYMENT INFORMATION" ng-if="ma.MainView == 'Payment-Information'">
     <ion-content>
         <ng-include src="'app/templates/CreditCard.html'"></ng-include>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" ng-click="ma.wronInfoGoBack()" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="PDonePayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{ma.messages}} </p>
+                        <div class="cpaction">
+                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+                            <div class="col-xs-6 nopad"><a ng-click="ma.actionPayment()" class="bluesm-btn block">Ok</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

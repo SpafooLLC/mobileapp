@@ -51,7 +51,7 @@
                     }
                     else
                     { self.ServiceData[i].profileField.photoField = ""; };
-                    console.log(self.ServiceData[i].vanityUrlField)
+                    //console.log(self.ServiceData[i].vanityUrlField)
                     self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
 
                 }
@@ -126,7 +126,7 @@
                 if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
 
                 }
             });

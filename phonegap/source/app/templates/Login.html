@@ -9,7 +9,7 @@
         <div class="inbody">
             <div class="has-feedback fgap">
                 <label class="control-label">User Name</label>
-                <input type="text" maxlength="50" class="form-control" ng-model="username">
+                <input type="text" maxlength="50" class="form-control" required ng-model="username">
                 <span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>
             </div>
             <div class="has-feedback fgap">
@@ -18,10 +18,10 @@
                 <span class="fa fa-key fa-lg form-control-feedback" aria-hidden="true"></span>
             </div>
             <p><a  class="fsm">Forgot your password?</a></p>
-            <div class="checkbox checkbox-primary">
+            <!--<div class="checkbox checkbox-primary">
                 <input id="checkbox2" type="checkbox" checked>
                 <label for="checkbox2">Remember me</label>
-            </div>
+            </div>-->
         </div>
         <div class="fource-bottom center">
             Don't have an account? <a ui-sref="register">Sign up!</a>

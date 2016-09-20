@@ -37,7 +37,7 @@
                 if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
 
                 }
             });
@@ -84,8 +84,13 @@
                             break;
                         case "ASAPAppointment": self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
                             break;
-
-                    }
+                        case "ASAPClientDeny": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> did NOT accepted the Date & Time given by you for ASAP <a href='#'>appointment</a>";
+                            break;
+                        case "ASAPClientAccepted": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has accepted the Date & Time given by you for ASAP appointment";
+                            break;
+                        case "AppointmentCancelled": self.NotificaitonData[i].typeNameField = " Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has cancelled the appointment";
+                            break;
+                  }
                 }
 
             }, function (error) {
@@ -142,6 +147,7 @@
                 });
             }
         }
+       
     }
 
 

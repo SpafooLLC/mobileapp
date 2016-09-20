@@ -40,7 +40,7 @@
                 self.$timeout(function () {
                     self.appointmentPhotoList = res;
                 }, 2000);
-                console.log(self.appointmentPhotoList);
+                //console.log(self.appointmentPhotoList);
             });
             
 
@@ -92,7 +92,8 @@
                     };
                     self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
                         self.message = 'Appointment Completed';
-                        $("#PDone").modal();
+                        //$("#PDone").modal();
+                        self.$state.go("ProAppointments");
                     }, function (navError: any) {
 
                     })
@@ -101,7 +102,7 @@
                 });
 
             }, function (error: any) {
-                alert('someError on ChargePreviosAuth');
+                //alert('someError on ChargePreviosAuth');
             });
         }
 
@@ -123,7 +124,7 @@
                             'UID': self.UserID,
                             'AID': self.appointmentIDField
                         };
-                        alert(JSON.stringify(params));
+                        //alert(JSON.stringify(params));
                         options.params = params;
 
                         try {
@@ -133,7 +134,7 @@
                         }
 
                         ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r: any) {
-                            alert(JSON.stringify(r));
+                          
                             if (r.responseCode === '200' || r.responseCode === 200) {
                                 self.getAppointmentPhotos(self.appointmentIDField).then(function (res: any) {
                                     self.$timeout(function () {
@@ -155,8 +156,9 @@
                             $("#showload").hide();
                         }), options);
                     } else {
-                        //self.messages = "PNG,JPEG,JPG images allowed";
-                        alert('PNG,JPEG,JPG images allowed');
+                        self.messages = "PNG,JPEG,JPG images allowed";
+                        $("#PDone").modal();
+                        //alert('PNG,JPEG,JPG images allowed');
 
                     }
                 }, self.onFail, {

@@ -73,10 +73,10 @@
                 self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) { self.WorkSamplesList = res; });
                 self.SharedHttp.GetProTagLine(self.customerID).then(function (res) { self.TagField = res; });
                 self.rolePosition = self.ServiceData.Profile.ProfileProperties[1].PropertyValue.split('|').map(Number);
-                console.log(self.rolePosition);
+                //console.log(self.rolePosition);
                 self.getRoles().then(function(res:any){
                     self.Roles=res;
-                    console.log(self.Roles);
+                    //console.log(self.Roles);
                     var rArr=new Array(self.Roles.GetQuestionResult.optionsField.length)               
                     for(var i=0; i< self.Roles.GetQuestionResult.optionsField.length; i++){
                         if(self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField)>-1){
@@ -85,17 +85,17 @@
                              rArr[i]='0';
                          }
                     }
-                    console.log(rArr);
+                    //console.log(rArr);
                     self.applPosition=rArr;
                 
                 },function(error){
-                    alert(error);
+                    //alert(error);
                 })
                 //console.log(self.ServiceData);
             }, function (error) {
                 if (error === null) {
                 } else {
-                    console.log(error);
+                    //console.log(error);
                 }
             });
             
@@ -157,7 +157,8 @@
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
+                            //alert('PNG,JPEG,JPG images allowed');
                            
                         }
                     }, self.onFail, {
@@ -183,7 +184,8 @@
 
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
+                            //alert('PNG,JPEG,JPG images allowed');
                            
                         }
                     }, self.onFail, {
@@ -199,7 +201,8 @@
 
             } catch (ex) {
                 self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                //alert('Can\'nt upload image');
+                $("#PDone").modal();
             } finally {
                 self.isImageClick = false;
             }
@@ -223,7 +226,7 @@
             try {
                 var ft = new FileTransfer();
             } catch (ex) {
-                self.toaster.error('exception generated:' + ex, 'Error');
+                //self.toaster.error('exception generated:' + ex, 'Error');
             }
            
             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
@@ -237,11 +240,15 @@
                     }, 2000);
                     $("#showload").hide();
                 } else {
-                    alert('Something went wrong with the server ');
+                    //alert('Something went wrong with the server ');
+                    self.messages='Something went wrong with the server';
+                    $("#PDone").modal();
                     $("#showload").hide();
                 } 
             }), (function (msg) {
-                    alert("Profile Image can\'t update");
+                    self.messages='Profile Image can\'t update';
+                    $("#PDone").modal();
+                    //alert("Profile Image can\'t update");
                     $("#showload").hide();
             }), options);
 
@@ -253,7 +260,7 @@
             } else {
                 self.applPosition[index]='0';
             }
-            console.log(self.applPosition);
+            //console.log(self.applPosition);
         }
         
         EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string ){
@@ -299,7 +306,7 @@
                     }
 
                 });
-                console.log(data);
+                //console.log(data);
             }
             
             
@@ -310,20 +317,22 @@
             var self=this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
-                alert('Please Enter Email Address');
+                //alert('Please Enter Email Address');
                 $("#PDone").modal();
                 return false;
             } else {
                 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                 if (!filter.test(Email)) {
                     self.messages = "Invalid email address.";
-                    alert('Invalid email address');
-                    //$("#PDone").modal();
+                    //alert('Invalid email address');
+                    $("#PDone").modal();
                     return false;
                 }
             }
             if(self.applPosition.indexOf("1")==-1){
-                alert('Select atleast one applying position');
+                self.messages='Select atleast one applying position';
+                $("#PDone").modal();
+                //alert('Select atleast one applying position');
                 return false;
             } 
             return true;
@@ -347,13 +356,13 @@
                                 'UID': self.customerID,
                                 'FileId': fileID
                             };
-                            alert(JSON.stringify(params));
+                            //alert(JSON.stringify(params));
                             options.params = params;
                             
                             try {
                                 var ft = new FileTransfer();
                             } catch (ex) {
-                                self.toaster.error('exception generated:' + ex, 'Error');
+                                //self.toaster.error('exception generated:' + ex, 'Error');
                             }
                         
                             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
@@ -366,16 +375,21 @@
                                     });
                                     $("#showload").hide();
                                 } else {
-                                    alert('Something went wrong with the server ');
+                                    self.messages='Something went wrong with the server';
+                                    //alert('Something went wrong with the server ');
+                                    $("#PDone").modal();
                                     $("#showload").hide();
                                 } 
                             }), (function (msg) {
-                                alert("Sample Image can\'t upload : " + JSON.stringify(msg));
+                                self.messages='Sample Image can\'t upload';
+                                $("#PDone").modal();
+                                //alert("Sample Image can\'t upload : " + JSON.stringify(msg));
                                     $("#showload").hide();
                             }), options);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            alert('PNG,JPEG,JPG images allowed');
+                            $("#PDone").modal();
+                            //alert('PNG,JPEG,JPG images allowed');
                            
                         }
                     }, self.onFail, {
@@ -390,7 +404,8 @@
 
             } catch (ex) {
                 self.messages = "Can\'nt upload image";
-                alert('Can\'nt upload image');
+                $("#PDone").modal();
+                //alert('Can\'nt upload image');
             } finally {
                 self.isImageClick = false;
             }
@@ -410,7 +425,9 @@
                         }, 3000)
                     });
             }, function (error) {
-                alert('Something went wrong with the server');
+                self.messages='Something went wrong with the server';
+                $("#PDone").modal();
+                //alert('Something went wrong with the server');
             });
         }
 

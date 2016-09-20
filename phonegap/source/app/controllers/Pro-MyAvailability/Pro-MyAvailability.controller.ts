@@ -18,13 +18,14 @@
             private $window: ng.IWindowService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private moment: any,
-            private uiCalendarConfig: any,
+            private uiCalendarConfig: any
           
 
         ) {
+           
             var self = this;
 
-            console.log(self.serviceData);
+         
             self.userId = window.localStorage.getItem('CustomerID');
             self.uiConfig = {
                 calendar: {
@@ -45,14 +46,9 @@
                             proId: 0,
                             color: '#008000'
 
-                        });				    // update Calendar event dateFrom
-                        //self.selectedDate = $filter('date')(selectedDate, 'yyyy-MM-dd');;		// update $scope.dateFrom
-                        //console.log('$scope.uiConfig', $scope.uiConfig);
-                        //console.log('uiCalendarConfig', uiCalendarConfig);
+                        });				    
                     },
-                    //eventDrop: this.alertOnDrop,
-                    //eventResize: this.alertOnResize,
-                    //eventRender: this.eventRender
+                   
                 }
             };
            
@@ -60,28 +56,19 @@
            
         
                 // any other event sources...
-
-   
+        
             self.availList()
           
             
-            //    [
-            //    { title: 'All Day Event', start: new Date(y, m, 1) },
-            //    { title: 'Long Event', start: new Date(y, m, d - 5), end: new Date(y, m, d - 2) },
-            //    { id: 999, title: 'Repeating Event', start: new Date(y, m, d - 3, 16, 0), allDay: false },
-            //    { id: 999, title: 'Repeating Event', start: new Date(y, m, d + 4, 16, 0), allDay: false },
-            //    { title: 'Birthday Party', start: new Date(y, m, d + 1, 19, 0), end: new Date(y, m, d + 1, 22, 30), allDay: false },
-            //    { title: 'Click for Google', start: new Date(y, m, 28), end: new Date(y, m, 29), url: 'http://google.com/' }
-            //];
+         
         }
-        alertOnEventClick(date: any, jsEvent: any, view: any) {
-            alert(date + jsEvent + view);
-        }
+      
+      
         availList()
         {
 
             var self = this;
-            var val = new Array();
+           
             self.staticEvents1 =
                 [
                     // your event source
@@ -100,22 +87,9 @@
                 for (var i = 0; i < self.serviceData.length; i++) {
                     var starthours = self.serviceData[i].StartTime.Hours;
                     var endhours = self.serviceData[i].EndTime.Hours;
-                    if (parseInt(starthours) >= 12) {
-                        starthours = starthours - 12;
-                        starthours = starthours + ":" + self.serviceData[i].StartTime.Minutes + " PM";
-                    }
-                    else {
-                        starthours = starthours + ":" + self.serviceData[i].StartTime.Minutes + " AM";
-                    }
-                    if (parseInt(endhours) >= 12) {
-                        endhours = endhours - 12;
-                        endhours = endhours + ":" + self.serviceData[i].EndTime.Minutes + " PM";
-                    }
-                    else {
-                        endhours = endhours + ":" + self.serviceData[i].EndTime.Minutes + " AM";
-                    }
+                   
                     var dateMonth = self.serviceData[i].Date;
-                    //dateMonth = dateMonth.replace("/Date(", "").replace(")/", "");
+               
 
 
 
@@ -123,44 +97,23 @@
                  var   dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
                     var getmonth = '';
-                    //if ((dateMonth.date.getMonth() + 1) < 10) {
-                    //    getmonth = "0" + parseInt(dateMonth.date.getMonth() + 1);
-                    //}
-                    //else {
-                    //    getmonth = dateMonth.date.getMonth() + 1;
-                    //}
-
-                    console.log(starthours + "  " + endhours);
-                    val.push({
-
-                        //start: dateMonth.date.getFullYear() + "-" + getmonth + "-" + dateMonth.date.getDate(),
-                        //end: dateMonth.date.getFullYear() + "-" + getmonth + "-" + dateMonth.date.getDate(),
-                        startTime: starthours,
-                        endTime: endhours,
-                        id: self.serviceData[i].AvailID,
-                        proId: self.serviceData[i].ProviderID,
-                        dateField: dateMonth
-
-                        //start: '2016-09-01',
-                        //end: '2016-09-01'
-
-                    });
+                   
+                 
+                   
                     self.staticEvents1[0].events.push({
                      
-                    //start: dateMonth.date.getFullYear() + "-" + getmonth + "-" + dateMonth.date.getDate(),
-                    //    end: dateMonth.date.getFullYear() + "-" + getmonth + "-" + dateMonth.date.getDate(),
+                    
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
-                        //end: dateMonth.date.getFullYear() + "-" + getmonth+ "-" + dateMonth.date.getDate(),
-                        startTime: starthours,
-                        endTime: endhours,
+                    
+                        startTime: new Date(1970, 0, 1, starthours, self.serviceData[i].StartTime.Minutes ),
+                        endTime: new Date(1970, 0, 1, endhours, self.serviceData[i].EndTime.Minutes),
                        id: self.serviceData[i].AvailID,
                       proId: self.serviceData[i].ProviderID,
                       dateField: dateMonth1,
                       dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
                       color: '#008000'
 
-                        //start: '2016-09-01',
-                        //end: '2016-09-01'
+                       
 
                     });
 
@@ -169,8 +122,7 @@
                 }
                
                
-                //self.eventSource = self.staticEvents;
-                console.log(self.staticEvents);
+               
 
             }, function (e) {
             });
@@ -179,8 +131,7 @@
         }
         deleteEvent(avaiId: any, proId: any, $index: any)
         {
-            alert("proid" + proId);
-            alert(proId);
+          
             var con = confirm("Are you sure want to remove?");
             if (con) {
                 
@@ -189,22 +140,10 @@
             }
 
         }
-        //doUpdate(data: any)
-        //{
-        //    var csv = "";
-        //    for (var i = 0; i < data.length; i++)
-        //    {
-                
-        //           csv += data[i].dateFieldHidden + "_" + data[i].startTime + "_" + data[i].endTime+"|"
-                
-
-        //    }
-        //    var jsonData = { CSV: csv, ProID: this.userId };
-        //    this.CustomerHttp.post(jsonData, "/AddMyAvail").then(function (res: any) { });
-        //}
+      
         doUpdate(data: any) {
 
-
+           // alert(JSON.stringify(data));
             var csv = "";
 
             if (data == 0) {
@@ -213,27 +152,80 @@
                 $("#PDone").modal("toggle");
                 return;
             }
-            console.log(data);
+         
             for (var i = 0; i < data.length; i++) {
-                if (!data[i].hasOwnProperty('endTime') || !data[i].hasOwnProperty('startTime')) {
-                    alert("called has own property" + !data[i].hasOwnProperty('endTime') + "clled" + !data[i].hasOwnProperty('startTime'))
+                if (!data[i].hasOwnProperty('endTime') ) {
+                  
                     this.message = "Choose time on respective date";
                     $("#PDone").modal("toggle");
                     return;
-
+                
+                }
+                if (!data[i].hasOwnProperty('startTime'))
+                {
+                    
+                    this.message = "Choose time on respective date";
+                    $("#PDone").modal("toggle");
+                    return;
+                }
+                var date1 = new Date(data[i].startTime);
+                var date2 = new Date(data[i].endTime);
+              //  alert("date1" + date1 + "date2" + date2);
+                if (date2 <= date1)
+                {
+                    this.message = "Start date is greater than end date";
+                    $("#PDone").modal("toggle");
+                    return;
                 }
             }
-
-            console.log(data);
+           
+         
 
             for (var i = 0; i < data.length; i++) {
+                var datestart = new Date(data[i].startTime);
+                var dateend = new Date(data[i].endTime);
+                var startResult=0;
+                var endResult = 0;
+                var start = '';
+                var end = '';
 
-                csv += data[i].dateFieldHidden + "_" + data[i].startTime + "_" + data[i].endTime + "|"
+             
+                if (dateend.getHours() >= 12) {
+                    endResult = dateend.getHours() - 12;
+                    
+                    end = endResult + ":" + dateend.getMinutes() + " PM";
+                    
+                }
+                else {
+                    //alert(endResult);
+                    end = dateend.getHours() + ":" + dateend.getMinutes() + " AM";
+                    //alert("end" + end);
+                }
+                if (datestart.getHours() >= 12) {
+                    startResult = datestart.getHours() - 12;
+                    start = startResult + ":" + datestart.getMinutes() + " PM";
+                    }
+                    else {
+                    start = datestart.getHours() + ":" + datestart.getMinutes()+ " AM";
+                    }
+               
+                //alert("start" + start + "end" + end);
+
+                csv += data[i].dateFieldHidden + "_" + start + "_" + end + "|"
 
 
             }
+       
             var jsonData = { CSV: csv, ProID: this.userId };
-            this.CustomerHttp.post(jsonData, "/AddMyAvail").then(function (res: any) { });
+            var self = this;
+            this.CustomerHttp.post(jsonData, "/AddMyAvail").then(function (res: any) {
+           
+               
+                self.message = "Updated Successfully";
+                $("#PDone").modal("toggle");
+                
+
+            });
         }
     }
 

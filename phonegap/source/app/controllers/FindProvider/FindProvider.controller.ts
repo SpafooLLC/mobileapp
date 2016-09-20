@@ -69,7 +69,7 @@
 
             },
                 function (e) {
-                    alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
+                    //alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
 
 
                 });
@@ -115,7 +115,7 @@
         }
         onError(e: any)
         {
-            alert(JSON.stringify('test:'+ e));
+            //alert(JSON.stringify('test:'+ e));
         }
         getProviders(serviceId: any) {
             var self = this;
@@ -260,7 +260,7 @@
                 if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
 
                 }
                 });
