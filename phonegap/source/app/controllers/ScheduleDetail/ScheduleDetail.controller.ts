@@ -63,7 +63,8 @@
         }
 
         dismissAndThen(){
-            this.$state.go('MySchedule');
+          return false;
+            //this.$state.go('MySchedule');
         }
 
 
