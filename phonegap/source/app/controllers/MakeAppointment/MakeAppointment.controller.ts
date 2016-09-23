@@ -119,12 +119,6 @@
                 case 1:
                     self.GetGPSLocation(); break;
                 case 2:
-
-                    //self.address = self.ServiceData.profileField.streetField;
-                    //self.city = self.ServiceData.profileField.cityField;
-                    //self.state = self.ServiceData.profileField.regionField;
-                    //self.zip = self.ServiceData.profileField.postalCodeField;
-
                     //alert(self.address);
                     $("#addressfield").val(self.ServiceData.profileField.streetField);
                     $("#cityfield").val(self.ServiceData.profileField.cityField);
@@ -172,17 +166,6 @@
                         self.info.zip = result.postalCode;
                     }
                 });
-               /* $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+ position.coords.longitude+'&sensor=true', function(resp){
-                    var addressObj = resp.results[0].address_components;
-                    self.info.address = addressObj[0].long_name + " " + addressObj[1].long_name;
-                    self.info.city = addressObj[4].long_name;
-                    self.info.state = addressObj[5].long_name;
-                    self.info.zip = addressObj[7].long_name;
-                    $("#addressfield").val(addressObj[0].long_name + " " + addressObj[1].long_name);
-                    $("#cityfield").val(addressObj[4].long_name);
-                    $("#statefield").val(addressObj[5].long_name);
-                    $("#zipfield").val(addressObj[7].long_name);
-                });*/
             }, self.onError, options);
 
         }
@@ -207,7 +190,7 @@
                 var ServId = this.value.split(':')[0];
                 self.ProviderServiceList.map(function(serv){
                     if(serv.serviceIDField == ServId){
-                        self.totalDuration+=serv.durationField;
+                        self.totalDuration+=serv.durationField == '-1' ? 60 : serv.durationField;
                         self.totalPrice+=serv.priceField;
                         servLists.push(serv);
                     }
@@ -228,7 +211,7 @@
             self.totalDuration = 0;
             self.totalPrice = 0;
             self.serviceString = self.selectedServices.map(function(serv){
-                self.totalDuration+= isNaN(serv.durationField * serv.qtyField) ? serv.durationField : serv.durationField * serv.qtyField;
+                self.totalDuration+= isNaN(serv.durationField * serv.qtyField) ? serv.durationField == '-1' ? 60 : serv.durationField : serv.durationField == '-1' ? 60 : serv.durationField * serv.qtyField;
                 self.totalPrice+= isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;
                 //servLists.push(serv);
             });
@@ -272,7 +255,7 @@
                         },
                         editable: true,
                         slotEventOverlap: false,
-                        eventLimit: 3,
+                        eventLimit: 1,
                         /*events: function (start, end, timezone, callback) {
                             getOccupiedSlots(moment(start).format('MM-DD-YYYY'), moment(end).format('MM-DD-YYYY'), timezone, callback)
                         }*/
@@ -293,7 +276,7 @@
 
             var self = this;
             var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-            var start = moment(start).format('MM/DD/YYYY');
+            var start = moment().format('MM/DD/YYYY');
             var end = moment(end).format('MM/DD/YYYY');
             //var firstDay = new Date(y, m, 1);
             //var lastDay = new Date(y, m + 1, 0);
@@ -309,7 +292,7 @@
                 var strToday = ((_Today.getMonth() + 1) < 10 ? '0' : '') + (_Today.getMonth() + 1) + "/" + ((_Today.getDate() < 10) ? '0' : '') + _Today.getDate() + "/" + _Today.getFullYear();
                 $.each(d, function (i, o) {
                     //if (o.ForDate >= strToday) {
-                        self.staticEvents[0].events.push({ title: o.atTimeField + ' - ' + o.endTimeField, start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#ff0000', textColor: 'white' });
+                        self.staticEvents[0].events.push({ title: o.atTimeField + ' - ' + o.endTimeField, start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
                     //}
                 });
             });
@@ -328,14 +311,14 @@
 
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
-                        title: starthours+':'+startminutes+' - '+endhours+':'+endminutes,
+                        title: endhours+':'+endminutes+' - '+starthours+':'+startminutes,
                         startTime: new Date(1970, 0, 1, starthours, aviles[i].StartTime.Minutes),
                         endTime: new Date(1970, 0, 1, endhours, aviles[i].EndTime.Minutes),
                         id: aviles[i].AvailID,
                         proId: aviles[i].ProviderID,
                         dateField: dateMonth1,
                         dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
-                        color: '#1e319b'
+                        color: '#ff0000'
                     });
                 }
             });
@@ -349,59 +332,54 @@
         onTimeSelected(time, event){
             var self = this;
             self.availability = false;
-            if(!self.isToday(time)){
+            if(!self.isToday(time, true)){
                 self.showIonicAlert('Sorry, you cannot select date before today');
             } else{
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
-                var tTime = self.totalDuration;
-                self.from = self.onlyDate+' '+moment('09.00', "HH:mm").format("HH:mm");
-                self.to = self.onlyDate+' '+moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
+                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("HH:mm") : moment('09.00', "HH:mm").format("HH:mm");
+                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").add(self.totalDuration, 'm').format("HH:mm") : moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
                 $('#PDoneSlider').modal();
-                /*var popUp = self.$ionicPopup.show({
-                    scope: self.$scope,
-                    title: 'Choose your time slot',
-                    templateUrl: 'app/templates/Partials/AppointmentSlotSlider.html',
-                    buttons: [
-                        { text: 'Cancel' },
-                        {
-                            text: '<b>Ok</b>',
-                            type: 'button-positive',
-                            onTap: function(e) {
-                                e.preventDefault();
-                                if(self.availability){
-                                    self.paymentMethod();
-                                    popUp.close();
-                                } else{
-                                    self.showIonicAlert('Please select an available time slot');
-                                }
-                            }
-                        }
-                    ]
-                });*/
-                self.isSlotAvailable();
-                setTimeout(function(){
-                    $("#range").ionRangeSlider({
-                        type: "double",
-                        min: +moment('09:00', 'HH:mm').format("X"),
-                        max: +moment('21:00', 'HH:mm').format("X"),
-                        from: +moment('09:00', 'HH:mm').format("X"),
-                        to: +moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X"),
-                        //step: +moment('05', 'mm').format('hh:mm A'),
-                        //step: 300000,
-                        drag_interval: true,
-                        prettify: function (num) {
-                            return moment(num, "X").format("HH:mm");
-                        },
-                        onFinish: function (data) {
-                            self.from = self.onlyDate+' '+moment(data.from, "X").format("HH:mm");
-                            self.to = self.onlyDate+' '+moment(data.to, "X").format("HH:mm");
-                            self.isSlotAvailable();
-                        },
-                    });
-                }, 100)
+                var todayCurrentTime = moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").format("X");
+                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'HH:mm').format("X");
+                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").add(self.totalDuration, 'm').format("X") : moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X");
+                //var from = +moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X");
+                var min =  self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'HH:mm').format("X");
+                var max = moment('21:00', 'HH:mm').format("X");
+                //setTimeout(function(){
+                $("#range").ionRangeSlider({
+                    type: "double",
+                    min: min,
+                    max: max,
+                    from: to,
+                    to: from,
+                    //step: +moment('05', 'mm').format('hh:mm A'),
+                    //step: 300000,
+                    drag_interval: true,
+                    prettify: function (num) {
+                        return moment(num, "X").format("HH:mm");
+                    },
+                    onFinish: function (data) {
+                        self.from = moment(data.from, "X").format("HH:mm");
+                        self.to = moment(data.to, "X").format("HH:mm");
+                        self.isSlotAvailable();
+                    },
+                  force_edges: true
+                });
+              self.slider = $("#range").data("ionRangeSlider");
+              self.slider.update({
+                from: to,
+                to: from
+              });
+              self.isSlotAvailable();
+                //}, 100)
             }
         }
+
+      destroySlider(){
+        var self = this;
+        self.slider.destroy();
+      }
 
         dateTimeChooseDone(){
             var self = this;
@@ -418,11 +396,6 @@
             $(".modal").modal('hide');
             self.messages = text;
             $("#PDone").modal();
-            /*var template = template || '';
-            return self.$ionicPopup.alert({
-                title: text,
-                template: template
-            });*/
         }
 
         actionAfterOk(ac){
@@ -455,9 +428,9 @@
             var providerId = self.$stateParams.userId;
             var postObj = {
                 AppID: self.AppID,
-                EndDateTime:self.from,
+                EndDateTime:self.onlyDate+' '+self.from,
                 ProID:providerId,
-                StartDateTime:self.to
+                StartDateTime:self.onlyDate+' '+self.to
             };
             var url = self.isEdit ? '/IsProviderSlotFreeEM' : '/IsProviderSlotFree';
             self.CustomerHttp.post(postObj, url).then(function (response: any) {
@@ -471,13 +444,15 @@
             })
         }
 
-        isToday (time) {
+        isToday (time, todayAnd) {
             var today = new Date(),
                 currentCalendarDate = new Date(time);
 
             today.setHours(0, 0, 0, 0);
             currentCalendarDate.setHours(0, 0, 0, 0);
-            return currentCalendarDate.getTime() >= today.getTime();
+          var currTime = currentCalendarDate.getTime();
+          var todayTime = today.getTime();
+          return todayAnd ?  currTime >= todayTime : currTime == todayTime;
         }
 
         validatePaymentMethod(){
@@ -544,48 +519,6 @@
             }
             self.messages = 'Your card ending with '+self.mainCard+' will be charge for amount of '+self.totalPrice+' USD';
             $("#PDonePayment").modal();
-
-            /*var confirmPopup = self.$ionicPopup.confirm({
-                title: '<i style="color: #112173" class="fa fa-info-circle fa-3x"></i>',
-                template: 'Your card ending with '+self.mainCard+' will be charge for amount of '+self.totalPrice+' USD'
-            });*/
-            /*confirmPopup.then(function(res) {
-                if(res) {
-                    if (!type) {
-                        var PID = self.PID;
-                        var PPID = card.customerPaymentProfileId;
-                        var amount = self.totalPrice;
-                        //str.slice(str.length -  4, str.length);
-                        self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response:any) {
-                            var resp = JSON.parse(response.AuthProfileJSONResult);
-                            if (resp.transactionResponse.responseCode == 1) {
-                                self.transId = resp.transactionResponse.transId;
-                                self.finalMakeAppointment();
-                            } else {
-                                self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason', resp.transactionResponse.errors[0].errorText);
-                            }
-                        })
-                    } else{
-                        var obj = {
-                            "Amount": self.totalPrice,
-                            "CCNumber": self.cardNumber,
-                            "CVV": self.cvv,
-                            "Email": self.CustomerEmail,
-                            "Expiry":self.expMonth+'/'+self.expYear,
-                            "UID": self.customerId
-                        };
-                        self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response:any) {
-                            var resp = JSON.parse(response);
-                            if (resp.transactionResponse.responseCode == 1) {
-                                self.transId = resp.transactionResponse.transId;
-                                self.finalMakeAppointment();
-                            } else {
-                                self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason', resp.transactionResponse.errors[0].errorText);
-                            }
-                        })
-                    }
-                }
-            });*/
         }
         actionPayment(){
             var self = this;

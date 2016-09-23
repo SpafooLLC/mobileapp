@@ -169,7 +169,7 @@
             .fc-day-grid-event .fc-content{  text-align: center !important;  }
             H2 {  margin: 0 0 10px 0;  line-height: 36px;  font-weight: normal;  font-size: 28px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
             .fc th {  border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
-            .fc td {  border-style: solid;  border-width: 1px;  padding: 0;  font-weight: 600;  vertical-align: top;  color: #112173;  }
+            .fc td {  border-style: solid;  border-width: 1px;  padding: 5px;  font-weight: 600;  vertical-align: top;  color: #112173;  }
         </style>
         <div class="bread">
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
@@ -195,11 +195,13 @@
                     <div class="modal-cpbody center">
                         <style>
                             .popup-container .popup {  width: 90% !important;  }
+                            .irs-line { background: #EEE !important; border: none !important; }
                             .ui-widget-content {  border: none !important;  }
                             .tsinfo {  color: #ff0000;  font-weight: 600;  font-size: 12px;  text-align: center;  width: 100%;  padding-top: 6px;  }
                             .irs-single {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
                             .irs-to {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
                             .irs-from {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
+                            .irs-bar {border-right: 15px solid #1e319b;  border-left: 15px solid #1e319b;}
                             .times-header {  font-weight: 600;  font-size: 15px;  color: #112173;  text-align: center;  margin-bottom: 15px;  }
                             .times-header span {  font-weight: 600;  font-size: 15px;  color: #219962;  }
                             .tsbottom .ava {  color: #219962;  font-weight: 600;  }
@@ -208,15 +210,16 @@
                         </style>
                         <div id="NS_dvSliderOuter" style="padding: 10px 0; width: auto; min-height: 0; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
                             <div class="times-header text-center">
-                                Time slot for date: <span class="balanced"><label id="lblSlotDate">{{ma.onlyDate}}</label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Service Session: <span class="balanced"><label id="lblServiceSession">{{ma.totalDuration}} minute(s)</label></span>
+                                <p> Time slot for date: <span class="balanced"><label id="lblSlotDate">{{ma.onlyDate}}</label></span> </p>
+                                <p> Total Service Session: <span class="balanced"><label id="lblServiceSession">{{ma.totalDuration}} minute(s)</label></span> </p>
+                                <div class="chosens text-center">Chosen slot: [<label id="NS_lblStartHour">{{ma.from}}</label> &nbsp;-&nbsp;<label id="NS_lblEndHour">{{ma.to}}</label>]</div>
                             </div>
-                            <div class="chosens text-center">Chosen slot: [<label id="NS_lblStartHour">{{ma.from}}</label> &nbsp;-&nbsp;<label id="NS_lblEndHour">{{ma.to}}</label>]</div>
                             <div class="padding">
                                 <input type="text" name="volume" id="range">
                             </div>
                             <div class="tsinfo assertive text-center">(move the blue handle, to select the slot of your preference)</div>
                             <div class="tsbottom text-center">
-                                <span id="lblAvailability" class="positive">Availability:</span><br>
+                                <span id="lblAvailability" class="positive">Availability:</span>
                                 <label class="balanced" id="lblAvail" style="display: inline-block;" ng-if="ma.availability"><span class="ava">This slot is available</span></label>
                                 <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="avano">This slot is not available</span></label><br>
                                 <img ng-if="ma.availability" style="" id="imgAvail" ng-src="images/Other/tsgrant.png">
@@ -225,8 +228,8 @@
 
                         </div>
                         <div class="cpaction">
-                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
-                            <div class="col-xs-6 nopad"><a ng-click="ma.dateTimeChooseDone()" class="bluesm-btn block">Ok</a></div>
+                            <!--<div class="col-xs-6 nopad">--><a data-dismiss="modal" ng-click="ma.destroySlider()" data-toggle="modal" class="green-btn block col-xs-6">Cancel</a>
+                            <!--<div class="col-xs-6 nopad">--><a ng-click="ma.dateTimeChooseDone()" class="bluesm-btn block col-xs-6">Ok</a>
                         </div>
                     </div>
                 </div>
@@ -270,12 +273,26 @@
             <div class="pmethod">
                 <div class="blue bold center">Card number ending with</div>
             </div>
-            <div class="pmethod" ng-repeat="card in ma.CCards">
+            <div id="dvUserCards">
+              <div class="ccshowinfo pmethod" ng-repeat="card in ma.CCards">
+                <div class="radio radio-info">
+                  <input type="radio" ng-model="ma.selectedCard" name="rblUserCard" value="{{card.customerPaymentProfileId}}" id="rblUserCard_{{card.customerPaymentProfileId}}" ppid="{{card.customerPaymentProfileId}}">
+                  <label for="rblUserCard_{{card.customerPaymentProfileId}}">{{card.payment.Item.cardNumber}}</label>
+                </div>
+              </div>
+              <div class="ccshowinfo pmethod">
+                <div class="radio radio-info">
+                  <input type="radio" ng-model="ma.selectedCard" name="rblUserCard" value="0" id="rblUserCard_0" ppid="0">
+                  <label for="rblUserCard_0">Specify new card information in Next step</label>
+                </div>
+              </div>
+            </div>
+            <!--<div class="pmethod" ng-repeat="card in ma.CCards">
                 <div class="radio radio-info"><input ng-model="ma.selectedCard" type="radio" name="rblUserCard" value="{{card.customerPaymentProfileId}}" id="rblUserCard_{{card.customerPaymentProfileId}}" ppid="{{card.customerPaymentProfileId}}"><label>{{card.payment.Item.cardNumber}}</label></div>
-            </div>
-            <div class="pmethod">
+            </div>-->
+            <!--<div class="pmethod">
                 <div class="radio radio-info"><input ng-model="ma.selectedCard" type="radio" name="rblUserCard" value="0" id="rblUserCard_0" ppid="0"><label>Specify new card information in Next step</label></div>
-            </div>
+            </div>-->
         </div>
         <div class="fource-bottom center">
             <a ng-click="ma.validatePaymentMethod()" class="block-btn">Continue</a>
@@ -291,7 +308,6 @@
                         <p >{{ma.messages}} </p>
                         <div class="cpaction">
                             <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
-
                         </div>
                     </div>
                 </div>
