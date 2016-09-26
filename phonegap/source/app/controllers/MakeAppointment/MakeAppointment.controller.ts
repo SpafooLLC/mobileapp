@@ -85,7 +85,20 @@
                 if(self.isEdit){
                   self.getEditInfo();
                 }
-                self.SharedHttp.GetProviderServices(UserID).then(function (res) { self.ProviderServiceList = res; });
+                self.SharedHttp.GetProviderServices(UserID).then(function (res) {
+                  self.ProviderServiceList = res;
+                  if(self.ProviderServiceList.length && !self.isEdit){
+                    self.ProviderServiceList.map(function(proServ){
+                      if(proServ.serviceIDField == self.$window.localStorage.getItem('ServiceIDs')){
+                        var serviceString = proServ.serviceIDField+':'+1+':'+proServ.priceField;
+                        setTimeout(function(){
+                          $('input[value="'+serviceString+'"]').prop('checked', 'checked');
+                        }, 300);
+                        return false;
+                      }
+                    })
+                  }
+                });
                 self.CustomerHttp.get('/GetUserInfo/' + self.customerId).then(function (response: any) {
                     self.ServiceData.profileField.streetField = response.GetUserInfoResult.profileField.streetField;
                     self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;

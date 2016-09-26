@@ -1,13 +1,13 @@
 ﻿module loginController {
     export interface ILogin  {
         doLogin(username: string, password: string): void;
-     
+
 
     }
     class loginController implements ILogin {
         messages: string;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', '$rootScope', 'SharedHttp'];
-       
+
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -21,13 +21,13 @@
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-          
+
         }
 
 
         doLogin(username: string, password: string) {
             var self = this;
-            if (username === null || username == '' || username == undefined) {                
+            if (username === null || username == '' || username == undefined) {
                 self.messages = "Please Enter User Name.";
                 $("#PDone").modal();
                 return;
@@ -57,10 +57,10 @@
                     self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
-                    $("#PDone").modal();                    
+                    $("#PDone").modal();
                 }
             }, function (error) {
-              
+
             });
         }
 
@@ -72,13 +72,14 @@
                 self.$rootScope.GetLoginStatus = true;
                 self.SharedHttp.GetMyNotification(UserID).then(function (res:any) { self.$rootScope.NotifiCount = res.length; });
                 //self.$state.go("home");
-                if(!self.$rootScope.$ionicGoBack()){
+                /*if(!self.$rootScope.$ionicGoBack()){
                     self.$state.go("home");
-                }
+                }*/
+                self.$window.history.back();
             }, function (error) {});
         }
 
-     
+
 
 
 
