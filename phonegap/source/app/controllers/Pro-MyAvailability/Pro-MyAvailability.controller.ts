@@ -133,9 +133,14 @@
           
             var con = confirm("Are you sure want to remove?");
             if (con) {
+                if (avaiId == null || avaiId == "" || avaiId == undefined || avaiId == "undefined" || avaiId == 0) {
+                    this.staticEvents1[0].events.splice($index, 1);
+                }
+                else {
+                    this.staticEvents1[0].events.splice($index, 1);
+                    this.CustomerHttp.get("/RemoveAvail/" + avaiId).then(function (res) { }, function (e) { });
+                }
                 
-                this.staticEvents1[0].events.splice($index, 1);
-                this.CustomerHttp.get("/RemoveAvail/" + avaiId).then(function (res) { }, function (e) { });
             }
 
         }
@@ -156,7 +161,7 @@
                 if (!data[i].hasOwnProperty('endTime') ) {
                   
                     this.message = "Choose time on respective date";
-                    $("#PDone").modal("toggle");
+                    $("#PDoneError").modal("toggle");
                     return;
                 
                 }
@@ -164,7 +169,7 @@
                 {
                     
                     this.message = "Choose time on respective date";
-                    $("#PDone").modal("toggle");
+                    $("#PDoneError").modal("toggle");
                     return;
                 }
                 var date1 = new Date(data[i].startTime);
@@ -173,7 +178,7 @@
                 if (date2 <= date1)
                 {
                     this.message = "Start date is greater than end date";
-                    $("#PDone").modal("toggle");
+                    $("#PDoneError").modal("toggle");
                     return;
                 }
             }

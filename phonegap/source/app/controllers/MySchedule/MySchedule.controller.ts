@@ -88,10 +88,12 @@
             var self = this;
             self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getClientSchedular(self.UserID); });
         }
-        denyAppointment(data: any)
-        {
-            var self = this;
-            self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getClientSchedular(self.UserID) });
+        denyAppointment(data: any) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;
+                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getClientSchedular(self.UserID) });
+            }
         }
     }
 

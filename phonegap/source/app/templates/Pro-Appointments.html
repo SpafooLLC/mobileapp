@@ -1,6 +1,5 @@
-<!--<ion-view view-title="User Registration" scroll="true">
-    <ion-content>-->
-
+ <ion-view view-title="My Schedule" scroll="true">
+    <ion-content> 
 <div class="bread">
     <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
     <div class="ptitle">My Appointments</div>
@@ -81,7 +80,7 @@
         </div>
 
         <div ng-repeat="s in papp.ServiceData">
-            <div class="bar" ng-if="$index==0">Accomplished</div>
+            <div class="bar pbards" ng-if="$index==0">Accomplished</div>
             <div ng-if="s.statusField==1">
                 <div class="acc">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -96,11 +95,15 @@
                                 <p>Service(s): {{s.ServiceList}}</p>
                             </td>
                             <td class="right">
-                                <a href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}">
-                               
+                                <a ng-if="!s.isRate" href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}">
+
+                                    <i class="fa fa-star-o fa-2x"></i>
+                                    <p ng-if="!s.isRate">Rate this client</p>
+                                </a>
+                                <a ng-if="s.isRate" href="">
+
                                     <i class="fa fa-star-o fa-2x"></i>
                                     <p ng-if="s.isRate">Already Rated!</p>
-                                    <p ng-if="!s.isRate">Rate this client</p>
                                 </a>
                             </td>
                         </tr>
@@ -116,5 +119,5 @@
 
 <script type="text/javascript">app.initialize();</script>
 
-<!--</ion-content>
-</ion-view>-->
+ </ion-content>
+</ion-view> 

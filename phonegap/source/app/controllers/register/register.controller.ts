@@ -41,7 +41,9 @@
             private $timeout: ITimeoutService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-
+            $("#PhoneNo").mask("999-999-9999");
+            $("#MobileNo").mask("999-999-9999");
+            $("#Zipcode").mask("99999");
         }
         doRegister(Regdata: any) {
 
@@ -59,6 +61,7 @@
                 //alert(JSON.stringify(Regdata));
 
                 var data = Regdata;
+
                 data.HardwareName = self.$window.localStorage.getItem('DeviceName');
                 data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
@@ -101,6 +104,12 @@
 
                 return false;
             }
+
+            Regdata.PhoneNo = $("#PhoneNo").val();
+            Regdata.MobileNo = $("#MobileNo").val();
+            Regdata.Zipcode = $("#Zipcode").val();
+
+
             if (Regdata.FirstName === null || Regdata.FirstName === '' || Regdata.FirstName == undefined || Regdata == undefined) {
                 self.messages = "Please Enter First Name.";
                 $("#PDone").modal();
@@ -152,17 +161,17 @@
                     return false;
                 }
             }
-            if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
-                self.messages = "Please Enter Mobile Number.";
-                $("#PDone").modal();
-                return false;
-            } 
-
+         
             if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
                 self.messages = "Please Enter Phone Number.";
                 $("#PDone").modal();
                 return false;
             }
+   if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
+                self.messages = "Please Enter Mobile Number.";
+                $("#PDone").modal();
+                return false;
+            } 
 
             if (Regdata.Street === null || Regdata.Street === '' || Regdata.Street == undefined) {
                 self.messages = "Please Enter Address.";
@@ -205,10 +214,7 @@
                     navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(extension);
-                        if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                            //alert(extension);
-                            //self.$timeout(function () {
-                            //self.imageURL = 'file://' + imageURI;
+                        if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {                       
                             self.SharedHttp.setProfileImage('file://' + imageURI);
                             self.postImage();
                             // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);

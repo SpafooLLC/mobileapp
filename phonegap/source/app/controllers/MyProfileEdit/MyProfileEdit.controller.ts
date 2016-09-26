@@ -21,8 +21,12 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $timeout: ITimeoutService
         ) {
+            $("#Telephone").mask("999-999-9999");
+            $("#Cell").mask("999-999-9999");
+            $("#PostalCode").mask("99999");
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserInfo();
+           
         }
         getUserInfo() {
             var self = this;
@@ -55,6 +59,10 @@
             if (self.doValidation(Email)) {
 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
 
+                Phone = $("#Telephone").val();
+                Mob = $("#Cell").val();
+                PostalCode = $("#PostalCode").val();
+
                 var data = {
                     'UserID': self.customerID,
                     'FN': FirstName,
@@ -84,6 +92,8 @@
         }
 
         doValidation(Email: string) {
+           
+
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
@@ -97,6 +107,11 @@
                     return false;
                 }
             }
+
+
+
+
+
             return true;
         }
 

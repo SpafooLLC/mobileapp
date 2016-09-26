@@ -19,8 +19,8 @@
             private $window: Iwindow,
             private $location: any
         ) {
-           this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
-          //    this.WebURL = 'http://localhost:61874/SpaServices.svc';
+     this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
+           //         this.WebURL = 'http://localhost:61874/SpaServices.svc';
         }
 
 
@@ -37,7 +37,7 @@
             }).error(function (error) {
                 deferred.reject(error);
                 $("#showload").hide();
-                alert('Connection : Please Check Internate Connection.');
+                alert('Connection : Please Check Internet Connection.');
             });
             return deferred.promise;
         }
@@ -51,7 +51,7 @@
             }).error(function (error) {
                 deferred.reject(error);
                 $("#showload").hide();
-                alert('Connection : Please Check Internate Connection.');
+                alert('Connection : Please Check Internet Connection.');
             });
             return deferred.promise;
         }

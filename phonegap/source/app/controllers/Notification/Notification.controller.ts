@@ -79,7 +79,7 @@
 
 
         RemoveUserNotification() {
-            var confirmations = confirm("Are you Sure Want to remove ? ");
+            var confirmations = confirm("Are you sure want to remove it ? ");
             if (confirmations) {
                 var self = this;
              
