@@ -12,7 +12,7 @@
         ProviderServiceList: {};
         messages: any;
         action: any;
-        address: string; city: string; state: string; zip: string; AppID: any; info: any;
+        address: string; city: string; state: string; zip: string; AppID: any; info: any; ServiceData: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', '$rootScope', 'SharedHttp','$stateParams', '$ionicPopup'];
         constructor(
             private $q: ng.IQService,
@@ -29,6 +29,7 @@
 
             this.UserID = this.$stateParams.userId;
             this.AppID = 0;
+            this.ServiceData = {};
             var status = this.$window.localStorage.getItem('LoginStatus');
             this.customerId = null;
             this.action = '';
@@ -81,33 +82,46 @@
 
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
                 self.ServiceData = response.GetUserInfoResult;
+                if(self.isEdit){
+                  self.getEditInfo();
+                }
                 self.SharedHttp.GetProviderServices(UserID).then(function (res) { self.ProviderServiceList = res; });
                 self.CustomerHttp.get('/GetUserInfo/' + self.customerId).then(function (response: any) {
-                    self.info.address = self.ServiceData.profileField.streetField = response.GetUserInfoResult.profileField.streetField;
-                    self.info.city = self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
-                    self.info.state = self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
-                    self.info.zip = self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
-                    if(self.isEdit){
-                        self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response: any) {
-                            self.ServiceData.appointment = response.GetAppointmentResult;
-                            self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response: any) {
-                                var e = response.GetAppLocationResult;
-                                self.info.address = e.addressField;
-                                self.info.city = e.cityField;
-                                self.info.state = e.stateField;
-                                self.info.zip = e.zipField;
-
-                            });
-                            self.appointment = self.ServiceData.appointment;
-                            self.appointment.servicesField.map(function(serv: any){
-                                var serviceString = serv.serviceIDField+':'+1+':'+serv.priceField;
-                                $('input[value="'+serviceString+'"]').prop('checked', 'checked');
-                                self.comment = self.appointment.commentsField;
-                            })
-                        });
-                    }
+                    self.ServiceData.profileField.streetField = response.GetUserInfoResult.profileField.streetField;
+                    self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
+                    self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
+                    self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
+                  if(!self.isEdit){
+                      self.info.address = self.ServiceData.profileField.streetField;
+                      self.info.city = self.ServiceData.profileField.cityField;
+                      self.info.state = self.ServiceData.profileField.regionField;
+                      self.info.zip = self.ServiceData.profileField.postalCodeField
+                  }
                 })
             });
+        }
+
+        getEditInfo(){
+          var self = this;
+          self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response: any) {
+            self.ServiceData.appointment = response.GetAppointmentResult;
+            self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response: any) {
+              var e = response.GetAppLocationResult;
+              self.info.address = e.addressField;
+              self.info.city = e.cityField;
+              self.info.state = e.stateField;
+              self.info.zip = e.zipField;
+
+            });
+            self.appointment = self.ServiceData.appointment;
+            setTimeout(function(){
+              self.appointment.servicesField.map(function(serv: any){
+                var serviceString = serv.serviceIDField+':'+1+':'+serv.priceField;
+                $('input[value="'+serviceString+'"]').prop('checked', 'checked');
+                self.comment = self.appointment.commentsField;
+              })
+            }, 500)
+          });
         }
 
         changedValue(data: any, text: any) {
@@ -177,6 +191,9 @@
         viewSelect(view: any){
             var self = this;
             view = self.ASAP && view == 'Appointment-DateTime' ? 'Order-Summary' : view;
+            if(self.isEdit && view == 'Basic-Info'){
+              self.getEditInfo();
+            }
             this.MainView = view;
         }
 
@@ -197,15 +214,24 @@
                 })
             });
             self.selectedServices = servLists;
+          //console.log(self.selectedServices);
             if(self.selectedServices.length) {
                 self.MainView = 'Order-Summary';
                 self.selectedServices.map(function(ser){
-                   ser.qtyField = 1;
+                    ser.qtyField = 1;
+                    if(self.isEdit){
+                      self.appointment.servicesField.map(function(srvc){
+                        if(srvc.serviceIDField == ser.serviceIDField){
+                          ser.qtyField = srvc.qtyField;
+                        }
+                      })
+                    }
                 });
             } else{
                 self.showIonicAlert('Please select the Service(s) for Appointment');
             }
         }
+
         changeSummery(){
             var self = this;
             self.totalDuration = 0;
@@ -259,7 +285,7 @@
                         /*events: function (start, end, timezone, callback) {
                             getOccupiedSlots(moment(start).format('MM-DD-YYYY'), moment(end).format('MM-DD-YYYY'), timezone, callback)
                         }*/
-                        viewRender: function(view, element) { self.getOccupiedSlots(view.start, view.end); }
+                        viewRender: function(view, element) { if(self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
                     }
                 };
                 self.staticEvents = [

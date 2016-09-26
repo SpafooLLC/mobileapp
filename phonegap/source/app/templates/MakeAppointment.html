@@ -45,9 +45,9 @@
                     <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
                 </div>-->
                 <div class="col-xs-12"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield"></div>
-                <div class="col-xs-6"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
+                <div class="col-xs-5"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
                 <div class="col-xs-4"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
-                <div class="col-xs-2"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
+                <div class="col-xs-3"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
                 <p class="bmar-sm">Select Service(s)</p>
 
                 <!--<div class="checkbox checkbox-primary checkbox-inline">
@@ -62,7 +62,7 @@
 
                 <div class="bmar-md"></div>
                 <textarea name="textarea" id="textarea" ng-model="ma.comment" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
-                <p class="bmar-xs">Soonest appointment available?</p>
+                <!--<p class="bmar-xs">Soonest appointment available?</p>-->
                 <!--<a href="OrderSummary.html" class="green-rounded">ASAP</a>-->
             </div>
         </div>
@@ -98,7 +98,6 @@
             <div class="ptitle">order summary</div>
         </div>
         <div class="inbody osummery">
-            {{ma.renderCalender()}}
             <div class="head">
                 <h3>Service Session: {{ma.totalDuration}}min</h3>
                 <p><!--<strong>06:30</strong> pm-->at <a href="#">{{ma.addressText}}</a></p>
