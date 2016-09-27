@@ -1,184 +1,162 @@
+<div class="bread">
+    <a href="" ng-click="ma.viewSelect('Payment-Method')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
 
+    <div class="ptitle">Payment Information</div>
+</div>
+<div class="inbody-simple">
+    <div class="has-feedback fgap">
+        <label class="control-label">Name on Card</label>
+        <input type="text" ng-model="ma.nameOnCard" class="form-control">
+        <span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>
+    </div>
+    <div class="has-feedback fgap">
+        <label class="control-label">Card Number</label>
+        <input type="text" ng-model="ma.cardNumber" class="form-control">
+        <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-<ion-view view-title="Credit Card">
-    <ion-Content>
-        <div class="in-logo"><a href="index.html"><img src="Images/Site/SpaFoo-sm.png" /></a></div>
-        <div class="inheader">
-            <div class="titre">
-                <button type="button" class="tcon tcon-menu--xbutterfly" aria-label="toggle menu"><span class="tcon-menu__lines" aria-hidden="true"></span><span class="tcon-visuallyhidden">toggle menu</span></button>
-            </div>
-            <div class="image_trombi">
-                <div class="nav-wrapper">
-                    <div class="vmenu">
-                        <ul class="top">
-                            <li><a href="MyProfile.html"><img src="Images/Site/vm-user.png"><p>Matthew Lee</p></a></li>
-                            <li><a href="FindProvider.html"><img src="Images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                            <li><a href="Services.html"><img src="Images/Site/vm-services.png"><p>Services</p></a></li>
-                            <li><a href="MySchedule.html"><img src="Images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                            <li>
-                                <a href="MyProfile.html#noti">
-                                    <div class="pnotification2">
-                                        <div class="ico2">
-                                            <i class="fa white fa-bell fa-1x"></i>
-                                        </div>
-                                        <div id='notification2'>3</div>
-                                    </div>
-                                    <p>Notification</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="bottom">
-                            <li><a href="About.html"><img src="Images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-                            <li><a href="ShareApp.html"><img src="Images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-                            <li><a href="#" class="signout"><img src="Images/Site/vm-signout.png"><p>Signout</p></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="ccradio">
+        <div class="radio radio-info radio-inline">
+            <input type="radio" ng-model="ma.radioInline" name="radioInline" value="option1" id="inlineRadio1">
+            <label for="inlineRadio2"><img src="Images/Site/cc-v.png" /></label>
         </div>
-        <div class="bread">
-            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-            <div class="ptitle">Payment Information</div>
+        <div class="radio radio-info radio-inline">
+            <input type="radio" ng-model="ma.radioInline" name="radioInline" value="option2" id="inlineRadio2">
+            <label for="inlineRadio2"><img src="Images/Site/cc-ae.png" /></label>
         </div>
-        <div class="inbody-simple">
-            <div class="has-feedback fgap">
-                <label class="control-label">Name on Card</label>
-                <input type="text" class="form-control">
-                <span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>
-            </div>
-            <div class="has-feedback fgap">
-                <label class="control-label">Card Number</label>
-                <input type="text" class="form-control">
-                <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-            </div>
+        <div class="radio radio-info radio-inline">
+            <input type="radio" name="radioInline" ng-model="ma.radioInline" value="option3" id="inlineRadio3">
+            <label for="inlineRadio2"><img src="Images/Site/cc-mc.png" /></label>
+        </div>
+        <div class="radio radio-info radio-inline">
+            <input type="radio" name="radioInline" ng-model="ma.radioInline" value="option4" id="inlineRadio4">
+            <label for="inlineRadio2"><img src="Images/Site/cc-d.png" /></label>
+        </div>
+    </div>
+    <div class="expdate">
+        <p class="control-label bold bmar-sm">Expiry Date</p>
 
-            <div class="ccradio">
-                <div class="radio radio-info radio-inline">
-                    <input type="radio" name="radioInline" value="option1" id="inlineRadio1">
-                    <label for="inlineRadio2"><img src="Images/Site/cc-v.png" /></label>
-                </div>
-                <div class="radio radio-info radio-inline">
-                    <input type="radio" name="radioInline" value="option2" id="inlineRadio2">
-                    <label for="inlineRadio2"><img src="Images/Site/cc-ae.png" /></label>
-                </div>
-                <div class="radio radio-info radio-inline">
-                    <input type="radio" name="radioInline" value="option3" id="inlineRadio3">
-                    <label for="inlineRadio2"><img src="Images/Site/cc-mc.png" /></label>
-                </div>
-                <div class="radio radio-info radio-inline">
-                    <input type="radio" name="radioInline" value="option4" id="inlineRadio4">
-                    <label for="inlineRadio2"><img src="Images/Site/cc-d.png" /></label>
-                </div>
-            </div>
-            <div class="expdate">
-                <p class="control-label bold bmar-sm">Expiry Date</p>
-                <div class="col-xs-6 fileft">
-                    <select class="form-control w100">
-                        <option value="jan">January</option>
-                        <option value="feb">February</option>
-                        <option value="mar">March</option>
-                        <option value="apr">April</option>
-                        <option value="may">May</option>
-                        <option value="jun">June</option>
-                        <option value="jul">July</option>
-                        <option value="aug">August</option>
-                        <option value="sep">September</option>
-                        <option value="oct">October</option>
-                        <option value="nov">November</option>
-                        <option value="dec">December</option>
-                    </select>
-                </div>
-                <div class="col-xs-6 firight">
-                    <select class="form-control w100">
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                    </select>
-                </div>
-            </div>
-            <div class="expdate">
-                <p class="control-label bold bmar-sm">CVV</p>
-                <div class="col-xs-6 fileft">
-                    <input type="text" class="form-control" placeholder="000">
-                </div>
-                <div class="col-xs-6 firight cvv">
-                    The last 3 digits displyed on the back of  your card
-                </div>
-            </div>
-            <div class="checkbox checkbox-primary">
-                <input id="checkbox2" type="checkbox" checked>
-                <label for="checkbox2">Remember This Card</label>
-            </div>
-            <div class="tpad-xs checkbox checkbox-primary">
-                <input id="checkbox3" type="checkbox">
-                <label for="checkbox3">With payment, I accept the <a class="modals" data-toggle="modal" data-target="#PTerms">payment terms</a>.</label>
-            </div>
+        <div class="col-xs-6 fileft">
+            <select class="form-control w100" ng-model="ma.expMonth">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
         </div>
-        <a class="modals block-btn" data-toggle="modal" data-target="#CPayment">Pay Now</a>
-        <!-- Modal Payment Terms -->
-        <div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="modal-title" id="myModalLabel">Payment Terms</h4>
-                    </div>
-                    <div class="modal-body">
-                        A credit card is required to request an appointment. You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time. You will be charged at the completion of the service. It is the responsibility of the credit card processing agents/companies and the clients to maintain secure financial information and private credit card number documentation. SpaFoo.com accepts no liability for the failure of VISA/MasterCard/American Express/Discover to protect their clients from fraudulent activities and theft of private information. The above mentioned entities are contracted by SpaFoo.com to provide secure transactions.
-                    </div>
-                </div>
-            </div>
+        <div class="col-xs-6 firight" ng-model="ma.expYear">
+            <select class="form-control w100">
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2023">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+            </select>
         </div>
-        <!-- Modal Confirm Payment? -->
-        <div class="modal fade" id="CPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog w90" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i class="fa fa-question-circle fa-3x"></i> </h4>
-                    </div>
-                    <div class="modal-cpbody center">
-                        <p>Confirm Payment of</p>
-                        <div class="finfo">
-                            170.47<span class="usd">USD</span>
-                        </div>
-                        <p>To book this appointment?</p>
-                        <div class="cpaction">
-                            <div class="col-xs-6 pca"><a data-dismiss="modal" class="gray-rounded btnblock">Cancel</a></div>
-                            <div class="col-xs-6 pok"><a data-dismiss="modal" data-toggle="modal" data-target="#PDone" class="green-rounded btnblock">Ok</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Payment Done -->
-        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog w90" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
-                    </div>
-                    <div class="modal-cpbody center">
-                        <p>Your Appointment has been confirmed!</p>
-                        <div class="cpaction">
-                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="expdate">
+        <p class="control-label bold bmar-sm">CVV</p>
 
-        <script type="text/javascript">app.initialize();</script>
-        <script>transformicons.add('.tcon');</script>
-    </ion-Content>
-</ion-view>
+        <div class="col-xs-6 fileft">
+            <input type="text" ng-model="ma.cvv" class="form-control" placeholder="000">
+        </div>
+        <div class="col-xs-6 firight cvv">
+            The last 3 digits displyed on the back of your card
+        </div>
+        <div class="tpad-xs checkbox checkbox-primary">
+            <input id="checkbox3" ng-model="ma.paymentTerm" type="checkbox">
+            <label for="checkbox3">
+                With payment, I accept the <a class="modals" data-toggle="modal" data-target="#PTerms">
+                    payment
+                    terms
+                </a>.
+            </label>
+        </div>
+    </div>
+    <!--<div class="checkbox checkbox-primary">
+        <input id="checkbox2" type="checkbox" checked>
+        <label for="checkbox2">Remember This Card</label>
+    </div>-->
+</div>
+<a class="modals block-btn" ng-click="ma.customCardPayment()">Pay Now</a>
+<!--&lt;!&ndash; Modal Payment Terms &ndash;&gt;
+<div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title" id="myModalLabel">Payment Terms</h4>
+            </div>
+            <div class="modal-body">
+                A credit card is required to request an appointment. You will be charged $25 for a cancellation within
+                12 hours of the start of your requested appointment time. You will be charged at the completion of the
+                service. It is the responsibility of the credit card processing agents/companies and the clients to
+                maintain secure financial information and private credit card number documentation. SpaFoo.com accepts
+                no liability for the failure of VISA/MasterCard/American Express/Discover to protect their clients from
+                fraudulent activities and theft of private information. The above mentioned entities are contracted by
+                SpaFoo.com to provide secure transactions.
+            </div>
+        </div>
+    </div>
+</div>
+&lt;!&ndash; Modal Confirm Payment? &ndash;&gt;
+<div class="modal fade" id="CPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog w90" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                <h4 class="center" id="myModalLabel"><i class="fa fa-question-circle fa-3x"></i></h4>
+            </div>
+            <div class="modal-cpbody center">
+                <p>Confirm Payment of</p>
+
+                <div class="finfo">
+                    170.47<span class="usd">USD</span>
+                </div>
+                <p>To book this appointment?</p>
+
+                <div class="cpaction">
+                    <div class="col-xs-6 pca"><a data-dismiss="modal" class="gray-rounded btnblock">Cancel</a></div>
+                    <div class="col-xs-6 pok"><a data-dismiss="modal" data-toggle="modal" data-target="#PDone"
+                                                 class="green-rounded btnblock">Ok</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+&lt;!&ndash; Modal Payment Done &ndash;&gt;
+<div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog w90" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i></h4>
+            </div>
+            <div class="modal-cpbody center">
+                <p>Your Appointment has been confirmed!</p>
+
+                <div class="cpaction">
+                    <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!--
+<script type="text/javascript">app.initialize();</script>
+<script>transformicons.add('.tcon');</script>-->

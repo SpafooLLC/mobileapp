@@ -126,7 +126,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="sname"><a ng-click="ma.removeService($index)"><i class="fa fa-trash-o fa-lg deleteadd "></i></a> &nbsp; {{service.serviceNameField}}</td>
-                                <td class="qbox"><input required ng-change="ma.changeSummery()" type="number" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
+                                <td class="qbox"><input required ng-change="ma.changeSummery()" oninput="javascript: if (!this.value.length || /\D/.test(this.value) || this.value == 0) {this.value = 1; this.select(); }" onfocus="this.select();" type="tel" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
                                 <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
                             </tr>
                         </table>

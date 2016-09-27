@@ -163,6 +163,7 @@ var spafoo;
                 this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response) {
                     var e = response.GetAppLocationResult;
                     this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    //   alert(this.GetAddressRcd);
                     deferred.resolve(this.GetAddressRcd);
                 }, function (error) { });
                 return deferred.promise;

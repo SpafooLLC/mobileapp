@@ -51,6 +51,13 @@ var BasicCreditCardController;
                 $("#PDone").modal();
                 return false;
             }
+            else {
+                if (String(Regdata.CCNumber).length < 14) {
+                    self.messages = "The field length is invalid for Card Number.";
+                    $("#PDone").modal();
+                    return false;
+                }
+            }
             if (Regdata.Month === null || Regdata.Month === '' || Regdata.Month == undefined) {
                 self.messages = "Please Select Month.";
                 $("#PDone").modal();
@@ -67,6 +74,27 @@ var BasicCreditCardController;
                 return false;
             }
             return true;
+        };
+        BasicCreditCardController.prototype.ValidateNumber = function (num, id) {
+            var self = this;
+            if (id == 'cnum') {
+                if (isNaN(num)) {
+                    self.data.CCNumber = self.number;
+                }
+                else {
+                    self.data.CCNumber = num;
+                    self.number = num;
+                }
+            }
+            else {
+                if (isNaN(num)) {
+                    self.data.CVV = self.numbercvv;
+                }
+                else {
+                    self.data.CVV = num;
+                    self.numbercvv = num;
+                }
+            }
         };
         BasicCreditCardController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         return BasicCreditCardController;

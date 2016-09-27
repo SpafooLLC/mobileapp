@@ -41,7 +41,9 @@
             private $timeout: ITimeoutService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-
+            $("#PhoneNo").mask("999-999-9999");
+            $("#MobileNo").mask("999-999-9999");
+            $("#Zipcode").mask("99999");
         }
         doRegister(Regdata: any) {
 
@@ -60,6 +62,8 @@
 
                 var data = Regdata;
 
+                data.HardwareName = self.$window.localStorage.getItem('DeviceName');
+                data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
 
@@ -67,9 +71,9 @@
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
-                            self.$state.go("BasicCreditCard", {from:'reg'});
+                            self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
-                        
+
                     }
                     self.$ionicLoading.hide();
                 }, function (error) {
@@ -92,7 +96,7 @@
 
         DoValidation(Regdata: any) {
             var self = this;
-           // alert(JSON.stringify(Regdata.Password));
+            // alert(JSON.stringify(Regdata.Password));
             if (Regdata == undefined) {
 
                 self.messages = "Please Enter First Name.";
@@ -100,6 +104,12 @@
 
                 return false;
             }
+
+            Regdata.PhoneNo = $("#PhoneNo").val();
+            Regdata.MobileNo = $("#MobileNo").val();
+            Regdata.Zipcode = $("#Zipcode").val();
+
+
             if (Regdata.FirstName === null || Regdata.FirstName === '' || Regdata.FirstName == undefined || Regdata == undefined) {
                 self.messages = "Please Enter First Name.";
                 $("#PDone").modal();
@@ -116,14 +126,14 @@
                 $("#PDone").modal();
                 return false;
             }
-         if (Regdata.Password === null || Regdata.Password === '' || Regdata.Password == undefined) {
+            if (Regdata.Password === null || Regdata.Password === '' || Regdata.Password == undefined) {
 
                 self.messages = "Please Enter Password.";
                 $("#PDone").modal();
                 return false;
             }
-            else if (Regdata.Password.length <8) {
-             self.messages = "Password should be minimum Eight Character.";
+            else if (Regdata.Password.length < 8) {
+                self.messages = "Password should be minimum Eight Character.";
                 $("#PDone").modal();
                 return false;
             }
@@ -151,11 +161,17 @@
                     return false;
                 }
             }
-            if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
-                self.messages = "Please Enter Mobile Number.";
+         
+            if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
+                self.messages = "Please Enter Phone Number.";
                 $("#PDone").modal();
                 return false;
             }
+   if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
+                self.messages = "Please Enter Mobile Number.";
+                $("#PDone").modal();
+                return false;
+            } 
 
             if (Regdata.Street === null || Regdata.Street === '' || Regdata.Street == undefined) {
                 self.messages = "Please Enter Address.";
@@ -195,21 +211,18 @@
             try {
                 if (choice === 'G') {
                     //alert(choice);
-                    navigator.camera.getPicture(function (imageURI:any) {
+                    navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(extension);
-                        if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                            //alert(extension);
-                            //self.$timeout(function () {
-                                //self.imageURL = 'file://' + imageURI;
-                                self.SharedHttp.setProfileImage('file://' + imageURI);
-                                self.postImage();
-                               // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
+                        if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {                       
+                            self.SharedHttp.setProfileImage('file://' + imageURI);
+                            self.postImage();
+                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
-                           
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -219,22 +232,22 @@
                             correctOrientation: true
                         });
                 } else {
-                    navigator.camera.getPicture(function (imageURI:any) {
+                    navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
-                       // alert(extension);
+                        // alert(extension);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             self.$timeout(function () {
                                 self.imageURL = imageURI;
                                 self.SharedHttp.setProfileImage(imageURI);
                                 self.postImage();
-                                
+
                             }, 1000);
 
 
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
-                           
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -249,7 +262,7 @@
 
             } catch (ex) {
                 self.messages = "Can\'nt upload image";
-                $("#PDone").modal(); 
+                $("#PDone").modal();
             } finally {
                 self.isImageClick = false;
             }
@@ -264,15 +277,15 @@
             options.fileKey = 'file';
             options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
             options.mimeType = 'application/pdf';
-       
+
             try {
                 var ft = new FileTransfer();
             } catch (ex) {
                 self.toaster.error('exception generated:' + ex, 'Error');
             }
-           
+
             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ClientRegistration/Script/jquery-uploadify/rhprofilepic.ashx', (function (r) {
-               
+
                 //self.messages = "Profile Image updated";
                 //$("#PDone").modal();               
                 if (r.responseCode === '200' || r.responseCode === 200) {
@@ -287,12 +300,12 @@
                 } else {
                     self.toaster.error('Something went wrong with the server', 'Error');
                     $("#showload").hide();
-                } 
+                }
             }), (function (msg) {
-                    self.messages = "Profile Image can\'t updated";
-                    $("#PDone").modal();
-                    $("#showload").hide();
-               
+                self.messages = "Profile Image can\'t updated";
+                $("#PDone").modal();
+                $("#showload").hide();
+
                 return msg;
 
             }), options);

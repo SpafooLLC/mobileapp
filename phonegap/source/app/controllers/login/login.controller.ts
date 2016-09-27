@@ -29,26 +29,28 @@
             var self = this;
             if (username === null || username == '' || username == undefined) {
                 self.messages = "Please Enter User Name.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return;
             }
             if (password === null || password == '' || password == undefined) {
                 self.messages = "Please Enter User Name.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return;
             }
 
             var data = {
                 Username: username,
                 Password: password,
+                HardwareName: this.$window.localStorage.getItem('DeviceName'),
+                DeviceToken: this.$window.localStorage.getItem('DeviceToken')
             };
 
             self.CustomerHttp.post(data, '/LoginUser').then(function (response:any) {
                 if (parseInt(response.Source)) {
                     self.$window.localStorage.setItem('CustomerID', response.Source);
                     self.$window.localStorage.setItem('Role', response.Usertype);
-                    self.$window.localStorage.setItem('LoginStatus', "true");
-                    self.getLoggedUser(response.Source);
+                    self.$window.localStorage.setItem('LoginStatus', "true");                    
+                     self.getLoggedUser(response.Source);
                     self.$rootScope.getRole = (self.$window.localStorage.getItem('Role')=="P" ?"P":"C");
                 }
                 else {
@@ -57,7 +59,8 @@
                     self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
-                    $("#PDone").modal();
+
+                    $("#PDoneError").modal();                    
                 }
             }, function (error) {
 
@@ -72,10 +75,9 @@
                 self.$rootScope.GetLoginStatus = true;
                 self.SharedHttp.GetMyNotification(UserID).then(function (res:any) { self.$rootScope.NotifiCount = res.length; });
                 //self.$state.go("home");
-                /*if(!self.$rootScope.$ionicGoBack()){
+                if(!self.$rootScope.$ionicGoBack()){
                     self.$state.go("home");
-                }*/
-                self.$window.history.back();
+                }
             }, function (error) {});
         }
 

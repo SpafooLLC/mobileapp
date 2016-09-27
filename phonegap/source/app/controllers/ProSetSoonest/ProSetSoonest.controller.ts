@@ -21,6 +21,10 @@
             private $stateParams: angular.ui.IStateParamsService
         ) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.AddressID = $stateParams.AddressID;
             self.ClientID = $stateParams.ClientID;
             self.ProviderID = $stateParams.ProviderID;

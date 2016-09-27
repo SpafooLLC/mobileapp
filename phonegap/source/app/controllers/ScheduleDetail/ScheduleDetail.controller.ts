@@ -36,7 +36,13 @@
                 self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) { self.ServiceData.addressField = e; });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {
-                    serviceName += sitem.serviceNameField + ",";
+                 //   serviceName += sitem.serviceNameField + ",";
+                    if (parseInt(sitem.qtyField) > 1) {
+                        serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";
+                    }
+                    else {
+                        serviceName += sitem.serviceNameField + ",";
+                    }
                 });
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.providerIDField).then(function (res: any) {

@@ -192,7 +192,7 @@ gulp.task('wire-external-js', ['copy-external-js'], function () {
  */
 gulp.task('inject-js-css-dev', ['tsc', 'sass'], function () {
     var source = gulp.src([
-        buildPath + 'styles/' + 'style.css',
+       // buildPath + 'styles/' + 'style.css',
 //buildPath +  'bowercomponents/**/ionic.css',
      buildPath + 'styles/' + 'bootstrap.css',
         '!' + buildPath + 'styles/' + '**/*.min.css',

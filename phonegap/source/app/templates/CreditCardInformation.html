@@ -8,13 +8,13 @@
         <div class="inbody-simple">
             <div class="has-feedback fgap">
                 <label class="control-label">Card Number</label>
-                <input type="text" class="form-control" maxlength="16" ng-model="data.CCNumber">
+                <input type="text" class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
                 <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
             </div>
             <div class="expdate">
                 <p class="control-label bold bmar-sm">Expiry Date</p>
                 <div class="col-xs-6 fileft">
-                    <select class="form-control w100" ng-model="data.Month">
+                    <select class="form-control w100" ng-model="cc.data.Month">
                         <option value="01">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
@@ -30,7 +30,7 @@
                     </select>
                 </div>
                 <div class="col-xs-6 firight">
-                    <select class="form-control w100" ng-model="data.Year">
+                    <select class="form-control w100" ng-model="cc.data.Year">
                         <option value="2015">2015</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
@@ -49,7 +49,7 @@
             <div class="expdate">
                 <p class="control-label bold bmar-sm">CVV</p>
                 <div class="col-xs-6 fileft">
-                    <input type="text" class="form-control" maxlength="4" ng-model="data.CVV" placeholder="0000">
+                    <input type="text" class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
                 </div>
                 <div class="col-xs-6 firight cvv">
                     The last 3-4 digits displyed on the back of  your card
@@ -61,7 +61,7 @@
             </div>-->
 
         </div>
-        <a class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(data)">Add Card</a>
+        <a class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(cc.data)">Add Card</a>
         <!-- Modal Payment Terms -->
         <div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -104,7 +104,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
                         <p>{{cc.messages}}</p>

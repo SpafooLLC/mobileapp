@@ -74,7 +74,7 @@
                         <h2>{{s.orderDateField}}</h2>
                         <p>At: <a href="">{{s.addressField}}</a></p>
                         <p>With: <a href="">{{s.displayNameField}}</a></p>
-                        <p>Service(s): <a href="" ng-click="papp.GoToProviderPortfolio({{s.providerIDField}})"></a></p>
+                        <p>Service(s): <a href="" ng-click="papp.GoToProviderPortfolio({{s.providerIDField}})"></a>{{s.ServiceList}}</p>
                     </div>
                 </div>
             </div>
@@ -97,8 +97,10 @@
                             </td>
                             <td class="right">
                                 <a href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}">
+                               
                                     <i class="fa fa-star-o fa-2x"></i>
-                                    <p>Rate this client</p>
+                                    <p ng-if="s.isRate">Already Rated!</p>
+                                    <p ng-if="!s.isRate">Rate this client</p>
                                 </a>
                             </td>
                         </tr>

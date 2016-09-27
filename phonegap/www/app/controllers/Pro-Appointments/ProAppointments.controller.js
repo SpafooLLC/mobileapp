@@ -42,6 +42,12 @@ var ProAppointmentsController;
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;
+                        if (self.ServiceData[i].statusField == 1) {
+                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
+                                self.ServiceData[i].isRate = res.DidIRatedResult;
+                            }, function (error) {
+                            });
+                        }
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e) { self.ServiceData[i].addressField = e; });
                 });
@@ -51,7 +57,7 @@ var ProAppointmentsController;
         ProAppointmentsController.prototype.RemoveCancelled = function (AppointmentID) {
             var self = this;
             self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response) {
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
                 self.getProviderSchedular(this.UserID);
             }, function (error) {
             });
@@ -59,7 +65,7 @@ var ProAppointmentsController;
         ProAppointmentsController.prototype.UnSeenStatus = function (AppointmentID) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
                 self.getProviderSchedular(this.UserID);
             }, function (error) {
             });
@@ -75,7 +81,7 @@ var ProAppointmentsController;
             self.$state.go("ProAppointmentDetail");
         };
         ProAppointmentsController.prototype.GoToProviderReview = function (userid) {
-            alert("called" + userid);
+            //alert("called" + userid);
             var self = this;
             self.$state.go('ProReviewListing', { userId: userid });
         };

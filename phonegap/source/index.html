@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-    <link rel="stylesheet" href="http://dev.spafoo.com/Portals/0/App/styles/style.css">
+    <!--<link rel="stylesheet" href="http://dev.spafoo.com/Portals/0/App/styles/style.css">-->
+    <link rel="stylesheet" href="styles/style.css">
+
     <!-- 3rd party css -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -12,8 +14,6 @@
     <!--endbower-->
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet"> -->
-
-
     <!--For users deploying their apps to Windows 8.1 or Android Gingerbread, platformOverrided.js
     will inject platform-specific code from the /merges folder -->
     <!-- ionic/angularjs js -->
@@ -22,17 +22,17 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <script src="js/bootstrap.js"></script>
 
-
-
-    <link rel="stylesheet" href="styles/jquery-ui.min.css">
-    <link href="styles/bootstrap-select.css" rel="stylesheet" />
-    <link href="styles/rangeSlider.css" rel="stylesheet" />
-    <link href="styles/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
-    <script src="js/rangeslider.js"></script>
     <link href="styles/bootstrap-select.css" rel="stylesheet" />
     <script src="js/bootstrap-select.js"></script>
+    <script src="js/jquery.mask.js"></script>
     <script src="js/jquery.fancybox.js"></script>
+    <script src="js/rangeslider.js"></script>
+
+    <link href="styles/rangeSlider.css" rel="stylesheet" />
+    <link href="styles/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 
     <!-- inject:js -->
@@ -41,7 +41,7 @@
 </head>
 <body ng-app="spafoo" ng-controller="Main as m">
 
-    <div class="BgDisplay" id="showload">
+    <div class="BgDisplay" id="showload" >
         <img ng-src="images/Site/reload.gif" alt="Processing..." />
     </div>
 
@@ -55,13 +55,13 @@
             <div class="nav-wrapper">
                 <div class="vmenu">
                     <ul class="top" ng-if="getRole=='C' && GetLoginStatus==true">
-                        <li>
+                        <li ng-click="m.HideShowMenu()">
                             <a ng-if="GetLoginStatus==true" class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
                         </li>
-                        <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
-                        <li><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                        <li>
+                        <li  ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">
                                 <div class="pnotification2">
                                     <div class="ico2">
@@ -74,17 +74,18 @@
                         </li>
                     </ul>
                     <ul class="top" ng-if="GetLoginStatus==false">
-                        <li>
+                        <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p> Welcome to Spafoo</p></a>
                         </li>
-                        <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu"  ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></ling-click="m.HideShowMenu()">
 
                     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
-                        <li><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
-                        <li><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                        <li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                        <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">
                                 <!--<a class="clsmenu" href="MyProfile.html#noti">-->
                                 <div class="pnotification2">
@@ -98,10 +99,10 @@
                         </li>
                     </ul>
                     <ul class="bottom">
-                        <li><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-                        <li><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-                        <li><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
-                        <li><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
 
                     </ul>
                 </div>
@@ -121,10 +122,10 @@
                     $(this).next().slideToggle();
                     return false;
                 });
-                $('.clsmenu').click(function () {
-                    $('.titre').click();
-                    $('.tcon').removeClass("tcon-transform");
-                });
+                //$('.clsmenu').click(function () {
+                //    $('.titre').click();
+                //    $('.tcon').removeClass("tcon-transform");
+                //});
             });
     </script>
 </body>

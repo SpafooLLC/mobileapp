@@ -45,7 +45,7 @@ var FindProviderController;
                 $('#ddlServices').html(_Final);
                 self.getServicesName = response.ListRootBottomServiceResult;
             }, function (e) {
-                alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
+                //alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
             });
         };
         FindProviderController.prototype.onSuccess = function (position) {
@@ -80,14 +80,20 @@ var FindProviderController;
             // You have to wait the MAP_READY event.
         };
         FindProviderController.prototype.onError = function (e) {
-            alert(JSON.stringify('test:' + e));
+            //alert(JSON.stringify('test:'+ e));
         };
         FindProviderController.prototype.getProviders = function (serviceId) {
             var self = this;
             FindProviderController.map.clear();
             self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response) {
-                for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
-                    self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
+                if (response.ListProvidersByServicesResult.length != 0) {
+                    for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
+                        self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
+                    }
+                }
+                else {
+                    self.messages = 'No provider found for the service you have chosen';
+                    $("#PDone").modal();
                 }
             }, function (e) {
             });
@@ -188,7 +194,6 @@ var FindProviderController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
             return deferred.promise;

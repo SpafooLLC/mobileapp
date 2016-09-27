@@ -25,7 +25,7 @@ var ProAppointmentCompletedController;
                 self.$timeout(function () {
                     self.appointmentPhotoList = res;
                 }, 2000);
-                console.log(self.appointmentPhotoList);
+                //console.log(self.appointmentPhotoList);
             });
         };
         ProAppointmentCompletedController.prototype.getAppointmentPhotos = function (appId) {
@@ -69,13 +69,14 @@ var ProAppointmentCompletedController;
                     };
                     self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes) {
                         self.message = 'Appointment Completed';
-                        $("#PDone").modal();
+                        //$("#PDone").modal();
+                        self.$state.go("ProAppointments");
                     }, function (navError) {
                     });
                 }, function (erError) {
                 });
             }, function (error) {
-                alert('someError on ChargePreviosAuth');
+                //alert('someError on ChargePreviosAuth');
             });
         };
         ProAppointmentCompletedController.prototype.AddSampleImage = function (fileID) {
@@ -96,7 +97,7 @@ var ProAppointmentCompletedController;
                             'UID': self.UserID,
                             'AID': self.appointmentIDField
                         };
-                        alert(JSON.stringify(params));
+                        //alert(JSON.stringify(params));
                         options.params = params;
                         try {
                             var ft = new FileTransfer();
@@ -104,7 +105,6 @@ var ProAppointmentCompletedController;
                         catch (ex) {
                         }
                         ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
-                            alert(JSON.stringify(r));
                             if (r.responseCode === '200' || r.responseCode === 200) {
                                 self.getAppointmentPhotos(self.appointmentIDField).then(function (res) {
                                     self.$timeout(function () {
@@ -128,8 +128,8 @@ var ProAppointmentCompletedController;
                         }), options);
                     }
                     else {
-                        //self.messages = "PNG,JPEG,JPG images allowed";
-                        alert('PNG,JPEG,JPG images allowed');
+                        self.messages = "PNG,JPEG,JPG images allowed";
+                        $("#PDone").modal();
                     }
                 }, self.onFail, {
                     quality: 50,

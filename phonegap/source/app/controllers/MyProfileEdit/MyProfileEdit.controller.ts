@@ -21,12 +21,19 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $timeout: ITimeoutService
         ) {
+            $("#Telephone").mask("999-999-9999");
+            $("#Cell").mask("999-999-9999");
+            $("#PostalCode").mask("99999");
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserInfo();
+           
         }
         getUserInfo() {
             var self = this;
-
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetUserJSON/' + self.customerID).then(function (response: any) {
 
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
@@ -45,11 +52,16 @@
             });
         }
 
-        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Country: string, PostalCode: string, Cell: string) {
+        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Country: string, PostalCode: string, Phone: string, Mob:string) {
             var self = this;
             var uPos = '';
+           
             if (self.doValidation(Email)) {
 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
+
+                Phone = $("#Telephone").val();
+                Mob = $("#Cell").val();
+                PostalCode = $("#PostalCode").val();
 
                 var data = {
                     'UserID': self.customerID,
@@ -62,9 +74,10 @@
                     'City': City,
                     'Region': Country,
                     'PC': PostalCode,
-                    'P': Cell,
+                    'p': Phone,
+                    'Mo': Mob
                 }
-
+             
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {
                     if (response.Success === 'Success') {
                         self.$state.go("MyProfile");
@@ -79,22 +92,25 @@
         }
 
         doValidation(Email: string) {
+           
 
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please Enter Email Address.";
-                //alert('Please Enter Email Address');
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return false;
             } else {
                 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                 if (!filter.test(Email)) {
                     self.messages = "Invalid email address.";
-                    //alert('Invalid email address');
-                    $("#PDone").modal();
+                    $("#PDoneError").modal();
                     return false;
                 }
             }
+
+
+
+
 
             return true;
         }
@@ -124,7 +140,7 @@
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            $("#PDone").modal();
+                            $("#PDoneError").modal();
                             
                         }
                     }, self.onFail, {
@@ -150,7 +166,7 @@
 
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
-                            $("#PDone").modal();
+                            $("#PDoneError").modal();
                             //alert('PNG,JPEG,JPG images allowed');
 
                         }
@@ -167,7 +183,7 @@
 
             } catch (ex) {
                 self.messages= 'Profile Image can\'t update';
-                $("#PDone").modal();
+                $("#PDoneError").modal();
             } finally {
                 self.isImageClick = false;
             }
@@ -205,12 +221,12 @@
                     $("#showload").hide();
                 } else {
                     self.messages='Something went wrong with the server';
-                    $("#PDone").modal();
+                    $("#PDoneError").modal();
                     $("#showload").hide();
                 }
             }), (function (msg) {
                 self.messages= 'Profile Image can\'t update';
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 $("#showload").hide();
             }), options);
 

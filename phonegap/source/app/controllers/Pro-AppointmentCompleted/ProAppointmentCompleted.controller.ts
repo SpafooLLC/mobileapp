@@ -30,6 +30,10 @@
 
         getClientInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.UserID = this.$window.localStorage.getItem('CustomerID');
             self.clientId = self.$stateParams.clientId;
             self.authTxnIDField = self.$stateParams.authTxnIDField;

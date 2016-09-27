@@ -237,7 +237,8 @@
                         if(srvc.serviceIDField == ser.serviceIDField){
                           ser.qtyField = srvc.qtyField;
                         }
-                      })
+                      });
+                      self.changeSummery();
                     }
                 });
             } else{
@@ -538,7 +539,7 @@
             } else if(/\D/.test(self.cvv)){
                 self.showIonicAlert('CVV must be numeric');
             } else if(self.cvv.trim().length < 3 || self.cvv.trim().length > 4){
-                self.showIonicAlert('CVV shuld be 3-4');
+                self.showIonicAlert('CVV should be 3-4');
             } else if(self.paymentTerm == ''){
                 self.showIonicAlert('You need to agree with our payment terms');
             } else{

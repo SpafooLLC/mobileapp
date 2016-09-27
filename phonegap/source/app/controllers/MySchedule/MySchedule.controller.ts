@@ -22,6 +22,10 @@
 
         getClientSchedular(UserID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/ListAppointmentByClient/' + UserID).then(function (response: any) {
                 self.ServiceData = response.ListAppointmentByClientResult;
                 $.each(self.ServiceData, function (i, item) {
@@ -50,11 +54,24 @@
 
                     var serviceName = "";
                     $.each(item.servicesField, function (ig, sitem) {
-                        serviceName += sitem.serviceNameField + ",";
+                
+                        if (parseInt(sitem.qtyField) > 1) {
+                          serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";  
+                        }
+                        else {
+                            serviceName += sitem.serviceNameField + ",";
+                        }
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.SharedHttp.GetUserInfo(item.providerIDField).then(function (res: any) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
+                        if (self.ServiceData[i].statusField == 1) {
+                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
+                                self.ServiceData[i].isRate = res.DidIRatedResult;
+                            }, function (error: any) {
+
+                            });
+                        }
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e: any) { self.ServiceData[i].addressField = e;   });
                 });
@@ -77,10 +94,12 @@
             var self = this;
             self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getClientSchedular(self.UserID); });
         }
-        denyAppointment(data: any)
-        {
-            var self = this;
-            self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getClientSchedular(self.UserID) });
+        denyAppointment(data: any) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;
+                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getClientSchedular(self.UserID) });
+            }
         }
     }
 

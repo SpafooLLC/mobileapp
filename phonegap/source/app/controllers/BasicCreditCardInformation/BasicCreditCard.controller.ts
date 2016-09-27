@@ -17,6 +17,9 @@
         messages: string;
         Succmesg: string;
         from: string;
+        number:number;
+        data:any;
+        numbercvv:number;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
 
         constructor(
@@ -33,11 +36,16 @@
             private $stateParams: IStateParams
         ) {
             this.init();
+            
         }
 
         init() {
             var self = this;
             self.from = self.$stateParams.from;
+             var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
         }
 
         SubmitCreditCardInfo(CData: any) {
@@ -66,7 +74,6 @@
         }
         DoValidation(Regdata: any) {
             var self = this;
-
             if (Regdata == undefined) {
                 self.messages = "Please Enter Credit Card Number.";
                 $("#PDone").modal();              
@@ -76,6 +83,12 @@
                 self.messages = "Please Enter Credit Card Number.";
                 $("#PDone").modal();               
                 return false;
+            } else {
+                if(String(Regdata.CCNumber).length < 14){
+                    self.messages = "The field length is invalid for Card Number.";
+                    $("#PDone").modal();
+                    return false; 
+                }
             }
             if (Regdata.Month === null || Regdata.Month === '' || Regdata.Month == undefined) {
                 self.messages ="Please Select Month." ;
@@ -93,6 +106,25 @@
             } 
             return true;
         }
+        ValidateNumber( num: any, id:string ){
+            var self= this;
+            if(id=='cnum'){
+                if(isNaN(num)){
+                    self.data.CCNumber=self.number;
+                } else {
+                    self.data.CCNumber=num;
+                    self.number=num;
+                }
+            } else {
+                 if(isNaN(num)){
+                    self.data.CVV=self.numbercvv;
+                } else {
+                    self.data.CVV=num;
+                    self.numbercvv=num;
+                }
+            }
+        }
+
 
 
     }

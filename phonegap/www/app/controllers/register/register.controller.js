@@ -27,6 +27,8 @@ var registerController;
                 }
                 //alert(JSON.stringify(Regdata));
                 var data = Regdata;
+                data.HardwareName = device.model;
+                data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
                     if (parseInt(response.CustomerID) > 0) {
@@ -42,7 +44,7 @@ var registerController;
                         self.$ionicLoading.hide();
                     }
                     else {
-                        console.log(error);
+                        //console.log(error);
                         self.$ionicLoading.hide();
                     }
                 });
@@ -230,7 +232,6 @@ var registerController;
                         self.imageURL = "http://dev.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
-                    alert(JSON.stringify(r));
                 }
                 else {
                     self.toaster.error('Something went wrong with the server', 'Error');
