@@ -213,11 +213,11 @@
             <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
             <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
             <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
-                      range-changed="reloadSource(startTime, endTime)"
-                      event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
-                      time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
+                  range-changed="reloadSource(startTime, endTime)"
+                  event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
+                  time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
 
-            </calendar>-->
+        </calendar>-->
         </div>
         <div class="modal fade" id="PDoneSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
@@ -306,6 +306,11 @@
                                 font-size: 15px;
                                 display: block;
                             }
+
+                            .bootbox-body {
+                                text-align: center;
+                                font-size: 15px;
+                            }
                         </style>
                         <div id="NS_dvSliderOuter" style="padding: 10px 0; width: auto; min-height: 0; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
                             <div class="times-header text-center">
@@ -349,6 +354,21 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="PConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;">×</button>
+                        <div class="bootbox-body">You have selected {{ma.showSTTime}} to {{ma.showENTime}}  on {{ma.showTHDay}}<br>Continue with this ?</div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+                        <div class="col-xs-6 nopad"><a ng-click="ma.paymentMethod()" class="bluesm-btn block">Ok</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>
 
@@ -419,8 +439,11 @@
                     <div class="modal-cpbody center">
                         <p>{{ma.messages}} </p>
                         <div class="cpaction">
-                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
-                            <div class
+                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">bt
+Cancel
+                            </a></div>
+                            bt
+                            <div class="col-xs
                             <div class="col-xs-6 nopad"><a ng-click="ma.actionPayment()" class="bluesm-btn block">Ok</a></div>
                         </div>
                     </div>

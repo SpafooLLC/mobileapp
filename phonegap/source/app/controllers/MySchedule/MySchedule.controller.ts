@@ -54,7 +54,13 @@
 
                     var serviceName = "";
                     $.each(item.servicesField, function (ig, sitem) {
-                        serviceName += sitem.serviceNameField + ",";
+                
+                        if (parseInt(sitem.qtyField) > 1) {
+                          serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";  
+                        }
+                        else {
+                            serviceName += sitem.serviceNameField + ",";
+                        }
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.SharedHttp.GetUserInfo(item.providerIDField).then(function (res: any) {

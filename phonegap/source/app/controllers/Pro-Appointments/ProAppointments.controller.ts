@@ -1,9 +1,9 @@
 ﻿module ProAppointmentsController {
-    
-    class ProAppointmentsController  {
+
+    class ProAppointmentsController {
         UserID: number;
         ServiceData: any;
-        isRated:boolean;
+        isRated: boolean;
 
 
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
@@ -18,20 +18,20 @@
         ) {
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
-             
+
         }
 
         getProviderSchedular(UserID: any) {
             var self = this;
-            var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
             }
             self.CustomerHttp.get('/ListAppointmentByProvider/' + UserID).then(function (response: any) {
                 self.ServiceData = response.ListAppointmentByProviderResult;
                 $.each(self.ServiceData, function (i, item) {
-                    
-                    
+
+
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
                         self.ServiceData[i].DayField = '00';
@@ -48,26 +48,31 @@
                     } else {
                         self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
                     }
-                    
-                    
-                    
+
+
+
                     var serviceName = "";
                     $.each(item.servicesField, function (ig, sitem) {
-                        serviceName += sitem.serviceNameField + ",";
+                        if (parseInt(sitem.qtyField) > 1) {
+                            serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";
+                        }
+                        else {
+                            serviceName += sitem.serviceNameField + ",";
+                        }
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res: any) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;
-                        if(self.ServiceData[i].statusField == 1){
-                            self.CustomerHttp.get('/DidIRated/'+self.ServiceData[i].clientIDField+'/'+self.ServiceData[i].appointmentIDField).then(function(res: any){
-                                self.ServiceData[i].isRate=res.DidIRatedResult;                    
-                            },function(error: any){
+                        if (self.ServiceData[i].statusField == 1) {
+                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
+                                self.ServiceData[i].isRate = res.DidIRatedResult;
+                            }, function (error: any) {
 
                             });
                         }
-                        
-                        
+
+
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e: any) { self.ServiceData[i].addressField = e; });
                 });
@@ -93,7 +98,7 @@
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
                 //alert(JSON.stringify(response));
-            //    self.getProviderSchedular(this.UserID);
+                //    self.getProviderSchedular(this.UserID);
 
             }, function (error) {
             });
@@ -119,6 +124,6 @@
     }
 
 
-    angular.module('spafoo.ctrl.ProAppointments',[]).controller('ProAppointments',ProAppointmentsController);
+    angular.module('spafoo.ctrl.ProAppointments', []).controller('ProAppointments', ProAppointmentsController);
 
 }
