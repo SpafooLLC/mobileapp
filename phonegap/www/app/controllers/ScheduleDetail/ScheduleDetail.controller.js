@@ -41,9 +41,9 @@ var ScheduleDetailController;
             var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
             //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response) {
-                //  alert(JSON.stringify(response));
-                self.messages = response.messages.messageField[0].textField;
+                self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
+                //  self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });

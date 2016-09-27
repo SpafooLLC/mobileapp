@@ -22,7 +22,7 @@
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-           
+      
          
             
          

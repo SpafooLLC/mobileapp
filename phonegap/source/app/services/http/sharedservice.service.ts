@@ -34,6 +34,7 @@
         GetMyNotification(UserID: any): ng.IPromise<string>;
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
+        
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -262,6 +263,7 @@
             return deferred.promise;
         }
 
+       
     }
     angular
         .module('spafoo.httpsharedservice', [])

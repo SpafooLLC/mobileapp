@@ -62,6 +62,7 @@ var ProAppointmentDetailController;
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.clientIDField).then(function (res) {
                     self.ServiceData.displayNameField = res.displayNameField;
+                    self.ServiceData.telephoneField = res.profileField.telephoneField;
                     //self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
                 });
                 //self.CustomerHttp.get('/GetUserJSON/' + self.ServiceData.clientIDField).then(function (res: any) {

@@ -28,6 +28,10 @@
 
         getProviderReview(UserID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.SharedHttp.GetUserInfo(UserID).then(function (res: any) {
                 self.ServiceData = res;
                

@@ -10,7 +10,7 @@
     function configProviderPortfolio($stateProvider: angular.ui.IStateProvider) {
         var ProviderPortfolioState: angular.ui.IState = {
             name: 'ProviderPortfolio',
-            url: '/ProviderPortfolio/:userId',
+            url: '/ProviderPortfolio/:userId/:distance',
             templateUrl: 'app/templates/ProviderPortfolio.html',
             controller: 'ProviderPortfolio as PvP'
         };

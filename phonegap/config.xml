@@ -5,6 +5,7 @@
   <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
   <content src="index.html" />
   <access origin="*" />
+  <access origin="tel:*" launch-external="yes"/>
   <allow-navigation href="*" />
   <preference name="webviewbounce" value="false" />
   <preference name="UIWebViewBounce" value="false" />

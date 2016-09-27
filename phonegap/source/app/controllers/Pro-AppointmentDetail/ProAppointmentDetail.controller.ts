@@ -66,6 +66,10 @@
 
         getClientSchedular(AppID: any) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetAppointment/' + AppID).then(function (response: any) {
                 self.ServiceData = response.GetAppointmentResult;
                 var orderdt = self.SharedHttp.getFormatedDate(self.ServiceData.forDateField, "weekday dd MMMM yyyy");
@@ -83,6 +87,7 @@
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.clientIDField).then(function (res: any) {
                     self.ServiceData.displayNameField = res.displayNameField;
+                    self.ServiceData.telephoneField = res.profileField.telephoneField;
                     //self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
 
                 });

@@ -27,6 +27,8 @@ var registerController;
                 }
                 //alert(JSON.stringify(Regdata));
                 var data = Regdata;
+                data.HardwareName = device.model;
+                data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
                     if (parseInt(response.CustomerID) > 0) {

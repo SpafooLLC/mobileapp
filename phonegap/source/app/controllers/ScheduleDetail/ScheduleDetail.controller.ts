@@ -36,7 +36,13 @@
                 self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) { self.ServiceData.addressField = e; });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {
-                    serviceName += sitem.serviceNameField + ",";
+                 //   serviceName += sitem.serviceNameField + ",";
+                    if (parseInt(sitem.qtyField) > 1) {
+                        serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";
+                    }
+                    else {
+                        serviceName += sitem.serviceNameField + ",";
+                    }
                 });
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.providerIDField).then(function (res: any) {
@@ -52,15 +58,19 @@
 
         CancelSchdule() {
             var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField }
+            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
           //  alert(JSON.stringify(PostData));
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-             //  alert(JSON.stringify(response));
-                self.messages = response.messages.messageField[0].textField;
+                self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
             }, function (error) {
                 //alert(error)
             });
+        }
+
+        dismissAndThen(){
+          return false;
+            //this.$state.go('MySchedule');
         }
 
 

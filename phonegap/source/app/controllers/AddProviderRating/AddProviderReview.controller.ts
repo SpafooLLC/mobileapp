@@ -50,10 +50,15 @@
             private $stateParams: IStateParams
         ) {
             this.getProviderInfo();
+             
 
         }
         getProviderInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.isChecked = false;
             self.providerId = self.$stateParams.providerId;
             self.appointmentID = self.$stateParams.appId;

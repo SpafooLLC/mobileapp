@@ -32,14 +32,31 @@
                 <p>{{findpro.TagField}}</p>
             </div>
             <div class="action">
-                <div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:{{findpro.userId}}})" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+                <div class="col-xs-6 nopad"><a  href="#/MakeAppointment/{{findpro.userId}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
                 <!--<div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:83})" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>-->
-                <div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:{{findpro.userId}}})" class="green-btn block ml1px">Schedule Appointment</a></div>
+                <div class="col-xs-6 nopad"><a href="#/MakeAppointment/{{findpro.userId}}/null/NORMAL"  class="green-btn block ml1px">Schedule Appointment</a></div>
             </div>
         </div>
 
   
         <script type="text/javascript">app.initialize();</script>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{findpro.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
        
     </ion-content>
 </ion-view>

@@ -55,11 +55,18 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $timeout: ITimeoutService
         ) {
+            $("#Telephone").mask("999-999-9999");
+            $("#Cell").mask("999-999-9999");
+            $("#PostalCode").mask("99999");
             var self=this;
             this.getUserInfo();
         }
         getUserInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserJSON/' + self.customerID).then(function (response: any) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
@@ -263,13 +270,18 @@
             //console.log(self.applPosition);
         }
         
-        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string ){
+        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string, Mob:string ){
             var self= this;
-            var uPos='';
+            var uPos = '';
+
             if(self.doValidation(Email)){
                 for(var i=0; i<self.applPosition.length; i++){
                     uPos=uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_'+ self.applPosition[i] + '|';
                 }
+                Cell = $("#Telephone").val();
+                alert(Cell);
+                Mob = $("#Cell").val();
+                PostalCode = $("#PostalCode").val();
 
                 var data={
                     'UserID':self.customerID,
@@ -282,14 +294,15 @@
                     'City':City,
                     'Region': Region,
                     'PC':PostalCode,
-                    'P':Cell,
+                    'p':Cell,
                     'TOE':typeOfEntity,
                     'Lic':professionalLicense,
                     'SSN':sSN,
                     'EIN':eIN,
                     'Bio':biography,
                     'TagLine':tagField,
-                    'uPOS':uPos
+                    'uPOS':uPos,
+                    'Mo':Mob
                 }
 
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {
@@ -316,7 +329,7 @@
             
             var self=this;
             if (Email === null || Email === '' || Email == undefined) {
-                self.messages = "Please Enter Email Address.";
+                self.messages = "Please enter email address.";
                 //alert('Please Enter Email Address');
                 $("#PDone").modal();
                 return false;
@@ -333,6 +346,25 @@
                 self.messages='Select atleast one applying position';
                 $("#PDone").modal();
                 //alert('Select atleast one applying position');
+                return false;
+            } 
+            var Cell = $("#Telephone").val();
+            var Mob = $("#Cell").val();
+            var PostalCode = $("#PostalCode").val();
+
+            if (Cell === null || Cell === '' || Cell == undefined) {
+                self.messages = "Please enter phone number.";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Mob === null || Mob === '' || Mob == undefined) {
+                self.messages = "Please enter mobile number.";
+                $("#PDone").modal();
+                return false;
+            } 
+            if (PostalCode === null || PostalCode === '' || PostalCode == undefined) {
+                self.messages = "Please enter postal code.";
+                $("#PDone").modal();
                 return false;
             } 
             return true;

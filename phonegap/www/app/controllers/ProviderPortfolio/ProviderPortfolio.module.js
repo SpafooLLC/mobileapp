@@ -7,7 +7,7 @@
     function configProviderPortfolio($stateProvider) {
         var ProviderPortfolioState = {
             name: 'ProviderPortfolio',
-            url: '/ProviderPortfolio/:userId',
+            url: '/ProviderPortfolio/:userId/:distance',
             templateUrl: 'app/templates/ProviderPortfolio.html',
             controller: 'ProviderPortfolio as PvP'
         };

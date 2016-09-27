@@ -4,7 +4,7 @@
         ServiceData: {};
         pdata: number = 0;
         PreviousID: string;
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
       constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -14,10 +14,15 @@
             private $location: ng.ILocationService,
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
-            private toaster: ngtoaster.IToasterService)
+            private toaster: ngtoaster.IToasterService,
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp)
         {
           this.getServiceList(-1);
-        // this.PreviousID = "-1";
+          // this.PreviousID = "-1";
+     //     alert("Hi");
+
+       
+          
         }
         
       getServiceList(ParentServiceID: any) {           
