@@ -424,7 +424,10 @@
             var self = this;
             if(self.availability){
                 $('#PDoneSlider').modal('hide');
-                self.paymentMethod();
+                self.showSTTime = self.selectedFrom;
+                self.showENTime = self.selectedTo;
+                self.showTHDay = self.onlyDate;
+                $('#PConfirm').modal('show');
             } else{
                 self.showIonicAlert('Please select an available time slot');
             }
@@ -524,7 +527,7 @@
                 self.showIonicAlert('Name of card should be max lenth 150');
             } else if(self.cardNumber == '' || !self.cardNumber.trim().length){
                 self.showIonicAlert('Card number is required');
-            }  else if(isNaN(parseInt(self.cardNumber))){
+            }  else if(/\D/.test(self.cardNumber)){
                 self.showIonicAlert('Card number must be numeric');
             }  else if(self.cardNumber.length < 14 || self.cardNumber.length > 16){
                 self.showIonicAlert('Card number should be between 14-16');
@@ -532,7 +535,7 @@
                 self.showIonicAlert('Card type is required');
             } else if(self.cvv == '' || !self.cvv.trim().length){
                 self.showIonicAlert('CVV is required');
-            } else if(isNaN(parseInt(self.cvv))){
+            } else if(/\D/.test(self.cvv)){
                 self.showIonicAlert('CVV must be numeric');
             } else if(self.cvv.trim().length < 3 || self.cvv.trim().length > 4){
                 self.showIonicAlert('CVV shuld be 3-4');
@@ -598,7 +601,11 @@
         }
         wronInfoGoBack(){
             var self = this;
-            if(self.modalGoback) self.MainView = 'Payment-Method';
+            if(self.modalGoback) {
+              self.MainView = 'Payment-Method';
+            } else if(self.action == 'redirectAfterAppointment'){
+              self.redirectAfterAppointment();
+            }
         }
         finalMakeAppointment(){
             var self = this;

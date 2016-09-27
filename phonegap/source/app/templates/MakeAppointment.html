@@ -206,6 +206,10 @@
                             .tsbottom .ava {  color: #219962;  font-weight: 600;  }
                             .tsbottom .avano {  color: #ff0000;  font-weight: 600;  }
                             .tsbottom #lblAvailability {  color: #112173;  font-weight: 600;  font-size: 15px;  display: block;  }
+                            .bootbox-body {
+                              text-align: center;
+                              font-size: 15px;
+                            }
                         </style>
                         <div id="NS_dvSliderOuter" style="padding: 10px 0; width: auto; min-height: 0; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
                             <div class="times-header text-center">
@@ -251,6 +255,23 @@
                 </div>
             </div>
         </div>
+
+      <div class="modal fade" id="PConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog w90" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;">×</button>
+              <div class="bootbox-body">You have selected {{ma.showSTTime}} to {{ma.showENTime}}  on {{ma.showTHDay}}<br>Continue with this ?</div>
+            </div>
+            <div class="modal-footer">
+              <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+              <div class="col-xs-6 nopad"><a ng-click="ma.paymentMethod()" class="bluesm-btn block">Ok</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </ion-content>
 </ion-view>
 
