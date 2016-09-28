@@ -45,9 +45,9 @@
                     <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
                 </div>-->
                 <div class="col-xs-12"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield"></div>
-                <div class="col-xs-6"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
+                <div class="col-xs-5"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
                 <div class="col-xs-4"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
-                <div class="col-xs-2"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
+                <div class="col-xs-3"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
                 <p class="bmar-sm">Select Service(s)</p>
 
                 <!--<div class="checkbox checkbox-primary checkbox-inline">
@@ -62,7 +62,7 @@
 
                 <div class="bmar-md"></div>
                 <textarea name="textarea" id="textarea" ng-model="ma.comment" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
-                <p class="bmar-xs">Soonest appointment available?</p>
+                <!--<p class="bmar-xs">Soonest appointment available?</p>-->
                 <!--<a href="OrderSummary.html" class="green-rounded">ASAP</a>-->
             </div>
         </div>
@@ -98,16 +98,11 @@
             <div class="ptitle">order summary</div>
         </div>
         <div class="inbody osummery">
-            {{ma.renderCalender()}}
             <div class="head">
                 <h3>Service Session: {{ma.totalDuration}}min</h3>
                 <p><!--<strong>06:30</strong> pm-->at <a href="#">{{ma.addressText}}</a></p>
                 <p>With: <a href="#" onClick="window.history.go(-1); return false;">{{ma.ServiceData.displayNameField}}</a></p>
-<<<<<<< HEAD
-            </div><div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-=======
             </div><!--<div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
->>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -123,11 +118,7 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-        </div>
-=======
         </div>-->
->>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
             <div class="cart">
                 <div class="heading">Selected Services</div>
                 <ul>
@@ -135,7 +126,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="sname"><a ng-click="ma.removeService($index)"><i class="fa fa-trash-o fa-lg deleteadd "></i></a> &nbsp; {{service.serviceNameField}}</td>
-                                <td class="qbox"><input required ng-change="ma.changeSummery()" type="number" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
+                                <td class="qbox"><input required ng-change="ma.changeSummery()" oninput="javascript: if (!this.value.length || /\D/.test(this.value) || this.value == 0) {this.value = 1; this.select(); }" onfocus="this.select();" type="tel" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
                                 <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
                             </tr>
                         </table>
@@ -177,7 +168,7 @@
             .fc-day-grid-event .fc-content{  text-align: center !important;  }
             H2 {  margin: 0 0 10px 0;  line-height: 36px;  font-weight: normal;  font-size: 28px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
             .fc th {  border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
-            .fc td {  border-style: solid;  border-width: 1px;  padding: 0;  font-weight: 600;  vertical-align: top;  color: #112173;  }
+            .fc td {  border-style: solid;  border-width: 1px;  padding: 5px;  font-weight: 600;  vertical-align: top;  color: #112173;  }
         </style>
         <div class="bread">
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
@@ -202,52 +193,46 @@
                     </div>
                     <div class="modal-cpbody center">
                         <style>
-<<<<<<< HEAD
-                            .popup-container .popup {
-                                width: 90% !important;
-                            }
-                            .ui-widget-content {
-                                border: none !important;
-                            }
-=======
                             .popup-container .popup {  width: 90% !important;  }
+                            .irs-line { background: #EEE !important; border: none !important; }
                             .ui-widget-content {  border: none !important;  }
                             .tsinfo {  color: #ff0000;  font-weight: 600;  font-size: 12px;  text-align: center;  width: 100%;  padding-top: 6px;  }
                             .irs-single {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
                             .irs-to {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
                             .irs-from {  padding: 2px 5px;  color: #fff;  background: #219962;  font-size: 14px;  }
+                            .irs-bar {border-right: 15px solid #1e319b;  border-left: 15px solid #1e319b;}
                             .times-header {  font-weight: 600;  font-size: 15px;  color: #112173;  text-align: center;  margin-bottom: 15px;  }
                             .times-header span {  font-weight: 600;  font-size: 15px;  color: #219962;  }
                             .tsbottom .ava {  color: #219962;  font-weight: 600;  }
                             .tsbottom .avano {  color: #ff0000;  font-weight: 600;  }
                             .tsbottom #lblAvailability {  color: #112173;  font-weight: 600;  font-size: 15px;  display: block;  }
->>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
+                            .bootbox-body {
+                              text-align: center;
+                              font-size: 15px;
+                            }
                         </style>
                         <div id="NS_dvSliderOuter" style="padding: 10px 0; width: auto; min-height: 0; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
                             <div class="times-header text-center">
-                                Time slot for date: <span class="balanced"><label id="lblSlotDate">{{ma.onlyDate}}</label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Service Session: <span class="balanced"><label id="lblServiceSession">{{ma.totalDuration}} minute(s)</label></span>
+                                <p> Time slot for date: <span class="balanced"><label id="lblSlotDate">{{ma.onlyDate}}</label></span> </p>
+                                <p> Total Service Session: <span class="balanced"><label id="lblServiceSession">{{ma.totalDuration}} minute(s)</label></span> </p>
+                                <div class="chosens text-center">Chosen slot: [<label id="NS_lblStartHour">{{ma.from}}</label> &nbsp;-&nbsp;<label id="NS_lblEndHour">{{ma.to}}</label>]</div>
                             </div>
-                            <div class="chosens text-center">Chosen slot: [<label id="NS_lblStartHour">{{ma.from}}</label> &nbsp;-&nbsp;<label id="NS_lblEndHour">{{ma.to}}</label>]</div>
                             <div class="padding">
                                 <input type="text" name="volume" id="range">
                             </div>
                             <div class="tsinfo assertive text-center">(move the blue handle, to select the slot of your preference)</div>
                             <div class="tsbottom text-center">
-                                <span id="lblAvailability" class="positive">Availability:</span><br>
+                                <span id="lblAvailability" class="positive">Availability:</span>
                                 <label class="balanced" id="lblAvail" style="display: inline-block;" ng-if="ma.availability"><span class="ava">This slot is available</span></label>
-<<<<<<< HEAD
-                                <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="ava">This slot is not available</span></label><br>
-=======
                                 <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="avano">This slot is not available</span></label><br>
->>>>>>> 1c2172e56c100cf9dbe086c65e45ec7791cf7d21
                                 <img ng-if="ma.availability" style="" id="imgAvail" ng-src="images/Other/tsgrant.png">
                                 <img ng-if="!ma.availability" style="" id="imgAvai2" ng-src="images/Other/tserror.png">
                             </div>
 
                         </div>
                         <div class="cpaction">
-                            <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
-                            <div class="col-xs-6 nopad"><a ng-click="ma.dateTimeChooseDone()" class="bluesm-btn block">Ok</a></div>
+                            <!--<div class="col-xs-6 nopad">--><a data-dismiss="modal" ng-click="ma.destroySlider()" data-toggle="modal" class="green-btn block col-xs-6">Cancel</a>
+                            <!--<div class="col-xs-6 nopad">--><a ng-click="ma.dateTimeChooseDone()" class="bluesm-btn block col-xs-6">Ok</a>
                         </div>
                     </div>
                 </div>
@@ -270,6 +255,31 @@
                 </div>
             </div>
         </div>
+
+      <div class="modal fade" id="PConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog w90" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;">×</button>
+              <div class="bootbox-body">You have selected {{ma.showSTTime}} to {{ma.showENTime}}  on {{ma.showTHDay}}<br>Continue with this ?</div>
+<<<<<<< HEAD
+            </div>
+            <div class="modal-footer">
+              <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+              <div class="col-xs-6 nopad"><a ng-click="ma.paymentMethod()" class="bluesm-btn block">Ok</a></div>
+            </div>
+=======
+            </div>
+            <div class="modal-footer">
+              <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
+              <div class="col-xs-6 nopad"><a ng-click="ma.paymentMethod()" class="bluesm-btn block">Ok</a></div>
+            </div>
+>>>>>>> 9f073fcb4ff50ca9ec07501d221238a9b134ab72
+          </div>
+        </div>
+      </div>
+
+
     </ion-content>
 </ion-view>
 
@@ -291,12 +301,26 @@
             <div class="pmethod">
                 <div class="blue bold center">Card number ending with</div>
             </div>
-            <div class="pmethod" ng-repeat="card in ma.CCards">
+            <div id="dvUserCards">
+              <div class="ccshowinfo pmethod" ng-repeat="card in ma.CCards">
+                <div class="radio radio-info">
+                  <input type="radio" ng-model="ma.selectedCard" name="rblUserCard" value="{{card.customerPaymentProfileId}}" id="rblUserCard_{{card.customerPaymentProfileId}}" ppid="{{card.customerPaymentProfileId}}">
+                  <label for="rblUserCard_{{card.customerPaymentProfileId}}">{{card.payment.Item.cardNumber}}</label>
+                </div>
+              </div>
+              <div class="ccshowinfo pmethod">
+                <div class="radio radio-info">
+                  <input type="radio" ng-model="ma.selectedCard" name="rblUserCard" value="0" id="rblUserCard_0" ppid="0">
+                  <label for="rblUserCard_0">Specify new card information in Next step</label>
+                </div>
+              </div>
+            </div>
+            <!--<div class="pmethod" ng-repeat="card in ma.CCards">
                 <div class="radio radio-info"><input ng-model="ma.selectedCard" type="radio" name="rblUserCard" value="{{card.customerPaymentProfileId}}" id="rblUserCard_{{card.customerPaymentProfileId}}" ppid="{{card.customerPaymentProfileId}}"><label>{{card.payment.Item.cardNumber}}</label></div>
-            </div>
-            <div class="pmethod">
+            </div>-->
+            <!--<div class="pmethod">
                 <div class="radio radio-info"><input ng-model="ma.selectedCard" type="radio" name="rblUserCard" value="0" id="rblUserCard_0" ppid="0"><label>Specify new card information in Next step</label></div>
-            </div>
+            </div>-->
         </div>
         <div class="fource-bottom center">
             <a ng-click="ma.validatePaymentMethod()" class="block-btn">Continue</a>
@@ -312,7 +336,6 @@
                         <p >{{ma.messages}} </p>
                         <div class="cpaction">
                             <a data-dismiss="modal" data-toggle="modal" ng-click="ma.actionAfterOk()" class="green-rounded btnblock">Ok</a>
-
                         </div>
                     </div>
                 </div>

@@ -160,7 +160,7 @@
     </ion-content>
 </ion-view>
 <ion-view view-title="APPOINTMENT DATE & TIME" ng-if="ma.MainView == 'Appointment-DateTime'">
-    <ion-content scroll="false">
+    <ion-content>
         <style>
             .no-event-label, .event-detail-table, .event-detail-container{  display: none !important;  visibility: hidden !important;  }
             .fc-day-grid-event .fc-time{  display: none !important;  }
@@ -174,7 +174,7 @@
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">APPOINTMENT DATE & TIME</div>
         </div>
-        <div class="inbody osummery" style="overflow-y: auto; height:90%">
+        <div class="inbody osummery">
             <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
             <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
             <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
