@@ -23,9 +23,9 @@
                         <th>End Time</th>
                         <th>&nbsp;</th>
                     </tr>
-                    <tr ng-repeat="p in pma.staticEvents1[0].events">
+                    <tr ng-repeat="p in pma.staticEvents1[0].events" ng-if="p.startTime !=0">
 
-                        <td>{{p.dateField}}</td>
+                        <td >{{p.dateField}}</td>
                         <td><input type="time" class="form-control" ng-model="p.startTime"></td>
                         <td><input type="time" class="form-control" ng-model="p.endTime"></td>
 

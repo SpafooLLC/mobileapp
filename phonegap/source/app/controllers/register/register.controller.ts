@@ -41,9 +41,9 @@
             private $timeout: ITimeoutService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-            $("#PhoneNo").mask("999-999-9999");
-            $("#MobileNo").mask("999-999-9999");
-            $("#Zipcode").mask("99999");
+            $("#PhoneNo").mask("000-000-0000");
+            $("#MobileNo").mask("000-000-0000");
+            $("#Zipcode").mask("00000");
         }
         doRegister(Regdata: any) {
 

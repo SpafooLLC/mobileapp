@@ -55,9 +55,10 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $timeout: ITimeoutService
         ) {
-            $("#Telephone").mask("999-999-9999");
-            $("#Cell").mask("999-999-9999");
-            $("#PostalCode").mask("99999");
+            $("#Telephone").mask("000-000-0000");
+            $("#Cell").mask("000-000-0000");
+            $("#PostalCode").mask("00000");
+            $("#SSN").mask("000-00-0000");
             var self=this;
             this.getUserInfo();
         }
@@ -279,10 +280,10 @@
                     uPos=uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_'+ self.applPosition[i] + '|';
                 }
                 Cell = $("#Telephone").val();
-                alert(Cell);
+               
                 Mob = $("#Cell").val();
                 PostalCode = $("#PostalCode").val();
-
+sSN    = $("#SSN").val();
                 var data={
                     'UserID':self.customerID,
                     'FN':FirstName,

@@ -6,7 +6,9 @@
         proProfilePic: string;
         NotificationCount: number;
         WorkSamplesList:{};
-        Roles:any;
+        Roles: any;
+        rolePosition: any;
+        applRole: any;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         constructor(
             private $q: ng.IQService,
@@ -43,11 +45,23 @@
                 self.ServiceData.Profile.Biography = decoded;
                 self.SharedHttp.getProfilePics(self.ServiceData.Profile.Photo).then(function (imgres) { self.proProfilePic = imgres;});
                 self.SharedHttp.GetWorkSamples(customerID).then(function (res) { self.WorkSamplesList = res; });
-                self.getRoles().then(function(res:any){
-                    self.Roles=res;
-                },function(error){
+                self.rolePosition = self.ServiceData.Profile.ProfileProperties[1].PropertyValue.split('|').map(Number);
+                self.getRoles().then(function (res: any) {
+                    self.Roles = res;
+                    var rArr = new Array();
+                    for (var i = 0; i < self.Roles.GetQuestionResult.optionsField.length; i++) {
+                        if (self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField) > -1) {
+                            rArr.push(self.Roles.GetQuestionResult.optionsField[i].optionTextField);
+                            console.log(self.Roles.GetQuestionResult.optionsField[i].optionTextField);
+                        }
+                    }
+                    console.log(rArr)
+                    self.applRole = rArr;
+                }, function (error) {
                     //alert(error);
-                })
+                    });
+               
+
             }, function (error) {
                 if (error === null) {
 

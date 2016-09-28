@@ -21,9 +21,9 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $timeout: ITimeoutService
         ) {
-            $("#Telephone").mask("999-999-9999");
-            $("#Cell").mask("999-999-9999");
-            $("#PostalCode").mask("99999");
+            $("#Telephone").mask("000-000-0000");
+            $("#Cell").mask("000-000-0000");
+            $("#PostalCode").mask("00000");
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserInfo();
            

@@ -147,7 +147,7 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">SSN:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" maxlength="50"  type="text" class="form-control">
+        <input ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" maxlength="50" id="SSN"  type="text" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">EIN:</label>
@@ -182,7 +182,7 @@
 
 
 
-<a href="#" ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
+<a ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
    pep.ServiceData.Profile.ProfileProperties[0].PropertyValue && pep.ServiceData.Profile.Street && pep.ServiceData.Profile.City && 
    pep.ServiceData.Profile.Region
    && pep.ServiceData.Profile.ProfileProperties[2].PropertyValue && pep.ServiceData.Profile.ProfileProperties[3].PropertyValue
