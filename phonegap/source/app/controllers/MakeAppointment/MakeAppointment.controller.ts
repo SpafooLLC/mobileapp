@@ -286,7 +286,7 @@
                 self.uiConfig = {
                     calendar: {
                         height: 500,
-                        header: { left: 'prev,next today', /*center: 'title',*/ right: 'title' },
+                        header: { left: 'prev,next today', center: '', right: 'title' },
                         defaultView: 'month', selectable: true,
                         defaultDate: (new Date()),
                         selectHelper: true,
@@ -307,6 +307,9 @@
                         events: [],
                     }
                 ];
+                setTimeout(function(){
+                  $('.fc-toolbar > .fc-center').html('<div class="pctip"><ul> <li class="pava">Provider Not Available </li> <li class="pres">Already Reserved</li> </ul> </div>');
+                }, 0);
                 //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
             }
@@ -377,15 +380,15 @@
             } else{
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
-                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("HH:mm") : moment('09.00', "HH:mm").format("HH:mm");
-                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").add(self.totalDuration, 'm').format("HH:mm") : moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
+                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm a") : moment('09.00', "h:mm a").format("h:mm a");
+                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("h:mm a") : moment('09.00', 'h:mm a').add(self.totalDuration, 'm').format("h:mm a");
                 $('#PDoneSlider').modal();
-                var todayCurrentTime = moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").format("X");
-                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'HH:mm').format("X");
-                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").add(self.totalDuration, 'm').format("X") : moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X");
-                //var from = +moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X");
-                var min =  self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'HH:mm').format("X");
-                var max = moment('21:00', 'HH:mm').format("X");
+                var todayCurrentTime = moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").format("X");
+                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
+                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("X") : moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
+                //var from = +moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
+                var min =  self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
+                var max = moment('21:00', 'h:mm a').format("X");
                 //setTimeout(function(){
                 $("#range").ionRangeSlider({
                     type: "double",
@@ -393,15 +396,15 @@
                     max: max,
                     from: to,
                     to: from,
-                    //step: +moment('05', 'mm').format('hh:mm A'),
+                    //step: +moment('05', 'mm').format('h:mm a A'),
                     //step: 300000,
                     drag_interval: true,
                     prettify: function (num) {
-                        return moment(num, "X").format("HH:mm");
+                        return moment(num, "X").format("h:mm a");
                     },
                     onFinish: function (data) {
-                        self.from = moment(data.from, "X").format("HH:mm");
-                        self.to = moment(data.to, "X").format("HH:mm");
+                        self.from = moment(data.from, "X").format("h:mm a");
+                        self.to = moment(data.to, "X").format("h:mm a");
                         self.isSlotAvailable();
                     },
                   force_edges: true
@@ -626,8 +629,8 @@
 
         redirectAfterAppointment(){
             var self = this;
-            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'hh:mm A').format('HH:mm');
-            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'hh:mm A').format('HH:mm');
+            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm a A').format('h:mm a');
+            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm a A').format('h:mm a');
             var ForDate = self.ASAP ? '' : self.onlyDate;
             var obj = {
                 AddressID: self.addressId,
