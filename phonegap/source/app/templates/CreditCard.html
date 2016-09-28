@@ -11,7 +11,13 @@
     </div>
     <div class="has-feedback fgap">
         <label class="control-label">Card Number</label>
-        <input type="text" ng-model="ma.cardNumber" class="form-control">
+      <input  class="form-control"
+             ng-model="ma.cardNumber"
+             oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+             type = "tel"
+             maxlength = "16"
+        />
+        <!--<input type="text" ng-model="ma.cardNumber" class="form-control">-->
         <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
     </div>
 
@@ -62,7 +68,14 @@
         <p class="control-label bold bmar-sm">CVV</p>
 
         <div class="col-xs-6 fileft">
-            <input type="text" ng-model="ma.cvv" class="form-control" placeholder="000">
+          <input  class="form-control"
+                  ng-model="ma.cvv"
+                  oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                  type = "tel"
+                  maxlength = "4"
+                  placeholder="000"
+            />
+           <!-- <input type="text" ng-model="ma.cvv" class="form-control" placeholder="000">-->
         </div>
         <div class="col-xs-6 firight cvv">
             The last 3 digits displayed on the back of your card

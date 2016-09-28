@@ -20,11 +20,11 @@
             private moment: any,
             private uiCalendarConfig: any
         ) {
-           
+
             var self = this;
 
-            var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
             }
             self.userId = window.localStorage.getItem('CustomerID');
@@ -32,36 +32,65 @@
                 calendar: {
                     height: 450,
                     editable: true,
+                    eventLimit: 1,
+                    selectHelper: true,
                     header: {
                         right: 'today prev,next'
                     },
                     dayClick: function (date: any, jsEvent: any, view: any) {
-                   
+
                         var selectedDate = moment(date).format('YYYY-MM-DD');				    // set dateFrom based on user click on calendar
                         self.staticEvents1[0].events.push({
+                           
                             start: selectedDate, allday: true,
                             dateField: moment(date).format('MMM DD'),
                             dateFieldHidden: moment(date).format('MM/DD/YYYY'),
                             proId: 0,
-                            color: '#008000'
+                            color: '#1e319b',
+                             textColor: '#ffffff'
 
-                        });				    
+                        });
                     },
-                   
+
                 }
             };
-           
 
-           
-        
-                // any other event sources...
-        
-            self.availList()
-          
-            
-         
+
+
+
+            // any other event sources...
+
+            self.availList();
+            self.bookedSlot();
+
+
         }
-      
+        bookedSlot() {
+            var self = this;
+            var date = new Date()
+            var end = date.setDate(date.getDate() + 30);
+            var data = { ProID: window.localStorage.getItem("CustomerID"), StartDateTime: moment().format('MM/DD/YYYY'), EndDateTime: moment(end).format('MM/DD/YYYY') };
+           
+            self.CustomerHttp.post(data, '/GetProOccupiedSlots').then(function (res) {
+
+                for (var i = 0; i < res.length; i++) {
+                   
+                    self.staticEvents1[0].events.push({
+                        title: res[i].atTimeField + " - " + res[i].endTimeField,
+                        start: moment(res[i].forDateField).format('YYYY-MM-DD'),
+
+                        color: '#ff0000',
+                        textColor: '#ffffff',
+                        startTime:0
+
+                    });
+                }
+            }, function (e) {
+                alert("error" + JSON.stringify(e))
+
+                })
+        }
+    
       
         availList()
         {
@@ -73,8 +102,7 @@
                     // your event source
                     {
                     events: [],
-                        color: 'green',     // an option!
-                        textColor: 'black' // an option!
+                       // an option!
                     }];
              
                 //    self.staticEvents[0].events.push(val)
@@ -96,21 +124,34 @@
                  var   dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
                     var getmonth = '';
-                   
-                 
+                    var minStrt = "";
+                    if (self.serviceData[i].StartTime.Minutes == 0) {
+                        minStrt = "00"
+                    }
+                    else {
+                        minStrt = self.serviceData[i].StartTime.Minutes;
+                    }
+                    var minEnd="";
+                    if (self.serviceData[i].EndTime.Minutes == 0) {
+                        minEnd = "00"
+                    }
+                    else {
+                        minEnd = self.serviceData[i].EndTime.Minutes;
+                    }
                    
                     self.staticEvents1[0].events.push({
                      
                     
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
-                    
+                        title: starthours + ":" + minStrt + " - " + endhours + ":" + minEnd,
                         startTime: new Date(1970, 0, 1, starthours, self.serviceData[i].StartTime.Minutes ),
                         endTime: new Date(1970, 0, 1, endhours, self.serviceData[i].EndTime.Minutes),
                        id: self.serviceData[i].AvailID,
                       proId: self.serviceData[i].ProviderID,
                       dateField: dateMonth1,
                       dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
-                      color: '#008000'
+                      color: '#1e319b',
+                      textColor: '#ffffff'
 
                        
 
@@ -158,7 +199,7 @@
             }
          
             for (var i = 0; i < data.length; i++) {
-                if (!data[i].hasOwnProperty('endTime') ) {
+                if (!data[i].hasOwnProperty('endTime') && data[i].startTime != 0) {
                   
                     this.message = "Choose time on respective date";
                     $("#PDoneError").modal("toggle");
@@ -215,10 +256,13 @@
                
                 //alert("start" + start + "end" + end);
 
-                csv += data[i].dateFieldHidden + "_" + start + "_" + end + "|"
-
+                if (data[i].hasOwnProperty('dateFieldHidden')) {
+                    alert("called");
+                    csv += data[i].dateFieldHidden + "_" + start + "_" + end + "|"
+                }
 
             }
+            console.log()
        
             var jsonData = { CSV: csv, ProID: this.userId };
             var self = this;
