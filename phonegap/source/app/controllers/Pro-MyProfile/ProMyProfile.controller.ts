@@ -9,6 +9,7 @@
         Roles: any;
         rolePosition: any;
         applRole: any;
+        serviceOffered: any;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         constructor(
             private $q: ng.IQService,
@@ -52,21 +53,26 @@
                     for (var i = 0; i < self.Roles.GetQuestionResult.optionsField.length; i++) {
                         if (self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField) > -1) {
                             rArr.push(self.Roles.GetQuestionResult.optionsField[i].optionTextField);
-                            console.log(self.Roles.GetQuestionResult.optionsField[i].optionTextField);
+                            //console.log(self.Roles.GetQuestionResult.optionsField[i].optionTextField);
                         }
                     }
-                    console.log(rArr)
+                    //console.log(rArr)
                     self.applRole = rArr;
                 }, function (error) {
                     //alert(error);
-                    });
+                    });           
+               self.CustomerHttp.get('/GetProviderServices/' + customerID).then( function(res:any) {
+                   self.serviceOffered = res.GetProviderServicesResult;
+               }, function(err: any) {
+
+               })                          
                
 
             }, function (error) {
                 if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
 
                 }
             });

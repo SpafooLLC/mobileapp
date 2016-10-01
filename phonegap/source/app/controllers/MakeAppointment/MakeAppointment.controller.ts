@@ -283,10 +283,15 @@
             } else{
                 var startDate = new Date('08/28/2016');
                 var endDate = new Date('10/09/2016');
+                self.staticEvents = [
+                  {
+                    events: [],
+                  }
+                ];
                 self.uiConfig = {
                     calendar: {
-                        height: 500,
-                        header: { left: 'prev,next today', /*center: 'title',*/ right: 'title' },
+                        contentHeight: 'auto',
+                        header: { left: 'prev,next today', center: '', right: 'title' },
                         defaultView: 'month', selectable: true,
                         defaultDate: (new Date()),
                         selectHelper: true,
@@ -302,11 +307,9 @@
                         viewRender: function(view, element) { if(self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
                     }
                 };
-                self.staticEvents = [
-                    {
-                        events: [],
-                    }
-                ];
+                setTimeout(function(){
+                  $('.fc-toolbar > .fc-center').html('<div class="pctip"><ul> <li class="pava">Provider Not Available </li> <li class="pres">Already Reserved</li> </ul> </div>');
+                }, 0);
                 //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
             }
@@ -315,6 +318,7 @@
         getOccupiedSlots(start, end) {
 
             var self = this;
+            //self.staticEvents[0].events = [];
             var date = new Date(), y = date.getFullYear(), m = date.getMonth();
             var start = moment().format('MM/DD/YYYY');
             var end = moment(end).format('MM/DD/YYYY');
@@ -327,18 +331,10 @@
                 //StartDateTime:self.to
                 StartDateTime: start,
             };
-            self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
-                var _Today = new Date();
-                var strToday = ((_Today.getMonth() + 1) < 10 ? '0' : '') + (_Today.getMonth() + 1) + "/" + ((_Today.getDate() < 10) ? '0' : '') + _Today.getDate() + "/" + _Today.getFullYear();
-                $.each(d, function (i, o) {
-                    //if (o.ForDate >= strToday) {
-                        self.staticEvents[0].events.push({ title: o.atTimeField + ' - ' + o.endTimeField, start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
-                    //}
-                });
-            });
             self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res: any) {
 
                 var aviles = JSON.parse(res.ListMyAvailResult);
+
                 for (var i = 0; i < aviles.length; i++) {
                     var starthours = aviles[i].StartTime.Hours > 9 ? aviles[i].StartTime.Hours : '0'+aviles[i].StartTime.Hours;
                     var startminutes = aviles[i].StartTime.Minutes > 9 ? aviles[i].StartTime.Minutes : '0'+aviles[i].StartTime.Minutes;
@@ -351,18 +347,43 @@
 
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
-                        title: endhours+':'+endminutes+' - '+starthours+':'+startminutes,
-                        startTime: new Date(1970, 0, 1, starthours, aviles[i].StartTime.Minutes),
-                        endTime: new Date(1970, 0, 1, endhours, aviles[i].EndTime.Minutes),
-                        id: aviles[i].AvailID,
-                        proId: aviles[i].ProviderID,
+                        title: moment(endhours+':'+endminutes, 'HH:mm').format('h:mm a')+' - '+moment(starthours+':'+startminutes, 'HH:mm').format('h:mm a'),
+                        //startTime: new Date(1970, 0, 1, starthours, aviles[i].StartTime.Minutes),
+                        //endTime: new Date(1970, 0, 1, endhours, aviles[i].EndTime.Minutes),
+                        //id: aviles[i].AvailID,
+                        //proId: aviles[i].ProviderID,
                         dateField: dateMonth1,
-                        dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
+                        //dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
                         color: '#ff0000'
                     });
                 }
+                self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
+                  var _Today = new Date();
+                  var strToday = ((_Today.getMonth() + 1) < 10 ? '0' : '') + (_Today.getMonth() + 1) + "/" + ((_Today.getDate() < 10) ? '0' : '') + _Today.getDate() + "/" + _Today.getFullYear();
+                  $.each(d, function (i, o) {
+                    //if (o.ForDate >= strToday) {
+                    self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm a') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm a'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
+                    //}
+                  });
+                });
             });
         }
+
+        /*amPmTime(hour, minute) {
+          var _rVal = "";
+          if (hour > 12) {
+            hour = (hour - 12);
+            _rVal = "" + (hour) + ":" + (minute < 10 ? "0" + minute : minute) + " pm";
+          } else {
+            if (hour == 12) {
+              _rVal = "" + 12 + ":" + (minute < 10 ? "0" + minute : minute) + " pm";
+            }
+            if (hour < 12) {
+              _rVal = "" + hour + ":" + (minute < 10 ? "0" + minute : minute) + " am";
+            }
+          }
+          return _rVal;
+        }*/
 
 
         onViewTitleChanged = function (title) {
@@ -377,15 +398,15 @@
             } else{
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
-                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("HH:mm") : moment('09.00', "HH:mm").format("HH:mm");
-                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").add(self.totalDuration, 'm').format("HH:mm") : moment('09.00', 'HH:mm').add(self.totalDuration, 'm').format("HH:mm");
+                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm a") : moment('09.00', "h:mm a").format("h:mm a");
+                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("h:mm a") : moment('09.00', 'h:mm a').add(self.totalDuration, 'm').format("h:mm a");
                 $('#PDoneSlider').modal();
-                var todayCurrentTime = moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").format("X");
-                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'HH:mm').format("X");
-                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("HH:mm"), "HH:mm").add(self.totalDuration, 'm').format("X") : moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X");
-                //var from = +moment('09:00', 'HH:mm').add(self.totalDuration, 'm').format("X");
-                var min =  self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'HH:mm').format("X");
-                var max = moment('21:00', 'HH:mm').format("X");
+                var todayCurrentTime = moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").format("X");
+                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
+                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("X") : moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
+                //var from = +moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
+                var min =  self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
+                var max = moment('21:00', 'h:mm a').format("X");
                 //setTimeout(function(){
                 $("#range").ionRangeSlider({
                     type: "double",
@@ -393,15 +414,15 @@
                     max: max,
                     from: to,
                     to: from,
-                    //step: +moment('05', 'mm').format('hh:mm A'),
+                    //step: +moment('05', 'mm').format('h:mm a A'),
                     //step: 300000,
                     drag_interval: true,
                     prettify: function (num) {
-                        return moment(num, "X").format("HH:mm");
+                        return moment(num, "X").format("h:mm a");
                     },
                     onFinish: function (data) {
-                        self.from = moment(data.from, "X").format("HH:mm");
-                        self.to = moment(data.to, "X").format("HH:mm");
+                        self.from = moment(data.from, "X").format("h:mm a");
+                        self.to = moment(data.to, "X").format("h:mm a");
                         self.isSlotAvailable();
                     },
                   force_edges: true
@@ -626,8 +647,8 @@
 
         redirectAfterAppointment(){
             var self = this;
-            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'hh:mm A').format('HH:mm');
-            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'hh:mm A').format('HH:mm');
+            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm a A').format('h:mm a');
+            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm a A').format('h:mm a');
             var ForDate = self.ASAP ? '' : self.onlyDate;
             var obj = {
                 AddressID: self.addressId,

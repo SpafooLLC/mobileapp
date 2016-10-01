@@ -52,15 +52,20 @@
 
 
                     var serviceName = "";
+                    var serviceTime = 0;
                     $.each(item.servicesField, function (ig, sitem) {
                         if (parseInt(sitem.qtyField) > 1) {
                             serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";
+                            serviceTime += sitem.qtyField * sitem.durationField;
                         }
                         else {
                             serviceName += sitem.serviceNameField + ",";
+                            serviceTime += sitem.durationField;
                         }
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
+                    self.ServiceData[i].serviceTime = serviceTime;
+
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res: any) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;

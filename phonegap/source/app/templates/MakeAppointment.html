@@ -160,21 +160,28 @@
     </ion-content>
 </ion-view>
 <ion-view view-title="APPOINTMENT DATE & TIME" ng-if="ma.MainView == 'Appointment-DateTime'">
-    <ion-content>
+   <ion-content scroll="false">
         <style>
             .no-event-label, .event-detail-table, .event-detail-container{  display: none !important;  visibility: hidden !important;  }
             .fc-day-grid-event .fc-time{  display: none !important;  }
             .fc-event-container .fc-title{  color: #ffffff !important;  font-weight: 600 !important;  }
             .fc-day-grid-event .fc-content{  text-align: center !important;  }
-            H2 {  margin: 0 0 10px 0;  line-height: 36px;  font-weight: normal;  font-size: 28px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
-            .fc th {  border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
-            .fc td {  border-style: solid;  border-width: 1px;  padding: 5px;  font-weight: 600;  vertical-align: top;  color: #112173;  }
+            H2 {  margin: 0 0 10px 0;  line-height: 30px;  font-weight: normal;  font-size: 20px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
+            .fc th { border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
+            .fc td { border-style: solid;  border-width: 1px;  padding: 5px;  font-weight: 600;  vertical-align: top;  color: #112173;  }
+            .pctip { text-align: center;  width: 100%; }
+            .pctip > ul { padding: 0; margin-top: 10px;}
+            .pctip li { display: inline-block;  margin: 0 3px;  list-style: none;  padding: 0 0 0 25px; font-size: 12px }
+            .fc-toolbar { margin-bottom: 5px; }
+            .pctip li.pava { background: url(images/Site/pavailable.png) left center no-repeat; }
+            .pctip li.pres { background: url(images/Site/preserved.png) left center no-repeat; }
         </style>
         <div class="bread">
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">APPOINTMENT DATE & TIME</div>
         </div>
-        <div class="inbody osummery">
+       
+        <div class="inbody osummery"  style="overflow-y: auto; height:90%">
             <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
             <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
             <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
@@ -289,7 +296,7 @@
                 <p>Select your card for payment</p>
             </div>
         </div>
-        <div class="inbody osummery">
+                <div class="inbody osummery" style="overflow-y: auto; height:90%">
             <div class="pmethod">
                 <div class="blue bold center">Card number ending with</div>
             </div>
@@ -353,7 +360,7 @@
     </ion-content>
 </ion-view>
 <ion-view view-title="PAYMENT INFORMATION" ng-if="ma.MainView == 'Payment-Information'">
-    <ion-content>
+    <ion-content scroll="false">
         <ng-include src="'app/templates/CreditCard.html'"></ng-include>
         <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">

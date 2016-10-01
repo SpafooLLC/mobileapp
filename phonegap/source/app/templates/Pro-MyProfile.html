@@ -29,7 +29,7 @@
 <p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
 <p><span>Gender:</span> {{pmp.ServiceData.Profile.ProfileProperties[0].PropertyValue}}</p>
 <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
-<p><span>Phone:</span> {{pmp.ServiceData.Profile.ProfileProperties[12].PropertyValue}}</p>
+<p><span>Phone:</span> {{pmp.ServiceData.Profile.Telephone}}</p>
 <p><span>Cell:</span> {{pmp.ServiceData.Profile.Cell}}</p>
 <p><span>Email:</span> {{pmp.ServiceData.Email}}</p>
 <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{pmp.ServiceData.Profile.Street}}<br />{{pmp.ServiceData.Profile.City}}<br />{{pmp.ServiceData.Profile.Region}}-{{pmp.ServiceData.Profile.PostalCode}}</div></p>
@@ -44,6 +44,15 @@
 <p><span>SSN:</span> {{pmp.ServiceData.Profile.ProfileProperties[4].PropertyValue}}</p>
 <p><span>EIN:</span> {{pmp.ServiceData.Profile.ProfileProperties[5].PropertyValue}}</p>
 <p><span>Position Applied:&nbsp</span><label ng-repeat="role in pmp.applRole">{{role}},&nbsp</label></p>
+<p class="offered"><span>Service(s) offered:&nbsp</span>
+  <label ng-repeat="service in pmp.serviceOffered">
+          
+      {{service.serviceNameField}}
+
+  </label>
+</p>
+
+
   <div class="clearfix"></div>
   
   
@@ -54,7 +63,7 @@
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li ng-repeat="s in pmp.WorkSamplesList">
+      <li ng-repeat="s in pmp.WorkSamplesList" ng-if="s.optionTextField!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'">
           <a class="fancybox" href="http://dev.spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
               <img ng-src="http://dev.spafoo.com{{s.optionTextField}}" alt="" />
           </a>

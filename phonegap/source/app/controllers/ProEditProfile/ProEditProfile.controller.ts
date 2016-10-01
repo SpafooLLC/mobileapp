@@ -296,13 +296,13 @@ sSN    = $("#SSN").val();
                     'Region': Region,
                     'PC':PostalCode,
                     'p':Cell,
-                    'TOE':typeOfEntity,
-                    'Lic':professionalLicense,
-                    'SSN':sSN,
-                    'EIN':eIN,
+                    'TOE':'',
+                    'Lic':'',
+                    'SSN':'',
+                    'EIN':'',
                     'Bio':biography,
                     'TagLine':tagField,
-                    'uPOS':uPos,
+                    'uPOS':'',
                     'Mo':Mob
                 }
 
@@ -343,12 +343,12 @@ sSN    = $("#SSN").val();
                     return false;
                 }
             }
-            if(self.applPosition.indexOf("1")==-1){
-                self.messages='Select atleast one applying position';
-                $("#PDone").modal();
-                //alert('Select atleast one applying position');
-                return false;
-            } 
+            //if(self.applPosition.indexOf("1")==-1){
+            //    self.messages='Select atleast one applying position';
+            //    $("#PDone").modal();
+            //    //alert('Select atleast one applying position');
+            //    return false;
+            //} 
             var Cell = $("#Telephone").val();
             var Mob = $("#Cell").val();
             var PostalCode = $("#PostalCode").val();
@@ -399,7 +399,7 @@ sSN    = $("#SSN").val();
                             }
                         
                             ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
-                                alert(JSON.stringify(r));
+                                //alert(JSON.stringify(r));
                                 if (r.responseCode === '200' || r.responseCode === 200) {
                                     self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
                                         self.$timeout(function () {
@@ -462,6 +462,11 @@ sSN    = $("#SSN").val();
                 $("#PDone").modal();
                 //alert('Something went wrong with the server');
             });
+        }
+        alertMessage() {
+            var self = this;            
+            self.messages = 'To edit your professional profile, please go to the Spafoo website from a non-mobile device and login with your credentials.  If you need any assistance, please call [toll free number].  Thank you';
+            $("#PDone").modal();
         }
 
         
