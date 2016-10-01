@@ -97,14 +97,14 @@
                 <input type="text" class="form-control w30 fright" placeholder="Zip Code" maxlength="5" id="Zipcode" ng-model="data.Zipcode">
                 <div class="checkbox checkbox-primary">
                     <input id="checkbox2" type="checkbox"  ng-model="data.termscondition"   checked>
-                    <label for="checkbox2">With payment, I accept the</label> <a class="modals" data-toggle="modal" data-target="#PaymentTerms">payment terms</a>.
+                    <label for="checkbox2">With payment, I accept the</label> <a class="modals"   onclick="$('#PaymentTerms').modal()">payment terms</a>.
                 </div>
                 <p>&nbsp;</p>
-                <div align="center"><a class="modals" data-toggle="modal" data-target="#Privacy">Privacy Statement</a></div>
+                <div align="center"><a class="modals" onclick="$('#Privacy').modal()" >Privacy Statement</a></div>
             </div>
         </div>
         <div class="btnend">
-            <a class="block-btn" data-ng-click="Reg.doRegister(data)">REGISTER</a>
+            <a class="block-btn" data-ng-click="Reg.doRegister(data)">CONTINUE</a>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="Privacy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

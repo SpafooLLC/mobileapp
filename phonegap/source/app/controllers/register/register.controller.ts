@@ -284,7 +284,7 @@
                 self.toaster.error('exception generated:' + ex, 'Error');
             }
 
-            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ClientRegistration/Script/jquery-uploadify/rhprofilepic.ashx', (function (r) {
+            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_ClientRegistration/Script/jquery-uploadify/rhprofilepic.ashx', (function (r) {
 
                 //self.messages = "Profile Image updated";
                 //$("#PDone").modal();               
@@ -293,7 +293,7 @@
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
                     self.$timeout(function () {
-                        self.imageURL = "http://dev.spafoo.com" + resArr[1];
+                        self.imageURL = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
                     //alert(JSON.stringify(r));

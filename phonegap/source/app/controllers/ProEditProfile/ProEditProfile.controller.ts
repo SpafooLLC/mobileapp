@@ -237,14 +237,14 @@
                 //self.toaster.error('exception generated:' + ex, 'Error');
             }
            
-            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
+            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
                 if (r.responseCode === '200' || r.responseCode === 200) {
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
                     self.$timeout(function () {
-                        self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                        self.proProfilePic = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
                 } else {
@@ -398,7 +398,7 @@ sSN    = $("#SSN").val();
                                 //self.toaster.error('exception generated:' + ex, 'Error');
                             }
                         
-                            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
+                            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
                                 //alert(JSON.stringify(r));
                                 if (r.responseCode === '200' || r.responseCode === 200) {
                                     self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
