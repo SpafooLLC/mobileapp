@@ -62,8 +62,6 @@
 
                 <div class="bmar-md"></div>
                 <textarea name="textarea" id="textarea" ng-model="ma.comment" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
-                <!--<p class="bmar-xs">Soonest appointment available?</p>
-                <a href="OrderSummary.html" class="green-rounded">ASAP</a>-->
             </div>
         </div>
 
