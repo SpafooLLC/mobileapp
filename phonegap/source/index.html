@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-    <!--<link rel="stylesheet" href="http://dev.spafoo.com/Portals/0/App/styles/style.css">-->
-    <link rel="stylesheet" href="styles/style.css">
-
+    <link rel="stylesheet" href="http://www.spafoo.com/Portals/0/App/Android/styles/style.css">
+    <!--<link rel="stylesheet" href="styles/style.css">-->
     <!-- 3rd party css -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -41,7 +40,7 @@
 </head>
 <body ng-app="spafoo" ng-controller="Main as m">
 
-    <div class="BgDisplay" id="showload" >
+    <div class="BgDisplay" id="showload">
         <img ng-src="images/Site/reload.gif" alt="Processing..." />
     </div>
 
@@ -58,10 +57,10 @@
                         <li ng-click="m.HideShowMenu()">
                             <a ng-if="GetLoginStatus==true" class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
                         </li>
-                        <li  ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                        <li ng-click="m.HideShowMenu()">
+                         <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">
                                 <div class="pnotification2">
                                     <div class="ico2">
@@ -72,19 +71,22 @@
                                 <p>Notification</p>
                             </a>
                         </li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-share.png"><p>Available Cities </p></a></li>
+
                     </ul>
                     <ul class="top" ng-if="GetLoginStatus==false">
                         <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p> Welcome to Spafoo</p></a>
                         </li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu"  ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></ling-click="m.HideShowMenu()">
-
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-share.png"><p>Available Cities </p></a></li>
                     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                     
                         <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">
                                 <!--<a class="clsmenu" href="MyProfile.html#noti">-->
@@ -97,11 +99,16 @@
                                 <p>Notification</p>
                             </a>
                         </li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-share.png"><p>Available Cities </p></a></li>
+
                     </ul>
+
                     <ul class="bottom">
+                        <!--<li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>-->
+
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ContactUs"><img ng-src="images/Site/vm-share.png"><p>Contact US</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
+  <li ng-click="m.HideShowMenu()"><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
 
                     </ul>
@@ -115,18 +122,15 @@
     <script src="js/index.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
-            transformicons.add('.tcon');
-            $(document).ready(function () {
-                $('.image_trombi').hide();
-                $('.titre').click(function () {
-                    $(this).next().slideToggle();
-                    return false;
-                });
-                //$('.clsmenu').click(function () {
-                //    $('.titre').click();
-                //    $('.tcon').removeClass("tcon-transform");
-                //});
+        transformicons.add('.tcon');
+        $(document).ready(function () {
+            $('.image_trombi').hide();
+            $('.titre').click(function () {
+                $(this).next().slideToggle();
+                return false;
             });
+
+        });
     </script>
 </body>
 </html>

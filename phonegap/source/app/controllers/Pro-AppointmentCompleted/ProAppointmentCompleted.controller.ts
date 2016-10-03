@@ -137,7 +137,7 @@
                             //self.toaster.error('exception generated:' + ex, 'Error');
                         }
 
-                        ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r: any) {
+                        ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r: any) {
                           
                             if (r.responseCode === '200' || r.responseCode === 200) {
                                 self.getAppointmentPhotos(self.appointmentIDField).then(function (res: any) {

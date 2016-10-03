@@ -10,6 +10,7 @@
         ProviderServiceList: any;
         WorkSamplesList: any;
         distance: string;
+        customerType: string;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         constructor(
             private $q: ng.IQService,
@@ -24,11 +25,14 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $stateParams: angular.ui.IStateParamsService
         ) {
-          
+            var self = this;
             //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
-            this.UserID = $stateParams.userId;
-            this.distance = $stateParams.distance;
-            this.getProviderPortfolio(this.UserID);
+            self.UserID = $stateParams.userId;
+            self.distance = $stateParams.distance;
+            
+            self.getProviderPortfolio(this.UserID);
+            self.customerType = window.localStorage.getItem("Role");
+         
            $('.fancybox').fancybox();
         }
 

@@ -3,7 +3,7 @@
     <ion-content scroll="false">
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-            <div class="ptitle">MY AVAILABILITY</div>
+            <div class="ptitle">Appointment Date & Time</div>
         </div>
         <div style="overflow-y: auto; height:90%">
             <div class="inbody mavai">
@@ -20,7 +20,7 @@
                     </tr>
                     <tr ng-repeat="s in pss.staticEvents[0].events">
                         <td>{{s.dateField}}</td>
-                        <td><input type="time" class="form-control" ng-model="s.startTime"></td>
+                        <td><input type="time" class="form-control" ng-model="s.startTime" ></td>
                         <td><input type="time" class="form-control" ng-model="s.endTime"></td>
                         <td><a ng-click="pss.deleteEvent($index)"><i class="fa red fa-trash fa-lg"></i></a></td>
                     </tr>

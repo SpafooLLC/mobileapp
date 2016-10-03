@@ -7,7 +7,9 @@
         <div class="inbody pprofile">
             <img class="mainimg" ng-src="{{PvP.profilePic}}">
             <div class="bar">
-                <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;0.8 miles form you</div>
+
+                <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;{{PvP.distance}} miles from you</div>
+
                 <div class="fright"><a ng-href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL">Make Appointment</a></div>
             </div>
             <div class="infobox">
@@ -31,9 +33,9 @@
             <div class="sample">
                 <h4>Work Samples</h4>
                 <ul>
-                    <li ng-repeat="s in PvP.WorkSamplesList">
-                        <a class="fancybox" href="http://dev.spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
-                            <img ng-src="http://dev.spafoo.com{{s.optionTextField}}" alt="" />
+                    <li ng-repeat="s in PvP.WorkSamplesList" ng-if="s.optionTextField!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'">
+                        <a class="fancybox" href="http://www.spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
+                            <img ng-src="http://www.spafoo.com{{s.optionTextField}}" alt="" />
                         </a>
                     </li>
                 </ul>
@@ -41,8 +43,8 @@
         </div>
 
         <div class="action">
-            <div class="col-xs-6 nopad"><a href="#/MakeAppointment/{{PvP.UserID}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
-            <div class="col-xs-6 nopad"><a href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
+            <div class="col-xs-6 nopad" ng-if="PvP.customerType=='C'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+            <div class="col-xs-6 nopad" ng-if="PvP.customerType=='C'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
             <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==true"><a href="#/MakeAppointment/{{PvP.UserID}}" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
             <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==false"><aa ui-sref="login"" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
         </div>

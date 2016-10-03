@@ -32,9 +32,12 @@
                 <p>{{findpro.TagField}}</p>
             </div>
             <div class="action">
-                <div class="col-xs-6 nopad"><a  href="#/MakeAppointment/{{findpro.userId}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+                 <!-- <div class="col-xs-6 nopad" ng-if="customerType =='P'"><a ng-click="findpro.providerMessage()"  class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>-->
                 <!--<div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:83})" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>-->
-                <div class="col-xs-6 nopad"><a href="#/MakeAppointment/{{findpro.userId}}/null/NORMAL"  class="green-btn block ml1px">Schedule Appointment</a></div>
+                <!-- <div class="col-xs-6 nopad" ng-if="customerType =='P'"><a ng-click="findpro.providerMessage()"  class="green-btn block ml1px">Schedule Appointment</a></div>-->
+                <div class="col-xs-6 nopad" ><a href="#/MakeAppointment/{{findpro.userId}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+                <!--<div class="col-xs-6 nopad"><a ui-sref="MakeAppointment({userId:83})" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>-->
+                <div class="col-xs-6 nopad" ><a href="#/MakeAppointment/{{findpro.userId}}/null/NORMAL" class="green-btn block ml1px">Schedule Appointment</a></div>
             </div>
         </div>
 
@@ -51,6 +54,7 @@
                         <p>{{findpro.messages}} </p>
                         <div class="cpaction">
                             <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+                           
 
                         </div>
                     </div>

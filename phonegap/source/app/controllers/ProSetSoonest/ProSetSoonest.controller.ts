@@ -10,6 +10,7 @@
         name: string;
         staticEvents: any;
         message: string;
+        totalTime: number;
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -30,6 +31,7 @@
             self.ProviderID = $stateParams.ProviderID;
             self.AppID = $stateParams.AppID;
             self.name = $stateParams.Name1;
+            self.totalTime = $stateParams.totalTime;
             self.uiConfig = {
                 calendar: {
                     height: 450,
@@ -47,7 +49,7 @@
                             dateField: moment(date).format('MMM DD'),
                             dateFieldHidden: moment(date).format('MM/DD/YYYY'),
                             proId: 0,
-                            color: '#008000'
+                            color: '#1e319b'
 
                         });				 
                     },

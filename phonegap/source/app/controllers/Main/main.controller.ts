@@ -34,6 +34,10 @@
 
         onDeviceReady() {
 
+            if (device.platform === 'iOS') {
+                StatusBar.hide();
+            }
+            
             var push = PushNotification.init({
                 android: {
                     senderID: "24553703183"

@@ -11,6 +11,8 @@
         distance: any;
         infoWindow: boolean;
         userId: number;
+        customerType: string;
+        messages: string;
         static currentLatLong: any;
         static map: any = 0;
         $inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', 'SharedHttp', '$q', '$window']
@@ -23,7 +25,8 @@
             private $q: ng.IQService,
             private $window: ng.IWindowService) {
             var self = this;
-
+            self.customerType = window.localStorage.getItem('Role');
+          
             document.addEventListener("deviceready", function () {
 
 
@@ -238,6 +241,13 @@
 
 
         }
+        //providerMessage() {
+
+        //    var self = this;
+        //    self.messages = "Provider can not book an appointment";
+        //    $("#PDone").modal();
+          
+        //}
         getUserInfo(userId: any) {
 
             var image = '';

@@ -10,7 +10,7 @@
     function configProMyAvailability($stateProvider: angular.ui.IStateProvider) {
         var MyScheduleState: angular.ui.IState = {
             name: 'ProMyAvailability',
-            url: '/ProMyAvailability',
+            url: '/ProMyAvailability/:AddressID/:ClientID/:ProviderID/:AppID/:Name1/:totalTime',
             templateUrl: 'app/templates/Pro-MyAvailability.html',
             controller: 'ProMyAvailability as pma'
         };

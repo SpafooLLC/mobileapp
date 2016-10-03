@@ -209,14 +209,14 @@
             } catch (ex) {
             }
 
-            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
+            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
                 if (r.responseCode === '200' || r.responseCode === 200) {
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
                     self.$timeout(function () {
-                        self.profilePic = "http://dev.spafoo.com" + resArr[1];
+                        self.profilePic = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
                 } else {

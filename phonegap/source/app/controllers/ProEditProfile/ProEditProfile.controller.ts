@@ -237,14 +237,14 @@
                 //self.toaster.error('exception generated:' + ex, 'Error');
             }
            
-            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
+            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
                 if (r.responseCode === '200' || r.responseCode === 200) {
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
                     self.$timeout(function () {
-                        self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                        self.proProfilePic = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
                 } else {
@@ -296,13 +296,13 @@ sSN    = $("#SSN").val();
                     'Region': Region,
                     'PC':PostalCode,
                     'p':Cell,
-                    'TOE':typeOfEntity,
-                    'Lic':professionalLicense,
-                    'SSN':sSN,
-                    'EIN':eIN,
+                    'TOE':'',
+                    'Lic':'',
+                    'SSN':'',
+                    'EIN':'',
                     'Bio':biography,
                     'TagLine':tagField,
-                    'uPOS':uPos,
+                    'uPOS':'',
                     'Mo':Mob
                 }
 
@@ -343,12 +343,12 @@ sSN    = $("#SSN").val();
                     return false;
                 }
             }
-            if(self.applPosition.indexOf("1")==-1){
-                self.messages='Select atleast one applying position';
-                $("#PDone").modal();
-                //alert('Select atleast one applying position');
-                return false;
-            } 
+            //if(self.applPosition.indexOf("1")==-1){
+            //    self.messages='Select atleast one applying position';
+            //    $("#PDone").modal();
+            //    //alert('Select atleast one applying position');
+            //    return false;
+            //} 
             var Cell = $("#Telephone").val();
             var Mob = $("#Cell").val();
             var PostalCode = $("#PostalCode").val();
@@ -398,8 +398,8 @@ sSN    = $("#SSN").val();
                                 //self.toaster.error('exception generated:' + ex, 'Error');
                             }
                         
-                            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
-                                alert(JSON.stringify(r));
+                            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
+                                //alert(JSON.stringify(r));
                                 if (r.responseCode === '200' || r.responseCode === 200) {
                                     self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
                                         self.$timeout(function () {
@@ -462,6 +462,11 @@ sSN    = $("#SSN").val();
                 $("#PDone").modal();
                 //alert('Something went wrong with the server');
             });
+        }
+        alertMessage() {
+            var self = this;            
+            self.messages = 'To edit your professional profile, please go to the Spafoo website from a non-mobile device and login with your credentials.  If you need any assistance, please call [toll free number].  Thank you';
+            $("#PDone").modal();
         }
 
         

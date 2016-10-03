@@ -13,7 +13,7 @@
         'spafoo.ctrl.Main',
         'spafoo.module.MakeAppointment',
         'spafoo.module.MySchedule',
-        'spafoo.module.BasicCreditCard',
+        'spafoo.module.BasicCreditCard',  
         'spafoo.module.Services',
         'spafoo.module.MyProfile',
         'spafoo.module.RegisterProvider',
@@ -27,15 +27,15 @@
         'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
         'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
-        'spafoo.module.ProSetSoonest'
-    ];
+        'spafoo.module.ProSetSoonest', "spafoo.module.ContactUs", 'spafoo.module.AvailableCities'
+         ];
 
     angular
         .module('spafoo', moduleDependencies)
         .config(configAppUrl)
-        .config(function ($ionicConfigProvider: any) {
-            $ionicConfigProvider.views.maxCache(0);
-            $ionicConfigProvider.views.swipeBackEnabled(true);
+      .config(function ($ionicConfigProvider: any) {
+          $ionicConfigProvider.views.maxCache(0);
+          $ionicConfigProvider.views.swipeBackEnabled(true);
         })
         .run(function ($ionicPlatform: any) {
             var tabClick = 0;
