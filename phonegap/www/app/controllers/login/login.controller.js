@@ -18,18 +18,18 @@ var loginController;
             var self = this;
             if (username === null || username == '' || username == undefined) {
                 self.messages = "Please Enter User Name.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return;
             }
             if (password === null || password == '' || password == undefined) {
                 self.messages = "Please Enter User Name.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return;
             }
             var data = {
                 Username: username,
                 Password: password,
-                HardwareName: "",
+                HardwareName: this.$window.localStorage.getItem('DeviceName'),
                 DeviceToken: this.$window.localStorage.getItem('DeviceToken')
             };
             self.CustomerHttp.post(data, '/LoginUser').then(function (response) {
@@ -46,7 +46,7 @@ var loginController;
                     self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
-                    $("#PDone").modal();
+                    $("#PDoneError").modal();
                 }
             }, function (error) {
             });

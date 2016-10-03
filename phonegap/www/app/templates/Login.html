@@ -17,7 +17,7 @@
                 <input type="password"  maxlength="50" class="form-control" ng-model="password">
                 <span class="fa fa-key fa-lg form-control-feedback" aria-hidden="true"></span>
             </div>
-            <p><a  class="fsm">Forgot your password?</a></p>
+            <p><a  class="fsm"  onclick="$('#ForgotModel').modal()">Forgot your password?</a></p>
             <!--<div class="checkbox checkbox-primary">
                 <input id="checkbox2" type="checkbox" checked>
                 <label for="checkbox2">Remember me</label>
@@ -49,7 +49,36 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{log.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal"  class="green-rounded btnblock">Ok</a>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ForgotModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabelforget">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title" id="myModalLabelforget">Forgot Password </h4>
+                    </div>
+                    <div class="modal-body">
+                        To reset your password, please go to the login page of Spafoo website from a non-mobile device and click Reset Password.
+                    </div>
+                </div>
+            </div>
+        </div>
       
         
 

@@ -26,7 +26,13 @@ var ScheduleDetailController;
                 self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e) { self.ServiceData.addressField = e; });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {
-                    serviceName += sitem.serviceNameField + ",";
+                    //   serviceName += sitem.serviceNameField + ",";
+                    if (parseInt(sitem.qtyField) > 1) {
+                        serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";
+                    }
+                    else {
+                        serviceName += sitem.serviceNameField + ",";
+                    }
                 });
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.providerIDField).then(function (res) {
@@ -43,10 +49,13 @@ var ScheduleDetailController;
             self.CustomerHttp.post(PostData, '/RefundCard').then(function (response) {
                 self.messages = JSON.parse(response).messages.message[0].text;
                 $("#PDone").modal();
-                //  self.$state.go('MySchedule');
             }, function (error) {
                 //alert(error)
             });
+        };
+        ScheduleDetailController.prototype.dismissAndThen = function () {
+            return false;
+            //this.$state.go('MySchedule');
         };
         ScheduleDetailController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         return ScheduleDetailController;

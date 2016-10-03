@@ -1,4 +1,4 @@
-<ion-view view-title="Make Appointment" ng-if="ma.MainView == 'Basic-Info'" >
+<ion-view view-title="Make Appointment" ng-if="ma.MainView == 'Basic-Info'">
     <ion-content>
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
@@ -6,11 +6,11 @@
         </div>
         <div class="makeapp"><a onClick="window.history.go(-1); return false;">{{ma.ServiceData.displayNameField}}</a></div>
 
-       <!--<select ng-model="AppointAddress" ng-change="ma.changedValue(AppointAddress)" id="basic2" class="show-tick maddcont form-control">
-            <option selected class="fa fa-location-arrow" value="1">&nbsp;&nbsp;My Current Location</option>
-            <option class="fa fa-map-marker" value="2">&nbsp;&nbsp;My Profile Address</option>
-            <option class="fa fa-cog" value="3">&nbsp;&nbsp;Custom Address</option>
-        </select>-->
+        <!--<select ng-model="AppointAddress" ng-change="ma.changedValue(AppointAddress)" id="basic2" class="show-tick maddcont form-control">
+             <option selected class="fa fa-location-arrow" value="1">&nbsp;&nbsp;My Current Location</option>
+             <option class="fa fa-map-marker" value="2">&nbsp;&nbsp;My Profile Address</option>
+             <option class="fa fa-cog" value="3">&nbsp;&nbsp;Custom Address</option>
+         </select>-->
         <div class="btn-group bootstrap-select show-tick maddcont form-control {{ma.isOpenSelectAdress}}">
             <button ng-click="ma.openDropdown()" type="button" class="btn dropdown-toggle btn-default" data-id="basic2" title="&amp;nbsp;&amp;nbsp;My Current Location" aria-expanded="true">
                 <span class="filter-option pull-left">&nbsp;&nbsp;{{ma.addressText}}</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
@@ -25,25 +25,28 @@
                 </div>-->
                 <ul class="dropdown-menu inner" role="menu" style="height: 120px">
                     <li data-original-index="0" class="selected">
-                        <a ng-click="ma.changedValue(1, 'My Current Location')" tabindex="0" class="fa fa-location-arrow" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;My Current Location</span><span class="glyphicon fa fa-check check-mark"></span></a></li>
+                        <a ng-click="ma.changedValue(1, 'My Current Location')" tabindex="0" class="fa fa-location-arrow" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;My Current Location</span><span class="glyphicon fa fa-check check-mark"></span></a>
+                    </li>
                     <li data-original-index="1">
-                        <a ng-click="ma.changedValue(2, 'My Profile Address')" tabindex="0" class="fa fa-map-marker" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;My Profile Address</span><span class="glyphicon fa fa-check check-mark"></span></a></li>
+                        <a ng-click="ma.changedValue(2, 'My Profile Address')" tabindex="0" class="fa fa-map-marker" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;My Profile Address</span><span class="glyphicon fa fa-check check-mark"></span></a>
+                    </li>
                     <li data-original-index="2">
-                        <a ng-click="ma.changedValue(3, 'Custom Address')" tabindex="0" class="fa fa-cog" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;Custom Address</span><span class="glyphicon fa fa-check check-mark"></span></a></li>
+                        <a ng-click="ma.changedValue(3, 'Custom Address')" tabindex="0" class="fa fa-cog" style="" data-tokens="null"><span class="text">&nbsp;&nbsp;Custom Address</span><span class="glyphicon fa fa-check check-mark"></span></a>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <div class="inbody">
             <div class="fcell">
-               <!-- <div class="has-feedback">
-                    <input type="date" class="form-control" ng-model="data.AppointDate" placeholder="Select Date">
-                    <span class="fa fa-calendar fa-lg form-control-feedback" aria-hidden="true"></span>
-                </div>
-                <div class="has-feedback">
-                    <input type="time" class="form-control" ng-model="data.Appointtime" placeholder="Select Time">
-                    <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
-                </div>-->
+                <!-- <div class="has-feedback">
+                     <input type="date" class="form-control" ng-model="data.AppointDate" placeholder="Select Date">
+                     <span class="fa fa-calendar fa-lg form-control-feedback" aria-hidden="true"></span>
+                 </div>
+                 <div class="has-feedback">
+                     <input type="time" class="form-control" ng-model="data.Appointtime" placeholder="Select Time">
+                     <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
+                 </div>-->
                 <div class="col-xs-12 nopadlr"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield"></div>
                 <div class="col-xs-6 nopadlr"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
                 <div class="col-xs-4 smpadlr"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
@@ -107,9 +110,9 @@
     </ion-content>
 </ion-view>
 <ion-view view-title="APPOINTMENT DATE & TIME" ng-if="ma.MainView == 'Appointment-DateTime'">
-    <ion-content>
+    <ion-content scroll="false">
         <style>
-            .no-event-label, .event-detail-table, .event-detail-container{
+            .no-event-label, .event-detail-table, .event-detail-container {
                 display: none !important;
                 visibility: hidden !important;
             }
@@ -118,15 +121,17 @@
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">APPOINTMENT DATE & TIME</div>
         </div>
-        <div class="inbody osummery">
-            <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
-            <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
-            <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
-                      range-changed="reloadSource(startTime, endTime)"
-                      event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
-                      time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
+        <div style="overflow-y: auto; height:90%">
+            <div class="inbody osummery">
+                <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
+                <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
+                <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
+                          range-changed="reloadSource(startTime, endTime)"
+                          event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
+                          time-selected="ma.onTimeSelected(selectedTime, events)" step="30">
 
-            </calendar>-->
+                </calendar>-->
+            </div>
         </div>
     </ion-content>
 </ion-view>

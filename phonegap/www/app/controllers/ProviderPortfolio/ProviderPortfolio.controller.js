@@ -13,10 +13,12 @@ var ProviderPortfolioController;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
             this.$stateParams = $stateParams;
+            var self = this;
             //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
-            this.UserID = $stateParams.userId;
-            this.distance = $stateParams.distance;
-            this.getProviderPortfolio(this.UserID);
+            self.UserID = $stateParams.userId;
+            self.distance = $stateParams.distance;
+            self.getProviderPortfolio(this.UserID);
+            self.customerType = window.localStorage.getItem("Role");
             $('.fancybox').fancybox();
         }
         ProviderPortfolioController.prototype.getProviderPortfolio = function (UserID) {

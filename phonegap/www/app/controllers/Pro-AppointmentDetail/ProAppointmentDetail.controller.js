@@ -45,6 +45,10 @@ var ProAppointmentDetailController;
         }
         ProAppointmentDetailController.prototype.getClientSchedular = function (AppID) {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/GetAppointment/' + AppID).then(function (response) {
                 self.ServiceData = response.GetAppointmentResult;
                 var orderdt = self.SharedHttp.getFormatedDate(self.ServiceData.forDateField, "weekday dd MMMM yyyy");

@@ -18,6 +18,11 @@ var BasicCreditCardController;
         BasicCreditCardController.prototype.init = function () {
             var self = this;
             self.from = self.$stateParams.from;
+            self.isChecked = false;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
         };
         BasicCreditCardController.prototype.SubmitCreditCardInfo = function (CData) {
             var self = this;
@@ -94,6 +99,15 @@ var BasicCreditCardController;
                     self.data.CVV = num;
                     self.numbercvv = num;
                 }
+            }
+        };
+        BasicCreditCardController.prototype.checkStatus = function ($event) {
+            var self = this;
+            if ($event.target.checked) {
+                self.isChecked = true;
+            }
+            else {
+                self.isChecked = false;
             }
         };
         BasicCreditCardController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];

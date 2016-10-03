@@ -20,8 +20,11 @@
                         <div class="right">
                             <h2>{{s.orderDateField}}</h2>
                             <p>At: <a href="">{{s.addressField}}</a></p>
-                            <p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
-                            <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>
+                            <!--<p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
+                            <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+
+                            <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
+                            <p>Service(s): <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.ServiceList}}</a></p>
                         </div>
                     </div>
                     <div class="sce" ng-if="s.statusField==5">

@@ -1,15 +1,17 @@
 var FindProviderController;
 (function (FindProviderController_1) {
     var FindProviderController = (function () {
-        function FindProviderController($state, $scope, $ionicLoading, CustomerHttp, SharedHttp, $q) {
+        function FindProviderController($state, $scope, $ionicLoading, CustomerHttp, SharedHttp, $q, $window) {
             this.$state = $state;
             this.$scope = $scope;
             this.$ionicLoading = $ionicLoading;
             this.CustomerHttp = CustomerHttp;
             this.SharedHttp = SharedHttp;
             this.$q = $q;
-            this.$inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', '$q'];
+            this.$window = $window;
+            this.$inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', 'SharedHttp', '$q', '$window'];
             var self = this;
+            self.customerType = window.localStorage.getItem('Role');
             document.addEventListener("deviceready", function () {
                 // Initialize the map plugin
                 var options = {
@@ -89,6 +91,17 @@ var FindProviderController;
                 if (response.ListProvidersByServicesResult.length != 0) {
                     for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
                         self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
+                        if (i == 0) {
+                            var lat = response.ListProvidersByServicesResult[i].vanityUrlField.substring(0, response.ListProvidersByServicesResult[i].vanityUrlField.indexOf(':'));
+                            var long = response.ListProvidersByServicesResult[i].vanityUrlField.substring(response.ListProvidersByServicesResult[i].vanityUrlField.indexOf(':') + 1);
+                            var providerLoc = new plugin.google.maps.LatLng(lat, long);
+                            FindProviderController.map.animateCamera({
+                                'target': providerLoc,
+                                'zoom': 10
+                            }, function (marker) {
+                                marker.showInfoWindow();
+                            });
+                        }
                     }
                 }
                 else {
@@ -162,6 +175,11 @@ var FindProviderController;
                 });
             });
         };
+        //providerMessage() {
+        //    var self = this;
+        //    self.messages = "Provider can not book an appointment";
+        //    $("#PDone").modal();
+        //}
         FindProviderController.prototype.getUserInfo = function (userId) {
             var image = '';
             var tagline = '';

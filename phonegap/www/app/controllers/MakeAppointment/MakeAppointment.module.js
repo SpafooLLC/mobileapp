@@ -7,7 +7,7 @@
     function configMakeAppointment($stateProvider) {
         var MakeAppointmentState = {
             name: 'MakeAppointment',
-            url: '/MakeAppointment/:userId/:appointmentId',
+            url: '/MakeAppointment/:userId/:appointmentId/:type',
             templateUrl: 'app/templates/MakeAppointment.html',
             controller: 'MakeAppointment as ma'
         };

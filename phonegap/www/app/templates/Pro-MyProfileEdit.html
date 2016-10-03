@@ -120,43 +120,55 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">PostalCode:</label>
-        <input ng-model="pep.ServiceData.Profile.PostalCode" type="text" maxlength="5"  class="form-control">
+        <input ng-model="pep.ServiceData.Profile.PostalCode" type="text" maxlength="5" id="PostalCode"  class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="exampleInputName2">Phone:</label>
+          <input ng-model="pep.ServiceData.Profile.Telephone" id="Telephone" type="text" maxlength="12"  class="form-control">
       </div>
       <div class="col-md-12">
-        <label for="exampleInputName2">Phone:</label>
-          <input ng-model="pep.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
+        <label for="exampleInputName2">Cell:</label>
+          <input ng-model="pep.ServiceData.Profile.Cell" id="Cell" type="text" maxlength="10"  class="form-control">
       </div>
     </div>
   <div class="clearfix"></div>
   <div class="bar-head"><i class="fa fa-scissors"></i> &nbsp;Professionl Information</div>
   <div class="row">
       <div class="col-md-6">
-        <label for="exampleInputName2">Type Of Entity::</label>
-        <select ng-model="pep.ServiceData.Profile.ProfileProperties[2].PropertyValue" class="form-control" id="ddlGender">
-          <option selected="" value="1">Individual</option>
-          <option value="2">Business</option>
-        </select>
+          <p style="font-size:13px;font-style:italic"> To edit your professional profile, please go to the Spafoo website from a non-mobile device and login with your credentials.  If you need any assistance, please call [toll free number].  Thank you </p>
+      </div>
+      <!--<div class="col-md-6">
+        <label for="exampleInputName2">Type Of Entity:</label>
+    
+          <select disabled ng-model="pep.ServiceData.Profile.ProfileProperties[2].PropertyValue" class="form-control" id="ddlGender">
+            <option selected="" value="1">Individual</option>
+            <option value="2">Business</option>
+          </select>
+    
+        
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">Professional License:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[3].PropertyValue"  maxlength="50"  type="text" class="form-control">
+        <input ng-click="pep.alertMessage();" readonly ng-model="pep.ServiceData.Profile.ProfileProperties[3].PropertyValue"  maxlength="50"  type="text" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">SSN:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" maxlength="50"  type="text" class="form-control">
+        <input ng-click="pep.alertMessage();" readonly ng-model="pep.ServiceData.Profile.ProfileProperties[4].PropertyValue" maxlength="50" id="SSN"  type="text" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="exampleInputName2">EIN:</label>
-        <input ng-model="pep.ServiceData.Profile.ProfileProperties[5].PropertyValue"  maxlength="50" type="text" class="form-control">
+        <input ng-click="pep.alertMessage();" readonly ng-model="pep.ServiceData.Profile.ProfileProperties[5].PropertyValue"  maxlength="50" type="text" class="form-control">
       </div>
       <div class="col-md-12">
         <label for="exampleInputName2">Position Applied:</label><br />
+        <a ng-click="pep.alertMessage();">
         <div ng-repeat="role in pep.Roles.GetQuestionResult.optionsField track by $index" class="checkbox checkbox-primary checkbox-inline">
           
-          <input ng-hide="role.RoleName" id="checkbox_{{$index}}" type="checkbox" value="{{role.onSelectField}}" ng-checked="pep.rolePosition.indexOf({{role['onSelectField']}}) > -1"  ng-click="pep.upDatePosition($event, $index)">
+          <input  disabled ng-hide="role.RoleName" id="checkbox_{{$index}}" type="checkbox" value="{{role.onSelectField}}" ng-checked="pep.rolePosition.indexOf({{role['onSelectField']}}) > -1"  ng-click="pep.upDatePosition($event, $index)">
           <label for="checkbox_{{$index}}">{{role.optionTextField}}</label>
         </div>
-      </div>
+        </a>
+      </div>-->
     </div>
   <div class="clearfix"></div>
   <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Bio</div>
@@ -168,7 +180,7 @@
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /><a ng-click="pep.RemoveSampleImage(s.optionTextField);"><i class="fa red fa-trash fa-lg"></i></a></li>
+      <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://www.spafoo.com{{s.optionTextField}}" alt="" /><a ng-click="pep.RemoveSampleImage(s.optionTextField);"><i class="fa red fa-trash fa-lg"></i></a></li>
       <li ng-click="pep.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" />
           <a >&nbsp;</a>
         </li>
@@ -178,20 +190,20 @@
 
 
 
-<a href="#" ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
+<a ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
    pep.ServiceData.Profile.ProfileProperties[0].PropertyValue && pep.ServiceData.Profile.Street && pep.ServiceData.Profile.City && 
-   pep.ServiceData.Profile.Region && pep.ServiceData.Profile.PostalCode && pep.ServiceData.Profile.ProfileProperties[12].PropertyValue 
+   pep.ServiceData.Profile.Region
    && pep.ServiceData.Profile.ProfileProperties[2].PropertyValue && pep.ServiceData.Profile.ProfileProperties[3].PropertyValue
     && pep.ServiceData.Profile.ProfileProperties[4].PropertyValue && pep.ServiceData.Profile.ProfileProperties[5].PropertyValue 
    && pep.ServiceData.Profile.Biography && pep.TagField" 
-   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode, pep.ServiceData.Profile.ProfileProperties[12].PropertyValue, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField );" class="block-btn">Update</a>
+   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode,pep.ServiceData.Profile.Telephone, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField, pep.ServiceData.Profile.Cell );" class="block-btn">Update</a>
 
     <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
                         <p >{{pep.messages}} </p>

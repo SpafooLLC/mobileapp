@@ -106,7 +106,7 @@ var spafoo;
                 else {
                     this.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response) {
                         if (response.GetProfilePicResult.length > 0) {
-                            this.ImageURl = "http://dev.spafoo.com" + response.GetProfilePicResult;
+                            this.ImageURl = "http://www.spafoo.com" + response.GetProfilePicResult;
                         }
                         else {
                             this.ImageURl = "images/Site/default-User.png";

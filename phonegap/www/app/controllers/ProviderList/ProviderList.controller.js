@@ -79,8 +79,8 @@ var ProviderListController;
         ProviderListController.prototype.getProfilePics = function (photoID, index) {
             var self = this;
             self.CustomerHttp.get('/GetProfilePic/' + photoID).then(function (response) {
-                //self.profilePic = "http://dev.spafoo.com" + response.GetProfilePicResult;
-                self.ServiceData[index].profileField.photoField = "http://dev.spafoo.com" + response.GetProfilePicResult;
+                //self.profilePic = "http://www.spafoo.com" + response.GetProfilePicResult;
+                self.ServiceData[index].profileField.photoField = "http://www.spafoo.com" + response.GetProfilePicResult;
                 //  alert(self.ServiceData[index].profileField.photoField);
                 self.$ionicLoading.hide();
             }, function (error) {

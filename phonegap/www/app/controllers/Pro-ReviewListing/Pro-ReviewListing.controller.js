@@ -19,6 +19,10 @@ var ProReviewListingController;
         }
         ProReviewListingController.prototype.getProviderReview = function (UserID) {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             self.SharedHttp.GetUserInfo(UserID).then(function (res) {
                 self.ServiceData = res;
                 self.SharedHttp.GetMyRating(UserID).then(function (ress) { self.RatingField = ress.split(':')[0]; self.Rateperson = ress.split(':')[1]; });
