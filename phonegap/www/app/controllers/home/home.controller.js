@@ -1,12 +1,13 @@
 var homeController;
 (function (homeController_1) {
     var homeController = (function () {
-        function homeController($state, $scope, $ionicLoading, $timeout) {
+        function homeController($state, $scope, $ionicLoading, $timeout, SharedHttp) {
             this.$state = $state;
             this.$scope = $scope;
             this.$ionicLoading = $ionicLoading;
             this.$timeout = $timeout;
-            this.$inject = ['$state', '$scope', '$ionicLoading', '$timeout'];
+            this.SharedHttp = SharedHttp;
+            this.$inject = ['$state', '$scope', '$ionicLoading', '$timeout', 'SharedHttp'];
             document.addEventListener("deviceready", this.onDeviceReady, false);
         }
         homeController.prototype.doLogin = function () {
@@ -21,7 +22,7 @@ var homeController;
                     if (window.location.href.substr(window.location.href.lastIndexOf('/') + 1) != 'home') {
                         window.history.go(-1);
                     }
-                    setTimeout(function () { tabClick = 0; alert('time execute: ' + tabClick); }, 2000);
+                    setTimeout(function () { tabClick = 0; }, 2000);
                 }
                 else {
                     //alert(tabClick + ':else');

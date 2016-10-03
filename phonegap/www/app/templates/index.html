@@ -17,12 +17,9 @@
                         <li class="sec" ng-if="GetLoginStatus==true && getRole=='P'"><a ui-sref="ProMyProfile"><img alt="" ng-src="images/Site/ico-register.png" /><p>My-Profile</p></a></li>
                         <li class="sec" ng-if="GetLoginStatus==false"><a ui-sref="register"><img alt="" ng-src="images/Site/ico-register.png" /><p>Register to become a new client</p></a></li>
                         <li class="thr" ng-if="GetLoginStatus==true"><a ng-click="m.doLogOut()"><img alt="" ng-src="images/Site/ico-login.png" /><p>LogOut</p></a></li>
-                        <li class="thr" ng-if="GetLoginStatus==false"><a ui-sref="login"><img alt="" ng-src="images/Site/ico-login.png" /><p>Provider Login</p></a></li>
+                        <li class="thr" ng-if="GetLoginStatus==false"><a ui-sref="login"><img alt="" ng-src="images/Site/ico-login.png" /><p>Login</p></a></li>
                         <li class="for">
-                            <a ui-sref="MySchedule" ng-if="GetLoginStatus==true" href="Pro-MySchedule.html">
-                                <img alt="" ng-src="images/Site/ico-certified.png" /><p>Become a Certified Provider</p>
-                            </a>
-                            <a ui-sref="login" ng-if="GetLoginStatus==false" href="Pro-MySchedule.html">
+                            <a ui-sref="RegisterProvider" href="">
                                 <img alt="" ng-src="images/Site/ico-certified.png" /><p>Become a Certified Provider</p>
                             </a>
                         </li>

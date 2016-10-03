@@ -11,11 +11,16 @@ var ProSetSoonestController;
             this.SharedHttp = SharedHttp;
             this.$stateParams = $stateParams;
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             self.AddressID = $stateParams.AddressID;
             self.ClientID = $stateParams.ClientID;
             self.ProviderID = $stateParams.ProviderID;
             self.AppID = $stateParams.AppID;
             self.name = $stateParams.Name1;
+            self.totalTime = $stateParams.totalTime;
             self.uiConfig = {
                 calendar: {
                     height: 450,
@@ -30,7 +35,7 @@ var ProSetSoonestController;
                             dateField: moment(date).format('MMM DD'),
                             dateFieldHidden: moment(date).format('MM/DD/YYYY'),
                             proId: 0,
-                            color: '#008000'
+                            color: '#1e319b'
                         });
                     },
                 }

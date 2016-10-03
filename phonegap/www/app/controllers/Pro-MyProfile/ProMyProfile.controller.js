@@ -13,13 +13,18 @@ var ProMyProfileController;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
             this.getUserInfo();
+            $('.fancybox').fancybox();
         }
         ProMyProfileController.prototype.getUserInfo = function () {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             var customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserJSON/' + customerID).then(function (response) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
-                console.log(self.ServiceData);
+                //console.log(self.ServiceData);
                 self.ServiceData.Membership.CreatedDate = self.SharedHttp.getFormatedDate(self.ServiceData.Membership.CreatedDate, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 var str = self.ServiceData.Profile.Biography;
@@ -28,16 +33,28 @@ var ProMyProfileController;
                 self.ServiceData.Profile.Biography = decoded;
                 self.SharedHttp.getProfilePics(self.ServiceData.Profile.Photo).then(function (imgres) { self.proProfilePic = imgres; });
                 self.SharedHttp.GetWorkSamples(customerID).then(function (res) { self.WorkSamplesList = res; });
+                self.rolePosition = self.ServiceData.Profile.ProfileProperties[1].PropertyValue.split('|').map(Number);
                 self.getRoles().then(function (res) {
                     self.Roles = res;
+                    var rArr = new Array();
+                    for (var i = 0; i < self.Roles.GetQuestionResult.optionsField.length; i++) {
+                        if (self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField) > -1) {
+                            rArr.push(self.Roles.GetQuestionResult.optionsField[i].optionTextField);
+                        }
+                    }
+                    //console.log(rArr)
+                    self.applRole = rArr;
                 }, function (error) {
                     //alert(error);
+                });
+                self.CustomerHttp.get('/GetProviderServices/' + customerID).then(function (res) {
+                    self.serviceOffered = res.GetProviderServicesResult;
+                }, function (err) {
                 });
             }, function (error) {
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };

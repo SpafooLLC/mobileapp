@@ -5,12 +5,12 @@
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">Register</div>
         </div>
-        <div class="inbody">
+        <div class="inbody regclient">
             <div class="center">
                 <div class="radio radio-info radio-inline">
                     <input type="radio" name="radioInline" ng-model="data.IsClient" id="rdClient">
                     <label for="inlineRadio2">I am a Client</label>
-                </div>
+                </div>&nbsp;&nbsp;&nbsp;
                 <div class="radio radio-info radio-inline">
                     <input type="radio" name="radioInline" ng-change="Reg.GoRegistertext(data.IsProvider)" value="2" ng-model="data.IsClient" id="rdProvider">
                     <label for="inlineRadio2">I am Provider</label>

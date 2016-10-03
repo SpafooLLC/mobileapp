@@ -1,13 +1,13 @@
-﻿
+
 <ion-view view-title="Login">
     <ion-content>
 
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">Edit Profile</div>
-            <div class="pnotification" ui-sref="Notification">
+            <div class="pnotification" ui-sref="Notification" >
                 <div class="ico">
-                    <a><i class="fa blue fa-bell fa-1x"></i></a>
+                    <a ><i class="fa blue fa-bell fa-1x"></i></a>
                 </div>
                 <div id='notification'>{{mpe.NotificationCount}}</div>
             </div>
@@ -16,7 +16,7 @@
 
         <div class="inbody-simple mprofileedit">
             <div class="center">
-                <p><a ui-sref="MyProfile" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Cancel</a></p>
+                <p><a  ui-sref="MyProfile" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Cancel</a></p>
                 <div class="profile-pic">
                     <div class="round">
                         <a ng-click="mpe.cameraOption();" ng-if="mpe.profilePic==''"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
@@ -24,8 +24,8 @@
                     </div>
                     <div ng-if="mpe.isImageClick"><button ng-click="mpe.capturePhoto('C')">Camera Image</button><button ng-click="mpe.capturePhoto('G')">Galary Image</button></div>
                 </div>
-                <h3 class="bmar-xs"> {{mp.ServiceData.firstNameField}} {{mp.ServiceData.lastNameField}} </h3>
-                <p class="green bmar-sm fs-sm"> {{mpe.ServiceData.Email}} </p>
+                <h3 class="bmar-xs">{{mpe.ServiceData.DisplayName}}</h3>
+                <p class="green bmar-sm fs-sm">{{mpe.ServiceData.Email}}</p>
                 <p><span>Joined Date:</span> {{mpe.ServiceData.Membership.CreatedDate}}</p>
             </div>
             <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
@@ -36,21 +36,21 @@
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Last Name:</label>
-                    <input ng-model="mpe.ServiceData.LastName" type="text" maxlength="50" class="form-control">
+                    <input ng-model="mpe.ServiceData.LastName" type="text"  maxlength="50" class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Display Name:</label>
-                    <input ng-model="mpe.ServiceData.DisplayName" type="text" maxlength="100" class="form-control">
+                    <input ng-model="mpe.ServiceData.DisplayName" type="text"  maxlength="100" class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Email:</label>
-                    <input ng-model="mpe.ServiceData.Email" type="text" maxlength="100" class="form-control">
+                    <input ng-model="mpe.ServiceData.Email" type="text"   maxlength="100" class="form-control">
                 </div>
                 <div class="col-md-12">
                     <label for="exampleInputName2">Gender:</label>
                     <select ng-model="mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue" class="form-control" id="ddlGender">
                         <option value="" selected="selected">-Select Gender-</option>
-                        <option value="Female">Female</option>
+								 <option value="Female">Female</option>
                         <option value="Male">Male</option>
                     </select>
                 </div>
@@ -59,15 +59,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="exampleInputName2">Street:</label>
-                    <input ng-model="mpe.ServiceData.Profile.Street" type="text" maxlength="100" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.Street" type="text"  maxlength="100"  class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">City:</label>
-                    <input ng-model="mpe.ServiceData.Profile.City" type="text" maxlength="50" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.City" type="text"  maxlength="50"  class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">Region:</label>
-                    <select class="form-control" ng-model="mpe.ServiceData.Profile.Region">
+                    <select class="form-control"  ng-model="mpe.ServiceData.Profile.Region"  >
                         <option value="" selected="selected">-Select Region-</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -121,33 +121,32 @@
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
                     </select>
-                    <!--<input ng-model="mpe.ServiceData.Profile.Country" type="text" class="form-control">-->
+						    <!--<input ng-model="mpe.ServiceData.Profile.Country" type="text" class="form-control">-->
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">PostalCode:</label>
-                    <input ng-model="mpe.ServiceData.Profile.PostalCode" id="PostalCode" maxlength="5" type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.PostalCode" maxlength="5"  type="text" class="form-control">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="exampleInputName2">Phone:</label>
-                    <input ng-model="mpe.ServiceData.Profile.Telephone" id="Telephone" type="text" maxlength="12" class="form-control">
-                </div>
-                <div class="col-md-12"> 
-                    <label for="exampleInputName2">Cell:</label>
-                    <input ng-model="mpe.ServiceData.Profile.Cell" id="Cell" type="text" maxlength="12" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
                 </div>
             </div>
             <div class="clearfix"></div>
+            
+       </div> 
+       <div class="h50"></div>
             <!--<a href="#" class="block-btn">Update</a>-->
             <a href="#" ng-show="(mpe.ServiceData.FirstName && mpe.ServiceData.LastName && mpe.ServiceData.DisplayName && mpe.ServiceData.Email && mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue && mpe.ServiceData.Profile.Street
-					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.Telephone && mpe.ServiceData.Profile.Cell );"
-               ng-click="mpe.EditProfile(mpe.ServiceData.FirstName , mpe.ServiceData.LastName , mpe.ServiceData.DisplayName , mpe.ServiceData.Email , mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue , mpe.ServiceData.Profile.Street
-					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.Telephone, mpe.ServiceData.Profile.Cell)"
-               class="block-btn">Update</a>
-        </div>
-        <script type="text/javascript">app.initialize();</script>
+					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue );"
+					ng-click="mpe.EditProfile(mpe.ServiceData.FirstName , mpe.ServiceData.LastName , mpe.ServiceData.DisplayName , mpe.ServiceData.Email , mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue , mpe.ServiceData.Profile.Street
+					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue)"
+					
+					 class="block-btn">Update</a>
+            <script type="text/javascript">app.initialize();</script>
 
 
-        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -155,33 +154,16 @@
                         <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
-                        <p>{{pep.messages}} </p>
+                        <p >{{pep.messages}} </p>
                         <div class="cpaction">
-                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+                            <a data-dismiss="modal" data-toggle="modal"  class="green-rounded btnblock">Ok</a>
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog w90" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
-                    </div>
-                    <div class="modal-cpbody center">
-                        <p>{{pep.messages}} </p>
-                        <div class="cpaction">
-                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+           
     </ion-content>
 </ion-view>
 

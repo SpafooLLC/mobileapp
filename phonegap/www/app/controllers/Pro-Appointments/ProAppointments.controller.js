@@ -14,6 +14,10 @@ var ProAppointmentsController;
         }
         ProAppointmentsController.prototype.getProviderSchedular = function (UserID) {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             self.CustomerHttp.get('/ListAppointmentByProvider/' + UserID).then(function (response) {
                 self.ServiceData = response.ListAppointmentByProviderResult;
                 $.each(self.ServiceData, function (i, item) {
@@ -35,10 +39,19 @@ var ProAppointmentsController;
                         self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
                     }
                     var serviceName = "";
+                    var serviceTime = 0;
                     $.each(item.servicesField, function (ig, sitem) {
-                        serviceName += sitem.serviceNameField + ",";
+                        if (parseInt(sitem.qtyField) > 1) {
+                            serviceName += sitem.serviceNameField + "(" + sitem.qtyField + "),";
+                            serviceTime += sitem.qtyField * sitem.durationField;
+                        }
+                        else {
+                            serviceName += sitem.serviceNameField + ",";
+                            serviceTime += sitem.durationField;
+                        }
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
+                    self.ServiceData[i].serviceTime = serviceTime;
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;
@@ -55,18 +68,22 @@ var ProAppointmentsController;
             });
         };
         ProAppointmentsController.prototype.RemoveCancelled = function (AppointmentID) {
-            var self = this;
-            self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response) {
-                //alert(JSON.stringify(response));
-                self.getProviderSchedular(this.UserID);
-            }, function (error) {
-            });
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                self.CustomerHttp.get('/RemoveApp/' + AppointmentID).then(function (response) {
+                    //alert(JSON.stringify(response));
+                    //    alert(self.UserID);
+                    self.getProviderSchedular(self.UserID);
+                }, function (error) {
+                });
+            }
         };
         ProAppointmentsController.prototype.UnSeenStatus = function (AppointmentID) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
                 //alert(JSON.stringify(response));
-                self.getProviderSchedular(this.UserID);
+                //    self.getProviderSchedular(this.UserID);
             }, function (error) {
             });
         };
@@ -77,6 +94,7 @@ var ProAppointmentsController;
         };
         ProAppointmentsController.prototype.GoToScheduleDetail = function (AppointmentID) {
             var self = this;
+            self.UnSeenStatus(AppointmentID);
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ProAppointmentDetail");
         };

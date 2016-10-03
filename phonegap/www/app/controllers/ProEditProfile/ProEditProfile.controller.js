@@ -13,11 +13,19 @@ var ProEditProfileController;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
             this.$timeout = $timeout;
+            $("#Telephone").mask("000-000-0000");
+            $("#Cell").mask("000-000-0000");
+            $("#PostalCode").mask("00000");
+            $("#SSN").mask("000-00-0000");
             var self = this;
             this.getUserInfo();
         }
         ProEditProfileController.prototype.getUserInfo = function () {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             self.customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserJSON/' + self.customerID).then(function (response) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
@@ -165,14 +173,14 @@ var ProEditProfileController;
             }
             catch (ex) {
             }
-            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
+            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
                 if (r.responseCode === '200' || r.responseCode === 200) {
                     var resArr = r.response.split('|');
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
                     self.$timeout(function () {
-                        self.proProfilePic = "http://dev.spafoo.com" + resArr[1];
+                        self.proProfilePic = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
                 }
@@ -199,13 +207,17 @@ var ProEditProfileController;
             }
             //console.log(self.applPosition);
         };
-        ProEditProfileController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Region, PostalCode, Cell, typeOfEntity, professionalLicense, sSN, eIN, biography, tagField) {
+        ProEditProfileController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Region, PostalCode, Cell, typeOfEntity, professionalLicense, sSN, eIN, biography, tagField, Mob) {
             var self = this;
             var uPos = '';
             if (self.doValidation(Email)) {
                 for (var i = 0; i < self.applPosition.length; i++) {
                     uPos = uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_' + self.applPosition[i] + '|';
                 }
+                Cell = $("#Telephone").val();
+                Mob = $("#Cell").val();
+                PostalCode = $("#PostalCode").val();
+                sSN = $("#SSN").val();
                 var data = {
                     'UserID': self.customerID,
                     'FN': FirstName,
@@ -217,14 +229,15 @@ var ProEditProfileController;
                     'City': City,
                     'Region': Region,
                     'PC': PostalCode,
-                    'P': Cell,
-                    'TOE': typeOfEntity,
-                    'Lic': professionalLicense,
-                    'SSN': sSN,
-                    'EIN': eIN,
+                    'p': Cell,
+                    'TOE': '',
+                    'Lic': '',
+                    'SSN': '',
+                    'EIN': '',
                     'Bio': biography,
                     'TagLine': tagField,
-                    'uPOS': uPos
+                    'uPOS': '',
+                    'Mo': Mob
                 };
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response) {
                     if (response.Success === 'Success') {
@@ -245,7 +258,7 @@ var ProEditProfileController;
         ProEditProfileController.prototype.doValidation = function (Email) {
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
-                self.messages = "Please Enter Email Address.";
+                self.messages = "Please enter email address.";
                 //alert('Please Enter Email Address');
                 $("#PDone").modal();
                 return false;
@@ -259,10 +272,28 @@ var ProEditProfileController;
                     return false;
                 }
             }
-            if (self.applPosition.indexOf("1") == -1) {
-                self.messages = 'Select atleast one applying position';
+            //if(self.applPosition.indexOf("1")==-1){
+            //    self.messages='Select atleast one applying position';
+            //    $("#PDone").modal();
+            //    //alert('Select atleast one applying position');
+            //    return false;
+            //} 
+            var Cell = $("#Telephone").val();
+            var Mob = $("#Cell").val();
+            var PostalCode = $("#PostalCode").val();
+            if (Cell === null || Cell === '' || Cell == undefined) {
+                self.messages = "Please enter phone number.";
                 $("#PDone").modal();
-                //alert('Select atleast one applying position');
+                return false;
+            }
+            if (Mob === null || Mob === '' || Mob == undefined) {
+                self.messages = "Please enter mobile number.";
+                $("#PDone").modal();
+                return false;
+            }
+            if (PostalCode === null || PostalCode === '' || PostalCode == undefined) {
+                self.messages = "Please enter postal code.";
+                $("#PDone").modal();
                 return false;
             }
             return true;
@@ -292,8 +323,8 @@ var ProEditProfileController;
                         }
                         catch (ex) {
                         }
-                        ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
-                            alert(JSON.stringify(r));
+                        ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
+                            //alert(JSON.stringify(r));
                             if (r.responseCode === '200' || r.responseCode === 200) {
                                 self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
                                     self.$timeout(function () {
@@ -352,6 +383,11 @@ var ProEditProfileController;
                 $("#PDone").modal();
                 //alert('Something went wrong with the server');
             });
+        };
+        ProEditProfileController.prototype.alertMessage = function () {
+            var self = this;
+            self.messages = 'To edit your professional profile, please go to the Spafoo website from a non-mobile device and login with your credentials.  If you need any assistance, please call [toll free number].  Thank you';
+            $("#PDone").modal();
         };
         ProEditProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$timeout'];
         return ProEditProfileController;
