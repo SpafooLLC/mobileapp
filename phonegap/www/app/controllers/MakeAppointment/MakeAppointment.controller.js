@@ -69,7 +69,12 @@ var MakeAppointmentController;
                 this.AppID = this.AppointmentID;
             }
             this.ASAP = this.$stateParams.type == 'ASAP';
-            this.getProviderPortfolio($stateParams.userId);
+            if ($stateParams.userId != "null" && this.customerId != null) {
+                this.getProviderPortfolio($stateParams.userId);
+            }
+            else {
+                this.$state.go("login");
+            }
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();

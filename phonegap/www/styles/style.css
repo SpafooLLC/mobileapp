@@ -268,11 +268,11 @@
   .appimggrid li img { width:100%; }
   .customimg { background:url(../images/Site/dropimg.png); width:271px; height:35px; border:none; text-indent:10px; }
   .inbodyfull { padding:0 0 15px 0; overflow:hidden; }
-  .avac-header { background:url(../Images/Site/ava-city.jpg) top center no-repeat; background-size:100%; margin-bottom:30px; }
+  .avac-header { background:url(../images/Site/ava-city.jpg) top center no-repeat; background-size:100%; margin-bottom:30px; }
   .avac-header .box {  }
   .avac-header .box h1 { font-family:'Roboto', sans-serif; font-size:46px; font-weight:600; color:#ffffff; text-align:center; padding:60px 0 20px 0;  }
   .ava-city { text-align:center; padding:0 25px; }
-  .ava-city h2 { background:url(../Images/Site/ava-line.png) left center repeat-x; margin:0 0 30px 0; }
+  .ava-city h2 { background:url(../images/Site/ava-line.png) left center repeat-x; margin:0 0 30px 0; }
   .ava-city h2 span { font-family:'Roboto', sans-serif; font-size:30px; font-weight:400; color:#333447; background:#ffffff; padding:0 20px; }
   .ava-city .city-row { display:block; margin-bottom:40px; }
   .ava-city .city-row ul { margin:0; padding:0; }
