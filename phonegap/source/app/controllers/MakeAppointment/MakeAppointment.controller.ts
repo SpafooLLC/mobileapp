@@ -674,6 +674,10 @@
             })
         }
 
+        showPTerm(){
+            $('#PTerms').modal();
+        }
+
     }
 
 
