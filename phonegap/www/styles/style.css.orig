@@ -24,6 +24,7 @@
 /*========================================================*/
 /*  Main SKIN Elements                                    */
 /*========================================================*/
+<<<<<<< HEAD
 /*------------------start Implemented by Pawan--------0*/
 .bar-header { border-bottom-width: 1px; border-top-width: 0; top: 0;}
 .scroll-content { bottom: 0; background-color:white; height: auto;left: 0; margin-bottom: -1px; overflow: hidden; position: absolute; right: 0; top: 65px; width: auto;}
@@ -35,6 +36,9 @@
 /*------------------End Implemented by Pawan--------0*/
 
   .BgDisplay {display:none; width:100%; z-index:999999; position:fixed; left:0px; top:0px; bottom:0px; text-align:center; background-color:rgba(0, 0, 0, 0.6); }
+=======
+  .BgDisplay {display:none; width:100%; z-index:999999; position:fixed; left:0px; top:0px; bottom:0px; text-align:center; background-color:rgba(0, 0, 0, 0.7); }
+>>>>>>> da8fe243653c607b12ae8823da7c2da1ab1fa449
   #showload > img {margin-top: 60%; }
   .bar-footer .title{    width: 100%;    color: #fff; }
   .clear { clear:both; }
@@ -46,7 +50,11 @@
   .hfleft { float:left; padding-top:4px; }
   .hfright { float:right; }
   .pixmenu { float:right; margin:3px 10px 0 0; }
+<<<<<<< HEAD
   /*.scroll {margin-top: 50px; height:100%; } commented by Pawan */
+=======
+  .scroll {margin-top:65px;  }
+>>>>>>> da8fe243653c607b12ae8823da7c2da1ab1fa449
   .header { min-height:265px; background:url(../images/Site/mobile-crv.png) top center no-repeat;}
   .inheader {  }
   .wrapper {  background:-moz-radial-gradient(center, ellipse cover, #14338f 0%, #001a66 100%); background:-webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#14338f), color-stop(100%,#001a66)); background:-webkit-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%); background:-o-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%);background:-ms-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%); background:radial-gradient(ellipse at center, #14338f 0%,#001a66 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#14338f', endColorstr='#001a66',GradientType=1 );  }
@@ -63,8 +71,12 @@
   .copyright { font-family:'Open Sans', sans-serif; font-size:13px; font-weight:400; color:#c6c6c6;}
   .footer { background:#000000; padding:8px 0; text-align:center; font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; color:#ffffff;}
   .infooter { position:absolute; width:100%; bottom:0; background:#000000; padding:8px 0; text-align:center; font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; color:#ffffff;}
+<<<<<<< HEAD
   /*.fource-bottom { width:100%; margin:40px 0 -26px 0 !important; position:absolute; bottom:0; } commented by pawan*/
    .fource-bottom { position:absolute; width:100%;}
+=======
+  .fource-bottom { width:100%; margin:40px 0 0 0 !important; }
+>>>>>>> da8fe243653c607b12ae8823da7c2da1ab1fa449
   .btnend { margin:0px 0 0 0; }
   .vmenu { margin:0; padding:65px 0 0 0; }
   .vmenu ul { margin:0 0 0 0; padding:0; }
