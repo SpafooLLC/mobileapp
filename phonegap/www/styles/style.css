@@ -78,7 +78,7 @@
   .vmenu li a.signout { background:#000000;}
   .vmenu li a:hover.signout { background:#cc0000;}
   .bread { padding:20px 0; background:#e8e8e8; background:-moz-linear-gradient(top,  #e8e8e8 0%, #dfdfdf 100%); background:-webkit-linear-gradient(top,  #e8e8e8 0%,#dfdfdf 100%); background:linear-gradient(to bottom,  #e8e8e8 0%,#dfdfdf 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#dfdfdf',GradientType=0 ); }
-  .pback { float:left; margin:-4px 0 0 8px; padding:0 8px; }
+  .pback { float:left; margin:-8px 0 0 8px; padding:0 8px; }
   a.pback { color:#000000 !important; } a.pback:hover { color:#cc0000 !important; }
   .bread .ptitle { margin:0 32px 0 0; font-family:'Open Sans', sans-serif; font-size:20px; font-weight:400; color:#112173; display:block; text-transform:uppercase; text-align:center; }
   .bread .ptitle a { font-family:'Open Sans', sans-serif; font-size:20px; font-weight:400; color:#112173; display:block; text-transform:uppercase; text-align:center; }
@@ -171,7 +171,7 @@
   .ratting-4 { width:92px; height:21px; background:url(../images/Site/ratting-4.png) top left no-repeat;  }
   .ratting-5 { width:92px; height:21px; background:url(../images/Site/ratting-5.png) top left no-repeat;  }
   .pprofile .mainimg { width:100%; }
-  .pprofile .bar { margin:2px 0 0 0; overflow:hidden; padding:6px 10px; background:#e7e7e7;  }
+  .pprofile .bar { margin:2px 0 0 0; overflow:hidden; padding:6px 10px; background:#e7e7e7; display:block; position:relative;  }
   .pprofile .infobox { clear:both; margin:50px 0 0 0; text-align:center; }
   .pprofile .infobox h1 { color:#219862; font-size:32px; margin:0 0 2px 0; line-height:34px;  }
   .pprofile .infobox h3 { font-family:'Lato', sans-serif; font-size:18px; margin:0 0 20px 0; }
@@ -244,8 +244,8 @@
   .myschedule .acc .middle { padding:0 0 0 10px;  vertical-align:top; }
   .myschedule .acc .middle h2 {  color:#777777; font-family:'Balthazar', sans-serif; font-weight:600; font-size:18px; line-height:26px; margin:0 0 5px 0; }
   .myschedule .acc .middle p {  color:#777777; font-weight:600; font-size:15px; margin:0 0 1px 0; }
-  .myschedule .acc .right { color:#219962; height:100px; width:70px; background:#d0d0d0; text-align:center; padding:20px 0 0 0; vertical-align:top; }
-  .myschedule .acc .right a i { color:#219962; }
+  .myschedule .acc .right { color:#219962; height:100px; width:130px; background:#d0d0d0; text-align:center; padding:20px 0 0 0; vertical-align:top; }
+  .myschedule .acc .right a i { color:#ff0000; }
   .myschedule .acc .right p { color:#112173; text-align:center; font-size:14px; font-weight:700; margin:5px 0 0 0; }
   .scdetail  { clear:both; margin:30px 0 0 0; text-align:center; }
   .scdetail  h1 { color:#112173; font-size:24px; margin:0 0 10px 0; line-height:30px;  }
@@ -470,6 +470,7 @@
 
 @media (min-width:240px) and (max-width:520px){
  .myschedule .sce .right {width: 62%;}
+ .myschedule .acc .right { background:#d0d0d0; color:#219962; height:auto; margin:0 15px 0 0; padding:5px; position:absolute; right:0; text-align:center; vertical-align:top; width:130px; }
 	
 }
 
