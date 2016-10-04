@@ -116,11 +116,11 @@ var registerController;
                     return false;
                 }
             }
-            if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
-                self.messages = "Please Enter Phone Number.";
-                $("#PDone").modal();
-                return false;
-            }
+            //if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
+            //    self.messages = "Please Enter Phone Number.";
+            //    $("#PDone").modal();
+            //    return false;
+            //}
             if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
                 self.messages = "Please Enter Mobile Number.";
                 $("#PDone").modal();
