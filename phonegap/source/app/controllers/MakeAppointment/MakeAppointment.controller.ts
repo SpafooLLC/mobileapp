@@ -36,7 +36,9 @@
             this.checked_services = [];
             if(!status || status == "false"){
                 var providerData = {providerId: this.UserID};
+                $window.localStorage.setItem("url", window.location.hash);
                 this.$state.go("login", providerData);
+           
             }else{
                 this.customerId = $window.localStorage.getItem('CustomerID');
             }
@@ -284,7 +286,6 @@
             var self = this;
             self.changeSummery();
             self.eventSource = [];
-            //self.eventSource.push(self.appointment.forDateField);
             if(self.ASAP){
                 self.paymentMethod();
             } else{
@@ -308,10 +309,7 @@
                         editable: true,
                         slotEventOverlap: false,
                         eventLimit: 1,
-                        /*events: function (start, end, timezone, callback) {
-                            getOccupiedSlots(moment(start).format('MM-DD-YYYY'), moment(end).format('MM-DD-YYYY'), timezone, callback)
-                        }*/
-                        viewRender: function(view, element) { if(self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
+                        viewRender: function(view, element) { this.calendar.removeEvents(); if(self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
                     }
                 };
                 setTimeout(function(){
@@ -329,19 +327,14 @@
             var date = new Date(), y = date.getFullYear(), m = date.getMonth();
             var start = moment().format('MM/DD/YYYY');
             var end = moment(end).format('MM/DD/YYYY');
-            //var firstDay = new Date(y, m, 1);
-            //var lastDay = new Date(y, m + 1, 0);
             var postObj = {
                 EndDateTime: end,
-                //EndDateTime:self.from,
                 ProID: self.$stateParams.userId,
-                //StartDateTime:self.to
                 StartDateTime: start,
             };
             self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res: any) {
 
                 var aviles = JSON.parse(res.ListMyAvailResult);
-
                 for (var i = 0; i < aviles.length; i++) {
                     var starthours = aviles[i].StartTime.Hours > 9 ? aviles[i].StartTime.Hours : '0'+aviles[i].StartTime.Hours;
                     var startminutes = aviles[i].StartTime.Minutes > 9 ? aviles[i].StartTime.Minutes : '0'+aviles[i].StartTime.Minutes;
@@ -350,48 +343,22 @@
                     var dateMonth = aviles[i].Date;
                     var dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
-                    var getmonth = '';
 
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
                         title: moment(endhours+':'+endminutes, 'HH:mm').format('h:mm a')+' - '+moment(starthours+':'+startminutes, 'HH:mm').format('h:mm a'),
-                        //startTime: new Date(1970, 0, 1, starthours, aviles[i].StartTime.Minutes),
-                        //endTime: new Date(1970, 0, 1, endhours, aviles[i].EndTime.Minutes),
-                        //id: aviles[i].AvailID,
-                        //proId: aviles[i].ProviderID,
                         dateField: dateMonth1,
-                        //dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
                         color: '#ff0000'
                     });
                 }
                 self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
                   var _Today = new Date();
-                  var strToday = ((_Today.getMonth() + 1) < 10 ? '0' : '') + (_Today.getMonth() + 1) + "/" + ((_Today.getDate() < 10) ? '0' : '') + _Today.getDate() + "/" + _Today.getFullYear();
                   $.each(d, function (i, o) {
-                    //if (o.ForDate >= strToday) {
                     self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm a') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm a'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
-                    //}
                   });
                 });
             });
         }
-
-        /*amPmTime(hour, minute) {
-          var _rVal = "";
-          if (hour > 12) {
-            hour = (hour - 12);
-            _rVal = "" + (hour) + ":" + (minute < 10 ? "0" + minute : minute) + " pm";
-          } else {
-            if (hour == 12) {
-              _rVal = "" + 12 + ":" + (minute < 10 ? "0" + minute : minute) + " pm";
-            }
-            if (hour < 12) {
-              _rVal = "" + hour + ":" + (minute < 10 ? "0" + minute : minute) + " am";
-            }
-          }
-          return _rVal;
-        }*/
-
 
         onViewTitleChanged = function (title) {
             this.viewTitle = title;
@@ -679,6 +646,10 @@
                     self.showIonicAlert('Sorry, your appointment not successfully done!');
                 }
             })
+        }
+
+        showPTerm(){
+            $('#PTerms').modal();
         }
 
     }

@@ -44,7 +44,7 @@
         <img ng-src="images/Site/reload.gif" alt="Processing..." />
     </div>
 
-    <div class="in-logo"><a href="index.html"><img ng-src="images/Site/SpaFoo-sm.png" /></a></div>
+    <div class="in-logo"><a ui-sref="home"><img ng-src="images/Site/SpaFoo-sm.png" /></a></div>
     <div class="inheader">
 
         <div class="titre">
@@ -71,8 +71,8 @@
                                 <p>Notification</p>
                             </a>
                         </li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-share.png"><p>Available Cities </p></a></li>
-
+           
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
                     </ul>
                     <ul class="top" ng-if="GetLoginStatus==false">
                         <li ng-click="m.HideShowMenu()">
@@ -80,7 +80,7 @@
                         </li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-share.png"><p>Available Cities </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
                     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
@@ -99,16 +99,16 @@
                                 <p>Notification</p>
                             </a>
                         </li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-share.png"><p>Available Cities </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
 
                     </ul>
 
                     <ul class="bottom">
                         <!--<li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>-->
 
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ContactUs"><img ng-src="images/Site/vm-share.png"><p>Contact US</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ContactUs"><img ng-src="images/Site/vm-contact.png"><p>Contact US</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-  <li ng-click="m.HideShowMenu()"><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
 
                     </ul>

@@ -60,15 +60,14 @@
     <script src="app/controllers/About/About.module.js"></script>
     <script src="app/controllers/AddClientRating/AddClientReview.controller.js"></script>
     <script src="app/controllers/AddClientRating/AddClientReview.module.js"></script>
-    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.controller.js"></script>
-    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.module.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.controller.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.module.js"></script>
+    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.controller.js"></script>
+    <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.module.js"></script>
     <script src="app/controllers/ChangePassword/ChangePassword.controller.js"></script>
     <script src="app/controllers/ChangePassword/ChangePassword.module.js"></script>
     <script src="app/controllers/ContactUs/AvailableCities.js"></script>
     <script src="app/controllers/ContactUs/ContactUS.module.js"></script>
-    <script src="app/controllers/ContactUs/FindProvider.module.js"></script>
     <script src="app/controllers/FindProvider/FindProvider.controller.js"></script>
     <script src="app/controllers/FindProvider/FindProvider.module.js"></script>
     <script src="app/controllers/home/home.controller.js"></script>
@@ -155,8 +154,8 @@
                                 <p>Notification</p>
                             </a>
                         </li>
+           
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
-
                     </ul>
                     <ul class="top" ng-if="GetLoginStatus==false">
                         <li ng-click="m.HideShowMenu()">

@@ -84,6 +84,23 @@
             self.$window.localStorage.setItem('ProviderIDs', UserID);
             self.$state.go("ProviderPortfolio");
         }
+
+        HideApp4Me(AppID: any) {
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                var UserType = self.$window.localStorage.getItem('Role');
+                self.SharedHttp.HideApp4Me(AppID, UserType).then(function (e: any) {
+
+                    if (e.HideApp4MeResult.Success == "Removed Successfully") {
+                        self.getClientSchedular(self.UserID);
+                    }
+                });
+            }
+
+        }
+
+
         GoToScheduleDetail(AppointmentID: any) {
             var self = this;
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);

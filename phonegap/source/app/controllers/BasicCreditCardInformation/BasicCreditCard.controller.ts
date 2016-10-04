@@ -54,10 +54,11 @@
             var self = this;
             //alert(CData.PayLater)
 
-            if (CData != undefined && CData.PayLater == true  )
+            if (self.isChecked == true)
             {
-                self.$state.go("login");
+                self.$state.go("MyProfile");
             }
+        
             else if (this.DoValidation(CData)) {
                 var data = CData;
                 data.UID = self.$window.localStorage.getItem('CustomerID');

@@ -150,6 +150,14 @@ var spafoo;
                 }, function (error) { });
                 return deferred.promise;
             };
+            SharedHttp.prototype.HideApp4Me = function (AppID, UserType) {
+                var deferred = this.$q.defer();
+                this.CustomerHttp.get('/HideApp4Me/' + AppID + '/' + UserType).then(function (response) {
+                    this.HideApp = response;
+                    deferred.resolve(this.HideApp);
+                }, function (error) { });
+                return deferred.promise;
+            };
             SharedHttp.prototype.GetUserInfo = function (UserID) {
                 var deferred = this.$q.defer();
                 this.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {

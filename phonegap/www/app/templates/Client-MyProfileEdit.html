@@ -125,11 +125,15 @@
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">PostalCode:</label>
-                    <input ng-model="mpe.ServiceData.Profile.PostalCode" maxlength="5"  type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.PostalCode" id="PostalCode" maxlength="5"  type="text" class="form-control">
                 </div>
-                <div class="col-md-12">
+                <!--<div class="col-md-12">
                     <label for="exampleInputName2">Phone:</label>
                     <input ng-model="mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
+                </div>-->
+                <div class="col-md-12">
+                    <label for="exampleInputName2">Mobile:</label>
+                    <input ng-model="mpe.ServiceData.Profile.Cell" id="Cell" type="text" maxlength="12" class="form-control">
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -138,9 +142,9 @@
        <div class="h50"></div>
             <!--<a href="#" class="block-btn">Update</a>-->
             <a href="#" ng-show="(mpe.ServiceData.FirstName && mpe.ServiceData.LastName && mpe.ServiceData.DisplayName && mpe.ServiceData.Email && mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue && mpe.ServiceData.Profile.Street
-					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue );"
+					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.Cell );"
 					ng-click="mpe.EditProfile(mpe.ServiceData.FirstName , mpe.ServiceData.LastName , mpe.ServiceData.DisplayName , mpe.ServiceData.Email , mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue , mpe.ServiceData.Profile.Street
-					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue)"
+					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.Cell)"
 					
 					 class="block-btn">Update</a>
             <script type="text/javascript">app.initialize();</script>

@@ -27,8 +27,8 @@ var BasicCreditCardController;
         BasicCreditCardController.prototype.SubmitCreditCardInfo = function (CData) {
             var self = this;
             //alert(CData.PayLater)
-            if (CData != undefined && CData.PayLater == true) {
-                self.$state.go("login");
+            if (self.isChecked == true) {
+                self.$state.go("MyProfile");
             }
             else if (this.DoValidation(CData)) {
                 var data = CData;
