@@ -4,14 +4,14 @@
         <div class="wrapper">
             <div class="header">
                 <div class="xs-logo">
-                    <a href="index.html"><img ng-src="images/Site/Spafoo-Logo.png" /></a>
+                    <a ui-sref="home"><img ng-src="images/Site/Spafoo-Logo.png" /></a>
                     <p>Our licensed professionals are at your service and to <br /> your door, wherever you happen to be!</p>
                 </div>
             </div>
             <div class="main-body">
                 <div class="mnav">
                     <ul>
-                        <li class="fst"><a ui-sref="FindProvider" href="MakeAppointment.html"><img alt="" ng-src="images/Site/ico-appointment.png" /><p>Make Appointment</p></a></li>
+                        <li class="fst"><a ui-sref="Services" href="MakeAppointment.html"><img alt="" ng-src="images/Site/ico-appointment.png" /><p>Make Appointment</p></a></li>
 
                         <li class="sec" ng-if="GetLoginStatus==true && getRole=='C'"><a ui-sref="MyProfile"><img alt="" ng-src="images/Site/ico-register.png" /><p>My-Profile</p></a></li>
                         <li class="sec" ng-if="GetLoginStatus==true && getRole=='P'"><a ui-sref="ProMyProfile"><img alt="" ng-src="images/Site/ico-register.png" /><p>My-Profile</p></a></li>
