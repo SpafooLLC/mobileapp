@@ -37,8 +37,7 @@
             if(!status || status == "false"){
                 var providerData = {providerId: this.UserID};
                 $window.localStorage.setItem("url", window.location.hash);
-                this.$state.go("login", providerData);
-           
+                this.$state.go("login", providerData);           
             }else{
                 this.customerId = $window.localStorage.getItem('CustomerID');
             }
@@ -73,8 +72,7 @@
                
                 this.getProviderPortfolio($stateParams.userId);
             }
-            else
-            {
+            else {
                 this.$state.go("login");
             }
             var date = new Date();
@@ -210,11 +208,18 @@
             //alert(JSON.stringify(e));
         }
 
-        viewSelect(view: any){
+        viewSelect(view: any) {
             var self = this;
             view = self.ASAP && view == 'Appointment-DateTime' ? 'Order-Summary' : view;
-            if(self.isEdit && view == 'Basic-Info'){
-              self.getEditInfo();
+            if (self.isEdit && view == 'Basic-Info') {
+                self.getEditInfo();
+            } else if (self.backToCalendar && view == 'Payment-Method') {
+                if (self.ASAP) {
+                    view = 'Order-Summary';
+                } else {
+                    self.appointmentView();
+                    return;
+                }
             }
             this.MainView = view;
         }
@@ -313,7 +318,7 @@
                     }
                 };
                 setTimeout(function(){
-                  $('.fc-toolbar > .fc-center').html('<div class="pctip"><ul> <li class="pava">Provider Not Available </li> <li class="pres">Already Reserved</li> </ul> </div>');
+                    $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
                 }, 0);
                 //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
@@ -443,20 +448,51 @@
             }
         }
 
-        paymentMethod(){
+        customCardPage() {
             var self = this;
-            self.CustomerHttp.get('/GetCustomerProfile/'+this.customerId).then(function(resp){
+            self.MainView = 'Payment-Information';
+            self.nameOnCard = '';
+            self.cardNumber = '';
+            self.radioInline = '';
+            self.paymentTerm = '';
+            self.cvv = '';
+            self.expMonth = '01';
+            self.modalGoback = false;
+            self.years = [];
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            self.expYear = year;
+            for (var i = 0; i < 20; i++) {
+                self.years.push(year++);
+            }
+        }
+
+
+        paymentMethod() {
+            var self = this;
+            self.backToCalendar = false;
+            self.CustomerHttp.get('/GetCustomerProfile/' + this.customerId).then(function (resp) {
                 self.selectedCard = 0;
                 self.CCards = [];
-                var profile = JSON.parse(resp.GetCustomerProfileResult).profile;
-                self.PID = profile.customerProfileId;
-                if(typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length){
-                    profile.paymentProfiles.map(function(cc){
-                        self.CCards.push(cc);
-                    });
-                    self.CustomerEmail = profile.email;
+                var profile = JSON.parse(resp.GetCustomerProfileResult);
+                if (profile) {
+                    profile = profile.profile;
+                    self.PID = profile.customerProfileId;
+                    if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length) {
+                        profile.paymentProfiles.map(function (cc) {
+                            self.CCards.push(cc);
+                        });
+                        self.CustomerEmail = profile.email;
+                        self.MainView = 'Payment-Method';
+                    } else {
+                        self.backToCalendar = true;
+                        self.customCardPage();
+                    }
+
+                } else {
+                    self.backToCalendar = true;
+                    self.customCardPage();
                 }
-                self.MainView = 'Payment-Method';
             });
         }
 
@@ -493,28 +529,20 @@
           return todayAnd ?  currTime >= todayTime : currTime == todayTime;
         }
 
-        validatePaymentMethod(){
+        
+
+        validatePaymentMethod() {
             var self = this;
-            if(self.selectedCard == 0){
-                self.MainView = 'Payment-Information';
-                self.nameOnCard = '';
-                self.cardNumber = '';
-                self.radioInline = '';
-                self.paymentTerm = '';
-                self.cvv = '';
-                self.expMonth = '01';
-                self.modalGoback = false;
-                self.years = [];
-                var date = new Date();
-                var year = parseInt(date.getFullYear());
-                self.expYear = year;
-                for(var i = 0; i < 20; i++){
-                    self.years.push(year++);
-                }
-            }else{
+            if (self.selectedCard == 0) {
+                self.customCardPage();
+            } else {
                 self.showIonicConfirmation();
             }
         }
+
+
+
+
         customCardPayment(){
             var self = this;
             if(self.nameOnCard == '' || !self.nameOnCard.trim().length){
@@ -558,43 +586,47 @@
             self.messages = 'Your card ending with '+self.mainCard+' will be charge for amount of '+self.totalPrice+' USD';
             $("#PDonePayment").modal();
         }
-        actionPayment(){
+ 
+
+        actionPayment() {
             var self = this;
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;
                 var amount = self.totalPrice;
                 //str.slice(str.length -  4, str.length);
-                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response:any) {
+                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
                     var resp = JSON.parse(response.AuthProfileJSONResult);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
                     } else {
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason '+resp.transactionResponse.errors[0].errorText);
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 })
-            } else{
+            } else {
                 var obj = {
                     "Amount": self.totalPrice,
                     "CCNumber": self.cardNumber,
                     "CVV": self.cvv,
                     "Email": self.CustomerEmail,
-                    "Expiry":self.expMonth+'/'+self.expYear,
+                    "Expiry": self.expMonth + '/' + self.expYear,
                     "UID": self.customerId
                 };
-                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response:any) {
+                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response: any) {
                     var resp = JSON.parse(response);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
                     } else {
-                        self.modalGoback = true;
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason '+resp.transactionResponse.errors[0].errorText);
+                        //self.modalGoback = true;
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 })
             }
         }
+
+
         wronInfoGoBack(){
             var self = this;
             if(self.modalGoback) {

@@ -187,6 +187,15 @@ var MakeAppointmentController;
             if (self.isEdit && view == 'Basic-Info') {
                 self.getEditInfo();
             }
+            else if (self.backToCalendar && view == 'Payment-Method') {
+                if (self.ASAP) {
+                    view = 'Order-Summary';
+                }
+                else {
+                    self.appointmentView();
+                    return;
+                }
+            }
             this.MainView = view;
         };
         MakeAppointmentController.prototype.CreateAppointment = function (Rcd) {
@@ -400,20 +409,50 @@ var MakeAppointmentController;
                 self.redirectAfterAppointment();
             }
         };
+        MakeAppointmentController.prototype.customCardPage = function () {
+            var self = this;
+            self.MainView = 'Payment-Information';
+            self.nameOnCard = '';
+            self.cardNumber = '';
+            self.radioInline = '';
+            self.paymentTerm = '';
+            self.cvv = '';
+            self.expMonth = '01';
+            self.modalGoback = false;
+            self.years = [];
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            self.expYear = year;
+            for (var i = 0; i < 20; i++) {
+                self.years.push(year++);
+            }
+        };
         MakeAppointmentController.prototype.paymentMethod = function () {
             var self = this;
+            self.backToCalendar = false;
             self.CustomerHttp.get('/GetCustomerProfile/' + this.customerId).then(function (resp) {
                 self.selectedCard = 0;
                 self.CCards = [];
-                var profile = JSON.parse(resp.GetCustomerProfileResult).profile;
-                self.PID = profile.customerProfileId;
-                if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length) {
-                    profile.paymentProfiles.map(function (cc) {
-                        self.CCards.push(cc);
-                    });
-                    self.CustomerEmail = profile.email;
+                var profile = JSON.parse(resp.GetCustomerProfileResult);
+                if (profile) {
+                    profile = profile.profile;
+                    self.PID = profile.customerProfileId;
+                    if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length) {
+                        profile.paymentProfiles.map(function (cc) {
+                            self.CCards.push(cc);
+                        });
+                        self.CustomerEmail = profile.email;
+                        self.MainView = 'Payment-Method';
+                    }
+                    else {
+                        self.backToCalendar = true;
+                        self.customCardPage();
+                    }
                 }
-                self.MainView = 'Payment-Method';
+                else {
+                    self.backToCalendar = true;
+                    self.customCardPage();
+                }
             });
         };
         MakeAppointmentController.prototype.isSlotAvailable = function () {
@@ -449,21 +488,7 @@ var MakeAppointmentController;
         MakeAppointmentController.prototype.validatePaymentMethod = function () {
             var self = this;
             if (self.selectedCard == 0) {
-                self.MainView = 'Payment-Information';
-                self.nameOnCard = '';
-                self.cardNumber = '';
-                self.radioInline = '';
-                self.paymentTerm = '';
-                self.cvv = '';
-                self.expMonth = '01';
-                self.modalGoback = false;
-                self.years = [];
-                var date = new Date();
-                var year = parseInt(date.getFullYear());
-                self.expYear = year;
-                for (var i = 0; i < 20; i++) {
-                    self.years.push(year++);
-                }
+                self.customCardPage();
             }
             else {
                 self.showIonicConfirmation();
@@ -556,7 +581,7 @@ var MakeAppointmentController;
                         self.finalMakeAppointment();
                     }
                     else {
-                        self.modalGoback = true;
+                        //self.modalGoback = true;
                         self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 });
