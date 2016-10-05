@@ -269,7 +269,7 @@
   .shareapp li:last-child { border-bottom:0px solid #cccccc; }
   .shareapp li a { display:block; font-size:20px; color:#555555; }
   .shareapp li a i { font-size:20px; color:#555555; padding-right:10px; }
-  .mavai h3 { color:#112173; font-size:18px; font-weight:600; margin:15px 0 20px 0; font-family:'Open Sans', sans-serif; }
+  .mavai h3 { color:#000000; font-size:15px; font-weight:600; margin:15px 0 20px 0; font-family:'Open Sans', sans-serif; }
   .mavai .cal { margin:0 0 40px 0; }
   .mavai .cal img { width:100%; }
   .cdatetime th { color:#112173; font-weight:600; padding:0 5px;  }
