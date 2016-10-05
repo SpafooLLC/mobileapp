@@ -12,6 +12,7 @@ var registerController;
             this.$window = $window;
             this.$timeout = $timeout;
             this.SharedHttp = SharedHttp;
+            window.localStorage.setItem("url", 'Register');
             $("#PhoneNo").mask("000-000-0000");
             $("#MobileNo").mask("000-000-0000");
             $("#Zipcode").mask("00000");
@@ -36,6 +37,8 @@ var registerController;
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
+                        self.$window.localStorage.setItem('Role', response.Usertype);
+                        self.$window.localStorage.setItem('LoginStatus', "true");
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
                             self.$state.go("BasicCreditCard", { from: 'reg' });

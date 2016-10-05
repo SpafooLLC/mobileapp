@@ -116,6 +116,9 @@
                             <td class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                 <div class="time">{{s.atTimeField}}</div>
+                                <div class="hide4Apps">
+                                    <a ng-click="papp.HideApp4Me({{s.appointmentIDField}});"><i class="fa red fa-trash fa-lg"></i></a>
+                                </div>
                             </td>
                             <td class="middle">
                                 <h2>{{s.orderDateField}}</h2>

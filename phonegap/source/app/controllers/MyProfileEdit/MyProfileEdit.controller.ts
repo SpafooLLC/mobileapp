@@ -59,7 +59,7 @@
             if (self.doValidation(Email)) {
 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
 
-                Phone = $("#Telephone").val();
+                Phone = "";
                 Mob = $("#Cell").val();
                 PostalCode = $("#PostalCode").val();
 

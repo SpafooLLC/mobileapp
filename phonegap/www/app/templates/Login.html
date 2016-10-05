@@ -14,21 +14,20 @@
             </div>
             <div class="has-feedback fgap">
                 <label class="control-label">Password</label>
-                <input type="password"  maxlength="50" class="form-control" ng-model="password">
+                <input type="password" maxlength="50" class="form-control" ng-model="password">
                 <span class="fa fa-key fa-lg form-control-feedback" aria-hidden="true"></span>
             </div>
-            <p><a  class="fsm"  onclick="$('#ForgotModel').modal()">Forgot your password?</a></p>
+            <p><a class="fsm" onclick="$('#ForgotModel').modal()">Forgot your password?</a></p>
             <!--<div class="checkbox checkbox-primary">
-                <input id="checkbox2" type="checkbox" checked>
-                <label for="checkbox2">Remember me</label>
-            </div>-->
-        <div class="fource-bottom center">
-            <p>Don't have an account? <a ui-sref="register">Sign up!</a></p>
-            <a class="block-btn" data-ng-click="log.doLogin(username,password)" >Sign in</a>
+            <input id="checkbox2" type="checkbox" checked>
+            <label for="checkbox2">Remember me</label>
+        </div>-->
+            <div class="h50"></div>
+            <div class="center">
+                <p>Don't have an account? <a ui-sref="register">Sign up!</a></p>
+                <a class="block-btn" data-ng-click="log.doLogin(username,password)">Sign in</a>
+            </div>
         </div>
-        </div>
-        
-
         <!-- <script type="text/javascript" src="cordova.js"></script>-->
        
         <script type="text/javascript">app.initialize();</script>

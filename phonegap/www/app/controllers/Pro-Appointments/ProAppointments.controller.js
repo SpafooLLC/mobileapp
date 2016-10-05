@@ -79,6 +79,18 @@ var ProAppointmentsController;
                 });
             }
         };
+        ProAppointmentsController.prototype.HideApp4Me = function (AppID) {
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                var UserType = self.$window.localStorage.getItem('Role');
+                self.SharedHttp.HideApp4Me(AppID, UserType).then(function (e) {
+                    if (e.HideApp4MeResult.Success == "Removed Successfully") {
+                        self.getProviderSchedular(self.UserID);
+                    }
+                });
+            }
+        };
         ProAppointmentsController.prototype.UnSeenStatus = function (AppointmentID) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {

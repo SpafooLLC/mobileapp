@@ -67,24 +67,61 @@
             });
         }
 
+        //getLoggedUser(UserID: any) {
+        //    var self = this;
+        //    self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response:any) {
+        //        self.$rootScope.UserProfileName = response.GetUserInfoResult.displayNameField;
+        //        self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
+        //        self.$rootScope.GetLoginStatus = true;
+        //        self.SharedHttp.GetMyNotification(UserID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
+        //        window.history.go(-1)
+        //      //  self.$state.go("home");
+        //    }, function (error) {});
+        //}
+
         getLoggedUser(UserID: any) {
             var self = this;
-            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response:any) {
+            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
                 self.$rootScope.UserProfileName = response.GetUserInfoResult.displayNameField;
                 self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
                 self.$rootScope.GetLoginStatus = true;
-                self.SharedHttp.GetMyNotification(UserID).then(function (res:any) { self.$rootScope.NotifiCount = res.length; });
-                //self.$state.go("home");
-                if(!self.$rootScope.$ionicGoBack()){
-                    self.$state.go("home");
+                self.SharedHttp.GetMyNotification(UserID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
+                var v = self.$window.localStorage.getItem('url');
+
+                if (v == "Register") {
+
+                    self.$window.localStorage.setItem("url", '0');
+                    window.location.href = "#/home";
+                    //self.$state.go("home");
                 }
-            }, function (error) {});
+
+                else {
+                    if (self.$window.localStorage.getItem('Role') == 'P') {
+                        //var v = self.$window.localStorage.getItem('url');
+
+                        var c = v.substr(v.indexOf('/') + 1);
+                        c = c.substr(0, c.indexOf('/'));
+
+                        if (c == "MakeAppointment") {
+                            self.$window.localStorage.setItem("url", '0');
+                            window.history.go(-2);
+
+                        } else {
+                            self.$window.localStorage.setItem("url", '0');
+                            window.history.go(-1);
+                        }
+
+
+
+                    }
+                    else {
+                        window.history.go(-1);
+                    }
+                }
+
+                //  self.$state.go("home");
+            }, function (error) { });
         }
-
-
-
-
-
     }
 
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);

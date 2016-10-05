@@ -7,7 +7,7 @@
         userType: string;
         uuid: string; dates: Date; picId: string; picPath: string;
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; NotificationList: any;
-        Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any;
+        Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; HideApp: boolean;
         getLoginStatus(): any;
         setLoginStatus(value: any): any;
         getuserType(): any;
@@ -34,7 +34,7 @@
         GetMyNotification(UserID: any): ng.IPromise<string>;
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
-        
+        HideApp4Me(AppID: any, UserType: any):ng.IPromise<string> ;
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -46,7 +46,7 @@
         userType: string;
         uuid: string; picId: string; picPath: string;
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; Rateperson: string;
-        ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; NotificationList: any;
+        ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; NotificationList: any; HideApp: any;
         getuserType(): any {
             return this.userType;
         }
@@ -195,6 +195,18 @@
             }, function (error) { });
             return deferred.promise;
         }
+
+        HideApp4Me(AppID: any, UserType: any):  ng.IPromise<string>  {
+            var deferred = this.$q.defer();
+            this.CustomerHttp.get('/HideApp4Me/' + AppID + '/' + UserType).then(function (response: any) {
+                this.HideApp =response; 
+
+                deferred.resolve(this.HideApp);
+            }, function (error) { });
+            return deferred.promise;
+        }
+
+
 
         GetUserInfo(UserID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();

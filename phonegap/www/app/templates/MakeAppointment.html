@@ -48,9 +48,9 @@
                      <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
                  </div>-->
                 <div class="col-xs-12 nopadlr"><input type="text" class="form-control" placeholder="Address" ng-model="ma.info.address" id="addressfield"></div>
-                <div class="col-xs-5 nopadlr"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
+                <div class="col-xs-6 nopadlr"><input type="text" class="form-control" placeholder="City" ng-model="ma.info.city" id="cityfield"></div>
                 <div class="col-xs-4 smpadlr"><input type="text" class="form-control" placeholder="State" ng-model="ma.info.state" id="statefield"></div>
-                <div class="col-xs-3 nopadlr"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
+                <div class="col-xs-2 nopadlr"><input type="text" class="form-control" placeholder="Zip" ng-model="ma.info.zip" id="zipfield"></div>
                 <p class="bmar-sm bold">Select Service(s)</p>
 
                 <!--<div class="checkbox checkbox-primary checkbox-inline">
@@ -149,13 +149,14 @@
     <ion-content scroll="false">
         <style>
             .fc-day-grid-event .fc-time{  display: none !important;  }
-            .fc-event-container .fc-title{  color: #ffffff !important;  font-weight: 600 !important;  }
-            .fc-day-grid-event .fc-content{  text-align: center !important;  }
+            .fc-event-container .fc-title{  color: #ffffff !important; }
+            .fc-day-grid-event .fc-content{  text-align: center !important; line-height: 16px; font-size: 12px; }
             H2 {  margin: 0 0 10px 0;  line-height: 30px;  font-weight: normal;  font-size: 20px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
             .fc th { border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
             .fc td { border-style: solid;  border-width: 1px;  padding: 5px;  font-weight: 600;  vertical-align: top;  color: #112173;  }
-            .pctip { text-align: center;  width: 100%; margin:15px 0; font-size:15px; font-weight:600;  }
-			.pctip .red { color:#ff0000; } .pctip .blue { color:#1e319b; }
+            .pctip { text-align: center;  width: 100%; padding:20px 0 10px; font-weight:600; }
+            .pctip > ul { padding: 0; margin-top: 10px;}
+            .pctip li { display: inline-block;  margin: 0 3px;  list-style: none;  padding: 0 0 0 25px; font-size: 12px }
             .fc-toolbar { margin-bottom: 5px; }
             .pctip li.pava { background: url(images/Site/pavailable.png) left center no-repeat; }
             .pctip li.pres { background: url(images/Site/preserved.png) left center no-repeat; }
@@ -272,7 +273,7 @@
         </div>
         <div class="inbody">
             <div class="pmethod">
-                <img src="Images/Site/ccard.png">
+                <img ng-src="images/Site/ccard.png">
                 <h2>CREDIT CARD</h2>
                 <p>Select your card for payment</p>
             </div>

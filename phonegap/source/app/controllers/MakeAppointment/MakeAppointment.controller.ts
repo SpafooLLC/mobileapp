@@ -36,7 +36,9 @@
             this.checked_services = [];
             if(!status || status == "false"){
                 var providerData = {providerId: this.UserID};
+                $window.localStorage.setItem("url", window.location.hash);
                 this.$state.go("login", providerData);
+           
             }else{
                 this.customerId = $window.localStorage.getItem('CustomerID');
             }

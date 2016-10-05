@@ -41,6 +41,7 @@
             private $timeout: ITimeoutService,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
+            window.localStorage.setItem("url", 'Register');
             $("#PhoneNo").mask("000-000-0000");
             $("#MobileNo").mask("000-000-0000");
             $("#Zipcode").mask("00000");
@@ -69,6 +70,8 @@
 
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
+                        self.$window.localStorage.setItem('Role', response.Usertype);
+                        self.$window.localStorage.setItem('LoginStatus', "true");    
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
                             self.$state.go("BasicCreditCard", { from: 'reg' });

@@ -41,8 +41,8 @@
         </div>
 
         <div class="action">
-            <div class="col-xs-6 nopad" ng-if="PvP.customerType=='C'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
-            <div class="col-xs-6 nopad" ng-if="PvP.customerType=='C'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
+            <div class="col-xs-6 nopad" ng-if="PvP.customerType!='P'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+            <div class="col-xs-6 nopad" ng-if="PvP.customerType!='P'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
             <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==true"><a href="#/MakeAppointment/{{PvP.UserID}}" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
             <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==false"><aa ui-sref="login"" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
         </div>
