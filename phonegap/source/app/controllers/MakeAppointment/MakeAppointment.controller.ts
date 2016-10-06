@@ -318,7 +318,7 @@
                     }
                 };
                 setTimeout(function(){
-                  $('.fc-toolbar > .fc-center').html('<div class="pctip"><ul> <li class="pava">Provider Not Available </li> <li class="pres">Already Reserved</li> </ul> </div>');
+                $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
                 }, 0);
                 //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
@@ -575,7 +575,8 @@
                 var cFull = self.cardNumber;
                 self.mainCard = 'XXXX'+cFull.slice(cFull.length -  4, cFull.length);
             }
-            self.messages = 'Your card ending with '+self.mainCard+' will be charge for amount of '+self.totalPrice+' USD';
+           // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD';
             $("#PDonePayment").modal();
         }
         actionPayment(){

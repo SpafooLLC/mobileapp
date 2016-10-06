@@ -1,7 +1,7 @@
 ﻿module NotificationController {
- 
-    class NotificationController  {        
-        
+
+    class NotificationController {
+
         NotificaitonData: any;
         customerID: number;
         NotificationCount: number;
@@ -20,13 +20,13 @@
         ) {
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserNotificationInfo();
-            
+
         }
-    
+
         getUserNotificationInfo() {
             var self = this;
-            var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
             }
             self.CustomerHttp.get('/GetMyNotification/' + self.customerID).then(function (response: any) {
@@ -36,35 +36,83 @@
 
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy")
                     var role = localStorage.getItem('Role');
-                   
-                        switch (self.NotificaitonData[i].notificationTypeIDField) {
-                            // case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
-                            case 4: if (role == 'P') { self.NotificaitonData[i].typeNameField = "You have new Appointment with " + self.NotificaitonData[i].byNameField } else { self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section."};
-                                break;
-                            case 14: self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> given review to you";
-                                break;
-                            case 8: self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has completed the appointment.";
-                                break;
-                            case 7: if (role == 'C') { self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has arrived to your appointment location" } else { self.NotificaitonData[i].typeNameField ="I Have Arrived" };
-                                break;
-                            //case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
-                            //    break;
-                            //case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
-                            //    break;
-                            case 11: self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has given Date & Time for requested, ASAP <a href='#'>appointment </a>";
-                                break;
-                            // case "ASAPAppointment": self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
-                            case 10: if (role == 'P') { self.NotificaitonData[i].typeNameField = " Client " + self.NotificaitonData[i].byNameField + " <a href='#'>appointment</a> has requested for ASAP appointment" } else { self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>" };
-                                break;
-                            case 13: self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> did NOT accepted the Date & Time given by you for ASAP <a href='#'>appointment</a>";
-                                break;
-                            case 12: self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has accepted the Date & Time given by you for ASAP appointment";
-                                break;
-                            case 9: self.NotificaitonData[i].typeNameField = " Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has cancelled the appointment";
-                                break;
 
-                        }
+                    switch (self.NotificaitonData[i].notificationTypeIDField) {
+                        // case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
+                        case 4:
+                            //if (role == 'P') { self.NotificaitonData[i].typeNameField = "You have new Appointment with " + self.NotificaitonData[i].byNameField } else { self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section." };
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has requested an appointment!";
+                            } else
+                            {
+                                self.NotificaitonData[i].typeNameField = "Your Appointment has been accepted by " + self.NotificaitonData[i].byNameField + ".For more information, please check 'My Schedule' section."
+                            }
+                                   
+                              
+                            break;
+                        case 14:
+                       
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + "has given you a SpaFoo review!";
+                       
+                            //self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> given review to you";
+                            break;
+                        case 8:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameField = "Thank you for choosing SpaFoo!";
+                            }
+                              
+                         //   self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has completed the appointment.";
+                            break;
+                        case 7:
+                            if (role == 'C') { self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField +" has arrived for your appointment!" }
+                           
+                            //if (role == 'C') { self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has arrived to your appointment location" } else { self.NotificaitonData[i].typeNameField = "I Have Arrived" };
+                            break;
+                        //case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        //    break;
+                        //case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        //    break;
+                        case 11:
+                            //  self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has given Date & Time for requested, ASAP <a href='#'>appointment </a>";
+                            if (role == 'C') { self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize." }
+
+
+                            break;
+                        // case "ASAPAppointment": self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
+                        case 10:
+                        //    if (role == 'P') {
+                        //    self.NotificaitonData[i].typeNameField = " Client " + self.NotificaitonData[i].byNameField + " <a href='#'>appointment</a> has requested for ASAP appointment"
+                        //} else
+                        //{ self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>" };
+                        if (role == 'P') { self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField +" has requested an ASAP appointment with you! " } else
+                        { self.NotificaitonData[i].typeNameField = " Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField;}
                     
+                          
+
+
+
+                            break;
+                        case 13: //self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> did NOT accepted the Date & Time given by you for ASAP <a href='#'>appointment</a>";
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " did NOT accept the time of your ASAP appointment.";
+                            }
+                            
+                            break;
+                        case 12:                            
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has accepted the the time of your ASAP appointment.";
+                                }
+                            //self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has accepted the Date & Time given by you for ASAP appointment";
+                            break;
+                        case 9:
+                            if (role == 'P') {
+                             self.NotificaitonData[i].typeNameField =   self.NotificaitonData[i].byNameField + " has cancelled the appointment.";
+                            }
+                            //self.NotificaitonData[i].typeNameField = " Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has cancelled the appointment";
+                            break;
+
+                    }
+
                     //else {
                     //    switch (self.NotificaitonData[i].notificationTypeIDField) {
                     //         case 4: self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
@@ -115,7 +163,7 @@
             var confirmations = confirm("Are you sure want to remove it ? ");
             if (confirmations) {
                 var self = this;
-             
+
                 self.CustomerHttp.get('/RemoveUserNotification/' + self.customerID).then(function (response) {
                     self.getUserNotificationInfo();
                     self.$ionicLoading.hide();
@@ -134,7 +182,7 @@
         RemoveNotification(NotifyID: any) {
             var confirmations = confirm("Are you Sure Want to remove ?");
             if (confirmations) {
-                var self = this;               
+                var self = this;
                 self.CustomerHttp.get('/RemoveNotification/' + NotifyID).then(function (response) {
                     self.getUserNotificationInfo();
                     self.$ionicLoading.hide();
@@ -151,6 +199,6 @@
     }
 
 
-    angular.module('spafoo.ctrl.Notification',[]).controller('Notification',NotificationController);
+    angular.module('spafoo.ctrl.Notification', []).controller('Notification', NotificationController);
 
 }

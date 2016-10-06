@@ -25,7 +25,7 @@
 /*  Main SKIN Elements                                    */
 /*========================================================*/
 /*------------------start Implemented by Pawan--------0*/
-.bar-header { border-bottom-width: 1px; border-top-width: 0; top: 0;}
+  .bar-header { border-bottom-width: 1px; border-top-width: 0; top: 0;}
   .scroll-content { bottom: 0; background-color:white; height: auto;left: 0; margin-bottom: -1px; overflow: hidden; position: absolute; right: 0; top: 65px; width: auto;}
   .scroll {  -moz-text-size-adjust: none;  -moz-user-select: none;  transform-origin: left top 0;}
   .pane {    transform: none !important;}
@@ -33,7 +33,6 @@
   .bar {-moz-user-select: none;box-sizing: border-box;display: flex;left: 0;padding: 5px;position: absolute;right: 0;    transform: translate3d(0px, 0px, 0px);    width: 100%;    z-index: 9;}
   .bar.pbards {    position: inherit;}
    /*------------------End Implemented by Pawan--------0*/
-
   .BgDisplay {display:none; width:100%; z-index:999999; position:fixed; left:0px; top:0px; bottom:0px; text-align:center; background-color:rgba(0, 0, 0, 0.6); }
   #showload > img {margin-top: 60%; }
   .bar-footer .title{    width: 100%;    color: #fff; }
@@ -64,7 +63,7 @@
   .footer { background:#000000; padding:8px 0; text-align:center; font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; color:#ffffff;}
   .infooter { position:absolute; width:100%; bottom:0; background:#000000; padding:8px 0; text-align:center; font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; color:#ffffff;}
   /*.fource-bottom { width:100%; margin:40px 0 -26px 0 !important; position:absolute; bottom:0; } commented by pawan*/
-   .fource-bottom { position:absolute; width:100%; left:0;}
+  .fource-bottom { position:absolute; width:100%; left:0;}
   .btnend { margin:0px 0 0 0; }
   .vmenu { margin:0; padding:65px 0 0 0; }
   .vmenu ul { margin:0 0 0 0; padding:0; }
@@ -79,8 +78,7 @@
   .vmenu li a:hover.signout { background:#cc0000;}
   .bread { padding:20px 0; background:#e8e8e8; background:-moz-linear-gradient(top,  #e8e8e8 0%, #dfdfdf 100%); background:-webkit-linear-gradient(top,  #e8e8e8 0%,#dfdfdf 100%); background:linear-gradient(to bottom,  #e8e8e8 0%,#dfdfdf 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#dfdfdf',GradientType=0 ); }
   /*.pback { float:left; margin:0 0 0 8px; padding:0 8px; }*/
-  .pback { float:left; margin:-5px 0 0 8px; padding:0 8px; }
-  
+  .pback { float:left; margin:-5px 0 0 8px; padding:0 8px; }  
   a.pback { color:#000000 !important; } a.pback:hover { color:#cc0000 !important; }
   .bread .ptitle { margin:0 32px 0 0; font-family:'Open Sans', sans-serif; font-size:20px; font-weight:400; color:#112173; display:block; text-transform:uppercase; text-align:center; }
   .bread .ptitle a { font-family:'Open Sans', sans-serif; font-size:20px; font-weight:400; color:#112173; display:block; text-transform:uppercase; text-align:center; }
@@ -243,10 +241,14 @@
   .myschedule .acc .left .date { text-align:center; padding:10px 0 10px 0; background:#d0d0d0; color:#ffffff; font-family:'Open Sans', sans-serif; font-size:40px; line-height:50px; font-weight:300; }
   .myschedule .acc .left .date span { clear:both; display:block;  font-size:13px; line-height:18px; }
   .myschedule .acc .left .time { text-align:center; padding:5px 0 5px 0; background:#bebebe; color:#ffffff; }
-  .myschedule .acc .middle { padding:0px 0 0 10px;  vertical-align:top; }
+  .myschedule .acc .middle { padding:0 0 0 10px;  vertical-align:top; }
   .myschedule .acc .middle h2 {  color:#777777; font-family:'Balthazar', sans-serif; font-weight:600; font-size:20px; line-height:26px; margin:0 0 8px 0; }
   .myschedule .acc .middle p {  color:#777777; font-weight:600; font-size:15px; margin:0 0 1px 0; }
- .myschedule .acc .right { color:#219962; height:100px; width:70px; background:#d0d0d0; text-align:center; padding:20px 0 0 0; vertical-align:top; }
+<<<<<<< HEAD
+  .myschedule .acc .right { color:#219962; height:100px; width:100px; background:#d0d0d0; text-align:center; padding:10px 0 0 0; vertical-align:top; }
+=======
+  .myschedule .acc .right { color:#219962; height:100px; width:70px; background:#d0d0d0; text-align:center; padding:20px 0 0 0; vertical-align:top; }
+>>>>>>> origin/PawanBranch
   .myschedule .acc .right a i { color:#ff0000; text-align:right; font-size:20px; }
   .myschedule .acc .right .clearlist { display:block; text-align:right; }
   .myschedule .acc .right p { color:#112173; text-align:center; font-size:14px; font-weight:700; margin:5px 0 0 0; }
@@ -300,7 +302,13 @@
   .mprofileedit .form-control { margin-bottom:15px; }
   .mkblck { color:#222222 !important; } .impl { padding-left:15px !important; } 
   .acc .left .hide4Apps { background:#ff0000; text-align:center; padding:2px 0; } .acc .left .hide4Apps a .red { color:#ffffff; }
- 
+<<<<<<< HEAD
+  .asapad { clear:both; margin:0 0 10px 0; }
+  .asapad a.btnacc { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#219962; padding:2px 30px; display:inline-block; }
+  .asapad a.btnden { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#ff0000; padding:2px 30px; display:inline-block; }
+  .asapad a.btnacc:hover, .asapad a.btnden:hover { background:#222222; color:#ffffff; }
+=======
+>>>>>>> origin/PawanBranch
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	
@@ -384,29 +392,6 @@
   .modal-backdrop { opacity:0.6 !important; }
   /* Modal Vertical Center */
   .modal { text-align:center; padding:0 !important;}
-
-/*Implemented By Pawan*/
-.vertical-alignment-helper {
-    display:table;
-    height: 100%;
-    width: 100%;
-}
-.vertical-align-center {
-    /* To center vertically */
-        display: table-cell;
-    vertical-align: middle;
-}
-.modal-content {
-    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-    width:inherit;
-    height:inherit;
-    /* To center horizontally */
-    margin: 0 auto;
-}
-
-/*End Implementation by Pawan */
-
-
   .modal:before { content:''; display:inline-block; height:100%; vertical-align:middle; margin-right:-4px; }
   .modal-dialog { display:inline-block; text-align:left; vertical-align:middle; }
   .fa-1x { font-size:24px !important; }
@@ -500,24 +485,43 @@
 }
 
 @media (min-width:240px) and (max-width:520px){
+ .myschedule .sce .right {width: 70%;}
  .myschedule .acc .mkover { background:#ffffff; margin:0 15px 0 0; height:130px; padding:5px; position:absolute; right:0; text-align:center; vertical-align:top; width:130px; }
 }
+/* ---------- iPad Only ---------- */
+@media only screen and (device-width: 768px) {
+  .form-control-feedback { top:25px  !important; }
+}
 
-<<<<<<< HEAD
-  body .modal-backdrop{position: inherit;}
-  .map_area{position: static !important;}
-  .modal-backdrop.fade.in {position: static;}
-=======
+/* ---------- iPhone/iPod Only ---------- */
+@media only screen and (device-width: 320px) {
+  .form-control-feedback { top:25px  !important; }
+}
+
+/* ---------- Retina Device Only ---------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .form-control-feedback { top:25px  !important; }
+}
+
+/* ---------- Non Retina Device Only ---------- */
+@media only screen and (-webkit-max-device-pixel-ratio: 1) {
+  .form-control-feedback { top:25px  !important; }
+}
+
+/* ---------- Retina iPhone/iPod Only ---------- */
+@media only screen and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  .form-control-feedback { top:25px  !important; }
+}
+
+/* ---------- Non Retina iPhone/iPod Only ---------- */
+@media only screen and (device-width: 320px) and (-webkit-max-device-pixel-ratio: 1) {
+  .form-control-feedback { top:25px  !important; }
+}
+
  body .modal-backdrop{position: inherit;}
  .map_area{position: static !important;}
-
-
- 
-@media (max-width:458px){
-  .myschedule .sce .right {max-width: 180px;}
-}
+  .modal-backdrop.fade.in {position: static;}
 
 
 .modal-backdrop.fade.in {position: static;}
 body .modal-backdrop{position: inherit;}
->>>>>>> origin/PawanBranch

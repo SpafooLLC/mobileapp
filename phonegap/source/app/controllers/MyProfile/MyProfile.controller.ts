@@ -70,31 +70,107 @@
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
 
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy")
+                    var role = localStorage.getItem('Role');
 
-                    switch (self.NotificaitonData[i].typeNameField) {
-                        case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
+                    switch (self.NotificaitonData[i].notificationTypeIDField) {
+                        // case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
+                        case 4:
+                            //if (role == 'P') { self.NotificaitonData[i].typeNameField = "You have new Appointment with " + self.NotificaitonData[i].byNameField } else { self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section." };
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has requested an appointment!";
+                            } else {
+                                self.NotificaitonData[i].typeNameField = "Your Appointment has been accepted by " + self.NotificaitonData[i].byNameField + ".For more information, please check 'My Schedule' section."
+                            }
+
+
                             break;
-                        case "ClientReview2Provider": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> given review to you";
+                        case 14:
+                       
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + "has given you a SpaFoo review!";
+                           
+                            //self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> given review to you";
                             break;
-                        case "AppointmentCompleted": self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has completed the appointment. Please check 'My Schedule' section to rate this activity";
+                        case 8:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameField = "Thank you for choosing SpaFoo!";
+                            }
+
+                            //   self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has completed the appointment.";
                             break;
-                        case "IHaveArrived": self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has arrived to your appointment location";
+                        case 7:
+                            if (role == 'C') { self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has arrived for your appointment!" }
+
+                            //if (role == 'C') { self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has arrived to your appointment location" } else { self.NotificaitonData[i].typeNameField = "I Have Arrived" };
                             break;
-                        case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        //case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        //    break;
+                        //case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        //    break;
+                        case 11:
+                            //  self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has given Date & Time for requested, ASAP <a href='#'>appointment </a>";
+                            if (role == 'C') { self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize." }
+
+
                             break;
-                        case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        // case "ASAPAppointment": self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
+                        case 10:
+                            //    if (role == 'P') {
+                            //    self.NotificaitonData[i].typeNameField = " Client " + self.NotificaitonData[i].byNameField + " <a href='#'>appointment</a> has requested for ASAP appointment"
+                            //} else
+                            //{ self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>" };
+                            if (role == 'P') { self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has requested an ASAP appointment with you! " } else
+                            { self.NotificaitonData[i].typeNameField = " Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField; }
+
+
+
+
+
                             break;
-                        case "ASAPAppProResp": self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has given Date & Time for requested, ASAP <a href='#'>appointment </a>";
+                        case 13: //self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> did NOT accepted the Date & Time given by you for ASAP <a href='#'>appointment</a>";
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " did NOT accept the time of your ASAP appointment.";
+                            }
+
                             break;
-                        case "ASAPAppointment": self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
+                        case 12:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has accepted the the time of your ASAP appointment.";
+                            }
+                            //self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has accepted the Date & Time given by you for ASAP appointment";
                             break;
-                        case "ASAPClientDeny": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> did NOT accepted the Date & Time given by you for ASAP <a href='#'>appointment</a>";
+                        case 9:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameField = self.NotificaitonData[i].byNameField + " has cancelled the appointment.";
+                            }
+                            //self.NotificaitonData[i].typeNameField = " Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has cancelled the appointment";
                             break;
-                        case "ASAPClientAccepted": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has accepted the Date & Time given by you for ASAP appointment";
-                            break;
-                        case "AppointmentCancelled": self.NotificaitonData[i].typeNameField = " Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has cancelled the appointment";
-                            break;
-                  }
+
+                    }
+
+                  //  switch (self.NotificaitonData[i].typeNameField) {
+                  //      case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
+                  //          break;
+                  //      case "ClientReview2Provider": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> given review to you";
+                  //          break;
+                  //      case "AppointmentCompleted": self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has completed the appointment. Please check 'My Schedule' section to rate this activity";
+                  //          break;
+                  //      case "IHaveArrived": self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has arrived to your appointment location";
+                  //          break;
+                  //      case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                  //          break;
+                  //      case "AppointmentFixed": self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                  //          break;
+                  //      case "ASAPAppProResp": self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has given Date & Time for requested, ASAP <a href='#'>appointment </a>";
+                  //          break;
+                  //      case "ASAPAppointment": self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
+                  //          break;
+                  //      case "ASAPClientDeny": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> did NOT accepted the Date & Time given by you for ASAP <a href='#'>appointment</a>";
+                  //          break;
+                  //      case "ASAPClientAccepted": self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has accepted the Date & Time given by you for ASAP appointment";
+                  //          break;
+                  //      case "AppointmentCancelled": self.NotificaitonData[i].typeNameField = " Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has cancelled the appointment";
+                  //          break;
+                  //}
                 }
 
             }, function (error) {
