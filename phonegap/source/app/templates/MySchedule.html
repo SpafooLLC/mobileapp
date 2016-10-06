@@ -9,7 +9,7 @@
         </div>
         <div class="inbody-simple">
             <div class="myschedule">
-                <div ng-repeat="s in ms.ServiceData">
+                <div class="trowsp" ng-repeat="s in ms.ServiceData">
                     <div class="sce" ng-if="s.statusField==0">
                         <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
@@ -21,7 +21,7 @@
                             <h2>{{s.orderDateField}}</h2>
                             <p>At: <a href="">{{s.addressField}}</a></p>
                             <!--<p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
-                            <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+                <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
 
                             <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
                             <p>Service(s): <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.ServiceList}}</a></p>

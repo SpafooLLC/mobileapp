@@ -19,8 +19,8 @@
             private $window: Iwindow,
             private $location: any
         ) {
-          this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
-            //   this.WebURL = 'http://localhost:61874/SpaServices.svc';
+           this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
+           //   this.WebURL = 'http://localhost:61874/SpaServices.svc';
         }
 
 
