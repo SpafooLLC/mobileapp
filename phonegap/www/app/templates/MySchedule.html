@@ -9,8 +9,8 @@
         </div>
         <div class="inbody-simple">
             <div class="myschedule">
-                <div class="trowsp" ng-repeat="s in ms.ServiceData">
-                    <div class="sce" ng-if="s.statusField==0">
+                <div class="trowsp" ng-repeat="s in ms.ServiceData"  ng-if="s.statusField!=3 && s.statusField!=1 " >
+                    <div class="sce" ng-if="s.statusField==0" >
                         <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>

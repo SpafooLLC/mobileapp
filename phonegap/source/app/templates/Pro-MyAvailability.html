@@ -1,9 +1,21 @@
 <ion-view>
     <ion-content scroll="false">
-        <style>
+           <style>
             .fc-event-container .fc-title {
-                color: white;
-            }
+                color: white;}
+           
+            .fc-day-grid-event .fc-time{  display: none !important;  }
+            .fc-event-container .fc-title{  color: #ffffff !important; }
+            .fc-day-grid-event .fc-content{  text-align: center !important; line-height: 16px; font-size: 12px; }
+            H2 {  margin: 0 0 10px 0;  line-height: 30px;  font-weight: normal;  font-size: 20px;  color: #112173;  font-family: 'Balthazar', sans-serif;  }
+            .fc th { border-style: solid;  border-width: 1px;  padding: 10px;  vertical-align: top;  color: #219962;  }
+            .fc td { border-style: solid;  border-width: 1px;  padding: 5px;  font-weight: 600;  vertical-align: top;  color: #112173;  }
+            .pctip { text-align: center;  width: 100%; padding:20px 0 10px; font-weight:600; }
+            .pctip > ul { padding: 0; margin-top: 10px;}
+            .pctip li { display: inline-block;  margin: 0 3px;  list-style: none;  padding: 0 0 0 25px; font-size: 12px }
+            .fc-toolbar { margin-bottom: 5px; }
+            .pctip li.pava { background: url(images/Site/pavailable.png) left center no-repeat; }
+            .pctip li.pres { background: url(images/Site/preserved.png) left center no-repeat; }
         </style>
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
@@ -15,7 +27,7 @@
 
 
             <div class="inbody mavai">
-                <h3 class="center" ng-if="pma.ClientID == 'null'"><i class="fa green fa-square"></i> &nbsp;I am available</h3>
+                <h3 class="center" ng-if="pma.ClientID == 'null'"><i class="fa blue2 fa-square"></i> I am available &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa red2 fa-square"></i> Reserved Appointment</h3>
                 <h3 class="center" ng-if="pma.ClientID != 'null'"><i class="fa green fa-square"></i> &nbsp;Appointment with {{pma.name}}</h3>
                 <div class="cal">
 
