@@ -544,7 +544,8 @@ var MakeAppointmentController;
                 var cFull = self.cardNumber;
                 self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
             }
-            self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
+            // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD';
             $("#PDonePayment").modal();
         };
         MakeAppointmentController.prototype.actionPayment = function () {
