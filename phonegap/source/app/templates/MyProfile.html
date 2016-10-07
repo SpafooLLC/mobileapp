@@ -72,8 +72,12 @@
             <div ng-if="mp.NotificaitonData!=''" class="nsrow MyNotifications">
                 <div class="notiwrapper">
                     <ul>
-                        <li ng-repeat="sr in mp.NotificaitonData">
-                            <span>{{sr.datedField}}</span> <label ng-bind-html="sr.typeNameField"></label> <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
+                        <li ng-repeat="sr in mp.NotificaitonData"   ng-if="sr.typeNameFields!=null">
+                            <span>{{sr.datedField}}</span> 
+                            
+                            <label  ui-sref="MySchedule"  ng-bind-html="sr.typeNameFields"></label> 
+                            
+                            <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </li>

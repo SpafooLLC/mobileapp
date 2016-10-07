@@ -48,6 +48,7 @@
                         events: [],
                         // an option!
                     }];
+            var count = 0;
             self.uiConfig = {
                 calendar: {
                     height: 450,
@@ -78,6 +79,12 @@
                         }
                         else {
                             $("#start" + (self.staticEvents1[0].events.length - 1)).focus();
+                            if (count > 0) {
+
+                                self.staticEvents1[0].events.splice(self.staticEvents1[0].events.length - 1, 1);
+
+                            }
+                            count++;
                             self.staticEvents1[0].events.push({
 
                                 start: selectedDate, allday: true,
@@ -94,17 +101,15 @@
 
                 }
             };
-
+            setTimeout(function () {
+                $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
+            }, 0);
 
 
 
             // any other event sources...
-            if (self.ClientID == 'null') {
+        
                 self.availList();
-            }
-            else { self.bookedSlot(); }
-
-
         }
         bookedSlot() {
             var self = this;

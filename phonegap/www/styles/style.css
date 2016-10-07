@@ -244,11 +244,7 @@
   .myschedule .acc .middle { padding:0 0 0 10px;  vertical-align:top; }
   .myschedule .acc .middle h2 {  color:#777777; font-family:'Balthazar', sans-serif; font-weight:600; font-size:20px; line-height:26px; margin:0 0 8px 0; }
   .myschedule .acc .middle p {  color:#777777; font-weight:600; font-size:15px; margin:0 0 1px 0; }
-<<<<<<< HEAD
-  .myschedule .acc .right { color:#219962; height:100px; width:100px; background:#d0d0d0; text-align:center; padding:10px 0 0 0; vertical-align:top; }
-=======
-  .myschedule .acc .right { color:#219962; height:100px; width:70px; background:#d0d0d0; text-align:center; padding:20px 0 0 0; vertical-align:top; }
->>>>>>> origin/PawanBranch
+    .myschedule .acc .right { color:#219962; height:100px; width:100px; background:#d0d0d0; text-align:center; padding:10px 0 0 0; vertical-align:top; }
   .myschedule .acc .right a i { color:#ff0000; text-align:right; font-size:20px; }
   .myschedule .acc .right .clearlist { display:block; text-align:right; }
   .myschedule .acc .right p { color:#112173; text-align:center; font-size:14px; font-weight:700; margin:5px 0 0 0; }
@@ -302,13 +298,10 @@
   .mprofileedit .form-control { margin-bottom:15px; }
   .mkblck { color:#222222 !important; } .impl { padding-left:15px !important; } 
   .acc .left .hide4Apps { background:#ff0000; text-align:center; padding:2px 0; } .acc .left .hide4Apps a .red { color:#ffffff; }
-<<<<<<< HEAD
-  .asapad { clear:both; margin:0 0 10px 0; }
+ .asapad { clear:both; margin:0 0 10px 0; }
   .asapad a.btnacc { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#219962; padding:2px 30px; display:inline-block; }
   .asapad a.btnden { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#ff0000; padding:2px 30px; display:inline-block; }
   .asapad a.btnacc:hover, .asapad a.btnden:hover { background:#222222; color:#ffffff; }
-=======
->>>>>>> origin/PawanBranch
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	
@@ -488,6 +481,7 @@
  .myschedule .sce .right {width: 70%;}
  .myschedule .acc .mkover { background:#ffffff; margin:0 15px 0 0; height:130px; padding:5px; position:absolute; right:0; text-align:center; vertical-align:top; width:130px; }
 }
+
 /* ---------- iPad Only ---------- */
 @media only screen and (device-width: 768px) {
   .form-control-feedback { top:25px  !important; }
