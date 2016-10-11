@@ -27,8 +27,13 @@
 
         doLogin(username: string, password: string) {
             var self = this;
+<<<<<<< HEAD
             if (username === null || username == '' || username == undefined) {                
                 self.messages = "Please enter user name";   
+=======
+            if (username === null || username == '' || username == undefined) {
+                self.messages = "Please Enter User Name.";
+>>>>>>> 54fedb646d3c784f4748b4c821e2149747504d40
                 $("#PDoneError").modal();
                 return;
             }

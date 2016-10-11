@@ -72,7 +72,8 @@
 
                 this.getProviderPortfolio($stateParams.userId);
             }
-            else {
+            else
+            {
                 this.$state.go("login");
             }
             var date = new Date();
@@ -251,18 +252,18 @@
             //alert(JSON.stringify(e));
         }
 
-        viewSelect(view: any) {
+        viewSelect(view: any){
             var self = this;
             view = self.ASAP && view == 'Appointment-DateTime' ? 'Order-Summary' : view;
-            if (self.isEdit && view == 'Basic-Info') {
+            if(self.isEdit && view == 'Basic-Info'){
                 self.getEditInfo();
-            } else if (self.backToCalendar && view == 'Payment-Method') {
-                if (self.ASAP) {
-                    view = 'Order-Summary';
-                } else {
-                    self.appointmentView();
-                    return;
-                }
+            } else if(self.backToCalendar && view == 'Payment-Method'){
+	            if(self.ASAP){
+		            view = 'Order-Summary';
+	            } else{
+		            self.appointmentView();
+		            return;
+	            }
             }
             this.MainView = view;
         }
@@ -664,25 +665,25 @@
                 var PPID = self.card.customerPaymentProfileId;
                 var amount = self.totalPrice;
                 //str.slice(str.length -  4, str.length);
-                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
+                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response:any) {
                     var resp = JSON.parse(response.AuthProfileJSONResult);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
                     } else {
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason '+resp.transactionResponse.errors[0].errorText);
                     }
                 })
-            } else {
+            } else{
                 var obj = {
                     "Amount": self.totalPrice,
                     "CCNumber": self.cardNumber,
                     "CVV": self.cvv,
                     "Email": self.CustomerEmail,
-                    "Expiry": self.expMonth + '/' + self.expYear,
+                    "Expiry":self.expMonth+'/'+self.expYear,
                     "UID": self.customerId
                 };
-                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response: any) {
+                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response:any) {
                     var resp = JSON.parse(response);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
