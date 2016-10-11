@@ -12,6 +12,7 @@ var FindProviderController;
             this.$inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', 'SharedHttp', '$q', '$window'];
             var self = this;
             self.customerType = window.localStorage.getItem('Role');
+            $window.localStorage.setItem("url1", 'FindProvider');
             document.addEventListener("deviceready", function () {
                 // Initialize the map plugin
                 var options = {
@@ -87,6 +88,8 @@ var FindProviderController;
         FindProviderController.prototype.getProviders = function (serviceId) {
             var self = this;
             FindProviderController.map.clear();
+            FindProviderController.map.setClickable(true);
+            $("#infowindow").hide();
             self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response) {
                 if (response.ListProvidersByServicesResult.length != 0) {
                     for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
@@ -105,6 +108,7 @@ var FindProviderController;
                     }
                 }
                 else {
+                    FindProviderController.map.setClickable(false);
                     self.messages = 'No provider found for the service you have chosen';
                     $("#PDone").modal();
                 }

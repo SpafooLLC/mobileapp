@@ -7,7 +7,7 @@
     <div class="has-feedback fgap">
         <label class="control-label">Name on Card</label>
         <input type="text" ng-model="ma.nameOnCard" class="form-control">
-        <span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>
+        <!--<span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>-->
     </div>
     <div class="has-feedback fgap">
         <label class="control-label">Card Number</label>
@@ -18,7 +18,7 @@
                 maxlength = "16"
                 />
         <!--<input type="text" ng-model="ma.cardNumber" class="form-control">-->
-        <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+        <!--<span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>-->
     </div>
 
     <div class="ccradio">
@@ -84,6 +84,8 @@
             <input id="checkbox3" ng-model="ma.paymentTerm" type="checkbox">
             <label for="checkbox3">With payment, I accept the </label><span><a class="modals" data-toggle="modal" ng-click="ma.showPTerm()"> payment
             terms</a>.</span>
+            <input id="checkbox4" ng-model="ma.saveCardInfo" type="checkbox">
+            <label for="checkbox4">Securely save card on file for future payments</label> 
         </div>
     </div>
     <!--<div class="checkbox checkbox-primary">

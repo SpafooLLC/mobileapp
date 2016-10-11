@@ -75,16 +75,16 @@
     <script src="app/controllers/login/login.controller.js"></script>
     <script src="app/controllers/login/login.module.js"></script>
     <script src="app/controllers/Main/main.controller.js"></script>
-    <script src="app/controllers/MakeAppointment/MakeAppointment.controller.js"></script>
-    <script src="app/controllers/MakeAppointment/MakeAppointment.module.js"></script>
     <script src="app/controllers/MyProfile/MyProfile.controller.js"></script>
     <script src="app/controllers/MyProfile/MyProfile.module.js"></script>
+    <script src="app/controllers/MakeAppointment/MakeAppointment.controller.js"></script>
+    <script src="app/controllers/MakeAppointment/MakeAppointment.module.js"></script>
     <script src="app/controllers/MyProfileEdit/MyProfileEdit.controller.js"></script>
     <script src="app/controllers/MyProfileEdit/MyProfileEdit.module.js"></script>
-    <script src="app/controllers/MySchedule/MySchedule.controller.js"></script>
-    <script src="app/controllers/MySchedule/MySchedule.module.js"></script>
     <script src="app/controllers/Notification/Notification.controller.js"></script>
     <script src="app/controllers/Notification/Notification.module.js"></script>
+    <script src="app/controllers/MySchedule/MySchedule.controller.js"></script>
+    <script src="app/controllers/MySchedule/MySchedule.module.js"></script>
     <script src="app/controllers/Pro-AppointmentCompleted/ProAppointmentCompleted.controller.js"></script>
     <script src="app/controllers/Pro-AppointmentCompleted/ProAppointmentCompleted.module.js"></script>
     <script src="app/controllers/Pro-AppointmentDetail/ProAppointmentDetail.controller.js"></script>
@@ -168,7 +168,7 @@
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                        <!--<li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>-->
                      
                         <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">

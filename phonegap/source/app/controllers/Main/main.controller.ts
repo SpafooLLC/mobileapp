@@ -21,7 +21,7 @@
             this.$rootScope.UserProfileName = this.$window.localStorage.getItem('CustomerName');
             this.$rootScope.GetLoginStatus = (this.$window.localStorage.getItem('LoginStatus') == "true" ? true : false);
             this.$rootScope.getRole = (this.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
-            console.log(this.$rootScope.getRole);
+           console.log(this.$rootScope.getRole);
             var customerID = this.$window.localStorage.getItem('CustomerID');
             var seldf = this;
             if (customerID != null) {
@@ -91,11 +91,12 @@
 
         doLogOut() {
             this.$rootScope.GetLoginStatus = false;
-
+          
             this.$window.localStorage.setItem('LoginStatus', "false");
             this.$rootScope.UserProfileName = "Welcome to Spafoo";
             this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");
             this.$window.localStorage.setItem('Role', null);
+            this.$rootScope.getRole = (this.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
             //  alert("LogOut :: "+this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
             $('.clsmenu').click(function () {
                 $('.titre').click();

@@ -7,7 +7,7 @@
     function configAddClientReview($stateProvider) {
         var AddClientRatingState = {
             name: 'AddClientReview',
-            url: '/AddClientReview/:appId/:clientId',
+            url: '/AddClientReview/:appId/:clientId/:pageName/:UserID/:authTxnIDField/:appointmentIDField/:payTxnIDField/:amountField/:comment',
             templateUrl: 'app/templates/Pro-AddClientReview.html',
             controller: 'AddClientReview as acr'
         };

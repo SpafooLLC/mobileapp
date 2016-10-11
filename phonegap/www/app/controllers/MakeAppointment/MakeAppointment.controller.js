@@ -162,18 +162,60 @@ var MakeAppointmentController;
                 var request = {
                     'position': GOOGLE
                 };
+                //plugin.google.maps.Geocoder.geocode(request, function (results: any) {
+                //    if (results.length) {
+                //        var result = results[0];
+                //        var position = result.position;
+                //        $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
+                //        $("#cityfield").val(result.locality);
+                //        $("#statefield").val(result.adminArea);
+                //        $("#zipfield").val(result.postalCode);
+                //        self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                //        self.info.city = result.locality;
+                //        self.info.state = result.adminArea;
+                //        self.info.zip = result.postalCode;
+                //    }
+                //});
                 plugin.google.maps.Geocoder.geocode(request, function (results) {
                     if (results.length) {
                         var result = results[0];
                         var position = result.position;
-                        $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
-                        $("#cityfield").val(result.locality);
-                        $("#statefield").val(result.adminArea);
-                        $("#zipfield").val(result.postalCode);
-                        self.info.address = result.subThoroughfare + " " + result.thoroughfare;
-                        self.info.city = result.locality;
-                        self.info.state = result.adminArea;
-                        self.info.zip = result.postalCode;
+                        //  alert(result.subThoroughfare + "/ " + result.thoroughfare + "/" + result.locality + "/" + result.adminArea + "/" + result.postalCode);
+                        //if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == undefined || result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined" || result.locality == undefined || result.locality == "" || result.locality == "undefined" || result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "")
+                        //{
+                        //}
+                        if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == "undefined" || result.thoroughfare == undefined) {
+                            $("#addressfield").val('');
+                            self.info.address = '';
+                        }
+                        else {
+                            $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
+                            self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                        }
+                        if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
+                            $("#cityfield").val('');
+                            self.info.city = '';
+                        }
+                        else {
+                            $("#cityfield").val(result.locality);
+                            self.info.city = result.locality;
+                        }
+                        if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
+                            $("#statefield").val('');
+                            self.info.state = '';
+                        }
+                        else {
+                            $("#statefield").val(result.adminArea);
+                            self.info.state = result.adminAream;
+                        }
+                        if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
+                            $("#zipfield").val('');
+                            self.info.zip = "";
+                        }
+                        else {
+                            $("#zipfield").val(result.postalCode);
+                            self.info.zip = result.postalCode;
+                        }
                     }
                 });
             }, self.onError, options);
@@ -204,6 +246,26 @@ var MakeAppointmentController;
             var servLists = [];
             self.totalDuration = 0;
             self.totalPrice = 0;
+            if ($("#addressfield").val() == '') {
+                self.messages = "Enter address field to proceed";
+                $("#PDone").modal();
+                return;
+            }
+            if ($("#cityfield").val() == '') {
+                self.messages = "Enter city field to proceed";
+                $("#PDone").modal();
+                return;
+            }
+            if ($("#statefield").val() == '') {
+                self.messages = "Enter state field to proceed";
+                $("#PDone").modal();
+                return;
+            }
+            if ($("#zipfield").val() == '') {
+                self.messages = "Enter postal code field to proceed";
+                $("#PDone").modal();
+                return;
+            }
             $('.serviceChecks:checked').map(function () {
                 var ServId = this.value.split(':')[0];
                 self.ProviderServiceList.map(function (serv) {
@@ -360,6 +422,7 @@ var MakeAppointmentController;
                     from: to,
                     to: from,
                     //step: +moment('05', 'mm').format('h:mm a A'),
+                    step: 900,
                     //step: 300000,
                     drag_interval: true,
                     prettify: function (num) {
@@ -437,7 +500,7 @@ var MakeAppointmentController;
                 if (profile) {
                     profile = profile.profile;
                     self.PID = profile.customerProfileId;
-                    if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length) {
+                    if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles) {
                         profile.paymentProfiles.map(function (cc) {
                             self.CCards.push(cc);
                         });
@@ -579,6 +642,10 @@ var MakeAppointmentController;
                     var resp = JSON.parse(response);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
+                        if (self.saveCardInfo) {
+                            self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
+                            }, function (error) { });
+                        }
                         self.finalMakeAppointment();
                     }
                     else {

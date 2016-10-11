@@ -43,19 +43,22 @@ var ScheduleDetailController;
             });
         };
         ScheduleDetailController.prototype.CancelSchdule = function () {
-            var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
-            //  alert(JSON.stringify(PostData));
-            self.CustomerHttp.post(PostData, '/RefundCard').then(function (response) {
-                self.messages = JSON.parse(response).messages.message[0].text;
-                $("#PDone").modal();
-            }, function (error) {
-                //alert(error)
-            });
+            var confirmations = confirm("Are you sure want to cancel ? ");
+            if (confirmations) {
+                var self = this;
+                var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
+                //  alert(JSON.stringify(PostData));
+                self.CustomerHttp.post(PostData, '/RefundCard').then(function (response) {
+                    self.messages = JSON.parse(response).messages.message[0].text;
+                    $("#PDone").modal();
+                }, function (error) {
+                    //alert(error)
+                });
+            }
         };
         ScheduleDetailController.prototype.dismissAndThen = function () {
-            return false;
-            //this.$state.go('MySchedule');
+            // return false;
+            this.$state.go('MySchedule');
         };
         ScheduleDetailController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         return ScheduleDetailController;

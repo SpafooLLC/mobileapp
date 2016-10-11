@@ -17,6 +17,43 @@ var registerController;
             $("#MobileNo").mask("000-000-0000");
             $("#Zipcode").mask("00000");
         }
+        //doRegister(Regdata: any) {
+        //    var self = this;
+        //    //  alert("hello");
+        //    if (this.DoValidation(Regdata)) {
+        //        if (self.SharedHttp.getPicID() === null || self.SharedHttp.getPicID() === '' || self.SharedHttp.getPicID() === undefined || self.SharedHttp.getPicID() === 'undefined') {
+        //            Regdata.picFID = null;
+        //            self.SharedHttp.setPicID(null);
+        //        } else {
+        //            Regdata.picFID = self.SharedHttp.getPicID();
+        //            self.SharedHttp.setPicID(null);
+        //        }
+        //        //alert(JSON.stringify(Regdata));
+        //        var data = Regdata;
+        //        data.HardwareName = self.$window.localStorage.getItem('DeviceName');
+        //        data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
+        //        self.$ionicLoading.show();
+        //        self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
+        //            if (parseInt(response.CustomerID) > 0) {
+        //                self.$window.localStorage.setItem('CustomerID', response.CustomerID);
+        //                self.$window.localStorage.setItem('Role', response.Usertype);
+        //                self.$window.localStorage.setItem('LoginStatus', "true");    
+        //                self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+        //                    //self.$state.go("home");
+        //                    self.$state.go("BasicCreditCard", { from: 'reg' });
+        //                });
+        //            }
+        //            self.$ionicLoading.hide();
+        //        }, function (error) {
+        //            if (error === null) {
+        //                self.$ionicLoading.hide();
+        //            } else {
+        //                //console.log(error);
+        //                self.$ionicLoading.hide();
+        //            }
+        //        });
+        //    }
+        //}
         RegisterController.prototype.doRegister = function (Regdata) {
             var self = this;
             //  alert("hello");
@@ -34,26 +71,8 @@ var registerController;
                 data.HardwareName = self.$window.localStorage.getItem('DeviceName');
                 data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
-                self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
-                    if (parseInt(response.CustomerID) > 0) {
-                        self.$window.localStorage.setItem('CustomerID', response.CustomerID);
-                        self.$window.localStorage.setItem('Role', response.Usertype);
-                        self.$window.localStorage.setItem('LoginStatus', "true");
-                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
-                            //self.$state.go("home");
-                            self.$state.go("BasicCreditCard", { from: 'reg' });
-                        });
-                    }
-                    self.$ionicLoading.hide();
-                }, function (error) {
-                    if (error === null) {
-                        self.$ionicLoading.hide();
-                    }
-                    else {
-                        //console.log(error);
-                        self.$ionicLoading.hide();
-                    }
-                });
+                localStorage.setItem("registerData", JSON.stringify(data));
+                self.$state.go("BasicCreditCard", { from: 'reg' });
             }
         };
         RegisterController.prototype.GoRegistertext = function (IsProvider) {

@@ -11,6 +11,7 @@ var ProAppointmentsController;
             this.SharedHttp = SharedHttp;
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
+            this.page = window.location.hash.split('/')[1];
         }
         ProAppointmentsController.prototype.getProviderSchedular = function (UserID) {
             var self = this;
@@ -56,7 +57,7 @@ var ProAppointmentsController;
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;
                         if (self.ServiceData[i].statusField == 1) {
-                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
+                            self.CustomerHttp.get('/DidIRated/' + UserID + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
                             }, function (error) {
                             });
@@ -91,14 +92,14 @@ var ProAppointmentsController;
                 });
             }
         };
-        ProAppointmentsController.prototype.UnSeenStatus = function (AppointmentID) {
-            var self = this;
-            self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
-                //alert(JSON.stringify(response));
-                //    self.getProviderSchedular(this.UserID);
-            }, function (error) {
-            });
-        };
+        //UnSeenStatus(AppointmentID: any) {
+        //    var self = this;
+        //    self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+        //        //alert(JSON.stringify(response));
+        //        //    self.getProviderSchedular(this.UserID);
+        //    }, function (error) {
+        //    });
+        //}
         ProAppointmentsController.prototype.GoToProviderPortfolio = function (UserID) {
             var self = this;
             self.$window.localStorage.setItem('ProviderIDs', UserID);
@@ -106,7 +107,7 @@ var ProAppointmentsController;
         };
         ProAppointmentsController.prototype.GoToScheduleDetail = function (AppointmentID) {
             var self = this;
-            self.UnSeenStatus(AppointmentID);
+            self.SharedHttp.UnSeenStatus(AppointmentID);
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ProAppointmentDetail");
         };

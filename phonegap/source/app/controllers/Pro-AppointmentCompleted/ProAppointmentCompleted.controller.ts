@@ -12,6 +12,7 @@
         UserID: string;
         message: string;
         appointmentPhotoList: any;
+        page: string;
 
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', '$stateParams', '$timeout'];
         constructor(
@@ -26,6 +27,7 @@
             private $timeout: ITimeoutService
         ) {
             this.getClientInfo();
+            this.page = window.location.hash.split('/')[1];
         }
 
         getClientInfo() {
@@ -62,53 +64,65 @@
             return deferred.promise; 
         }
 
-        
-
         CompleteApp() {
             var self = this;
             self.UserID = this.$window.localStorage.getItem('CustomerID');
-            self.clientId = self.$stateParams.clientId;
-            self.authTxnIDField = self.$stateParams.authTxnIDField;
-            self.appointmentIDField = self.$stateParams.appointmentIDField;
-            self.payTxnIDField = self.$stateParams.payTxnIDField;
-            self.amountField = self.$stateParams.amountField;
-
-            //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
-            //self.message = 'Appointment Completed';
-            //$("#PDone").modal();
-            var data = {
-                TxnID: self.authTxnIDField,
-                Amount: self.amountField
-            };
-            self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
-                var response = JSON.parse(res);
-                var upData = {
-                    ID: self.appointmentIDField,
-                    Comment: self.comment,
-                    PaymentTxnID: self.payTxnIDField
-                };
-                self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
-                    var navData = {
-                        ByID: self.UserID,
-                        NotTypeID: 8,
-                        RelatedEntityID: self.appointmentIDField,
-                        ToID: self.clientId
-                    };
-                    self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
-                        self.message = 'Appointment Completed';
-                        //$("#PDone").modal();
-                        self.$state.go("ProAppointments");
-                    }, function (navError: any) {
-
-                    })
-                }, function (erError: any) {
-
-                });
-
-            }, function (error: any) {
-                //alert('someError on ChargePreviosAuth');
-            });
+           self.clientId = self.$stateParams.clientId;
+           self.authTxnIDField = self.$stateParams.authTxnIDField;
+           self.appointmentIDField = self.$stateParams.appointmentIDField;
+           self.payTxnIDField = self.$stateParams.payTxnIDField;
+           self.amountField = self.$stateParams.amountField;
+           self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.comment)
         }
+
+        //CompleteApp1() {
+
+            
+        //    var self = this;
+         
+        //    self.UserID = this.$window.localStorage.getItem('CustomerID');
+        //    self.clientId = self.$stateParams.clientId;
+        //    self.authTxnIDField = self.$stateParams.authTxnIDField;
+        //    self.appointmentIDField = self.$stateParams.appointmentIDField;
+        //    self.payTxnIDField = self.$stateParams.payTxnIDField;
+        //    self.amountField = self.$stateParams.amountField;
+          
+        //    //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+        //    //self.message = 'Appointment Completed';
+        //    //$("#PDone").modal();
+        //    var data = {
+        //        TxnID: self.authTxnIDField,
+        //        Amount: self.amountField
+        //    };
+        //    self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+        //        var response = JSON.parse(res);
+        //        var upData = {
+        //            ID: self.appointmentIDField,
+        //            Comment: self.comment,
+        //            PaymentTxnID: self.payTxnIDField
+        //        };
+        //        self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+        //            var navData = {
+        //                ByID: self.UserID,
+        //                NotTypeID: 8,
+        //                RelatedEntityID: self.appointmentIDField,
+        //                ToID: self.clientId
+        //            };
+        //            self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+        //                self.message = 'Appointment Completed';
+        //                //$("#PDone").modal();
+        //                self.$state.go("ProAppointments");
+        //            }, function (navError: any) {
+
+        //            })
+        //        }, function (erError: any) {
+
+        //        });
+
+        //    }, function (error: any) {
+        //        //alert('someError on ChargePreviosAuth');
+        //    });
+        //}
 
         AddSampleImage(fileID: string) {
             var self = this;

@@ -78,6 +78,7 @@ var mainController;
             this.$rootScope.UserProfileName = "Welcome to Spafoo";
             this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");
             this.$window.localStorage.setItem('Role', null);
+            this.$rootScope.getRole = (this.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
             //  alert("LogOut :: "+this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
             $('.clsmenu').click(function () {
                 $('.titre').click();

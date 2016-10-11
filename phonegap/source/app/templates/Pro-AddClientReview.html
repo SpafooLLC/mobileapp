@@ -57,19 +57,21 @@
         </div>
         <a data-toggle="modal" data-target="#ThankYou" class="block-btn" ng-show="acr.aboutClientDislike && acr.aboutClientLike && acr.rateValue  && acr.communication && acr.cooperation && acr.attitude && acr.timePunctuality" ng-click="acr.postRating();">Submit</a>
         <!-- Modal Thank You -->
-        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!--  <div class="modal hide fade in" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">-->
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <!--<button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>-->
                         <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
                         <p>{{acr.messages}} </p>
                         <div class="cpaction">
-                            <div class="col-xs-6 pca"><a ng-click="acr.redirectTo('FindProvider')" class="gray-rounded btnblock">Make Appointment</a></div>
-                           <!-- <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('MySchedule')" class="green-rounded btnblock">My Schedule</a></div>-->
-                            <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('ProAppointments')" class="green-rounded btnblock">My Schedule</a></div>
+                            <!--<div class="col-xs-6 pca"><a ng-click="acr.redirectTo('FindProvider')" class="gray-rounded btnblock" ng-if="acr.pageName !='ProAppointmentCompleted'">Make Appointment</a></div>-->
+                            <!-- <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('MySchedule')" class="green-rounded btnblock">My Schedule</a></div>-->
+                           <a ng-click="acr.redirectTo('ProAppointments')" class="green-rounded btnblock zimp" ng-if="acr.pageName !='ProAppointmentCompleted'">My Schedule</a>
+                            <a ng-click="acr.CompleteApp()" class="green-rounded btnblock zimp" ng-if="acr.pageName=='ProAppointmentCompleted'">Appointment Completed</a>
                         </div>
                     </div>
                 </div>
