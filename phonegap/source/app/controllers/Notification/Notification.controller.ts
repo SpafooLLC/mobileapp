@@ -5,7 +5,7 @@
         NotificaitonData: any;
         customerID: number;
         NotificationCount: number;
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope' ];
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -16,7 +16,8 @@
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
             private toaster: ngtoaster.IToasterService,
-            private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
+            private $rootScope: any
         ) {
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserNotificationInfo();
@@ -32,6 +33,8 @@
             self.CustomerHttp.get('/GetMyNotification/' + self.customerID).then(function (response: any) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
+                self.$rootScope.NotifiCount = self.NotificaitonData.length; 
+              //  alert()
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
 
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy")
@@ -50,7 +53,7 @@
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
                             break;
                         case 6:
-                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 2hrs ";
                             break;
 
                         case 14:

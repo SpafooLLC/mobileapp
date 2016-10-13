@@ -92,12 +92,12 @@ var loginController;
                 //        window.history.go(-1);
                 //    }
                 //}
-                if (v == "Register") {
+                if (v != null && v == "Register") {
                     self.$window.localStorage.setItem("url", '0');
                     window.location.href = "#/home";
                 }
                 else {
-                    if (self.$window.localStorage.getItem('Role') == 'P') {
+                    if (v != null && self.$window.localStorage.getItem('Role') == 'P') {
                         //var v = self.$window.localStorage.getItem('url');
                         var c = v.substr(v.indexOf('/') + 1);
                         c = c.substr(0, c.indexOf('/'));

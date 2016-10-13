@@ -1,7 +1,7 @@
 var NotificationController;
 (function (NotificationController_1) {
     var NotificationController = (function () {
-        function NotificationController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
+        function NotificationController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,6 +12,7 @@ var NotificationController;
             this.$window = $window;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
+            this.$rootScope = $rootScope;
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserNotificationInfo();
         }
@@ -24,6 +25,8 @@ var NotificationController;
             self.CustomerHttp.get('/GetMyNotification/' + self.customerID).then(function (response) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
+                self.$rootScope.NotifiCount = self.NotificaitonData.length;
+                //  alert()
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy");
                     var role = localStorage.getItem('Role');
@@ -40,7 +43,7 @@ var NotificationController;
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
                             break;
                         case 6:
-                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 2hrs ";
                             break;
                         case 14:
                             if (role == 'P') {
@@ -141,7 +144,7 @@ var NotificationController;
                 });
             }
         };
-        NotificationController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        NotificationController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope'];
         return NotificationController;
     }());
     angular.module('spafoo.ctrl.Notification', []).controller('Notification', NotificationController);

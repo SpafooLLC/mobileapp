@@ -1,13 +1,13 @@
 ﻿module loginController {
     export interface ILogin  {
         doLogin(username: string, password: string): void;
-
+     
 
     }
     class loginController implements ILogin {
         messages: string;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', '$rootScope', 'SharedHttp'];
-
+       
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -21,7 +21,7 @@
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-
+           
         }
 
 
@@ -59,11 +59,10 @@
                     self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
-
                     $("#PDoneError").modal();                    
                 }
             }, function (error) {
-
+              
             });
         }
 
@@ -119,7 +118,7 @@
                 //    }
                 //}
 
-                if (v == "Register") {
+                if (v!=null && v == "Register") {
 
                     self.$window.localStorage.setItem("url", '0');
                     window.location.href = "#/home";
@@ -127,7 +126,7 @@
                 }
 
                 else {
-                    if (self.$window.localStorage.getItem('Role') == 'P') {
+                    if (v!=null && self.$window.localStorage.getItem('Role') == 'P' ) {
                         //var v = self.$window.localStorage.getItem('url');
 
                         var c = v.substr(v.indexOf('/') + 1);
@@ -163,6 +162,9 @@
                 //  self.$state.go("home");
             }, function (error) { });
         }
+
+
+
     }
 
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);
