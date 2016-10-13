@@ -106,7 +106,7 @@ var spafoo;
                 else {
                     this.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response) {
                         if (response.GetProfilePicResult.length > 0) {
-                            this.ImageURl = "http://dev.spafoo.com" + response.GetProfilePicResult;
+                            this.ImageURl = "http://www.spafoo.com" + response.GetProfilePicResult;
                         }
                         else {
                             this.ImageURl = "images/Site/default-User.png";
@@ -147,6 +147,14 @@ var spafoo;
                 this.CustomerHttp.get('/GetWorkSamples/' + UserID).then(function (response) {
                     this.WorkSamplesList = response.GetWorkSamplesResult;
                     deferred.resolve(this.WorkSamplesList);
+                }, function (error) { });
+                return deferred.promise;
+            };
+            SharedHttp.prototype.HideApp4Me = function (AppID, UserType) {
+                var deferred = this.$q.defer();
+                this.CustomerHttp.get('/HideApp4Me/' + AppID + '/' + UserType).then(function (response) {
+                    this.HideApp = response;
+                    deferred.resolve(this.HideApp);
                 }, function (error) { });
                 return deferred.promise;
             };

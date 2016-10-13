@@ -24,7 +24,7 @@
                                 <p>With:  {{s.displayNameField}}</p>
                                 <p>Service(s): {{s.ServiceList}}</p>
                             </td>
-                            <td class="right">
+                            <td class="right mkover">
                                 <div class="cinfo">
                                     <a ng-click="papp.RemoveCancelled({{s.appointmentIDField}})" title="Remove form list" class="clearlist">
                                         <i class="fa fa-times-circle"></i>
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div ng-if="s.statusField==5">
+            <div class="trowsp" ng-if="s.statusField==5">
                 <div class="sce">
 
                     <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})"></div>
@@ -51,9 +51,9 @@
                         </div>
                     </a>
 
-                    <div class="right">                
-                      
-                        
+                    <div class="right">
+
+
                         <h2 style="color:red;">Waiting client approval</h2>
                         <p>At: <a href="">{{s.addressField}}</a></p>
                         <p>With: <a href="">{{s.displayNameField}}</a></p>
@@ -64,7 +64,7 @@
 
 
 
-            <div ng-if="s.statusField==0">
+            <div class="trowsp" ng-if="s.statusField==0">
                 <div class="sce">
 
                     <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})"></div>
@@ -87,7 +87,7 @@
             </div>
 
 
-            <div ng-if="s.statusField==4">
+            <div class="trowsp" ng-if="s.statusField==4">
                 <div class="sce">
                     <div class="newapp" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})" ng-if="s.seenStatusField==0"></div>
                     <a href="#/ProMyAvailability/{{s.addressIDField}}/{{s.clientIDField}}/{{s.providerIDField}}/{{s.appointmentIDField}}/{{s.displayNameField}}/{{s.serviceTime}}">
@@ -116,6 +116,9 @@
                             <td class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                 <div class="time">{{s.atTimeField}}</div>
+                                <div class="hide4Apps">
+                                    <a ng-click="papp.HideApp4Me({{s.appointmentIDField}});"><i class="fa red fa-trash fa-lg"></i></a>
+                                </div>
                             </td>
                             <td class="middle">
                                 <h2>{{s.orderDateField}}</h2>

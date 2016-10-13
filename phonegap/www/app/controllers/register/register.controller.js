@@ -12,6 +12,10 @@ var registerController;
             this.$window = $window;
             this.$timeout = $timeout;
             this.SharedHttp = SharedHttp;
+            window.localStorage.setItem("url", 'Register');
+            $("#PhoneNo").mask("000-000-0000");
+            $("#MobileNo").mask("000-000-0000");
+            $("#Zipcode").mask("00000");
         }
         RegisterController.prototype.doRegister = function (Regdata) {
             var self = this;
@@ -27,12 +31,14 @@ var registerController;
                 }
                 //alert(JSON.stringify(Regdata));
                 var data = Regdata;
-                data.HardwareName = device.model;
+                data.HardwareName = self.$window.localStorage.getItem('DeviceName');
                 data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response) {
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
+                        self.$window.localStorage.setItem('Role', response.Usertype);
+                        self.$window.localStorage.setItem('LoginStatus', "true");
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
                             self.$state.go("BasicCreditCard", { from: 'reg' });
@@ -62,6 +68,9 @@ var registerController;
                 $("#PDone").modal();
                 return false;
             }
+            Regdata.PhoneNo = $("#PhoneNo").val();
+            Regdata.MobileNo = $("#MobileNo").val();
+            Regdata.Zipcode = $("#Zipcode").val();
             if (Regdata.FirstName === null || Regdata.FirstName === '' || Regdata.FirstName == undefined || Regdata == undefined) {
                 self.messages = "Please Enter First Name.";
                 $("#PDone").modal();
@@ -110,6 +119,11 @@ var registerController;
                     return false;
                 }
             }
+            //if (Regdata.PhoneNo === null || Regdata.PhoneNo === '' || Regdata.PhoneNo == undefined) {
+            //    self.messages = "Please Enter Phone Number.";
+            //    $("#PDone").modal();
+            //    return false;
+            //}
             if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
                 self.messages = "Please Enter Mobile Number.";
                 $("#PDone").modal();
@@ -156,9 +170,6 @@ var registerController;
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(extension);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                            //alert(extension);
-                            //self.$timeout(function () {
-                            //self.imageURL = 'file://' + imageURI;
                             self.SharedHttp.setProfileImage('file://' + imageURI);
                             self.postImage();
                         }
@@ -221,7 +232,7 @@ var registerController;
             catch (ex) {
                 self.toaster.error('exception generated:' + ex, 'Error');
             }
-            ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ClientRegistration/Script/jquery-uploadify/rhprofilepic.ashx', (function (r) {
+            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_ClientRegistration/Script/jquery-uploadify/rhprofilepic.ashx', (function (r) {
                 //self.messages = "Profile Image updated";
                 //$("#PDone").modal();               
                 if (r.responseCode === '200' || r.responseCode === 200) {
@@ -229,7 +240,7 @@ var registerController;
                     self.SharedHttp.setPicID(resArr[0]);
                     self.SharedHttp.setPicPath(resArr[1]);
                     self.$timeout(function () {
-                        self.imageURL = "http://dev.spafoo.com" + resArr[1];
+                        self.imageURL = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
                 }

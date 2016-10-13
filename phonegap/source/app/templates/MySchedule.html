@@ -9,8 +9,8 @@
         </div>
         <div class="inbody-simple">
             <div class="myschedule">
-                <div ng-repeat="s in ms.ServiceData">
-                    <div class="sce" ng-if="s.statusField==0">
+                <div class="trowsp" ng-repeat="s in ms.ServiceData"  ng-if="s.statusField!=3 && s.statusField!=1 " >
+                    <div class="sce" ng-if="s.statusField==0" >
                         <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
@@ -20,8 +20,11 @@
                         <div class="right">
                             <h2>{{s.orderDateField}}</h2>
                             <p>At: <a href="">{{s.addressField}}</a></p>
-                            <p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
-                            <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>
+                            <!--<p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
+                <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+
+                            <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
+                            <p>Service(s): <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.ServiceList}}</a></p>
                         </div>
                     </div>
                     <div class="sce" ng-if="s.statusField==5">
@@ -33,7 +36,8 @@
                             </div>
                         </a>
                         <div class="right">
-                            <h2 style="color:red">{{s.orderDateField}}(<a style="color:green" ng-click="ms.acceptAppointment({{s.appointmentIDField}})">Accept</a>-<a style="color:red" ng-click="ms.denyAppointment({{s.appointmentIDField}})">Deny</a>)</h2>
+                            <h2 style="color:red">{{s.orderDateField}}</h2>
+                            <div class="asapad"><a class="btnacc" ng-click="ms.acceptAppointment({{s.appointmentIDField}})">Accept</a> <a class="btnden" ng-click="ms.denyAppointment({{s.appointmentIDField}})">Deny</a></div>
                             <p>At: <a href="">{{s.addressField}}</a></p>
                             <p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
                             <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>
@@ -65,6 +69,9 @@
                                 <td class="left">
                                     <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                     <div class="time">{{s.atTimeField}}</div>
+                                    <div class="hide4Apps">
+                                        <a ng-click="ms.HideApp4Me({{s.appointmentIDField}});"><i class="fa red fa-trash fa-lg"></i></a>
+                                    </div>
                                 </td>
                                 <td class="middle">
                                     <h2>{{s.orderDateField}}</h2>

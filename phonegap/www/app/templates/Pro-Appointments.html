@@ -1,6 +1,5 @@
-<!--<ion-view view-title="User Registration" scroll="true">
-    <ion-content>-->
-
+ <ion-view view-title="My Schedule" scroll="true">
+    <ion-content> 
 <div class="bread">
     <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
     <div class="ptitle">My Appointments</div>
@@ -12,6 +11,7 @@
 
             <div ng-if="s.statusField==3">
                 <div class="acc">
+                
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td class="left">
@@ -24,7 +24,7 @@
                                 <p>With:  {{s.displayNameField}}</p>
                                 <p>Service(s): {{s.ServiceList}}</p>
                             </td>
-                            <td class="right">
+                            <td class="right mkover">
                                 <div class="cinfo">
                                     <a ng-click="papp.RemoveCancelled({{s.appointmentIDField}})" title="Remove form list" class="clearlist">
                                         <i class="fa fa-times-circle"></i>
@@ -37,7 +37,34 @@
                     </table>
                 </div>
             </div>
-            <div ng-if="s.statusField==0">
+
+            <div class="trowsp" ng-if="s.statusField==5">
+                <div class="sce">
+
+                    <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})"></div>
+
+
+                    <a href="" ng-click="papp.GoToScheduleDetail({{s.appointmentIDField}})">
+                        <div class="left">
+                            <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
+                            <div class="time">{{s.atTimeField}}</div>
+                        </div>
+                    </a>
+
+                    <div class="right">
+
+
+                        <h2 style="color:red;">Waiting client approval</h2>
+                        <p>At: <a href="">{{s.addressField}}</a></p>
+                        <p>With: <a href="">{{s.displayNameField}}</a></p>
+                        <p>Service(s): <a href="" ng-click="papp.GoToProviderPortfolio({{s.providerIDField}})">{{s.ServiceList}}</a></p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="trowsp" ng-if="s.statusField==0">
                 <div class="sce">
 
                     <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})"></div>
@@ -60,10 +87,10 @@
             </div>
 
 
-            <div ng-if="s.statusField==4">
+            <div class="trowsp" ng-if="s.statusField==4">
                 <div class="sce">
                     <div class="newapp" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})" ng-if="s.seenStatusField==0"></div>
-                    <a href="#/ProSetSoonest/{{s.addressIDField}}/{{s.clientIDField}}/{{s.providerIDField}}/{{s.appointmentIDField}}/{{s.displayNameField}}">
+                    <a href="#/ProMyAvailability/{{s.addressIDField}}/{{s.clientIDField}}/{{s.providerIDField}}/{{s.appointmentIDField}}/{{s.displayNameField}}/{{s.serviceTime}}">
                         <div class="left">
                             <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                             <div class="time">{{s.atTimeField}}</div>
@@ -81,7 +108,7 @@
         </div>
 
         <div ng-repeat="s in papp.ServiceData">
-            <div class="bar" ng-if="$index==0">Accomplished</div>
+            <div class="bar pbards" ng-if="$index==0">Accomplished</div>
             <div ng-if="s.statusField==1">
                 <div class="acc">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -89,6 +116,9 @@
                             <td class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                 <div class="time">{{s.atTimeField}}</div>
+                                <div class="hide4Apps">
+                                    <a ng-click="papp.HideApp4Me({{s.appointmentIDField}});"><i class="fa red fa-trash fa-lg"></i></a>
+                                </div>
                             </td>
                             <td class="middle">
                                 <h2>{{s.orderDateField}}</h2>
@@ -96,11 +126,15 @@
                                 <p>Service(s): {{s.ServiceList}}</p>
                             </td>
                             <td class="right">
-                                <a href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}">
-                               
+                                <a ng-if="!s.isRate" href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}">
+
+                                    <i class="fa fa-star-o fa-2x"></i>
+                                    <p ng-if="!s.isRate">Rate this client</p>
+                                </a>
+                                <a ng-if="s.isRate" href="">
+
                                     <i class="fa fa-star-o fa-2x"></i>
                                     <p ng-if="s.isRate">Already Rated!</p>
-                                    <p ng-if="!s.isRate">Rate this client</p>
                                 </a>
                             </td>
                         </tr>
@@ -116,5 +150,5 @@
 
 <script type="text/javascript">app.initialize();</script>
 
-<!--</ion-content>
-</ion-view>-->
+ </ion-content>
+</ion-view> 

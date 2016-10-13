@@ -25,7 +25,7 @@ var spafoo;
                 }).error(function (error) {
                     deferred.reject(error);
                     $("#showload").hide();
-                    alert('Connection : Please Check Internate Connection.');
+                    alert('Connection : Please Check Internet Connection.');
                 });
                 return deferred.promise;
             };
@@ -39,7 +39,7 @@ var spafoo;
                 }).error(function (error) {
                     deferred.reject(error);
                     $("#showload").hide();
-                    alert('Connection : Please Check Internate Connection.');
+                    alert('Connection : Please Check Internet Connection.');
                 });
                 return deferred.promise;
             };

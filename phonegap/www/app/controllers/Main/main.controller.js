@@ -25,6 +25,9 @@ var mainController;
             document.addEventListener('deviceready', seldf.onDeviceReady, false);
         }
         MainController.prototype.onDeviceReady = function () {
+            if (device.platform === 'iOS') {
+                StatusBar.hide();
+            }
             var push = PushNotification.init({
                 android: {
                     senderID: "24553703183"
@@ -40,17 +43,23 @@ var mainController;
                 windows: {}
             });
             push.on('registration', function (data) {
-                //  alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+                // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
+                    //  alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
+                    localStorage.setItem('DeviceName', device.model);
                 }
                 catch (e) {
                     alert(JSON.stringify("Error :: " + e));
                 }
             });
             push.on('notification', function (data) {
-                //   alert(JSON.stringify(data));
-                window.location.href = "#/Notification";
+                //var i = 2;
+                // alert(JSON.stringify(data));
+                if (!data.additionalData.foreground) {
+                    //cordova.plugins.notification.badge.set(i);
+                    window.location.href = "#/Notification";
+                }
                 // data.message,
                 // data.title,
                 // data.count,
@@ -70,7 +79,15 @@ var mainController;
             this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");
             this.$window.localStorage.setItem('Role', null);
             //  alert("LogOut :: "+this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
+            $('.clsmenu').click(function () {
+                $('.titre').click();
+                $('.tcon').removeClass("tcon-transform");
+            });
             this.$state.go('home');
+        };
+        MainController.prototype.HideShowMenu = function () {
+            $('.titre').click();
+            $('.tcon').removeClass("tcon-transform");
         };
         MainController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', '$rootScope', 'SharedHttp'];
         return MainController;

@@ -1,4 +1,4 @@
-﻿<div class="bread">
+<div class="bread">
     <a href="" ng-click="ma.viewSelect('Payment-Method')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
 
     <div class="ptitle">Payment Information</div>
@@ -11,12 +11,12 @@
     </div>
     <div class="has-feedback fgap">
         <label class="control-label">Card Number</label>
-      <input  class="form-control"
-             ng-model="ma.cardNumber"
-             oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
-             type = "tel"
-             maxlength = "16"
-        />
+        <input  class="form-control"
+                ng-model="ma.cardNumber"
+                oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                type = "tel"
+                maxlength = "16"
+                />
         <!--<input type="text" ng-model="ma.cardNumber" class="form-control">-->
         <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
     </div>
@@ -43,7 +43,7 @@
         <p class="control-label bold bmar-sm">Expiry Date</p>
 
         <div class="col-xs-6 fileft">
-            <select class="form-control w100" ng-model="ma.expMonth">
+            <select class="form-control w100 mkblck impl" ng-model="ma.expMonth">
                 <option value="01">January</option>
                 <option value="02">February</option>
                 <option value="03">March</option>
@@ -59,7 +59,7 @@
             </select>
         </div>
         <div class="col-xs-6 firight">
-            <select class="form-control w100" ng-model="ma.expYear">
+            <select class="form-control w100 mkblck impl" ng-model="ma.expYear">
                 <option ng-repeat="year in ma.years" value="{{year}}">{{year}}</option>
             </select>
         </div>
@@ -68,21 +68,21 @@
         <p class="control-label bold bmar-sm">CVV</p>
 
         <div class="col-xs-6 fileft">
-          <input  class="form-control"
-                  ng-model="ma.cvv"
-                  oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
-                  type = "tel"
-                  maxlength = "4"
-                  placeholder="000"
-            />
-           <!-- <input type="text" ng-model="ma.cvv" class="form-control" placeholder="000">-->
+            <input  class="form-control"
+                    ng-model="ma.cvv"
+                    oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                    type = "tel"
+                    maxlength = "4"
+                    placeholder="000"
+                    />
+            <!-- <input type="text" ng-model="ma.cvv" class="form-control" placeholder="000">-->
         </div>
         <div class="col-xs-6 firight cvv">
             The last 3 digits displayed on the back of your card
         </div>
         <div class="tpad-xs checkbox checkbox-primary" style="margin-top: 40px">
             <input id="checkbox3" ng-model="ma.paymentTerm" type="checkbox">
-            <label for="checkbox3">With payment, I accept the </label><span><a class="modals" data-toggle="modal" data-target="#PTerms"> payment
+            <label for="checkbox3">With payment, I accept the </label><span><a class="modals" data-toggle="modal" ng-click="ma.showPTerm()"> payment
             terms</a>.</span>
         </div>
     </div>

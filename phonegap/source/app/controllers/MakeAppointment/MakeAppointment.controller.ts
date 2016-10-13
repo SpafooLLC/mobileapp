@@ -36,7 +36,8 @@
             this.checked_services = [];
             if(!status || status == "false"){
                 var providerData = {providerId: this.UserID};
-                this.$state.go("login", providerData);
+                $window.localStorage.setItem("url", window.location.hash);
+                this.$state.go("login", providerData);           
             }else{
                 this.customerId = $window.localStorage.getItem('CustomerID');
             }
@@ -67,7 +68,13 @@
                 this.AppID = this.AppointmentID;
             }
             this.ASAP = this.$stateParams.type == 'ASAP';
-            this.getProviderPortfolio($stateParams.userId);
+            if ($stateParams.userId != "null" && this.customerId!=null) {
+               
+                this.getProviderPortfolio($stateParams.userId);
+            }
+            else {
+                this.$state.go("login");
+            }
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -201,11 +208,18 @@
             //alert(JSON.stringify(e));
         }
 
-        viewSelect(view: any){
+        viewSelect(view: any) {
             var self = this;
             view = self.ASAP && view == 'Appointment-DateTime' ? 'Order-Summary' : view;
-            if(self.isEdit && view == 'Basic-Info'){
-              self.getEditInfo();
+            if (self.isEdit && view == 'Basic-Info') {
+                self.getEditInfo();
+            } else if (self.backToCalendar && view == 'Payment-Method') {
+                if (self.ASAP) {
+                    view = 'Order-Summary';
+                } else {
+                    self.appointmentView();
+                    return;
+                }
             }
             this.MainView = view;
         }
@@ -277,7 +291,6 @@
             var self = this;
             self.changeSummery();
             self.eventSource = [];
-            //self.eventSource.push(self.appointment.forDateField);
             if(self.ASAP){
                 self.paymentMethod();
             } else{
@@ -301,14 +314,11 @@
                         editable: true,
                         slotEventOverlap: false,
                         eventLimit: 1,
-                        /*events: function (start, end, timezone, callback) {
-                            getOccupiedSlots(moment(start).format('MM-DD-YYYY'), moment(end).format('MM-DD-YYYY'), timezone, callback)
-                        }*/
-                        viewRender: function(view, element) { if(self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
+                        viewRender: function(view, element) { this.calendar.removeEvents(); if(self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
                     }
                 };
                 setTimeout(function(){
-                  $('.fc-toolbar > .fc-center').html('<div class="pctip"><ul> <li class="pava">Provider Not Available </li> <li class="pres">Already Reserved</li> </ul> </div>');
+                $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
                 }, 0);
                 //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
@@ -322,19 +332,14 @@
             var date = new Date(), y = date.getFullYear(), m = date.getMonth();
             var start = moment().format('MM/DD/YYYY');
             var end = moment(end).format('MM/DD/YYYY');
-            //var firstDay = new Date(y, m, 1);
-            //var lastDay = new Date(y, m + 1, 0);
             var postObj = {
                 EndDateTime: end,
-                //EndDateTime:self.from,
                 ProID: self.$stateParams.userId,
-                //StartDateTime:self.to
                 StartDateTime: start,
             };
             self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res: any) {
 
                 var aviles = JSON.parse(res.ListMyAvailResult);
-
                 for (var i = 0; i < aviles.length; i++) {
                     var starthours = aviles[i].StartTime.Hours > 9 ? aviles[i].StartTime.Hours : '0'+aviles[i].StartTime.Hours;
                     var startminutes = aviles[i].StartTime.Minutes > 9 ? aviles[i].StartTime.Minutes : '0'+aviles[i].StartTime.Minutes;
@@ -343,48 +348,22 @@
                     var dateMonth = aviles[i].Date;
                     var dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
-                    var getmonth = '';
 
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
                         title: moment(endhours+':'+endminutes, 'HH:mm').format('h:mm a')+' - '+moment(starthours+':'+startminutes, 'HH:mm').format('h:mm a'),
-                        //startTime: new Date(1970, 0, 1, starthours, aviles[i].StartTime.Minutes),
-                        //endTime: new Date(1970, 0, 1, endhours, aviles[i].EndTime.Minutes),
-                        //id: aviles[i].AvailID,
-                        //proId: aviles[i].ProviderID,
                         dateField: dateMonth1,
-                        //dateFieldHidden: moment(parseInt(abcDate)).format('MM/DD/YYYY'),
                         color: '#ff0000'
                     });
                 }
                 self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
                   var _Today = new Date();
-                  var strToday = ((_Today.getMonth() + 1) < 10 ? '0' : '') + (_Today.getMonth() + 1) + "/" + ((_Today.getDate() < 10) ? '0' : '') + _Today.getDate() + "/" + _Today.getFullYear();
                   $.each(d, function (i, o) {
-                    //if (o.ForDate >= strToday) {
                     self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm a') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm a'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
-                    //}
                   });
                 });
             });
         }
-
-        /*amPmTime(hour, minute) {
-          var _rVal = "";
-          if (hour > 12) {
-            hour = (hour - 12);
-            _rVal = "" + (hour) + ":" + (minute < 10 ? "0" + minute : minute) + " pm";
-          } else {
-            if (hour == 12) {
-              _rVal = "" + 12 + ":" + (minute < 10 ? "0" + minute : minute) + " pm";
-            }
-            if (hour < 12) {
-              _rVal = "" + hour + ":" + (minute < 10 ? "0" + minute : minute) + " am";
-            }
-          }
-          return _rVal;
-        }*/
-
 
         onViewTitleChanged = function (title) {
             this.viewTitle = title;
@@ -469,20 +448,51 @@
             }
         }
 
-        paymentMethod(){
+        customCardPage() {
             var self = this;
-            self.CustomerHttp.get('/GetCustomerProfile/'+this.customerId).then(function(resp){
+            self.MainView = 'Payment-Information';
+            self.nameOnCard = '';
+            self.cardNumber = '';
+            self.radioInline = '';
+            self.paymentTerm = '';
+            self.cvv = '';
+            self.expMonth = '01';
+            self.modalGoback = false;
+            self.years = [];
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            self.expYear = year;
+            for (var i = 0; i < 20; i++) {
+                self.years.push(year++);
+            }
+        }
+
+
+        paymentMethod() {
+            var self = this;
+            self.backToCalendar = false;
+            self.CustomerHttp.get('/GetCustomerProfile/' + this.customerId).then(function (resp) {
                 self.selectedCard = 0;
                 self.CCards = [];
-                var profile = JSON.parse(resp.GetCustomerProfileResult).profile;
-                self.PID = profile.customerProfileId;
-                if(typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length){
-                    profile.paymentProfiles.map(function(cc){
-                        self.CCards.push(cc);
-                    });
-                    self.CustomerEmail = profile.email;
+                var profile = JSON.parse(resp.GetCustomerProfileResult);
+                if (profile) {
+                    profile = profile.profile;
+                    self.PID = profile.customerProfileId;
+                    if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length) {
+                        profile.paymentProfiles.map(function (cc) {
+                            self.CCards.push(cc);
+                        });
+                        self.CustomerEmail = profile.email;
+                        self.MainView = 'Payment-Method';
+                    } else {
+                        self.backToCalendar = true;
+                        self.customCardPage();
+                    }
+
+                } else {
+                    self.backToCalendar = true;
+                    self.customCardPage();
                 }
-                self.MainView = 'Payment-Method';
             });
         }
 
@@ -519,28 +529,20 @@
           return todayAnd ?  currTime >= todayTime : currTime == todayTime;
         }
 
-        validatePaymentMethod(){
+        
+
+        validatePaymentMethod() {
             var self = this;
-            if(self.selectedCard == 0){
-                self.MainView = 'Payment-Information';
-                self.nameOnCard = '';
-                self.cardNumber = '';
-                self.radioInline = '';
-                self.paymentTerm = '';
-                self.cvv = '';
-                self.expMonth = '01';
-                self.modalGoback = false;
-                self.years = [];
-                var date = new Date();
-                var year = parseInt(date.getFullYear());
-                self.expYear = year;
-                for(var i = 0; i < 20; i++){
-                    self.years.push(year++);
-                }
-            }else{
+            if (self.selectedCard == 0) {
+                self.customCardPage();
+            } else {
                 self.showIonicConfirmation();
             }
         }
+
+
+
+
         customCardPayment(){
             var self = this;
             if(self.nameOnCard == '' || !self.nameOnCard.trim().length){
@@ -581,46 +583,51 @@
                 var cFull = self.cardNumber;
                 self.mainCard = 'XXXX'+cFull.slice(cFull.length -  4, cFull.length);
             }
-            self.messages = 'Your card ending with '+self.mainCard+' will be charge for amount of '+self.totalPrice+' USD';
+           // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD';
             $("#PDonePayment").modal();
         }
-        actionPayment(){
+ 
+
+        actionPayment() {
             var self = this;
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;
                 var amount = self.totalPrice;
                 //str.slice(str.length -  4, str.length);
-                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response:any) {
+                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
                     var resp = JSON.parse(response.AuthProfileJSONResult);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
                     } else {
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason '+resp.transactionResponse.errors[0].errorText);
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 })
-            } else{
+            } else {
                 var obj = {
                     "Amount": self.totalPrice,
                     "CCNumber": self.cardNumber,
                     "CVV": self.cvv,
                     "Email": self.CustomerEmail,
-                    "Expiry":self.expMonth+'/'+self.expYear,
+                    "Expiry": self.expMonth + '/' + self.expYear,
                     "UID": self.customerId
                 };
-                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response:any) {
+                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response: any) {
                     var resp = JSON.parse(response);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
                     } else {
-                        self.modalGoback = true;
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason '+resp.transactionResponse.errors[0].errorText);
+                        //self.modalGoback = true;
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 })
             }
         }
+
+
         wronInfoGoBack(){
             var self = this;
             if(self.modalGoback) {
@@ -672,6 +679,10 @@
                     self.showIonicAlert('Sorry, your appointment not successfully done!');
                 }
             })
+        }
+
+        showPTerm(){
+            $('#PTerms').modal();
         }
 
     }

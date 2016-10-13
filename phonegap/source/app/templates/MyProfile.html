@@ -34,7 +34,7 @@
             <p><span>Email:</span> {{mp.ServiceData.emailField}} </p>
 
             <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
-            <p><span>Phone:</span> {{mp.ServiceData.profileField.telephoneField}}</p>
+           
             <p><span>Cell:</span> {{mp.ServiceData.profileField.cellField}}</p>
             <p><span>Email:</span> {{mp.ServiceData.emailField}}</p>
             <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{mp.ServiceData.profileField.streetField}}<br />{{mp.ServiceData.profileField.cityField}}<br /> {{mp.ServiceData.profileField.regionField}}-{{mp.ServiceData.profileField.postalCodeField}}</div></p>
@@ -72,8 +72,12 @@
             <div ng-if="mp.NotificaitonData!=''" class="nsrow MyNotifications">
                 <div class="notiwrapper">
                     <ul>
-                        <li ng-repeat="sr in mp.NotificaitonData">
-                            <span>{{sr.datedField}}</span> <label ng-bind-html="sr.typeNameField"></label> <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
+                        <li ng-repeat="sr in mp.NotificaitonData"   ng-if="sr.typeNameFields!=null">
+                            <span>{{sr.datedField}}</span> 
+                            
+                            <label  ui-sref="MySchedule"  ng-bind-html="sr.typeNameFields"></label> 
+                            
+                            <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </li>

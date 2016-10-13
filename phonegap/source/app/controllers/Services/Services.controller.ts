@@ -18,11 +18,8 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp)
         {
           this.getServiceList(-1);
-          // this.PreviousID = "-1";
-     //     alert("Hi");
-
-       
-          
+        // this.PreviousID = "-1";
+        //alert("Hi");
         }
         
       getServiceList(ParentServiceID: any) {           

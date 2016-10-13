@@ -55,7 +55,7 @@
             <textarea ng-model="acr.commentTxt" name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
             <div class="tpad-xs"></div>
         </div>
-        <a data-toggle="modal" data-target="#ThankYou" class="block-btn" ng-show="acr.aboutClientDislike && acr.aboutClientLike && acr.rateValue && acr.commentTxt && acr.communication && acr.cooperation && acr.attitude && acr.timePunctuality" ng-click="acr.postRating();">Submit</a>
+        <a data-toggle="modal" data-target="#ThankYou" class="block-btn" ng-show="acr.aboutClientDislike && acr.aboutClientLike && acr.rateValue  && acr.communication && acr.cooperation && acr.attitude && acr.timePunctuality" ng-click="acr.postRating();">Submit</a>
         <!-- Modal Thank You -->
         <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
@@ -68,7 +68,8 @@
                         <p>{{acr.messages}} </p>
                         <div class="cpaction">
                             <div class="col-xs-6 pca"><a ng-click="acr.redirectTo('FindProvider')" class="gray-rounded btnblock">Make Appointment</a></div>
-                            <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('home')" class="green-rounded btnblock">Spafoo Home</a></div>
+                           <!-- <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('MySchedule')" class="green-rounded btnblock">My Schedule</a></div>-->
+                            <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('ProAppointments')" class="green-rounded btnblock">My Schedule</a></div>
                         </div>
                     </div>
                 </div>

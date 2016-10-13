@@ -1,4 +1,4 @@
-﻿<ion-view view-title="Credit Card Information">
+<ion-view view-title="Credit Card Information">
     <ion-Content>
 
         <div class="bread">
@@ -30,7 +30,7 @@
                     </select>
                 </div>
                 <div class="col-xs-6 firight">
-                    <select  ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Year">
+                    <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Year">
                         <option value="2015">2015</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
@@ -55,15 +55,14 @@
                     The last 3-4 digits displyed on the back of  your card
                 </div>
             </div>
-            <div ng-hide="cc.from == 'profile'" class="checkbox checkbox-primary">
-                <input id="checkbox2" ng-click="cc.checkStatus($event)"  type="checkbox">
+            <div ng-if="cc.from == 'reg'" class="checkbox checkbox-primary">
+                <input id="checkbox2" ng-click="cc.checkStatus($event)" type="checkbox">
                 <label for="checkbox2">Add Payment Later</label>
             </div>
 
         </div>
         <a ng-if="cc.from == 'profile'  && !cc.isChecked" class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(cc.data)">Add Card</a>
-        <a ng-if="cc.from == 'reg' && cc.isChecked" ui-sref="profile"  class="modals block-btn" data-toggle="modal">Register</a>
-        <a ng-if="cc.from == 'reg' && !cc.isChecked" class="modals block-btn" data-ng-click="cc.SubmitCreditCardInfo(cc.data)" data-toggle="modal">Register</a>
+        <a ng-if="cc.from == 'reg'" class="modals block-btn" data-ng-click="cc.SubmitCreditCardInfo(cc.data)" data-toggle="modal">Register</a>
         <!-- Modal Payment Terms -->
         <div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -129,7 +128,7 @@
                     <div class="modal-cpbody center">
                         <p>{{cc.Succmesg}}</p>
                         <div class="cpaction">
-                            <a  ng-click="cc.redirectTo('MyProfile')"  class="green-rounded btnblock">Ok</a>
+                            <a ng-click="cc.redirectTo('MyProfile')" class="green-rounded btnblock">Ok</a>
 
                         </div>
                     </div>
