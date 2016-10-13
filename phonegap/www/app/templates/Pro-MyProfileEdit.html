@@ -3,12 +3,14 @@
 <div class="bread">
   <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
   <div class="ptitle">Edit Profile</div>
+  <a  href="#/Notification">
   <div class="pnotification">
     <div class="ico">
-      <a  href="#/Notification"><i class="fa blue fa-bell fa-1x"></i></a>
+      <i class="fa blue fa-bell fa-1x"></i>
     </div>
     <div id='notification'>{{pep.NotificationCount}}</div>
   </div>
+  </a>
 </div>
 <div class="inbody-simple mprofileedit">
   <div class="center">
@@ -180,7 +182,7 @@
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://www.spafoo.com{{s.optionTextField}}" alt="" /><a ng-click="pep.RemoveSampleImage(s.optionTextField);"><i class="fa red fa-trash fa-lg"></i></a></li>
+      <li ng-repeat="s in pep.WorkSamplesList" ng-if="s.idField != 0"><img ng-click="pep.AddSampleImage(s.idField)" src="http://www.spafoo.com{{s.optionTextField}}" alt="" /><a class="pdimg" ng-click="pep.RemoveSampleImage(s.optionTextField);"><i class="fa white fa-trash fa-lg"></i></a></li>
       <li ng-click="pep.AddSampleImage('0')"><img src="images/Site/noimg.png" alt="" />
           <a >&nbsp;</a>
         </li>
