@@ -7,7 +7,11 @@
     <div class="has-feedback fgap">
         <label class="control-label">Name on Card</label>
         <input type="text" ng-model="ma.nameOnCard" class="form-control">
+<<<<<<< HEAD
         <!--<span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>-->
+=======
+        <!-- <span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span> -->
+>>>>>>> 54fedb646d3c784f4748b4c821e2149747504d40
     </div>
     <div class="has-feedback fgap">
         <label class="control-label">Card Number</label>
@@ -18,7 +22,11 @@
                 maxlength = "16"
                 />
         <!--<input type="text" ng-model="ma.cardNumber" class="form-control">-->
+<<<<<<< HEAD
         <!--<span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>-->
+=======
+        <!-- <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span> -->
+>>>>>>> 54fedb646d3c784f4748b4c821e2149747504d40
     </div>
 
     <div class="ccradio">

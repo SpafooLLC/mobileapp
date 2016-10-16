@@ -19,6 +19,9 @@ var ProMyAvailabilityController;
             self.AppID = $stateParams.AppID;
             self.name = $stateParams.Name1;
             self.totalTime = $stateParams.totalTime;
+            if (self.AppID != "null") {
+                self.SharedHttp.UnSeenStatus(self.AppID);
+            }
             var status = self.$window.localStorage.getItem('LoginStatus');
             if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
@@ -77,7 +80,7 @@ var ProMyAvailabilityController;
                 }
             };
             setTimeout(function () {
-                $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
+                $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa blue2 fa-square"></i> I am available &nbsp;&nbsp;&nbsp;<i class="fa red2 fa-square"></i> Reserved Appointment</div>');
             }, 0);
             // any other event sources...
             self.availList();
@@ -168,8 +171,8 @@ var ProMyAvailabilityController;
                     self.staticEvents1[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
                         title: start + " - " + end,
-                        startTime: new Date(1970, 0, 1, starthours, parseInt(getmin1start)),
-                        endTime: new Date(1970, 0, 1, endhours, parseInt(getmin1end)),
+                        startTime: new Date(1970, 0, 1, self.serviceData[i].StartTime.Hours, parseInt(getmin1start)),
+                        endTime: new Date(1970, 0, 1, self.serviceData[i].EndTime.Hours, parseInt(getmin1end)),
                         id: self.serviceData[i].AvailID,
                         proId: self.serviceData[i].ProviderID,
                         dateField: moment(dateMonth).format('MMM DD'),

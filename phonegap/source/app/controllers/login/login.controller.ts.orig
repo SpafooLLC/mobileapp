@@ -1,13 +1,13 @@
 ﻿module loginController {
     export interface ILogin  {
         doLogin(username: string, password: string): void;
-     
+
 
     }
     class loginController implements ILogin {
         messages: string;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', '$rootScope', 'SharedHttp'];
-       
+
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -21,14 +21,19 @@
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-           
+
         }
 
 
         doLogin(username: string, password: string) {
             var self = this;
+<<<<<<< HEAD
             if (username === null || username == '' || username == undefined) {                
                 self.messages = "Please enter user name";   
+=======
+            if (username === null || username == '' || username == undefined) {
+                self.messages = "Please Enter User Name.";
+>>>>>>> 54fedb646d3c784f4748b4c821e2149747504d40
                 $("#PDoneError").modal();
                 return;
             }
@@ -59,10 +64,11 @@
                     self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
+
                     $("#PDoneError").modal();                    
                 }
             }, function (error) {
-              
+
             });
         }
 
@@ -118,7 +124,7 @@
                 //    }
                 //}
 
-                if (v!=null && v == "Register") {
+                if (v == "Register") {
 
                     self.$window.localStorage.setItem("url", '0');
                     window.location.href = "#/home";
@@ -126,7 +132,7 @@
                 }
 
                 else {
-                    if (v!=null && self.$window.localStorage.getItem('Role') == 'P' ) {
+                    if (self.$window.localStorage.getItem('Role') == 'P') {
                         //var v = self.$window.localStorage.getItem('url');
 
                         var c = v.substr(v.indexOf('/') + 1);
@@ -162,9 +168,6 @@
                 //  self.$state.go("home");
             }, function (error) { });
         }
-
-
-
     }
 
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);

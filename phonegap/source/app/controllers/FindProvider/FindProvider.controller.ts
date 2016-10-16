@@ -26,9 +26,9 @@
             private $window: ng.IWindowService) {
             var self = this;
             self.customerType = window.localStorage.getItem('Role');
-          
+   $window.localStorage.setItem("url1", 'FindProvider');
             document.addEventListener("deviceready", function () {
-
+             
 
                 // Initialize the map plugin
                 var options = {
@@ -123,6 +123,8 @@
         getProviders(serviceId: any) {
             var self = this;
             FindProviderController.map.clear();
+            FindProviderController.map.setClickable(true);
+            $("#infowindow").hide();
             self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response: any) {
                 if (response.ListProvidersByServicesResult.length != 0) {
                     for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
@@ -134,13 +136,14 @@
                             const providerLoc = new plugin.google.maps.LatLng(lat, long);
                             FindProviderController.map.animateCamera({
                                 'target': providerLoc,
-                                'zoom':10
-                            }, function (marker:any) {
+                                'zoom': 10
+                            }, function (marker: any) {
                                 marker.showInfoWindow();
                             });
                         }
                     }
                 } else {
+                    FindProviderController.map.setClickable(false);
                     self.messages = 'No provider found for the service you have chosen';
                     $("#PDone").modal();
                 }
@@ -247,7 +250,7 @@
         //    var self = this;
         //    self.messages = "Provider can not book an appointment";
         //    $("#PDone").modal();
-          
+
         //}
         getUserInfo(userId: any) {
 

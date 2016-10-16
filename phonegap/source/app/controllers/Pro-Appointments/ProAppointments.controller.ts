@@ -4,7 +4,7 @@
         UserID: number;
         ServiceData: any;
         isRated: boolean;
-
+        page: string;
 
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         constructor(
@@ -18,7 +18,7 @@
         ) {
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
-
+            this.page = window.location.hash.split('/')[1];
         }
 
         getProviderSchedular(UserID: any) {
@@ -69,8 +69,8 @@
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res: any) {
                         self.ServiceData[i].displayNameField = res.displayNameField;
                         self.ServiceData[i].userIDField = res.userIDField;
-                        if (self.ServiceData[i].statusField == 1) {
-                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
+                      if (self.ServiceData[i].statusField == 1) {//self.ServiceData[i].clientIDField
+                          self.CustomerHttp.get('/DidIRated/' + UserID+ '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
                             }, function (error: any) {
 
@@ -112,15 +112,15 @@
            }
 
         }
-        UnSeenStatus(AppointmentID: any) {
-            var self = this;
-            self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
-                //alert(JSON.stringify(response));
-                //    self.getProviderSchedular(this.UserID);
+        //UnSeenStatus(AppointmentID: any) {
+        //    var self = this;
+        //    self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+        //        //alert(JSON.stringify(response));
+        //        //    self.getProviderSchedular(this.UserID);
 
-            }, function (error) {
-            });
-        }
+        //    }, function (error) {
+        //    });
+        //}
         GoToProviderPortfolio(UserID: any) {
             var self = this;
             self.$window.localStorage.setItem('ProviderIDs', UserID);
@@ -128,7 +128,7 @@
         }
         GoToScheduleDetail(AppointmentID: any) {
             var self = this;
-            self.UnSeenStatus(AppointmentID)
+            self.SharedHttp.UnSeenStatus(AppointmentID)
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ProAppointmentDetail");
         }

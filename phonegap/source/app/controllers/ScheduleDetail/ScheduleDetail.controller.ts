@@ -48,29 +48,29 @@
                 self.SharedHttp.GetUserInfo(self.ServiceData.providerIDField).then(function (res: any) {
                     self.ServiceData.displayNameField = res.displayNameField;
                     self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
-
                 });
-
-
             }, function (error) {
             });
         }
 
         CancelSchdule() {
-            var self = this;
-            var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
-          //  alert(JSON.stringify(PostData));
-            self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
-                self.messages = JSON.parse(response).messages.message[0].text;
-                $("#PDone").modal();
-            }, function (error) {
-                //alert(error)
-            });
+            var confirmations = confirm("Are you sure want to cancel ? ");
+            if (confirmations) {
+                var self = this;
+                var PostData = { 'AID': this.AppointmentID, 'TxnID': this.authTxnIDField, 'Amount': this.amountField };
+                //  alert(JSON.stringify(PostData));
+                self.CustomerHttp.post(PostData, '/RefundCard').then(function (response: any) {
+                    self.messages = JSON.parse(response).messages.message[0].text;
+                    $("#PDone").modal();
+                }, function (error) {
+                    //alert(error)
+                });
+            }
         }
 
         dismissAndThen(){
-          return false;
-            //this.$state.go('MySchedule');
+         // return false;
+           this.$state.go('MySchedule');
         }
 
 

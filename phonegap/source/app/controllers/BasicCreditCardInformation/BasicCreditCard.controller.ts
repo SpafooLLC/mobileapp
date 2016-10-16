@@ -45,33 +45,101 @@
             self.from = self.$stateParams.from;
             self.isChecked = false;
              var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
-                self.$state.go('login');
+             if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                 if (self.from != 'reg')
+                 {
+                     self.$state.go('login');
+                 }
+                
             }
         }
+
+        doRegister() {
+            var self = this;
+            var defer = self.$q.defer();
+            var data = JSON.parse(localStorage.getItem("registerData"));
+
+            self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
+
+                if (parseInt(response.CustomerID) > 0) {
+                    self.$window.localStorage.setItem('CustomerID', response.CustomerID);
+                    self.$window.localStorage.setItem('Role', response.Usertype);
+                    self.$window.localStorage.setItem('LoginStatus', "true");
+                    self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                        defer.resolve(e)
+                        //self.$state.go("home");
+                        self.$state.go("home");
+                    });
+
+                }
+                self.$ionicLoading.hide();
+            }, function (error) {
+                if (error === null) {
+                    defer.reject(error);
+                    self.$ionicLoading.hide();
+                } else {
+                    defer.reject(error);
+                    //console.log(error);
+                    self.$ionicLoading.hide();
+                }
+
+            });
+            return defer.promise;
+        }
+
+        //SubmitCreditCardInfo(CData: any) {
+        //    var self = this;
+        //    //alert(CData.PayLater)
+
+        //    if (self.isChecked == true)
+        //    {
+        //        self.$state.go("MyProfile");
+        //    }
+        
+        //    else if (this.DoValidation(CData)) {
+        //        var data = CData;
+        //        data.UID = self.$window.localStorage.getItem('CustomerID');
+        //        data.Expiry = data.Month + "/" + data.Year; 
+        //        self.$ionicLoading.show();
+        //        self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+                                    
+        //            self.Succmesg = "Credit Card Information Added Successfully.";
+        //            $("#PSuccess").modal();  
+        //        }, function (error) { });
+        //    }
+        //}
 
         SubmitCreditCardInfo(CData: any) {
             var self = this;
             //alert(CData.PayLater)
 
-            if (self.isChecked == true)
-            {
+            if (self.isChecked == true) {
                 self.$state.go("MyProfile");
             }
-        
+           
             else if (this.DoValidation(CData)) {
-                var data = CData;
-                data.UID = self.$window.localStorage.getItem('CustomerID');
-                data.Expiry = data.Month + "/" + data.Year; 
-                self.$ionicLoading.show();
-                self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
-                                    
-                    self.Succmesg = "Credit Card Information Added Successfully.";
-                    $("#PSuccess").modal();  
-                }, function (error) { });
+
+             
+                self.doRegister().then(function (val) {
+                 
+                    var data = CData;
+                    data.UID = self.$window.localStorage.getItem('CustomerID');
+                    data.Expiry = data.Month + "/" + data.Year;
+                    self.$ionicLoading.show();
+                    self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+
+                        self.Succmesg = "Credit Card Information Added Successfully.";
+                        $("#PSuccess").modal();
+                    }, function (error) { });
+                }, function (e) {
+
+              
+                    });
+
+               
+
             }
         }
-
         redirectTo(href: any) {
             this.SharedHttp.redirectTo(href, 'PSuccess');          
         }

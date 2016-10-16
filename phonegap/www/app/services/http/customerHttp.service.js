@@ -10,7 +10,7 @@ var spafoo;
                 this.$window = $window;
                 this.$location = $location;
                 this.WebURL = 'http://websvc.spafoo.com/SpaServices.svc';
-                //   this.WebURL = 'http://localhost:61874/SpaServices.svc';
+                //  this.WebURL = 'http://localhost:61874/SpaServices.svc';
             }
             // *** create customer ***
             CustomerScreenHttp.prototype.post = function (data, url) {

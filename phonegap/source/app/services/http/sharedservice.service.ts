@@ -34,7 +34,9 @@
         GetMyNotification(UserID: any): ng.IPromise<string>;
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
-        HideApp4Me(AppID: any, UserType: any):ng.IPromise<string> ;
+        HideApp4Me(AppID: any, UserType: any): ng.IPromise<string>;
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any): any;
+        UnSeenStatus(AppointmentID: any): void;
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -103,6 +105,56 @@
             timeString = h + timeString.substr(hourEnd, 3) + ampm;
             return timeString;
         }
+
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any) {
+
+            var self = this;
+        
+
+            var UserID = UserID;
+            var clientId = clientId;
+            var authTxnIDField = authTxnIDField;
+            var appointmentIDField = appointmentIDField;
+            var payTxnIDField = payTxnIDField;
+            var amountField = amountField;
+
+            //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+            //self.message = 'Appointment Completed';
+            //$("#PDone").modal();
+            var data = {
+                TxnID: authTxnIDField,
+                Amount: amountField
+            };
+            self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+                var response = JSON.parse(res);
+                var upData = {
+                    ID: appointmentIDField,
+                    Comment: comment,
+                    PaymentTxnID: payTxnIDField
+                };
+                self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+                    var navData = {
+                        ByID: UserID,
+                        NotTypeID: 8,
+                        RelatedEntityID: appointmentIDField,
+                        ToID: clientId
+                    };
+                    self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+                        self.message = 'Appointment Completed';
+                        //$("#PDone").modal();
+                        self.$state.go("ProAppointments");
+                    }, function (navError: any) {
+
+                    })
+                }, function (erError: any) {
+
+                });
+
+            }, function (error: any) {
+                //alert('someError on ChargePreviosAuth');
+            });
+        }
+
         getFormatedDate(joindates: any, formatType: any): any {
             if (formatType != "weekday dd MMMM yyyy") {
                 var abcDate = (joindates).replace("/Date(", "").replace(")/", "");
@@ -135,7 +187,7 @@
             }
             return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
         }
-
+       
         getProfilePics(customerID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
             if (customerID === null || isNaN(customerID)) {
@@ -275,6 +327,14 @@
             return deferred.promise;
         }
 
+        UnSeenStatus(AppointmentID: any) :void{
+            var self = this;
+            self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+               
+
+            }, function (error) {
+            });
+        }
        
     }
     angular

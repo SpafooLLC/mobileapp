@@ -1,7 +1,7 @@
 var MyProfileController;
 (function (MyProfileController_1) {
     var MyProfileController = (function () {
-        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
+        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,6 +12,7 @@ var MyProfileController;
             this.$window = $window;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
+            this.$rootScope = $rootScope;
             this.getUserInfo();
         }
         MyProfileController.prototype.getUserInfo = function () {
@@ -55,6 +56,7 @@ var MyProfileController;
             self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
+                self.$rootScope.NotifiCount = self.NotificaitonData.length;
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy");
                     var role = localStorage.getItem('Role');
@@ -71,7 +73,7 @@ var MyProfileController;
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
                             break;
                         case 6:
-                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 2hrs ";
                             break;
                         case 14:
                             if (role == 'P') {
@@ -174,7 +176,7 @@ var MyProfileController;
                 });
             }
         };
-        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope'];
         return MyProfileController;
     }());
     angular.module('spafoo.ctrl.MyProfile', []).controller('MyProfile', MyProfileController);

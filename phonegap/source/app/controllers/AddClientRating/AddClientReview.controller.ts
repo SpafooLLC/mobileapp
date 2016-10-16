@@ -43,6 +43,15 @@
         aboutClientLike: string;
         aboutClientDislike: string;
         attitude: string;
+        pageName: string;
+        UserID: string;
+        authTxnIDField: string;
+        appointmentIDField: string;
+        payTxnIDField: string;
+        amountField: string;
+
+
+
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp','$stateParams'];
         constructor(
             private $q: ng.IQService,
@@ -58,7 +67,22 @@
             private $stateParams: IStateParams
         ) {
             this.getProviderInfo();
+            this.pageName = this.$stateParams.pageName;
            
+        }
+        CompleteApp() {
+            var self = this;
+            self.UserID = this.$window.localStorage.getItem('CustomerID');
+            self.clientId = self.$stateParams.clientId;
+            self.authTxnIDField = self.$stateParams.authTxnIDField;
+            self.appointmentIDField = self.$stateParams.appointmentIDField;
+            self.payTxnIDField = self.$stateParams.payTxnIDField;
+            self.amountField = self.$stateParams.amountField;
+
+            //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+            //self.message = 'Appointment Completed';
+            //$("#PDone").modal();
+            self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.$stateParams.comment)
         }
         getProviderInfo() {
             var self = this;
