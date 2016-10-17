@@ -20,6 +20,7 @@
                 <p class="blue">{{scD.ServiceData.atTimeField}} at {{scD.ServiceData.addressField}} </p>
                 <p><span>With: </span> {{scD.ServiceData.displayNameField}} </p>
                 <p><span>Service(s): </span> {{scD.ServiceData.ServiceList}}</p>
+                <p ng-if="scD.ServiceData.commentsField.trim().length"><span>Comment: </span> {{scD.ServiceData.commentsField}}</p>
             </div>
         </div>
 

@@ -44,7 +44,7 @@
                             <div class="newapp" ng-if="s.seenStatusField==0" ng-click="papp.UnSeenStatus({{s.appointmentIDField}})"></div>
 
 
-                            <a href="" >
+                            <a href="">
                                 <div class="left">
                                     <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                     <div class="time">{{s.atTimeField}}</div>
@@ -57,7 +57,7 @@
                                 <h2 style="color:red;">Waiting client approval</h2>
                                 <p>At: <a href="">{{s.addressField}}</a></p>
                                 <p>With: <a href="">{{s.displayNameField}}</a></p>
-                                <p>Service(s): <a href="" >{{s.ServiceList}}</a></p>
+                                <p>Service(s): <a href="">{{s.ServiceList}}</a></p>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
 
                                         <a ng-if="!s.isRate" href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}/{{papp.page}}/null/null/null/null/null/null">
 
-                                            <i class="fa fa-star-o fa-2x" ></i>
+                                            <i class="fa fa-star-o fa-2x"></i>
                                             <p ng-if="!s.isRate">Rate this client</p>
                                         </a>
                                         <a ng-if="s.isRate" href="">

@@ -177,9 +177,6 @@
             var providerLatLong = { latitude: lat, longitude: long };
 
             var currentlatlong = { latitude: FindProviderController.currentLatLong.coords.latitude, longitude: FindProviderController.currentLatLong.coords.longitude };
-
-
-
             const providerLoc = new plugin.google.maps.LatLng(lat, long);
 
             //  alert("add marker called" + FindProviderController.map);
@@ -216,12 +213,7 @@
                 //alert(marker.get("id"));
                 //alert("marker options" + JSON.stringify(marker.id) + JSON.stringify(marker));
                 marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function () {
-
-
-
                     self.getUserInfo(marker.get("params").id).then(function (data: any) {
-
-
                         marker.setTitle(data.name);
                         marker.setSnippet(marker.get("params").distance + " miles away");
                         self.profilePic = data.profilePic;
@@ -231,16 +223,10 @@
                         marker.showInfoWindow();
                         //self.infoWindow = true;
                         $("#infowindow").show();
-
                     }, function (e) { });
                     //self.CustomerHttp.get('/ListProvidersByServices/' + marker.get("params").id).then(function (response: any) { });
                     //alert("Marker is clicked" + JSON.stringify(marker.get("params")));
                 });
-
-
-
-
-
             });
 
 

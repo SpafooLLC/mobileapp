@@ -73,24 +73,36 @@ var BasicCreditCardController;
         //        }, function (error) { });
         //    }
         //}
-        BasicCreditCardController.prototype.SubmitCreditCardInfo = function (CData) {
+        BasicCreditCardController.prototype.SubmitCreditCardInfo = function (CData, ActionType) {
             var self = this;
             //alert(CData.PayLater)
-            if (self.isChecked == true) {
-                self.$state.go("MyProfile");
-            }
-            else if (this.DoValidation(CData)) {
-                self.doRegister().then(function (val) {
-                    var data = CData;
-                    data.UID = self.$window.localStorage.getItem('CustomerID');
-                    data.Expiry = data.Month + "/" + data.Year;
-                    self.$ionicLoading.show();
-                    self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
-                        self.Succmesg = "Credit Card Information Added Successfully.";
-                        $("#PSuccess").modal();
-                    }, function (error) { });
-                }, function (e) {
-                });
+            switch (ActionType) {
+                case 'A':
+                    if (this.DoValidation(CData)) {
+                        var data = CData;
+                        data.UID = self.$window.localStorage.getItem('CustomerID');
+                        data.Expiry = data.Month + "/" + data.Year;
+                        self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+                            self.Succmesg = "Credit Card Information Added Successfully.";
+                            $("#PSuccess").modal();
+                        }, function (error) { });
+                    }
+                    break;
+                case 'R':
+                    if (self.isChecked == true) {
+                        //   self.doRegister();
+                        self.$state.go("MyProfile");
+                    }
+                    else if (this.DoValidation(CData)) {
+                        var data = CData;
+                        data.UID = self.$window.localStorage.getItem('CustomerID');
+                        data.Expiry = data.Month + "/" + data.Year;
+                        self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+                            self.Succmesg = "Credit Card Information Added Successfully.";
+                            $("#PSuccess").modal();
+                        }, function (error) { });
+                    }
+                    break;
             }
         };
         BasicCreditCardController.prototype.redirectTo = function (href) {
