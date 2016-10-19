@@ -192,13 +192,17 @@
 
 
 
-<a ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
+<!--<a ng-show="pep.ServiceData.FirstName && pep.ServiceData.LastName && pep.ServiceData.DisplayName && pep.ServiceData.Email && 
    pep.ServiceData.Profile.ProfileProperties[0].PropertyValue && pep.ServiceData.Profile.Street && pep.ServiceData.Profile.City && 
    pep.ServiceData.Profile.Region
    && pep.ServiceData.Profile.ProfileProperties[2].PropertyValue && pep.ServiceData.Profile.ProfileProperties[3].PropertyValue
     && pep.ServiceData.Profile.ProfileProperties[4].PropertyValue && pep.ServiceData.Profile.ProfileProperties[5].PropertyValue 
    && pep.ServiceData.Profile.Biography && pep.TagField" 
-   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode,pep.ServiceData.Profile.Telephone, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField, pep.ServiceData.Profile.Cell );" class="block-btn">Update</a>
+   ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode,pep.ServiceData.Profile.Telephone, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField, pep.ServiceData.Profile.Cell );" class="block-btn">Update</a>-->
+
+        <a 
+           ng-click="pep.EditProfile(pep.ServiceData.FirstName, pep.ServiceData.LastName, pep.ServiceData.DisplayName, pep.ServiceData.Email, pep.ServiceData.Profile.ProfileProperties[0].PropertyValue, pep.ServiceData.Profile.Street, pep.ServiceData.Profile.City, pep.ServiceData.Profile.Region, pep.ServiceData.Profile.PostalCode,pep.ServiceData.Profile.Telephone, pep.ServiceData.Profile.ProfileProperties[2].PropertyValue, pep.ServiceData.Profile.ProfileProperties[3].PropertyValue, pep.ServiceData.Profile.ProfileProperties[4].PropertyValue, pep.ServiceData.Profile.ProfileProperties[5].PropertyValue, pep.ServiceData.Profile.Biography, pep.TagField, pep.ServiceData.Profile.Cell );" class="block-btn">Update</a>
+
 
     <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
@@ -217,6 +221,7 @@
                 </div>
             </div>
         </div>
+  
 
     </ion-content>
 </ion-view>

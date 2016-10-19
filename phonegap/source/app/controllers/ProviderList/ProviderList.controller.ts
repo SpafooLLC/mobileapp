@@ -39,8 +39,10 @@
             self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response: any) {
 
                 self.ServiceData = response.ListProvidersByServicesResult;
+
                 for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
-                   
+                   // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
+                    self.ServiceData[i].displayNameField = response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0]+".";
                     if (self.ServiceData[i].profileField.photoField != null) {
 
                         self.getProfilePics(self.ServiceData[i].profileField.photoField, i);

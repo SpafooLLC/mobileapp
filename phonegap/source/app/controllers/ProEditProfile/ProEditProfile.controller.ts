@@ -274,7 +274,57 @@
         EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string, Mob:string ){
             var self= this;
             var uPos = '';
+            if (FirstName == "" || FirstName == null) {
 
+                self.messages = "Please Enter Firstname.";
+                $("#PDone").modal();
+                return;
+            }
+            if (LastName == "" || LastName == null) {
+                self.messages = "Please Enter Lastname.";
+                $("#PDone").modal();
+                return;
+            }
+            if (DisplayName == "" || DisplayName == null) {
+                self.messages = "Please Enter DisplayName.";
+                $("#PDone").modal();
+                return;
+            }
+            if (Email == "" || Email == null) {
+                self.messages = "Please Enter Email.";
+                $("#PDone").modal();
+                return;
+            }
+            if (Gender == "" || Gender == null) {
+                self.messages = "Please Enter Gender.";
+                $("#PDone").modal();
+                return;
+            }
+            if (Street == "" || Street == null) {
+                self.messages = "Please Enter Street.";
+                $("#PDone").modal();
+                return;
+            }
+            if (City == "" || City == null) {
+                self.messages = "Please Enter City.";
+                $("#PDone").modal();
+                return;
+            }
+            if (Region == "" || Region == null) {
+                self.messages = "Please Enter Region.";
+                $("#PDone").modal();
+                return;
+            }
+            if (PostalCode == "" || PostalCode == null) {
+                self.messages = "Please Enter PostalCode.";
+                $("#PDone").modal();
+                return;
+            }
+            if (Mob == "" || Mob == null) {
+                self.messages = "Please Enter Mobile No.";
+                $("#PDone").modal();
+                return;
+            }
             if(self.doValidation(Email)){
                 for(var i=0; i<self.applPosition.length; i++){
                     uPos=uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_'+ self.applPosition[i] + '|';
