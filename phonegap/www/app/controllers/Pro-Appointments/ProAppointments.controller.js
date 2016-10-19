@@ -54,7 +54,8 @@ var ProAppointmentsController;
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.ServiceData[i].serviceTime = serviceTime;
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res) {
-                        self.ServiceData[i].displayNameField = res.displayNameField;
+                        self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
+                        ;
                         self.ServiceData[i].userIDField = res.userIDField;
                         if (self.ServiceData[i].statusField == 1) {
                             self.CustomerHttp.get('/DidIRated/' + UserID + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {

@@ -55,7 +55,7 @@ var MyScheduleController;
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.SharedHttp.GetUserInfo(item.providerIDField).then(function (res) {
-                        self.ServiceData[i].displayNameField = res.displayNameField;
+                        self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
                         if (self.ServiceData[i].statusField == 1) {
                             self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;

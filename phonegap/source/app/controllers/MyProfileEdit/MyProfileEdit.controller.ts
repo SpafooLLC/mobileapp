@@ -55,7 +55,59 @@
         EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Country: string, PostalCode: string, Phone: string, Mob:string) {
             var self = this;
             var uPos = '';
-           
+
+            if (FirstName == "" || FirstName == null)
+            {               
+                self.messages = "Please Enter Firstname.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (LastName == "" || LastName == null) {
+                self.messages = "Please Enter Lastname.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (DisplayName == "" || DisplayName == null) {
+                self.messages = "Please Enter DisplayName.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (Email == "" || Email == null) {
+                self.messages = "Please Enter Email.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (Gender == "" || Gender == null) {
+                self.messages = "Please Enter Gender.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (Street == "" || Street == null) {
+                self.messages = "Please Enter Street.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (City == "" || City == null) {
+                self.messages = "Please Enter City.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (Country == "" || Country == null) {
+                self.messages = "Please Enter Country.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (PostalCode == "" || PostalCode == null) {
+                self.messages = "Please Enter PostalCode.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (Mob == "" || Mob == null) {
+                self.messages = "Please Enter Mobile No.";
+                $("#PDoneError").modal();
+                return;
+            }
+
             if (self.doValidation(Email)) {
 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
 
@@ -64,7 +116,7 @@
                 PostalCode = $("#PostalCode").val();
 
                 var data = {
-                    'UserID': self.customerID,
+                    'UserID': parseInt(self.customerID),
                     'FN': FirstName,
                     'LN': LastName,
                     'DN': DisplayName,
@@ -77,7 +129,7 @@
                     'p': Phone,
                     'Mo': Mob
                 }
-             
+            
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {
                     if (response.Success === 'Success') {
                         self.$state.go("MyProfile");

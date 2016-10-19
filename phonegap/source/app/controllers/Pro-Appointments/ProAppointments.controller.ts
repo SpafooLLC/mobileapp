@@ -67,7 +67,7 @@
                     self.ServiceData[i].serviceTime = serviceTime;
 
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res: any) {
-                        self.ServiceData[i].displayNameField = res.displayNameField;
+                        self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";;
                         self.ServiceData[i].userIDField = res.userIDField;
                       if (self.ServiceData[i].statusField == 1) {//self.ServiceData[i].clientIDField
                           self.CustomerHttp.get('/DidIRated/' + UserID+ '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {

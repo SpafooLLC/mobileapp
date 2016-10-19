@@ -28,6 +28,8 @@ var ProviderListController;
             self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response) {
                 self.ServiceData = response.ListProvidersByServicesResult;
                 for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
+                    // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
+                    self.ServiceData[i].displayNameField = response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".";
                     if (self.ServiceData[i].profileField.photoField != null) {
                         self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
                         self.GetProTagLine(self.ServiceData[i].userIDField, i);

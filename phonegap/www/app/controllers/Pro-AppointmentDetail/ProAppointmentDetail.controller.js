@@ -65,7 +65,7 @@ var ProAppointmentDetailController;
                 });
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.clientIDField).then(function (res) {
-                    self.ServiceData.displayNameField = res.displayNameField;
+                    self.ServiceData.displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
                     self.ServiceData.telephoneField = res.profileField.telephoneField;
                     //self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
                 });

@@ -29,6 +29,7 @@
             self.CustomerHttp.get('/ListAppointmentByClient/' + UserID).then(function (response: any) {
                 self.ServiceData = response.ListAppointmentByClientResult;
                 $.each(self.ServiceData, function (i, item) {
+                   
                     var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
                     //self.ServiceData[i].orderDateField = orderdt;
                     //self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
@@ -64,7 +65,7 @@
                     });
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.SharedHttp.GetUserInfo(item.providerIDField).then(function (res: any) {
-                        self.ServiceData[i].displayNameField = res.displayNameField;
+                        self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0]+".";
                         if (self.ServiceData[i].statusField == 1) {
                             self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;

@@ -197,7 +197,7 @@ var FindProviderController;
                     image = imgres;
                     self.SharedHttp.GetProTagLine(userId).then(function (res) {
                         tagline = res;
-                        var data = { name: response.GetUserInfoResult.displayNameField, profilePic: image, tagField: tagline, userId: userId };
+                        var data = { name: response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".", profilePic: image, tagField: tagline, userId: userId };
                         deferred.resolve(data);
                     }, function (e) { deferred.reject("failed to get data"); });
                 }, function (e) { deferred.reject("failed to get data"); });

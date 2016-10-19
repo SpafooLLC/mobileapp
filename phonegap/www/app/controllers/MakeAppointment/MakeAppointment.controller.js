@@ -73,7 +73,10 @@ var MakeAppointmentController;
         MakeAppointmentController.prototype.getProviderPortfolio = function (UserID) {
             var self = this;
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
+                response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
                 self.ServiceData = response.GetUserInfoResult;
+                for (var i = 0; i < response.GetUserInfoResult.length; i++) {
+                }
                 if (self.isEdit) {
                     self.getEditInfo();
                 }
@@ -186,36 +189,32 @@ var MakeAppointmentController;
                         //}
                         if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == "undefined" || result.thoroughfare == undefined) {
                             $("#addressfield").val('');
-                            self.info.address = '';
                         }
                         else {
                             $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
-                            self.info.address = result.subThoroughfare + " " + result.thoroughfare;
                         }
                         if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
                             $("#cityfield").val('');
-                            self.info.city = '';
                         }
                         else {
                             $("#cityfield").val(result.locality);
-                            self.info.city = result.locality;
                         }
                         if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
                             $("#statefield").val('');
-                            self.info.state = '';
                         }
                         else {
                             $("#statefield").val(result.adminArea);
-                            self.info.state = result.adminAream;
                         }
                         if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
                             $("#zipfield").val('');
-                            self.info.zip = "";
                         }
                         else {
                             $("#zipfield").val(result.postalCode);
-                            self.info.zip = result.postalCode;
                         }
+                        self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                        self.info.city = result.locality;
+                        self.info.state = result.adminArea;
+                        self.info.zip = result.postalCode;
                     }
                 });
             }, self.onError, options);
@@ -681,8 +680,8 @@ var MakeAppointmentController;
         };
         MakeAppointmentController.prototype.redirectAfterAppointment = function () {
             var self = this;
-            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm a A').format('h:mm a');
-            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm a A').format('h:mm a');
+            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm a A').format('h:mm A');
+            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm a A').format('h:mm A');
             var ForDate = self.ASAP ? '' : self.onlyDate;
             var obj = {
                 AddressID: self.addressId,
