@@ -26,6 +26,7 @@ var AddProviderReviewController;
             self.appointmentID = self.$stateParams.appId;
             self.CustomerHttp.get('/GetUserInfo/' + self.providerId).then(function (response) {
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
             }, function (error) {
                 if (error === null) {

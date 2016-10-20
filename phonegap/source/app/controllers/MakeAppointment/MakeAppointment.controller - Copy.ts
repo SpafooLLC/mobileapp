@@ -188,6 +188,7 @@
                 maximumAge: 3600000
             };
             navigator.geolocation.getCurrentPosition(function (position) {
+              
                 const GOOGLE = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 //    alert("onsuccess navigation called");
                 var request = {
@@ -219,33 +220,47 @@
                         //}
                         if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == "undefined" || result.thoroughfare == undefined) {
                             self.info.address = '';
+                          //  $("#addressfield").val('');
+                          
                         }
                         else {
-                            self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                            try { self.info.address = result.subThoroughfare + " " + result.thoroughfare; } catch (e) { alert("error" + JSON.stringify(e)) }
+                         //   self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                        //    $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
+                          
                         }
                         if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
                             self.info.city = '';
+                         //   $("#cityfield").val('');
+                         
                         }
                         else {
-                            self.info.city = result.locality;
+                            try { self.info.city = result.locality; } catch (e) { alert("error" + JSON.stringify(e)) }
+                          //  self.info.city = result.locality;
+                           // $("#cityfield").val(result.locality);
+                           
                         }
                         if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
+                          //  $("#statefield").val('');
                             self.info.state = '';
                         }
                         else {
+                         //   $("#statefield").val(result.adminArea);
                             self.info.state = result.adminArea;
                         }
                         if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
+                         //   $("#zipfield").val('');
                             self.info.zip = '';
                         }
                         else {
+                          //  $("#zipfield").val(result.postalCode);
                             self.info.zip = result.postalCode;
                         }
                        
-                        /*self.info.address = result.subThoroughfare || '' + " " + result.thoroughfare || '';
-                        self.info.city = result.locality || '';
-                        self.info.state = result.adminArea || '';
-                        self.info.zip = result.postalCode || '';*/
+                        //self.info.address = result.subThoroughfare || '' + " " + result.thoroughfare || '';
+                        //self.info.city = result.locality || '';
+                        //self.info.state = result.adminArea || '';
+                        //self.info.zip = result.postalCode || '';
                        
                     }
                 });
@@ -658,7 +673,7 @@
                 self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
             }
             // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
-            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD  <br/>You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD <br/> You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
             $("#PDonePayment").modal();
         }
 
@@ -704,6 +719,11 @@
                         self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 });
+
+
+
+
+
             }
         }
 
