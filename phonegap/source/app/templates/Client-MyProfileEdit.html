@@ -22,7 +22,7 @@
                         <a ng-click="mpe.cameraOption();" ng-if="mpe.profilePic==''"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
                         <a ng-click="mpe.cameraOption();" ng-if="mpe.profilePic!=''"><img ng-src="{{mpe.profilePic}}" alt="" draggable="false"></a>
                     </div>
-                    <div ng-if="mpe.isImageClick"><button ng-click="mpe.capturePhoto('C')">Camera Image</button><button ng-click="mpe.capturePhoto('G')">Galary Image</button></div>
+                    <div ng-if="mpe.isImageClick"><button ng-click="mpe.capturePhoto('C')">Camera Image</button><button ng-click="mpe.capturePhoto('G')">Gallery Image</button></div>
                 </div>
                 <h3 class="bmar-xs">{{mpe.ServiceData.DisplayName}}</h3>
                 <p class="green bmar-sm fs-sm">{{mpe.ServiceData.Email}}</p>

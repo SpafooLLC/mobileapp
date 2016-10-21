@@ -394,6 +394,7 @@ var MakeAppointmentController;
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
+                //   alert(time);
                 self.showIonicAlert('Sorry, you cannot select date before today');
             }
             else {
@@ -534,13 +535,20 @@ var MakeAppointmentController;
                 }
             });
         };
-        MakeAppointmentController.prototype.isToday = function (time, todayAnd) {
-            var today = new Date(), currentCalendarDate = new Date(time);
-            today.setHours(0, 0, 0, 0);
-            currentCalendarDate.setHours(0, 0, 0, 0);
-            var currTime = currentCalendarDate.getTime();
-            var todayTime = today.getTime();
-            return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //isToday(time, todayAnd) {
+        //    var today = new Date(),
+        //        currentCalendarDate = new Date(time);
+        //    today.setHours(0, 0, 0, 0);
+        //    currentCalendarDate.setHours(0, 0, 0, 0);
+        //    var currTime = currentCalendarDate.getTime();
+        //    var todayTime = today.getTime();
+        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //}
+        MakeAppointmentController.prototype.isToday = function (start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         };
         MakeAppointmentController.prototype.validatePaymentMethod = function () {
             var self = this;
