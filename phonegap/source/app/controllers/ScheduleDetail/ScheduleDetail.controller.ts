@@ -33,7 +33,10 @@
                 self.ServiceData.MonthField = orderdt.split(' ')[2];
                 self.amountField = self.ServiceData.amountField;
                 self.authTxnIDField = self.ServiceData.authTxnIDField;
-                self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) { self.ServiceData.addressField = e; });
+                self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) {
+          
+                    self.ServiceData.addressField =self.SharedHttp.getAddressDetailRcd() ;
+                });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {
                  //   serviceName += sitem.serviceNameField + ",";
@@ -46,7 +49,7 @@
                 });
                 self.ServiceData.ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                 self.SharedHttp.GetUserInfo(self.ServiceData.providerIDField).then(function (res: any) {
-                    self.ServiceData.displayNameField = res.displayNameField;
+                    self.ServiceData.displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
                     self.SharedHttp.getProfilePics(res.profileField.photoField).then(function (imgres) { self.ServiceData.profilePic = imgres; });
                 });
             }, function (error) {

@@ -382,7 +382,7 @@
                         <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
-                        <p>{{ma.messages}} </p>
+                        <p ng-bind-html="ma.messages"> </p>
                         <div class="cpaction">
                             <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
                             <div class="col-xs-6 nopad"><a ng-click="ma.actionPayment()" class="bluesm-btn block">Ok</a></div>

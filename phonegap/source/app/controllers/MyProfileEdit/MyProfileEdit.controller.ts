@@ -6,7 +6,7 @@
         messages: string;
         customerID: number;
         profilePic: string;
-        isImageClick:boolean;
+        isImageClick: boolean;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$timeout'];
         constructor(
             private $q: ng.IQService,
@@ -26,12 +26,12 @@
             $("#PostalCode").mask("00000");
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserInfo();
-           
+
         }
         getUserInfo() {
             var self = this;
-            var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
             }
             self.CustomerHttp.get('/GetUserJSON/' + self.customerID).then(function (response: any) {
@@ -44,7 +44,7 @@
 
             }, function (error) {
                 if (error === null) {
-                  
+
                 } else {
                     //console.log(error);
 
@@ -52,12 +52,14 @@
             });
         }
 
-        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Country: string, PostalCode: string, Phone: string, Mob:string) {
+        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Country: string, PostalCode: string, Phone: string, Mob: string) {
             var self = this;
             var uPos = '';
+            Phone = "";
+            Mob = $("#Cell").val();
+            PostalCode = $("#PostalCode").val();
 
-            if (FirstName == "" || FirstName == null)
-            {               
+            if (FirstName == "" || FirstName == null) {
                 self.messages = "Please Enter Firstname.";
                 $("#PDoneError").modal();
                 return;
@@ -109,11 +111,9 @@
             }
 
             if (self.doValidation(Email)) {
-//alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
+                //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
 
-                Phone = "";
-                Mob = $("#Cell").val();
-                PostalCode = $("#PostalCode").val();
+
 
                 var data = {
                     'UserID': parseInt(self.customerID),
@@ -129,7 +129,7 @@
                     'p': Phone,
                     'Mo': Mob
                 }
-            
+
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {
                     if (response.Success === 'Success') {
                         self.$state.go("MyProfile");
@@ -144,7 +144,7 @@
         }
 
         doValidation(Email: string) {
-           
+
 
             var self = this;
             if (Email === null || Email === '' || Email == undefined) {
@@ -184,16 +184,16 @@
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //alert(extension);
                             //self.$timeout(function () {
-                                //self.proProfilePic = 'file://' + imageURI;
-                                //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage('file://' + imageURI);
-                                self.postImage();
-                                // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
+                            //self.proProfilePic = 'file://' + imageURI;
+                            //alert(self.proProfilePic);
+                            self.SharedHttp.setProfileImage('file://' + imageURI);
+                            self.postImage();
+                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDoneError").modal();
-                            
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -208,10 +208,10 @@
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //self.$timeout(function () {
-                                //self.proProfilePic = imageURI;
-                                //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage(imageURI);
-                                self.postImage();
+                            //self.proProfilePic = imageURI;
+                            //alert(self.proProfilePic);
+                            self.SharedHttp.setProfileImage(imageURI);
+                            self.postImage();
 
                             //}, 1000);
 
@@ -234,7 +234,7 @@
                 // Take picture using device camera and retrieve image as base64-encoded string
 
             } catch (ex) {
-                self.messages= 'Profile Image can\'t update';
+                self.messages = 'Profile Image can\'t update';
                 $("#PDoneError").modal();
             } finally {
                 self.isImageClick = false;
@@ -272,12 +272,12 @@
                     }, 2000);
                     $("#showload").hide();
                 } else {
-                    self.messages='Something went wrong with the server';
+                    self.messages = 'Something went wrong with the server';
                     $("#PDoneError").modal();
                     $("#showload").hide();
                 }
             }), (function (msg) {
-                self.messages= 'Profile Image can\'t update';
+                self.messages = 'Profile Image can\'t update';
                 $("#PDoneError").modal();
                 $("#showload").hide();
             }), options);

@@ -16,6 +16,12 @@ var spafoo;
             SharedHttp.prototype.setuserType = function (value) {
                 this.userType = value;
             };
+            SharedHttp.prototype.getAddressDetailRcd = function () {
+                return this.AddressDetailRcd;
+            };
+            SharedHttp.prototype.setAddressDetailRcd = function (value) {
+                this.AddressDetailRcd = value;
+            };
             SharedHttp.prototype.getUuid = function () {
                 return this.uuid;
             };
@@ -209,9 +215,13 @@ var spafoo;
             };
             SharedHttp.prototype.GetAddressInfo = function (AppointMentID) {
                 var deferred = this.$q.defer();
+                var self = this;
                 this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response) {
                     var e = response.GetAppLocationResult;
                     this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
+                    //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
                     //   alert(this.GetAddressRcd);
                     deferred.resolve(this.GetAddressRcd);
                 }, function (error) { });

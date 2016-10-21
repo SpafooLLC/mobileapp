@@ -39,6 +39,9 @@ var MyProfileEditController;
         MyProfileEditController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Country, PostalCode, Phone, Mob) {
             var self = this;
             var uPos = '';
+            Phone = "";
+            Mob = $("#Cell").val();
+            PostalCode = $("#PostalCode").val();
             if (FirstName == "" || FirstName == null) {
                 self.messages = "Please Enter Firstname.";
                 $("#PDoneError").modal();
@@ -91,9 +94,6 @@ var MyProfileEditController;
             }
             if (self.doValidation(Email)) {
                 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
-                Phone = "";
-                Mob = $("#Cell").val();
-                PostalCode = $("#PostalCode").val();
                 var data = {
                     'UserID': parseInt(self.customerID),
                     'FN': FirstName,
