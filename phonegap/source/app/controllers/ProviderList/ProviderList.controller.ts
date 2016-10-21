@@ -38,11 +38,12 @@
 
             self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response: any) {
 
-                self.ServiceData = response.ListProvidersByServicesResult;
+           //    self.CustomerHttp.get('/ListProvidersByServices/-1').then(function (response: any) {
+    self.ServiceData = response.ListProvidersByServicesResult;
 
                 for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
-                   // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
-                    self.ServiceData[i].displayNameField = response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0]+".";
+                    // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
+                    self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
                     if (self.ServiceData[i].profileField.photoField != null) {
 
                         self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
@@ -57,8 +58,20 @@
                     self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
 
                 }
-              
 
+                //var data = self.ServiceData;
+                //for (var i = 0; i < data.length; i++)
+                //{
+                //    for (var j = 0; j < data.length; j++)
+                //    {
+                //        if (data[i].distance > data[j].distance)
+                //        {
+                //            data[i].distance = data[j].distance;
+                //        }
+                //    }
+                    
+                //}
+                //console.log(data);
 
             }, function (error) {
                 if (error === null) {
@@ -85,7 +98,7 @@
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c;
             self.ServiceData[index].distance = (d / 1609.344).toFixed(1);
-          
+           
            // returns the distance in meter
       
         }

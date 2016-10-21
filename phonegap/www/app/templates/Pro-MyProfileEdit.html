@@ -20,7 +20,7 @@
         <a ng-if="!pep.proProfilePic" ng-click="pep.cameraOption();"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
         <a ng-if="pep.proProfilePic" ng-click="pep.cameraOption();"><img ng-src="{{pep.proProfilePic}}" alt="" draggable="false"></a>
       </div>
-      <div ng-if="pep.isImageClick"><button ng-click="pep.capturePhoto('C')">Camera Image</button><button ng-click="pep.capturePhoto('G')">Galary Image</button></div>
+      <div ng-if="pep.isImageClick"><button ng-click="pep.capturePhoto('C')">Camera Image</button><button ng-click="pep.capturePhoto('G')">Gallery Image</button></div>
     </div>
     <h3 class="bmar-xs">{{pep.ServiceData.DisplayName}}</h3>
     <p class="green bmar-sm fs-sm">{{pep.ServiceData.Email}}</p>

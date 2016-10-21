@@ -436,8 +436,10 @@
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
+             //   alert(time);
                 self.showIonicAlert('Sorry, you cannot select date before today');
             } else {
+                
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
                 self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
@@ -582,17 +584,23 @@
             })
         }
 
-        isToday(time, todayAnd) {
-            var today = new Date(),
-                currentCalendarDate = new Date(time);
+        //isToday(time, todayAnd) {
+        //    var today = new Date(),
+        //        currentCalendarDate = new Date(time);
 
-            today.setHours(0, 0, 0, 0);
-            currentCalendarDate.setHours(0, 0, 0, 0);
-            var currTime = currentCalendarDate.getTime();
-            var todayTime = today.getTime();
-            return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //    today.setHours(0, 0, 0, 0);
+        //    currentCalendarDate.setHours(0, 0, 0, 0);
+        //    var currTime = currentCalendarDate.getTime();
+        //    var todayTime = today.getTime();
+        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //}
+
+        isToday(start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         }
-
 
 
         validatePaymentMethod() {
