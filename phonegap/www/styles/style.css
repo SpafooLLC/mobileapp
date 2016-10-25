@@ -302,6 +302,7 @@
   .asapad a.btnacc { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#219962; padding:2px 30px; display:inline-block; }
   .asapad a.btnden { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#ff0000; padding:2px 30px; display:inline-block; }
   .asapad a.btnacc:hover, .asapad a.btnden:hover { background:#222222; color:#ffffff; }
+  .pdimg {   background:#ff0000; padding:2px 0; text-align:center; display:block; }
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	
@@ -325,10 +326,11 @@
   .block { display:block;}
   .bold { font-weight:600 !important;}
   .red { color:#cc0000; } .red2 { color:#ff0000; }
-  .blue { color:#112173; }
+  .blue2 { color:#1e319b; }
+  .blue { color:#112173; } .blueimp { color:#112173 !important; }
   .black { color:#000000;}
   .gray { color:#555555;}
-  .green { color:#219962;}
+  .green { color:#219962;} .greenimp { color:#219962 !important;}
   .white { color:#ffffff; }
   .line-big { line-height:26px !important; }
   .no-margin  { margin:0 !important;}

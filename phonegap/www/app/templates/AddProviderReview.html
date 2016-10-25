@@ -7,7 +7,7 @@
 <div class="inbody apreview">
   <div class="center">
     <p>Please rate the Provider using the following performance </p>
-    <h2>{{apr.ServiceData.firstNameField}} {{apr.ServiceData.lastNameField}}</h2>
+    <h2>{{apr.ServiceData.displayNameField}} </h2>
     <div class="profile-pic">
       <div class="round">  
         <a ng-if="!apr.profilePic"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
@@ -63,7 +63,7 @@
     </div>
     <div class="tpad-xs"></div>
 </div>
-<a data-toggle="modal"  class="block-btn" ng-show="apr.isChecked && apr.rateValue  && apr.dropDownVal && apr.workQuality && apr.timePunctuality" ng-click="apr.postRating();">Submit</a>
+<a data-toggle="modal"  class="block-btn"  ng-click="apr.postRating();">Submit</a>
 <!-- Modal Thank You -->
 <!--<div class="modal fade" id="ThankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog w90" role="document">
@@ -102,5 +102,23 @@
                     </div>
                 </div>
             </div>
+
+        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{apr.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </ion-content>
 </ion-view>

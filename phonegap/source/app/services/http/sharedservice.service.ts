@@ -5,10 +5,14 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; dates: Date; picId: string; picPath: string;
+        uuid: string; dates: Date; picId: string; picPath: string; AddressDetailRcd :string,
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; NotificationList: any;
         Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; HideApp: boolean;
         getLoginStatus(): any;
+
+        getAddressDetailRcd(): any;
+        setAddressDetailRcd(value: any): any;
+
         setLoginStatus(value: any): any;
         getuserType(): any;
         setuserType(value: any): any;
@@ -46,7 +50,7 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; picId: string; picPath: string;
+        uuid: string; picId: string; picPath: string; AddressDetailRcd: string;
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; Rateperson: string;
         ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; NotificationList: any; HideApp: any;
         getuserType(): any {
@@ -55,6 +59,15 @@
         setuserType(value: any): any {
             this.userType = value;
         }
+
+        getAddressDetailRcd(): any {
+            return this.AddressDetailRcd;
+        }
+        setAddressDetailRcd(value: any): any {
+            this.AddressDetailRcd = value;
+        }
+
+
         getUuid(): any {
             return this.uuid;
         }
@@ -271,10 +284,15 @@
 
         GetAddressInfo(AppointMentID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
+            var self = this;
             this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response: any) {
                 var e = response.GetAppLocationResult
+                
                 this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
-             //   alert(this.GetAddressRcd);
+                self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
+                //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
+               //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
+           //   alert(this.GetAddressRcd);
                 deferred.resolve(this.GetAddressRcd);
             }, function (error) { });
             return deferred.promise;

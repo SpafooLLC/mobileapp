@@ -1,20 +1,32 @@
-var MakeAppointmentController;
-(function (MakeAppointmentController_1) {
-    var MakeAppointmentController = (function () {
-        function MakeAppointmentController($q, $state, $scope, $location, CustomerHttp, $window, $rootScope, SharedHttp, $stateParams, $ionicPopup) {
-            this.$q = $q;
-            this.$state = $state;
-            this.$scope = $scope;
-            this.$location = $location;
-            this.CustomerHttp = CustomerHttp;
-            this.$window = $window;
-            this.$rootScope = $rootScope;
-            this.SharedHttp = SharedHttp;
-            this.$stateParams = $stateParams;
-            this.$ionicPopup = $ionicPopup;
-            this.onViewTitleChanged = function (title) {
-                this.viewTitle = title;
-            };
+﻿module MakeAppointmentController {
+    interface IMakeAppointmentController {
+        UserID: number;
+        ServiceData: {};
+        ProviderServiceList: {};
+        address: string; city: string; state: string; zip: string;
+    }
+    class MakeAppointmentController implements IMakeAppointmentController {
+        UserID: number;
+        ServiceData: {};
+        MainView: string;
+        ProviderServiceList: {};
+        messages: any;
+        action: any;
+        address: string; city: string; state: string; zip: string; AppID: any; info: any; ServiceData: any;
+        static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', '$rootScope', 'SharedHttp', '$stateParams', '$ionicPopup'];
+        constructor(
+            private $q: ng.IQService,
+            private $state: angular.ui.IStateService,
+            private $scope: ng.IScope,
+            private $location: ng.ILocationService,
+            private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
+            private $window: ng.IWindowService,
+            private $rootScope: any,
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
+            private $stateParams: angular.ui.IStateParamsService,
+            private $ionicPopup: ionic.popup.IonicPopupService
+        ) {
+
             this.UserID = this.$stateParams.userId;
             this.AppID = 0;
             this.ServiceData = {};
@@ -26,8 +38,7 @@ var MakeAppointmentController;
                 var providerData = { providerId: this.UserID };
                 $window.localStorage.setItem("url", window.location.hash);
                 this.$state.go("login", providerData);
-            }
-            else {
+            } else {
                 this.customerId = $window.localStorage.getItem('CustomerID');
             }
             var mySelect = $('#first-disabled2');
@@ -35,10 +46,12 @@ var MakeAppointmentController;
                 mySelect.find('option:selected').prop('disabled', true);
                 mySelect.selectpicker('refresh');
             });
+
             $('#special2').on('click', function () {
                 mySelect.find('option:disabled').prop('disabled', false);
                 mySelect.selectpicker('refresh');
             });
+
             this.isOpenSelectAdress = '';
             this.info = {};
             this.addressId = '';
@@ -56,6 +69,7 @@ var MakeAppointmentController;
             }
             this.ASAP = this.$stateParams.type == 'ASAP';
             if ($stateParams.userId != "null" && this.customerId != null) {
+
                 this.getProviderPortfolio($stateParams.userId);
             }
             else {
@@ -67,15 +81,20 @@ var MakeAppointmentController;
             var y = date.getFullYear();
             var self = this;
         }
-        MakeAppointmentController.prototype.openDropdown = function () {
+        openDropdown() {
             this.isOpenSelectAdress = this.isOpenSelectAdress == '' ? 'open' : '';
-        };
-        MakeAppointmentController.prototype.getProviderPortfolio = function (UserID) {
+        }
+        getProviderPortfolio(UserID: any) {
             var self = this;
-            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
-                response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
+
+            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
+             
+                    response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0]+".";
+                
                 self.ServiceData = response.GetUserInfoResult;
-                for (var i = 0; i < response.GetUserInfoResult.length; i++) {
+                for (var i = 0; i < response.GetUserInfoResult.length; i++)
+                {
+                
                 }
                 if (self.isEdit) {
                     self.getEditInfo();
@@ -91,75 +110,86 @@ var MakeAppointmentController;
                                 }, 300);
                                 return false;
                             }
-                        });
+                        })
                     }
                 });
-                self.CustomerHttp.get('/GetUserInfo/' + self.customerId).then(function (response) {
+                self.CustomerHttp.get('/GetUserInfo/' + self.customerId).then(function (response: any) {
                     self.ServiceData.profileField.streetField = response.GetUserInfoResult.profileField.streetField;
                     self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
                     self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
                     self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
+              
                     if (!self.isEdit) {
                         self.info.address = self.ServiceData.profileField.streetField;
                         self.info.city = self.ServiceData.profileField.cityField;
                         self.info.state = self.ServiceData.profileField.regionField;
-                        self.info.zip = self.ServiceData.profileField.postalCodeField;
+                        self.info.zip = self.ServiceData.profileField.postalCodeField
                     }
-                });
+                })
             });
-        };
-        MakeAppointmentController.prototype.getEditInfo = function () {
+        }
+
+        getEditInfo() {
             var self = this;
-            self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response) {
+            self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response: any) {
                 self.ServiceData.appointment = response.GetAppointmentResult;
-                self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response) {
+                self.CustomerHttp.get('/GetAppLocation/' + self.AppointmentID).then(function (response: any) {
                     var e = response.GetAppLocationResult;
                     self.info.address = e.addressField;
                     self.info.city = e.cityField;
                     self.info.state = e.stateField;
                     self.info.zip = e.zipField;
+
                 });
                 self.appointment = self.ServiceData.appointment;
                 setTimeout(function () {
-                    self.appointment.servicesField.map(function (serv) {
+                    self.appointment.servicesField.map(function (serv: any) {
                         var serviceString = serv.serviceIDField + ':' + 1 + ':' + serv.priceField;
                         $('input[value="' + serviceString + '"]').prop('checked', 'checked');
                         self.comment = self.appointment.commentsField;
-                    });
-                }, 500);
+                    })
+                }, 500)
             });
-        };
-        MakeAppointmentController.prototype.changedValue = function (data, text) {
+        }
+
+        changedValue(data: any, text: any) {
             var self = this;
             // alert(data);
             self.addressText = text;
             switch (parseInt(data)) {
                 case 1:
                     self.GetGPSLocation();
-                    break;
+	                break;
                 case 2:
                     //alert(self.address);
-                    self.info.address = self.ServiceData.profileField.streetField;
-                    self.info.city = self.ServiceData.profileField.cityField;
-                    self.info.state = self.ServiceData.profileField.regionField;
-                    self.info.zip = self.ServiceData.profileField.postalCodeField;
+	                self.info.address = self.ServiceData.profileField.streetField;
+	                self.info.city = self.ServiceData.profileField.cityField;
+	                self.info.state = self.ServiceData.profileField.regionField;
+	                self.info.zip = self.ServiceData.profileField.postalCodeField;
+
                     break;
+
                 case 3:
-                    self.info.address = '';
-                    self.info.city = '';
-                    self.info.state = '';
-                    self.info.zip = '';
+	                self.info.address = '';
+	                self.info.city = '';
+	                self.info.state = '';
+	                self.info.zip = '';
+
             }
+
             this.isOpenSelectAdress = '';
-        };
-        MakeAppointmentController.prototype.GetGPSLocation = function () {
+
+        }
+
+        GetGPSLocation() {
             var self = this;
             var options = {
                 enableHighAccuracy: true,
                 maximumAge: 3600000
             };
             navigator.geolocation.getCurrentPosition(function (position) {
-                var GOOGLE = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              
+                const GOOGLE = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 //    alert("onsuccess navigation called");
                 var request = {
                     'position': GOOGLE
@@ -178,63 +208,87 @@ var MakeAppointmentController;
                 //        self.info.zip = result.postalCode;
                 //    }
                 //});
-                plugin.google.maps.Geocoder.geocode(request, function (results) {
+
+                plugin.google.maps.Geocoder.geocode(request, function (results: any) {
                     if (results.length) {
                         var result = results[0];
                         var position = result.position;
                         //  alert(result.subThoroughfare + "/ " + result.thoroughfare + "/" + result.locality + "/" + result.adminArea + "/" + result.postalCode);
                         //if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == undefined || result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined" || result.locality == undefined || result.locality == "" || result.locality == "undefined" || result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "")
                         //{
+
                         //}
                         if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == "undefined" || result.thoroughfare == undefined) {
                             self.info.address = '';
+                          //  $("#addressfield").val('');
+                          
                         }
                         else {
-                            self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                            try { self.info.address = result.subThoroughfare + " " + result.thoroughfare; } catch (e) { alert("error" + JSON.stringify(e)) }
+                         //   self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                        //    $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
+                          
                         }
                         if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
                             self.info.city = '';
+                         //   $("#cityfield").val('');
+                         
                         }
                         else {
-                            self.info.city = result.locality;
+                            try { self.info.city = result.locality; } catch (e) { alert("error" + JSON.stringify(e)) }
+                          //  self.info.city = result.locality;
+                           // $("#cityfield").val(result.locality);
+                           
                         }
                         if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
+                          //  $("#statefield").val('');
                             self.info.state = '';
                         }
                         else {
+                         //   $("#statefield").val(result.adminArea);
                             self.info.state = result.adminArea;
                         }
                         if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
+                         //   $("#zipfield").val('');
                             self.info.zip = '';
                         }
                         else {
+                          //  $("#zipfield").val(result.postalCode);
                             self.info.zip = result.postalCode;
                         }
+                       
+                        //self.info.address = result.subThoroughfare || '' + " " + result.thoroughfare || '';
+                        //self.info.city = result.locality || '';
+                        //self.info.state = result.adminArea || '';
+                        //self.info.zip = result.postalCode || '';
+                       
                     }
                 });
             }, self.onError, options);
-        };
-        MakeAppointmentController.prototype.onError = function (e) {
+
+        }
+
+        onError(e: any) {
             //alert(JSON.stringify(e));
-        };
-        MakeAppointmentController.prototype.viewSelect = function (view) {
+        }
+
+        viewSelect(view: any) {
             var self = this;
             view = self.ASAP && view == 'Appointment-DateTime' ? 'Order-Summary' : view;
             if (self.isEdit && view == 'Basic-Info') {
                 self.getEditInfo();
-            }
-            else if (self.backToCalendar && view == 'Payment-Method') {
+            } else if (self.backToCalendar && view == 'Payment-Method') {
                 if (self.ASAP) {
                     view = 'Order-Summary';
-                }
-                else {
+                } else {
                     self.appointmentView();
                     return;
                 }
             }
             this.MainView = view;
-        };
-        MakeAppointmentController.prototype.CreateAppointment = function (Rcd) {
+        }
+
+        CreateAppointment(Rcd: any) {
             var self = this;
             var status = self.SharedHttp.getLoginStatus();
             var servLists = [];
@@ -243,6 +297,7 @@ var MakeAppointmentController;
             if ($("#addressfield").val() == '') {
                 self.messages = "Enter address field to proceed";
                 $("#PDone").modal();
+
                 return;
             }
             if ($("#cityfield").val() == '') {
@@ -260,6 +315,7 @@ var MakeAppointmentController;
                 $("#PDone").modal();
                 return;
             }
+
             $('.serviceChecks:checked').map(function () {
                 var ServId = this.value.split(':')[0];
                 self.ProviderServiceList.map(function (serv) {
@@ -268,7 +324,7 @@ var MakeAppointmentController;
                         self.totalPrice += serv.priceField;
                         servLists.push(serv);
                     }
-                });
+                })
             });
             self.selectedServices = servLists;
             //console.log(self.selectedServices);
@@ -285,12 +341,12 @@ var MakeAppointmentController;
                         self.changeSummery();
                     }
                 });
-            }
-            else {
+            } else {
                 self.showIonicAlert('Please select the Service(s) for Appointment');
             }
-        };
-        MakeAppointmentController.prototype.changeSummery = function () {
+        }
+
+        changeSummery() {
             var self = this;
             self.totalDuration = 0;
             self.totalPrice = 0;
@@ -304,25 +360,26 @@ var MakeAppointmentController;
                 var str = srvc.serviceIDField + ':' + srvc.qtyField + ':' + srvc.priceField;
                 if (self.serviceString == '') {
                     self.serviceString = str;
-                }
-                else {
+                } else {
                     self.serviceString += '|' + str;
                 }
             });
-        };
-        MakeAppointmentController.prototype.removeService = function (index) {
+        }
+
+        removeService(index) {
             var self = this;
             self.selectedServices.splice(index, 1);
             !self.selectedServices.length ? self.MainView = 'Basic-Info' : self.changeSummery();
-        };
-        MakeAppointmentController.prototype.appointmentView = function () {
+
+        }
+
+        appointmentView() {
             var self = this;
             self.changeSummery();
             self.eventSource = [];
             if (self.ASAP) {
                 self.paymentMethod();
-            }
-            else {
+            } else {
                 var startDate = new Date('08/28/2016');
                 var endDate = new Date('10/09/2016');
                 self.staticEvents = [
@@ -337,24 +394,25 @@ var MakeAppointmentController;
                         defaultView: 'month', selectable: true,
                         defaultDate: (new Date()),
                         selectHelper: true,
-                        dayClick: function (date, jsEvent, view) {
+                        dayClick: function (date: any, jsEvent: any, view: any) {
                             self.onTimeSelected(date, jsEvent);
                         },
                         editable: true,
                         slotEventOverlap: false,
                         eventLimit: 1,
-                        viewRender: function (view, element) { this.calendar.removeEvents(); if (self.isToday(view.end, true))
-                            self.getOccupiedSlots(view.start, view.end); }
+                        viewRender: function (view, element) { this.calendar.removeEvents(); if (self.isToday(view.end, true)) self.getOccupiedSlots(view.start, view.end); }
                     }
                 };
                 setTimeout(function () {
                     $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
                 }, 0);
                 //self.getOccupiedSlots();
-                self.MainView = 'Appointment-DateTime';
+                self.MainView = 'Appointment-DateTime'
             }
-        };
-        MakeAppointmentController.prototype.getOccupiedSlots = function (start, end) {
+        }
+
+        getOccupiedSlots(start, end) {
+
             var self = this;
             //self.staticEvents[0].events = [];
             var date = new Date(), y = date.getFullYear(), m = date.getMonth();
@@ -365,7 +423,8 @@ var MakeAppointmentController;
                 ProID: self.$stateParams.userId,
                 StartDateTime: start,
             };
-            self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res) {
+            self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res: any) {
+
                 var aviles = JSON.parse(res.ListMyAvailResult);
                 for (var i = 0; i < aviles.length; i++) {
                     var starthours = aviles[i].StartTime.Hours > 9 ? aviles[i].StartTime.Hours : '0' + aviles[i].StartTime.Hours;
@@ -375,6 +434,7 @@ var MakeAppointmentController;
                     var dateMonth = aviles[i].Date;
                     var dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
+
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
                         title: moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm A') + ' - ' + moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm A'),
@@ -382,22 +442,25 @@ var MakeAppointmentController;
                         color: '#ff0000'
                     });
                 }
-                self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d) {
+                self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
                     var _Today = new Date();
                     $.each(d, function (i, o) {
                         self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm A') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm A'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
                     });
                 });
             });
+        }
+
+        onViewTitleChanged = function (title) {
+            this.viewTitle = title;
         };
-        MakeAppointmentController.prototype.onTimeSelected = function (time, event) {
+
+        onTimeSelected(time, event) {
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
-                //   alert(time);
                 self.showIonicAlert('Sorry, you cannot select date before today');
-            }
-            else {
+            } else {
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
                 self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
@@ -436,13 +499,16 @@ var MakeAppointmentController;
                     to: from
                 });
                 self.isSlotAvailable();
+                //}, 100)
             }
-        };
-        MakeAppointmentController.prototype.destroySlider = function () {
+        }
+
+        destroySlider() {
             var self = this;
             self.slider.destroy();
-        };
-        MakeAppointmentController.prototype.dateTimeChooseDone = function () {
+        }
+
+        dateTimeChooseDone() {
             var self = this;
             if (self.availability) {
                 $('#PDoneSlider').modal('hide');
@@ -450,24 +516,26 @@ var MakeAppointmentController;
                 self.showENTime = self.selectedTo;
                 self.showTHDay = self.onlyDate;
                 $('#PConfirm').modal('show');
-            }
-            else {
+            } else {
                 self.showIonicAlert('Please select an available time slot');
             }
-        };
-        MakeAppointmentController.prototype.showIonicAlert = function (text, template) {
+        }
+
+        showIonicAlert(text, template) {
             var self = this;
             $(".modal").modal('hide');
             self.messages = text;
             $("#PDone").modal();
-        };
-        MakeAppointmentController.prototype.actionAfterOk = function (ac) {
+        }
+
+        actionAfterOk(ac) {
             var self = this;
             if (self.action == 'redirectAfterAppointment') {
                 self.redirectAfterAppointment();
             }
-        };
-        MakeAppointmentController.prototype.customCardPage = function () {
+        }
+
+        customCardPage() {
             var self = this;
             self.MainView = 'Payment-Information';
             self.nameOnCard = '';
@@ -484,8 +552,10 @@ var MakeAppointmentController;
             for (var i = 0; i < 20; i++) {
                 self.years.push(year++);
             }
-        };
-        MakeAppointmentController.prototype.paymentMethod = function () {
+        }
+
+
+        paymentMethod() {
             var self = this;
             self.backToCalendar = false;
             self.CustomerHttp.get('/GetCustomerProfile/' + this.customerId).then(function (resp) {
@@ -501,19 +571,19 @@ var MakeAppointmentController;
                         });
                         self.CustomerEmail = profile.email;
                         self.MainView = 'Payment-Method';
-                    }
-                    else {
+                    } else {
                         self.backToCalendar = true;
                         self.customCardPage();
                     }
-                }
-                else {
+
+                } else {
                     self.backToCalendar = true;
                     self.customCardPage();
                 }
             });
-        };
-        MakeAppointmentController.prototype.isSlotAvailable = function () {
+        }
+
+        isSlotAvailable() {
             var self = this;
             var appId = self.$window.localStorage.getItem('AppointmentIDs');
             var providerId = self.$stateParams.userId;
@@ -524,79 +594,73 @@ var MakeAppointmentController;
                 StartDateTime: self.onlyDate + ' ' + self.to
             };
             var url = self.isEdit ? '/IsProviderSlotFreeEM' : '/IsProviderSlotFree';
-            self.CustomerHttp.post(postObj, url).then(function (response) {
+            self.CustomerHttp.post(postObj, url).then(function (response: any) {
                 if (response === true) {
                     self.selectedFrom = self.from;
                     self.selectedTo = self.to;
                     self.availability = true;
-                }
-                else {
+                } else {
                     self.availability = false;
                 }
-            });
-        };
-        //isToday(time, todayAnd) {
-        //    var today = new Date(),
-        //        currentCalendarDate = new Date(time);
-        //    today.setHours(0, 0, 0, 0);
-        //    currentCalendarDate.setHours(0, 0, 0, 0);
-        //    var currTime = currentCalendarDate.getTime();
-        //    var todayTime = today.getTime();
-        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
-        //}
-        MakeAppointmentController.prototype.isToday = function (start, todayAnd) {
-            var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
-            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
-        };
-        MakeAppointmentController.prototype.validatePaymentMethod = function () {
+            })
+        }
+
+        isToday(time, todayAnd) {
+            var today = new Date(),
+                currentCalendarDate = new Date(time);
+
+            today.setHours(0, 0, 0, 0);
+            currentCalendarDate.setHours(0, 0, 0, 0);
+            var currTime = currentCalendarDate.getTime();
+            var todayTime = today.getTime();
+            return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        }
+
+
+
+        validatePaymentMethod() {
             var self = this;
             if (self.selectedCard == 0) {
                 self.customCardPage();
-            }
-            else {
+            } else {
                 self.showIonicConfirmation();
             }
-        };
-        MakeAppointmentController.prototype.customCardPayment = function () {
+        }
+
+
+
+
+        customCardPayment() {
+
             var self = this;
+
             if (self.nameOnCard == '' || !self.nameOnCard.trim().length) {
                 self.showIonicAlert('Name on card is required');
-            }
-            else if (self.nameOnCard.trim().length > 150) {
+            } else if (self.nameOnCard.trim().length > 150) {
                 self.showIonicAlert('Name of card should be max lenth 150');
-            }
-            else if (self.cardNumber == '' || !self.cardNumber.trim().length) {
+            } else if (self.cardNumber == '' || !self.cardNumber.trim().length) {
                 self.showIonicAlert('Card number is required');
-            }
-            else if (/\D/.test(self.cardNumber)) {
+            } else if (/\D/.test(self.cardNumber)) {
                 self.showIonicAlert('Card number must be numeric');
-            }
-            else if (self.cardNumber.length < 14 || self.cardNumber.length > 16) {
+            } else if (self.cardNumber.length < 14 || self.cardNumber.length > 16) {
                 self.showIonicAlert('Card number should be between 14-16');
-            }
-            else if (self.radioInline == '' || !self.radioInline.trim().length) {
+            } else if (self.radioInline == '' || !self.radioInline.trim().length) {
                 self.showIonicAlert('Card type is required');
-            }
-            else if (self.cvv == '' || !self.cvv.trim().length) {
+            } else if (self.cvv == '' || !self.cvv.trim().length) {
                 self.showIonicAlert('CVV is required');
-            }
-            else if (/\D/.test(self.cvv)) {
+            } else if (/\D/.test(self.cvv)) {
                 self.showIonicAlert('CVV must be numeric');
-            }
-            else if (self.cvv.trim().length < 3 || self.cvv.trim().length > 4) {
+            } else if (self.cvv.trim().length < 3 || self.cvv.trim().length > 4) {
                 self.showIonicAlert('CVV should be 3-4');
-            }
-            else if (self.paymentTerm == '') {
+            } else if (self.paymentTerm == '') {
                 self.showIonicAlert('You need to agree with our payment terms');
-            }
-            else {
+            } else {
                 self.showIonicConfirmation(true);
             }
-        };
-        MakeAppointmentController.prototype.showIonicConfirmation = function (customCard) {
+        }
+        showIonicConfirmation(customCard) {
             var self = this;
+
             self.type = customCard || false;
             if (!self.type) {
                 var card = self.CCards.filter(function (cc) {
@@ -604,34 +668,33 @@ var MakeAppointmentController;
                 });
                 self.card = card[0];
                 self.mainCard = self.card.payment.Item.cardNumber;
-            }
-            else {
+            } else {
                 var cFull = self.cardNumber;
                 self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
             }
             // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
-            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD  <br/>You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD <br/> You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
             $("#PDonePayment").modal();
-        };
-        MakeAppointmentController.prototype.actionPayment = function () {
+        }
+
+
+        actionPayment() {
             var self = this;
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;
                 var amount = self.totalPrice;
                 //str.slice(str.length -  4, str.length);
-                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response) {
+                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
                     var resp = JSON.parse(response.AuthProfileJSONResult);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
                         self.finalMakeAppointment();
-                    }
-                    else {
+                    } else {
                         self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
-                });
-            }
-            else {
+                })
+            } else {
                 var obj = {
                     "Amount": self.totalPrice,
                     "CCNumber": self.cardNumber,
@@ -640,33 +703,40 @@ var MakeAppointmentController;
                     "Expiry": self.expMonth + '/' + self.expYear,
                     "UID": self.customerId
                 };
-                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response) {
+                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response: any) {
                     var resp = JSON.parse(response);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
+                   
                         if (self.saveCardInfo) {
                             self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
                             }, function (error) { });
                         }
                         self.finalMakeAppointment();
-                    }
-                    else {
+
+                    } else {
                         //self.modalGoback = true;
                         self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 });
+
+
+
+
+
             }
-        };
-        MakeAppointmentController.prototype.wronInfoGoBack = function () {
+        }
+
+
+        wronInfoGoBack() {
             var self = this;
             if (self.modalGoback) {
                 self.MainView = 'Payment-Method';
-            }
-            else if (self.action == 'redirectAfterAppointment') {
+            } else if (self.action == 'redirectAfterAppointment') {
                 self.redirectAfterAppointment();
             }
-        };
-        MakeAppointmentController.prototype.finalMakeAppointment = function () {
+        }
+        finalMakeAppointment() {
             var self = this;
             var postObj = {
                 city: self.info.city,
@@ -674,14 +744,15 @@ var MakeAppointmentController;
                 street: self.info.address,
                 zip: self.info.zip
             };
-            self.CustomerHttp.post(postObj, '/AddAddress').then(function (response) {
+            self.CustomerHttp.post(postObj, '/AddAddress').then(function (response: any) {
                 self.addressId = response;
             });
             self.action = 'redirectAfterAppointment';
             $("#PDonePayment").modal('hide');
-            self.showIonicAlert(/*'<i class="fa fa-check-circle fa-3x"></i>', */ 'Your Appointment has been confirmed!');
-        };
-        MakeAppointmentController.prototype.redirectAfterAppointment = function () {
+            self.showIonicAlert(/*'<i class="fa fa-check-circle fa-3x"></i>', */'Your Appointment has been confirmed!')
+        }
+
+        redirectAfterAppointment() {
             var self = this;
             var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm A A').format('h:mm A');
             var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm A A').format('h:mm A');
@@ -701,22 +772,22 @@ var MakeAppointmentController;
                 ProviderID: self.$stateParams.userId,
                 oAuthTxn: self.transId
             };
-            self.CustomerHttp.post(obj, '/MakeAppointment').then(function (response) {
+            self.CustomerHttp.post(obj, '/MakeAppointment').then(function (response: any) {
                 if (!isNaN(parseInt(response))) {
                     self.$state.go('MySchedule');
-                }
-                else {
+                } else {
                     self.showIonicAlert('Sorry, your appointment not successfully done!');
                 }
-            });
-        };
-        MakeAppointmentController.prototype.showPTerm = function () {
-            $('#PTerms').modal();
-        };
-        MakeAppointmentController.$inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', '$rootScope', 'SharedHttp', '$stateParams', '$ionicPopup'];
-        return MakeAppointmentController;
-    }());
-    angular.module('spafoo.ctrl.MakeAppointment', []).controller('MakeAppointment', MakeAppointmentController);
-})(MakeAppointmentController || (MakeAppointmentController = {}));
+            })
+        }
 
-//# sourceMappingURL=MakeAppointment.controller.js.map
+        showPTerm() {
+            $('#PTerms').modal();
+        }
+
+    }
+
+
+    angular.module('spafoo.ctrl.MakeAppointment', []).controller('MakeAppointment', MakeAppointmentController);
+
+}

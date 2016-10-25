@@ -93,7 +93,7 @@
                             }
                             break;
                         case 15: if (role == 'C') {
-                            self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " .For more information, please check 'My Schedule' section.";
+                            self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " ,For more information, please check 'My Schedule' section.";
                         }
                             break;
                         case 16:

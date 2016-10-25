@@ -40,6 +40,7 @@ var AddClientReviewController;
             self.appointmentID = self.$stateParams.appId;
             self.CustomerHttp.get('/GetUserInfo/' + self.clientId).then(function (response) {
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.firstNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + ".";
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
             }, function (error) {
                 if (error === null) {
@@ -86,6 +87,31 @@ var AddClientReviewController;
         };
         AddClientReviewController.prototype.postRating = function () {
             var self = this;
+            if (self.rateValue == null || self.rateValue == "") {
+                self.messages = "Please choose rating.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.timePunctuality == null || self.timePunctuality == "") {
+                self.messages = "Please choose timePunctuality";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.communication == null || self.communication == "") {
+                self.messages = "Please choose communication";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.cooperation == null || self.cooperation == "") {
+                self.messages = "Please choose cooperation.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.attitude == null || self.attitude == "") {
+                self.messages = "Please choose attitude.";
+                $("#PDoneError").modal();
+                return;
+            }
             self.ratingCSV = self.rateValue + '|' + self.timePunctuality + '|' + self.communication + '|' + self.cooperation + '|' + self.attitude;
             self.reviewCSV = self.aboutClientLike + ':' + self.aboutClientDislike + ':' + self.commentTxt + ':-1';
             //console.log(self.ratingCSV);

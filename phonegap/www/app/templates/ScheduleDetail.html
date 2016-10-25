@@ -17,9 +17,11 @@
 
 
                 <h1>{{scD.ServiceData.orderDateField}}</h1>
-                <p class="blue">{{scD.ServiceData.atTimeField}} at {{scD.ServiceData.addressField}} </p>
-                <p><span>With: </span> {{scD.ServiceData.displayNameField}} </p>
+                <p class="blue">{{scD.ServiceData.atTimeField}}   </p>
+                <p class="blue" ng-bind-html="scD.ServiceData.addressField">   </p>
+   <p><span>With: </span> {{scD.ServiceData.displayNameField}} </p>
                 <p><span>Service(s): </span> {{scD.ServiceData.ServiceList}}</p>
+                <p ng-if="scD.ServiceData.commentsField.trim().length"><span>Comment: </span> {{scD.ServiceData.commentsField}}</p>
             </div>
         </div>
 

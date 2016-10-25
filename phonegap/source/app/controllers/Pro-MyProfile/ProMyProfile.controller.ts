@@ -38,6 +38,7 @@
             self.CustomerHttp.get('/GetUserJSON/' + customerID).then(function (response: any) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
                 //console.log(self.ServiceData);
+                self.ServiceData.DisplayName1 = self.ServiceData.FirstName + " " + self.ServiceData.LastName[0] + ".";
                 self.ServiceData.Membership.CreatedDate = self.SharedHttp.getFormatedDate(self.ServiceData.Membership.CreatedDate, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 var str = self.ServiceData.Profile.Biography;

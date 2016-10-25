@@ -88,7 +88,14 @@
             var self = this;
 
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
+             
+                    response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0]+".";
+                
                 self.ServiceData = response.GetUserInfoResult;
+                for (var i = 0; i < response.GetUserInfoResult.length; i++)
+                {
+                
+                }
                 if (self.isEdit) {
                     self.getEditInfo();
                 }
@@ -111,6 +118,7 @@
                     self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
                     self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
                     self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
+              
                     if (!self.isEdit) {
                         self.info.address = self.ServiceData.profileField.streetField;
                         self.info.city = self.ServiceData.profileField.cityField;
@@ -150,21 +158,22 @@
             self.addressText = text;
             switch (parseInt(data)) {
                 case 1:
-                    self.GetGPSLocation(); break;
+                    self.GetGPSLocation();
+	                break;
                 case 2:
                     //alert(self.address);
-                    $("#addressfield").val(self.ServiceData.profileField.streetField);
-                    $("#cityfield").val(self.ServiceData.profileField.cityField);
-                    $("#statefield").val(self.ServiceData.profileField.regionField);
-                    $("#zipfield").val(self.ServiceData.profileField.postalCodeField);
+	                self.info.address = self.ServiceData.profileField.streetField;
+	                self.info.city = self.ServiceData.profileField.cityField;
+	                self.info.state = self.ServiceData.profileField.regionField;
+	                self.info.zip = self.ServiceData.profileField.postalCodeField;
 
                     break;
 
                 case 3:
-                    $("#addressfield").val('');
-                    $("#cityfield").val('');
-                    $("#statefield").val('');
-                    $("#zipfield").val('');
+	                self.info.address = '';
+	                self.info.city = '';
+	                self.info.state = '';
+	                self.info.zip = '';
 
             }
 
@@ -179,7 +188,6 @@
                 maximumAge: 3600000
             };
             navigator.geolocation.getCurrentPosition(function (position) {
-                var self = this;
                 const GOOGLE = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 //    alert("onsuccess navigation called");
                 var request = {
@@ -210,37 +218,35 @@
 
                         //}
                         if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == "undefined" || result.thoroughfare == undefined) {
-                            $("#addressfield").val('');
                             self.info.address = '';
                         }
                         else {
-                            $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
                             self.info.address = result.subThoroughfare + " " + result.thoroughfare;
                         }
                         if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
-                            $("#cityfield").val('');
                             self.info.city = '';
                         }
                         else {
-                            $("#cityfield").val(result.locality);
                             self.info.city = result.locality;
                         }
                         if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
-                            $("#statefield").val('');
                             self.info.state = '';
                         }
                         else {
-                            $("#statefield").val(result.adminArea);
-                            self.info.state = result.adminAream;
+                            self.info.state = result.adminArea;
                         }
                         if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
-                            $("#zipfield").val('');
-                            self.info.zip = "";
+                            self.info.zip = '';
                         }
                         else {
-                            $("#zipfield").val(result.postalCode);
                             self.info.zip = result.postalCode;
                         }
+                       
+                        /*self.info.address = result.subThoroughfare || '' + " " + result.thoroughfare || '';
+                        self.info.city = result.locality || '';
+                        self.info.state = result.adminArea || '';
+                        self.info.zip = result.postalCode || '';*/
+                       
                     }
                 });
             }, self.onError, options);
@@ -416,7 +422,7 @@
 
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
-                        title: moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm a') + ' - ' + moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm a'),
+                        title: moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm A') + ' - ' + moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm A'),
                         dateField: dateMonth1,
                         color: '#ff0000'
                     });
@@ -424,7 +430,7 @@
                 self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
                     var _Today = new Date();
                     $.each(d, function (i, o) {
-                        self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm a') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm a'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
+                        self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm A') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm A'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
                     });
                 });
             });
@@ -438,19 +444,21 @@
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
+             //   alert(time);
                 self.showIonicAlert('Sorry, you cannot select date before today');
             } else {
+                
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
-                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm a") : moment('09.00', "h:mm a").format("h:mm a");
-                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("h:mm a") : moment('09.00', 'h:mm a').add(self.totalDuration, 'm').format("h:mm a");
+                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
+                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("h:mm A") : moment('09.00', 'h:mm A').add(self.totalDuration, 'm').format("h:mm A");
                 $('#PDoneSlider').modal();
-                var todayCurrentTime = moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").format("X");
-                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
-                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("X") : moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
-                //var from = +moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
-                var min = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
-                var max = moment('21:00', 'h:mm a').format("X");
+                var todayCurrentTime = moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").format("X");
+                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm A').format("X");
+                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("X") : moment('09:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
+                //var from = +moment('09:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
+                var min = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm A').format("X");
+                var max = moment('21:00', 'h:mm A').format("X");
                 //setTimeout(function(){
                 $("#range").ionRangeSlider({
                     type: "double",
@@ -458,16 +466,16 @@
                     max: max,
                     from: to,
                     to: from,
-                    //step: +moment('05', 'mm').format('h:mm a A'),
+                    //step: +moment('05', 'mm').format('h:mm A A'),
                     step: 900,
                     //step: 300000,
                     drag_interval: true,
                     prettify: function (num) {
-                        return moment(num, "X").format("h:mm a");
+                        return moment(num, "X").format("h:mm A");
                     },
                     onFinish: function (data) {
-                        self.from = moment(data.from, "X").format("h:mm a");
-                        self.to = moment(data.to, "X").format("h:mm a");
+                        self.from = moment(data.from, "X").format("h:mm A");
+                        self.to = moment(data.to, "X").format("h:mm A");
                         self.isSlotAvailable();
                     },
                     force_edges: true
@@ -584,17 +592,23 @@
             })
         }
 
-        isToday(time, todayAnd) {
-            var today = new Date(),
-                currentCalendarDate = new Date(time);
+        //isToday(time, todayAnd) {
+        //    var today = new Date(),
+        //        currentCalendarDate = new Date(time);
 
-            today.setHours(0, 0, 0, 0);
-            currentCalendarDate.setHours(0, 0, 0, 0);
-            var currTime = currentCalendarDate.getTime();
-            var todayTime = today.getTime();
-            return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //    today.setHours(0, 0, 0, 0);
+        //    currentCalendarDate.setHours(0, 0, 0, 0);
+        //    var currTime = currentCalendarDate.getTime();
+        //    var todayTime = today.getTime();
+        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //}
+
+        isToday(start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         }
-
 
 
         validatePaymentMethod() {
@@ -652,7 +666,7 @@
                 self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
             }
             // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
-            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD  <br/>You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
             $("#PDonePayment").modal();
         }
 
@@ -698,11 +712,6 @@
                         self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
                     }
                 });
-
-
-
-
-
             }
         }
 
@@ -733,8 +742,8 @@
 
         redirectAfterAppointment() {
             var self = this;
-            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm a A').format('h:mm a');
-            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm a A').format('h:mm a');
+            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm A A').format('h:mm A');
+            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm A A').format('h:mm A');
             var ForDate = self.ASAP ? '' : self.onlyDate;
             var obj = {
                 AddressID: self.addressId,

@@ -26,8 +26,11 @@ var ProviderListController;
         ProviderListController.prototype.getProviderList = function (ServiceID) {
             var self = this;
             self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response) {
+                //    self.CustomerHttp.get('/ListProvidersByServices/-1').then(function (response: any) {
                 self.ServiceData = response.ListProvidersByServicesResult;
                 for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
+                    // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
+                    self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
                     if (self.ServiceData[i].profileField.photoField != null) {
                         self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
                         self.GetProTagLine(self.ServiceData[i].userIDField, i);
@@ -40,6 +43,18 @@ var ProviderListController;
                     //console.log(self.ServiceData[i].vanityUrlField)
                     self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
                 }
+                //var data = self.ServiceData;
+                //for (var i = 0; i < data.length; i++)
+                //{
+                //    for (var j = 0; j < data.length; j++)
+                //    {
+                //        if (data[i].distance > data[j].distance)
+                //        {
+                //            data[i].distance = data[j].distance;
+                //        }
+                //    }
+                //}
+                //console.log(data);
             }, function (error) {
                 if (error === null) {
                     self.$ionicLoading.hide();

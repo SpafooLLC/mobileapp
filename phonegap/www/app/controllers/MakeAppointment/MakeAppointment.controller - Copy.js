@@ -190,24 +190,38 @@ var MakeAppointmentController;
                             self.info.address = '';
                         }
                         else {
-                            self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                            try {
+                                self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                            }
+                            catch (e) {
+                                alert("error" + JSON.stringify(e));
+                            }
                         }
                         if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
                             self.info.city = '';
                         }
                         else {
-                            self.info.city = result.locality;
+                            try {
+                                self.info.city = result.locality;
+                            }
+                            catch (e) {
+                                alert("error" + JSON.stringify(e));
+                            }
                         }
                         if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
+                            //  $("#statefield").val('');
                             self.info.state = '';
                         }
                         else {
+                            //   $("#statefield").val(result.adminArea);
                             self.info.state = result.adminArea;
                         }
                         if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
+                            //   $("#zipfield").val('');
                             self.info.zip = '';
                         }
                         else {
+                            //  $("#zipfield").val(result.postalCode);
                             self.info.zip = result.postalCode;
                         }
                     }
@@ -394,7 +408,6 @@ var MakeAppointmentController;
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
-                //   alert(time);
                 self.showIonicAlert('Sorry, you cannot select date before today');
             }
             else {
@@ -535,20 +548,13 @@ var MakeAppointmentController;
                 }
             });
         };
-        //isToday(time, todayAnd) {
-        //    var today = new Date(),
-        //        currentCalendarDate = new Date(time);
-        //    today.setHours(0, 0, 0, 0);
-        //    currentCalendarDate.setHours(0, 0, 0, 0);
-        //    var currTime = currentCalendarDate.getTime();
-        //    var todayTime = today.getTime();
-        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
-        //}
-        MakeAppointmentController.prototype.isToday = function (start, todayAnd) {
-            var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
-            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
+        MakeAppointmentController.prototype.isToday = function (time, todayAnd) {
+            var today = new Date(), currentCalendarDate = new Date(time);
+            today.setHours(0, 0, 0, 0);
+            currentCalendarDate.setHours(0, 0, 0, 0);
+            var currTime = currentCalendarDate.getTime();
+            var todayTime = today.getTime();
+            return todayAnd ? currTime >= todayTime : currTime == todayTime;
         };
         MakeAppointmentController.prototype.validatePaymentMethod = function () {
             var self = this;
@@ -610,7 +616,7 @@ var MakeAppointmentController;
                 self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
             }
             // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
-            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD  <br/>You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD <br/> You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
             $("#PDonePayment").modal();
         };
         MakeAppointmentController.prototype.actionPayment = function () {
@@ -719,4 +725,4 @@ var MakeAppointmentController;
     angular.module('spafoo.ctrl.MakeAppointment', []).controller('MakeAppointment', MakeAppointmentController);
 })(MakeAppointmentController || (MakeAppointmentController = {}));
 
-//# sourceMappingURL=MakeAppointment.controller.js.map
+//# sourceMappingURL=MakeAppointment.controller - Copy.js.map
