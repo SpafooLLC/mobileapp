@@ -51,7 +51,7 @@
                         events: [],
                         // an option!
                     }];
-            var count = 0;
+            var count = 0;     
             self.uiConfig = {
                 calendar: {
                     height: 450,
@@ -62,11 +62,20 @@
                         right: 'today prev,next'
                     },
                     dayClick: function (date: any, jsEvent: any, view: any) {
-                        if (date <= new Date().setHours(0)) {
+                     //   alert(JSON.stringify(date) + "---->  " + JSON.stringify(new Date().setHours(0)));
+                        if (!self.isToday(date, jsEvent)) {
                             self.message = "Selected date should not be before current date";
                             $("#PDoneError").modal();
                             return;
-                        } var selectedDate = moment(date).format('YYYY-MM-DD');				    // set dateFrom based on user click on calendar
+                        }
+
+
+                        //if (date <= new Date().setHours(0)) {
+                        //    self.message = "Selected date should not be before current date";
+                        //    $("#PDoneError").modal();
+                        //    return;
+                        //}
+                        var selectedDate = moment(date).format('YYYY-MM-DD');				    // set dateFrom based on user click on calendar
                         if (self.ClientID == 'null') {
                             $("#start" + (self.staticEvents1[0].events.length - 1)).focus();
                             self.staticEvents1[0].events.push({
@@ -111,9 +120,18 @@
 
 
             // any other event sources...
-        
-                self.availList();
+
+            self.availList();
         }
+
+        isToday(start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
+        }
+
+
         bookedSlot() {
             var self = this;
             var date = new Date()
@@ -140,12 +158,12 @@
             })
         }
 
-        
+
         availList() {
 
             var self = this;
 
-           
+
 
             //    self.staticEvents[0].events.push(val)
             self.eventSource = [self.staticEvents, self.staticEvents1];
@@ -208,7 +226,7 @@
 
                     var dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
-                   
+
                     //var minStrt = "";
                     //if (self.serviceData[i].StartTime.Minutes == 0) {
                     //    minStrt = "00"
@@ -262,7 +280,7 @@
         }
         convertFormat(date: any) {
             var datestart = new Date(date);
-         
+
             var startResult = 0;
             var endResult = 0;
             var start = '';
@@ -338,14 +356,14 @@
                 var start = '';
                 var end = '';
                 var getendmin = '';
-             
+
                 if (dateend.getMinutes() < 10) {
                     getendmin = "0" + dateend.getMinutes();
-                 
+
                 }
                 else {
                     getendmin = dateend.getMinutes().toString();
-                   
+
                 }
                 if (dateend.getHours() >= 12) {
                     endResult = dateend.getHours() - 12;
@@ -364,29 +382,29 @@
                 var getmin1 = ''
                 if (datestart.getMinutes() < 10) {
                     getmin1 = "0" + datestart.getMinutes();
-                 
+
                 }
                 else {
                     getmin1 = datestart.getMinutes().toString();
-                   
+
                 }
                 if (datestart.getHours() >= 12) {
                     startResult = datestart.getHours() - 12;
                     if (startResult == 0) {
                         startResult = 12;
                     }
-                   
+
                     start = startResult + ":" + getmin1 + " PM";
-                  
+
                 }
                 else {
                     start = datestart.getHours() + ":" + getmin1 + " AM";
                 }
-             
+
                 //alert("start" + start + "end" + end);
 
                 if (data[i].hasOwnProperty('dateFieldHidden')) {
-                   
+
                     csv += data[i].dateFieldHidden + "_" + start + "_" + end + "|"
                 }
 
@@ -405,9 +423,8 @@
 
             });
         }
-        getFreeSlot(proId: any, date: any, start: any, end: any, dateField: any, $index: any)
-        {
-        
+        getFreeSlot(proId: any, date: any, start: any, end: any, dateField: any, $index: any) {
+
             var self = this;
             var datestart1 = new Date(start);
             var dateend = new Date(end);
@@ -417,9 +434,8 @@
             var end1 = '';
             var endmin = '';
             var startmin = '';
-           
-            if (start == null || start == undefined || start == "undefined" || start == 0)
-            {
+
+            if (start == null || start == undefined || start == "undefined" || start == 0) {
                 self.message = "Please select start date";
                 $("#PDoneError").modal();
             }
@@ -443,43 +459,41 @@
                 end1 = dateend.getHours() + ":" + endmin + " AM";
                 //alert("end" + end);
             }
-          
+
             if (datestart1.getMinutes() < 10) {
-              
+
                 startmin = "0" + datestart1.getMinutes();
             } else {
-              
+
                 startmin = datestart1.getMinutes().toString();
             }
             if (datestart1.getHours() >= 12) {
                 startResult = datestart1.getHours() - 12;
-                if (startResult == 0)
-                {
+                if (startResult == 0) {
                     startResult = 12;
-                   
+
                 }
-             
+
                 start1 = startResult + ":" + startmin + " PM";
-             
+
             }
             else {
                 start1 = datestart1.getHours() + ":" + startmin + " AM";
-             
+
             }
-      
+
             var data = { ProID: localStorage.getItem('CustomerID'), StartDateTime: date + " " + start1, EndDateTime: date + " " + end1 };
-         
+
             self.CustomerHttp.post(data, "/CanSetAvailability").then(function (res) {
-                if (res == false)
-                {
+                if (res == false) {
                     self.indexBtn = $index;
                     //self.message = "Slot from " + start1 + " to " + end1 +" on " + dateField + " is not available";
                     self.message = "Sorry, you already have a appointment on other time frame for this date";
                     $("#PDoneError").modal();
                     return;
                 }
-                
-               
+
+
             }, function (e) {
 
 
@@ -490,17 +504,16 @@
             if (typeof (index) == "number") {
                 delete self.staticEvents1[0].events[index].startTime;
                 delete self.staticEvents1[0].events[index].endTime;
-                
+
             }
         }
-        calculateEndTime(proId: any, dateFieldHidden: any, startTime: any, dateField: any, index: any)
-        {
-           
+        calculateEndTime(proId: any, dateFieldHidden: any, startTime: any, dateField: any, index: any) {
+
             var self = this;
             var date = new Date(startTime);
-            
+
             var min = parseInt(self.totalTime);
-           
+
             var endhours = date.setMinutes(min + date.getMinutes());
 
             console.log(endhours)
@@ -518,69 +531,68 @@
                 return;
             }
             for (var i = 0; i < self.staticEvents1[0].events.length; i++) {
-                if (self.staticEvents1[0].events[i].proId == -1)
-                    {
+                if (self.staticEvents1[0].events[i].proId == -1) {
                     if (!self.staticEvents1[0].events[i].hasOwnProperty('endTime')) {
                         self.message = "Choose time on respective date";
                         $("#PDoneError").modal("toggle");
                         return;
 
                     }
-                if (!self.staticEvents1[0].events[i].hasOwnProperty('startTime')) {
-                    self.message = "Choose time on respective date";
-                    $("#PDoneError").modal("toggle");
-                    return;
-                }
-                var date1 = new Date(self.staticEvents1[0].events[i].startTime);
-                var date2 = new Date(self.staticEvents1[0].events[i].endTime);
-                //  alert("date1" + date1 + "date2" + date2);
-                if (date2 <= date1) {
-                    this.message = "Start date is greater than end date";
-                    $("#PDoneError").modal("toggle");
-                    return;
+                    if (!self.staticEvents1[0].events[i].hasOwnProperty('startTime')) {
+                        self.message = "Choose time on respective date";
+                        $("#PDoneError").modal("toggle");
+                        return;
+                    }
+                    var date1 = new Date(self.staticEvents1[0].events[i].startTime);
+                    var date2 = new Date(self.staticEvents1[0].events[i].endTime);
+                    //  alert("date1" + date1 + "date2" + date2);
+                    if (date2 <= date1) {
+                        this.message = "Start date is greater than end date";
+                        $("#PDoneError").modal("toggle");
+                        return;
+                    }
                 }
             }
-        }
             for (var i = 0; i < self.staticEvents1[0].events.length; i++) {
                 if (self.staticEvents1[0].events[i].proId == -1) {
-                var datestart = new Date(self.staticEvents1[0].events[i].startTime);
-                var dateend = new Date(self.staticEvents1[0].events[i].endTime);
-                var startResult = 0;
-                var endResult = 0;
-                var start = '';
-                var end = '';
-                if (datestart.getHours() >= 12) {
-                    startResult = datestart.getHours() - 12;
-                    if (startResult == 0) {
-                        startResult = 12;
+                    var datestart = new Date(self.staticEvents1[0].events[i].startTime);
+                    var dateend = new Date(self.staticEvents1[0].events[i].endTime);
+                    var startResult = 0;
+                    var endResult = 0;
+                    var start = '';
+                    var end = '';
+                    if (datestart.getHours() >= 12) {
+                        startResult = datestart.getHours() - 12;
+                        if (startResult == 0) {
+                            startResult = 12;
+                        }
+                        start = startResult + ":" + datestart.getMinutes() + " PM";
                     }
-                    start = startResult + ":" + datestart.getMinutes() + " PM";
-                }
-                else {
-                    start = datestart.getHours() + ":" + datestart.getMinutes() + " AM";
-                }
-                if (dateend.getHours() >= 12) {
-                    endResult = dateend.getHours() - 12;
-                    if (endResult == 0) {
-                        endResult = 12;
+                    else {
+                        start = datestart.getHours() + ":" + datestart.getMinutes() + " AM";
                     }
-                    end = endResult + ":" + dateend.getMinutes() + " PM";
-                }
-                else {
-                    end = dateend.getHours() + ":" + dateend.getMinutes() + " AM";
-                }
+                    if (dateend.getHours() >= 12) {
+                        endResult = dateend.getHours() - 12;
+                        if (endResult == 0) {
+                            endResult = 12;
+                        }
+                        end = endResult + ":" + dateend.getMinutes() + " PM";
+                    }
+                    else {
+                        end = dateend.getHours() + ":" + dateend.getMinutes() + " AM";
+                    }
 
-                data = { AddressID: self.AddressID, AppID: self.AppID, AtTime: start, ClientID: self.ClientID, Comment: "", EndTime: end, ForDate: self.staticEvents1[0].events[i].dateFieldHidden, ProviderID: self.ProviderID };
+                    data = { AddressID: self.AddressID, AppID: self.AppID, AtTime: start, ClientID: self.ClientID, Comment: "", EndTime: end, ForDate: self.staticEvents1[0].events[i].dateFieldHidden, ProviderID: self.ProviderID };
 
-                self.CustomerHttp.post(data, "/UpdateAppBasicInfo").then(function (res: any) {
+                    self.CustomerHttp.post(data, "/UpdateAppBasicInfo").then(function (res: any) {
 
 
-                    self.CustomerHttp.get("/UpdateAppStatus/" + res + "/5").then(function () {
-                        self.$state.go("ProAppointments");
+                        self.CustomerHttp.get("/UpdateAppStatus/" + res + "/5").then(function () {
+                            self.$state.go("ProAppointments");
+                        });
+
                     });
-
-                });
-            }
+                }
             }
 
 

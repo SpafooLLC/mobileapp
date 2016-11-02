@@ -290,10 +290,32 @@ var MakeAppointmentController;
                 self.showIonicAlert('Please select the Service(s) for Appointment');
             }
         };
-        MakeAppointmentController.prototype.changeSummery = function () {
+        //changeSummery() {
+        //    var self = this;
+        //    self.totalDuration = 0;
+        //    self.totalPrice = 0;
+        //    self.serviceString = self.selectedServices.map(function (serv) {
+        //        self.totalDuration += isNaN(serv.durationField * serv.qtyField) ? serv.durationField == '-1' ? 60 : serv.durationField : serv.durationField == '-1' ? 60 : serv.durationField * serv.qtyField;
+        //        self.totalPrice += isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;
+        //        //servLists.push(serv);
+        //    });
+        //    self.serviceString = '';
+        //    self.selectedServices.map(function (srvc) {
+        //        var str = srvc.serviceIDField + ':' + srvc.qtyField + ':' + srvc.priceField;
+        //        if (self.serviceString == '') {
+        //            self.serviceString = str;
+        //        } else {
+        //            self.serviceString += '|' + str;
+        //        }
+        //    });
+        //}
+        MakeAppointmentController.prototype.changeSummery = function (value) {
             var self = this;
             self.totalDuration = 0;
             self.totalPrice = 0;
+            if (value > 10) {
+                self.showIonicAlert('Max allowed value for a single item is 10');
+            }
             self.serviceString = self.selectedServices.map(function (serv) {
                 self.totalDuration += isNaN(serv.durationField * serv.qtyField) ? serv.durationField == '-1' ? 60 : serv.durationField : serv.durationField == '-1' ? 60 : serv.durationField * serv.qtyField;
                 self.totalPrice += isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;

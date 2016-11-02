@@ -44,11 +44,17 @@ var ProMyAvailabilityController;
                         right: 'today prev,next'
                     },
                     dayClick: function (date, jsEvent, view) {
-                        if (date <= new Date().setHours(0)) {
+                        //   alert(JSON.stringify(date) + "---->  " + JSON.stringify(new Date().setHours(0)));
+                        if (!self.isToday(date, jsEvent)) {
                             self.message = "Selected date should not be before current date";
                             $("#PDoneError").modal();
                             return;
                         }
+                        //if (date <= new Date().setHours(0)) {
+                        //    self.message = "Selected date should not be before current date";
+                        //    $("#PDoneError").modal();
+                        //    return;
+                        //}
                         var selectedDate = moment(date).format('YYYY-MM-DD'); // set dateFrom based on user click on calendar
                         if (self.ClientID == 'null') {
                             $("#start" + (self.staticEvents1[0].events.length - 1)).focus();
@@ -85,6 +91,12 @@ var ProMyAvailabilityController;
             // any other event sources...
             self.availList();
         }
+        ProMyAvailabilityController.prototype.isToday = function (start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
+        };
         ProMyAvailabilityController.prototype.bookedSlot = function () {
             var self = this;
             var date = new Date();

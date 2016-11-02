@@ -171,7 +171,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="sname"><a ng-click="ma.removeService($index)"><i class="fa fa-trash-o fa-lg deleteadd "></i></a> &nbsp; {{service.serviceNameField}}</td>
-                                <td class="qbox"><input required ng-change="ma.changeSummery()" oninput="javascript: if (!this.value.length || /\D/.test(this.value) || this.value == 0) {this.value = 1; this.select(); }" onfocus="this.select();" type="tel" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
+                                <td class="qbox"><input required ng-change="ma.changeSummery(ma.selectedServices[$index].qtyField)" oninput="javascript: if (!this.value.length || /\D/.test(this.value) || this.value == 0) {this.value = 1; this.select(); } else if(this.value > 10 ) {this.value = 10;}" onfocus="this.select();" type="tel" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
                                 <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
                             </tr>
                         </table>
@@ -421,7 +421,7 @@
                         <h4 class="center" id="myModalLabel"><i class="fa fa-check-cross fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
-                        <p>{{ma.messages}} </p>
+                        <p ng-bind-html="ma.messages"> </p>
                         <div class="cpaction">
                             <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
                             <div class="col-xs-6 nopad"><a ng-click="ma.actionPayment()" class="bluesm-btn block">Ok</a></div>
