@@ -26,6 +26,7 @@
 
 
         doLogin(username: string, password: string) {
+            //alert(this.$window.localStorage.getItem('DeviceToken'));
             var self = this;
             if (username === null || username == '' || username == undefined) {                
                 self.messages = "Please enter user name";   
@@ -162,9 +163,6 @@
                 //  self.$state.go("home");
             }, function (error) { });
         }
-
-
-
     }
 
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);

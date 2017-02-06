@@ -8,6 +8,28 @@
             <div class="myschedule">
 
                 <div ng-repeat="s in papp.ServiceData">
+                
+                    <div class="trowsp" ng-if="s.statusField==-1">
+                        <div class="sce">
+
+                            <a href="">
+                                <div class="left">
+                                    <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
+                                    <div class="time">{{s.atTimeField}}</div>
+                                </div>
+                            </a>
+                            <div class="right">
+                                <h2 style="color:red">{{s.orderDateField}}</h2>
+                                <div class="asapad">
+                                    <a class="btnacc" ng-click="papp.acceptAppointment({{s.appointmentIDField}})">Accept</a>
+                                    <a class="btnden" ng-click="papp.denyAppointment({{s.appointmentIDField}})">Deny</a>
+                                </div>
+                                <p>At: <a href="">{{s.addressField}}</a></p>
+                                <p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
+                                <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div ng-if="s.statusField==3">
                         <div class="acc">
@@ -108,7 +130,7 @@
                 </div>
 
                 <div ng-repeat="s in papp.ServiceData">
-                    <div class="bar pbards" ng-if="$index==0">Accomplished</div>
+                    <div class="bar pbards" ng-if="$index==0">Completed</div>
                     <div ng-if="s.statusField==1">
                         <div class="acc">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">

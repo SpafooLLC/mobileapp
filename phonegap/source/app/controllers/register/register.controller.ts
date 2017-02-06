@@ -20,7 +20,7 @@
     }
     interface ITimeoutService extends ng.ITimeoutService { }
     class RegisterController implements IRegister {
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp', '$rootScope'];
         username: string;
         password: string;
         messages: string; messagessuc: string;
@@ -39,7 +39,7 @@
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
             private $timeout: ITimeoutService,
-            private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp, private $rootScope: any
         ) {
             window.localStorage.setItem("url", 'Register');
             $("#PhoneNo").mask("000-000-0000");
@@ -67,10 +67,19 @@
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.$window.localStorage.setItem('Role', response.Usertype);
                         self.$window.localStorage.setItem('LoginStatus', "true");
-                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                      //  self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
+
+                        self.SharedHttp.GetUserInfo(response.CustomerID).then(function (res: any) {
+                            self.$rootScope.UserProfileName = res.displayNameField;
+                            self.$window.localStorage.setItem('CustomerName', res.displayNameField);
+                            self.$rootScope.GetLoginStatus = true;
                             self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
+                        self.SharedHttp.GetMyNotification(response.CustomerID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
+                        self.$rootScope.getRole = (self.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
+                       
+                       // });
                     }
                     else if (response.Success == "UserAlreadyRegistered")
                     {

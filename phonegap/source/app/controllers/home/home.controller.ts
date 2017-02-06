@@ -16,15 +16,17 @@
         ) {
 
             document.addEventListener("deviceready", this.onDeviceReady, false);
-            navigator.geolocation.getCurrentPosition(function (e) { }, function (e) { }, {
-                enableHighAccuracy: true,
-                maximumAge: 3600000});
+          
             
         }
         doLogin() {
 
         }
         onDeviceReady() {
+            navigator.geolocation.getCurrentPosition(function (e) { }, function (e) { }, {
+                enableHighAccuracy: true,
+                maximumAge: 3600000
+            });
             var self = this;
             var tabClick = 0;
             document.addEventListener("backbutton", function (e) {

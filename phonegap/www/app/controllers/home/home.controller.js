@@ -9,13 +9,14 @@ var homeController;
             this.SharedHttp = SharedHttp;
             this.$inject = ['$state', '$scope', '$ionicLoading', '$timeout', 'SharedHttp'];
             document.addEventListener("deviceready", this.onDeviceReady, false);
-            navigator.geolocation.getCurrentPosition(function (e) { }, function (e) { }, {
-                enableHighAccuracy: true,
-                maximumAge: 3600000 });
         }
         homeController.prototype.doLogin = function () {
         };
         homeController.prototype.onDeviceReady = function () {
+            navigator.geolocation.getCurrentPosition(function (e) { }, function (e) { }, {
+                enableHighAccuracy: true,
+                maximumAge: 3600000
+            });
             var self = this;
             var tabClick = 0;
             document.addEventListener("backbutton", function (e) {

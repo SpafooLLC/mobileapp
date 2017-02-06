@@ -15,6 +15,7 @@ var loginController;
             this.SharedHttp = SharedHttp;
         }
         loginController.prototype.doLogin = function (username, password) {
+            //alert(this.$window.localStorage.getItem('DeviceToken'));
             var self = this;
             if (username === null || username == '' || username == undefined) {
                 self.messages = "Please enter user name";

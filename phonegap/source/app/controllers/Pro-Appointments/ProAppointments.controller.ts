@@ -30,8 +30,6 @@
             self.CustomerHttp.get('/ListAppointmentByProvider/' + UserID).then(function (response: any) {
                 self.ServiceData = response.ListAppointmentByProviderResult;
                 $.each(self.ServiceData, function (i, item) {
-
-
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
                         self.ServiceData[i].DayField = '00';
@@ -48,9 +46,6 @@
                     } else {
                         self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
                     }
-
-
-
                     var serviceName = "";
                     var serviceTime = 0;
                     $.each(item.servicesField, function (ig, sitem) {
@@ -72,17 +67,12 @@
                       if (self.ServiceData[i].statusField == 1) {//self.ServiceData[i].clientIDField
                           self.CustomerHttp.get('/DidIRated/' + UserID+ '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
-                            }, function (error: any) {
-
-                            });
+                            }, function (error: any) {});
                         }
-
-
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e: any) { self.ServiceData[i].addressField = e; });
                 });
-            }, function (error) {
-            });
+            }, function (error) {});
         }
 
         RemoveCancelled(AppointmentID: any) {
@@ -112,6 +102,19 @@
            }
 
         }
+
+        acceptAppointment(data: any) {
+            var self = this;
+            self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getProviderSchedular(self.UserID); });
+        }
+        denyAppointment(data: any) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;
+                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getProviderSchedular(self.UserID) });
+            }
+        }
+
         //UnSeenStatus(AppointmentID: any) {
         //    var self = this;
         //    self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {

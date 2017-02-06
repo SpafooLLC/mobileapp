@@ -3,18 +3,19 @@
   "version": "1.1.1",
   "description": "ionic-ts-tabs: An Ionic project",
   "dependencies": {
+    "angular-toastr": "2.0.0",
     "gulp": "3.9.1",
-    "gulp-sass": "^2.3.1",
-    "gulp-minify-css": "^1.2.4",
-    "gulp-rename": "^1.2.2",
-    "run-sequence": "1.2.2",
-    "rimraf": "2.5.4",
     "gulp-inject": "4.1.0",
     "gulp-less": "3.1.0",
     "gulp-main-bower-files": "1.5.2",
-    "wiredep": "4.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "highcharts": "^5.0.6",
     "main-bower-files": "2.13.1",
-    "angular-toastr": "2.0.0"
+    "rimraf": "2.5.4",
+    "run-sequence": "1.2.2",
+    "wiredep": "4.0.0"
   },
   "devDependencies": {
     "bower": "^1.7.9",

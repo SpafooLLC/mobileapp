@@ -22,9 +22,14 @@ var mainController;
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res) { seldf.$rootScope.NotifiCount = res.length; });
             }
-            document.addEventListener('deviceready', seldf.onDeviceReady, false);
+            try {
+                document.addEventListener('deviceready', seldf.onDeviceReady, false);
+            }
+            catch (e) {
+            }
         }
         MainController.prototype.onDeviceReady = function () {
+            //    alert(JSON.stringify(device));
             if (device.platform === 'iOS') {
                 StatusBar.hide();
             }
@@ -43,9 +48,9 @@ var mainController;
                 windows: {}
             });
             push.on('registration', function (data) {
-                // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+                //   alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                    //  alert(JSON.stringify(data));
+                    //    alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }

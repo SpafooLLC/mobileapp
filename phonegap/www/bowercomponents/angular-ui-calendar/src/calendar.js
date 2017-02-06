@@ -281,7 +281,6 @@ angular.module('ui.calendar', [])
 
                     scope.initCalendar = function () {
                         if (!calendar) {
-                            //calendar = angular.element(elm).html('');
                             calendar = $(elm);
                         }
                         calendar.fullCalendar(options);
@@ -321,8 +320,7 @@ angular.module('ui.calendar', [])
 
                     eventsWatcher.onAdded = function (event) {
                         if (calendar && calendar.fullCalendar) {
-                            //calendar.fullCalendar('renderEvent', event, !!event.stick);
-                            calendar.fullCalendar('renderEvent', event, true);
+                            calendar.fullCalendar('renderEvent', event, !!event.stick);
                         }
                     };
 

@@ -51,7 +51,7 @@
             <div class="expdate">
                 <p class="control-label bold bmar-sm">CVV</p>
                 <div class="col-xs-6 fileft">
-                    <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="text" class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
+                    <input ng-disabled="cc.from == 'reg' && cc.isChecked"  type="tel"  class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
                 </div>
                 <div class="col-xs-6 firight cvv">
                     The last 3-4 digits displyed on the back of  your card

@@ -59,15 +59,12 @@
         setuserType(value: any): any {
             this.userType = value;
         }
-
         getAddressDetailRcd(): any {
             return this.AddressDetailRcd;
         }
         setAddressDetailRcd(value: any): any {
             this.AddressDetailRcd = value;
         }
-
-
         getUuid(): any {
             return this.uuid;
         }

@@ -21,23 +21,29 @@
             this.$rootScope.UserProfileName = this.$window.localStorage.getItem('CustomerName');
             this.$rootScope.GetLoginStatus = (this.$window.localStorage.getItem('LoginStatus') == "true" ? true : false);
             this.$rootScope.getRole = (this.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
-           console.log(this.$rootScope.getRole);
+            console.log(this.$rootScope.getRole);
             var customerID = this.$window.localStorage.getItem('CustomerID');
             var seldf = this;
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res: any) { seldf.$rootScope.NotifiCount = res.length; });
             }
-            document.addEventListener('deviceready', seldf.onDeviceReady, false);
-
+            
+            try {
+                document.addEventListener('deviceready', seldf.onDeviceReady, false);
+            }
+            catch (e)
+            {
+             
+            }
 
         }
 
         onDeviceReady() {
-
+        //    alert(JSON.stringify(device));
             if (device.platform === 'iOS') {
                 StatusBar.hide();
             }
-            
+
             var push = PushNotification.init({
                 android: {
                     senderID: "24553703183"
@@ -54,9 +60,9 @@
             });
 
             push.on('registration', function (data: any) {
-                // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+             //   alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                    //  alert(JSON.stringify(data));
+                //    alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }
@@ -91,7 +97,7 @@
 
         doLogOut() {
             this.$rootScope.GetLoginStatus = false;
-          
+
             this.$window.localStorage.setItem('LoginStatus', "false");
             this.$rootScope.UserProfileName = "Welcome to Spafoo";
             this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");

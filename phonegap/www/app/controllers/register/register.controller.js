@@ -1,7 +1,7 @@
 var registerController;
 (function (registerController) {
     var RegisterController = (function () {
-        function RegisterController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $timeout, SharedHttp) {
+        function RegisterController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $timeout, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,6 +12,7 @@ var registerController;
             this.$window = $window;
             this.$timeout = $timeout;
             this.SharedHttp = SharedHttp;
+            this.$rootScope = $rootScope;
             window.localStorage.setItem("url", 'Register');
             $("#PhoneNo").mask("000-000-0000");
             $("#MobileNo").mask("000-000-0000");
@@ -39,10 +40,16 @@ var registerController;
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.$window.localStorage.setItem('Role', response.Usertype);
                         self.$window.localStorage.setItem('LoginStatus', "true");
-                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
-                            //self.$state.go("home");
+                        //  self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                        //self.$state.go("home");
+                        self.SharedHttp.GetUserInfo(response.CustomerID).then(function (res) {
+                            self.$rootScope.UserProfileName = res.displayNameField;
+                            self.$window.localStorage.setItem('CustomerName', res.displayNameField);
+                            self.$rootScope.GetLoginStatus = true;
                             self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
+                        self.SharedHttp.GetMyNotification(response.CustomerID).then(function (res) { self.$rootScope.NotifiCount = res.length; });
+                        self.$rootScope.getRole = (self.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
                     }
                     else if (response.Success == "UserAlreadyRegistered") {
                         self.messages = "Username already exists. Please select new username.";
@@ -283,7 +290,7 @@ var registerController;
                 return msg;
             }), options);
         };
-        RegisterController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp'];
+        RegisterController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp', '$rootScope'];
         return RegisterController;
     }());
     angular.module('spafoo.ctrl.register', []).controller('register', RegisterController);

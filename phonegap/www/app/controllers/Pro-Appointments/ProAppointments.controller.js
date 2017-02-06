@@ -60,14 +60,12 @@ var ProAppointmentsController;
                         if (self.ServiceData[i].statusField == 1) {
                             self.CustomerHttp.get('/DidIRated/' + UserID + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
-                            }, function (error) {
-                            });
+                            }, function (error) { });
                         }
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e) { self.ServiceData[i].addressField = e; });
                 });
-            }, function (error) {
-            });
+            }, function (error) { });
         };
         ProAppointmentsController.prototype.RemoveCancelled = function (AppointmentID) {
             var conf = confirm("Are you sure want to remove ?");
@@ -91,6 +89,17 @@ var ProAppointmentsController;
                         self.getProviderSchedular(self.UserID);
                     }
                 });
+            }
+        };
+        ProAppointmentsController.prototype.acceptAppointment = function (data) {
+            var self = this;
+            self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getProviderSchedular(self.UserID); });
+        };
+        ProAppointmentsController.prototype.denyAppointment = function (data) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;
+                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res) { self.getProviderSchedular(self.UserID); });
             }
         };
         //UnSeenStatus(AppointmentID: any) {

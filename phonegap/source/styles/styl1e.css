@@ -172,8 +172,6 @@
   .ratting-5 { width:92px; height:21px; background:url(../images/Site/ratting-5.png) top left no-repeat;  }
   .pprofile .mainimg { width:100%; }
   .pprofile .bar { margin:2px 0 0 0; overflow:hidden; padding:6px 10px; background:#e7e7e7; display:block; position:relative; }
-  .pprofile .barx { margin:2px 0 0 0; overflow:hidden; padding:6px 10px; background:#e7e7e7; display:block; position:relative; }
-  .pprofile .barx .fleft { padding:5px 0 0 0; }
   .pprofile .infobox { clear:both; margin:50px 0 0 0; text-align:center; }
   .pprofile .infobox h1 { color:#219862; font-size:32px; margin:0 0 2px 0; line-height:34px;  }
   .pprofile .infobox h3 { font-family:'Lato', sans-serif; font-size:18px; margin:0 0 20px 0; }
@@ -305,7 +303,6 @@
   .asapad a.btnden { font-family:'Roboto', sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#ff0000; padding:2px 30px; display:inline-block; }
   .asapad a.btnacc:hover, .asapad a.btnden:hover { background:#222222; color:#ffffff; }
   .pdimg {   background:#ff0000; padding:2px 0; text-align:center; display:block; }
-  .bsbutton { background:#1e319b; padding:5px 15px; color:#ffffff; }
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	
@@ -478,7 +475,8 @@
 	
 }
 @media (min-width:240px) and (max-width:400px){
-	
+	.pprofile .bar .fleft { float:none; text-align:center; }
+	.pprofile .bar .fright { float:none; text-align:center; margin:10px 0 0 0; }
 }
 
 @media (min-width:240px) and (max-width:520px){
