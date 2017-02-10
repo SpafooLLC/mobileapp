@@ -29,7 +29,6 @@ var mainController;
             }
         }
         MainController.prototype.onDeviceReady = function () {
-            //    alert(JSON.stringify(device));
             if (device.platform === 'iOS') {
                 StatusBar.hide();
             }
@@ -48,9 +47,8 @@ var mainController;
                 windows: {}
             });
             push.on('registration', function (data) {
-                //   alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+                // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                    //    alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }
@@ -60,7 +58,6 @@ var mainController;
             });
             push.on('notification', function (data) {
                 //var i = 2;
-                // alert(JSON.stringify(data));
                 if (!data.additionalData.foreground) {
                     //cordova.plugins.notification.badge.set(i);
                     window.location.href = "#/Notification";
@@ -73,7 +70,7 @@ var mainController;
                 // data.additionalData
             });
             push.on('error', function (e) {
-                alert(JSON.stringify(e));
+                //  alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
         };

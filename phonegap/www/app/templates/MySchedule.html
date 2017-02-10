@@ -46,7 +46,7 @@
                             <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>
                         </div>
                     </div>
-                    <div class="sce" ng-if="s.statusField==4">
+                    <div class="sce" ng-if="s.statusField==4 || s.statusField==-1">
 
                         <a href="">
                             <div class="left">
