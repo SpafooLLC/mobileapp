@@ -4,11 +4,21 @@
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">Provider</div>
         </div>
+        <div class="action">
+            <div class="col-xs-6 nopad" ng-if="PvP.customerType!='P'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/ASAP" class="green-btn block mr1px">ASAP - I'm Ready Now!</a></div>
+            <div class="col-xs-6 nopad" ng-if="PvP.customerType!='P'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL" class="bluesm-btn block ml1px">Schedule Appointment</a></div>
+            <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==true"><a href="#/MakeAppointment/{{PvP.UserID}}" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
+            <!--<div class="col-xs-6 nopad" ng-if="GetLoginStatus==false"><aa ui-sref="login"" class="bluesm-btn block ml1px">Schedule Appointment</a></div>-->
+        </div>
         <div class="inbody pprofile">
             <img class="mainimg" ng-src="{{PvP.profilePic}}">
             <div class="bar">
                 <div class="fleft"><i class="fa fa-map-marker fa-lg"></i> &nbsp;{{PvP.distance}} miles from you</div>
+<<<<<<< HEAD
                 <div class="fright"><a ng-href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL">Make Appointment</a></div>
+=======
+                <div class="fright"><a ng-if="PvP.customerType!='P'" ng-href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL">Make Appointment</a></div>
+>>>>>>> refs/remotes/origin/PawanBranch
             </div>
             <div class="infobox">
                 <h1>{{PvP.ServiceData.displayNameField}}</h1>
@@ -28,6 +38,7 @@
                 <span>Bio: </span>
                 {{PvP.ServiceData.profileField.biographyField}}
             </div>
+
             <div class="sample">
                 <h4>Work Samples</h4>
                 <ul>

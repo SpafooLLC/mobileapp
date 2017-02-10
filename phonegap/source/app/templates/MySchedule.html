@@ -9,8 +9,13 @@
         </div>
         <div class="inbody-simple">
             <div class="myschedule">
+<<<<<<< HEAD
                 <div class="trowsp" ng-repeat="s in ms.ServiceData"  ng-if="s.statusField!=3 && s.statusField!=1 " >
                     <div class="sce" ng-if="s.statusField==0" >
+=======
+                <div class="trowsp" ng-repeat="s in ms.ServiceData" ng-if="s.statusField!=3 && s.statusField!=1 ">
+                    <div class="sce" ng-if="s.statusField==0">
+>>>>>>> refs/remotes/origin/PawanBranch
                         <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
@@ -21,7 +26,11 @@
                             <h2>{{s.orderDateField}}</h2>
                             <p>At: <a href="">{{s.addressField}}</a></p>
                             <!--<p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
+<<<<<<< HEAD
                 <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+=======
+                            <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+>>>>>>> refs/remotes/origin/PawanBranch
 
                             <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
                             <p>Service(s): <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.ServiceList}}</a></p>
@@ -37,13 +46,20 @@
                         </a>
                         <div class="right">
                             <h2 style="color:red">{{s.orderDateField}}</h2>
+<<<<<<< HEAD
                             <div class="asapad"><a class="btnacc" ng-click="ms.acceptAppointment({{s.appointmentIDField}})">Accept</a> <a class="btnden" ng-click="ms.denyAppointment({{s.appointmentIDField}})">Deny</a></div>
+=======
+                            <div class="asapad">
+                                <a class="btnacc" ng-click="ms.acceptAppointment({{s.appointmentIDField}})">Accept</a>
+                                <a class="btnden" ng-click="ms.denyAppointment({{s.appointmentIDField}})">Deny</a>
+                            </div>
+>>>>>>> refs/remotes/origin/PawanBranch
                             <p>At: <a href="">{{s.addressField}}</a></p>
                             <p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
                             <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>
                         </div>
                     </div>
-                    <div class="sce" ng-if="s.statusField==4">
+                    <div class="sce" ng-if="s.statusField==4 || s.statusField==-1">
 
                         <a href="">
                             <div class="left">
@@ -61,7 +77,7 @@
 
                 </div>
                 <div ng-repeat="s in ms.ServiceData">
-                    <div class="bar pbards" ng-if="$index==0">Accomplished</div>
+                    <div class="bar pbards" ng-if="$index==0">Completed</div>
 
                     <div class="acc" ng-if="s.statusField==1">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -82,7 +98,7 @@
                                     <a ng-if="!s.isRate" href="#/AddProviderReview/{{s.appointmentIDField}}/{{s.providerIDField}}">
                                         <i class="fa fa-star-o fa-2x"></i>
 
-                                        <p ng-if="!s.isRate">Rate this client</p>
+                                        <p ng-if="!s.isRate">Rate this activity</p>
                                     </a>
 
                                     <a ng-if="s.isRate" href="">

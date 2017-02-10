@@ -6,7 +6,7 @@
         GetCreditCardData: any;
         profilePic: string;
         NotificationCount: number;
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope'];
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -17,7 +17,8 @@
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
             private toaster: ngtoaster.IToasterService,
-            private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
+            private $rootScope: any
         ) {
             this.getUserInfo();
 
@@ -32,6 +33,8 @@
             self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response: any) {
 
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField1 = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
+              
                 self.ServiceData.membershipField.createdDateField = self.SharedHttp.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
@@ -69,6 +72,8 @@
             self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response: any) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
+                self.$rootScope.NotifiCount = self.NotificaitonData.length;
+               
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
 
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy")
@@ -87,7 +92,11 @@
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
                             break;
                         case 6:
+<<<<<<< HEAD
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
+=======
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 2hrs ";
+>>>>>>> refs/remotes/origin/PawanBranch
                             break;
 
                         case 14:
@@ -127,7 +136,11 @@
                             }
                             break;
                         case 15: if (role == 'C') {
+<<<<<<< HEAD
                             self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " .For more information, please check 'My Schedule' section.";
+=======
+                            self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " ,For more information, please check 'My Schedule' section.";
+>>>>>>> refs/remotes/origin/PawanBranch
                         }
                             break;
                         case 16:

@@ -5,21 +5,33 @@
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">Notification</div>
-            <div class="pnotification">
-                <div class="ico">
-                    <a href="#noti"><i class="fa blue fa-bell fa-1x"></i></a>
+            <a href="#noti">
+                <div class="pnotification">
+                    <div class="ico">
+                        <i class="fa blue fa-bell fa-1x"></i>
+                    </div>
+                    <div id='notification'>{{noti.NotificationCount}}</div>
                 </div>
-                <div id='notification'>{{noti.NotificationCount}}</div>
-            </div>
+            </a>
         </div>
         <div class="inbody-simple mprofile">
 
-          
+
             <div ng-if="noti.NotificaitonData!=''" class="nsrow MyNotifications">
                 <div class="notiwrapper">
                     <ul>
+<<<<<<< HEAD
                         <li ng-repeat="sr in noti.NotificaitonData"  ng-if="sr.typeNameFields!=null">
                             <span>{{sr.datedField}}</span> <label  ui-sref="MySchedule"  ng-bind-html="sr.typeNameFields"></label> <a ng-click="noti.RemoveNotification({{sr.idField}})" class="redclose">
+=======
+                        <li ng-repeat="sr in noti.NotificaitonData" ng-if="sr.typeNameFields!=null">
+                            <span>{{sr.datedField}}</span>
+
+                            <label ng-if="getRole=='P'" ui-sref="ProAppointments" ng-bind-html="sr.typeNameFields"></label>
+                            <label ng-if="getRole!='P'" ui-sref="MySchedule" ng-bind-html="sr.typeNameFields"></label>
+
+                            <a ng-click="noti.RemoveNotification({{sr.idField}})" class="redclose">
+>>>>>>> refs/remotes/origin/PawanBranch
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </li>

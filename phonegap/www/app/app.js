@@ -25,7 +25,11 @@
         'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
         'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
+<<<<<<< HEAD
         'spafoo.module.ProSetSoonest', "spafoo.module.ContactUs", 'spafoo.module.AvailableCities'
+=======
+        'spafoo.module.ProSetSoonest', "spafoo.module.ContactUs", 'spafoo.module.AvailableCities', 'spafoo.module.PrivacyStatement', 'spafoo.module.TermsOfUse'
+>>>>>>> refs/remotes/origin/PawanBranch
     ];
     angular
         .module('spafoo', moduleDependencies)
@@ -51,9 +55,12 @@
             }
         }, 100);
     });
-    configAppUrl.$inject = ['$urlRouterProvider'];
-    function configAppUrl($urlRouterProvider) {
+    configAppUrl.$inject = ['$urlRouterProvider', '$ionicConfigProvider', '$stateProvider'];
+    function configAppUrl($urlRouterProvider, $ionicConfigProvider, $stateProvider) {
         $urlRouterProvider.otherwise('home');
+        if (!ionic.Platform.isIOS()) {
+            $ionicConfigProvider.scrolling.jsScrolling(true);
+        }
     }
 })();
 

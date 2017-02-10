@@ -22,7 +22,11 @@ var mainController;
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res) { seldf.$rootScope.NotifiCount = res.length; });
             }
-            document.addEventListener('deviceready', seldf.onDeviceReady, false);
+            try {
+                document.addEventListener('deviceready', seldf.onDeviceReady, false);
+            }
+            catch (e) {
+            }
         }
         MainController.prototype.onDeviceReady = function () {
             if (device.platform === 'iOS') {
@@ -55,7 +59,10 @@ var mainController;
             });
             push.on('notification', function (data) {
                 //var i = 2;
+<<<<<<< HEAD
                 // alert(JSON.stringify(data));
+=======
+>>>>>>> refs/remotes/origin/PawanBranch
                 if (!data.additionalData.foreground) {
                     //cordova.plugins.notification.badge.set(i);
                     window.location.href = "#/Notification";
@@ -68,7 +75,7 @@ var mainController;
                 // data.additionalData
             });
             push.on('error', function (e) {
-                alert(JSON.stringify(e));
+                //  alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
         };
@@ -78,6 +85,7 @@ var mainController;
             this.$rootScope.UserProfileName = "Welcome to Spafoo";
             this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");
             this.$window.localStorage.setItem('Role', null);
+            this.$rootScope.getRole = (this.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
             //  alert("LogOut :: "+this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
             $('.clsmenu').click(function () {
                 $('.titre').click();

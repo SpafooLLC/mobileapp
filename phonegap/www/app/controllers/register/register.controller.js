@@ -1,7 +1,7 @@
 var registerController;
 (function (registerController) {
     var RegisterController = (function () {
-        function RegisterController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $timeout, SharedHttp) {
+        function RegisterController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $timeout, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,6 +12,10 @@ var registerController;
             this.$window = $window;
             this.$timeout = $timeout;
             this.SharedHttp = SharedHttp;
+<<<<<<< HEAD
+=======
+            this.$rootScope = $rootScope;
+>>>>>>> refs/remotes/origin/PawanBranch
             window.localStorage.setItem("url", 'Register');
             $("#PhoneNo").mask("000-000-0000");
             $("#MobileNo").mask("000-000-0000");
@@ -39,12 +43,32 @@ var registerController;
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.$window.localStorage.setItem('Role', response.Usertype);
                         self.$window.localStorage.setItem('LoginStatus', "true");
+<<<<<<< HEAD
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
                             //self.$state.go("home");
+=======
+                        //  self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                        //self.$state.go("home");
+                        self.SharedHttp.GetUserInfo(response.CustomerID).then(function (res) {
+                            self.$rootScope.UserProfileName = res.displayNameField;
+                            self.$window.localStorage.setItem('CustomerName', res.displayNameField);
+                            self.$rootScope.GetLoginStatus = true;
+>>>>>>> refs/remotes/origin/PawanBranch
                             self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
+                        self.SharedHttp.GetMyNotification(response.CustomerID).then(function (res) { self.$rootScope.NotifiCount = res.length; });
+                        self.$rootScope.getRole = (self.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
                     }
-                    self.$ionicLoading.hide();
+                    else if (response.Success == "UserAlreadyRegistered") {
+                        self.messages = "Username already exists. Please select new username.";
+                        $("#PDone").modal();
+                        Regdata.Username = "";
+                    }
+                    else if (response.Success == "DuplicateEmail") {
+                        self.messages = "Email address already registered. Please choose other email address.";
+                        $("#PDone").modal();
+                        Regdata.EmailAddress = "";
+                    }
                 }, function (error) {
                     if (error === null) {
                         self.$ionicLoading.hide();
@@ -56,6 +80,25 @@ var registerController;
                 });
             }
         };
+        //doRegister(Regdata: any) {
+        //    var self = this;
+        //    //  alert("hello");
+        //    if (this.DoValidation(Regdata)) {
+        //        if (self.SharedHttp.getPicID() === null || self.SharedHttp.getPicID() === '' || self.SharedHttp.getPicID() === undefined || self.SharedHttp.getPicID() === 'undefined') {
+        //            Regdata.picFID = null;
+        //            self.SharedHttp.setPicID(null);
+        //        } else {
+        //            Regdata.picFID = self.SharedHttp.getPicID();
+        //            self.SharedHttp.setPicID(null);
+        //        }
+        //        //alert(JSON.stringify(Regdata));
+        //        var data = Regdata;
+        //        data.HardwareName = self.$window.localStorage.getItem('DeviceName');
+        //        data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
+        //        localStorage.setItem("registerData", JSON.stringify(data));
+        //        self.$state.go("BasicCreditCard", { from: 'reg' });
+        //    }
+        //}
         RegisterController.prototype.GoRegistertext = function (IsProvider) {
             var self = this;
             self.$state.go("RegisterProvider");
@@ -255,7 +298,7 @@ var registerController;
                 return msg;
             }), options);
         };
-        RegisterController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp'];
+        RegisterController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp', '$rootScope'];
         return RegisterController;
     }());
     angular.module('spafoo.ctrl.register', []).controller('register', RegisterController);

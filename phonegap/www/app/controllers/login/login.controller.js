@@ -15,14 +15,23 @@ var loginController;
             this.SharedHttp = SharedHttp;
         }
         loginController.prototype.doLogin = function (username, password) {
+            //alert(this.$window.localStorage.getItem('DeviceToken'));
             var self = this;
             if (username === null || username == '' || username == undefined) {
+<<<<<<< HEAD
                 self.messages = "Please Enter User Name.";
+=======
+                self.messages = "Please enter user name";
+>>>>>>> refs/remotes/origin/PawanBranch
                 $("#PDoneError").modal();
                 return;
             }
             if (password === null || password == '' || password == undefined) {
+<<<<<<< HEAD
                 self.messages = "Please Enter User Name.";
+=======
+                self.messages = "Please enter password";
+>>>>>>> refs/remotes/origin/PawanBranch
                 $("#PDoneError").modal();
                 return;
             }
@@ -70,22 +79,67 @@ var loginController;
                 self.$rootScope.GetLoginStatus = true;
                 self.SharedHttp.GetMyNotification(UserID).then(function (res) { self.$rootScope.NotifiCount = res.length; });
                 var v = self.$window.localStorage.getItem('url');
+<<<<<<< HEAD
                 if (v == "Register") {
+=======
+                //if (v == "Register") {
+                //    self.$window.localStorage.setItem("url", '0');
+                //    window.location.href = "#/home";
+                //    //self.$state.go("home");
+                //}
+                //else {
+                //    if (self.$window.localStorage.getItem('Role') == 'P') {
+                //        //var v = self.$window.localStorage.getItem('url');
+                //        var c = v.substr(v.indexOf('/') + 1);
+                //        c = c.substr(0, c.indexOf('/'));
+                //        if (c == "MakeAppointment") {
+                //            self.$window.localStorage.setItem("url", '0');
+                //            window.history.go(-2);
+                //        } else {
+                //            self.$window.localStorage.setItem("url", '0');
+                //            window.history.go(-1);
+                //        }
+                //    }
+                //    else {
+                //        window.history.go(-1);
+                //    }
+                //}
+                if (v != null && v == "Register") {
+>>>>>>> refs/remotes/origin/PawanBranch
                     self.$window.localStorage.setItem("url", '0');
                     window.location.href = "#/home";
                 }
                 else {
+<<<<<<< HEAD
                     if (self.$window.localStorage.getItem('Role') == 'P') {
                         //var v = self.$window.localStorage.getItem('url');
                         var c = v.substr(v.indexOf('/') + 1);
                         c = c.substr(0, c.indexOf('/'));
                         if (c == "MakeAppointment") {
+=======
+                    if (v != null && self.$window.localStorage.getItem('Role') == 'P') {
+                        //var v = self.$window.localStorage.getItem('url');
+                        var c = v.substr(v.indexOf('/') + 1);
+                        c = c.substr(0, c.indexOf('/'));
+                        if (c == "MakeAppointment" && self.$window.localStorage.getItem('url1') != "FindProvider") {
+>>>>>>> refs/remotes/origin/PawanBranch
                             self.$window.localStorage.setItem("url", '0');
                             window.history.go(-2);
                         }
                         else {
+<<<<<<< HEAD
                             self.$window.localStorage.setItem("url", '0');
                             window.history.go(-1);
+=======
+                            if (self.$window.localStorage.getItem('url1') == "FindProvider") {
+                                self.$window.localStorage.setItem("url1", '0');
+                                window.location.href = "#/home";
+                            }
+                            else {
+                                self.$window.localStorage.setItem("url", '0');
+                                window.history.go(-1);
+                            }
+>>>>>>> refs/remotes/origin/PawanBranch
                         }
                     }
                     else {

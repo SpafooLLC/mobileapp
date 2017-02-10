@@ -19,6 +19,12 @@ var ProMyAvailabilityController;
             self.AppID = $stateParams.AppID;
             self.name = $stateParams.Name1;
             self.totalTime = $stateParams.totalTime;
+<<<<<<< HEAD
+=======
+            if (self.AppID != "null") {
+                self.SharedHttp.UnSeenStatus(self.AppID);
+            }
+>>>>>>> refs/remotes/origin/PawanBranch
             var status = self.$window.localStorage.getItem('LoginStatus');
             if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
@@ -41,11 +47,24 @@ var ProMyAvailabilityController;
                         right: 'today prev,next'
                     },
                     dayClick: function (date, jsEvent, view) {
+<<<<<<< HEAD
                         if (date <= new Date().setHours(0)) {
+=======
+                        //   alert(JSON.stringify(date) + "---->  " + JSON.stringify(new Date().setHours(0)));
+                        if (!self.isToday(date, jsEvent)) {
+>>>>>>> refs/remotes/origin/PawanBranch
                             self.message = "Selected date should not be before current date";
                             $("#PDoneError").modal();
                             return;
                         }
+<<<<<<< HEAD
+=======
+                        //if (date <= new Date().setHours(0)) {
+                        //    self.message = "Selected date should not be before current date";
+                        //    $("#PDoneError").modal();
+                        //    return;
+                        //}
+>>>>>>> refs/remotes/origin/PawanBranch
                         var selectedDate = moment(date).format('YYYY-MM-DD'); // set dateFrom based on user click on calendar
                         if (self.ClientID == 'null') {
                             $("#start" + (self.staticEvents1[0].events.length - 1)).focus();
@@ -77,11 +96,24 @@ var ProMyAvailabilityController;
                 }
             };
             setTimeout(function () {
+<<<<<<< HEAD
                 $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
+=======
+                $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa blue2 fa-square"></i> I am available &nbsp;&nbsp;&nbsp;<i class="fa red2 fa-square"></i> Reserved Appointment</div>');
+>>>>>>> refs/remotes/origin/PawanBranch
             }, 0);
             // any other event sources...
             self.availList();
         }
+<<<<<<< HEAD
+=======
+        ProMyAvailabilityController.prototype.isToday = function (start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
+        };
+>>>>>>> refs/remotes/origin/PawanBranch
         ProMyAvailabilityController.prototype.bookedSlot = function () {
             var self = this;
             var date = new Date();
@@ -168,8 +200,13 @@ var ProMyAvailabilityController;
                     self.staticEvents1[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
                         title: start + " - " + end,
+<<<<<<< HEAD
                         startTime: new Date(1970, 0, 1, starthours, parseInt(getmin1start)),
                         endTime: new Date(1970, 0, 1, endhours, parseInt(getmin1end)),
+=======
+                        startTime: new Date(1970, 0, 1, self.serviceData[i].StartTime.Hours, parseInt(getmin1start)),
+                        endTime: new Date(1970, 0, 1, self.serviceData[i].EndTime.Hours, parseInt(getmin1end)),
+>>>>>>> refs/remotes/origin/PawanBranch
                         id: self.serviceData[i].AvailID,
                         proId: self.serviceData[i].ProviderID,
                         dateField: moment(dateMonth).format('MMM DD'),

@@ -14,14 +14,17 @@
             private $timeout: ITimeoutService
             , private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-
             document.addEventListener("deviceready", this.onDeviceReady, false);
-            
         }
         doLogin() {
 
         }
         onDeviceReady() {
+          
+            navigator.geolocation.getCurrentPosition(function (e) { }, function (e) { }, {
+                enableHighAccuracy: true,
+                maximumAge: 3600000
+            });
             var self = this;
             var tabClick = 0;
             document.addEventListener("backbutton", function (e) {
@@ -39,7 +42,9 @@
                 }
                 // navigator.notification.confirm("Are you sure want to exit from App?", onConfirmExit, "Confirmation", "Yes,No");
             }, false);
+         
         }
+
     }
 
 

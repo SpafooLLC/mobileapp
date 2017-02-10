@@ -40,7 +40,8 @@
             var self = this;
           
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
-                 self.ServiceData = response.GetUserInfoResult;  
+                self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + ".";
                  self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
                  self.SharedHttp.GetMyRating(UserID).then(function (res) { self.RatingField = res.split(':')[0] ; self.Rateperson = res.split(':')[1] });
                 self.SharedHttp.GetProTagLine(UserID).then(function (res) { self.TagField = res; });

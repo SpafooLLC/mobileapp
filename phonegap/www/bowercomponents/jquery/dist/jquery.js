@@ -1911,6 +1911,7 @@ Sizzle.attr = function( elem, name ) {
 			fn( elem, name, !documentIsHTML ) :
 			undefined );
 
+<<<<<<< HEAD
 	return val === undefined ?
 		support.attributes || !documentIsHTML ?
 			elem.getAttribute( name ) :
@@ -1918,6 +1919,11 @@ Sizzle.attr = function( elem, name ) {
 				val.value :
 				null :
 		val;
+=======
+	return val !== undefined ?
+	    val : ((support.attributes || !documentIsHTML) ? elem.getAttribute(name) : ((val = elem.getAttributeNode(name)) && val.specified) ? val.value : null);
+
+>>>>>>> refs/remotes/origin/PawanBranch
 };
 
 Sizzle.error = function( msg ) {

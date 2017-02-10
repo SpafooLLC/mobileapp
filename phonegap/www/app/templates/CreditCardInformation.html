@@ -8,14 +8,24 @@
         <div class="inbody-simple">
             <div class="has-feedback fgap">
                 <label class="control-label">Card Number</label>
+<<<<<<< HEAD
                 <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="text" class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
                 <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+=======
+                <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel"  placeholder="Credit Card Number"  class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
+                <!--<span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>-->
+>>>>>>> refs/remotes/origin/PawanBranch
             </div>
             <div class="expdate">
                 <p class="control-label bold bmar-sm">Expiry Date</p>
                 <div class="col-xs-6 fileft">
                     <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Month">
+<<<<<<< HEAD
                         <option value="01">January</option>
+=======
+                        <option value="" selected="selected">-Select Month-</option>
+                            <option value="01">January</option>
+>>>>>>> refs/remotes/origin/PawanBranch
                         <option value="02">February</option>
                         <option value="03">March</option>
                         <option value="04">April</option>
@@ -31,7 +41,12 @@
                 </div>
                 <div class="col-xs-6 firight">
                     <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Year">
+<<<<<<< HEAD
                         <option value="2015">2015</option>
+=======
+                        <option value="" selected="selected">-Select Year-</option>
+                           <option value="2015">2015</option>
+>>>>>>> refs/remotes/origin/PawanBranch
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
                         <option value="2018">2018</option>
@@ -49,7 +64,11 @@
             <div class="expdate">
                 <p class="control-label bold bmar-sm">CVV</p>
                 <div class="col-xs-6 fileft">
+<<<<<<< HEAD
                     <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="text" class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
+=======
+                    <input ng-disabled="cc.from == 'reg' && cc.isChecked"  type="tel"  class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
+>>>>>>> refs/remotes/origin/PawanBranch
                 </div>
                 <div class="col-xs-6 firight cvv">
                     The last 3-4 digits displyed on the back of  your card
@@ -61,8 +80,13 @@
             </div>
 
         </div>
+<<<<<<< HEAD
         <a ng-if="cc.from == 'profile'  && !cc.isChecked" class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(cc.data)">Add Card</a>
         <a ng-if="cc.from == 'reg'" class="modals block-btn" data-ng-click="cc.SubmitCreditCardInfo(cc.data)" data-toggle="modal">Register</a>
+=======
+        <a ng-if="cc.from == 'profile'  && !cc.isChecked" class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(cc.data,'A')">Add Card</a>
+        <a ng-if="cc.from == 'reg'" class="modals block-btn" data-ng-click="cc.SubmitCreditCardInfo(cc.data,'R')" data-toggle="modal">Register</a>
+>>>>>>> refs/remotes/origin/PawanBranch
         <!-- Modal Payment Terms -->
         <div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">

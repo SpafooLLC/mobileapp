@@ -4,7 +4,7 @@
         UserID: number;
         ServiceData: any;
         isRated: boolean;
-
+        page: string;
 
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         constructor(
@@ -18,7 +18,7 @@
         ) {
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
-
+            this.page = window.location.hash.split('/')[1];
         }
 
         getProviderSchedular(UserID: any) {
@@ -30,8 +30,6 @@
             self.CustomerHttp.get('/ListAppointmentByProvider/' + UserID).then(function (response: any) {
                 self.ServiceData = response.ListAppointmentByProviderResult;
                 $.each(self.ServiceData, function (i, item) {
-
-
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
                         self.ServiceData[i].DayField = '00';
@@ -48,9 +46,6 @@
                     } else {
                         self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
                     }
-
-
-
                     var serviceName = "";
                     var serviceTime = 0;
                     $.each(item.servicesField, function (ig, sitem) {
@@ -67,22 +62,17 @@
                     self.ServiceData[i].serviceTime = serviceTime;
 
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res: any) {
-                        self.ServiceData[i].displayNameField = res.displayNameField;
+                        self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";;
                         self.ServiceData[i].userIDField = res.userIDField;
-                        if (self.ServiceData[i].statusField == 1) {
-                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
+                      if (self.ServiceData[i].statusField == 1) {//self.ServiceData[i].clientIDField
+                          self.CustomerHttp.get('/DidIRated/' + UserID+ '/' + self.ServiceData[i].appointmentIDField).then(function (res: any) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
-                            }, function (error: any) {
-
-                            });
+                            }, function (error: any) {});
                         }
-
-
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e: any) { self.ServiceData[i].addressField = e; });
                 });
-            }, function (error) {
-            });
+            }, function (error) {});
         }
 
         RemoveCancelled(AppointmentID: any) {
@@ -112,15 +102,36 @@
            }
 
         }
+<<<<<<< HEAD
         UnSeenStatus(AppointmentID: any) {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
                 //alert(JSON.stringify(response));
                 //    self.getProviderSchedular(this.UserID);
+=======
+>>>>>>> refs/remotes/origin/PawanBranch
 
-            }, function (error) {
-            });
+        acceptAppointment(data: any) {
+            var self = this;
+            self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getProviderSchedular(self.UserID); });
         }
+        denyAppointment(data: any) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;
+                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getProviderSchedular(self.UserID) });
+            }
+        }
+
+        //UnSeenStatus(AppointmentID: any) {
+        //    var self = this;
+        //    self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+        //        //alert(JSON.stringify(response));
+        //        //    self.getProviderSchedular(this.UserID);
+
+        //    }, function (error) {
+        //    });
+        //}
         GoToProviderPortfolio(UserID: any) {
             var self = this;
             self.$window.localStorage.setItem('ProviderIDs', UserID);
@@ -128,7 +139,7 @@
         }
         GoToScheduleDetail(AppointmentID: any) {
             var self = this;
-            self.UnSeenStatus(AppointmentID)
+            self.SharedHttp.UnSeenStatus(AppointmentID)
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ProAppointmentDetail");
         }

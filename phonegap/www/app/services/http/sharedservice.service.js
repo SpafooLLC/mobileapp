@@ -16,6 +16,12 @@ var spafoo;
             SharedHttp.prototype.setuserType = function (value) {
                 this.userType = value;
             };
+            SharedHttp.prototype.getAddressDetailRcd = function () {
+                return this.AddressDetailRcd;
+            };
+            SharedHttp.prototype.setAddressDetailRcd = function (value) {
+                this.AddressDetailRcd = value;
+            };
             SharedHttp.prototype.getUuid = function () {
                 return this.uuid;
             };
@@ -63,6 +69,47 @@ var spafoo;
                 var ampm = H < 12 ? " AM" : " PM";
                 timeString = h + timeString.substr(hourEnd, 3) + ampm;
                 return timeString;
+            };
+            SharedHttp.prototype.completeAppService = function (UserID, clientId, authTxnIDField, appointmentIDField, payTxnIDField, amountField, comment) {
+                var self = this;
+                var UserID = UserID;
+                var clientId = clientId;
+                var authTxnIDField = authTxnIDField;
+                var appointmentIDField = appointmentIDField;
+                var payTxnIDField = payTxnIDField;
+                var amountField = amountField;
+                //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+                //self.message = 'Appointment Completed';
+                //$("#PDone").modal();
+                var data = {
+                    TxnID: authTxnIDField,
+                    Amount: amountField
+                };
+                self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res) {
+                    var response = JSON.parse(res);
+                    var upData = {
+                        ID: appointmentIDField,
+                        Comment: comment,
+                        PaymentTxnID: payTxnIDField
+                    };
+                    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes) {
+                        var navData = {
+                            ByID: UserID,
+                            NotTypeID: 8,
+                            RelatedEntityID: appointmentIDField,
+                            ToID: clientId
+                        };
+                        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes) {
+                            self.message = 'Appointment Completed';
+                            //$("#PDone").modal();
+                            self.$state.go("ProAppointments");
+                        }, function (navError) {
+                        });
+                    }, function (erError) {
+                    });
+                }, function (error) {
+                    //alert('someError on ChargePreviosAuth');
+                });
             };
             SharedHttp.prototype.getFormatedDate = function (joindates, formatType) {
                 if (formatType != "weekday dd MMMM yyyy") {
@@ -168,9 +215,13 @@ var spafoo;
             };
             SharedHttp.prototype.GetAddressInfo = function (AppointMentID) {
                 var deferred = this.$q.defer();
+                var self = this;
                 this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response) {
                     var e = response.GetAppLocationResult;
                     this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
+                    //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
                     //   alert(this.GetAddressRcd);
                     deferred.resolve(this.GetAddressRcd);
                 }, function (error) { });
@@ -216,6 +267,12 @@ var spafoo;
                 }, function (error) {
                 });
                 return deferred.promise;
+            };
+            SharedHttp.prototype.UnSeenStatus = function (AppointmentID) {
+                var self = this;
+                self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
+                }, function (error) {
+                });
             };
             SharedHttp.$inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
             return SharedHttp;

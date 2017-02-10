@@ -13,6 +13,10 @@ var homeController;
         homeController.prototype.doLogin = function () {
         };
         homeController.prototype.onDeviceReady = function () {
+            navigator.geolocation.getCurrentPosition(function (e) { }, function (e) { }, {
+                enableHighAccuracy: true,
+                maximumAge: 3600000
+            });
             var self = this;
             var tabClick = 0;
             document.addEventListener("backbutton", function (e) {

@@ -5,10 +5,14 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; dates: Date; picId: string; picPath: string;
+        uuid: string; dates: Date; picId: string; picPath: string; AddressDetailRcd :string,
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; NotificationList: any;
         Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; HideApp: boolean;
         getLoginStatus(): any;
+
+        getAddressDetailRcd(): any;
+        setAddressDetailRcd(value: any): any;
+
         setLoginStatus(value: any): any;
         getuserType(): any;
         setuserType(value: any): any;
@@ -34,7 +38,13 @@
         GetMyNotification(UserID: any): ng.IPromise<string>;
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
+<<<<<<< HEAD
         HideApp4Me(AppID: any, UserType: any):ng.IPromise<string> ;
+=======
+        HideApp4Me(AppID: any, UserType: any): ng.IPromise<string>;
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any): any;
+        UnSeenStatus(AppointmentID: any): void;
+>>>>>>> refs/remotes/origin/PawanBranch
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -44,7 +54,7 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; picId: string; picPath: string;
+        uuid: string; picId: string; picPath: string; AddressDetailRcd: string;
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; Rateperson: string;
         ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; NotificationList: any; HideApp: any;
         getuserType(): any {
@@ -52,6 +62,12 @@
         }
         setuserType(value: any): any {
             this.userType = value;
+        }
+        getAddressDetailRcd(): any {
+            return this.AddressDetailRcd;
+        }
+        setAddressDetailRcd(value: any): any {
+            this.AddressDetailRcd = value;
         }
         getUuid(): any {
             return this.uuid;
@@ -103,6 +119,56 @@
             timeString = h + timeString.substr(hourEnd, 3) + ampm;
             return timeString;
         }
+
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any) {
+
+            var self = this;
+        
+
+            var UserID = UserID;
+            var clientId = clientId;
+            var authTxnIDField = authTxnIDField;
+            var appointmentIDField = appointmentIDField;
+            var payTxnIDField = payTxnIDField;
+            var amountField = amountField;
+
+            //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+            //self.message = 'Appointment Completed';
+            //$("#PDone").modal();
+            var data = {
+                TxnID: authTxnIDField,
+                Amount: amountField
+            };
+            self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+                var response = JSON.parse(res);
+                var upData = {
+                    ID: appointmentIDField,
+                    Comment: comment,
+                    PaymentTxnID: payTxnIDField
+                };
+                self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+                    var navData = {
+                        ByID: UserID,
+                        NotTypeID: 8,
+                        RelatedEntityID: appointmentIDField,
+                        ToID: clientId
+                    };
+                    self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+                        self.message = 'Appointment Completed';
+                        //$("#PDone").modal();
+                        self.$state.go("ProAppointments");
+                    }, function (navError: any) {
+
+                    })
+                }, function (erError: any) {
+
+                });
+
+            }, function (error: any) {
+                //alert('someError on ChargePreviosAuth');
+            });
+        }
+
         getFormatedDate(joindates: any, formatType: any): any {
             if (formatType != "weekday dd MMMM yyyy") {
                 var abcDate = (joindates).replace("/Date(", "").replace(")/", "");
@@ -135,7 +201,7 @@
             }
             return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
         }
-
+       
         getProfilePics(customerID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
             if (customerID === null || isNaN(customerID)) {
@@ -219,10 +285,15 @@
 
         GetAddressInfo(AppointMentID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
+            var self = this;
             this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response: any) {
                 var e = response.GetAppLocationResult
+                
                 this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
-             //   alert(this.GetAddressRcd);
+                self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
+                //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
+               //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
+           //   alert(this.GetAddressRcd);
                 deferred.resolve(this.GetAddressRcd);
             }, function (error) { });
             return deferred.promise;
@@ -275,6 +346,14 @@
             return deferred.promise;
         }
 
+        UnSeenStatus(AppointmentID: any) :void{
+            var self = this;
+            self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+               
+
+            }, function (error) {
+            });
+        }
        
     }
     angular

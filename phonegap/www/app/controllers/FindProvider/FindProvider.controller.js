@@ -12,6 +12,10 @@ var FindProviderController;
             this.$inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', 'SharedHttp', '$q', '$window'];
             var self = this;
             self.customerType = window.localStorage.getItem('Role');
+<<<<<<< HEAD
+=======
+            $window.localStorage.setItem("url1", 'FindProvider');
+>>>>>>> refs/remotes/origin/PawanBranch
             document.addEventListener("deviceready", function () {
                 // Initialize the map plugin
                 var options = {
@@ -87,6 +91,8 @@ var FindProviderController;
         FindProviderController.prototype.getProviders = function (serviceId) {
             var self = this;
             FindProviderController.map.clear();
+            FindProviderController.map.setClickable(true);
+            $("#infowindow").hide();
             self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response) {
                 if (response.ListProvidersByServicesResult.length != 0) {
                     for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
@@ -105,6 +111,7 @@ var FindProviderController;
                     }
                 }
                 else {
+                    FindProviderController.map.setClickable(false);
                     self.messages = 'No provider found for the service you have chosen';
                     $("#PDone").modal();
                 }
@@ -193,7 +200,7 @@ var FindProviderController;
                     image = imgres;
                     self.SharedHttp.GetProTagLine(userId).then(function (res) {
                         tagline = res;
-                        var data = { name: response.GetUserInfoResult.displayNameField, profilePic: image, tagField: tagline, userId: userId };
+                        var data = { name: response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".", profilePic: image, tagField: tagline, userId: userId };
                         deferred.resolve(data);
                     }, function (e) { deferred.reject("failed to get data"); });
                 }, function (e) { deferred.reject("failed to get data"); });

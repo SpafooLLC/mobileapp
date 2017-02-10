@@ -11,6 +11,7 @@ var ProAppointmentsController;
             this.SharedHttp = SharedHttp;
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
+            this.page = window.location.hash.split('/')[1];
         }
         ProAppointmentsController.prototype.getProviderSchedular = function (UserID) {
             var self = this;
@@ -53,19 +54,18 @@ var ProAppointmentsController;
                     self.ServiceData[i].ServiceList = serviceName.substr(0, serviceName.lastIndexOf(','));
                     self.ServiceData[i].serviceTime = serviceTime;
                     self.SharedHttp.GetUserInfo(item.clientIDField).then(function (res) {
-                        self.ServiceData[i].displayNameField = res.displayNameField;
+                        self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
+                        ;
                         self.ServiceData[i].userIDField = res.userIDField;
                         if (self.ServiceData[i].statusField == 1) {
-                            self.CustomerHttp.get('/DidIRated/' + self.ServiceData[i].clientIDField + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
+                            self.CustomerHttp.get('/DidIRated/' + UserID + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
-                            }, function (error) {
-                            });
+                            }, function (error) { });
                         }
                     });
                     self.SharedHttp.GetAddressInfo(item.appointmentIDField).then(function (e) { self.ServiceData[i].addressField = e; });
                 });
-            }, function (error) {
-            });
+            }, function (error) { });
         };
         ProAppointmentsController.prototype.RemoveCancelled = function (AppointmentID) {
             var conf = confirm("Are you sure want to remove ?");
@@ -78,6 +78,21 @@ var ProAppointmentsController;
                 }, function (error) {
                 });
             }
+<<<<<<< HEAD
+        };
+        ProAppointmentsController.prototype.HideApp4Me = function (AppID) {
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                var UserType = self.$window.localStorage.getItem('Role');
+                self.SharedHttp.HideApp4Me(AppID, UserType).then(function (e) {
+                    if (e.HideApp4MeResult.Success == "Removed Successfully") {
+                        self.getProviderSchedular(self.UserID);
+                    }
+                });
+            }
+=======
+>>>>>>> refs/remotes/origin/PawanBranch
         };
         ProAppointmentsController.prototype.HideApp4Me = function (AppID) {
             var conf = confirm("Are you sure want to remove ?");
@@ -91,14 +106,33 @@ var ProAppointmentsController;
                 });
             }
         };
-        ProAppointmentsController.prototype.UnSeenStatus = function (AppointmentID) {
+        ProAppointmentsController.prototype.acceptAppointment = function (data) {
             var self = this;
+<<<<<<< HEAD
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
                 //alert(JSON.stringify(response));
                 //    self.getProviderSchedular(this.UserID);
             }, function (error) {
             });
+=======
+            self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getProviderSchedular(self.UserID); });
         };
+        ProAppointmentsController.prototype.denyAppointment = function (data) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;
+                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res) { self.getProviderSchedular(self.UserID); });
+            }
+>>>>>>> refs/remotes/origin/PawanBranch
+        };
+        //UnSeenStatus(AppointmentID: any) {
+        //    var self = this;
+        //    self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+        //        //alert(JSON.stringify(response));
+        //        //    self.getProviderSchedular(this.UserID);
+        //    }, function (error) {
+        //    });
+        //}
         ProAppointmentsController.prototype.GoToProviderPortfolio = function (UserID) {
             var self = this;
             self.$window.localStorage.setItem('ProviderIDs', UserID);
@@ -106,7 +140,11 @@ var ProAppointmentsController;
         };
         ProAppointmentsController.prototype.GoToScheduleDetail = function (AppointmentID) {
             var self = this;
+<<<<<<< HEAD
             self.UnSeenStatus(AppointmentID);
+=======
+            self.SharedHttp.UnSeenStatus(AppointmentID);
+>>>>>>> refs/remotes/origin/PawanBranch
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ProAppointmentDetail");
         };

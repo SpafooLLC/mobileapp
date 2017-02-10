@@ -73,7 +73,13 @@ var MakeAppointmentController;
         MakeAppointmentController.prototype.getProviderPortfolio = function (UserID) {
             var self = this;
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
+                response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
                 self.ServiceData = response.GetUserInfoResult;
+<<<<<<< HEAD
+=======
+                for (var i = 0; i < response.GetUserInfoResult.length; i++) {
+                }
+>>>>>>> refs/remotes/origin/PawanBranch
                 if (self.isEdit) {
                     self.getEditInfo();
                 }
@@ -136,16 +142,16 @@ var MakeAppointmentController;
                     break;
                 case 2:
                     //alert(self.address);
-                    $("#addressfield").val(self.ServiceData.profileField.streetField);
-                    $("#cityfield").val(self.ServiceData.profileField.cityField);
-                    $("#statefield").val(self.ServiceData.profileField.regionField);
-                    $("#zipfield").val(self.ServiceData.profileField.postalCodeField);
+                    self.info.address = self.ServiceData.profileField.streetField;
+                    self.info.city = self.ServiceData.profileField.cityField;
+                    self.info.state = self.ServiceData.profileField.regionField;
+                    self.info.zip = self.ServiceData.profileField.postalCodeField;
                     break;
                 case 3:
-                    $("#addressfield").val('');
-                    $("#cityfield").val('');
-                    $("#statefield").val('');
-                    $("#zipfield").val('');
+                    self.info.address = '';
+                    self.info.city = '';
+                    self.info.state = '';
+                    self.info.zip = '';
             }
             this.isOpenSelectAdress = '';
         };
@@ -156,16 +162,37 @@ var MakeAppointmentController;
                 maximumAge: 3600000
             };
             navigator.geolocation.getCurrentPosition(function (position) {
+<<<<<<< HEAD
                 var self = this;
+=======
+>>>>>>> refs/remotes/origin/PawanBranch
                 var GOOGLE = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 //    alert("onsuccess navigation called");
                 var request = {
                     'position': GOOGLE
                 };
+<<<<<<< HEAD
+=======
+                //plugin.google.maps.Geocoder.geocode(request, function (results: any) {
+                //    if (results.length) {
+                //        var result = results[0];
+                //        var position = result.position;
+                //        $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
+                //        $("#cityfield").val(result.locality);
+                //        $("#statefield").val(result.adminArea);
+                //        $("#zipfield").val(result.postalCode);
+                //        self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                //        self.info.city = result.locality;
+                //        self.info.state = result.adminArea;
+                //        self.info.zip = result.postalCode;
+                //    }
+                //});
+>>>>>>> refs/remotes/origin/PawanBranch
                 plugin.google.maps.Geocoder.geocode(request, function (results) {
                     if (results.length) {
                         var result = results[0];
                         var position = result.position;
+<<<<<<< HEAD
                         $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
                         $("#cityfield").val(result.locality);
                         $("#statefield").val(result.adminArea);
@@ -174,6 +201,36 @@ var MakeAppointmentController;
                         self.info.city = result.locality;
                         self.info.state = result.adminArea;
                         self.info.zip = result.postalCode;
+=======
+                        //  alert(result.subThoroughfare + "/ " + result.thoroughfare + "/" + result.locality + "/" + result.adminArea + "/" + result.postalCode);
+                        //if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == undefined || result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined" || result.locality == undefined || result.locality == "" || result.locality == "undefined" || result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "")
+                        //{
+                        //}
+                        if (result.subThoroughfare == "undefined" || result.subThoroughfare == "" || result.thoroughfare == "" || result.subThoroughfare == undefined || result.thoroughfare == "undefined" || result.thoroughfare == undefined) {
+                            self.info.address = '';
+                        }
+                        else {
+                            self.info.address = result.subThoroughfare + " " + result.thoroughfare;
+                        }
+                        if (result.locality == undefined || result.locality == "" || result.locality == "undefined") {
+                            self.info.city = '';
+                        }
+                        else {
+                            self.info.city = result.locality;
+                        }
+                        if (result.adminArea == "undefined" || result.adminArea == undefined || result.adminArea == "") {
+                            self.info.state = '';
+                        }
+                        else {
+                            self.info.state = result.adminArea;
+                        }
+                        if (result.postalCode == "" || result.postalCode == undefined || result.postalCode == "undefined") {
+                            self.info.zip = '';
+                        }
+                        else {
+                            self.info.zip = result.postalCode;
+                        }
+>>>>>>> refs/remotes/origin/PawanBranch
                     }
                 });
             }, self.onError, options);
@@ -204,6 +261,26 @@ var MakeAppointmentController;
             var servLists = [];
             self.totalDuration = 0;
             self.totalPrice = 0;
+            if ($("#addressfield").val() == '') {
+                self.messages = "Enter address field to proceed";
+                $("#PDone").modal();
+                return;
+            }
+            if ($("#cityfield").val() == '') {
+                self.messages = "Enter city field to proceed";
+                $("#PDone").modal();
+                return;
+            }
+            if ($("#statefield").val() == '') {
+                self.messages = "Enter state field to proceed";
+                $("#PDone").modal();
+                return;
+            }
+            if ($("#zipfield").val() == '') {
+                self.messages = "Enter postal code field to proceed";
+                $("#PDone").modal();
+                return;
+            }
             $('.serviceChecks:checked').map(function () {
                 var ServId = this.value.split(':')[0];
                 self.ProviderServiceList.map(function (serv) {
@@ -234,10 +311,32 @@ var MakeAppointmentController;
                 self.showIonicAlert('Please select the Service(s) for Appointment');
             }
         };
-        MakeAppointmentController.prototype.changeSummery = function () {
+        //changeSummery() {
+        //    var self = this;
+        //    self.totalDuration = 0;
+        //    self.totalPrice = 0;
+        //    self.serviceString = self.selectedServices.map(function (serv) {
+        //        self.totalDuration += isNaN(serv.durationField * serv.qtyField) ? serv.durationField == '-1' ? 60 : serv.durationField : serv.durationField == '-1' ? 60 : serv.durationField * serv.qtyField;
+        //        self.totalPrice += isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;
+        //        //servLists.push(serv);
+        //    });
+        //    self.serviceString = '';
+        //    self.selectedServices.map(function (srvc) {
+        //        var str = srvc.serviceIDField + ':' + srvc.qtyField + ':' + srvc.priceField;
+        //        if (self.serviceString == '') {
+        //            self.serviceString = str;
+        //        } else {
+        //            self.serviceString += '|' + str;
+        //        }
+        //    });
+        //}
+        MakeAppointmentController.prototype.changeSummery = function (value) {
             var self = this;
             self.totalDuration = 0;
             self.totalPrice = 0;
+            if (value > 10) {
+                self.showIonicAlert('Max allowed value for a single item is 10');
+            }
             self.serviceString = self.selectedServices.map(function (serv) {
                 self.totalDuration += isNaN(serv.durationField * serv.qtyField) ? serv.durationField == '-1' ? 60 : serv.durationField : serv.durationField == '-1' ? 60 : serv.durationField * serv.qtyField;
                 self.totalPrice += isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;
@@ -321,7 +420,11 @@ var MakeAppointmentController;
                     var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
                     self.staticEvents[0].events.push({
                         start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
+<<<<<<< HEAD
                         title: moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm a') + ' - ' + moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm a'),
+=======
+                        title: moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm A') + ' - ' + moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm A'),
+>>>>>>> refs/remotes/origin/PawanBranch
                         dateField: dateMonth1,
                         color: '#ff0000'
                     });
@@ -329,7 +432,11 @@ var MakeAppointmentController;
                 self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d) {
                     var _Today = new Date();
                     $.each(d, function (i, o) {
+<<<<<<< HEAD
                         self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm a') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm a'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
+=======
+                        self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm A') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm A'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
+>>>>>>> refs/remotes/origin/PawanBranch
                     });
                 });
             });
@@ -338,11 +445,16 @@ var MakeAppointmentController;
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
+<<<<<<< HEAD
+=======
+                //   alert(time);
+>>>>>>> refs/remotes/origin/PawanBranch
                 self.showIonicAlert('Sorry, you cannot select date before today');
             }
             else {
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
+<<<<<<< HEAD
                 self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm a") : moment('09.00', "h:mm a").format("h:mm a");
                 self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm a"), "h:mm a").add(self.totalDuration, 'm').format("h:mm a") : moment('09.00', 'h:mm a').add(self.totalDuration, 'm').format("h:mm a");
                 $('#PDoneSlider').modal();
@@ -352,6 +464,17 @@ var MakeAppointmentController;
                 //var from = +moment('09:00', 'h:mm a').add(self.totalDuration, 'm').format("X");
                 var min = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm a').format("X");
                 var max = moment('21:00', 'h:mm a').format("X");
+=======
+                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
+                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("h:mm A") : moment('09.00', 'h:mm A').add(self.totalDuration, 'm').format("h:mm A");
+                $('#PDoneSlider').modal();
+                var todayCurrentTime = moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").format("X");
+                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm A').format("X");
+                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("X") : moment('09:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
+                //var from = +moment('09:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
+                var min = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm A').format("X");
+                var max = moment('21:00', 'h:mm A').format("X");
+>>>>>>> refs/remotes/origin/PawanBranch
                 //setTimeout(function(){
                 $("#range").ionRangeSlider({
                     type: "double",
@@ -359,6 +482,7 @@ var MakeAppointmentController;
                     max: max,
                     from: to,
                     to: from,
+<<<<<<< HEAD
                     //step: +moment('05', 'mm').format('h:mm a A'),
                     //step: 300000,
                     drag_interval: true,
@@ -368,6 +492,18 @@ var MakeAppointmentController;
                     onFinish: function (data) {
                         self.from = moment(data.from, "X").format("h:mm a");
                         self.to = moment(data.to, "X").format("h:mm a");
+=======
+                    //step: +moment('05', 'mm').format('h:mm A A'),
+                    step: 900,
+                    //step: 300000,
+                    drag_interval: true,
+                    prettify: function (num) {
+                        return moment(num, "X").format("h:mm A");
+                    },
+                    onFinish: function (data) {
+                        self.from = moment(data.from, "X").format("h:mm A");
+                        self.to = moment(data.to, "X").format("h:mm A");
+>>>>>>> refs/remotes/origin/PawanBranch
                         self.isSlotAvailable();
                     },
                     force_edges: true
@@ -437,7 +573,11 @@ var MakeAppointmentController;
                 if (profile) {
                     profile = profile.profile;
                     self.PID = profile.customerProfileId;
+<<<<<<< HEAD
                     if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles.length) {
+=======
+                    if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles) {
+>>>>>>> refs/remotes/origin/PawanBranch
                         profile.paymentProfiles.map(function (cc) {
                             self.CCards.push(cc);
                         });
@@ -477,6 +617,7 @@ var MakeAppointmentController;
                 }
             });
         };
+<<<<<<< HEAD
         MakeAppointmentController.prototype.isToday = function (time, todayAnd) {
             var today = new Date(), currentCalendarDate = new Date(time);
             today.setHours(0, 0, 0, 0);
@@ -484,6 +625,22 @@ var MakeAppointmentController;
             var currTime = currentCalendarDate.getTime();
             var todayTime = today.getTime();
             return todayAnd ? currTime >= todayTime : currTime == todayTime;
+=======
+        //isToday(time, todayAnd) {
+        //    var today = new Date(),
+        //        currentCalendarDate = new Date(time);
+        //    today.setHours(0, 0, 0, 0);
+        //    currentCalendarDate.setHours(0, 0, 0, 0);
+        //    var currTime = currentCalendarDate.getTime();
+        //    var todayTime = today.getTime();
+        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
+        //}
+        MakeAppointmentController.prototype.isToday = function (start, todayAnd) {
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
+            return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
+>>>>>>> refs/remotes/origin/PawanBranch
         };
         MakeAppointmentController.prototype.validatePaymentMethod = function () {
             var self = this;
@@ -545,7 +702,11 @@ var MakeAppointmentController;
                 self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
             }
             // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
+<<<<<<< HEAD
             self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD';
+=======
+            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD  <br/>You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
+>>>>>>> refs/remotes/origin/PawanBranch
             $("#PDonePayment").modal();
         };
         MakeAppointmentController.prototype.actionPayment = function () {
@@ -579,6 +740,13 @@ var MakeAppointmentController;
                     var resp = JSON.parse(response);
                     if (resp.transactionResponse.responseCode == 1) {
                         self.transId = resp.transactionResponse.transId;
+<<<<<<< HEAD
+=======
+                        if (self.saveCardInfo) {
+                            self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
+                            }, function (error) { });
+                        }
+>>>>>>> refs/remotes/origin/PawanBranch
                         self.finalMakeAppointment();
                     }
                     else {
@@ -614,8 +782,13 @@ var MakeAppointmentController;
         };
         MakeAppointmentController.prototype.redirectAfterAppointment = function () {
             var self = this;
+<<<<<<< HEAD
             var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm a A').format('h:mm a');
             var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm a A').format('h:mm a');
+=======
+            var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm A A').format('h:mm A');
+            var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm A A').format('h:mm A');
+>>>>>>> refs/remotes/origin/PawanBranch
             var ForDate = self.ASAP ? '' : self.onlyDate;
             var obj = {
                 AddressID: self.addressId,

@@ -14,9 +14,10 @@
 
                 </div>
             </div>
-            <div class="bar">
+            <div class="barx">
                 <div class="fleft"><i class="fa fa-info green"></i> &nbsp;Not Complete</div>
-                <div class="fright"><a href="tel:{{pad.ServiceData.telephoneField }}"><i class="fa fa-mobile-phone fa-lg"></i> &nbsp;Make a Call</a></div>
+                <div class="fright" ng-click="pad.NavigateMaps()" ><div class="bsbutton">Get Direction</div></div>
+                 <div class="fright" style="display:none"><a href="tel:{{pad.ServiceData.telephoneField }}"><i class="fa fa-mobile-phone fa-lg"></i> &nbsp;Make a Call</a></div>
 
             </div>
             <div class="scdetail">
@@ -27,6 +28,7 @@
                 <p class="blue">{{pad.ServiceData.atTimeField}} at {{pad.ServiceData.addressField}} </p>
                 <p><span>With: </span> {{pad.ServiceData.displayNameField}} </p>
                 <p><span>Service(s): </span> {{pad.ServiceData.ServiceList}}</p>
+                <p ng-if="pad.ServiceData.commentsField.trim().length"><span>Comment: </span> {{pad.ServiceData.commentsField}}</p>
             </div>
         </div>
         <p>&nbsp;</p>

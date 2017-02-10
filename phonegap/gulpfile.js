@@ -66,9 +66,9 @@ gulp.task('build-dev', function (done) {
         //'clean-internal-js',
         //'clean-internal-js-maps',
         'wire-external-js',
-     
+
         'inject-js-css-dev',
-       
+
         //'copy-external-js',
         //'inject-env-conf',
         done
@@ -85,7 +85,7 @@ gulp.task('clean-html', function (done) {
     clean(buidPathTemplate, done);
 });
 gulp.task('clean-fonts', function (done) {
-  
+
     clean(buildPathFonts, done);
 });
 
@@ -164,12 +164,12 @@ gulp.task('wire-external-js', ['copy-external-js'], function () {
         bowerJson: require('./bower.json'),   // defaults to ./bower.json
         directory: './bowercomponents', // defaults to '.bowerrc'.directory
         ignorePath: '../../bowercomponents/',
-        exclude: [],
+        exclude: ['bowercomponents/ionic/css/ionic.css'],
         fileTypes: {
             html: {
                 replace: {
                     css: function (filePath) {
-                        console.log('hello'+filePath);
+                        console.log('hello' + filePath);
                         filePath = filePath.replace('../bowercomponents/', '');
                         return '<link rel="stylesheet" href="bowercomponents/' + filePath + '" />';
                     },
@@ -177,7 +177,7 @@ gulp.task('wire-external-js', ['copy-external-js'], function () {
                         filePath = filePath.replace('../bowercomponents/', '');
                         return '<script src="bowercomponents/' + filePath + '"></script>';
                     }
-                   
+
                 }
             }
         }
@@ -192,21 +192,21 @@ gulp.task('wire-external-js', ['copy-external-js'], function () {
  */
 gulp.task('inject-js-css-dev', ['tsc', 'sass'], function () {
     var source = gulp.src([
-       // buildPath + 'styles/' + 'style.css',
-//buildPath +  'bowercomponents/**/ionic.css',
+        buildPath + 'styles/' + 'style.css',
+'!' + buildPath + 'bowercomponents/ionic/**/*.css',
      buildPath + 'styles/' + 'bootstrap.css',
         '!' + buildPath + 'styles/' + '**/*.min.css',
-        buildPath  + '**/*.js',
+        buildPath + '**/*.js',
         '!' + buildPath + '**/*.min.js',
         '!' + buildPath + 'bowercomponents/**/*.js',
   '!' + buildPath + 'js/**/*.js',
-      
+
     ], { read: false });
 
     return gulp
         .src(buildPath + 'index.html')
         .pipe(inject(source, {
-            
+
             transform: function (filepath) {
                 filepath = filepath.replace('/www/', '');
                 if (filepath.slice(-3) === 'css') {
@@ -244,23 +244,23 @@ gulp.task('sass', function (done) {
 //gulp.task('less', function (done) {
 //    gulp.src(allLess)
 //      .pipe(less())
-     
+
 //      .pipe(gulp.dest(buildPathStyles))
 //      .pipe(minifyCss({
 //          keepSpecialComments: 0
 //      }))
 //      .pipe(rename({ extname: '.min.css' }))
 //      .pipe(gulp.dest(buildPathStyles))
-    
+
 //});
 
 
 // Run gulp watch in conjunction with Ionic serve to 
 // reflect live changes to TypeScript files in app directory
-gulp.task('watch',['build-dev'], function () {
+gulp.task('watch', ['build-dev'], function () {
     gulp.watch(paths.sass, ['sass']);
     gulp.watch(paths.tsc, ['tsc']);
-    
+
 });
 
 // Run gulp tsc to transpile your TypeScript files from
@@ -270,7 +270,7 @@ gulp.task('watch',['build-dev'], function () {
 //    var ts = require('gulp-typescript');
 //    //var tsProject = ts.createProject('tsconfig.json');
 //    var tsProject = allTypeScript;
-   
+
 //    var tsResult= gulp
 //        .src(tsProject)
 //        .pipe(sourcemaps.init())
@@ -298,7 +298,7 @@ gulp.task('tsc', ['gen-ts-refs'], function () {
         .pipe(ts({
             target: "es5",
             declarationFiles: false,
-            noExternalResolve:true
+            noExternalResolve: true
 
 
         }))

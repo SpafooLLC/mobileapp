@@ -21,19 +21,21 @@
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
         ) {
-           
+
+
         }
 
 
         doLogin(username: string, password: string) {
+            //alert(this.$window.localStorage.getItem('DeviceToken'));
             var self = this;
             if (username === null || username == '' || username == undefined) {                
-                self.messages = "Please Enter User Name.";
+                self.messages = "Please enter user name";   
                 $("#PDoneError").modal();
                 return;
             }
             if (password === null || password == '' || password == undefined) {
-                self.messages = "Please Enter User Name.";
+                self.messages = "Please enter password";
                 $("#PDoneError").modal();
                 return;
             }
@@ -87,6 +89,7 @@
                 self.SharedHttp.GetMyNotification(UserID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
                 var v = self.$window.localStorage.getItem('url');
 
+<<<<<<< HEAD
                 if (v == "Register") {
 
                     self.$window.localStorage.setItem("url", '0');
@@ -121,9 +124,83 @@
                 //  self.$state.go("home");
             }, function (error) { });
         }
+=======
+                //if (v == "Register") {
+
+                //    self.$window.localStorage.setItem("url", '0');
+                //    window.location.href = "#/home";
+                //    //self.$state.go("home");
+                //}
+
+                //else {
+                //    if (self.$window.localStorage.getItem('Role') == 'P') {
+                //        //var v = self.$window.localStorage.getItem('url');
+>>>>>>> refs/remotes/origin/PawanBranch
+
+                //        var c = v.substr(v.indexOf('/') + 1);
+                //        c = c.substr(0, c.indexOf('/'));
+
+                //        if (c == "MakeAppointment") {
+                //            self.$window.localStorage.setItem("url", '0');
+                //            window.history.go(-2);
+
+                //        } else {
+                //            self.$window.localStorage.setItem("url", '0');
+                //            window.history.go(-1);
+                //        }
 
 
 
+                //    }
+                //    else {
+                //        window.history.go(-1);
+                //    }
+                //}
+
+                if (v!=null && v == "Register") {
+
+                    self.$window.localStorage.setItem("url", '0');
+                    window.location.href = "#/home";
+                    //self.$state.go("home");
+                }
+
+                else {
+                    if (v!=null && self.$window.localStorage.getItem('Role') == 'P' ) {
+                        //var v = self.$window.localStorage.getItem('url');
+
+                        var c = v.substr(v.indexOf('/') + 1);
+                        c = c.substr(0, c.indexOf('/'));
+
+                        if (c == "MakeAppointment" && self.$window.localStorage.getItem('url1') != "FindProvider") {
+                             
+                            self.$window.localStorage.setItem("url", '0');
+                            window.history.go(-2);
+
+                        } else {
+                            if (self.$window.localStorage.getItem('url1') == "FindProvider") {
+
+                                self.$window.localStorage.setItem("url1", '0');
+                                window.location.href = "#/home";
+                            }
+                            else {
+                                self.$window.localStorage.setItem("url", '0');
+                                window.history.go(-1);
+                            }
+
+                        }
+
+
+
+                    }
+                    else {
+
+                        window.history.go(-1);
+                    }
+                }
+
+                //  self.$state.go("home");
+            }, function (error) { });
+        }
     }
 
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);

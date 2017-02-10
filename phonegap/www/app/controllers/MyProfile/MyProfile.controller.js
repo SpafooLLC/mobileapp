@@ -1,7 +1,7 @@
 var MyProfileController;
 (function (MyProfileController_1) {
     var MyProfileController = (function () {
-        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
+        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,6 +12,7 @@ var MyProfileController;
             this.$window = $window;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
+            this.$rootScope = $rootScope;
             this.getUserInfo();
         }
         MyProfileController.prototype.getUserInfo = function () {
@@ -23,6 +24,7 @@ var MyProfileController;
             var customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response) {
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField1 = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
                 self.ServiceData.membershipField.createdDateField = self.SharedHttp.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
@@ -55,6 +57,7 @@ var MyProfileController;
             self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
+                self.$rootScope.NotifiCount = self.NotificaitonData.length;
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy");
                     var role = localStorage.getItem('Role');
@@ -71,7 +74,11 @@ var MyProfileController;
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
                             break;
                         case 6:
+<<<<<<< HEAD
                             self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
+=======
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 2hrs ";
+>>>>>>> refs/remotes/origin/PawanBranch
                             break;
                         case 14:
                             if (role == 'P') {
@@ -116,7 +123,11 @@ var MyProfileController;
                             break;
                         case 15:
                             if (role == 'C') {
+<<<<<<< HEAD
                                 self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " .For more information, please check 'My Schedule' section.";
+=======
+                                self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " ,For more information, please check 'My Schedule' section.";
+>>>>>>> refs/remotes/origin/PawanBranch
                             }
                             break;
                         case 16:
@@ -174,7 +185,7 @@ var MyProfileController;
                 });
             }
         };
-        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope'];
         return MyProfileController;
     }());
     angular.module('spafoo.ctrl.MyProfile', []).controller('MyProfile', MyProfileController);

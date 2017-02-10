@@ -9,8 +9,8 @@
         <div class="inbody-simple">
             <div class="prolist">
              
-                    <li ng-repeat="sr in pl.ServiceData">
-                        <a href="ProviderPortfolio.html">
+                    <li ng-repeat="sr in pl.ServiceData | orderBy:'distance'">
+                      <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td class="left">

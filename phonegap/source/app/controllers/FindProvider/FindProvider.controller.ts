@@ -26,9 +26,9 @@
             private $window: ng.IWindowService) {
             var self = this;
             self.customerType = window.localStorage.getItem('Role');
-          
+   $window.localStorage.setItem("url1", 'FindProvider');
             document.addEventListener("deviceready", function () {
-
+             
 
                 // Initialize the map plugin
                 var options = {
@@ -123,6 +123,8 @@
         getProviders(serviceId: any) {
             var self = this;
             FindProviderController.map.clear();
+            FindProviderController.map.setClickable(true);
+            $("#infowindow").hide();
             self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response: any) {
                 if (response.ListProvidersByServicesResult.length != 0) {
                     for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
@@ -134,13 +136,14 @@
                             const providerLoc = new plugin.google.maps.LatLng(lat, long);
                             FindProviderController.map.animateCamera({
                                 'target': providerLoc,
-                                'zoom':10
-                            }, function (marker:any) {
+                                'zoom': 10
+                            }, function (marker: any) {
                                 marker.showInfoWindow();
                             });
                         }
                     }
                 } else {
+                    FindProviderController.map.setClickable(false);
                     self.messages = 'No provider found for the service you have chosen';
                     $("#PDone").modal();
                 }
@@ -174,9 +177,6 @@
             var providerLatLong = { latitude: lat, longitude: long };
 
             var currentlatlong = { latitude: FindProviderController.currentLatLong.coords.latitude, longitude: FindProviderController.currentLatLong.coords.longitude };
-
-
-
             const providerLoc = new plugin.google.maps.LatLng(lat, long);
 
             //  alert("add marker called" + FindProviderController.map);
@@ -213,12 +213,7 @@
                 //alert(marker.get("id"));
                 //alert("marker options" + JSON.stringify(marker.id) + JSON.stringify(marker));
                 marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function () {
-
-
-
                     self.getUserInfo(marker.get("params").id).then(function (data: any) {
-
-
                         marker.setTitle(data.name);
                         marker.setSnippet(marker.get("params").distance + " miles away");
                         self.profilePic = data.profilePic;
@@ -228,16 +223,10 @@
                         marker.showInfoWindow();
                         //self.infoWindow = true;
                         $("#infowindow").show();
-
                     }, function (e) { });
                     //self.CustomerHttp.get('/ListProvidersByServices/' + marker.get("params").id).then(function (response: any) { });
                     //alert("Marker is clicked" + JSON.stringify(marker.get("params")));
                 });
-
-
-
-
-
             });
 
 
@@ -247,7 +236,7 @@
         //    var self = this;
         //    self.messages = "Provider can not book an appointment";
         //    $("#PDone").modal();
-          
+
         //}
         getUserInfo(userId: any) {
 
@@ -266,7 +255,7 @@
                     self.SharedHttp.GetProTagLine(userId).then(function (res) {
 
                         tagline = res;
-                        var data = { name: response.GetUserInfoResult.displayNameField, profilePic: image, tagField: tagline, userId: userId };
+                        var data = { name: response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0]+".", profilePic: image, tagField: tagline, userId: userId };
 
                         deferred.resolve(data);
                     }, function (e) { deferred.reject("failed to get data") });

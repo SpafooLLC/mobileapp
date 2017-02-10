@@ -25,6 +25,10 @@ var ProMyProfileController;
             self.CustomerHttp.get('/GetUserJSON/' + customerID).then(function (response) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
                 //console.log(self.ServiceData);
+<<<<<<< HEAD
+=======
+                self.ServiceData.DisplayName1 = self.ServiceData.FirstName + " " + self.ServiceData.LastName[0] + ".";
+>>>>>>> refs/remotes/origin/PawanBranch
                 self.ServiceData.Membership.CreatedDate = self.SharedHttp.getFormatedDate(self.ServiceData.Membership.CreatedDate, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 var str = self.ServiceData.Profile.Biography;

@@ -20,7 +20,7 @@
     }
     interface ITimeoutService extends ng.ITimeoutService { }
     class RegisterController implements IRegister {
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', '$timeout', 'SharedHttp', '$rootScope'];
         username: string;
         password: string;
         messages: string; messagessuc: string;
@@ -39,7 +39,7 @@
             private CustomerHttp: spafoo.httpservice.ICustomerScreenHttp,
             private $window: ng.IWindowService,
             private $timeout: ITimeoutService,
-            private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp, private $rootScope: any
         ) {
             window.localStorage.setItem("url", 'Register');
             $("#PhoneNo").mask("000-000-0000");
@@ -47,11 +47,9 @@
             $("#Zipcode").mask("00000");
         }
         doRegister(Regdata: any) {
-
             var self = this;
             //  alert("hello");
             if (this.DoValidation(Regdata)) {
-
                 if (self.SharedHttp.getPicID() === null || self.SharedHttp.getPicID() === '' || self.SharedHttp.getPicID() === undefined || self.SharedHttp.getPicID() === 'undefined') {
                     Regdata.picFID = null;
                     self.SharedHttp.setPicID(null);
@@ -60,25 +58,48 @@
                     self.SharedHttp.setPicID(null);
                 }
                 //alert(JSON.stringify(Regdata));
-
                 var data = Regdata;
-
                 data.HardwareName = self.$window.localStorage.getItem('DeviceName');
                 data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
                 self.$ionicLoading.show();
                 self.CustomerHttp.post(data, '/RegisterUser').then(function (response: any) {
-
                     if (parseInt(response.CustomerID) > 0) {
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.$window.localStorage.setItem('Role', response.Usertype);
+<<<<<<< HEAD
                         self.$window.localStorage.setItem('LoginStatus', "true");    
                         self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+=======
+                        self.$window.localStorage.setItem('LoginStatus', "true");
+                      //  self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+>>>>>>> refs/remotes/origin/PawanBranch
                             //self.$state.go("home");
+
+                        self.SharedHttp.GetUserInfo(response.CustomerID).then(function (res: any) {
+                            self.$rootScope.UserProfileName = res.displayNameField;
+                            self.$window.localStorage.setItem('CustomerName', res.displayNameField);
+                            self.$rootScope.GetLoginStatus = true;
                             self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
-
+                        self.SharedHttp.GetMyNotification(response.CustomerID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
+                        self.$rootScope.getRole = (self.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
+                       
+                       // });
                     }
-                    self.$ionicLoading.hide();
+                    else if (response.Success == "UserAlreadyRegistered")
+                    {
+                        self.messages = "Username already exists. Please select new username.";
+                        $("#PDone").modal();
+                        Regdata.Username = "";
+                    }
+                    else if (response.Success == "DuplicateEmail")
+                    {
+                        self.messages = "Email address already registered. Please choose other email address.";
+                        $("#PDone").modal();
+                        Regdata.EmailAddress = "";
+                    }
+
+
                 }, function (error) {
                     if (error === null) {
                         self.$ionicLoading.hide();
@@ -90,6 +111,28 @@
                 });
             }
         }
+
+        //doRegister(Regdata: any) {
+
+        //    var self = this;
+        //    //  alert("hello");
+        //    if (this.DoValidation(Regdata)) {
+
+        //        if (self.SharedHttp.getPicID() === null || self.SharedHttp.getPicID() === '' || self.SharedHttp.getPicID() === undefined || self.SharedHttp.getPicID() === 'undefined') {
+        //            Regdata.picFID = null;
+        //            self.SharedHttp.setPicID(null);
+        //        } else {
+        //            Regdata.picFID = self.SharedHttp.getPicID();
+        //            self.SharedHttp.setPicID(null);
+        //        }
+        //        //alert(JSON.stringify(Regdata));
+        //        var data = Regdata;
+        //        data.HardwareName = self.$window.localStorage.getItem('DeviceName');
+        //        data.DeviceToken = self.$window.localStorage.getItem('DeviceToken');
+        //        localStorage.setItem("registerData", JSON.stringify(data));
+        //        self.$state.go("BasicCreditCard", { from: 'reg' });
+        //    }
+        //}
 
         GoRegistertext(IsProvider: any) {
 

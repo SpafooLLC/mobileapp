@@ -27,17 +27,24 @@
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res: any) { seldf.$rootScope.NotifiCount = res.length; });
             }
-            document.addEventListener('deviceready', seldf.onDeviceReady, false);
-
+            
+            try {
+                document.addEventListener('deviceready', seldf.onDeviceReady, false);
+              
+            }
+            catch (e)
+            {
+              
+            }
 
         }
 
         onDeviceReady() {
-
+     
             if (device.platform === 'iOS') {
                 StatusBar.hide();
             }
-            
+
             var push = PushNotification.init({
                 android: {
                     senderID: "24553703183"
@@ -54,9 +61,9 @@
             });
 
             push.on('registration', function (data: any) {
-                // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+         // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                    //  alert(JSON.stringify(data));
+                 
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }
@@ -68,7 +75,7 @@
 
             push.on('notification', function (data) {
                 //var i = 2;
-                // alert(JSON.stringify(data));
+       
                 if (!data.additionalData.foreground) {
                     //cordova.plugins.notification.badge.set(i);
                     window.location.href = "#/Notification";
@@ -80,9 +87,8 @@
                 // data.image,
                 // data.additionalData
             });
-
             push.on('error', function (e) {
-                alert(JSON.stringify(e));
+              //  alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
 
@@ -96,6 +102,7 @@
             this.$rootScope.UserProfileName = "Welcome to Spafoo";
             this.$window.localStorage.setItem('CustomerName', "Welcome to Spafoo");
             this.$window.localStorage.setItem('Role', null);
+            this.$rootScope.getRole = (this.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
             //  alert("LogOut :: "+this.$rootScope.GetLoginStatus + ", type Of :: " + typeof (this.$rootScope.GetLoginStatus));
             $('.clsmenu').click(function () {
                 $('.titre').click();
