@@ -239,7 +239,13 @@
                 $("#PDone").modal();
                 return false;
             }
-            return true;
+          //  alert(JSON.stringify(self.imageURL));
+            if (self.imageURL === null || self.imageURL === '' || self.imageURL == undefined) {
+                self.messages = "Please Select Profile Pic.";
+                $("#PDone").modal();
+                return false;
+            }
+            return true;    
         }
 
         cameraOption() {

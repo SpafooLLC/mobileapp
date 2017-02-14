@@ -70,7 +70,7 @@ var mainController;
                 // data.additionalData
             });
             push.on('error', function (e) {
-                //  alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
+                // alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
         };

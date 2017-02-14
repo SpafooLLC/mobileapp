@@ -92,6 +92,12 @@ var MyProfileEditController;
                 $("#PDoneError").modal();
                 return;
             }
+            //  alert(self.profilePic);
+            if (self.profilePic == "" || self.profilePic == null) {
+                self.messages = "Please Select Profile Pic.";
+                $("#PDoneError").modal();
+                return;
+            }
             if (self.doValidation(Email)) {
                 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
                 var data = {

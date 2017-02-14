@@ -117,6 +117,9 @@
   .profile-pic { margin:0 0 30px 0; }
   .profile-pic .round { border-radius:50%; width:160px; height:160px; overflow:hidden; margin:0 auto; }
   .profile-pic .round img { display:block; height:100%; width:100%; }
+  .ppro-pic { margin:30px 0; display:block; }
+  .ppro-pic .round { border-radius:50%; width:250px; height:250px; overflow:hidden; margin:0 auto; }
+  .ppro-pic .round img { display:block; height:100%; width:100%; }
   .pwd-block { background:#e0e0e0; padding:8px; margin-bottom:20px; }
   .pwd-block .left { float:left; width:49%; }
   .pwd-block .right { float:right; width:49%;}
@@ -306,6 +309,7 @@
   .asapad a.btnacc:hover, .asapad a.btnden:hover { background:#222222; color:#ffffff; }
   .pdimg {   background:#ff0000; padding:2px 0; text-align:center; display:block; }
   .bsbutton { background:#1e319b; padding:5px 15px; color:#ffffff; }
+  .fontsm { font-size:12px !important; }
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	

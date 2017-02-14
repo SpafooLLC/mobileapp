@@ -75,7 +75,7 @@
 
             push.on('notification', function (data) {
                 //var i = 2;
-       
+        
                 if (!data.additionalData.foreground) {
                     //cordova.plugins.notification.badge.set(i);
                     window.location.href = "#/Notification";
@@ -88,7 +88,7 @@
                 // data.additionalData
             });
             push.on('error', function (e) {
-              //  alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
+               // alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
 

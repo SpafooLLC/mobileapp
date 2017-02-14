@@ -189,6 +189,12 @@ var registerController;
                 $("#PDone").modal();
                 return false;
             }
+            //  alert(JSON.stringify(self.imageURL));
+            if (self.imageURL === null || self.imageURL === '' || self.imageURL == undefined) {
+                self.messages = "Please Select Profile Pic.";
+                $("#PDone").modal();
+                return false;
+            }
             return true;
         };
         RegisterController.prototype.cameraOption = function () {
