@@ -7,24 +7,42 @@
         </div>
         <div class="inbody">
             <div class="inbody-simple">
-                <div class="prolist" ng-repeat="sr in prlist.ServiceData">
-                    <h2>{{sr.serviceNameField}}</h2>
-                    <div class="prolist" ng-repeat="cl in sr.childrenField">
-                        <table ng-repeat="cl1 in cl.childrenField">
+
+
+                <div class="prolist">
+
+                    <li ng-repeat="sr in prlist.ServiceData">
+                        <table class="Pricelists" width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td>{{cl1.serviceNameField}}</td>
-                                <td style="padding-left:35px"> from {{cl1.priceField}}</td>
+                                <td class="middle">
+                                    <h2>{{sr.serviceNameField}}</h2>
+                                </td>
                             </tr>
                         </table>
-                        <table>
-                            <tr>
-                                <td>{{cl.serviceNameField}}</td>
-                                <td style="padding-left:35px"> from {{cl.priceField}}</td>
-                            </tr>
-                        </table>
-                    </div>
+
+
+                        <div ng-repeat="cl in sr.childrenField">
+                            <table class="Pricelists" ng-repeat="cl1 in cl.childrenField" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="left">{{cl1.serviceNameField}}</td>
+                                    <td class="right"> from {{cl1.priceField}}</td>
+                                </tr>
+                            </table>
+                            <table class="Pricelists" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="left">{{cl.serviceNameField}}</td>
+                                    <td class="right"> from {{cl.priceField}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
 
                 </div>
+
+
+
+
+
             </div>
         </div>
 

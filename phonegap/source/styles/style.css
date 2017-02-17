@@ -527,3 +527,4 @@
 
 .modal-backdrop.fade.in {position: static;}
 body .modal-backdrop{position: inherit;}
+.Pricelists td.left {    width: 75% !important;    padding: 5px 0;}
