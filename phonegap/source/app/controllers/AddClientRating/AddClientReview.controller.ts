@@ -1,20 +1,20 @@
 ﻿module AddClientReviewController {
 
-    interface IAddClientReviewController{
-        clientId:string;
-        appointmentID:string;
-        ServiceData:any;
-        listRateData:any;
-        profilePic:string;
-        rateValue:string;
-        isChecked:boolean;
-        commentTxt:string;
-        dropDownVal:string;
-        ratingCSV:string;
+    interface IAddClientReviewController {
+        clientId: string;
+        appointmentID: string;
+        ServiceData: any;
+        listRateData: any;
+        profilePic: string;
+        rateValue: string;
+        isChecked: boolean;
+        commentTxt: string;
+        dropDownVal: string;
+        ratingCSV: string;
         communication: string;
         cooperation: string;
-        timePunctuality:string;
-        reviewCSV:string;
+        timePunctuality: string;
+        reviewCSV: string;
         messages: string;
         aboutClientLike: string;
         aboutClientDislike: string;
@@ -25,21 +25,21 @@
     }
 
     class AddClientReviewController implements IAddClientReviewController {
-        clientId:string;
-        appointmentID:string;
-        ServiceData:any;
-        listRateData:any;
-        profilePic:string;
-        rateValue:string;
-        isChecked:boolean;
-        commentTxt:string;
-        dropDownVal:string;
-        ratingCSV:string;
+        clientId: string;
+        appointmentID: string;
+        ServiceData: any;
+        listRateData: any;
+        profilePic: string;
+        rateValue: string;
+        isChecked: boolean;
+        commentTxt: string;
+        dropDownVal: string;
+        ratingCSV: string;
         communication: string;
         cooperation: string;
-        timePunctuality:string;
-        reviewCSV:string;
-        messages: string;      
+        timePunctuality: string;
+        reviewCSV: string;
+        messages: string;
         aboutClientLike: string;
         aboutClientDislike: string;
         attitude: string;
@@ -49,10 +49,11 @@
         appointmentIDField: string;
         payTxnIDField: string;
         amountField: string;
+        PID: string;
+        PPID: string;
 
 
-
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp','$stateParams'];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -68,7 +69,7 @@
         ) {
             this.getProviderInfo();
             this.pageName = this.$stateParams.pageName;
-           
+
         }
         CompleteApp() {
             var self = this;
@@ -79,15 +80,18 @@
             self.payTxnIDField = self.$stateParams.payTxnIDField;
             self.amountField = self.$stateParams.amountField;
 
+            self.PID = self.$stateParams.PID;
+            self.PPID = self.$stateParams.PPID;
+
             //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
             //self.message = 'Appointment Completed';
             //$("#PDone").modal();
-            self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.$stateParams.comment)
+            self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.$stateParams.comment, self.PID, self.PPID);
         }
         getProviderInfo() {
             var self = this;
-             var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
             }
             self.isChecked = false;
@@ -95,8 +99,8 @@
             self.appointmentID = self.$stateParams.appId;
             self.CustomerHttp.get('/GetUserInfo/' + self.clientId).then(function (response: any) {
                 self.ServiceData = response.GetUserInfoResult;
-                self.ServiceData.firstNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0]+"."
-                self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres;});
+                self.ServiceData.firstNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + "."
+                self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
             }, function (error) {
                 if (error === null) {
 
@@ -104,31 +108,31 @@
                     //console.log(error);
                 }
             });
-            self.CustomerHttp.get('/ListRating/1').then(function(response:any){
-                self.listRateData=response;
+            self.CustomerHttp.get('/ListRating/1').then(function (response: any) {
+                self.listRateData = response;
                 console.log(self.listRateData);
-            },function(error){
-                 if (error === null) {
+            }, function (error) {
+                if (error === null) {
 
                 } else {
                     //console.log(error);
                 }
             });
-            
+
         }
 
-        getRate(rate:string){
-            var self=this;
-            self.rateValue='0' + ':' + rate;
+        getRate(rate: string) {
+            var self = this;
+            self.rateValue = '0' + ':' + rate;
         }
 
-        toggleCheck(){
-            var self=this;
+        toggleCheck() {
+            var self = this;
             self.isChecked = self.isChecked == true ? false : true;
         }
 
-        postRateInfo(ratingNameField:string,ratingTypeIDField:string,value:string){
-            var self=this;
+        postRateInfo(ratingNameField: string, ratingTypeIDField: string, value: string) {
+            var self = this;
             if (ratingNameField === 'Communication') {
                 self.communication = ratingTypeIDField + ':' + value;
             } else if (ratingNameField === 'Time Punctuality') {
@@ -146,10 +150,9 @@
             this.$state.go(href);
         }
 
-        postRating(){
+        postRating() {
             var self = this;
-            if (self.rateValue == null || self.rateValue == "")
-            {
+            if (self.rateValue == null || self.rateValue == "") {
                 self.messages = "Please choose rating.";
                 $("#PDoneError").modal();
                 return;
@@ -175,29 +178,29 @@
                 $("#PDoneError").modal();
                 return;
             }
-           
-         
-            self.ratingCSV = self.rateValue + '|' +self.timePunctuality + '|' + self.communication + '|' + self.cooperation + '|' + self.attitude;
+
+
+            self.ratingCSV = self.rateValue + '|' + self.timePunctuality + '|' + self.communication + '|' + self.cooperation + '|' + self.attitude;
             self.reviewCSV = self.aboutClientLike + ':' + self.aboutClientDislike + ':' + self.commentTxt + ':-1';
             //console.log(self.ratingCSV);
             //console.log(self.reviewCSV);
-            var data={
-                "AppID":self.appointmentID,
-                "RatingByID":self.$window.localStorage.getItem('CustomerID'),
-                "RatingCSV":self.ratingCSV,
-                "RatingToID":self.clientId,
-                "ReviewCSV":self.reviewCSV
+            var data = {
+                "AppID": self.appointmentID,
+                "RatingByID": self.$window.localStorage.getItem('CustomerID'),
+                "RatingCSV": self.ratingCSV,
+                "RatingToID": self.clientId,
+                "ReviewCSV": self.reviewCSV
             }
             console.log(data);
-            self.CustomerHttp.post(data,'/AddRating').then(function(res){
+            self.CustomerHttp.post(data, '/AddRating').then(function (res) {
                 self.messages = 'Thank you for rating';
                 $('#PDone').modal();
-            },function(error){
+            }, function (error) {
 
             });
-            
+
         }
-       
+
     }
 
 

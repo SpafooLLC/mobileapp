@@ -43,7 +43,7 @@
             var data = {
                 Username: username,
                 Password: password,
-                HardwareName: this.$window.localStorage.getItem('DeviceName'),
+                HardwareName:this.$window.localStorage.getItem('DeviceName'),
                 DeviceToken: this.$window.localStorage.getItem('DeviceToken')
             };
 

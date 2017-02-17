@@ -1,0 +1,37 @@
+﻿<ion-view view-title="About Spafoo">
+    <ion-content>
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Price List</div>
+        </div>
+        <div class="inbody">
+            <div class="inbody-simple">
+                <div class="prolist" ng-repeat="sr in prlist.ServiceData">
+                    <h2>{{sr.serviceNameField}}</h2>
+                    <div class="prolist" ng-repeat="cl in sr.childrenField">
+                        <table ng-repeat="cl1 in cl.childrenField">
+                            <tr>
+                                <td>{{cl1.serviceNameField}}</td>
+                                <td style="padding-left:35px"> from {{cl1.priceField}}</td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>{{cl.serviceNameField}}</td>
+                                <td style="padding-left:35px"> from {{cl.priceField}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <script type="text/javascript">app.initialize();</script>
+        <script>transformicons.add('.tcon');</script>
+
+    </ion-content>
+</ion-view>

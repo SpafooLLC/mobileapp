@@ -10,6 +10,8 @@
         clientsPosition: any;
         static map: any;
         currloc: any;
+        PPID: any;
+        PID: any;
         static currentLatLong: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         constructor(
@@ -91,6 +93,9 @@
             }
             self.CustomerHttp.get('/GetAppointment/' + AppID).then(function (response: any) {
                 self.ServiceData = response.GetAppointmentResult;
+                console.log(JSON.stringify(self.ServiceData));
+                self.ServiceData.PID =self.ServiceData.customerProfileIDField;
+                self.ServiceData.PPID = self.ServiceData.payProfileIDField; 
                 var orderdt = self.SharedHttp.getFormatedDate(self.ServiceData.forDateField, "weekday dd MMMM yyyy");
                 self.ServiceData.orderDateField = orderdt;
                 self.ServiceData.atTimeField = self.SharedHttp.getFormatedTime(self.ServiceData.atTimeField);
@@ -98,6 +103,8 @@
                 self.ServiceData.MonthField = orderdt.split(' ')[2];
                 self.amountField = self.ServiceData.amountField;
                 self.authTxnIDField = self.ServiceData.authTxnIDField;
+             
+
                 self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) { self.ServiceData.addressField = e; self.addMarkers(); });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {

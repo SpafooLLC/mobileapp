@@ -10,7 +10,7 @@
     function configProAppointmentCompleted($stateProvider: angular.ui.IStateProvider) {
         var ProAppointmentCompletedState: angular.ui.IState = {
             name: 'ProAppointmentCompleted',
-            url: '/ProAppointmentCompleted/:clientId/:authTxnIDField/:appointmentIDField/:payTxnIDField/:amountField',
+            url: '/ProAppointmentCompleted/:clientId/:authTxnIDField/:appointmentIDField/:payTxnIDField/:amountField/:PID/:PPID',
             templateUrl: 'app/templates/Pro-AppointmentCompleted.html',
             controller: 'ProAppointmentCompleted as pac'
         };

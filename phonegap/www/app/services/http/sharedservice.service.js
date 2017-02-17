@@ -70,10 +70,10 @@ var spafoo;
                 timeString = h + timeString.substr(hourEnd, 3) + ampm;
                 return timeString;
             };
-            SharedHttp.prototype.completeAppService = function (UserID, clientId, authTxnIDField, appointmentIDField, payTxnIDField, amountField, comment) {
+            SharedHttp.prototype.completeAppService = function (UserId, clientID, authTxnIDField, appointmentIDField, payTxnIDField, amountField, comment, PID, PPID) {
                 var self = this;
-                var UserID = UserID;
-                var clientId = clientId;
+                var UserID = UserId;
+                var clientId = clientID;
                 var authTxnIDField = authTxnIDField;
                 var appointmentIDField = appointmentIDField;
                 var payTxnIDField = payTxnIDField;
@@ -81,35 +81,50 @@ var spafoo;
                 //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
                 //self.message = 'Appointment Completed';
                 //$("#PDone").modal();
+                //var data = {
+                //    TxnID: authTxnIDField,
+                //    Amount: amountField
+                //};
                 var data = {
-                    TxnID: authTxnIDField,
-                    Amount: amountField
+                    UserID: UserId,
+                    clientId: clientID,
+                    ID: appointmentIDField,
+                    authTxnID: authTxnIDField,
+                    PaymentTxnID: payTxnIDField,
+                    Amount: amountField,
+                    PID: PID,
+                    PPID: PPID
                 };
-                self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res) {
-                    var response = JSON.parse(res);
-                    var upData = {
-                        ID: appointmentIDField,
-                        Comment: comment,
-                        PaymentTxnID: payTxnIDField
-                    };
-                    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes) {
-                        var navData = {
-                            ByID: UserID,
-                            NotTypeID: 8,
-                            RelatedEntityID: appointmentIDField,
-                            ToID: clientId
-                        };
-                        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes) {
-                            self.message = 'Appointment Completed';
-                            //$("#PDone").modal();
-                            self.$state.go("ProAppointments");
-                        }, function (navError) {
-                        });
-                    }, function (erError) {
-                    });
-                }, function (error) {
-                    //alert('someError on ChargePreviosAuth');
+                self.CustomerHttp.post(data, '/AppointmentCompleted').then(function (res) {
+                    self.message = 'Appointment Completed';
+                    self.$state.go("ProAppointments");
+                }, function (erError) {
                 });
+                //self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+                //    var response = JSON.parse(res);
+                //    var upData = {
+                //        ID: appointmentIDField,
+                //        Comment: comment,
+                //        PaymentTxnID: payTxnIDField
+                //    };
+                //    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+                //        var navData = {
+                //            ByID: UserID,
+                //            NotTypeID: 8,
+                //            RelatedEntityID: appointmentIDField,
+                //            ToID: clientId
+                //        };
+                //        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+                //            self.message = 'Appointment Completed';
+                //            //$("#PDone").modal();
+                //            self.$state.go("ProAppointments");
+                //        }, function (navError: any) {
+                //        })
+                //    }, function (erError: any) {
+                //    });
+                //}, function (error: any) {
+                //    //alert('someError on ChargePreviosAuth');
+                //});
             };
             SharedHttp.prototype.getFormatedDate = function (joindates, formatType) {
                 if (formatType != "weekday dd MMMM yyyy") {

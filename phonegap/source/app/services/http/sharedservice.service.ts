@@ -39,7 +39,7 @@
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
         HideApp4Me(AppID: any, UserType: any): ng.IPromise<string>;
-        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any): any;
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID:any,PPID:any): any;
         UnSeenStatus(AppointmentID: any): void;
     }
     export class SharedHttp implements ISharedHttp {
@@ -116,13 +116,12 @@
             return timeString;
         }
 
-        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any) {
+        completeAppService(UserId: any, clientID: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any,PID:any,PPID:any) {
 
             var self = this;
-        
 
-            var UserID = UserID;
-            var clientId = clientId;
+            var UserID = UserId;
+            var clientId = clientID;
             var authTxnIDField = authTxnIDField;
             var appointmentIDField = appointmentIDField;
             var payTxnIDField = payTxnIDField;
@@ -131,38 +130,54 @@
             //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
             //self.message = 'Appointment Completed';
             //$("#PDone").modal();
+            //var data = {
+            //    TxnID: authTxnIDField,
+            //    Amount: amountField
+            //};
             var data = {
-                TxnID: authTxnIDField,
-                Amount: amountField
+                UserID: UserId,
+                clientId: clientID,
+                ID: appointmentIDField,
+                authTxnID: authTxnIDField,
+                PaymentTxnID: payTxnIDField,
+                Amount: amountField,
+                PID: PID,
+                PPID:PPID
             };
-            self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
-                var response = JSON.parse(res);
-                var upData = {
-                    ID: appointmentIDField,
-                    Comment: comment,
-                    PaymentTxnID: payTxnIDField
-                };
-                self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
-                    var navData = {
-                        ByID: UserID,
-                        NotTypeID: 8,
-                        RelatedEntityID: appointmentIDField,
-                        ToID: clientId
-                    };
-                    self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
-                        self.message = 'Appointment Completed';
-                        //$("#PDone").modal();
-                        self.$state.go("ProAppointments");
-                    }, function (navError: any) {
+            self.CustomerHttp.post(data, '/AppointmentCompleted').then(function (res: any) {
+                self.message = 'Appointment Completed';
+                self.$state.go("ProAppointments");
+            }, function (erError: any) {
 
-                    })
-                }, function (erError: any) {
-
-                });
-
-            }, function (error: any) {
-                //alert('someError on ChargePreviosAuth');
             });
+            //self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+            //    var response = JSON.parse(res);
+            //    var upData = {
+            //        ID: appointmentIDField,
+            //        Comment: comment,
+            //        PaymentTxnID: payTxnIDField
+            //    };
+            //    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+            //        var navData = {
+            //            ByID: UserID,
+            //            NotTypeID: 8,
+            //            RelatedEntityID: appointmentIDField,
+            //            ToID: clientId
+            //        };
+            //        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+            //            self.message = 'Appointment Completed';
+            //            //$("#PDone").modal();
+            //            self.$state.go("ProAppointments");
+            //        }, function (navError: any) {
+
+            //        })
+            //    }, function (erError: any) {
+
+            //    });
+
+            //}, function (error: any) {
+            //    //alert('someError on ChargePreviosAuth');
+            //});
         }
 
         getFormatedDate(joindates: any, formatType: any): any {

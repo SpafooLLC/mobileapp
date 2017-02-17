@@ -24,10 +24,12 @@ var AddClientReviewController;
             self.appointmentIDField = self.$stateParams.appointmentIDField;
             self.payTxnIDField = self.$stateParams.payTxnIDField;
             self.amountField = self.$stateParams.amountField;
+            self.PID = self.$stateParams.PID;
+            self.PPID = self.$stateParams.PPID;
             //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
             //self.message = 'Appointment Completed';
             //$("#PDone").modal();
-            self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.$stateParams.comment);
+            self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.$stateParams.comment, self.PID, self.PPID);
         };
         AddClientReviewController.prototype.getProviderInfo = function () {
             var self = this;

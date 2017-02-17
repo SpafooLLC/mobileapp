@@ -34,7 +34,8 @@ var mainController;
             }
             var push = PushNotification.init({
                 android: {
-                    senderID: "24553703183"
+                    //senderID: "24553703183"
+                    senderID: "419078761457"
                 },
                 browser: {
                     pushServiceURL: 'http://push.api.phonegap.com/v1/push'
@@ -49,6 +50,7 @@ var mainController;
             push.on('registration', function (data) {
                 // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
+                    alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }

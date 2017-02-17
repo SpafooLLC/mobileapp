@@ -13,7 +13,8 @@
         message: string;
         appointmentPhotoList: any;
         page: string;
-
+        PPID: any;
+        PID: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', '$stateParams', '$timeout'];
         constructor(
             private $q: ng.IQService,
@@ -42,6 +43,9 @@
             self.appointmentIDField = self.$stateParams.appointmentIDField;
             self.payTxnIDField = self.$stateParams.payTxnIDField;
             self.amountField = self.$stateParams.amountField;
+            self.PID = self.$stateParams.PID;
+            self.PPID = self.$stateParams.PPID;
+
             self.getAppointmentPhotos(self.appointmentIDField).then(function (res: any) {
                 self.$timeout(function () {
                     self.appointmentPhotoList = res;
@@ -72,7 +76,7 @@
            self.appointmentIDField = self.$stateParams.appointmentIDField;
            self.payTxnIDField = self.$stateParams.payTxnIDField;
            self.amountField = self.$stateParams.amountField;
-           self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.comment)
+           self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.comment,self.PID,self.PPID)
         }
 
         //CompleteApp1() {

@@ -63,6 +63,9 @@ var ProAppointmentDetailController;
             }
             self.CustomerHttp.get('/GetAppointment/' + AppID).then(function (response) {
                 self.ServiceData = response.GetAppointmentResult;
+                console.log(JSON.stringify(self.ServiceData));
+                self.ServiceData.PID = self.ServiceData.customerProfileIDField;
+                self.ServiceData.PPID = self.ServiceData.payProfileIDField;
                 var orderdt = self.SharedHttp.getFormatedDate(self.ServiceData.forDateField, "weekday dd MMMM yyyy");
                 self.ServiceData.orderDateField = orderdt;
                 self.ServiceData.atTimeField = self.SharedHttp.getFormatedTime(self.ServiceData.atTimeField);

@@ -8,6 +8,7 @@
     class MakeAppointmentController implements IMakeAppointmentController {
         UserID: number;
         ServiceData: {};
+        customer_PaymentProfileId: string;
         MainView: string;
         ProviderServiceList: {};
         messages: any;
@@ -88,13 +89,12 @@
             var self = this;
 
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
-             
-                    response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0]+".";
-                
+
+                response.GetUserInfoResult.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
+
                 self.ServiceData = response.GetUserInfoResult;
-                for (var i = 0; i < response.GetUserInfoResult.length; i++)
-                {
-                
+                for (var i = 0; i < response.GetUserInfoResult.length; i++) {
+
                 }
                 if (self.isEdit) {
                     self.getEditInfo();
@@ -118,7 +118,7 @@
                     self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
                     self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
                     self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
-              
+
                     if (!self.isEdit) {
                         self.info.address = self.ServiceData.profileField.streetField;
                         self.info.city = self.ServiceData.profileField.cityField;
@@ -159,21 +159,21 @@
             switch (parseInt(data)) {
                 case 1:
                     self.GetGPSLocation();
-	                break;
+                    break;
                 case 2:
                     //alert(self.address);
-	                self.info.address = self.ServiceData.profileField.streetField;
-	                self.info.city = self.ServiceData.profileField.cityField;
-	                self.info.state = self.ServiceData.profileField.regionField;
-	                self.info.zip = self.ServiceData.profileField.postalCodeField;
+                    self.info.address = self.ServiceData.profileField.streetField;
+                    self.info.city = self.ServiceData.profileField.cityField;
+                    self.info.state = self.ServiceData.profileField.regionField;
+                    self.info.zip = self.ServiceData.profileField.postalCodeField;
 
                     break;
 
                 case 3:
-	                self.info.address = '';
-	                self.info.city = '';
-	                self.info.state = '';
-	                self.info.zip = '';
+                    self.info.address = '';
+                    self.info.city = '';
+                    self.info.state = '';
+                    self.info.zip = '';
 
             }
 
@@ -241,12 +241,12 @@
                         else {
                             self.info.zip = result.postalCode;
                         }
-                       
+
                         /*self.info.address = result.subThoroughfare || '' + " " + result.thoroughfare || '';
                         self.info.city = result.locality || '';
                         self.info.state = result.adminArea || '';
                         self.info.zip = result.postalCode || '';*/
-                       
+
                     }
                 });
             }, self.onError, options);
@@ -469,10 +469,10 @@
             var self = this;
             self.availability = false;
             if (!self.isToday(time, true)) {
-             //   alert(time);
+                //   alert(time);
                 self.showIonicAlert('Sorry, you cannot select date before today');
             } else {
-                
+
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
                 self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
@@ -575,8 +575,12 @@
                 self.CCards = [];
                 var profile = JSON.parse(resp.GetCustomerProfileResult);
                 if (profile) {
+
                     profile = profile.profile;
+                    //      alert(JSON.stringify(profile));
+                    //   self.customer_PaymentProfileId = profile.customerPaymentProfileId;
                     self.PID = profile.customerProfileId;
+                  //  self.customer_PaymentProfileId = null;
                     if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles) {
                         profile.paymentProfiles.map(function (cc) {
                             self.CCards.push(cc);
@@ -698,21 +702,28 @@
 
         actionPayment() {
             var self = this;
+
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;
+                self.customer_PaymentProfileId = PPID;
+                // at this point you have he customerPaymentProfileId, now no more auth or capture ..just subbmit the data to web method to create appointment
+                // this is the flow when user select existing card ?
                 var amount = self.totalPrice;
+                //  alert(PID + ' / ' + PPID + ' /' + amount);
                 //str.slice(str.length -  4, str.length);
-                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
-                    var resp = JSON.parse(response.AuthProfileJSONResult);
-                    if (resp.transactionResponse.responseCode == 1) {
-                        self.transId = resp.transactionResponse.transId;
-                        self.finalMakeAppointment();
-                    } else {
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
-                    }
-                })
+                //self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
+                //    var resp = JSON.parse(response.AuthProfileJSONResult);
+                //    //   console.log("hi ji :: " +JSON.stringify(resp));
+                //    if (resp.transactionResponse.responseCode == 1) {
+                //        self.transId = resp.transactionResponse.transId;
+                  self.finalMakeAppointment();
+                //    } else {
+                //        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
+                //    }
+                //})
             } else {
+                //    alert('hi');
                 var obj = {
                     "Amount": self.totalPrice,
                     "CCNumber": self.cardNumber,
@@ -721,22 +732,51 @@
                     "Expiry": self.expMonth + '/' + self.expYear,
                     "UID": self.customerId
                 };
-                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response: any) {
-                    var resp = JSON.parse(response);
-                    if (resp.transactionResponse.responseCode == 1) {
-                        self.transId = resp.transactionResponse.transId;
-                   
-                        if (self.saveCardInfo) {
-                            self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
-                            }, function (error) { });
-                        }
-                        self.finalMakeAppointment();
+                //self.CustomerHttp.post(obj, '/AuthCardJSON1').then(function (response: any) {
+                 //   var resp = JSON.parse(response);
 
-                    } else {
-                        //self.modalGoback = true;
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
-                    }
-                });
+                    //if (response.Usertype == '1')
+                    //{
+                    //    console.log(JSON.stringify(response));
+
+                    //        if (response.Source === 'E00039' || response.Source === 'I00001') {
+                    //            self.finalMakeAppointment();
+                    //            self.customer_PaymentProfileId = response.CustomerID;
+                    //        }
+                    //        else
+                    //        {
+                    //            self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + response.Success );
+                    //        }
+
+                    //}
+                    //else {
+                    //    self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
+                    //}
+
+                    //if (resp.transactionResponse.responseCode == 1) {
+                    //    self.transId = resp.transactionResponse.transId;
+
+                    //    //if (self.saveCardInfo) {
+                        self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
+                            console.log(JSON.stringify(response));
+
+                            if (response.Source === 'E00039' || response.Source === 'I00001') {
+                                self.finalMakeAppointment();
+                                self.customer_PaymentProfileId = response.CustomerID;
+                            }
+                            else {
+                                self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + response.Success);
+                            }
+
+                        }, function (error) { });
+                        //}
+
+
+                    //} else {
+                    //    //self.modalGoback = true;
+                    //    self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
+                    //}
+             //   });
             }
         }
 
@@ -770,6 +810,7 @@
             var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm A A').format('h:mm A');
             var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm A A').format('h:mm A');
             var ForDate = self.ASAP ? '' : self.onlyDate;
+          //  alert(self.customer_PaymentProfileId + "   " + self.PID);
             var obj = {
                 AddressID: self.addressId,
                 AtTime: AtTime,
@@ -783,7 +824,7 @@
                 ForDate: ForDate,
                 PayTxnID: '',
                 ProviderID: self.$stateParams.userId,
-                oAuthTxn: self.transId
+                PayProfileID:self.customer_PaymentProfileId  //(self.card != undefined ? self.card.customerPaymentProfileId : self.PID)
             };
             self.CustomerHttp.post(obj, '/MakeAppointment').then(function (response: any) {
                 if (!isNaN(parseInt(response))) {

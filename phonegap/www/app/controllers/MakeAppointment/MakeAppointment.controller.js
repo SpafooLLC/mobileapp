@@ -516,7 +516,10 @@ var MakeAppointmentController;
                 var profile = JSON.parse(resp.GetCustomerProfileResult);
                 if (profile) {
                     profile = profile.profile;
+                    //      alert(JSON.stringify(profile));
+                    //   self.customer_PaymentProfileId = profile.customerPaymentProfileId;
                     self.PID = profile.customerProfileId;
+                    //  self.customer_PaymentProfileId = null;
                     if (typeof profile.paymentProfiles != "undefined" && profile.paymentProfiles) {
                         profile.paymentProfiles.map(function (cc) {
                             self.CCards.push(cc);
@@ -640,20 +643,21 @@ var MakeAppointmentController;
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;
+                self.customer_PaymentProfileId = PPID;
+                // at this point you have he customerPaymentProfileId, now no more auth or capture ..just subbmit the data to web method to create appointment
+                // this is the flow when user select existing card ?
                 var amount = self.totalPrice;
+                //  alert(PID + ' / ' + PPID + ' /' + amount);
                 //str.slice(str.length -  4, str.length);
-                self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response) {
-                    var resp = JSON.parse(response.AuthProfileJSONResult);
-                    if (resp.transactionResponse.responseCode == 1) {
-                        self.transId = resp.transactionResponse.transId;
-                        self.finalMakeAppointment();
-                    }
-                    else {
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
-                    }
-                });
+                //self.CustomerHttp.get('/AuthProfileJSON/' + PID + '/' + PPID + '/' + amount).then(function (response: any) {
+                //    var resp = JSON.parse(response.AuthProfileJSONResult);
+                //    //   console.log("hi ji :: " +JSON.stringify(resp));
+                //    if (resp.transactionResponse.responseCode == 1) {
+                //        self.transId = resp.transactionResponse.transId;
+                self.finalMakeAppointment();
             }
             else {
+                //    alert('hi');
                 var obj = {
                     "Amount": self.totalPrice,
                     "CCNumber": self.cardNumber,
@@ -662,21 +666,36 @@ var MakeAppointmentController;
                     "Expiry": self.expMonth + '/' + self.expYear,
                     "UID": self.customerId
                 };
-                self.CustomerHttp.post(obj, '/AuthCardJSON').then(function (response) {
-                    var resp = JSON.parse(response);
-                    if (resp.transactionResponse.responseCode == 1) {
-                        self.transId = resp.transactionResponse.transId;
-                        if (self.saveCardInfo) {
-                            self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
-                            }, function (error) { });
-                        }
+                //self.CustomerHttp.post(obj, '/AuthCardJSON1').then(function (response: any) {
+                //   var resp = JSON.parse(response);
+                //if (response.Usertype == '1')
+                //{
+                //    console.log(JSON.stringify(response));
+                //        if (response.Source === 'E00039' || response.Source === 'I00001') {
+                //            self.finalMakeAppointment();
+                //            self.customer_PaymentProfileId = response.CustomerID;
+                //        }
+                //        else
+                //        {
+                //            self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + response.Success );
+                //        }
+                //}
+                //else {
+                //    self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
+                //}
+                //if (resp.transactionResponse.responseCode == 1) {
+                //    self.transId = resp.transactionResponse.transId;
+                //    //if (self.saveCardInfo) {
+                self.CustomerHttp.post(obj, '/CreateCustomerProfile').then(function (response) {
+                    console.log(JSON.stringify(response));
+                    if (response.Source === 'E00039' || response.Source === 'I00001') {
                         self.finalMakeAppointment();
+                        self.customer_PaymentProfileId = response.CustomerID;
                     }
                     else {
-                        //self.modalGoback = true;
-                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
+                        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + response.Success);
                     }
-                });
+                }, function (error) { });
             }
         };
         MakeAppointmentController.prototype.wronInfoGoBack = function () {
@@ -708,6 +727,7 @@ var MakeAppointmentController;
             var AtTime = self.ASAP ? '' : moment(self.selectedFrom, 'h:mm A A').format('h:mm A');
             var EndTime = self.ASAP ? '' : moment(self.selectedTo, 'h:mm A A').format('h:mm A');
             var ForDate = self.ASAP ? '' : self.onlyDate;
+            //  alert(self.customer_PaymentProfileId + "   " + self.PID);
             var obj = {
                 AddressID: self.addressId,
                 AtTime: AtTime,
@@ -721,7 +741,7 @@ var MakeAppointmentController;
                 ForDate: ForDate,
                 PayTxnID: '',
                 ProviderID: self.$stateParams.userId,
-                oAuthTxn: self.transId
+                PayProfileID: self.customer_PaymentProfileId //(self.card != undefined ? self.card.customerPaymentProfileId : self.PID)
             };
             self.CustomerHttp.post(obj, '/MakeAppointment').then(function (response) {
                 if (!isNaN(parseInt(response))) {
