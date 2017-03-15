@@ -107,7 +107,7 @@
             this.$state.go(href);
         }
         getFormatedTime(timeString: any): any {
-
+          
             var hourEnd = timeString.indexOf(":");
             var H = +timeString.substr(0, hourEnd);
             var h = H % 12 || 12;

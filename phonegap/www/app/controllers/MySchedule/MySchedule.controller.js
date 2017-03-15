@@ -41,9 +41,9 @@ var MyScheduleController;
                     if (item.atTimeField === 'undefined' || item.atTimeField === undefined || item.atTimeField === null || item.atTimeField === '') {
                         self.ServiceData[i].atTimeField = '00:00 --';
                     }
-                    else {
-                        self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
-                    }
+                    //else {
+                    //    self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
+                    //}
                     var serviceName = "";
                     $.each(item.servicesField, function (ig, sitem) {
                         if (parseInt(sitem.qtyField) > 1) {

@@ -48,7 +48,7 @@
                     </div>
                     <div class="sce" ng-if="s.statusField==4 || s.statusField==-1">
 
-                        <a href="">
+                        <a href=""  ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                 <div class="time">{{s.atTimeField}}</div>

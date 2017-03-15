@@ -16,6 +16,8 @@ var ProviderListController;
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
+            self.GetWithInMile();
+            self.proindex = 0;
             var options = {
                 enableHighAccuracy: true,
                 maximumAge: 3600000
@@ -23,6 +25,12 @@ var ProviderListController;
             navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
             setTimeout(function () { self.getProviderList(self.ServiceIDs); }, 1000);
         }
+        ProviderListController.prototype.GetWithInMile = function () {
+            var self = this;
+            self.CustomerHttp.get('/GetWithInMile').then(function (response) {
+                self.InMile = parseInt(response.GetWithInMileResult);
+            });
+        };
         ProviderListController.prototype.getProviderList = function (ServiceID) {
             var self = this;
             self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response) {
@@ -41,21 +49,11 @@ var ProviderListController;
                         self.ServiceData[i].profileField.photoField = "";
                     }
                     ;
-                    //console.log(self.ServiceData[i].vanityUrlField)
                     self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
+                    if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile)) {
+                        self.proindex++;
+                    }
                 }
-                //var data = self.ServiceData;
-                //for (var i = 0; i < data.length; i++)
-                //{
-                //    for (var j = 0; j < data.length; j++)
-                //    {
-                //        if (data[i].distance > data[j].distance)
-                //        {
-                //            data[i].distance = data[j].distance;
-                //        }
-                //    }
-                //}
-                //console.log(data);
             }, function (error) {
                 if (error === null) {
                     self.$ionicLoading.hide();
@@ -84,7 +82,7 @@ var ProviderListController;
         };
         ProviderListController.prototype.onSuccess = function (position) {
             ProviderListController.currentlatlong = position;
-            //   alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
+            //    alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
         };
         ProviderListController.prototype.rad = function (x) {
             return x * Math.PI / 180;

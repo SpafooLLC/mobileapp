@@ -65,6 +65,7 @@ var MakeAppointmentController;
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+            this.IsHidden = false;
             var self = this;
         }
         MakeAppointmentController.prototype.openDropdown = function () {
@@ -99,11 +100,13 @@ var MakeAppointmentController;
                     self.ServiceData.profileField.cityField = response.GetUserInfoResult.profileField.cityField;
                     self.ServiceData.profileField.regionField = response.GetUserInfoResult.profileField.regionField;
                     self.ServiceData.profileField.postalCodeField = response.GetUserInfoResult.profileField.postalCodeField;
+                    self.ServiceData.profileField.cellField = response.GetUserInfoResult.profileField.cellField;
                     if (!self.isEdit) {
                         self.info.address = self.ServiceData.profileField.streetField;
                         self.info.city = self.ServiceData.profileField.cityField;
                         self.info.state = self.ServiceData.profileField.regionField;
                         self.info.zip = self.ServiceData.profileField.postalCodeField;
+                        self.info.phone = self.ServiceData.profileField.cellField;
                     }
                 });
             });
@@ -118,6 +121,7 @@ var MakeAppointmentController;
                     self.info.city = e.cityField;
                     self.info.state = e.stateField;
                     self.info.zip = e.zipField;
+                    self.info.phone = e.cellField;
                 });
                 self.appointment = self.ServiceData.appointment;
                 setTimeout(function () {
@@ -143,12 +147,14 @@ var MakeAppointmentController;
                     self.info.city = self.ServiceData.profileField.cityField;
                     self.info.state = self.ServiceData.profileField.regionField;
                     self.info.zip = self.ServiceData.profileField.postalCodeField;
+                    self.info.phone = self.ServiceData.profileField.cellField;
                     break;
                 case 3:
                     self.info.address = '';
                     self.info.city = '';
                     self.info.state = '';
                     self.info.zip = '';
+                    self.info.phone = '';
             }
             this.isOpenSelectAdress = '';
         };
@@ -164,20 +170,6 @@ var MakeAppointmentController;
                 var request = {
                     'position': GOOGLE
                 };
-                //plugin.google.maps.Geocoder.geocode(request, function (results: any) {
-                //    if (results.length) {
-                //        var result = results[0];
-                //        var position = result.position;
-                //        $("#addressfield").val(result.subThoroughfare + " " + result.thoroughfare);
-                //        $("#cityfield").val(result.locality);
-                //        $("#statefield").val(result.adminArea);
-                //        $("#zipfield").val(result.postalCode);
-                //        self.info.address = result.subThoroughfare + " " + result.thoroughfare;
-                //        self.info.city = result.locality;
-                //        self.info.state = result.adminArea;
-                //        self.info.zip = result.postalCode;
-                //    }
-                //});
                 plugin.google.maps.Geocoder.geocode(request, function (results) {
                     if (results.length) {
                         var result = results[0];
@@ -290,25 +282,6 @@ var MakeAppointmentController;
                 self.showIonicAlert('Please select the Service(s) for Appointment');
             }
         };
-        //changeSummery() {
-        //    var self = this;
-        //    self.totalDuration = 0;
-        //    self.totalPrice = 0;
-        //    self.serviceString = self.selectedServices.map(function (serv) {
-        //        self.totalDuration += isNaN(serv.durationField * serv.qtyField) ? serv.durationField == '-1' ? 60 : serv.durationField : serv.durationField == '-1' ? 60 : serv.durationField * serv.qtyField;
-        //        self.totalPrice += isNaN(serv.priceField * serv.qtyField) ? serv.priceField : serv.priceField * serv.qtyField;
-        //        //servLists.push(serv);
-        //    });
-        //    self.serviceString = '';
-        //    self.selectedServices.map(function (srvc) {
-        //        var str = srvc.serviceIDField + ':' + srvc.qtyField + ':' + srvc.priceField;
-        //        if (self.serviceString == '') {
-        //            self.serviceString = str;
-        //        } else {
-        //            self.serviceString += '|' + str;
-        //        }
-        //    });
-        //}
         MakeAppointmentController.prototype.changeSummery = function (value) {
             var self = this;
             self.totalDuration = 0;
@@ -420,17 +393,36 @@ var MakeAppointmentController;
                 self.showIonicAlert('Sorry, you cannot select date before today');
             }
             else {
+                var mins = parseInt(moment().format('m'));
+                var hrs = parseInt(moment().format('h'));
+                var A = moment().format('A');
+                if (mins > 0 && mins < 15) {
+                    mins = 15;
+                }
+                else if (mins > 15 && mins < 30) {
+                    mins = 30;
+                }
+                else if (mins > 30 && mins < 45) {
+                    mins = 45;
+                }
+                else if (mins > 45) {
+                    mins = 0;
+                    hrs = hrs + 1;
+                }
+                var currenttime = hrs + ":" + mins + " " + A;
                 self.selectedDate = time;
                 self.onlyDate = moment(self.selectedDate).format('L');
-                self.from = self.isToday(time, false) ? moment().add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
-                self.to = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("h:mm A") : moment('09.00', 'h:mm A').add(self.totalDuration, 'm').format("h:mm A");
+                self.from = self.isToday(time, true) ? moment(currenttime, 'h:mm A').add(60, 'm').format("h:mm A") : moment('09.00', "h:mm A").format("h:mm A");
+                self.to = self.isToday(time, true) ? moment(moment(currenttime, 'h:mm A').add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("h:mm A") : moment('09.00', 'h:mm A').add(self.totalDuration, 'm').format("h:mm A");
                 $('#PDoneSlider').modal();
-                var todayCurrentTime = moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").format("X");
-                var to = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm A').format("X");
-                var from = self.isToday(time, false) ? moment(moment().add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("X") : moment('09:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
+                var todayCurrentTime = moment(moment(currenttime, 'h:mm A').add(60, 'm').format("h:mm A"), "h:mm A").format("X");
+                //var to = self.isToday(time, true) ? todayCurrentTime : moment(currenttime, 'h:mm A').format("X");
+                //var from = self.isToday(time, true) ? moment(moment(currenttime, 'h:mm A').add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("X") : moment(currenttime, 'h:mm A').add(self.totalDuration, 'm').format("X");
+                var to = self.isToday(time, false) ? todayCurrentTime : moment('00:00', 'h:mm A').format("X");
+                var from = self.isToday(time, false) ? moment(moment(currenttime, 'h:mm A').add(60, 'm').format("h:mm A"), "h:mm A").add(self.totalDuration, 'm').format("X") : moment('00:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
                 //var from = +moment('09:00', 'h:mm A').add(self.totalDuration, 'm').format("X");
-                var min = self.isToday(time, false) ? todayCurrentTime : moment('09:00', 'h:mm A').format("X");
-                var max = moment('21:00', 'h:mm A').format("X");
+                var min = self.isToday(time, false) ? todayCurrentTime : moment('00:00', 'h:mm A').format("X");
+                var max = moment('23:45', 'h:mm A').format("X");
                 //setTimeout(function(){
                 $("#range").ionRangeSlider({
                     type: "double",
@@ -454,6 +446,8 @@ var MakeAppointmentController;
                 });
                 self.slider = $("#range").data("ionRangeSlider");
                 self.slider.update({
+                    min: min,
+                    max: max,
                     from: to,
                     to: from
                 });
@@ -506,11 +500,20 @@ var MakeAppointmentController;
             for (var i = 0; i < 20; i++) {
                 self.years.push(year++);
             }
+            self.chkBilling = true;
+            self.Address = self.info.address;
+            self.City = self.info.city;
+            self.State = self.info.state;
+            self.Zip = self.info.zip;
+            $("#MobileNo").mask("000-000-0000");
+            setTimeout(function () {
+                $("#MobileNo").val(self.info.phone);
+            }, 1000);
         };
         MakeAppointmentController.prototype.paymentMethod = function () {
             var self = this;
             self.backToCalendar = false;
-            self.CustomerHttp.get('/GetCustomerProfile/' + this.customerId).then(function (resp) {
+            self.CustomerHttp.get('/GetCustomerProfile/' + self.customerId).then(function (resp) {
                 self.selectedCard = 0;
                 self.CCards = [];
                 var profile = JSON.parse(resp.GetCustomerProfileResult);
@@ -560,18 +563,9 @@ var MakeAppointmentController;
                 }
             });
         };
-        //isToday(time, todayAnd) {
-        //    var today = new Date(),
-        //        currentCalendarDate = new Date(time);
-        //    today.setHours(0, 0, 0, 0);
-        //    currentCalendarDate.setHours(0, 0, 0, 0);
-        //    var currTime = currentCalendarDate.getTime();
-        //    var todayTime = today.getTime();
-        //    return todayAnd ? currTime >= todayTime : currTime == todayTime;
-        //}
         MakeAppointmentController.prototype.isToday = function (start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         };
@@ -586,6 +580,7 @@ var MakeAppointmentController;
         };
         MakeAppointmentController.prototype.customCardPayment = function () {
             var self = this;
+            self.Phone = $("#MobileNo").val();
             if (self.nameOnCard == '' || !self.nameOnCard.trim().length) {
                 self.showIonicAlert('Name on card is required');
             }
@@ -613,7 +608,25 @@ var MakeAppointmentController;
             else if (self.cvv.trim().length < 3 || self.cvv.trim().length > 4) {
                 self.showIonicAlert('CVV should be 3-4');
             }
-            else if (self.paymentTerm == '') {
+            else if (self.Address == '' || self.Address == undefined) {
+                self.showIonicAlert('Address must be required');
+            }
+            else if (self.City == '' || self.City == undefined) {
+                self.showIonicAlert('City must be required');
+            }
+            else if (self.State == '' || self.State == undefined) {
+                self.showIonicAlert('State must be required');
+            }
+            else if (self.Zip == '' || self.Zip == undefined) {
+                self.showIonicAlert('Zip/Postal Code must be required');
+            }
+            else if ($("#MobileNo").val() == '' || $("#MobileNo").val() == undefined) {
+                self.showIonicAlert('Phone no must be required');
+            }
+            else if (self.paymentTerm == '' || self.paymentTerm == undefined) {
+                self.showIonicAlert('You need to agree with our payment terms');
+            }
+            else if (self.paymentTerm == '' || self.paymentTerm == undefined) {
                 self.showIonicAlert('You need to agree with our payment terms');
             }
             else {
@@ -632,11 +645,31 @@ var MakeAppointmentController;
             }
             else {
                 var cFull = self.cardNumber;
-                self.mainCard = 'XXXX' + cFull.slice(cFull.length - 4, cFull.length);
+                self.mainCard = 'XX' + cFull.slice(cFull.length - 4, cFull.length);
             }
             // self.messages = 'Your card ending with ' + self.mainCard + ' will be charge for amount of ' + self.totalPrice + ' USD';
-            self.messages = 'Your card ending in ' + self.mainCard + ' will be charged $' + self.totalPrice + ' USD  <br/>You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time  or if ASAP appointment which is included in the service fee';
+            self.messages = 'Your card ending in ' + self.mainCard.replace('XXXX', 'XX') + ' will be charged $' + self.totalPrice + ' USD after the appointment is completed. If cancelled within 12 hours of the set appointment time, you will be charged $25.';
             $("#PDonePayment").modal();
+        };
+        MakeAppointmentController.prototype.HandleCCAddresUI = function () {
+            var self = this;
+            self.IsHidden = true;
+            $("#MobileNo").mask("000-000-0000");
+            if (self.chkBilling) {
+                self.IsHidden = false;
+                self.Address = self.info.address;
+                self.City = self.info.city;
+                self.State = self.info.state;
+                self.Zip = self.info.zip;
+                $("#MobileNo").val(self.info.phone);
+            }
+            else {
+                self.Address = '';
+                self.City = '';
+                self.State = '';
+                self.Zip = '';
+                $("#MobileNo").val('');
+            }
         };
         MakeAppointmentController.prototype.actionPayment = function () {
             var self = this;
@@ -664,7 +697,8 @@ var MakeAppointmentController;
                     "CVV": self.cvv,
                     "Email": self.CustomerEmail,
                     "Expiry": self.expMonth + '/' + self.expYear,
-                    "UID": self.customerId
+                    "UID": self.customerId,
+                    "Name": self.nameOnCard, "Address": self.Address, "City": self.City, "State": self.State, "Zip": self.Zip, "Phone": $("#MobileNo").val()
                 };
                 //self.CustomerHttp.post(obj, '/AuthCardJSON1').then(function (response: any) {
                 //   var resp = JSON.parse(response);

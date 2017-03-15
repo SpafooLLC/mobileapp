@@ -164,7 +164,7 @@
   .prolist li a .middle {  padding:10px 20px 0 15px; vertical-align:top; } 
   .prolist li a .middle h3 { font-size:18px; color:#219862; margin:0 0 0 0; line-height:22px; font-weight:600; } 
   .prolist li a .middle p { color:#111111; font-family:'Lato', sans-serif; font-weight:500; line-height:20px; font-size:14px; margin:0 0 10px 0; }
-  .prolist li a .right { color:##666666; height:100px; width:70px; background:#e3e3e3; text-align:center; padding:10px 6px 0 6px; vertical-align:top; }
+  .prolist li a .right { color:#666666; height:100px; width:70px; background:#e3e3e3; text-align:center; padding:10px 6px 0 6px; vertical-align:top; }
   .prolist li a .right h4 { font-size:16px; color:#666666; font-family:'Open Sans', sans-serif; font-weight:700; margin:5px 0 0 0; line-height:22px; }
   .prolist li a .right i { color:#666666; }
   .ratting-0 { width:92px; height:21px; background:url(../images/Site/ratting-0.png) top left no-repeat;  }
@@ -196,7 +196,7 @@
   .pprofile .sample li img { width:100%; }
    .mprofile .offered label { display:inline-block; list-style:none;  background:#e7e7e7; padding:3px 10px; margin:0 5px 10px 0; font-size:13px; font-weight:600;  }
   .osummery {}
-  .osummery .head{ margin:0 0 40px; 0; text-align:center; }
+  .osummery .head{ margin:0 0 40px 0; text-align:center; }
   .osummery .head h3 { color:#112173; font-family:'Balthazar', sans-serif; font-weight:600; font-size:24px; margin:0 0 15px 0; }
   .osummery .head p { color:#555555; margin:0 0 0 0; }
   .osummery .head p a { font-weight:600; }
@@ -310,6 +310,14 @@
   .pdimg {   background:#ff0000; padding:2px 0; text-align:center; display:block; }
   .bsbutton { background:#1e319b; padding:5px 15px; color:#ffffff; }
   .fontsm { font-size:12px !important; }
+  ul.pricelist { margin: 0; padding: 0; }
+  .pricelist li { list-style: none; padding: 0; margin: 0 0 40px 0; border-bottom: 1px solid #dddddd;  }
+  .pricelist h2 {  color:#112173; font-family:'Balthazar', sans-serif; font-weight:600; line-height:30px; font-size:24px; margin:0 0 20px 0; text-align: center; }
+  .pricelist .plmt .left { width: 250px; display: block; float: left; }
+  .pricelist .plmt .right { width: 100%; display: block; text-align: right; color:#112173; font-weight: 600; }
+  table.plmt { margin: 0; }
+  .pricelist .mblr { border-left: 1px solid #dddddd; border-right: 1px solid #dddddd;  }
+
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	
@@ -483,6 +491,10 @@
 }
 @media (min-width:240px) and (max-width:400px){
 	
+}
+@media (min-width:240px) and (max-width:360px){
+	.pricelist .plmt .left { width: 200px;  }
+  .pricelist .plmt .right { width: 100%;  }
 }
 
 @media (min-width:240px) and (max-width:520px){

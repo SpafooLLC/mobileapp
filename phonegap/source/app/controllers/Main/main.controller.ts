@@ -64,7 +64,7 @@
             push.on('registration', function (data: any) {
          // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                  alert(JSON.stringify(data));
+                  //alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                     

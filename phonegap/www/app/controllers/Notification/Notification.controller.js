@@ -95,6 +95,10 @@ var NotificationController;
                             if (role == 'C') {
                                 self.NotificaitonData[i].typeNameFields = "Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField;
                             }
+                        case 17:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = "Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " for more information, please check 'My Schedule' section.";
+                            }
                             break;
                     }
                 }
