@@ -16,6 +16,15 @@ var NotificationController;
             this.customerID = this.$window.localStorage.getItem('CustomerID');
             this.getUserNotificationInfo();
         }
+        NotificationController.prototype.gotoOtherProvider = function (AppointmentID) {
+            var self = this;
+            //  alert(AppointmentID);
+            self.CustomerHttp.get("/GetServiceFrmNotification/" + AppointmentID).then(function (res) {
+                console.log(res);
+                self.$window.localStorage.setItem('ServiceIDs', res.GetServiceFrmNotificationResult);
+                self.$state.go("ProviderList");
+            });
+        };
         NotificationController.prototype.getUserNotificationInfo = function () {
             var self = this;
             var status = self.$window.localStorage.getItem('LoginStatus');
@@ -94,6 +103,15 @@ var NotificationController;
                         case 16:
                             if (role == 'C') {
                                 self.NotificaitonData[i].typeNameFields = "Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField;
+                            }
+                        case 17:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = "Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " for more information, please check 'My Schedule' section.";
+                            }
+                            break;
+                        case 18:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " Denied the Appointment request, ";
                             }
                             break;
                     }

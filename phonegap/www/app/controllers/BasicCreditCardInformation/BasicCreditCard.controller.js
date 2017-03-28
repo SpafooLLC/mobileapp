@@ -14,6 +14,7 @@ var BasicCreditCardController;
             this.SharedHttp = SharedHttp;
             this.$stateParams = $stateParams;
             this.init();
+            $("#MobileNo").mask("000-000-0000");
         }
         BasicCreditCardController.prototype.init = function () {
             var self = this;
@@ -24,6 +25,13 @@ var BasicCreditCardController;
                 if (self.from != 'reg') {
                     self.$state.go('login');
                 }
+            }
+            self.years = [];
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            self.year = year;
+            for (var i = 0; i < 20; i++) {
+                self.years.push(year++);
             }
         };
         BasicCreditCardController.prototype.doRegister = function () {
@@ -82,6 +90,7 @@ var BasicCreditCardController;
                         var data = CData;
                         data.UID = self.$window.localStorage.getItem('CustomerID');
                         data.Expiry = data.Month + "/" + data.Year;
+                        data.Phone = $("#MobileNo").val();
                         self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
                             self.Succmesg = "Credit Card Information Added Successfully.";
                             $("#PSuccess").modal();
@@ -97,6 +106,7 @@ var BasicCreditCardController;
                         var data = CData;
                         data.UID = self.$window.localStorage.getItem('CustomerID');
                         data.Expiry = data.Month + "/" + data.Year;
+                        data.Phone = $("#MobileNo").val();
                         self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
                             self.Succmesg = "Credit Card Information Added Successfully.";
                             $("#PSuccess").modal();
@@ -139,6 +149,31 @@ var BasicCreditCardController;
             }
             if (Regdata.CVV === null || Regdata.CVV === '' || Regdata.CVV == undefined) {
                 self.messages = "Please Enter CVV.";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.Address == '' || Regdata.Address == undefined) {
+                self.messages = "Address must be required";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.City == '' || Regdata.City == undefined) {
+                self.messages = "City must be required";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.State == '' || Regdata.State == undefined) {
+                self.messages = "State must be required";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.Zip == '' || Regdata.Zip == undefined) {
+                self.messages = "Zip/Postal Code must be required";
+                $("#PDone").modal();
+                return false;
+            }
+            if ($("#MobileNo").val() == '' || $("#MobileNo").val() == undefined) {
+                self.messages = "Phone no must be required";
                 $("#PDone").modal();
                 return false;
             }

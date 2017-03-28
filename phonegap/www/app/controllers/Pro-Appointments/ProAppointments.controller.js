@@ -36,9 +36,9 @@ var ProAppointmentsController;
                     if (item.atTimeField === 'undefined' || item.atTimeField === undefined || item.atTimeField === null || item.atTimeField === '') {
                         self.ServiceData[i].atTimeField = '00:00 --';
                     }
-                    else {
-                        self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
-                    }
+                    //else {
+                    //    self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
+                    //}
                     var serviceName = "";
                     var serviceTime = 0;
                     $.each(item.servicesField, function (ig, sitem) {
@@ -99,7 +99,8 @@ var ProAppointmentsController;
             var confirmations = confirm("Are you sure to deny this appointment ? ");
             if (confirmations) {
                 var self = this;
-                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res) { self.getProviderSchedular(self.UserID); });
+                //   self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getProviderSchedular(self.UserID) });
+                self.CustomerHttp.get("/UpdateAppStatus/" + data + "/6").then(function (res) { self.getProviderSchedular(self.UserID); });
             }
         };
         //UnSeenStatus(AppointmentID: any) {

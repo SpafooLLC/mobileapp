@@ -25,11 +25,15 @@
 
                             <label ng-if="getRole=='P'" ui-sref="ProAppointments" ng-bind-html="sr.typeNameFields"></label>
                             <label ng-if="getRole!='P'" ui-sref="MySchedule" ng-bind-html="sr.typeNameFields"></label>
-
-                            <a ng-click="noti.RemoveNotification({{sr.idField}})" class="redclose">
-                                <i class="fa fa-times-circle" aria-hidden="true"></i>
-                            </a>
-                        </li>
+                            <div ng-if="sr.notificationTypeIDField==18">
+                                <a ng-click="noti.gotoOtherProvider({{sr.relatedEntityIDField}})">
+                                    See Other Available Providers
+                                </a>
+                            </div>
+                                <a ng-click="noti.RemoveNotification({{sr.idField}})" class="redclose">
+                                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                </a>
+</li>
 
                     </ul>
                     <div align="center" id="dvClearAll">

@@ -126,7 +126,7 @@
 
         isToday(start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         }

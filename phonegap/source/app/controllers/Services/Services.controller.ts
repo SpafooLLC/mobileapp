@@ -28,14 +28,15 @@
           self.CustomerHttp.get('/GetServiceList/' + ParentServiceID).then(function (response: any) {            
               self.ServiceData = response.GetServiceListResult;
              // alert(JSON.stringify(response.GetServiceListResult));
-              if (response.GetServiceListResult.length === 0)
-              {
-            //  alert("getServiceList : " + self.pdata + " " + self.PreviousID);
+              if (response.GetServiceListResult.length === 0) {
+                  //  alert("getServiceList : " + self.pdata + " " + self.PreviousID);
                   self.$window.localStorage.setItem('ServiceIDs', self.PreviousID);
                   self.$state.go("ProviderList");
+              } else {
+
+                  self.PreviousID = response.GetServiceListResult[0].parentIDField;
+                  self.pdata = response.GetServiceListResult[0].parentIDField;
               }
-              self.PreviousID = response.GetServiceListResult[0].parentIDField;          
-              self.pdata = response.GetServiceListResult[0].parentIDField;
               self.$ionicLoading.hide();             
           }, function (error) {
               if (error === null) {

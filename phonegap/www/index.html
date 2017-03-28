@@ -57,10 +57,10 @@
 
     <!-- inject:js -->
     <script src="app/app.js"></script>
-    <script src="app/controllers/About/About.controller.js"></script>
-    <script src="app/controllers/About/About.module.js"></script>
     <script src="app/controllers/AddClientRating/AddClientReview.controller.js"></script>
     <script src="app/controllers/AddClientRating/AddClientReview.module.js"></script>
+    <script src="app/controllers/About/About.controller.js"></script>
+    <script src="app/controllers/About/About.module.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.controller.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.module.js"></script>
     <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.controller.js"></script>
@@ -79,7 +79,6 @@
     <script src="app/controllers/login/login.controller.js"></script>
     <script src="app/controllers/login/login.module.js"></script>
     <script src="app/controllers/Main/main.controller.js"></script>
-    <script src="app/controllers/MakeAppointment/MakeAppointment.controller - Copy.js"></script>
     <script src="app/controllers/MakeAppointment/MakeAppointment.controller.js"></script>
     <script src="app/controllers/MakeAppointment/MakeAppointment.module.js"></script>
     <script src="app/controllers/MyProfile/MyProfile.controller.js"></script>
@@ -163,7 +162,7 @@
                         </li>
            
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-city.png"><p>Price List </p></a></li>   
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-plist.png"><p>Price List </p></a></li>   
                     </ul>
                     <ul class="top" ng-if="GetLoginStatus==false">
                         <li ng-click="m.HideShowMenu()">
@@ -172,7 +171,7 @@
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-city.png"><p>Price List </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-plist.png"><p>Price List </p></a></li>
     </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
@@ -192,7 +191,7 @@
                             </a>
                         </li>
                         <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
-                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-city.png"><p>Price List </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-plist.png"><p>Price List </p></a></li>
                     </ul>
 
                     <ul class="bottom">

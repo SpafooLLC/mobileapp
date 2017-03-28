@@ -1,23 +1,21 @@
 <div class="bread">
-    <a href="" ng-click="ma.viewSelect('Payment-Method')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-
+    <a href="" ng-click="ma.viewSelect('Payment-Method')" class="pback"><img alt="" ng-src="images/Site/back.png" /></a>
     <div class="ptitle">Payment Information</div>
 </div>
 <div class="inbody-simple">
     <div class="has-feedback fgap">
         <label class="control-label">Name on Card</label>
-        <input type="text" ng-model="ma.nameOnCard"  placeholder="Enter name on card"  class="form-control">
+        <input type="text" ng-model="ma.nameOnCard" placeholder="Enter name on card" class="form-control">
         <!--<span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>-->
     </div>
     <div class="has-feedback fgap">
         <label class="control-label">Card Number</label>
-        <input  class="form-control"
-                ng-model="ma.cardNumber"
-                oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
-                type = "tel"
-                placeholder="Credit Card Number" 
-                maxlength = "16"
-                />
+        <input class="form-control"
+               ng-model="ma.cardNumber"
+               oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+               type="tel"
+               placeholder="Credit Card Number"
+               maxlength="16" />
         <!--<input type="text" ng-model="ma.cardNumber" class="form-control">-->
         <!--<span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>-->
     </div>
@@ -25,19 +23,19 @@
     <div class="ccradio">
         <div class="radio radio-info radio-inline">
             <input type="radio" ng-model="ma.radioInline" name="radioInline" value="option1" id="inlineRadio1">
-            <label for="inlineRadio1"><img ng-src="images/Site/cc-v.png"/></label>
+            <label for="inlineRadio1"><img ng-src="images/Site/cc-v.png" /></label>
         </div>
         <div class="radio radio-info radio-inline">
             <input type="radio" ng-model="ma.radioInline" name="radioInline" value="option2" id="inlineRadio2">
-            <label for="inlineRadio2"><img ng-src="images/Site/cc-ae.png"/></label>
+            <label for="inlineRadio2"><img ng-src="images/Site/cc-ae.png" /></label>
         </div>
         <div class="radio radio-info radio-inline">
             <input type="radio" name="radioInline" ng-model="ma.radioInline" value="option3" id="inlineRadio3">
-            <label for="inlineRadio3"><img ng-src="images/Site/cc-mc.png"/></label>
+            <label for="inlineRadio3"><img ng-src="images/Site/cc-mc.png" /></label>
         </div>
         <div class="radio radio-info radio-inline">
             <input type="radio" name="radioInline" ng-model="ma.radioInline" value="option4" id="inlineRadio4">
-            <label for="inlineRadio4"><img ng-src="images/Site/cc-d.png"/></label>
+            <label for="inlineRadio4"><img ng-src="images/Site/cc-d.png" /></label>
         </div>
     </div>
     <div class="expdate">
@@ -46,7 +44,7 @@
         <div class="col-xs-6 fileft">
             <select class="form-control w100 mkblck impl" ng-model="ma.expMonth">
                 <option value="" selected="selected">-Select Month-</option>
-                  <option value="01">January</option>
+                <option value="01">January</option>
                 <option value="02">February</option>
                 <option value="03">March</option>
                 <option value="04">April</option>
@@ -71,30 +69,70 @@
         <p class="control-label bold bmar-sm">CVV</p>
 
         <div class="col-xs-6 fileft">
-            <input  class="form-control"
-                    ng-model="ma.cvv"
-                    oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
-                    type = "tel"
-                    maxlength = "4"
-                    placeholder="000"
-                    />
+            <input class="form-control"
+                   ng-model="ma.cvv"
+                   oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                   type="tel"
+                   maxlength="4"
+                   placeholder="000" />
             <!-- <input type="text" ng-model="ma.cvv" class="form-control" placeholder="000">-->
         </div>
         <div class="col-xs-6 firight cvv">
             The last 3 digits displayed on the back of your card
         </div>
         <div class="tpad-xs checkbox checkbox-primary" style="margin-top: 40px">
+            <input ng-model="ma.chkBilling" checked="" ng-click="ma.HandleCCAddresUI();" type="checkbox">
+            <label for="chkBilling">Billing address same as specified in your profile ?</label>
+        </div>
+
+        <div ng-model="ma.divBillingAdd" ng-show="ma.IsHidden" id="divBillingAdd">
+
+            <div class="has-feedback fgap">
+                <label class="control-label">Address</label>
+                <input type="text" ng-model="ma.Address" placeholder="Address" class="form-control">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">City</label>
+                <input type="text" ng-model="ma.City" placeholder="City" class="form-control">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">State/Province</label>
+                <input type="text" ng-model="ma.State" placeholder="State/Province" class="form-control">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Zip/Postal Code</label>
+                <input ng-model="ma.Zip"
+                       oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                       type="tel"
+                       maxlength="5"
+                       placeholder="Zip/Postal Code" class="form-control">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Phone</label>
+                <input id="MobileNo" ng-model="ma.Phone"
+                       type="tel"
+                       maxlength="10"
+                       placeholder="Phone" class="form-control">
+            </div>
+
+        </div>
+
+
+
+        <div class="tpad-xs checkbox checkbox-primary" style="margin-top: 40px">
+
             <input id="checkbox3" ng-model="ma.paymentTerm" type="checkbox">
-            <label for="checkbox3">With payment, I accept the </label><span><a class="modals" data-toggle="modal" ng-click="ma.showPTerm()"> payment
-            terms</a>.</span>
+            <label for="checkbox3">With payment, I accept the </label><span>
+                <a class="modals" data-toggle="modal" ng-click="ma.showPTerm()">
+                    payment
+                    terms
+                </a>.
+            </span>
             <!--<input id="checkbox4" ng-model="ma.saveCardInfo" type="checkbox">
-            <label for="checkbox4">Securely save card on file for future payments</label>--> 
+            <label for="checkbox4">Securely save card on file for future payments</label>-->
         </div>
     </div>
-    <!--<div class="checkbox checkbox-primary">
-        <input id="checkbox2" type="checkbox" checked>
-        <label for="checkbox2">Remember This Card</label>
-    </div>-->
+
 </div>
 <a class="modals block-btn" ng-click="ma.customCardPayment()">Pay Now</a>
 <div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -116,70 +154,3 @@
         </div>
     </div>
 </div>
-<!--&lt;!&ndash; Modal Payment Terms &ndash;&gt;
-<div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                <h4 class="modal-title" id="myModalLabel">Payment Terms</h4>
-            </div>
-            <div class="modal-body">
-                A credit card is required to request an appointment. You will be charged $25 for a cancellation within
-                12 hours of the start of your requested appointment time. You will be charged at the completion of the
-                service. It is the responsibility of the credit card processing agents/companies and the clients to
-                maintain secure financial information and private credit card number documentation. SpaFoo.com accepts
-                no liability for the failure of VISA/MasterCard/American Express/Discover to protect their clients from
-                fraudulent activities and theft of private information. The above mentioned entities are contracted by
-                SpaFoo.com to provide secure transactions.
-            </div>
-        </div>
-    </div>
-</div>
-&lt;!&ndash; Modal Confirm Payment? &ndash;&gt;
-<div class="modal fade" id="CPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog w90" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                <h4 class="center" id="myModalLabel"><i class="fa fa-question-circle fa-3x"></i></h4>
-            </div>
-            <div class="modal-cpbody center">
-                <p>Confirm Payment of</p>
-
-                <div class="finfo">
-                    170.47<span class="usd">USD</span>
-                </div>
-                <p>To book this appointment?</p>
-
-                <div class="cpaction">
-                    <div class="col-xs-6 pca"><a data-dismiss="modal" class="gray-rounded btnblock">Cancel</a></div>
-                    <div class="col-xs-6 pok"><a data-dismiss="modal" data-toggle="modal" data-target="#PDone"
-                                                 class="green-rounded btnblock">Ok</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-&lt;!&ndash; Modal Payment Done &ndash;&gt;
-<div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog w90" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i></h4>
-            </div>
-            <div class="modal-cpbody center">
-                <p>Your Appointment has been confirmed!</p>
-
-                <div class="cpaction">
-                    <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!--
-<script type="text/javascript">app.initialize();</script>
-<script>transformicons.add('.tcon');</script>-->
-

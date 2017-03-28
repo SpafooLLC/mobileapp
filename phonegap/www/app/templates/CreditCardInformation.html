@@ -8,15 +8,14 @@
         <div class="inbody-simple">
             <div class="has-feedback fgap">
                 <label class="control-label">Card Number</label>
-                <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel"  placeholder="Credit Card Number"  class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
-                <!--<span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>-->
+                <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel" placeholder="Credit Card Number" class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
             </div>
             <div class="expdate">
                 <p class="control-label bold bmar-sm">Expiry Date</p>
                 <div class="col-xs-6 fileft">
                     <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Month">
                         <option value="" selected="selected">-Select Month-</option>
-                            <option value="01">January</option>
+                        <option value="01">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
                         <option value="04">April</option>
@@ -33,30 +32,54 @@
                 <div class="col-xs-6 firight">
                     <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Year">
                         <option value="" selected="selected">-Select Year-</option>
-                           <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
+                        <option ng-repeat="year in  cc.years" value="{{year}}">{{year}}</option>
                     </select>
                 </div>
             </div>
             <div class="expdate">
                 <p class="control-label bold bmar-sm">CVV</p>
                 <div class="col-xs-6 fileft">
-                    <input ng-disabled="cc.from == 'reg' && cc.isChecked"  type="tel"  class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
+                    <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel" class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
                 </div>
                 <div class="col-xs-6 firight cvv">
                     The last 3-4 digits displyed on the back of  your card
                 </div>
             </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Billing Address</label>
+                
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Address :</label>
+                <input type="text" placeholder="Address associated with card"
+                       class="form-control"
+                       ng-model="cc.data.Address">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">City :</label>
+                <input type="text" placeholder="City associated with card" class="form-control"
+                       ng-model="cc.data.City">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">State/Province :</label>
+                <input type="text" placeholder="State/Province associated with card" class="form-control"
+                       ng-model="cc.data.State">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Zip/Postal Code :</label>
+                <input type="tel" placeholder="Zip/Postal Code associated with card" class="form-control"
+                       oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                       maxlength="5"
+                       ng-model="cc.data.Zip">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Phone :</label>
+                <input id="MobileNo" type="tel" placeholder="Phone number"
+                       class="form-control"
+                       maxlength="10"
+                       ng-model="cc.data.Phone">
+            </div>
+
             <div ng-if="cc.from == 'reg'" class="checkbox checkbox-primary">
                 <input id="checkbox2" ng-click="cc.checkStatus($event)" type="checkbox">
                 <label for="checkbox2">Add Payment Later</label>

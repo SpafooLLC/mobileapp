@@ -5,6 +5,9 @@
         pdata: number = 0;
         PreviousID: string;
         ServiceIDs: number;
+        proindex: number;
+
+        InMile: number;
         profilePic: string;
         static currentlatlong: any;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
@@ -22,26 +25,36 @@
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-      
-         
-            
-         
+
+            self.GetWithInMile();
+            self.proindex = 0;
+
             var options = {
                 enableHighAccuracy: true,
                 maximumAge: 3600000
             };
             navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
             setTimeout(function () { self.getProviderList(self.ServiceIDs); }, 1000);
+
+        }
+
+        GetWithInMile()
+        {
+            var self = this;
+            self.CustomerHttp.get('/GetWithInMile').then(function (response: any) {
+                self.InMile = parseInt(response.GetWithInMileResult);
+            });
+
         }
         getProviderList(ServiceID: any) {
             var self = this;
 
-            self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response: any) {
-
+          //  self.CustomerHttp.get('/ListProvidersByServices/' + self.ServiceIDs).then(function (response: any) {
+            self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response: any) {
            //    self.CustomerHttp.get('/ListProvidersByServices/-1').then(function (response: any) {
-                self.ServiceData = response.ListProvidersByServicesResult;
-                console.log(JSON.stringify(self.ServiceData));
-                for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
+                self.ServiceData = response; 
+                console.log(self.ServiceData[0]);
+                for (var i = 0; i <= response.length; i++) {
                     // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
                     self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
                     if (self.ServiceData[i].profileField.photoField != null) {
@@ -54,24 +67,16 @@
                     }
                     else
                     { self.ServiceData[i].profileField.photoField = ""; };
-                    //console.log(self.ServiceData[i].vanityUrlField)
                     self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
+
+                    if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile))
+                    {
+                        self.proindex++;
+                    }
 
                 }
 
-                //var data = self.ServiceData;
-                //for (var i = 0; i < data.length; i++)
-                //{
-                //    for (var j = 0; j < data.length; j++)
-                //    {
-                //        if (data[i].distance > data[j].distance)
-                //        {
-                //            data[i].distance = data[j].distance;
-                //        }
-                //    }
-                    
-                //}
-                //console.log(data);
+               
 
             }, function (error) {
                 if (error === null) {
@@ -105,7 +110,7 @@
         onSuccess(position: any) {
           
             ProviderListController.currentlatlong = position;
-         //   alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
+      //    alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
         }
         rad(x: any) {
             return x * Math.PI / 180;
