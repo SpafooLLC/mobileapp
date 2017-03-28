@@ -181,33 +181,32 @@
                 <div class="heading">I HAVE A COUPON</div>
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="sname pcoupon">Coupon Code </td>
-                        <td class="qbox"><input required type="text" ng-model="ma.CouponCode" class="form-control" placeholder="Code"></td>
+                        <td class="qbox"><input required type="text" ng-model="ma.CouponCode" class="form-control" placeholder="Coupon Code"></td>
                         <td class="price pcoupon">
-                            <a href="" ng-click="ma.ValidateCoupon(ma.CouponCode)" class="block-btn">Validate</a>
+                            <a href="" ng-click="ma.ValidateCoupon(ma.CouponCode)" class="green-rounded">Validate</a>
                         </td>
                     </tr>
                 </table>
-                {{self.ISvalidCoupon}}
-                <table width="100%" border="0" cellspacing="0" ng-if="ma.ISvalidCoupon==true" cellpadding="0">
-                    <tr>
-                        <td class="sname"></td>
-                        <td class="qbox">Sub Total : </td>
-                        <td class="price">{{ma.totalPrice}}</td>
-                    </tr>
-                    <tr>
-                        <td class="sname"></td>
-                        <td class="qbox">Coupon discount : </td>
-                        <td class="price">{{ma.discountPrice}}</td>
-                    </tr>
-                </table>
+                
 
                 <div style="text-align:center" ng-if="ma.ISvalidCoupon==false">
                     <p class="red2">Sorry, Invalid or expired Coupon </p>
                 </div>
+                <div class="h30"></div>
                 <div class="finfo">
+                    {{self.ISvalidCoupon}}
+                <table class="couptab" align="center" border="0" cellspacing="0" ng-if="ma.ISvalidCoupon==true" cellpadding="0">
+                    <tr>
+                        <td class="qbox">Sub Total : </td>
+                        <td class="price">{{ma.totalPrice}}</td>
+                    </tr>
+                    <tr>
+                        <td class="qbox">Coupon discount : </td>
+                        <td class="price">{{ma.discountPrice}}</td>
+                    </tr>
+                </table>
+                    <div class="h20"></div>
                     <span>Total</span>
-
                     {{ ma.totalDiscountPrice !=null? ma.totalDiscountPrice : ma.totalPrice }}
                     <span class="usd">USD</span>
                 </div>
