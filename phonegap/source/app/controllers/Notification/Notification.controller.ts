@@ -23,6 +23,16 @@
             this.getUserNotificationInfo();
 
         }
+        gotoOtherProvider(AppointmentID:any)
+        {var self = this;
+          //  alert(AppointmentID);
+            self.CustomerHttp.get("/GetServiceFrmNotification/" + AppointmentID).then(function (res) {
+                console.log(res);
+                self.$window.localStorage.setItem('ServiceIDs', res.GetServiceFrmNotificationResult);
+                self.$state.go("ProviderList");
+
+            });
+        }
 
         getUserNotificationInfo() {
             var self = this;
@@ -71,7 +81,7 @@
                             break;
 
                         case 11:
-                            if (role == 'C') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize." }
+                            if (role == 'C') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize."  }
                             break;
                         case 10:
                             if (role == 'P') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has requested an ASAP appointment with you! " } 
@@ -103,6 +113,11 @@
                         case 17:
                             if (role == 'C') {
                                 self.NotificaitonData[i].typeNameFields = "Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " for more information, please check 'My Schedule' section.";
+                            }
+                            break;
+                        case 18:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " Denied the Appointment request, "  ;
                             }
                             break;
                     }

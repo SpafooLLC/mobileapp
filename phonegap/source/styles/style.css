@@ -540,3 +540,15 @@
 .modal-backdrop.fade.in {position: static;}
 body .modal-backdrop{position: inherit;}
 .Pricelists td.left {    width: 75% !important;    padding: 5px 0;}
+
+td.sname.pcoupon {
+    font-size: 15px;
+}
+td.price.pcoupon a{
+ 
+     font-size: 13px;
+    background: #399d74;
+    padding: 5px 7px;  
+    margin: 1px 0 0 5px;
+   
+}

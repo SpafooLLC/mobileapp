@@ -28,8 +28,10 @@ var ServicesController;
                     self.$window.localStorage.setItem('ServiceIDs', self.PreviousID);
                     self.$state.go("ProviderList");
                 }
-                self.PreviousID = response.GetServiceListResult[0].parentIDField;
-                self.pdata = response.GetServiceListResult[0].parentIDField;
+                else {
+                    self.PreviousID = response.GetServiceListResult[0].parentIDField;
+                    self.pdata = response.GetServiceListResult[0].parentIDField;
+                }
                 self.$ionicLoading.hide();
             }, function (error) {
                 if (error === null) {

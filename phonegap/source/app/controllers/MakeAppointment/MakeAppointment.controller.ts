@@ -13,7 +13,10 @@
         ProviderServiceList: {};
         messages: any;
         action: any;
+        CouponData: any;
         IsHidden: boolean;
+        ISvalidCoupon: boolean;
+        totalDiscountPrice: number;
         address: string; city: string; state: string; zip: string; AppID: any; info: any; ServiceData: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', '$rootScope', 'SharedHttp', '$stateParams', '$ionicPopup'];
         constructor(
@@ -130,6 +133,36 @@
                     }
                 })
             });
+        }
+
+        ValidateCoupon(code: any) {
+            var self = this;
+            self.ISvalidCoupon = false;
+            self.CustomerHttp.get('/ValidateCoupon/' + code).then(function (response: any) {
+                self.CouponData = response.ValidateCouponResult;
+                var TotalPrices = self.totalPrice;
+                if (self.CouponData != null) {   
+                    if (self.CouponData.discountTypeField == '%' && self.CouponData.discountTypeField != null) {
+
+                        self.discountPrice = ((parseFloat(self.CouponData.discountField).toFixed(2) * parseFloat(TotalPrices).toFixed(2)) / 100);
+                        self.totalDiscountPrice = parseFloat(TotalPrices).toFixed(2) - parseFloat(self.discountPrice).toFixed(2);
+                        self.ISvalidCoupon = true;
+                    }
+                    else if (self.CouponData.discountTypeField == '$' && self.CouponData.discountTypeField != null) {
+                        self.discountPrice = self.CouponData.discountField;
+                        self.totalDiscountPrice = parseFloat(TotalPrices).toFixed(2) - parseFloat(self.discountPrice).toFixed(2);
+                        self.ISvalidCoupon = false;
+                    }
+                    else {
+                        self.totalDiscountPrice = null;
+                    }
+                } else {
+                    self.ISvalidCoupon = false;
+                    self.totalDiscountPrice = null;
+                }
+            });
+
+
         }
 
         getEditInfo() {
@@ -729,7 +762,7 @@
 
         actionPayment() {
             var self = this;
-
+            self.totalPrice = (self.totalDiscountPrice != null ? self.totalDiscountPrice : self.totalPrice);
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;

@@ -10,13 +10,13 @@
           
             <div class="prolist">
              
-                    <li ng-repeat="sr in pl.ServiceData | orderBy:'distance'" ng-if="sr.distance<=pl.InMile" >
+                    <li ng-repeat="sr in pl.ServiceData | orderBy:'distance'"  ng-if="sr.distance<=pl.InMile"  >
                       
                       <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td class="left">
-                                        <!--<a  ng-click="pl.GoToProviderPortfolio({{sr.userIDField}})" ng-if="sr.profileField.photoField==''"><img ng-src="images/Site/default-User.png"></a>
+                                        <!--  ng-if="sr.distance<=pl.InMile"   <a  ng-click="pl.GoToProviderPortfolio({{sr.userIDField}})" ng-if="sr.profileField.photoField==''"><img ng-src="images/Site/default-User.png"></a>
                                         <a ng-click="pl.GoToProviderPortfolio({{sr.userIDField}})" ng-if="sr.profileField.photoField!=''"><img ng-src="{{sr.profileField.photoField}}" alt=""></a>-->
                                         <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}" ng-if="sr.profileField.photoField==''"><img ng-src="images/Site/default-User.png"></a>
                                         <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}" ng-if="sr.profileField.photoField!=''"><img ng-src="{{sr.profileField.photoField}}" alt=""></a>

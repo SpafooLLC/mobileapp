@@ -99,7 +99,8 @@ var ProAppointmentsController;
             var confirmations = confirm("Are you sure to deny this appointment ? ");
             if (confirmations) {
                 var self = this;
-                self.CustomerHttp.get("/RemoveApp/" + data).then(function (res) { self.getProviderSchedular(self.UserID); });
+                //   self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getProviderSchedular(self.UserID) });
+                self.CustomerHttp.get("/UpdateAppStatus/" + data + "/6").then(function (res) { self.getProviderSchedular(self.UserID); });
             }
         };
         //UnSeenStatus(AppointmentID: any) {

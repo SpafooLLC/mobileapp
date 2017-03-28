@@ -78,7 +78,11 @@
                             <span>{{sr.datedField}}</span>
 
                             <label ui-sref="MySchedule" ng-bind-html="sr.typeNameFields"></label>
-
+                            <div ng-if="sr.notificationTypeIDField==18">
+                                <a ng-click="mp.gotoOtherProvider({{sr.relatedEntityIDField}})">
+                                    Available Providers
+                                </a>
+                            </div>
                             <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>

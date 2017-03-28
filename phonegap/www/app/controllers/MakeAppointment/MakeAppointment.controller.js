@@ -111,6 +111,33 @@ var MakeAppointmentController;
                 });
             });
         };
+        MakeAppointmentController.prototype.ValidateCoupon = function (code) {
+            var self = this;
+            self.ISvalidCoupon = false;
+            self.CustomerHttp.get('/ValidateCoupon/' + code).then(function (response) {
+                self.CouponData = response.ValidateCouponResult;
+                var TotalPrices = self.totalPrice;
+                if (self.CouponData != null) {
+                    if (self.CouponData.discountTypeField == '%' && self.CouponData.discountTypeField != null) {
+                        self.discountPrice = ((parseFloat(self.CouponData.discountField).toFixed(2) * parseFloat(TotalPrices).toFixed(2)) / 100);
+                        self.totalDiscountPrice = parseFloat(TotalPrices).toFixed(2) - parseFloat(self.discountPrice).toFixed(2);
+                        self.ISvalidCoupon = true;
+                    }
+                    else if (self.CouponData.discountTypeField == '$' && self.CouponData.discountTypeField != null) {
+                        self.discountPrice = self.CouponData.discountField;
+                        self.totalDiscountPrice = parseFloat(TotalPrices).toFixed(2) - parseFloat(self.discountPrice).toFixed(2);
+                        self.ISvalidCoupon = false;
+                    }
+                    else {
+                        self.totalDiscountPrice = null;
+                    }
+                }
+                else {
+                    self.ISvalidCoupon = false;
+                    self.totalDiscountPrice = null;
+                }
+            });
+        };
         MakeAppointmentController.prototype.getEditInfo = function () {
             var self = this;
             self.CustomerHttp.get('/GetAppointment/' + self.AppointmentID).then(function (response) {
@@ -673,6 +700,7 @@ var MakeAppointmentController;
         };
         MakeAppointmentController.prototype.actionPayment = function () {
             var self = this;
+            self.totalPrice = (self.totalDiscountPrice != null ? self.totalDiscountPrice : self.totalPrice);
             if (!self.type) {
                 var PID = self.PID;
                 var PPID = self.card.customerPaymentProfileId;

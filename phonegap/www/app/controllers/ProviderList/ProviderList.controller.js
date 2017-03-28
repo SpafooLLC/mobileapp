@@ -33,11 +33,12 @@ var ProviderListController;
         };
         ProviderListController.prototype.getProviderList = function (ServiceID) {
             var self = this;
-            self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response) {
+            //  self.CustomerHttp.get('/ListProvidersByServices/' + self.ServiceIDs).then(function (response: any) {
+            self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response) {
                 //    self.CustomerHttp.get('/ListProvidersByServices/-1').then(function (response: any) {
-                self.ServiceData = response.ListProvidersByServicesResult;
-                console.log(JSON.stringify(self.ServiceData));
-                for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
+                self.ServiceData = response;
+                console.log(self.ServiceData[0]);
+                for (var i = 0; i <= response.length; i++) {
                     // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
                     self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
                     if (self.ServiceData[i].profileField.photoField != null) {
