@@ -317,7 +317,11 @@
   .pricelist .plmt .right { width: 100%; display: block; text-align: right; color:#112173; font-weight: 600; }
   table.plmt { margin: 0; }
   .pricelist .mblr { border-left: 1px solid #dddddd; border-right: 1px solid #dddddd;  }
+<<<<<<< HEAD
  .couptab {}
+=======
+  .couptab {}
+>>>>>>> 60a0874f05ba9bc2620fc2195dfc347ccbcf9566
   .couptab td { padding:5px 33px; }  .couptab tr { border-bottom:1px solid #cbcbcb; }
 /*========================================================*/
 /*  Site Contents                                         */
