@@ -126,14 +126,15 @@ var MakeAppointmentController;
                     else if (self.CouponData.discountTypeField == '$' && self.CouponData.discountTypeField != null) {
                         self.discountPrice = self.CouponData.discountField;
                         self.totalDiscountPrice = parseFloat(TotalPrices).toFixed(2) - parseFloat(self.discountPrice).toFixed(2);
-                        self.ISvalidCoupon = false;
+                        self.ISvalidCoupon = true;
                     }
                     else {
                         self.totalDiscountPrice = null;
+                        self.ISvalidCoupon = false;
                     }
                 }
                 else {
-                    self.ISvalidCoupon = false;
+                    // self.ISvalidCoupon = false;
                     self.totalDiscountPrice = null;
                 }
             });
@@ -778,6 +779,8 @@ var MakeAppointmentController;
                 zip: self.info.zip
             };
             self.CustomerHttp.post(postObj, '/AddAddress').then(function (response) {
+                self.CustomerHttp.get('/UpdateCouponCount/' + self.CouponCode).then(function (response) {
+                });
                 self.addressId = response;
             });
             self.action = 'redirectAfterAppointment';

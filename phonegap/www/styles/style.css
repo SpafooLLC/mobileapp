@@ -317,7 +317,8 @@
   .pricelist .plmt .right { width: 100%; display: block; text-align: right; color:#112173; font-weight: 600; }
   table.plmt { margin: 0; }
   .pricelist .mblr { border-left: 1px solid #dddddd; border-right: 1px solid #dddddd;  }
-
+ .couptab {}
+  .couptab td { padding:5px 33px; }  .couptab tr { border-bottom:1px solid #cbcbcb; }
 /*========================================================*/
 /*  Site Contents                                         */
 /*========================================================*/	
@@ -431,6 +432,8 @@
   a.green-rounded:hover { text-decoration:underline; color:#ffffff !important; background:#1e319b; }
   .gray-rounded, a.gray-rounded:link, a.gray-rounded:visited, a.gray-btn:active { color:#ffffff; font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; text-decoration:none; background:#575757; padding:8px 40px; display:inline-block; text-transform:uppercase; margin:0 0 0 0; text-align:center;-webkit-border-radius:6px; -moz-border-radius:6px; border-radius:6px; }
   a.gray-rounded:hover { text-decoration:underline; color:#ffffff !important; background:#444444; }
+  .green-rounded, a.green-rounded:link, a.green-rounded:visited, a.green-btn:active { color:#ffffff; font-family:'Open Sans', sans-serif; font-size:14px; font-weight:400; text-decoration:none; background:#219862; padding:7px 0px !important; display:block; text-transform:uppercase; margin:0 0 0 0; text-align:center;-webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; }
+  a.green-rounded:hover { text-decoration:underline; color:#ffffff !important; background:#444444; }
 /*========================================================*/
 /*  Other used Text                                       */
 /*========================================================*/
