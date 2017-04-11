@@ -1,0 +1,4198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="AnetApi/xml/v1/schema/AnetApiSchema.xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="AnetApi/xml/v1/schema/AnetApiSchema.xsd" />
+      <s:element name="AddAppointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tax" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAppointmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddAppointmentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddAddressResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAppLocationResult" type="tns:ClientLocation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientLocation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AppointmentID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateAppStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateAppSeenStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppSeenStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MakeAppointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ForDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AtTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CSVSRVC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PayTxnID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expriry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PayProfileID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EditAppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakeAppointmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MakeAppointmentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppBasicInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ForDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AtTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppBasicInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateAppBasicInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppointmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAppointmentResult" type="tns:AppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AppointmentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AppointmentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayProfileID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerProfileID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayTxnID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthTxnID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="AtTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeenStatus" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasNotified" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Services" type="tns:ArrayOfServiceInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfServiceInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceInfo" nillable="true" type="tns:ServiceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServiceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShortDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duration" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfServiceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListAppointmentByProvider">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAppointmentByProviderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAppointmentByProviderResult" type="tns:ArrayOfAppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAppointmentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AppointmentInfo" nillable="true" type="tns:AppointmentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListAppointmentByClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAppointmentByClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAppointmentByClientResult" type="tns:ArrayOfAppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="C" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentTxnID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppointmentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveApp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveAppResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="HideApp4Me">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HideApp4MeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsProviderSlotFree">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsProviderSlotFreeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsProviderSlotFreeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsProviderSlotFreeEM">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDateTime" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsProviderSlotFreeEMResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsProviderSlotFreeEMResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProOccupiedSlots">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="a" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="b" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="c" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProOccupiedSlotsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProOccupiedSlotsResult" type="tns:ArrayOfAppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanSetAvailability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanSetAvailabilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CanSetAvailabilityResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRating">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RatingByID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RatingToID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RatingCSV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReviewCSV" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRatingResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DidIRated">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ByUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DidIRatedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DidIRatedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListRating">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RatingTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListRatingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListRatingResult" type="tns:ArrayOfRatingInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRatingInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RatingInfo" nillable="true" type="tns:RatingInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RatingInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RatingName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RatingTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RatingFilter" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChargeCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargeCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthCardJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthCardJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthCardJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargeProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PPID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargeProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargeProfileJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PPID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargeProfileJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChargeProfileJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PPID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthProfileJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PPID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthProfileJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthProfileJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargePreviousAuth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Txn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargePreviousAuthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargePreviousAuthJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Txn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargePreviousAuthJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChargePreviousAuthJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundCardJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundCardJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RefundCardJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adrs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:CreateCustomerProfileResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerProfileJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adrs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerProfileJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateCustomerProfileJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerPaymentProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adrs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerPaymentProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:CreateCustomerPaymentProfileResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerPaymentProfileJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adrs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerPaymentProfileJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateCustomerPaymentProfileJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerProfileJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerProfileJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerProfileJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCustomerPayProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PPID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCustomerPayProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCustomerPayProfileJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PPID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCustomerPayProfileJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteCustomerPayProfileJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppointmentPhotos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppointmentPhotosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAppointmentPhotosResult" type="tns:ArrayOfAppointmentPhotoInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAppointmentPhotoInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AppointmentPhotoInfo" nillable="true" type="tns:AppointmentPhotoInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AppointmentPhotoInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AppointmentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilePath" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddAppointmentPhoto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAppointmentPhotoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveAppointmentPhoto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveAppointmentPhotoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ByID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NotTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RelatedEntityID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddNotificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveNotificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveUserNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUserNotificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMyNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyNotificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyNotificationResult" type="tns:ArrayOfNotificationInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNotificationInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NotificationInfo" nillable="true" type="tns:NotificationInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NotificationInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityByID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityToID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NotificationTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RelatedEntityID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ByName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserNotification">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserNotificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserNotificationResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+      <s:element name="ClientLocation" nillable="true" type="tns:ClientLocation" />
+      <s:element name="AppointmentInfo" nillable="true" type="tns:AppointmentInfo" />
+      <s:element name="ArrayOfAppointmentInfo" nillable="true" type="tns:ArrayOfAppointmentInfo" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="ArrayOfRatingInfo" nillable="true" type="tns:ArrayOfRatingInfo" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfAppointmentPhotoInfo" nillable="true" type="tns:ArrayOfAppointmentPhotoInfo" />
+      <s:element name="ArrayOfNotificationInfo" nillable="true" type="tns:ArrayOfNotificationInfo" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+      <s:element name="ErrorResponse" type="s1:ANetApiResponse" />
+      <s:complexType name="ANetApiResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="refId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="messages" type="s1:messagesType" />
+          <s:element minOccurs="0" maxOccurs="1" name="sessionToken" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="messagesType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="resultCode" type="s1:messageTypeEnum" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="message">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="text" type="s:string" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="messageTypeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ok" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateCustomerProfileResult">
+        <s:complexType>
+          <s:complexContent mixed="false">
+            <s:extension base="s1:ANetApiResponse">
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileIdList" type="s1:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerShippingAddressIdList" type="s1:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponseList" type="s1:ArrayOfString1" />
+              </s:sequence>
+            </s:extension>
+          </s:complexContent>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="numericString" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateCustomerPaymentProfileResult">
+        <s:complexType>
+          <s:complexContent mixed="false">
+            <s:extension base="s1:ANetApiResponse">
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileId" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponse" type="s:string" />
+              </s:sequence>
+            </s:extension>
+          </s:complexContent>
+        </s:complexType>
+      </s:element>
+      <s:element name="createCustomerProfileResponse">
+        <s:complexType>
+          <s:complexContent mixed="false">
+            <s:extension base="s1:ANetApiResponse">
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileIdList" type="s1:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerShippingAddressIdList" type="s1:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponseList" type="s1:ArrayOfString1" />
+              </s:sequence>
+            </s:extension>
+          </s:complexContent>
+        </s:complexType>
+      </s:element>
+      <s:element name="createCustomerPaymentProfileResponse">
+        <s:complexType>
+          <s:complexContent mixed="false">
+            <s:extension base="s1:ANetApiResponse">
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileId" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponse" type="s:string" />
+              </s:sequence>
+            </s:extension>
+          </s:complexContent>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddAppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAppointment" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAddress" />
+  </wsdl:message>
+  <wsdl:message name="AddAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAppLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAppLocation" />
+  </wsdl:message>
+  <wsdl:message name="GetAppLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAppLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAppStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAppStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppSeenStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAppSeenStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppSeenStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAppSeenStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="MakeAppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:MakeAppointment" />
+  </wsdl:message>
+  <wsdl:message name="MakeAppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:MakeAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppBasicInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAppBasicInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppBasicInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAppBasicInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAppointment" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByProvider" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByClient" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAppointment" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveApp" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="HideApp4MeSoapIn">
+    <wsdl:part name="parameters" element="tns:HideApp4Me" />
+  </wsdl:message>
+  <wsdl:message name="HideApp4MeSoapOut">
+    <wsdl:part name="parameters" element="tns:HideApp4MeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeSoapIn">
+    <wsdl:part name="parameters" element="tns:IsProviderSlotFree" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeSoapOut">
+    <wsdl:part name="parameters" element="tns:IsProviderSlotFreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeEMSoapIn">
+    <wsdl:part name="parameters" element="tns:IsProviderSlotFreeEM" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeEMSoapOut">
+    <wsdl:part name="parameters" element="tns:IsProviderSlotFreeEMResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProOccupiedSlotsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProOccupiedSlots" />
+  </wsdl:message>
+  <wsdl:message name="GetProOccupiedSlotsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProOccupiedSlotsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CanSetAvailabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:CanSetAvailability" />
+  </wsdl:message>
+  <wsdl:message name="CanSetAvailabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:CanSetAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRatingSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRating" />
+  </wsdl:message>
+  <wsdl:message name="AddRatingSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRatingResponse" />
+  </wsdl:message>
+  <wsdl:message name="DidIRatedSoapIn">
+    <wsdl:part name="parameters" element="tns:DidIRated" />
+  </wsdl:message>
+  <wsdl:message name="DidIRatedSoapOut">
+    <wsdl:part name="parameters" element="tns:DidIRatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListRatingSoapIn">
+    <wsdl:part name="parameters" element="tns:ListRating" />
+  </wsdl:message>
+  <wsdl:message name="ListRatingSoapOut">
+    <wsdl:part name="parameters" element="tns:ListRatingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargeCardSoapIn">
+    <wsdl:part name="parameters" element="tns:ChargeCard" />
+  </wsdl:message>
+  <wsdl:message name="ChargeCardSoapOut">
+    <wsdl:part name="parameters" element="tns:ChargeCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthCard" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthCardJSON" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthCardJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:ChargeProfile" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:ChargeProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:ChargeProfileJSON" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:ChargeProfileJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthProfile" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthProfileJSON" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthProfileJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthSoapIn">
+    <wsdl:part name="parameters" element="tns:ChargePreviousAuth" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthSoapOut">
+    <wsdl:part name="parameters" element="tns:ChargePreviousAuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:ChargePreviousAuthJSON" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:ChargePreviousAuthJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardSoapIn">
+    <wsdl:part name="parameters" element="tns:RefundCard" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:RefundCardJSON" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundCardJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCustomerProfile" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCustomerProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCustomerProfileJSON" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCustomerProfileJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCustomerPaymentProfile" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCustomerPaymentProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCustomerPaymentProfileJSON" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCustomerPaymentProfileJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerProfileJSON" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerProfileJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCustomerPayProfile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCustomerPayProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCustomerPayProfileJSON" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCustomerPayProfileJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentPhotosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAppointmentPhotos" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentPhotosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAppointmentPhotosResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentPhotoSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAppointmentPhoto" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentPhotoSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAppointmentPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppointmentPhotoSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveAppointmentPhoto" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppointmentPhotoSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveAppointmentPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddNotification" />
+  </wsdl:message>
+  <wsdl:message name="AddNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveNotification" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveUserNotification" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveUserNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyNotification" />
+  </wsdl:message>
+  <wsdl:message name="GetMyNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserNotification" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentHttpGetIn">
+    <wsdl:part name="SID" type="s:string" />
+    <wsdl:part name="SN" type="s:string" />
+    <wsdl:part name="SD" type="s:string" />
+    <wsdl:part name="Image" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="Price" type="s:string" />
+    <wsdl:part name="Tax" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddAddressHttpGetIn">
+    <wsdl:part name="street" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddAddressHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetAppLocationHttpGetIn">
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppLocationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ClientLocation" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppStatusHttpGetIn">
+    <wsdl:part name="AppID" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppStatusHttpGetOut" />
+  <wsdl:message name="UpdateAppSeenStatusHttpGetIn">
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppSeenStatusHttpGetOut" />
+  <wsdl:message name="MakeAppointmentHttpGetIn">
+    <wsdl:part name="ClientID" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="AddressID" type="s:string" />
+    <wsdl:part name="ForDate" type="s:string" />
+    <wsdl:part name="AtTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="CSVSRVC" type="s:string" />
+    <wsdl:part name="PayTxnID" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expriry" type="s:string" />
+    <wsdl:part name="Comment" type="s:string" />
+    <wsdl:part name="PayProfileID" type="s:string" />
+    <wsdl:part name="EditAppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MakeAppointmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppBasicInfoHttpGetIn">
+    <wsdl:part name="AppID" type="s:string" />
+    <wsdl:part name="ClientID" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="AddressID" type="s:string" />
+    <wsdl:part name="ForDate" type="s:string" />
+    <wsdl:part name="AtTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="Comment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppBasicInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:AppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="C" type="s:string" />
+    <wsdl:part name="PaymentTxnID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentHttpGetOut" />
+  <wsdl:message name="RemoveAppHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppHttpGetOut" />
+  <wsdl:message name="HideApp4MeHttpGetIn">
+    <wsdl:part name="AID" type="s:string" />
+    <wsdl:part name="UserType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HideApp4MeHttpGetOut" />
+  <wsdl:message name="IsProviderSlotFreeHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="StartDateTime" type="s:string" />
+    <wsdl:part name="EndDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeEMHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="StartDateTime" type="s:string" />
+    <wsdl:part name="EndDateTime" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeEMHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetProOccupiedSlotsHttpGetIn">
+    <wsdl:part name="a" type="s:string" />
+    <wsdl:part name="b" type="s:string" />
+    <wsdl:part name="c" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProOccupiedSlotsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="CanSetAvailabilityHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="StartDateTime" type="s:string" />
+    <wsdl:part name="EndDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CanSetAvailabilityHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="AddRatingHttpGetIn">
+    <wsdl:part name="RatingByID" type="s:string" />
+    <wsdl:part name="RatingToID" type="s:string" />
+    <wsdl:part name="RatingCSV" type="s:string" />
+    <wsdl:part name="ReviewCSV" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddRatingHttpGetOut" />
+  <wsdl:message name="DidIRatedHttpGetIn">
+    <wsdl:part name="ByUserID" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DidIRatedHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ListRatingHttpGetIn">
+    <wsdl:part name="RatingTypeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListRatingHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRatingInfo" />
+  </wsdl:message>
+  <wsdl:message name="ChargeCardHttpGetIn">
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CardCode" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeCardHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardHttpGetIn">
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CardCode" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardJSONHttpGetIn">
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CardCode" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileJSONHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileJSONHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthHttpGetIn">
+    <wsdl:part name="Txn" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthJSONHttpGetIn">
+    <wsdl:part name="Txn" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardHttpGetIn">
+    <wsdl:part name="AID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardJSONHttpGetIn">
+    <wsdl:part name="AID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="Email" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileHttpGetOut">
+    <wsdl:part name="Body" element="s1:createCustomerProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileJSONHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="Email" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileHttpGetOut">
+    <wsdl:part name="Body" element="s1:createCustomerPaymentProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileJSONHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileJSONHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileHttpGetOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileJSONHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentPhotosHttpGetIn">
+    <wsdl:part name="AID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentPhotosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentPhotoInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentPhotoHttpGetIn">
+    <wsdl:part name="AID" type="s:string" />
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="FilePath" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentPhotoHttpGetOut" />
+  <wsdl:message name="RemoveAppointmentPhotoHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppointmentPhotoHttpGetOut" />
+  <wsdl:message name="AddNotificationHttpGetIn">
+    <wsdl:part name="ByID" type="s:string" />
+    <wsdl:part name="ToID" type="s:string" />
+    <wsdl:part name="NotTypeID" type="s:string" />
+    <wsdl:part name="RelatedEntityID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddNotificationHttpGetOut" />
+  <wsdl:message name="RemoveNotificationHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNotificationHttpGetOut" />
+  <wsdl:message name="RemoveUserNotificationHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserNotificationHttpGetOut" />
+  <wsdl:message name="GetMyNotificationHttpGetIn">
+    <wsdl:part name="MyID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMyNotificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNotificationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotificationHttpGetIn" />
+  <wsdl:message name="GetUserNotificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentHttpPostIn">
+    <wsdl:part name="SID" type="s:string" />
+    <wsdl:part name="SN" type="s:string" />
+    <wsdl:part name="SD" type="s:string" />
+    <wsdl:part name="Image" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="Price" type="s:string" />
+    <wsdl:part name="Tax" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddAddressHttpPostIn">
+    <wsdl:part name="street" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddAddressHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetAppLocationHttpPostIn">
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppLocationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ClientLocation" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppStatusHttpPostIn">
+    <wsdl:part name="AppID" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppStatusHttpPostOut" />
+  <wsdl:message name="UpdateAppSeenStatusHttpPostIn">
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppSeenStatusHttpPostOut" />
+  <wsdl:message name="MakeAppointmentHttpPostIn">
+    <wsdl:part name="ClientID" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="AddressID" type="s:string" />
+    <wsdl:part name="ForDate" type="s:string" />
+    <wsdl:part name="AtTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="CSVSRVC" type="s:string" />
+    <wsdl:part name="PayTxnID" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expriry" type="s:string" />
+    <wsdl:part name="Comment" type="s:string" />
+    <wsdl:part name="PayProfileID" type="s:string" />
+    <wsdl:part name="EditAppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MakeAppointmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppBasicInfoHttpPostIn">
+    <wsdl:part name="AppID" type="s:string" />
+    <wsdl:part name="ClientID" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="AddressID" type="s:string" />
+    <wsdl:part name="ForDate" type="s:string" />
+    <wsdl:part name="AtTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="Comment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppBasicInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:AppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="C" type="s:string" />
+    <wsdl:part name="PaymentTxnID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentHttpPostOut" />
+  <wsdl:message name="RemoveAppHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppHttpPostOut" />
+  <wsdl:message name="HideApp4MeHttpPostIn">
+    <wsdl:part name="AID" type="s:string" />
+    <wsdl:part name="UserType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HideApp4MeHttpPostOut" />
+  <wsdl:message name="IsProviderSlotFreeHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="StartDateTime" type="s:string" />
+    <wsdl:part name="EndDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeEMHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="StartDateTime" type="s:string" />
+    <wsdl:part name="EndDateTime" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsProviderSlotFreeEMHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetProOccupiedSlotsHttpPostIn">
+    <wsdl:part name="a" type="s:string" />
+    <wsdl:part name="b" type="s:string" />
+    <wsdl:part name="c" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProOccupiedSlotsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="CanSetAvailabilityHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="StartDateTime" type="s:string" />
+    <wsdl:part name="EndDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CanSetAvailabilityHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="AddRatingHttpPostIn">
+    <wsdl:part name="RatingByID" type="s:string" />
+    <wsdl:part name="RatingToID" type="s:string" />
+    <wsdl:part name="RatingCSV" type="s:string" />
+    <wsdl:part name="ReviewCSV" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddRatingHttpPostOut" />
+  <wsdl:message name="DidIRatedHttpPostIn">
+    <wsdl:part name="ByUserID" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DidIRatedHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ListRatingHttpPostIn">
+    <wsdl:part name="RatingTypeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListRatingHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRatingInfo" />
+  </wsdl:message>
+  <wsdl:message name="ChargeCardHttpPostIn">
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CardCode" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeCardHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardHttpPostIn">
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CardCode" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardJSONHttpPostIn">
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CardCode" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileJSONHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargeProfileJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileJSONHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthProfileJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthHttpPostIn">
+    <wsdl:part name="Txn" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthJSONHttpPostIn">
+    <wsdl:part name="Txn" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChargePreviousAuthJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardHttpPostIn">
+    <wsdl:part name="AID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardJSONHttpPostIn">
+    <wsdl:part name="AID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundCardJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="Email" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileHttpPostOut">
+    <wsdl:part name="Body" element="s1:createCustomerProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileJSONHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="Email" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerProfileJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileHttpPostOut">
+    <wsdl:part name="Body" element="s1:createCustomerPaymentProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileJSONHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="CCNumber" type="s:string" />
+    <wsdl:part name="Expiry" type="s:string" />
+    <wsdl:part name="CVV" type="s:string" />
+    <wsdl:part name="adrs" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentProfileJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileJSONHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerProfileJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileHttpPostOut">
+    <wsdl:part name="Body" element="s1:ErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileJSONHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="PPID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerPayProfileJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentPhotosHttpPostIn">
+    <wsdl:part name="AID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAppointmentPhotosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAppointmentPhotoInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentPhotoHttpPostIn">
+    <wsdl:part name="AID" type="s:string" />
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="FilePath" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentPhotoHttpPostOut" />
+  <wsdl:message name="RemoveAppointmentPhotoHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAppointmentPhotoHttpPostOut" />
+  <wsdl:message name="AddNotificationHttpPostIn">
+    <wsdl:part name="ByID" type="s:string" />
+    <wsdl:part name="ToID" type="s:string" />
+    <wsdl:part name="NotTypeID" type="s:string" />
+    <wsdl:part name="RelatedEntityID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddNotificationHttpPostOut" />
+  <wsdl:message name="RemoveNotificationHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNotificationHttpPostOut" />
+  <wsdl:message name="RemoveUserNotificationHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserNotificationHttpPostOut" />
+  <wsdl:message name="GetMyNotificationHttpPostIn">
+    <wsdl:part name="MyID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMyNotificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNotificationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotificationHttpPostIn" />
+  <wsdl:message name="GetUserNotificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="rhSoap">
+    <wsdl:operation name="AddAppointment">
+      <wsdl:input message="tns:AddAppointmentSoapIn" />
+      <wsdl:output message="tns:AddAppointmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <wsdl:input message="tns:AddAddressSoapIn" />
+      <wsdl:output message="tns:AddAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <wsdl:input message="tns:GetAppLocationSoapIn" />
+      <wsdl:output message="tns:GetAppLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <wsdl:input message="tns:UpdateAppStatusSoapIn" />
+      <wsdl:output message="tns:UpdateAppStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <wsdl:input message="tns:UpdateAppSeenStatusSoapIn" />
+      <wsdl:output message="tns:UpdateAppSeenStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <wsdl:input message="tns:MakeAppointmentSoapIn" />
+      <wsdl:output message="tns:MakeAppointmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <wsdl:input message="tns:UpdateAppBasicInfoSoapIn" />
+      <wsdl:output message="tns:UpdateAppBasicInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <wsdl:input message="tns:GetAppointmentSoapIn" />
+      <wsdl:output message="tns:GetAppointmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <wsdl:input message="tns:ListAppointmentByProviderSoapIn" />
+      <wsdl:output message="tns:ListAppointmentByProviderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <wsdl:input message="tns:ListAppointmentByClientSoapIn" />
+      <wsdl:output message="tns:ListAppointmentByClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <wsdl:input message="tns:UpdateAppointmentSoapIn" />
+      <wsdl:output message="tns:UpdateAppointmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <wsdl:input message="tns:RemoveAppSoapIn" />
+      <wsdl:output message="tns:RemoveAppSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <wsdl:input message="tns:HideApp4MeSoapIn" />
+      <wsdl:output message="tns:HideApp4MeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <wsdl:input message="tns:IsProviderSlotFreeSoapIn" />
+      <wsdl:output message="tns:IsProviderSlotFreeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <wsdl:input message="tns:IsProviderSlotFreeEMSoapIn" />
+      <wsdl:output message="tns:IsProviderSlotFreeEMSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <wsdl:input message="tns:GetProOccupiedSlotsSoapIn" />
+      <wsdl:output message="tns:GetProOccupiedSlotsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <wsdl:input message="tns:CanSetAvailabilitySoapIn" />
+      <wsdl:output message="tns:CanSetAvailabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <wsdl:input message="tns:AddRatingSoapIn" />
+      <wsdl:output message="tns:AddRatingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <wsdl:input message="tns:DidIRatedSoapIn" />
+      <wsdl:output message="tns:DidIRatedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <wsdl:input message="tns:ListRatingSoapIn" />
+      <wsdl:output message="tns:ListRatingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <wsdl:input message="tns:ChargeCardSoapIn" />
+      <wsdl:output message="tns:ChargeCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <wsdl:input message="tns:AuthCardSoapIn" />
+      <wsdl:output message="tns:AuthCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <wsdl:input message="tns:AuthCardJSONSoapIn" />
+      <wsdl:output message="tns:AuthCardJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <wsdl:input message="tns:ChargeProfileSoapIn" />
+      <wsdl:output message="tns:ChargeProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <wsdl:input message="tns:ChargeProfileJSONSoapIn" />
+      <wsdl:output message="tns:ChargeProfileJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <wsdl:input message="tns:AuthProfileSoapIn" />
+      <wsdl:output message="tns:AuthProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <wsdl:input message="tns:AuthProfileJSONSoapIn" />
+      <wsdl:output message="tns:AuthProfileJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <wsdl:input message="tns:ChargePreviousAuthSoapIn" />
+      <wsdl:output message="tns:ChargePreviousAuthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <wsdl:input message="tns:ChargePreviousAuthJSONSoapIn" />
+      <wsdl:output message="tns:ChargePreviousAuthJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <wsdl:input message="tns:RefundCardSoapIn" />
+      <wsdl:output message="tns:RefundCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <wsdl:input message="tns:RefundCardJSONSoapIn" />
+      <wsdl:output message="tns:RefundCardJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <wsdl:input message="tns:CreateCustomerProfileSoapIn" />
+      <wsdl:output message="tns:CreateCustomerProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <wsdl:input message="tns:CreateCustomerProfileJSONSoapIn" />
+      <wsdl:output message="tns:CreateCustomerProfileJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <wsdl:input message="tns:CreateCustomerPaymentProfileSoapIn" />
+      <wsdl:output message="tns:CreateCustomerPaymentProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <wsdl:input message="tns:CreateCustomerPaymentProfileJSONSoapIn" />
+      <wsdl:output message="tns:CreateCustomerPaymentProfileJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <wsdl:input message="tns:GetCustomerProfileSoapIn" />
+      <wsdl:output message="tns:GetCustomerProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <wsdl:input message="tns:GetCustomerProfileJSONSoapIn" />
+      <wsdl:output message="tns:GetCustomerProfileJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <wsdl:input message="tns:DeleteCustomerPayProfileSoapIn" />
+      <wsdl:output message="tns:DeleteCustomerPayProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <wsdl:input message="tns:DeleteCustomerPayProfileJSONSoapIn" />
+      <wsdl:output message="tns:DeleteCustomerPayProfileJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <wsdl:input message="tns:GetAppointmentPhotosSoapIn" />
+      <wsdl:output message="tns:GetAppointmentPhotosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <wsdl:input message="tns:AddAppointmentPhotoSoapIn" />
+      <wsdl:output message="tns:AddAppointmentPhotoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <wsdl:input message="tns:RemoveAppointmentPhotoSoapIn" />
+      <wsdl:output message="tns:RemoveAppointmentPhotoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <wsdl:input message="tns:AddNotificationSoapIn" />
+      <wsdl:output message="tns:AddNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <wsdl:input message="tns:RemoveNotificationSoapIn" />
+      <wsdl:output message="tns:RemoveNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <wsdl:input message="tns:RemoveUserNotificationSoapIn" />
+      <wsdl:output message="tns:RemoveUserNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <wsdl:input message="tns:GetMyNotificationSoapIn" />
+      <wsdl:output message="tns:GetMyNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <wsdl:input message="tns:GetUserNotificationSoapIn" />
+      <wsdl:output message="tns:GetUserNotificationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpGet">
+    <wsdl:operation name="AddAppointment">
+      <wsdl:input message="tns:AddAppointmentHttpGetIn" />
+      <wsdl:output message="tns:AddAppointmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <wsdl:input message="tns:AddAddressHttpGetIn" />
+      <wsdl:output message="tns:AddAddressHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <wsdl:input message="tns:GetAppLocationHttpGetIn" />
+      <wsdl:output message="tns:GetAppLocationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <wsdl:input message="tns:UpdateAppStatusHttpGetIn" />
+      <wsdl:output message="tns:UpdateAppStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <wsdl:input message="tns:UpdateAppSeenStatusHttpGetIn" />
+      <wsdl:output message="tns:UpdateAppSeenStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <wsdl:input message="tns:MakeAppointmentHttpGetIn" />
+      <wsdl:output message="tns:MakeAppointmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <wsdl:input message="tns:UpdateAppBasicInfoHttpGetIn" />
+      <wsdl:output message="tns:UpdateAppBasicInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <wsdl:input message="tns:GetAppointmentHttpGetIn" />
+      <wsdl:output message="tns:GetAppointmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <wsdl:input message="tns:ListAppointmentByProviderHttpGetIn" />
+      <wsdl:output message="tns:ListAppointmentByProviderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <wsdl:input message="tns:ListAppointmentByClientHttpGetIn" />
+      <wsdl:output message="tns:ListAppointmentByClientHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <wsdl:input message="tns:UpdateAppointmentHttpGetIn" />
+      <wsdl:output message="tns:UpdateAppointmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <wsdl:input message="tns:RemoveAppHttpGetIn" />
+      <wsdl:output message="tns:RemoveAppHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <wsdl:input message="tns:HideApp4MeHttpGetIn" />
+      <wsdl:output message="tns:HideApp4MeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <wsdl:input message="tns:IsProviderSlotFreeHttpGetIn" />
+      <wsdl:output message="tns:IsProviderSlotFreeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <wsdl:input message="tns:IsProviderSlotFreeEMHttpGetIn" />
+      <wsdl:output message="tns:IsProviderSlotFreeEMHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <wsdl:input message="tns:GetProOccupiedSlotsHttpGetIn" />
+      <wsdl:output message="tns:GetProOccupiedSlotsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <wsdl:input message="tns:CanSetAvailabilityHttpGetIn" />
+      <wsdl:output message="tns:CanSetAvailabilityHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <wsdl:input message="tns:AddRatingHttpGetIn" />
+      <wsdl:output message="tns:AddRatingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <wsdl:input message="tns:DidIRatedHttpGetIn" />
+      <wsdl:output message="tns:DidIRatedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <wsdl:input message="tns:ListRatingHttpGetIn" />
+      <wsdl:output message="tns:ListRatingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <wsdl:input message="tns:ChargeCardHttpGetIn" />
+      <wsdl:output message="tns:ChargeCardHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <wsdl:input message="tns:AuthCardHttpGetIn" />
+      <wsdl:output message="tns:AuthCardHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <wsdl:input message="tns:AuthCardJSONHttpGetIn" />
+      <wsdl:output message="tns:AuthCardJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <wsdl:input message="tns:ChargeProfileHttpGetIn" />
+      <wsdl:output message="tns:ChargeProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <wsdl:input message="tns:ChargeProfileJSONHttpGetIn" />
+      <wsdl:output message="tns:ChargeProfileJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <wsdl:input message="tns:AuthProfileHttpGetIn" />
+      <wsdl:output message="tns:AuthProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <wsdl:input message="tns:AuthProfileJSONHttpGetIn" />
+      <wsdl:output message="tns:AuthProfileJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <wsdl:input message="tns:ChargePreviousAuthHttpGetIn" />
+      <wsdl:output message="tns:ChargePreviousAuthHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <wsdl:input message="tns:ChargePreviousAuthJSONHttpGetIn" />
+      <wsdl:output message="tns:ChargePreviousAuthJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <wsdl:input message="tns:RefundCardHttpGetIn" />
+      <wsdl:output message="tns:RefundCardHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <wsdl:input message="tns:RefundCardJSONHttpGetIn" />
+      <wsdl:output message="tns:RefundCardJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <wsdl:input message="tns:CreateCustomerProfileHttpGetIn" />
+      <wsdl:output message="tns:CreateCustomerProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <wsdl:input message="tns:CreateCustomerProfileJSONHttpGetIn" />
+      <wsdl:output message="tns:CreateCustomerProfileJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <wsdl:input message="tns:CreateCustomerPaymentProfileHttpGetIn" />
+      <wsdl:output message="tns:CreateCustomerPaymentProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <wsdl:input message="tns:CreateCustomerPaymentProfileJSONHttpGetIn" />
+      <wsdl:output message="tns:CreateCustomerPaymentProfileJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <wsdl:input message="tns:GetCustomerProfileHttpGetIn" />
+      <wsdl:output message="tns:GetCustomerProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <wsdl:input message="tns:GetCustomerProfileJSONHttpGetIn" />
+      <wsdl:output message="tns:GetCustomerProfileJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <wsdl:input message="tns:DeleteCustomerPayProfileHttpGetIn" />
+      <wsdl:output message="tns:DeleteCustomerPayProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <wsdl:input message="tns:DeleteCustomerPayProfileJSONHttpGetIn" />
+      <wsdl:output message="tns:DeleteCustomerPayProfileJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <wsdl:input message="tns:GetAppointmentPhotosHttpGetIn" />
+      <wsdl:output message="tns:GetAppointmentPhotosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <wsdl:input message="tns:AddAppointmentPhotoHttpGetIn" />
+      <wsdl:output message="tns:AddAppointmentPhotoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <wsdl:input message="tns:RemoveAppointmentPhotoHttpGetIn" />
+      <wsdl:output message="tns:RemoveAppointmentPhotoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <wsdl:input message="tns:AddNotificationHttpGetIn" />
+      <wsdl:output message="tns:AddNotificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <wsdl:input message="tns:RemoveNotificationHttpGetIn" />
+      <wsdl:output message="tns:RemoveNotificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <wsdl:input message="tns:RemoveUserNotificationHttpGetIn" />
+      <wsdl:output message="tns:RemoveUserNotificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <wsdl:input message="tns:GetMyNotificationHttpGetIn" />
+      <wsdl:output message="tns:GetMyNotificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <wsdl:input message="tns:GetUserNotificationHttpGetIn" />
+      <wsdl:output message="tns:GetUserNotificationHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpPost">
+    <wsdl:operation name="AddAppointment">
+      <wsdl:input message="tns:AddAppointmentHttpPostIn" />
+      <wsdl:output message="tns:AddAppointmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <wsdl:input message="tns:AddAddressHttpPostIn" />
+      <wsdl:output message="tns:AddAddressHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <wsdl:input message="tns:GetAppLocationHttpPostIn" />
+      <wsdl:output message="tns:GetAppLocationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <wsdl:input message="tns:UpdateAppStatusHttpPostIn" />
+      <wsdl:output message="tns:UpdateAppStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <wsdl:input message="tns:UpdateAppSeenStatusHttpPostIn" />
+      <wsdl:output message="tns:UpdateAppSeenStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <wsdl:input message="tns:MakeAppointmentHttpPostIn" />
+      <wsdl:output message="tns:MakeAppointmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <wsdl:input message="tns:UpdateAppBasicInfoHttpPostIn" />
+      <wsdl:output message="tns:UpdateAppBasicInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <wsdl:input message="tns:GetAppointmentHttpPostIn" />
+      <wsdl:output message="tns:GetAppointmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <wsdl:input message="tns:ListAppointmentByProviderHttpPostIn" />
+      <wsdl:output message="tns:ListAppointmentByProviderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <wsdl:input message="tns:ListAppointmentByClientHttpPostIn" />
+      <wsdl:output message="tns:ListAppointmentByClientHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <wsdl:input message="tns:UpdateAppointmentHttpPostIn" />
+      <wsdl:output message="tns:UpdateAppointmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <wsdl:input message="tns:RemoveAppHttpPostIn" />
+      <wsdl:output message="tns:RemoveAppHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <wsdl:input message="tns:HideApp4MeHttpPostIn" />
+      <wsdl:output message="tns:HideApp4MeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <wsdl:input message="tns:IsProviderSlotFreeHttpPostIn" />
+      <wsdl:output message="tns:IsProviderSlotFreeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <wsdl:input message="tns:IsProviderSlotFreeEMHttpPostIn" />
+      <wsdl:output message="tns:IsProviderSlotFreeEMHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <wsdl:input message="tns:GetProOccupiedSlotsHttpPostIn" />
+      <wsdl:output message="tns:GetProOccupiedSlotsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <wsdl:input message="tns:CanSetAvailabilityHttpPostIn" />
+      <wsdl:output message="tns:CanSetAvailabilityHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <wsdl:input message="tns:AddRatingHttpPostIn" />
+      <wsdl:output message="tns:AddRatingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <wsdl:input message="tns:DidIRatedHttpPostIn" />
+      <wsdl:output message="tns:DidIRatedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <wsdl:input message="tns:ListRatingHttpPostIn" />
+      <wsdl:output message="tns:ListRatingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <wsdl:input message="tns:ChargeCardHttpPostIn" />
+      <wsdl:output message="tns:ChargeCardHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <wsdl:input message="tns:AuthCardHttpPostIn" />
+      <wsdl:output message="tns:AuthCardHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <wsdl:input message="tns:AuthCardJSONHttpPostIn" />
+      <wsdl:output message="tns:AuthCardJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <wsdl:input message="tns:ChargeProfileHttpPostIn" />
+      <wsdl:output message="tns:ChargeProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <wsdl:input message="tns:ChargeProfileJSONHttpPostIn" />
+      <wsdl:output message="tns:ChargeProfileJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <wsdl:input message="tns:AuthProfileHttpPostIn" />
+      <wsdl:output message="tns:AuthProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <wsdl:input message="tns:AuthProfileJSONHttpPostIn" />
+      <wsdl:output message="tns:AuthProfileJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <wsdl:input message="tns:ChargePreviousAuthHttpPostIn" />
+      <wsdl:output message="tns:ChargePreviousAuthHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <wsdl:input message="tns:ChargePreviousAuthJSONHttpPostIn" />
+      <wsdl:output message="tns:ChargePreviousAuthJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <wsdl:input message="tns:RefundCardHttpPostIn" />
+      <wsdl:output message="tns:RefundCardHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <wsdl:input message="tns:RefundCardJSONHttpPostIn" />
+      <wsdl:output message="tns:RefundCardJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <wsdl:input message="tns:CreateCustomerProfileHttpPostIn" />
+      <wsdl:output message="tns:CreateCustomerProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <wsdl:input message="tns:CreateCustomerProfileJSONHttpPostIn" />
+      <wsdl:output message="tns:CreateCustomerProfileJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <wsdl:input message="tns:CreateCustomerPaymentProfileHttpPostIn" />
+      <wsdl:output message="tns:CreateCustomerPaymentProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <wsdl:input message="tns:CreateCustomerPaymentProfileJSONHttpPostIn" />
+      <wsdl:output message="tns:CreateCustomerPaymentProfileJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <wsdl:input message="tns:GetCustomerProfileHttpPostIn" />
+      <wsdl:output message="tns:GetCustomerProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <wsdl:input message="tns:GetCustomerProfileJSONHttpPostIn" />
+      <wsdl:output message="tns:GetCustomerProfileJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <wsdl:input message="tns:DeleteCustomerPayProfileHttpPostIn" />
+      <wsdl:output message="tns:DeleteCustomerPayProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <wsdl:input message="tns:DeleteCustomerPayProfileJSONHttpPostIn" />
+      <wsdl:output message="tns:DeleteCustomerPayProfileJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <wsdl:input message="tns:GetAppointmentPhotosHttpPostIn" />
+      <wsdl:output message="tns:GetAppointmentPhotosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <wsdl:input message="tns:AddAppointmentPhotoHttpPostIn" />
+      <wsdl:output message="tns:AddAppointmentPhotoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <wsdl:input message="tns:RemoveAppointmentPhotoHttpPostIn" />
+      <wsdl:output message="tns:RemoveAppointmentPhotoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <wsdl:input message="tns:AddNotificationHttpPostIn" />
+      <wsdl:output message="tns:AddNotificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <wsdl:input message="tns:RemoveNotificationHttpPostIn" />
+      <wsdl:output message="tns:RemoveNotificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <wsdl:input message="tns:RemoveUserNotificationHttpPostIn" />
+      <wsdl:output message="tns:RemoveUserNotificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <wsdl:input message="tns:GetMyNotificationHttpPostIn" />
+      <wsdl:output message="tns:GetMyNotificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <wsdl:input message="tns:GetUserNotificationHttpPostIn" />
+      <wsdl:output message="tns:GetUserNotificationHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="rhSoap" type="tns:rhSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddAppointment">
+      <soap:operation soapAction="http://tempuri.org/AddAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <soap:operation soapAction="http://tempuri.org/AddAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <soap:operation soapAction="http://tempuri.org/GetAppLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateAppStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateAppSeenStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <soap:operation soapAction="http://tempuri.org/MakeAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <soap:operation soapAction="http://tempuri.org/UpdateAppBasicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <soap:operation soapAction="http://tempuri.org/GetAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <soap:operation soapAction="http://tempuri.org/ListAppointmentByProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <soap:operation soapAction="http://tempuri.org/ListAppointmentByClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <soap:operation soapAction="http://tempuri.org/UpdateAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <soap:operation soapAction="http://tempuri.org/RemoveApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <soap:operation soapAction="http://tempuri.org/HideApp4Me" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <soap:operation soapAction="http://tempuri.org/IsProviderSlotFree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <soap:operation soapAction="http://tempuri.org/IsProviderSlotFreeEM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <soap:operation soapAction="http://tempuri.org/GetProOccupiedSlots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <soap:operation soapAction="http://tempuri.org/CanSetAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <soap:operation soapAction="http://tempuri.org/AddRating" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <soap:operation soapAction="http://tempuri.org/DidIRated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <soap:operation soapAction="http://tempuri.org/ListRating" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <soap:operation soapAction="http://tempuri.org/ChargeCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <soap:operation soapAction="http://tempuri.org/AuthCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <soap:operation soapAction="http://tempuri.org/AuthCardJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <soap:operation soapAction="http://tempuri.org/ChargeProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <soap:operation soapAction="http://tempuri.org/ChargeProfileJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <soap:operation soapAction="http://tempuri.org/AuthProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <soap:operation soapAction="http://tempuri.org/AuthProfileJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <soap:operation soapAction="http://tempuri.org/ChargePreviousAuth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <soap:operation soapAction="http://tempuri.org/ChargePreviousAuthJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <soap:operation soapAction="http://tempuri.org/RefundCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <soap:operation soapAction="http://tempuri.org/RefundCardJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <soap:operation soapAction="http://tempuri.org/CreateCustomerProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <soap:operation soapAction="http://tempuri.org/CreateCustomerProfileJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <soap:operation soapAction="http://tempuri.org/CreateCustomerPaymentProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <soap:operation soapAction="http://tempuri.org/CreateCustomerPaymentProfileJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <soap:operation soapAction="http://tempuri.org/GetCustomerProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <soap:operation soapAction="http://tempuri.org/GetCustomerProfileJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <soap:operation soapAction="http://tempuri.org/DeleteCustomerPayProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <soap:operation soapAction="http://tempuri.org/DeleteCustomerPayProfileJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <soap:operation soapAction="http://tempuri.org/GetAppointmentPhotos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <soap:operation soapAction="http://tempuri.org/AddAppointmentPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <soap:operation soapAction="http://tempuri.org/RemoveAppointmentPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <soap:operation soapAction="http://tempuri.org/AddNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <soap:operation soapAction="http://tempuri.org/RemoveNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <soap:operation soapAction="http://tempuri.org/RemoveUserNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <soap:operation soapAction="http://tempuri.org/GetMyNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <soap:operation soapAction="http://tempuri.org/GetUserNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhSoap12" type="tns:rhSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddAppointment">
+      <soap12:operation soapAction="http://tempuri.org/AddAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <soap12:operation soapAction="http://tempuri.org/AddAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <soap12:operation soapAction="http://tempuri.org/GetAppLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAppStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAppSeenStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <soap12:operation soapAction="http://tempuri.org/MakeAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAppBasicInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <soap12:operation soapAction="http://tempuri.org/GetAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <soap12:operation soapAction="http://tempuri.org/ListAppointmentByProvider" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <soap12:operation soapAction="http://tempuri.org/ListAppointmentByClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <soap12:operation soapAction="http://tempuri.org/RemoveApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <soap12:operation soapAction="http://tempuri.org/HideApp4Me" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <soap12:operation soapAction="http://tempuri.org/IsProviderSlotFree" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <soap12:operation soapAction="http://tempuri.org/IsProviderSlotFreeEM" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <soap12:operation soapAction="http://tempuri.org/GetProOccupiedSlots" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <soap12:operation soapAction="http://tempuri.org/CanSetAvailability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <soap12:operation soapAction="http://tempuri.org/AddRating" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <soap12:operation soapAction="http://tempuri.org/DidIRated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <soap12:operation soapAction="http://tempuri.org/ListRating" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <soap12:operation soapAction="http://tempuri.org/ChargeCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <soap12:operation soapAction="http://tempuri.org/AuthCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <soap12:operation soapAction="http://tempuri.org/AuthCardJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <soap12:operation soapAction="http://tempuri.org/ChargeProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <soap12:operation soapAction="http://tempuri.org/ChargeProfileJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <soap12:operation soapAction="http://tempuri.org/AuthProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <soap12:operation soapAction="http://tempuri.org/AuthProfileJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <soap12:operation soapAction="http://tempuri.org/ChargePreviousAuth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <soap12:operation soapAction="http://tempuri.org/ChargePreviousAuthJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <soap12:operation soapAction="http://tempuri.org/RefundCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <soap12:operation soapAction="http://tempuri.org/RefundCardJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <soap12:operation soapAction="http://tempuri.org/CreateCustomerProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <soap12:operation soapAction="http://tempuri.org/CreateCustomerProfileJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <soap12:operation soapAction="http://tempuri.org/CreateCustomerPaymentProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <soap12:operation soapAction="http://tempuri.org/CreateCustomerPaymentProfileJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <soap12:operation soapAction="http://tempuri.org/GetCustomerProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <soap12:operation soapAction="http://tempuri.org/GetCustomerProfileJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCustomerPayProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCustomerPayProfileJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <soap12:operation soapAction="http://tempuri.org/GetAppointmentPhotos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <soap12:operation soapAction="http://tempuri.org/AddAppointmentPhoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <soap12:operation soapAction="http://tempuri.org/RemoveAppointmentPhoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <soap12:operation soapAction="http://tempuri.org/AddNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <soap12:operation soapAction="http://tempuri.org/RemoveNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <soap12:operation soapAction="http://tempuri.org/RemoveUserNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <soap12:operation soapAction="http://tempuri.org/GetMyNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <soap12:operation soapAction="http://tempuri.org/GetUserNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpGet" type="tns:rhHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AddAppointment">
+      <http:operation location="/AddAppointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <http:operation location="/AddAddress" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <http:operation location="/GetAppLocation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <http:operation location="/UpdateAppStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <http:operation location="/UpdateAppSeenStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <http:operation location="/MakeAppointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <http:operation location="/UpdateAppBasicInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <http:operation location="/GetAppointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <http:operation location="/ListAppointmentByProvider" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <http:operation location="/ListAppointmentByClient" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <http:operation location="/UpdateAppointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <http:operation location="/RemoveApp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <http:operation location="/HideApp4Me" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <http:operation location="/IsProviderSlotFree" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <http:operation location="/IsProviderSlotFreeEM" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <http:operation location="/GetProOccupiedSlots" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <http:operation location="/CanSetAvailability" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <http:operation location="/AddRating" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <http:operation location="/DidIRated" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <http:operation location="/ListRating" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <http:operation location="/ChargeCard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <http:operation location="/AuthCard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <http:operation location="/AuthCardJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <http:operation location="/ChargeProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <http:operation location="/ChargeProfileJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <http:operation location="/AuthProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <http:operation location="/AuthProfileJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <http:operation location="/ChargePreviousAuth" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <http:operation location="/ChargePreviousAuthJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <http:operation location="/RefundCard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <http:operation location="/RefundCardJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <http:operation location="/CreateCustomerProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <http:operation location="/CreateCustomerProfileJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <http:operation location="/CreateCustomerPaymentProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <http:operation location="/CreateCustomerPaymentProfileJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <http:operation location="/GetCustomerProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <http:operation location="/GetCustomerProfileJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <http:operation location="/DeleteCustomerPayProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <http:operation location="/DeleteCustomerPayProfileJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <http:operation location="/GetAppointmentPhotos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <http:operation location="/AddAppointmentPhoto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <http:operation location="/RemoveAppointmentPhoto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <http:operation location="/AddNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <http:operation location="/RemoveNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <http:operation location="/RemoveUserNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <http:operation location="/GetMyNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <http:operation location="/GetUserNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpPost" type="tns:rhHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AddAppointment">
+      <http:operation location="/AddAppointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <http:operation location="/AddAddress" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppLocation">
+      <http:operation location="/GetAppLocation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppStatus">
+      <http:operation location="/UpdateAppStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppSeenStatus">
+      <http:operation location="/UpdateAppSeenStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="MakeAppointment">
+      <http:operation location="/MakeAppointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppBasicInfo">
+      <http:operation location="/UpdateAppBasicInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointment">
+      <http:operation location="/GetAppointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProvider">
+      <http:operation location="/ListAppointmentByProvider" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClient">
+      <http:operation location="/ListAppointmentByClient" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <http:operation location="/UpdateAppointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveApp">
+      <http:operation location="/RemoveApp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="HideApp4Me">
+      <http:operation location="/HideApp4Me" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFree">
+      <http:operation location="/IsProviderSlotFree" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProviderSlotFreeEM">
+      <http:operation location="/IsProviderSlotFreeEM" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProOccupiedSlots">
+      <http:operation location="/GetProOccupiedSlots" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanSetAvailability">
+      <http:operation location="/CanSetAvailability" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRating">
+      <http:operation location="/AddRating" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="DidIRated">
+      <http:operation location="/DidIRated" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRating">
+      <http:operation location="/ListRating" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeCard">
+      <http:operation location="/ChargeCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCard">
+      <http:operation location="/AuthCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthCardJSON">
+      <http:operation location="/AuthCardJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfile">
+      <http:operation location="/ChargeProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargeProfileJSON">
+      <http:operation location="/ChargeProfileJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfile">
+      <http:operation location="/AuthProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthProfileJSON">
+      <http:operation location="/AuthProfileJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuth">
+      <http:operation location="/ChargePreviousAuth" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePreviousAuthJSON">
+      <http:operation location="/ChargePreviousAuthJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCard">
+      <http:operation location="/RefundCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundCardJSON">
+      <http:operation location="/RefundCardJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfile">
+      <http:operation location="/CreateCustomerProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerProfileJSON">
+      <http:operation location="/CreateCustomerProfileJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfile">
+      <http:operation location="/CreateCustomerPaymentProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentProfileJSON">
+      <http:operation location="/CreateCustomerPaymentProfileJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfile">
+      <http:operation location="/GetCustomerProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerProfileJSON">
+      <http:operation location="/GetCustomerProfileJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfile">
+      <http:operation location="/DeleteCustomerPayProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomerPayProfileJSON">
+      <http:operation location="/DeleteCustomerPayProfileJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentPhotos">
+      <http:operation location="/GetAppointmentPhotos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointmentPhoto">
+      <http:operation location="/AddAppointmentPhoto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAppointmentPhoto">
+      <http:operation location="/RemoveAppointmentPhoto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotification">
+      <http:operation location="/AddNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotification">
+      <http:operation location="/RemoveNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserNotification">
+      <http:operation location="/RemoveUserNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNotification">
+      <http:operation location="/GetMyNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotification">
+      <http:operation location="/GetUserNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="rh">
+    <wsdl:port name="rhSoap" binding="tns:rhSoap">
+      <soap:address location="http://www.spafoo.com/DesktopModules/NS_MakeAppointment/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhSoap12" binding="tns:rhSoap12">
+      <soap12:address location="http://www.spafoo.com/DesktopModules/NS_MakeAppointment/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpGet" binding="tns:rhHttpGet">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_MakeAppointment/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpPost" binding="tns:rhHttpPost">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_MakeAppointment/rh.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

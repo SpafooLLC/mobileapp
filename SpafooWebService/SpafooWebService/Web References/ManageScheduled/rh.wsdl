@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AddMyAvail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CSV" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMyAvailResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddMyAvailEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CSV" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMyAvailExResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListMyAvail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMyAvailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListMyAvailResult" type="tns:ArrayOfProAvailabilityInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProAvailabilityInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProAvailabilityInfo" nillable="true" type="tns:ProAvailabilityInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProAvailabilityInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AvailID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndTime" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeSpan" />
+      <s:element name="ListMyAvailJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMyAvailJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListMyAvailJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveAvail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveAvailResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ArrayOfProAvailabilityInfo" nillable="true" type="tns:ArrayOfProAvailabilityInfo" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddMyAvailSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMyAvail" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMyAvailResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailExSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMyAvailEx" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailExSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMyAvailExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailSoapIn">
+    <wsdl:part name="parameters" element="tns:ListMyAvail" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailSoapOut">
+    <wsdl:part name="parameters" element="tns:ListMyAvailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:ListMyAvailJSON" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:ListMyAvailJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAvailSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveAvail" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAvailSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveAvailResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="CSV" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailHttpGetOut" />
+  <wsdl:message name="AddMyAvailExHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="CSV" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailExHttpGetOut" />
+  <wsdl:message name="ListMyAvailHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProAvailabilityInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailJSONHttpGetIn">
+    <wsdl:part name="ProID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAvailHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAvailHttpGetOut" />
+  <wsdl:message name="AddMyAvailHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="CSV" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailHttpPostOut" />
+  <wsdl:message name="AddMyAvailExHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+    <wsdl:part name="CSV" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddMyAvailExHttpPostOut" />
+  <wsdl:message name="ListMyAvailHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProAvailabilityInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailJSONHttpPostIn">
+    <wsdl:part name="ProID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMyAvailJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAvailHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAvailHttpPostOut" />
+  <wsdl:portType name="rhSoap">
+    <wsdl:operation name="AddMyAvail">
+      <wsdl:input message="tns:AddMyAvailSoapIn" />
+      <wsdl:output message="tns:AddMyAvailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <wsdl:input message="tns:AddMyAvailExSoapIn" />
+      <wsdl:output message="tns:AddMyAvailExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <wsdl:input message="tns:ListMyAvailSoapIn" />
+      <wsdl:output message="tns:ListMyAvailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <wsdl:input message="tns:ListMyAvailJSONSoapIn" />
+      <wsdl:output message="tns:ListMyAvailJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <wsdl:input message="tns:RemoveAvailSoapIn" />
+      <wsdl:output message="tns:RemoveAvailSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpGet">
+    <wsdl:operation name="AddMyAvail">
+      <wsdl:input message="tns:AddMyAvailHttpGetIn" />
+      <wsdl:output message="tns:AddMyAvailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <wsdl:input message="tns:AddMyAvailExHttpGetIn" />
+      <wsdl:output message="tns:AddMyAvailExHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <wsdl:input message="tns:ListMyAvailHttpGetIn" />
+      <wsdl:output message="tns:ListMyAvailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <wsdl:input message="tns:ListMyAvailJSONHttpGetIn" />
+      <wsdl:output message="tns:ListMyAvailJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <wsdl:input message="tns:RemoveAvailHttpGetIn" />
+      <wsdl:output message="tns:RemoveAvailHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpPost">
+    <wsdl:operation name="AddMyAvail">
+      <wsdl:input message="tns:AddMyAvailHttpPostIn" />
+      <wsdl:output message="tns:AddMyAvailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <wsdl:input message="tns:AddMyAvailExHttpPostIn" />
+      <wsdl:output message="tns:AddMyAvailExHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <wsdl:input message="tns:ListMyAvailHttpPostIn" />
+      <wsdl:output message="tns:ListMyAvailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <wsdl:input message="tns:ListMyAvailJSONHttpPostIn" />
+      <wsdl:output message="tns:ListMyAvailJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <wsdl:input message="tns:RemoveAvailHttpPostIn" />
+      <wsdl:output message="tns:RemoveAvailHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="rhSoap" type="tns:rhSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddMyAvail">
+      <soap:operation soapAction="http://tempuri.org/AddMyAvail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <soap:operation soapAction="http://tempuri.org/AddMyAvailEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <soap:operation soapAction="http://tempuri.org/ListMyAvail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <soap:operation soapAction="http://tempuri.org/ListMyAvailJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <soap:operation soapAction="http://tempuri.org/RemoveAvail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhSoap12" type="tns:rhSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddMyAvail">
+      <soap12:operation soapAction="http://tempuri.org/AddMyAvail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <soap12:operation soapAction="http://tempuri.org/AddMyAvailEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <soap12:operation soapAction="http://tempuri.org/ListMyAvail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <soap12:operation soapAction="http://tempuri.org/ListMyAvailJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <soap12:operation soapAction="http://tempuri.org/RemoveAvail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpGet" type="tns:rhHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AddMyAvail">
+      <http:operation location="/AddMyAvail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <http:operation location="/AddMyAvailEx" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <http:operation location="/ListMyAvail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <http:operation location="/ListMyAvailJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <http:operation location="/RemoveAvail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpPost" type="tns:rhHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AddMyAvail">
+      <http:operation location="/AddMyAvail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddMyAvailEx">
+      <http:operation location="/AddMyAvailEx" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvail">
+      <http:operation location="/ListMyAvail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMyAvailJSON">
+      <http:operation location="/ListMyAvailJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAvail">
+      <http:operation location="/RemoveAvail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="rh">
+    <wsdl:port name="rhSoap" binding="tns:rhSoap">
+      <soap:address location="http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhSoap12" binding="tns:rhSoap12">
+      <soap12:address location="http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpGet" binding="tns:rhHttpGet">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpPost" binding="tns:rhHttpPost">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/rh.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

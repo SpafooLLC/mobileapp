@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="RegisterUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EM" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="P" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="S" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="C" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="R" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Z" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ph" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PicFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DT" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsWeb" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GDR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="U" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Logout">
+        <s:complexType />
+      </s:element>
+      <s:element name="LogoutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogoutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProfilePic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProfilePicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProfilePicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RegisterUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUser" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilePicSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProfilePic" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilePicSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProfilePicResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserHttpGetIn">
+    <wsdl:part name="UN" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="LN" type="s:string" />
+    <wsdl:part name="EM" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+    <wsdl:part name="S" type="s:string" />
+    <wsdl:part name="C" type="s:string" />
+    <wsdl:part name="R" type="s:string" />
+    <wsdl:part name="Z" type="s:string" />
+    <wsdl:part name="Ph" type="s:string" />
+    <wsdl:part name="Mo" type="s:string" />
+    <wsdl:part name="PicFID" type="s:string" />
+    <wsdl:part name="HN" type="s:string" />
+    <wsdl:part name="DT" type="s:string" />
+    <wsdl:part name="IsWeb" type="s:string" />
+    <wsdl:part name="GDR" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpGetIn">
+    <wsdl:part name="U" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LogoutHttpGetIn" />
+  <wsdl:message name="LogoutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilePicHttpGetIn">
+    <wsdl:part name="FID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilePicHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserHttpPostIn">
+    <wsdl:part name="UN" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="LN" type="s:string" />
+    <wsdl:part name="EM" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+    <wsdl:part name="S" type="s:string" />
+    <wsdl:part name="C" type="s:string" />
+    <wsdl:part name="R" type="s:string" />
+    <wsdl:part name="Z" type="s:string" />
+    <wsdl:part name="Ph" type="s:string" />
+    <wsdl:part name="Mo" type="s:string" />
+    <wsdl:part name="PicFID" type="s:string" />
+    <wsdl:part name="HN" type="s:string" />
+    <wsdl:part name="DT" type="s:string" />
+    <wsdl:part name="IsWeb" type="s:string" />
+    <wsdl:part name="GDR" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpPostIn">
+    <wsdl:part name="U" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LogoutHttpPostIn" />
+  <wsdl:message name="LogoutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilePicHttpPostIn">
+    <wsdl:part name="FID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilePicHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="rhSoap">
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserSoapIn" />
+      <wsdl:output message="tns:RegisterUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:input message="tns:ValidateUserSoapIn" />
+      <wsdl:output message="tns:ValidateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutSoapIn" />
+      <wsdl:output message="tns:LogoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <wsdl:input message="tns:GetProfilePicSoapIn" />
+      <wsdl:output message="tns:GetProfilePicSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpGet">
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserHttpGetIn" />
+      <wsdl:output message="tns:RegisterUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:input message="tns:ValidateUserHttpGetIn" />
+      <wsdl:output message="tns:ValidateUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutHttpGetIn" />
+      <wsdl:output message="tns:LogoutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <wsdl:input message="tns:GetProfilePicHttpGetIn" />
+      <wsdl:output message="tns:GetProfilePicHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpPost">
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserHttpPostIn" />
+      <wsdl:output message="tns:RegisterUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:input message="tns:ValidateUserHttpPostIn" />
+      <wsdl:output message="tns:ValidateUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutHttpPostIn" />
+      <wsdl:output message="tns:LogoutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <wsdl:input message="tns:GetProfilePicHttpPostIn" />
+      <wsdl:output message="tns:GetProfilePicHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="rhSoap" type="tns:rhSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://tempuri.org/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap:operation soapAction="http://tempuri.org/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://tempuri.org/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <soap:operation soapAction="http://tempuri.org/GetProfilePic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhSoap12" type="tns:rhSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterUser">
+      <soap12:operation soapAction="http://tempuri.org/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap12:operation soapAction="http://tempuri.org/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://tempuri.org/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <soap12:operation soapAction="http://tempuri.org/GetProfilePic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpGet" type="tns:rhHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="RegisterUser">
+      <http:operation location="/RegisterUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <http:operation location="/ValidateUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <http:operation location="/Logout" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <http:operation location="/GetProfilePic" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpPost" type="tns:rhHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="RegisterUser">
+      <http:operation location="/RegisterUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <http:operation location="/ValidateUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <http:operation location="/Logout" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePic">
+      <http:operation location="/GetProfilePic" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="rh">
+    <wsdl:port name="rhSoap" binding="tns:rhSoap">
+      <soap:address location="http://www.spafoo.com/DesktopModules/NS_ClientRegistration/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhSoap12" binding="tns:rhSoap12">
+      <soap12:address location="http://www.spafoo.com/DesktopModules/NS_ClientRegistration/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpGet" binding="tns:rhHttpGet">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_ClientRegistration/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpPost" binding="tns:rhHttpPost">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_ClientRegistration/rh.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
