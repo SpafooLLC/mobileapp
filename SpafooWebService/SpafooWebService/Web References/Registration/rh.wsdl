@@ -1,0 +1,2612 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListQuestions">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListQuestionsResult" type="tns:ArrayOfSteps" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSteps">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Steps" nillable="true" type="tns:Steps" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Steps">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StepID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfQCategoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQCategoryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QCategoryInfo" nillable="true" type="tns:QCategoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QCategoryInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QCategoryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="QCategoryDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Visibility" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StepID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Questions" type="tns:ArrayOfQuestionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuestionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionInfo" nillable="true" type="tns:QuestionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuestionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QuestionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuestionText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="QType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QTypeSub" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QCategoryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Options" type="tns:ArrayOfQuestionOptionInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProfileProperty" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsVisible" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsRequired" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="HintText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFullWidth" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuestionOptionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionOptionInfo" nillable="true" type="tns:QuestionOptionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuestionOptionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QuestionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OnSelect" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProfileProperty" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserReponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserReponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserReponseResult" type="tns:ArrayOfSteps" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormUserReponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormUserReponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFormUserReponseResult" type="tns:ArrayOfFormUserSteps" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFormUserSteps">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FormUserSteps" nillable="true" type="tns:FormUserSteps" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FormUserSteps">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StepID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfFormUserQCategoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFormUserQCategoryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FormUserQCategoryInfo" nillable="true" type="tns:FormUserQCategoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FormUserQCategoryInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QCategoryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="QCategoryDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Visibility" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StepID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Questions" type="tns:ArrayOfQuestionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStepQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StepID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStepQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStepQuestionsResult" type="tns:ArrayOfQCategoryInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StepID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="QDesc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoryResult" type="tns:QCategoryInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CatID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QuestionText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsRequired" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsVisible" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsFullWidth" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="HintText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddQuestionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddQuestionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestionResult" type="tns:QuestionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveQuestionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuestionText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsRequired" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsVisible" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsFullWidth" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="HintText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateQuestionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddOption">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OptionText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OnSelect" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddOptionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveOption">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveOptionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RegisterUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GDR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SRVC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListOfUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="S" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="K" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListOfUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListOfUsersResult" type="tns:ArrayOfNSR_User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNSR_User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NSR_User" nillable="true" type="tns:NSR_User" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NSR_User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RejectionReason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsApproved" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateUserStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="R" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserStatusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateActiveStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateActiveStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateActiveStatusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserNotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="N" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserNotesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserNotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserNotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserNotesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFormUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="un" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFormUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsFormUserValidated">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="un" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsFormUserValidatedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsFormUserValidatedResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="un" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveResponseResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SaveFormUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GDR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SRVC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFormUserResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveFormUserResponseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormUserServices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="un" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormUserServicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFormUserServicesResult" type="tns:ArrayOfServiceInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfServiceInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceInfo" nillable="true" type="tns:ServiceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServiceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShortDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duration" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfServiceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddUserHardware">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="HardwareName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsWebVersion" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserHardwareResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddUserHardwareResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserHardware">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="HardwareName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsWebVersion" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserHardwareResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserHardwareResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserHardware">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserHardwareResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserHardwareResult" type="tns:ArrayOfNS_UserHardware" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNS_UserHardware">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NS_UserHardware" nillable="true" type="tns:NS_UserHardware" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NS_UserHardware">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HardwareName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeviceToken" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsWebVersion" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListUserHardware">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListUserHardwareResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListUserHardwareResult" type="tns:ArrayOfNS_UserHardware" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfSteps" nillable="true" type="tns:ArrayOfSteps" />
+      <s:element name="ArrayOfFormUserSteps" nillable="true" type="tns:ArrayOfFormUserSteps" />
+      <s:element name="ArrayOfQCategoryInfo" nillable="true" type="tns:ArrayOfQCategoryInfo" />
+      <s:element name="int" type="s:int" />
+      <s:element name="QCategoryInfo" nillable="true" type="tns:QCategoryInfo" />
+      <s:element name="QuestionInfo" nillable="true" type="tns:QuestionInfo" />
+      <s:element name="ArrayOfNSR_User" nillable="true" type="tns:ArrayOfNSR_User" />
+      <s:element name="ArrayOfServiceInfo" nillable="true" type="tns:ArrayOfServiceInfo" />
+      <s:element name="ArrayOfNS_UserHardware" nillable="true" type="tns:ArrayOfNS_UserHardware" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListQuestions" />
+  </wsdl:message>
+  <wsdl:message name="ListQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserReponseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserReponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserReponseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserReponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserReponseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFormUserReponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserReponseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFormUserReponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStepQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStepQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetStepQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStepQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:AddCategory" />
+  </wsdl:message>
+  <wsdl:message name="AddCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:AddCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategory" />
+  </wsdl:message>
+  <wsdl:message name="GetCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCategory" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:AddQuestion" />
+  </wsdl:message>
+  <wsdl:message name="AddQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:AddQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestion" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveQuestion" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateQuestion" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddOptionSoapIn">
+    <wsdl:part name="parameters" element="tns:AddOption" />
+  </wsdl:message>
+  <wsdl:message name="AddOptionSoapOut">
+    <wsdl:part name="parameters" element="tns:AddOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveOptionSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveOption" />
+  </wsdl:message>
+  <wsdl:message name="RemoveOptionSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:ListOfUsers" />
+  </wsdl:message>
+  <wsdl:message name="ListOfUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:ListOfUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateActiveStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateActiveStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateActiveStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateActiveStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserNotesSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserNotes" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserNotesSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserNotes" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddFormUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFormUser" />
+  </wsdl:message>
+  <wsdl:message name="AddFormUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFormUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsFormUserValidatedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsFormUserValidated" />
+  </wsdl:message>
+  <wsdl:message name="IsFormUserValidatedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsFormUserValidatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFormUserResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveFormUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFormUserResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveFormUserResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserServicesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFormUserServices" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserServicesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFormUserServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserHardwareSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUserHardware" />
+  </wsdl:message>
+  <wsdl:message name="AddUserHardwareSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserHardwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHardwareSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserHardware" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHardwareSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserHardwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHardwareSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserHardware" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHardwareSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserHardwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListUserHardwareSoapIn">
+    <wsdl:part name="parameters" element="tns:ListUserHardware" />
+  </wsdl:message>
+  <wsdl:message name="ListUserHardwareSoapOut">
+    <wsdl:part name="parameters" element="tns:ListUserHardwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListQuestionsHttpGetIn" />
+  <wsdl:message name="ListQuestionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSteps" />
+  </wsdl:message>
+  <wsdl:message name="GetUserReponseHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserReponseHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSteps" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserReponseHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserReponseHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFormUserSteps" />
+  </wsdl:message>
+  <wsdl:message name="GetStepQuestionsHttpGetIn">
+    <wsdl:part name="StepID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStepQuestionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfQCategoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddCategoryHttpGetIn">
+    <wsdl:part name="StepID" type="s:string" />
+    <wsdl:part name="QDesc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddCategoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryHttpGetIn">
+    <wsdl:part name="CatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:QCategoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategoryHttpGetIn">
+    <wsdl:part name="CatID" type="s:string" />
+    <wsdl:part name="Desc" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategoryHttpGetOut" />
+  <wsdl:message name="AddQuestionHttpGetIn">
+    <wsdl:part name="QuestionText" type="s:string" />
+    <wsdl:part name="QType" type="s:string" />
+    <wsdl:part name="QCategoryID" type="s:string" />
+    <wsdl:part name="IsRequired" type="s:string" />
+    <wsdl:part name="IsVisible" type="s:string" />
+    <wsdl:part name="IsFullWidth" type="s:string" />
+    <wsdl:part name="HintText" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddQuestionHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionHttpGetIn">
+    <wsdl:part name="QID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionHttpGetOut">
+    <wsdl:part name="Body" element="tns:QuestionInfo" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQuestionHttpGetIn">
+    <wsdl:part name="QID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQuestionHttpGetOut" />
+  <wsdl:message name="UpdateQuestionHttpGetIn">
+    <wsdl:part name="QuestionID" type="s:string" />
+    <wsdl:part name="QuestionText" type="s:string" />
+    <wsdl:part name="QType" type="s:string" />
+    <wsdl:part name="QCategoryID" type="s:string" />
+    <wsdl:part name="IsRequired" type="s:string" />
+    <wsdl:part name="IsVisible" type="s:string" />
+    <wsdl:part name="IsFullWidth" type="s:string" />
+    <wsdl:part name="HintText" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuestionHttpGetOut" />
+  <wsdl:message name="AddOptionHttpGetIn">
+    <wsdl:part name="QID" type="s:string" />
+    <wsdl:part name="OptionText" type="s:string" />
+    <wsdl:part name="OnSelect" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddOptionHttpGetOut" />
+  <wsdl:message name="RemoveOptionHttpGetIn">
+    <wsdl:part name="OID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveOptionHttpGetOut" />
+  <wsdl:message name="RegisterUserHttpGetIn">
+    <wsdl:part name="UN" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="LN" type="s:string" />
+    <wsdl:part name="EM" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+    <wsdl:part name="PH" type="s:string" />
+    <wsdl:part name="MB" type="s:string" />
+    <wsdl:part name="STR" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Zip" type="s:string" />
+    <wsdl:part name="GDR" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="UR" type="s:string" />
+    <wsdl:part name="SRVC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListOfUsersHttpGetIn">
+    <wsdl:part name="S" type="s:string" />
+    <wsdl:part name="K" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListOfUsersHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNSR_User" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStatusHttpGetIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+    <wsdl:part name="R" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateActiveStatusHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateActiveStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserNotesHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="N" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserNotesHttpGetOut" />
+  <wsdl:message name="GetUserNotesHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotesHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddFormUserHttpGetIn">
+    <wsdl:part name="un" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="Street" type="s:string" />
+    <wsdl:part name="Cit" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Zip" type="s:string" />
+    <wsdl:part name="Phone" type="s:string" />
+    <wsdl:part name="Mobile" type="s:string" />
+    <wsdl:part name="Gender" type="s:string" />
+    <wsdl:part name="Email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddFormUserHttpGetOut" />
+  <wsdl:message name="IsFormUserValidatedHttpGetIn">
+    <wsdl:part name="un" type="s:string" />
+    <wsdl:part name="p" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsFormUserValidatedHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="RemoveResponseHttpGetIn">
+    <wsdl:part name="un" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveResponseHttpGetOut" />
+  <wsdl:message name="SaveFormUserResponseHttpGetIn">
+    <wsdl:part name="UN" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="LN" type="s:string" />
+    <wsdl:part name="EM" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+    <wsdl:part name="PH" type="s:string" />
+    <wsdl:part name="MB" type="s:string" />
+    <wsdl:part name="STR" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Zip" type="s:string" />
+    <wsdl:part name="GDR" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="UR" type="s:string" />
+    <wsdl:part name="SRVC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveFormUserResponseHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserServicesHttpGetIn">
+    <wsdl:part name="un" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserServicesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddUserHardwareHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="HardwareName" type="s:string" />
+    <wsdl:part name="DeviceToken" type="s:string" />
+    <wsdl:part name="IsWebVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddUserHardwareHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHardwareHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="HardwareName" type="s:string" />
+    <wsdl:part name="DeviceToken" type="s:string" />
+    <wsdl:part name="IsWebVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHardwareHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHardwareHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHardwareHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNS_UserHardware" />
+  </wsdl:message>
+  <wsdl:message name="ListUserHardwareHttpGetIn" />
+  <wsdl:message name="ListUserHardwareHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNS_UserHardware" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListQuestionsHttpPostIn" />
+  <wsdl:message name="ListQuestionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSteps" />
+  </wsdl:message>
+  <wsdl:message name="GetUserReponseHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserReponseHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSteps" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserReponseHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserReponseHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFormUserSteps" />
+  </wsdl:message>
+  <wsdl:message name="GetStepQuestionsHttpPostIn">
+    <wsdl:part name="StepID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStepQuestionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfQCategoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddCategoryHttpPostIn">
+    <wsdl:part name="StepID" type="s:string" />
+    <wsdl:part name="QDesc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddCategoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryHttpPostIn">
+    <wsdl:part name="CatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:QCategoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategoryHttpPostIn">
+    <wsdl:part name="CatID" type="s:string" />
+    <wsdl:part name="Desc" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategoryHttpPostOut" />
+  <wsdl:message name="AddQuestionHttpPostIn">
+    <wsdl:part name="QuestionText" type="s:string" />
+    <wsdl:part name="QType" type="s:string" />
+    <wsdl:part name="QCategoryID" type="s:string" />
+    <wsdl:part name="IsRequired" type="s:string" />
+    <wsdl:part name="IsVisible" type="s:string" />
+    <wsdl:part name="IsFullWidth" type="s:string" />
+    <wsdl:part name="HintText" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddQuestionHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionHttpPostIn">
+    <wsdl:part name="QID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionHttpPostOut">
+    <wsdl:part name="Body" element="tns:QuestionInfo" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQuestionHttpPostIn">
+    <wsdl:part name="QID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQuestionHttpPostOut" />
+  <wsdl:message name="UpdateQuestionHttpPostIn">
+    <wsdl:part name="QuestionID" type="s:string" />
+    <wsdl:part name="QuestionText" type="s:string" />
+    <wsdl:part name="QType" type="s:string" />
+    <wsdl:part name="QCategoryID" type="s:string" />
+    <wsdl:part name="IsRequired" type="s:string" />
+    <wsdl:part name="IsVisible" type="s:string" />
+    <wsdl:part name="IsFullWidth" type="s:string" />
+    <wsdl:part name="HintText" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuestionHttpPostOut" />
+  <wsdl:message name="AddOptionHttpPostIn">
+    <wsdl:part name="QID" type="s:string" />
+    <wsdl:part name="OptionText" type="s:string" />
+    <wsdl:part name="OnSelect" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddOptionHttpPostOut" />
+  <wsdl:message name="RemoveOptionHttpPostIn">
+    <wsdl:part name="OID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveOptionHttpPostOut" />
+  <wsdl:message name="RegisterUserHttpPostIn">
+    <wsdl:part name="UN" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="LN" type="s:string" />
+    <wsdl:part name="EM" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+    <wsdl:part name="PH" type="s:string" />
+    <wsdl:part name="MB" type="s:string" />
+    <wsdl:part name="STR" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Zip" type="s:string" />
+    <wsdl:part name="GDR" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="UR" type="s:string" />
+    <wsdl:part name="SRVC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListOfUsersHttpPostIn">
+    <wsdl:part name="S" type="s:string" />
+    <wsdl:part name="K" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListOfUsersHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNSR_User" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStatusHttpPostIn">
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+    <wsdl:part name="R" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateActiveStatusHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateActiveStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserNotesHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="N" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserNotesHttpPostOut" />
+  <wsdl:message name="GetUserNotesHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserNotesHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddFormUserHttpPostIn">
+    <wsdl:part name="un" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="Street" type="s:string" />
+    <wsdl:part name="Cit" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Zip" type="s:string" />
+    <wsdl:part name="Phone" type="s:string" />
+    <wsdl:part name="Mobile" type="s:string" />
+    <wsdl:part name="Gender" type="s:string" />
+    <wsdl:part name="Email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddFormUserHttpPostOut" />
+  <wsdl:message name="IsFormUserValidatedHttpPostIn">
+    <wsdl:part name="un" type="s:string" />
+    <wsdl:part name="p" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsFormUserValidatedHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="RemoveResponseHttpPostIn">
+    <wsdl:part name="un" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveResponseHttpPostOut" />
+  <wsdl:message name="SaveFormUserResponseHttpPostIn">
+    <wsdl:part name="UN" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="LN" type="s:string" />
+    <wsdl:part name="EM" type="s:string" />
+    <wsdl:part name="P" type="s:string" />
+    <wsdl:part name="PH" type="s:string" />
+    <wsdl:part name="MB" type="s:string" />
+    <wsdl:part name="STR" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Zip" type="s:string" />
+    <wsdl:part name="GDR" type="s:string" />
+    <wsdl:part name="PID" type="s:string" />
+    <wsdl:part name="UR" type="s:string" />
+    <wsdl:part name="SRVC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveFormUserResponseHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserServicesHttpPostIn">
+    <wsdl:part name="un" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFormUserServicesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddUserHardwareHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="HardwareName" type="s:string" />
+    <wsdl:part name="DeviceToken" type="s:string" />
+    <wsdl:part name="IsWebVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddUserHardwareHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHardwareHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="HardwareName" type="s:string" />
+    <wsdl:part name="DeviceToken" type="s:string" />
+    <wsdl:part name="IsWebVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHardwareHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHardwareHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHardwareHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNS_UserHardware" />
+  </wsdl:message>
+  <wsdl:message name="ListUserHardwareHttpPostIn" />
+  <wsdl:message name="ListUserHardwareHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNS_UserHardware" />
+  </wsdl:message>
+  <wsdl:portType name="rhSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <wsdl:input message="tns:ListQuestionsSoapIn" />
+      <wsdl:output message="tns:ListQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <wsdl:input message="tns:GetUserReponseSoapIn" />
+      <wsdl:output message="tns:GetUserReponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <wsdl:input message="tns:GetFormUserReponseSoapIn" />
+      <wsdl:output message="tns:GetFormUserReponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <wsdl:input message="tns:GetStepQuestionsSoapIn" />
+      <wsdl:output message="tns:GetStepQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <wsdl:input message="tns:AddCategorySoapIn" />
+      <wsdl:output message="tns:AddCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <wsdl:input message="tns:GetCategorySoapIn" />
+      <wsdl:output message="tns:GetCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <wsdl:input message="tns:UpdateCategorySoapIn" />
+      <wsdl:output message="tns:UpdateCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <wsdl:input message="tns:AddQuestionSoapIn" />
+      <wsdl:output message="tns:AddQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input message="tns:GetQuestionSoapIn" />
+      <wsdl:output message="tns:GetQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <wsdl:input message="tns:RemoveQuestionSoapIn" />
+      <wsdl:output message="tns:RemoveQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <wsdl:input message="tns:UpdateQuestionSoapIn" />
+      <wsdl:output message="tns:UpdateQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <wsdl:input message="tns:AddOptionSoapIn" />
+      <wsdl:output message="tns:AddOptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <wsdl:input message="tns:RemoveOptionSoapIn" />
+      <wsdl:output message="tns:RemoveOptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserSoapIn" />
+      <wsdl:output message="tns:RegisterUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <wsdl:input message="tns:ListOfUsersSoapIn" />
+      <wsdl:output message="tns:ListOfUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <wsdl:input message="tns:UpdateUserStatusSoapIn" />
+      <wsdl:output message="tns:UpdateUserStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <wsdl:input message="tns:UpdateActiveStatusSoapIn" />
+      <wsdl:output message="tns:UpdateActiveStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <wsdl:input message="tns:UpdateUserNotesSoapIn" />
+      <wsdl:output message="tns:UpdateUserNotesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <wsdl:input message="tns:GetUserNotesSoapIn" />
+      <wsdl:output message="tns:GetUserNotesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <wsdl:input message="tns:AddFormUserSoapIn" />
+      <wsdl:output message="tns:AddFormUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <wsdl:input message="tns:IsFormUserValidatedSoapIn" />
+      <wsdl:output message="tns:IsFormUserValidatedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <wsdl:input message="tns:RemoveResponseSoapIn" />
+      <wsdl:output message="tns:RemoveResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <wsdl:input message="tns:SaveFormUserResponseSoapIn" />
+      <wsdl:output message="tns:SaveFormUserResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <wsdl:input message="tns:GetFormUserServicesSoapIn" />
+      <wsdl:output message="tns:GetFormUserServicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <wsdl:input message="tns:AddUserHardwareSoapIn" />
+      <wsdl:output message="tns:AddUserHardwareSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <wsdl:input message="tns:UpdateUserHardwareSoapIn" />
+      <wsdl:output message="tns:UpdateUserHardwareSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <wsdl:input message="tns:GetUserHardwareSoapIn" />
+      <wsdl:output message="tns:GetUserHardwareSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <wsdl:input message="tns:ListUserHardwareSoapIn" />
+      <wsdl:output message="tns:ListUserHardwareSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <wsdl:input message="tns:ListQuestionsHttpGetIn" />
+      <wsdl:output message="tns:ListQuestionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <wsdl:input message="tns:GetUserReponseHttpGetIn" />
+      <wsdl:output message="tns:GetUserReponseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <wsdl:input message="tns:GetFormUserReponseHttpGetIn" />
+      <wsdl:output message="tns:GetFormUserReponseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <wsdl:input message="tns:GetStepQuestionsHttpGetIn" />
+      <wsdl:output message="tns:GetStepQuestionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <wsdl:input message="tns:AddCategoryHttpGetIn" />
+      <wsdl:output message="tns:AddCategoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <wsdl:input message="tns:GetCategoryHttpGetIn" />
+      <wsdl:output message="tns:GetCategoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <wsdl:input message="tns:UpdateCategoryHttpGetIn" />
+      <wsdl:output message="tns:UpdateCategoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <wsdl:input message="tns:AddQuestionHttpGetIn" />
+      <wsdl:output message="tns:AddQuestionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input message="tns:GetQuestionHttpGetIn" />
+      <wsdl:output message="tns:GetQuestionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <wsdl:input message="tns:RemoveQuestionHttpGetIn" />
+      <wsdl:output message="tns:RemoveQuestionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <wsdl:input message="tns:UpdateQuestionHttpGetIn" />
+      <wsdl:output message="tns:UpdateQuestionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <wsdl:input message="tns:AddOptionHttpGetIn" />
+      <wsdl:output message="tns:AddOptionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <wsdl:input message="tns:RemoveOptionHttpGetIn" />
+      <wsdl:output message="tns:RemoveOptionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserHttpGetIn" />
+      <wsdl:output message="tns:RegisterUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <wsdl:input message="tns:ListOfUsersHttpGetIn" />
+      <wsdl:output message="tns:ListOfUsersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <wsdl:input message="tns:UpdateUserStatusHttpGetIn" />
+      <wsdl:output message="tns:UpdateUserStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <wsdl:input message="tns:UpdateActiveStatusHttpGetIn" />
+      <wsdl:output message="tns:UpdateActiveStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <wsdl:input message="tns:UpdateUserNotesHttpGetIn" />
+      <wsdl:output message="tns:UpdateUserNotesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <wsdl:input message="tns:GetUserNotesHttpGetIn" />
+      <wsdl:output message="tns:GetUserNotesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <wsdl:input message="tns:AddFormUserHttpGetIn" />
+      <wsdl:output message="tns:AddFormUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <wsdl:input message="tns:IsFormUserValidatedHttpGetIn" />
+      <wsdl:output message="tns:IsFormUserValidatedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <wsdl:input message="tns:RemoveResponseHttpGetIn" />
+      <wsdl:output message="tns:RemoveResponseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <wsdl:input message="tns:SaveFormUserResponseHttpGetIn" />
+      <wsdl:output message="tns:SaveFormUserResponseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <wsdl:input message="tns:GetFormUserServicesHttpGetIn" />
+      <wsdl:output message="tns:GetFormUserServicesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <wsdl:input message="tns:AddUserHardwareHttpGetIn" />
+      <wsdl:output message="tns:AddUserHardwareHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <wsdl:input message="tns:UpdateUserHardwareHttpGetIn" />
+      <wsdl:output message="tns:UpdateUserHardwareHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <wsdl:input message="tns:GetUserHardwareHttpGetIn" />
+      <wsdl:output message="tns:GetUserHardwareHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <wsdl:input message="tns:ListUserHardwareHttpGetIn" />
+      <wsdl:output message="tns:ListUserHardwareHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="rhHttpPost">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <wsdl:input message="tns:ListQuestionsHttpPostIn" />
+      <wsdl:output message="tns:ListQuestionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <wsdl:input message="tns:GetUserReponseHttpPostIn" />
+      <wsdl:output message="tns:GetUserReponseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <wsdl:input message="tns:GetFormUserReponseHttpPostIn" />
+      <wsdl:output message="tns:GetFormUserReponseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <wsdl:input message="tns:GetStepQuestionsHttpPostIn" />
+      <wsdl:output message="tns:GetStepQuestionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <wsdl:input message="tns:AddCategoryHttpPostIn" />
+      <wsdl:output message="tns:AddCategoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <wsdl:input message="tns:GetCategoryHttpPostIn" />
+      <wsdl:output message="tns:GetCategoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <wsdl:input message="tns:UpdateCategoryHttpPostIn" />
+      <wsdl:output message="tns:UpdateCategoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <wsdl:input message="tns:AddQuestionHttpPostIn" />
+      <wsdl:output message="tns:AddQuestionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input message="tns:GetQuestionHttpPostIn" />
+      <wsdl:output message="tns:GetQuestionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <wsdl:input message="tns:RemoveQuestionHttpPostIn" />
+      <wsdl:output message="tns:RemoveQuestionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <wsdl:input message="tns:UpdateQuestionHttpPostIn" />
+      <wsdl:output message="tns:UpdateQuestionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <wsdl:input message="tns:AddOptionHttpPostIn" />
+      <wsdl:output message="tns:AddOptionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <wsdl:input message="tns:RemoveOptionHttpPostIn" />
+      <wsdl:output message="tns:RemoveOptionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserHttpPostIn" />
+      <wsdl:output message="tns:RegisterUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <wsdl:input message="tns:ListOfUsersHttpPostIn" />
+      <wsdl:output message="tns:ListOfUsersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <wsdl:input message="tns:UpdateUserStatusHttpPostIn" />
+      <wsdl:output message="tns:UpdateUserStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <wsdl:input message="tns:UpdateActiveStatusHttpPostIn" />
+      <wsdl:output message="tns:UpdateActiveStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <wsdl:input message="tns:UpdateUserNotesHttpPostIn" />
+      <wsdl:output message="tns:UpdateUserNotesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <wsdl:input message="tns:GetUserNotesHttpPostIn" />
+      <wsdl:output message="tns:GetUserNotesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <wsdl:input message="tns:AddFormUserHttpPostIn" />
+      <wsdl:output message="tns:AddFormUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <wsdl:input message="tns:IsFormUserValidatedHttpPostIn" />
+      <wsdl:output message="tns:IsFormUserValidatedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <wsdl:input message="tns:RemoveResponseHttpPostIn" />
+      <wsdl:output message="tns:RemoveResponseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <wsdl:input message="tns:SaveFormUserResponseHttpPostIn" />
+      <wsdl:output message="tns:SaveFormUserResponseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <wsdl:input message="tns:GetFormUserServicesHttpPostIn" />
+      <wsdl:output message="tns:GetFormUserServicesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <wsdl:input message="tns:AddUserHardwareHttpPostIn" />
+      <wsdl:output message="tns:AddUserHardwareHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <wsdl:input message="tns:UpdateUserHardwareHttpPostIn" />
+      <wsdl:output message="tns:UpdateUserHardwareHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <wsdl:input message="tns:GetUserHardwareHttpPostIn" />
+      <wsdl:output message="tns:GetUserHardwareHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <wsdl:input message="tns:ListUserHardwareHttpPostIn" />
+      <wsdl:output message="tns:ListUserHardwareHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="rhSoap" type="tns:rhSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <soap:operation soapAction="http://tempuri.org/ListQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <soap:operation soapAction="http://tempuri.org/GetUserReponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <soap:operation soapAction="http://tempuri.org/GetFormUserReponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <soap:operation soapAction="http://tempuri.org/GetStepQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <soap:operation soapAction="http://tempuri.org/AddCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <soap:operation soapAction="http://tempuri.org/GetCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <soap:operation soapAction="http://tempuri.org/UpdateCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <soap:operation soapAction="http://tempuri.org/AddQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap:operation soapAction="http://tempuri.org/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <soap:operation soapAction="http://tempuri.org/RemoveQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <soap:operation soapAction="http://tempuri.org/UpdateQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <soap:operation soapAction="http://tempuri.org/AddOption" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <soap:operation soapAction="http://tempuri.org/RemoveOption" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://tempuri.org/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <soap:operation soapAction="http://tempuri.org/ListOfUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateActiveStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <soap:operation soapAction="http://tempuri.org/GetUserNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <soap:operation soapAction="http://tempuri.org/AddFormUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <soap:operation soapAction="http://tempuri.org/IsFormUserValidated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <soap:operation soapAction="http://tempuri.org/RemoveResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <soap:operation soapAction="http://tempuri.org/SaveFormUserResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <soap:operation soapAction="http://tempuri.org/GetFormUserServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <soap:operation soapAction="http://tempuri.org/AddUserHardware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserHardware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <soap:operation soapAction="http://tempuri.org/GetUserHardware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <soap:operation soapAction="http://tempuri.org/ListUserHardware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhSoap12" type="tns:rhSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <soap12:operation soapAction="http://tempuri.org/ListQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <soap12:operation soapAction="http://tempuri.org/GetUserReponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <soap12:operation soapAction="http://tempuri.org/GetFormUserReponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <soap12:operation soapAction="http://tempuri.org/GetStepQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <soap12:operation soapAction="http://tempuri.org/AddCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <soap12:operation soapAction="http://tempuri.org/GetCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <soap12:operation soapAction="http://tempuri.org/AddQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <soap12:operation soapAction="http://tempuri.org/RemoveQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <soap12:operation soapAction="http://tempuri.org/UpdateQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <soap12:operation soapAction="http://tempuri.org/AddOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <soap12:operation soapAction="http://tempuri.org/RemoveOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap12:operation soapAction="http://tempuri.org/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <soap12:operation soapAction="http://tempuri.org/ListOfUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateActiveStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserNotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <soap12:operation soapAction="http://tempuri.org/GetUserNotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <soap12:operation soapAction="http://tempuri.org/AddFormUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <soap12:operation soapAction="http://tempuri.org/IsFormUserValidated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <soap12:operation soapAction="http://tempuri.org/RemoveResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <soap12:operation soapAction="http://tempuri.org/SaveFormUserResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <soap12:operation soapAction="http://tempuri.org/GetFormUserServices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <soap12:operation soapAction="http://tempuri.org/AddUserHardware" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserHardware" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <soap12:operation soapAction="http://tempuri.org/GetUserHardware" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <soap12:operation soapAction="http://tempuri.org/ListUserHardware" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpGet" type="tns:rhHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <http:operation location="/ListQuestions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <http:operation location="/GetUserReponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <http:operation location="/GetFormUserReponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <http:operation location="/GetStepQuestions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <http:operation location="/AddCategory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <http:operation location="/GetCategory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <http:operation location="/UpdateCategory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <http:operation location="/AddQuestion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <http:operation location="/GetQuestion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <http:operation location="/RemoveQuestion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <http:operation location="/UpdateQuestion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <http:operation location="/AddOption" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <http:operation location="/RemoveOption" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <http:operation location="/RegisterUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <http:operation location="/ListOfUsers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <http:operation location="/UpdateUserStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <http:operation location="/UpdateActiveStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <http:operation location="/UpdateUserNotes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <http:operation location="/GetUserNotes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <http:operation location="/AddFormUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <http:operation location="/IsFormUserValidated" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <http:operation location="/RemoveResponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <http:operation location="/SaveFormUserResponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <http:operation location="/GetFormUserServices" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <http:operation location="/AddUserHardware" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <http:operation location="/UpdateUserHardware" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <http:operation location="/GetUserHardware" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <http:operation location="/ListUserHardware" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rhHttpPost" type="tns:rhHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListQuestions">
+      <http:operation location="/ListQuestions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserReponse">
+      <http:operation location="/GetUserReponse" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserReponse">
+      <http:operation location="/GetFormUserReponse" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStepQuestions">
+      <http:operation location="/GetStepQuestions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <http:operation location="/AddCategory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <http:operation location="/GetCategory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <http:operation location="/UpdateCategory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <http:operation location="/AddQuestion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <http:operation location="/GetQuestion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQuestion">
+      <http:operation location="/RemoveQuestion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <http:operation location="/UpdateQuestion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AddOption">
+      <http:operation location="/AddOption" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOption">
+      <http:operation location="/RemoveOption" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <http:operation location="/RegisterUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfUsers">
+      <http:operation location="/ListOfUsers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStatus">
+      <http:operation location="/UpdateUserStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateActiveStatus">
+      <http:operation location="/UpdateActiveStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserNotes">
+      <http:operation location="/UpdateUserNotes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNotes">
+      <http:operation location="/GetUserNotes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFormUser">
+      <http:operation location="/AddFormUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="IsFormUserValidated">
+      <http:operation location="/IsFormUserValidated" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveResponse">
+      <http:operation location="/RemoveResponse" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFormUserResponse">
+      <http:operation location="/SaveFormUserResponse" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormUserServices">
+      <http:operation location="/GetFormUserServices" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserHardware">
+      <http:operation location="/AddUserHardware" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHardware">
+      <http:operation location="/UpdateUserHardware" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHardware">
+      <http:operation location="/GetUserHardware" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUserHardware">
+      <http:operation location="/ListUserHardware" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="rh">
+    <wsdl:port name="rhSoap" binding="tns:rhSoap">
+      <soap:address location="http://www.spafoo.com/DesktopModules/NS_Registration/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhSoap12" binding="tns:rhSoap12">
+      <soap12:address location="http://www.spafoo.com/DesktopModules/NS_Registration/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpGet" binding="tns:rhHttpGet">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_Registration/rh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rhHttpPost" binding="tns:rhHttpPost">
+      <http:address location="http://www.spafoo.com/DesktopModules/NS_Registration/rh.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
