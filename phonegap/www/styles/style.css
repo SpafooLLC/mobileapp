@@ -39,7 +39,7 @@
   .clear { clear:both; }
   .fleft { float:left; }
   .fright { float:right; }
-  .xs-logo { margin:0; padding:30px 0 0 0; z-index:11; text-align:center;} .xs-logo img { margin:0 0 0 0; }
+  .xs-logo { margin:0; padding:30px 0 0 0; z-index:11; text-align:center;} .xs-logo img { margin:0 0 5px 0; }
   .xs-logo p { font-family:'Open Sans', sans-serif; font-size:13px; font-weight:600; color:#111111; line-height:20px; padding:0 15px; }
   .in-logo { margin:0; padding:10px 0 9px 15px; background:#112173; z-index:11; z-index:290; position: fixed; top: 0; width: 100%;} 
   .hfleft { float:left; padding-top:4px; }
@@ -49,8 +49,7 @@
   .header { min-height:265px; background:url(../images/Site/mobile-crv.png) top center no-repeat;}
   .inheader {  }
   .wrapper {  background:-moz-radial-gradient(center, ellipse cover, #14338f 0%, #001a66 100%); background:-webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#14338f), color-stop(100%,#001a66)); background:-webkit-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%); background:-o-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%);background:-ms-radial-gradient(center, ellipse cover, #14338f 0%,#001a66 100%); background:radial-gradient(ellipse at center, #14338f 0%,#001a66 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#14338f', endColorstr='#001a66',GradientType=1 );  }
-  .main-body /*{ margin:45px 20px; overflow:hidden; background:url(../images/Site/cont-cro.png) center center no-repeat; }  commented by Pawan  */
-  {margin: 45px 20px 60px 20px;overflow: hidden;background: url(../images/Site/cont-cro.png) center center no-repeat;padding: 0 0 0 0;background-position: center -210px;}
+  .main-body { margin:45px 20px 60px 20px; overflow:hidden; background:url(../images/Site/cont-cro.png) center center no-repeat; padding:0 0 0 0; background-position:center -210px;}
   .inbody { padding:15px 15px; overflow:hidden; }
   .inbody-simple { padding:15px 15px 30px; overflow:hidden; }
   .mnav { width:370px; margin:0 auto; }
@@ -203,7 +202,7 @@
   .osummery .cart {}
   .osummery .cart .heading { color:#112173; font-size:22px; text-align:center; background:#e7e7e7; padding:16px 0; margin-bottom:15px; }
   .osummery .cart ul { margin:0 10px; padding:0; }
-  .osummery .cart li  { margin:0 0 15px 0; list-style:none; padding:0 0 15px 0; overflow:hidden; border-bottom:1px solid #cccccc; }
+  .osummery .cart li  { margin:0 0 15px 0; list-style:none; padding:0 0 15px 0; overflow:hidden; /*border-bottom:1px solid #cccccc;*/ }
   .osummery .cart li .sname { color:#112173; font-size:16px; font-weight:600; margin:0;  }
   .osummery .cart li .sname .fa-lg { vertical-align:0 !important; }
   .osummery .cart li .qbox { width:65px; }
@@ -489,19 +488,27 @@
 	
 }
 @media (min-width:240px) and (max-width:459px){
-	.mnav { width:auto; margin:0 auto; }
-	.mnav ul { margin:0 auto; padding:0; text-align:center; }
-	.mnav li { text-align:center; width:30%; }
-	.mnav li img { width:100%; }
-	.xs-logo p br { display:none; }
+  .mnav { width:auto; margin:0 auto; }
+  .mnav ul { margin:0 auto; padding:0; text-align:center; }
+  .mnav li { text-align:center; width:30%; }
+  .mnav li img { width:100%; }
+  .xs-logo p br { display:none; }
 	
 }
 @media (min-width:240px) and (max-width:400px){
-	
+  .main-body { margin:20px 20px 40px 20px; padding:0 0 0 0; background-position:center -235px; } 
+  .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:20px 0 0 0; } .mnav li.for {  margin:20px 0 0 85px; }
+  .xs-logo { padding:20px 0 0 0; } 
+  .header { background-position:center -20px; } 
+  .header { min-height:240px; }
 }
 @media (min-width:240px) and (max-width:360px){
-	.pricelist .plmt .left { width: 200px;  }
-  .pricelist .plmt .right { width: 100%;  }
+  .pricelist .plmt .left { width: 200px; }
+  .pricelist .plmt .right { width: 100%; }
+  .main-body { margin:20px 20px 40px 20px; padding:0 0 0 0; background-position:center -245px; } 
+  .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:20px 0 0 0; } .mnav li.for {  margin:30px 0 0 85px; }
+  .mnav li.sec p { display:block; width:100px; } .mnav li.for p { display:block; width:100px; }
+  .xs-logo { margin:0; padding:20px 0 0 0; } 
 }
 
 @media (min-width:240px) and (max-width:520px){

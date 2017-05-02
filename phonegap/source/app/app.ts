@@ -28,7 +28,7 @@
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
         'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
         'spafoo.module.ProSetSoonest', "spafoo.module.ContactUs", 'spafoo.module.AvailableCities', 'spafoo.module.PrivacyStatement', 'spafoo.module.TermsOfUse'
-      , 'spafoo.module.PriceList'   ];
+        , 'spafoo.module.PriceList'  ];
 
     angular
         .module('spafoo', moduleDependencies)
@@ -55,6 +55,11 @@
                     navigator.app.exitApp();
                 }
             }, 100);
+
+
+           
+
+
         })
     configAppUrl.$inject = ['$urlRouterProvider', '$ionicConfigProvider', '$stateProvider'];
     function configAppUrl($urlRouterProvider: angular.ui.IUrlRouterProvider, $ionicConfigProvider: any, $stateProvider: any): void {

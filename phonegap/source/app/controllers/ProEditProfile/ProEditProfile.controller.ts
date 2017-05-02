@@ -1,21 +1,21 @@
 ﻿module ProEditProfileController {
-    
+
     interface IProEditProfileController {
         ServiceData: any;
         NotificaitonData: any;
         proProfilePic: string;
         NotificationCount: number;
-        WorkSamplesList:any;
-        gender:string;
-        isImageClick:boolean;
-        imageURL:string;
-        messages:string;
-        rolePosition:any;
-        applPosition:any;
-        TagField:string;
-        customerID:string;
-        ischecked:boolean;
-        Roles:any;
+        WorkSamplesList: any;
+        gender: string;
+        isImageClick: boolean;
+        imageURL: string;
+        messages: string;
+        rolePosition: any;
+        applPosition: any;
+        TagField: string;
+        customerID: string;
+        ischecked: boolean;
+        Roles: any;
         rolesData: any;
         logOb: any;
 
@@ -27,20 +27,21 @@
         NotificaitonData: any;
         proProfilePic: string;
         NotificationCount: number;
-        WorkSamplesList:any;
-        gender:string;
-        isImageClick:boolean;
-        imageURL:string;
-        messages:string;
-        rolePosition:any;
-        applPosition:any;
-        TagField:string;
-        customerID:string;
-        ischecked:boolean;
-        Roles:any;
+        WorkSamplesList: any;
+        WorkSamplesCount: number;
+        gender: string;
+        isImageClick: boolean;
+        imageURL: string;
+        messages: string;
+        rolePosition: any;
+        applPosition: any;
+        TagField: string;
+        customerID: string;
+        ischecked: boolean;
+        Roles: any;
         rolesData: any;
         logOb: any;
-        
+
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$timeout'];
         constructor(
             private $q: ng.IQService,
@@ -59,13 +60,13 @@
             $("#Cell").mask("000-000-0000");
             $("#PostalCode").mask("00000");
             $("#SSN").mask("000-00-0000");
-            var self=this;
+            var self = this;
             this.getUserInfo();
         }
         getUserInfo() {
             var self = this;
-            var status= self.$window.localStorage.getItem('LoginStatus');
-            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
                 self.$state.go('login');
             }
             self.customerID = self.$window.localStorage.getItem('CustomerID');
@@ -74,29 +75,29 @@
                 self.ServiceData.Membership.CreatedDate = self.SharedHttp.getFormatedDate(self.ServiceData.Membership.CreatedDate, "dd MMMM yyyy");
                 self.getUserNotificationInfo(self.customerID);
                 var str = self.ServiceData.Profile.Biography;
-                var uri_encoded = str.replace(/%([^\d].)/, "%25$1");                
+                var uri_encoded = str.replace(/%([^\d].)/, "%25$1");
                 var decoded = decodeURIComponent(uri_encoded);
                 self.ServiceData.Profile.Biography = decoded;
-                self.SharedHttp.getProfilePics(self.ServiceData.Profile.Photo).then(function (imgres) { self.proProfilePic = imgres;});
-                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) { self.WorkSamplesList = res; });
+                self.SharedHttp.getProfilePics(self.ServiceData.Profile.Photo).then(function (imgres) { self.proProfilePic = imgres; });
+                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) { self.WorkSamplesList = res; self.WorkSamplesCount = res.length; });
                 self.SharedHttp.GetProTagLine(self.customerID).then(function (res) { self.TagField = res; });
                 self.rolePosition = self.ServiceData.Profile.ProfileProperties[1].PropertyValue.split('|').map(Number);
                 //console.log(self.rolePosition);
-                self.getRoles().then(function(res:any){
-                    self.Roles=res;
+                self.getRoles().then(function (res: any) {
+                    self.Roles = res;
                     //console.log(self.Roles);
-                    var rArr=new Array(self.Roles.GetQuestionResult.optionsField.length)               
-                    for(var i=0; i< self.Roles.GetQuestionResult.optionsField.length; i++){
-                        if(self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField)>-1){
-                             rArr[i]='1';
-                         } else {
-                             rArr[i]='0';
-                         }
+                    var rArr = new Array(self.Roles.GetQuestionResult.optionsField.length)
+                    for (var i = 0; i < self.Roles.GetQuestionResult.optionsField.length; i++) {
+                        if (self.rolePosition.indexOf(self.Roles.GetQuestionResult.optionsField[i].onSelectField) > -1) {
+                            rArr[i] = '1';
+                        } else {
+                            rArr[i] = '0';
+                        }
                     }
                     //console.log(rArr);
-                    self.applPosition=rArr;
-                
-                },function(error){
+                    self.applPosition = rArr;
+
+                }, function (error) {
                     //alert(error);
                 })
                 //console.log(self.ServiceData);
@@ -106,20 +107,20 @@
                     //console.log(error);
                 }
             });
-            
 
-            
+
+
         }
 
         getRoles(): ng.IPromise<string> {
-            var self=this;
+            var self = this;
             var deferred = this.$q.defer();
-            self.CustomerHttp.get('/GetQuestion/5').then(function(res:any){
+            self.CustomerHttp.get('/GetQuestion/5').then(function (res: any) {
                 deferred.resolve(res);
-            },function(error:any){
+            }, function (error: any) {
                 deferred.reject(error);
             })
-            
+
             return deferred.promise;
         }
 
@@ -151,23 +152,23 @@
             try {
                 if (choice === 'G') {
                     //alert(choice);
-                    navigator.camera.getPicture(function (imageURI:any) {
+                    navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //alert(extension);
                             //self.$timeout(function () {
-                                //self.proProfilePic = 'file://' + imageURI;
-                                //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage('file://' + imageURI);
-                                self.postImage();
-                               // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
+                            //self.proProfilePic = 'file://' + imageURI;
+                            //alert(self.proProfilePic);
+                            self.SharedHttp.setProfileImage('file://' + imageURI);
+                            self.postImage();
+                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
                             //}, 1000);
                         } else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
                             //alert('PNG,JPEG,JPG images allowed');
-                           
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -177,16 +178,16 @@
                             correctOrientation: true
                         });
                 } else {
-                    navigator.camera.getPicture(function (imageURI:any) {
+                    navigator.camera.getPicture(function (imageURI: any) {
                         var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
                         //alert(imageURI);
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             //self.$timeout(function () {
-                                //self.proProfilePic = imageURI;
-                                //alert(self.proProfilePic);
-                                self.SharedHttp.setProfileImage(imageURI);
-                                self.postImage();
-                                
+                            //self.proProfilePic = imageURI;
+                            //alert(self.proProfilePic);
+                            self.SharedHttp.setProfileImage(imageURI);
+                            self.postImage();
+
                             //}, 1000);
 
 
@@ -194,7 +195,7 @@
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
                             //alert('PNG,JPEG,JPG images allowed');
-                           
+
                         }
                     }, self.onFail, {
                             quality: 50,
@@ -230,13 +231,13 @@
                 'UID': self.customerID
             };
             options.params = params;
-            
+
             try {
                 var ft = new FileTransfer();
             } catch (ex) {
                 //self.toaster.error('exception generated:' + ex, 'Error');
             }
-           
+
             ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
                 if (r.responseCode === '200' || r.responseCode === 200) {
@@ -249,30 +250,30 @@
                     $("#showload").hide();
                 } else {
                     //alert('Something went wrong with the server ');
-                    self.messages='Something went wrong with the server';
+                    self.messages = 'Something went wrong with the server';
                     $("#PDone").modal();
                     $("#showload").hide();
-                } 
+                }
             }), (function (msg) {
-                    self.messages='Profile Image can\'t update';
-                    $("#PDone").modal();
-                    //alert("Profile Image can\'t update");
-                    $("#showload").hide();
+                self.messages = 'Profile Image can\'t update';
+                $("#PDone").modal();
+                //alert("Profile Image can\'t update");
+                $("#showload").hide();
             }), options);
 
         }
-        upDatePosition($event:any, index:number){
-            var self=this;
-            if($event.target.checked){
-                self.applPosition[index]='1';
+        upDatePosition($event: any, index: number) {
+            var self = this;
+            if ($event.target.checked) {
+                self.applPosition[index] = '1';
             } else {
-                self.applPosition[index]='0';
+                self.applPosition[index] = '0';
             }
             //console.log(self.applPosition);
         }
-        
-        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region:string, PostalCode:string, Cell:string, typeOfEntity:string, professionalLicense:string, sSN:string, eIN:string, biography:string, tagField:string, Mob:string ){
-            var self= this;
+
+        EditProfile(FirstName: string, LastName: string, DisplayName: string, Email: string, Gender: string, Street: string, City: string, Region: string, PostalCode: string, Cell: string, typeOfEntity: string, professionalLicense: string, sSN: string, eIN: string, biography: string, tagField: string, Mob: string) {
+            var self = this;
             var uPos = '';
             if (FirstName == "" || FirstName == null) {
 
@@ -325,35 +326,35 @@
                 $("#PDone").modal();
                 return;
             }
-            if(self.doValidation(Email)){
-                for(var i=0; i<self.applPosition.length; i++){
-                    uPos=uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_'+ self.applPosition[i] + '|';
+            if (self.doValidation(Email)) {
+                for (var i = 0; i < self.applPosition.length; i++) {
+                    uPos = uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_' + self.applPosition[i] + '|';
                 }
                 Cell = $("#Telephone").val();
-               
+
                 Mob = $("#Cell").val();
                 PostalCode = $("#PostalCode").val();
-sSN    = $("#SSN").val();
-                var data={
-                    'UserID':self.customerID,
-                    'FN':FirstName,
-                    'LN':LastName,
-                    'DN':DisplayName,
-                    'E':Email,
-                    'Gender':Gender,
-                    'Str':Street,
-                    'City':City,
+                sSN = $("#SSN").val();
+                var data = {
+                    'UserID': self.customerID,
+                    'FN': FirstName,
+                    'LN': LastName,
+                    'DN': DisplayName,
+                    'E': Email,
+                    'Gender': Gender,
+                    'Str': Street,
+                    'City': City,
                     'Region': Region,
-                    'PC':PostalCode,
-                    'p':Cell,
-                    'TOE':'',
-                    'Lic':'',
-                    'SSN':'',
-                    'EIN':'',
-                    'Bio':biography,
-                    'TagLine':tagField,
-                    'uPOS':'',
-                    'Mo':Mob
+                    'PC': PostalCode,
+                    'p': Cell,
+                    'TOE': '',
+                    'Lic': '',
+                    'SSN': '',
+                    'EIN': '',
+                    'Bio': biography,
+                    'TagLine': tagField,
+                    'uPOS': '',
+                    'Mo': Mob
                 }
 
                 self.CustomerHttp.post(data, '/UpdateUser').then(function (response: any) {
@@ -372,13 +373,13 @@ sSN    = $("#SSN").val();
                 });
                 //console.log(data);
             }
-            
-            
+
+
         }
 
-        doValidation(Email:string){
-            
-            var self=this;
+        doValidation(Email: string) {
+
+            var self = this;
             if (Email === null || Email === '' || Email == undefined) {
                 self.messages = "Please enter email address.";
                 //alert('Please Enter Email Address');
@@ -412,114 +413,130 @@ sSN    = $("#SSN").val();
                 self.messages = "Please enter mobile number.";
                 $("#PDone").modal();
                 return false;
-            } 
+            }
             if (PostalCode === null || PostalCode === '' || PostalCode == undefined) {
                 self.messages = "Please enter postal code.";
                 $("#PDone").modal();
                 return false;
-            } 
+            }
             return true;
         }
 
-        AddSampleImage(fileID:string){
+        AddSampleImage(fileID: string) {
             var self = this;
-            try {
-                    //alert(choice);
-                    navigator.camera.getPicture(function (imageURI) {
-                        var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
-                        //alert(imageURI);
-                        if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                            //alert(extension);
-                            $("#showload").show();
-                            var options = new FileUploadOptions();
-                            options.fileKey = 'file';
-                            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-                            options.mimeType = 'application/pdf';
-                            var params = {
-                                'UID': self.customerID,
-                                'FileId': fileID
-                            };
-                            //alert(JSON.stringify(params));
-                            options.params = params;
-                            
-                            try {
-                                var ft = new FileTransfer();
-                            } catch (ex) {
-                                //self.toaster.error('exception generated:' + ex, 'Error');
-                            }
-                        
-                            ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r:any) {                                
-                                //alert(JSON.stringify(r));
-                                if (r.responseCode === '200' || r.responseCode === 200) {
-                                    self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
-                                        self.$timeout(function () {
-                                            self.WorkSamplesList = res;
-                                        }, 3000)
-                                    });
-                                    $("#showload").hide();
-                                } else {
-                                    self.messages='Something went wrong with the server';
-                                    //alert('Something went wrong with the server ');
+            self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+            self.WorkSamplesCount = res.length;
+                if (self.WorkSamplesCount <= 8) {
+                    try {
+
+                        navigator.camera.getPicture(function (imageURI) {
+                            var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
+                            //alert(imageURI);
+
+                            if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
+                                //alert(extension);
+                                $("#showload").show();
+                                var options = new FileUploadOptions();
+                                options.fileKey = 'file';
+                                options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                                options.mimeType = 'application/pdf';
+                                var params = {
+                                    'UID': self.customerID,
+                                    'FileId': fileID
+                                };
+                                //alert(JSON.stringify(params));
+                                options.params = params;
+
+                                try {
+                                    var ft = new FileTransfer();
+                                } catch (ex) {
+                                    //self.toaster.error('exception generated:' + ex, 'Error');
+                                }
+
+                                ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r: any) {
+                                    //alert(JSON.stringify(r));
+                                    if (r.responseCode === '200' || r.responseCode === 200) {
+                                        self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+                                            self.$timeout(function () {
+                                                self.WorkSamplesList = res;
+                                                self.WorkSamplesCount = res.length;
+                                            }, 2000)
+                                        });
+                                        $("#showload").hide();
+                                    } else {
+                                        self.messages = 'Something went wrong with the server';
+                                        //alert('Something went wrong with the server ');
+                                        $("#PDone").modal();
+                                        $("#showload").hide();
+                                    }
+                                }), (function (msg) {
+                                    self.messages = 'Sample Image can\'t upload';
                                     $("#PDone").modal();
+                                    //alert("Sample Image can\'t upload : " + JSON.stringify(msg));
                                     $("#showload").hide();
-                                } 
-                            }), (function (msg) {
-                                self.messages='Sample Image can\'t upload';
+                                }), options);
+                            } else {
+                                self.messages = "PNG,JPEG,JPG images allowed";
                                 $("#PDone").modal();
-                                //alert("Sample Image can\'t upload : " + JSON.stringify(msg));
-                                    $("#showload").hide();
-                            }), options);
-                        } else {
-                            self.messages = "PNG,JPEG,JPG images allowed";
-                            $("#PDone").modal();
-                            //alert('PNG,JPEG,JPG images allowed');
-                           
-                        }
-                    }, self.onFail, {
-                            quality: 50,
-                            destinationType: Camera.DestinationType.FILE_URL,
-                            mediaType: Camera.MediaType.ALLMEDIA,
-                            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-                            correctOrientation: true
-                        });
+                                //alert('PNG,JPEG,JPG images allowed');
 
-                // Take picture using device camera and retrieve image as base64-encoded string
+                            }
 
-            } catch (ex) {
-                self.messages = "Can\'nt upload image";
-                $("#PDone").modal();
-                //alert('Can\'nt upload image');
-            } finally {
-                self.isImageClick = false;
-            }
-            
+                        }, self.onFail, {
+                                quality: 50,
+                                destinationType: Camera.DestinationType.FILE_URL,
+                                mediaType: Camera.MediaType.ALLMEDIA,
+                                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                                correctOrientation: true
+                            });
+
+                        // Take picture using device camera and retrieve image as base64-encoded string
+
+                    } catch (ex) {
+                        self.messages = "Can\'nt upload image";
+                        $("#PDone").modal();
+                        //alert('Can\'nt upload image');
+                    } finally {
+                        self.isImageClick = false;
+                    }
+                }
+                else {
+                    self.messages = "You can upload 8 files only.";
+                    $("#PDone").modal();
+                    //alert('PNG,JPEG,JPG images allowed');
+                }
+            });
         }
 
         RemoveSampleImage(filePath: any) {
-            var self = this;
-            var params = {
-                'UserID': self.customerID,
-                'FilePath': filePath
-            };
-            self.CustomerHttp.post(params,'/RemoveMySample').then(function (res) {
+
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                var params = {
+                    'UserID': self.customerID,
+                    'FilePath': filePath
+                };
+                self.CustomerHttp.post(params, '/RemoveMySample').then(function (res) {
                     self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
                         self.$timeout(function () {
                             self.WorkSamplesList = res;
                         }, 3000)
                     });
-            }, function (error) {
-                self.messages='Something went wrong with the server';
-                $("#PDone").modal();
-                //alert('Something went wrong with the server');
-            });
+                }, function (error) {
+                    self.messages = 'Something went wrong with the server';
+                    $("#PDone").modal();
+                    //alert('Something went wrong with the server');
+                });
+            }
         }
         alertMessage() {
-            var self = this;            
+            var self = this;
             self.messages = 'To edit your professional profile, please go to the Spafoo website from a non-mobile device and login with your credentials.  If you need any assistance, please call [toll free number].  Thank you';
             $("#PDone").modal();
         }
 
-        
+
     }
 
     angular.module('spafoo.ctrl.ProEditProfile', []).controller('ProEditProfile', ProEditProfileController);
