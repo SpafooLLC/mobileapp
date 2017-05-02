@@ -31,7 +31,7 @@ var loginController;
                 Username: username,
                 Password: password,
                 HardwareName: this.$window.localStorage.getItem('DeviceName'),
-                DeviceToken: this.$window.localStorage.getItem('DeviceToken')
+                DeviceToken: this.$window.localStorage.getItem('DeviceToken') // pawanDeviceToken 379'
             };
             self.CustomerHttp.post(data, '/LoginUser').then(function (response) {
                 if (parseInt(response.Source)) {

@@ -16,6 +16,8 @@
             private toaster: ngtoaster.IToasterService,
             private $rootScope: any,
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            //private $cordovaGoogleAnalytics:any/*: UniversalAnalyticsPlugin*/
+
 
         ) {
             this.$rootScope.UserProfileName = this.$window.localStorage.getItem('CustomerName');
@@ -27,20 +29,19 @@
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res: any) { seldf.$rootScope.NotifiCount = res.length; });
             }
-            
+
             try {
                 document.addEventListener('deviceready', seldf.onDeviceReady, false);
-              
+
             }
-            catch (e)
-            {
-              
+            catch (e) {
+
             }
 
         }
 
         onDeviceReady() {
-     
+
             if (device.platform === 'iOS') {
                 StatusBar.hide();
             }
@@ -49,7 +50,7 @@
                 android: {
                     //senderID: "24553703183"
                     senderID: "419078761457"
-              },
+                },
                 browser: {
                     pushServiceURL: 'http://push.api.phonegap.com/v1/push'
                 },
@@ -62,12 +63,12 @@
             });
 
             push.on('registration', function (data: any) {
-         // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
+                // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                  //alert(JSON.stringify(data));
+                    //  alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
-                    
+
                 }
                 catch (e) {
                     alert(JSON.stringify("Error :: " + e));
@@ -77,7 +78,7 @@
 
             push.on('notification', function (data) {
                 //var i = 2;
-        
+
                 if (!data.additionalData.foreground) {
                     //cordova.plugins.notification.badge.set(i);
                     window.location.href = "#/Notification";
@@ -90,9 +91,15 @@
                 // data.additionalData
             });
             push.on('error', function (e) {
-               // alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
+                // alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
+
+         
+            window.ga.debugMode();
+            window.ga.startTrackerWithId('UA-97984442-1');
+            window.ga.setAllowIDFACollection(true);
+        
 
         }
 

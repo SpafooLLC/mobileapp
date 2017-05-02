@@ -11,7 +11,7 @@
                 <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel" placeholder="Credit Card Number" class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
             </div>
             <div class="expdate">
-                <p class="control-label bold bmar-sm">Expiry Date</p>
+                <p class="control-label bold bmar-sm">Expiration Date</p>
                 <div class="col-xs-6 fileft">
                     <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Month">
                         <option value="" selected="selected">-Select Month-</option>

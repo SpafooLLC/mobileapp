@@ -36,7 +36,7 @@ var ProEditProfileController;
                 var decoded = decodeURIComponent(uri_encoded);
                 self.ServiceData.Profile.Biography = decoded;
                 self.SharedHttp.getProfilePics(self.ServiceData.Profile.Photo).then(function (imgres) { self.proProfilePic = imgres; });
-                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) { self.WorkSamplesList = res; });
+                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) { self.WorkSamplesList = res; self.WorkSamplesCount = res.length; });
                 self.SharedHttp.GetProTagLine(self.customerID).then(function (res) { self.TagField = res; });
                 self.rolePosition = self.ServiceData.Profile.ProfileProperties[1].PropertyValue.split('|').map(Number);
                 //console.log(self.rolePosition);
@@ -350,89 +350,101 @@ var ProEditProfileController;
         };
         ProEditProfileController.prototype.AddSampleImage = function (fileID) {
             var self = this;
-            try {
-                //alert(choice);
-                navigator.camera.getPicture(function (imageURI) {
-                    var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
-                    //alert(imageURI);
-                    if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
-                        //alert(extension);
-                        $("#showload").show();
-                        var options = new FileUploadOptions();
-                        options.fileKey = 'file';
-                        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-                        options.mimeType = 'application/pdf';
-                        var params = {
-                            'UID': self.customerID,
-                            'FileId': fileID
-                        };
-                        //alert(JSON.stringify(params));
-                        options.params = params;
-                        try {
-                            var ft = new FileTransfer();
-                        }
-                        catch (ex) {
-                        }
-                        ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
-                            //alert(JSON.stringify(r));
-                            if (r.responseCode === '200' || r.responseCode === 200) {
-                                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
-                                    self.$timeout(function () {
-                                        self.WorkSamplesList = res;
-                                    }, 3000);
-                                });
-                                $("#showload").hide();
+            self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+                self.WorkSamplesCount = res.length;
+                if (self.WorkSamplesCount <= 8) {
+                    try {
+                        navigator.camera.getPicture(function (imageURI) {
+                            var extension = imageURI.substr(imageURI.lastIndexOf('.') + 1).toUpperCase();
+                            //alert(imageURI);
+                            if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
+                                //alert(extension);
+                                $("#showload").show();
+                                var options = new FileUploadOptions();
+                                options.fileKey = 'file';
+                                options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                                options.mimeType = 'application/pdf';
+                                var params = {
+                                    'UID': self.customerID,
+                                    'FileId': fileID
+                                };
+                                //alert(JSON.stringify(params));
+                                options.params = params;
+                                try {
+                                    var ft = new FileTransfer();
+                                }
+                                catch (ex) {
+                                }
+                                ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
+                                    //alert(JSON.stringify(r));
+                                    if (r.responseCode === '200' || r.responseCode === 200) {
+                                        self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+                                            self.$timeout(function () {
+                                                self.WorkSamplesList = res;
+                                                self.WorkSamplesCount = res.length;
+                                            }, 2000);
+                                        });
+                                        $("#showload").hide();
+                                    }
+                                    else {
+                                        self.messages = 'Something went wrong with the server';
+                                        //alert('Something went wrong with the server ');
+                                        $("#PDone").modal();
+                                        $("#showload").hide();
+                                    }
+                                }), (function (msg) {
+                                    self.messages = 'Sample Image can\'t upload';
+                                    $("#PDone").modal();
+                                    //alert("Sample Image can\'t upload : " + JSON.stringify(msg));
+                                    $("#showload").hide();
+                                }), options);
                             }
                             else {
-                                self.messages = 'Something went wrong with the server';
-                                //alert('Something went wrong with the server ');
+                                self.messages = "PNG,JPEG,JPG images allowed";
                                 $("#PDone").modal();
-                                $("#showload").hide();
                             }
-                        }), (function (msg) {
-                            self.messages = 'Sample Image can\'t upload';
-                            $("#PDone").modal();
-                            //alert("Sample Image can\'t upload : " + JSON.stringify(msg));
-                            $("#showload").hide();
-                        }), options);
+                        }, self.onFail, {
+                            quality: 50,
+                            destinationType: Camera.DestinationType.FILE_URL,
+                            mediaType: Camera.MediaType.ALLMEDIA,
+                            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                            correctOrientation: true
+                        });
                     }
-                    else {
-                        self.messages = "PNG,JPEG,JPG images allowed";
+                    catch (ex) {
+                        self.messages = "Can\'nt upload image";
                         $("#PDone").modal();
                     }
-                }, self.onFail, {
-                    quality: 50,
-                    destinationType: Camera.DestinationType.FILE_URL,
-                    mediaType: Camera.MediaType.ALLMEDIA,
-                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-                    correctOrientation: true
-                });
-            }
-            catch (ex) {
-                self.messages = "Can\'nt upload image";
-                $("#PDone").modal();
-            }
-            finally {
-                self.isImageClick = false;
-            }
+                    finally {
+                        self.isImageClick = false;
+                    }
+                }
+                else {
+                    self.messages = "You can upload 8 files only.";
+                    $("#PDone").modal();
+                }
+            });
         };
         ProEditProfileController.prototype.RemoveSampleImage = function (filePath) {
-            var self = this;
-            var params = {
-                'UserID': self.customerID,
-                'FilePath': filePath
-            };
-            self.CustomerHttp.post(params, '/RemoveMySample').then(function (res) {
-                self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
-                    self.$timeout(function () {
-                        self.WorkSamplesList = res;
-                    }, 3000);
+            var conf = confirm("Are you sure want to remove ?");
+            if (conf) {
+                var self = this;
+                var params = {
+                    'UserID': self.customerID,
+                    'FilePath': filePath
+                };
+                self.CustomerHttp.post(params, '/RemoveMySample').then(function (res) {
+                    self.SharedHttp.GetWorkSamples(self.customerID).then(function (res) {
+                        self.$timeout(function () {
+                            self.WorkSamplesList = res;
+                        }, 3000);
+                    });
+                }, function (error) {
+                    self.messages = 'Something went wrong with the server';
+                    $("#PDone").modal();
+                    //alert('Something went wrong with the server');
                 });
-            }, function (error) {
-                self.messages = 'Something went wrong with the server';
-                $("#PDone").modal();
-                //alert('Something went wrong with the server');
-            });
+            }
         };
         ProEditProfileController.prototype.alertMessage = function () {
             var self = this;

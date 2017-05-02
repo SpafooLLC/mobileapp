@@ -50,7 +50,7 @@ var mainController;
             push.on('registration', function (data) {
                 // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                    //alert(JSON.stringify(data));
+                    //  alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }
@@ -75,6 +75,9 @@ var mainController;
                 // alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
                 // e.message
             });
+            window.ga.debugMode();
+            window.ga.startTrackerWithId('UA-97984442-1');
+            window.ga.setAllowIDFACollection(true);
         };
         MainController.prototype.doLogOut = function () {
             this.$rootScope.GetLoginStatus = false;

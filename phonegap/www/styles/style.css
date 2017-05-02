@@ -202,7 +202,7 @@
   .osummery .cart {}
   .osummery .cart .heading { color:#112173; font-size:22px; text-align:center; background:#e7e7e7; padding:16px 0; margin-bottom:15px; }
   .osummery .cart ul { margin:0 10px; padding:0; }
-  .osummery .cart li  { margin:0 0 15px 0; list-style:none; padding:0 0 15px 0; overflow:hidden; border-bottom:1px solid #cccccc; }
+  .osummery .cart li  { margin:0 0 15px 0; list-style:none; padding:0 0 15px 0; overflow:hidden; /*border-bottom:1px solid #cccccc;*/ }
   .osummery .cart li .sname { color:#112173; font-size:16px; font-weight:600; margin:0;  }
   .osummery .cart li .sname .fa-lg { vertical-align:0 !important; }
   .osummery .cart li .qbox { width:65px; }

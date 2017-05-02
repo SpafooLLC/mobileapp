@@ -19,6 +19,8 @@
         from: string;
         number: number;
         data: any;
+        UserEmail: any;
+        UserName: any;
         numbercvv: number;
         isChecked: boolean;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
@@ -37,7 +39,15 @@
             private $stateParams: IStateParams
         ) {
             this.init();
+            var self = this;
             $("#MobileNo").mask("000-000-0000");
+            self.SharedHttp.GetUserInfo(self.$window.localStorage.getItem('CustomerID')).then(function (res: any) {
+                self.UserName = res.firstNameField + " " + res.lastNameField;
+                self.UserEmail = res.emailField;
+
+            });
+          
+
 
         }
 
@@ -108,7 +118,7 @@
         //        data.UID = self.$window.localStorage.getItem('CustomerID');
         //        data.Expiry = data.Month + "/" + data.Year; 
         //        self.$ionicLoading.show();
-        //        self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+        //        self.CustomerHttp.post(data, '/CreateCustomerRegistrationProfile').then(function (response) {
 
         //            self.Succmesg = "Credit Card Information Added Successfully.";
         //            $("#PSuccess").modal();  
@@ -120,14 +130,20 @@
             var self = this;
             //alert(CData.PayLater)
 
+          
+
+
             switch (ActionType) {
                 case 'A': if (this.DoValidation(CData)) {
-
+                  
                     var data = CData;
                     data.UID = self.$window.localStorage.getItem('CustomerID');
+                  
                     data.Expiry = data.Month + "/" + data.Year;
                     data.Phone = $("#MobileNo").val(); 
-                    self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+                    data.Name = self.UserName;
+                    data.Email = self.UserEmail;
+                    self.CustomerHttp.post(data, '/CreateCustomerRegistrationProfile').then(function (response) {
                         self.Succmesg = "Credit Card Information Added Successfully.";
                         $("#PSuccess").modal();
                     }, function (error) { });
@@ -142,9 +158,14 @@
 
                     var data = CData;
                     data.UID = self.$window.localStorage.getItem('CustomerID');
+
+                    data.Name = self.UserName;
+                    data.Email = self.UserEmail;
+
+            
                     data.Expiry = data.Month + "/" + data.Year;
                     data.Phone = $("#MobileNo").val(); 
-                    self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
+                    self.CustomerHttp.post(data, '/CreateCustomerRegistrationProfile').then(function (response) {
                         self.Succmesg = "Credit Card Information Added Successfully.";
                         $("#PSuccess").modal();
                     }, function (error) { });
