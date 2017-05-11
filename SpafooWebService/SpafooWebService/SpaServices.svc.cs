@@ -2280,15 +2280,15 @@ namespace SpafooWebService
 
         #endregion
 
-      public ServiceDashBoard.CouponInfo GetHTML(string Code)
+      public string GetHTML(string ModID)
         {
             using (TransactionScope trans = new TransactionScope())
             {
                 try
                 {
 
-                    var ChargePrevious = WebCallMethod.WRequestobj(3, "ValidateCoupon", "{\"Code\": \"" + Code + "\"}");
-                    var objChargePrevious = JsonConvert.DeserializeObject<ServiceDashBoard.CouponInfo>(ChargePrevious);
+                    var ChargePrevious = WebCallMethod.WRequestobj(2, "GetHTML", "{\"ModID\": \"" + ModID + "\"}");                   
+                    var objChargePrevious = JsonConvert.DeserializeObject<string>(ChargePrevious);
                   
                     return objChargePrevious;
                 }

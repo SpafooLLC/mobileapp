@@ -59,6 +59,10 @@ namespace SpafooWebService
         void UpdateCouponCount(string Code);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetHTML/{ModID}")]
+        string GetHTML(string ModID);
+
+        [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetServiceList/{ParentID}")]
         ServiceDashBoard.ServiceInfo[] GetServiceList(string ParentID);
 
