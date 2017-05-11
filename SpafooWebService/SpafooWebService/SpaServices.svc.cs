@@ -152,6 +152,75 @@ namespace SpafooWebService
             //  }
         }
 
+   public ReturnValues CreateCustomerRegistrationProfile(CreditCardInfo info)
+        {
+            try
+            {
+                MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
+             //   var userInfo = GetUserInfo(info.UID.ToString());
+             //   var ProfileJSON = _objSpafoo.GetCustomerProfileJSON(info.UID);
+                CustomerPaymentProfileresult RegisterData = new CustomerPaymentProfileresult();
+                string CPPID = string.Empty;
+                string CPID = string.Empty;
+                //if (ProfileJSON != "null")
+                //{
+                //    string ProfileID = JObject.Parse(ProfileJSON)["profile"]["customerProfileId"].ToString();
+                //    var RerData = _objSpafoo.CreateCustomerPaymentProfileJSON(ProfileID, info.Name, info.CCNumber, info.Expiry, info.CVV, info.Address, info.City, info.State, info.Zip, info.Phone);
+                //    RegisterData = JsonConvert.DeserializeObject<CustomerPaymentProfileresult>(RerData);
+                //    if ((RegisterData.messages.message[0].code == "E00039") || (RegisterData.messages.message[0].code == "I00001"))
+                //    {
+                //        CPPID = RegisterData.customerPaymentProfileId;
+                //    }
+                //}
+                //else
+                //{
+                    var userdata = GetUserInfo(info.UID.ToString());
+                    info.Email = userdata.Email;
+                    info.Name = userdata.FirstName + " " + userdata.LastName;
+                    var ReData = _objSpafoo.CreateCustomerProfileJSON(info.UID, info.Name, info.CCNumber, info.Expiry, info.CVV, info.Email, info.Address, info.City, info.State, info.Zip, info.Phone);
+                    RegisterData = JsonConvert.DeserializeObject<CustomerPaymentProfileresult>(ReData);
+                    if ((RegisterData.messages.message[0].code == "E00039"))
+                    {
+                        CPID = RegisterData.messages.message[0].text.Split(' ')[5];
+                        CPPID = RegisterData.messages.message[0].text.Split(' ')[8];
+                    }
+                    else if ((RegisterData.messages.message[0].code == "I00001"))
+                    {
+                        CPPID = RegisterData.messages.message[0].text.Split(' ')[1];
+                        CPID = RegisterData.customerPaymentProfileId;
+                    }
+
+
+
+
+               // }
+                ReturnValues ReturnObj = new ReturnValues
+                {
+                    ProfileID = CPID,
+                    CustomerID = CPPID,
+                    Source = RegisterData.messages.message[0].code,
+                    Success = RegisterData.messages.message[0].text,
+                };
+                return ReturnObj;
+            }
+            catch (Exception ex)
+            {
+                //   trans.Dispose();
+
+                ReturnValues objex = new ReturnValues
+                {
+                    Failure = ex.Message,
+                    Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
+                };
+                throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                //trans.Dispose();
+            }
+            //  }
+        }
+
         public string DeleteCustomerPayProfile(string PID, string PPID)
         {
             using (TransactionScope trans = new TransactionScope())
@@ -213,12 +282,12 @@ namespace SpafooWebService
                         // iterate through each hardware 
                         foreach (var UH in getuserHardware)
                         {
-                            // checking if current logged in device is in the list or not
-                            if (UH.DeviceToken.Trim() != "" && UH.DeviceToken.Equals(UserLogin.DeviceToken) && UH.UserID == int.Parse(UIDs))
+                            // checking if current logged in device is in the list or not  && UH.DeviceToken.Equals(UserLogin.DeviceToken)
+                            if (UH.DeviceToken.Trim() != "" && UH.UserID == int.Parse(UIDs))
                             {// if device found then why are we updating? and DeviceToken will be empty too , in what case ?
-                                // did you remember when discuss if suppose user wants to login from other's mobile for that case we did this
-                                /// no , if user logs from other mobile then it needs to add new record instead of updating, isnt ?
-                                
+                             // did you remember when discuss if suppose user wants to login from other's mobile for that case we did this
+                             /// no , if user logs from other mobile then it needs to add new record instead of updating, isnt ?
+
                                 var getUserType121 = WebCallMethod.WRequestobj(5, "UpdateUserHardware", "{\"UserID\": \"" + UIDs + "\",\"HardwareName\": \"" + UserLogin.HardwareName + "\",\"DeviceToken\": \"" + UserLogin.DeviceToken + "\",\"IsWebVersion\": \"false\"}");
 
                                 int updateHarwareInfo = _objRegistration.UpdateUserHardware(int.Parse(UIDs), UserLogin.HardwareName, UserLogin.DeviceToken, false);
@@ -762,14 +831,14 @@ namespace SpafooWebService
 
         public string GetServiceFrmNotification(string AppointmentID)
         {
-           var AppointmentData= GetAppointment(AppointmentID);
+            var AppointmentData = GetAppointment(AppointmentID);
             string serviceid = string.Empty;
             for (int i = 0; i < AppointmentData.Services.Length; i++)
             {
                 serviceid += AppointmentData.Services[i].ServiceID + ":";
 
             }
-            return serviceid.Substring(0,serviceid.LastIndexOf(":"));
+            return serviceid.Substring(0, serviceid.LastIndexOf(":"));
         }
 
         public MakeAppointment.NotificationInfo[] GetMyNotification(string userID)
@@ -915,7 +984,7 @@ namespace SpafooWebService
         #endregion
 
         #region["Make or Schedule an Appointment"]
-      public int GetWithInMile()
+        public int GetWithInMile()
         {
             using (TransactionScope trans = new TransactionScope())
             {
@@ -942,7 +1011,7 @@ namespace SpafooWebService
                 }
             }
         }
-           public int MakeAppointment(ScheduleAppointment obj)
+        public int MakeAppointment(ScheduleAppointment obj)
         {
             using (TransactionScope trans = new TransactionScope())
             {
@@ -1083,11 +1152,11 @@ namespace SpafooWebService
                 {
                     MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
                     int uid = int.Parse(AppointMentID);
-                     //   var getdatas = WebCallMethod.WRequestobj(2, "GetAppointment", "{\"ID\": \"" + AppointMentID + "\"}");
+                    //   var getdatas = WebCallMethod.WRequestobj(2, "GetAppointment", "{\"ID\": \"" + AppointMentID + "\"}");
 
-                 //    var RegisterData = JsonConvert.DeserializeObject<AppointmentInfo>(getdatas);
+                    //    var RegisterData = JsonConvert.DeserializeObject<AppointmentInfo>(getdatas);
 
-                     var RegisterData = _objSpafoo.GetAppointment(uid);
+                    var RegisterData = _objSpafoo.GetAppointment(uid);
                     return RegisterData;
                 }
                 catch (Exception ex)
@@ -1288,7 +1357,7 @@ namespace SpafooWebService
             {
                 try
                 {
-                    var ChargePrevious = WebCallMethod.WRequestobj(3, "GetServicesIn", "{\"SID\": \"" + ServiceID+ "\"}");
+                    var ChargePrevious = WebCallMethod.WRequestobj(3, "GetServicesIn", "{\"SID\": \"" + ServiceID + "\"}");
                     var objChargePrevious = JsonConvert.DeserializeObject<MakeAppointment.ServiceInfo[]>(ChargePrevious);
                     //ServiceDashBoard.rh _objSpafoo = new ServiceDashBoard.rh();
                     //return _objSpafoo.GetServicesIn(ServiceID);
@@ -1607,7 +1676,7 @@ namespace SpafooWebService
                 }
             }
         }
-        
+
         public ReturnValues AppointmentCompleted(AppointmentComplete obj)
         {
             using (TransactionScope trans = new TransactionScope())
@@ -1833,6 +1902,33 @@ namespace SpafooWebService
                 {
                     MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
                     _objSpafoo.UpdateAppStatus(int.Parse(AppID), int.Parse(Status));
+                    ReturnValues objreturn = new Model.ReturnValues { Success = "Updated Succesfully" };
+                    return objreturn;
+                }
+                catch (Exception ex)
+                {
+                    trans.Dispose();
+                    ReturnValues objex = new ReturnValues
+                    {
+                        Failure = ex.Message,
+                        Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
+                    };
+                    throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
+                }
+                finally
+                {
+                    trans.Dispose();
+                }
+            }
+        }
+        public ReturnValues ProviderDenyASAP(string AppID)
+        {
+            using (TransactionScope trans = new TransactionScope())
+            {
+                try
+                {
+                    MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
+                    _objSpafoo.ProviderDenyASAP(int.Parse(AppID));
                     ReturnValues objreturn = new Model.ReturnValues { Success = "Updated Succesfully" };
                     return objreturn;
                 }
@@ -2155,7 +2251,7 @@ namespace SpafooWebService
             }
         }
 
-   public void UpdateCouponCount(string Code)
+        public void UpdateCouponCount(string Code)
         {
             using (TransactionScope trans = new TransactionScope())
             {
@@ -2163,7 +2259,7 @@ namespace SpafooWebService
                 {
 
                     var ChargePrevious = WebCallMethod.WRequestobj(3, "UpdateCouponCount", "{\"Code\": \"" + Code + "\"}");
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -2183,6 +2279,37 @@ namespace SpafooWebService
         }
 
         #endregion
+
+      public ServiceDashBoard.CouponInfo GetHTML(string Code)
+        {
+            using (TransactionScope trans = new TransactionScope())
+            {
+                try
+                {
+
+                    var ChargePrevious = WebCallMethod.WRequestobj(3, "ValidateCoupon", "{\"Code\": \"" + Code + "\"}");
+                    var objChargePrevious = JsonConvert.DeserializeObject<ServiceDashBoard.CouponInfo>(ChargePrevious);
+                  
+                    return objChargePrevious;
+                }
+                catch (Exception ex)
+                {
+                    trans.Dispose();
+                    ReturnValues objex = new ReturnValues
+                    {
+                        Failure = ex.Message,
+                        Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
+                    };
+                    throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
+                }
+                finally
+                {
+                    trans.Dispose();
+                }
+            }
+        }
+
+
 
 
 

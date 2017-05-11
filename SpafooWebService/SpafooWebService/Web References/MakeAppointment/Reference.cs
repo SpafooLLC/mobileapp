@@ -27,6 +27,7 @@ namespace SpafooWebService.MakeAppointment {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="rhSoap", Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BaseEntityInfo))]
     public partial class rh : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback AddAppointmentOperationCompleted;
@@ -34,6 +35,8 @@ namespace SpafooWebService.MakeAppointment {
         private System.Threading.SendOrPostCallback AddAddressOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetAppLocationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ProviderDenyASAPOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateAppStatusOperationCompleted;
         
@@ -49,6 +52,8 @@ namespace SpafooWebService.MakeAppointment {
         
         private System.Threading.SendOrPostCallback ListAppointmentByClientOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ListServicesByAppIDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateAppointmentOperationCompleted;
         
         private System.Threading.SendOrPostCallback RemoveAppOperationCompleted;
@@ -62,6 +67,8 @@ namespace SpafooWebService.MakeAppointment {
         private System.Threading.SendOrPostCallback GetProOccupiedSlotsOperationCompleted;
         
         private System.Threading.SendOrPostCallback CanSetAvailabilityOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetUsersInRoleOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddRatingOperationCompleted;
         
@@ -121,7 +128,13 @@ namespace SpafooWebService.MakeAppointment {
         
         private System.Threading.SendOrPostCallback GetMyNotificationOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAdminNotificationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetUserNotificationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback WriteExcelOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetHTMLOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -171,6 +184,9 @@ namespace SpafooWebService.MakeAppointment {
         public event GetAppLocationCompletedEventHandler GetAppLocationCompleted;
         
         /// <remarks/>
+        public event ProviderDenyASAPCompletedEventHandler ProviderDenyASAPCompleted;
+        
+        /// <remarks/>
         public event UpdateAppStatusCompletedEventHandler UpdateAppStatusCompleted;
         
         /// <remarks/>
@@ -192,6 +208,9 @@ namespace SpafooWebService.MakeAppointment {
         public event ListAppointmentByClientCompletedEventHandler ListAppointmentByClientCompleted;
         
         /// <remarks/>
+        public event ListServicesByAppIDCompletedEventHandler ListServicesByAppIDCompleted;
+        
+        /// <remarks/>
         public event UpdateAppointmentCompletedEventHandler UpdateAppointmentCompleted;
         
         /// <remarks/>
@@ -211,6 +230,9 @@ namespace SpafooWebService.MakeAppointment {
         
         /// <remarks/>
         public event CanSetAvailabilityCompletedEventHandler CanSetAvailabilityCompleted;
+        
+        /// <remarks/>
+        public event GetUsersInRoleCompletedEventHandler GetUsersInRoleCompleted;
         
         /// <remarks/>
         public event AddRatingCompletedEventHandler AddRatingCompleted;
@@ -300,7 +322,16 @@ namespace SpafooWebService.MakeAppointment {
         public event GetMyNotificationCompletedEventHandler GetMyNotificationCompleted;
         
         /// <remarks/>
+        public event GetAdminNotificationCompletedEventHandler GetAdminNotificationCompleted;
+        
+        /// <remarks/>
         public event GetUserNotificationCompletedEventHandler GetUserNotificationCompleted;
+        
+        /// <remarks/>
+        public event WriteExcelCompletedEventHandler WriteExcelCompleted;
+        
+        /// <remarks/>
+        public event GetHTMLCompletedEventHandler GetHTMLCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddAppointment", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -408,11 +439,41 @@ namespace SpafooWebService.MakeAppointment {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ProviderDenyASAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int ProviderDenyASAP(int AppID) {
+            object[] results = this.Invoke("ProviderDenyASAP", new object[] {
+                        AppID});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ProviderDenyASAPAsync(int AppID) {
+            this.ProviderDenyASAPAsync(AppID, null);
+        }
+        
+        /// <remarks/>
+        public void ProviderDenyASAPAsync(int AppID, object userState) {
+            if ((this.ProviderDenyASAPOperationCompleted == null)) {
+                this.ProviderDenyASAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnProviderDenyASAPOperationCompleted);
+            }
+            this.InvokeAsync("ProviderDenyASAP", new object[] {
+                        AppID}, this.ProviderDenyASAPOperationCompleted, userState);
+        }
+        
+        private void OnProviderDenyASAPOperationCompleted(object arg) {
+            if ((this.ProviderDenyASAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ProviderDenyASAPCompleted(this, new ProviderDenyASAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateAppStatus", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateAppStatus(int AppID, int Status) {
-            this.Invoke("UpdateAppStatus", new object[] {
+        public int UpdateAppStatus(int AppID, int Status) {
+            object[] results = this.Invoke("UpdateAppStatus", new object[] {
                         AppID,
                         Status});
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -433,7 +494,7 @@ namespace SpafooWebService.MakeAppointment {
         private void OnUpdateAppStatusOperationCompleted(object arg) {
             if ((this.UpdateAppStatusCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UpdateAppStatusCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.UpdateAppStatusCompleted(this, new UpdateAppStatusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -645,6 +706,35 @@ namespace SpafooWebService.MakeAppointment {
             if ((this.ListAppointmentByClientCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ListAppointmentByClientCompleted(this, new ListAppointmentByClientCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListServicesByAppID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ServiceInfo[] ListServicesByAppID(int ID) {
+            object[] results = this.Invoke("ListServicesByAppID", new object[] {
+                        ID});
+            return ((ServiceInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListServicesByAppIDAsync(int ID) {
+            this.ListServicesByAppIDAsync(ID, null);
+        }
+        
+        /// <remarks/>
+        public void ListServicesByAppIDAsync(int ID, object userState) {
+            if ((this.ListServicesByAppIDOperationCompleted == null)) {
+                this.ListServicesByAppIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListServicesByAppIDOperationCompleted);
+            }
+            this.InvokeAsync("ListServicesByAppID", new object[] {
+                        ID}, this.ListServicesByAppIDOperationCompleted, userState);
+        }
+        
+        private void OnListServicesByAppIDOperationCompleted(object arg) {
+            if ((this.ListServicesByAppIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListServicesByAppIDCompleted(this, new ListServicesByAppIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -869,6 +959,39 @@ namespace SpafooWebService.MakeAppointment {
             if ((this.CanSetAvailabilityCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CanSetAvailabilityCompleted(this, new CanSetAvailabilityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUsersInRole", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserInfo[] GetUsersInRole(string RN, int CP, int RPP) {
+            object[] results = this.Invoke("GetUsersInRole", new object[] {
+                        RN,
+                        CP,
+                        RPP});
+            return ((UserInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetUsersInRoleAsync(string RN, int CP, int RPP) {
+            this.GetUsersInRoleAsync(RN, CP, RPP, null);
+        }
+        
+        /// <remarks/>
+        public void GetUsersInRoleAsync(string RN, int CP, int RPP, object userState) {
+            if ((this.GetUsersInRoleOperationCompleted == null)) {
+                this.GetUsersInRoleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUsersInRoleOperationCompleted);
+            }
+            this.InvokeAsync("GetUsersInRole", new object[] {
+                        RN,
+                        CP,
+                        RPP}, this.GetUsersInRoleOperationCompleted, userState);
+        }
+        
+        private void OnGetUsersInRoleOperationCompleted(object arg) {
+            if ((this.GetUsersInRoleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetUsersInRoleCompleted(this, new GetUsersInRoleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1858,6 +1981,37 @@ namespace SpafooWebService.MakeAppointment {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAdminNotification", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public NotificationInfo[] GetAdminNotification(int PN, int RPP) {
+            object[] results = this.Invoke("GetAdminNotification", new object[] {
+                        PN,
+                        RPP});
+            return ((NotificationInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAdminNotificationAsync(int PN, int RPP) {
+            this.GetAdminNotificationAsync(PN, RPP, null);
+        }
+        
+        /// <remarks/>
+        public void GetAdminNotificationAsync(int PN, int RPP, object userState) {
+            if ((this.GetAdminNotificationOperationCompleted == null)) {
+                this.GetAdminNotificationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAdminNotificationOperationCompleted);
+            }
+            this.InvokeAsync("GetAdminNotification", new object[] {
+                        PN,
+                        RPP}, this.GetAdminNotificationOperationCompleted, userState);
+        }
+        
+        private void OnGetAdminNotificationOperationCompleted(object arg) {
+            if ((this.GetAdminNotificationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAdminNotificationCompleted(this, new GetAdminNotificationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUserNotification", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public int GetUserNotification() {
             object[] results = this.Invoke("GetUserNotification", new object[0]);
@@ -1881,6 +2035,64 @@ namespace SpafooWebService.MakeAppointment {
             if ((this.GetUserNotificationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetUserNotificationCompleted(this, new GetUserNotificationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/WriteExcel", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string WriteExcel(string RN) {
+            object[] results = this.Invoke("WriteExcel", new object[] {
+                        RN});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void WriteExcelAsync(string RN) {
+            this.WriteExcelAsync(RN, null);
+        }
+        
+        /// <remarks/>
+        public void WriteExcelAsync(string RN, object userState) {
+            if ((this.WriteExcelOperationCompleted == null)) {
+                this.WriteExcelOperationCompleted = new System.Threading.SendOrPostCallback(this.OnWriteExcelOperationCompleted);
+            }
+            this.InvokeAsync("WriteExcel", new object[] {
+                        RN}, this.WriteExcelOperationCompleted, userState);
+        }
+        
+        private void OnWriteExcelOperationCompleted(object arg) {
+            if ((this.WriteExcelCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.WriteExcelCompleted(this, new WriteExcelCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetHTML", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetHTML(int ModID) {
+            object[] results = this.Invoke("GetHTML", new object[] {
+                        ModID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetHTMLAsync(int ModID) {
+            this.GetHTMLAsync(ModID, null);
+        }
+        
+        /// <remarks/>
+        public void GetHTMLAsync(int ModID, object userState) {
+            if ((this.GetHTMLOperationCompleted == null)) {
+                this.GetHTMLOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetHTMLOperationCompleted);
+            }
+            this.InvokeAsync("GetHTML", new object[] {
+                        ModID}, this.GetHTMLOperationCompleted, userState);
+        }
+        
+        private void OnGetHTMLOperationCompleted(object arg) {
+            if ((this.GetHTMLCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetHTMLCompleted(this, new GetHTMLCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2348,6 +2560,677 @@ namespace SpafooWebService.MakeAppointment {
             }
             set {
                 this.ratingFilterField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class UserProfile {
+        
+        private string cellField;
+        
+        private string cityField;
+        
+        private string countryField;
+        
+        private string faxField;
+        
+        private string firstNameField;
+        
+        private string imField;
+        
+        private string lastNameField;
+        
+        private string photoField;
+        
+        private string postalCodeField;
+        
+        private string preferredLocaleField;
+        
+        private ProfilePropertyDefinition[] profilePropertiesField;
+        
+        private string regionField;
+        
+        private string streetField;
+        
+        private string telephoneField;
+        
+        private string titleField;
+        
+        private string unitField;
+        
+        private string websiteField;
+        
+        private string biographyField;
+        
+        /// <remarks/>
+        public string Cell {
+            get {
+                return this.cellField;
+            }
+            set {
+                this.cellField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string City {
+            get {
+                return this.cityField;
+            }
+            set {
+                this.cityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Country {
+            get {
+                return this.countryField;
+            }
+            set {
+                this.countryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Fax {
+            get {
+                return this.faxField;
+            }
+            set {
+                this.faxField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IM {
+            get {
+                return this.imField;
+            }
+            set {
+                this.imField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Photo {
+            get {
+                return this.photoField;
+            }
+            set {
+                this.photoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PostalCode {
+            get {
+                return this.postalCodeField;
+            }
+            set {
+                this.postalCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PreferredLocale {
+            get {
+                return this.preferredLocaleField;
+            }
+            set {
+                this.preferredLocaleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ProfilePropertyDefinition[] ProfileProperties {
+            get {
+                return this.profilePropertiesField;
+            }
+            set {
+                this.profilePropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Region {
+            get {
+                return this.regionField;
+            }
+            set {
+                this.regionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Street {
+            get {
+                return this.streetField;
+            }
+            set {
+                this.streetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Telephone {
+            get {
+                return this.telephoneField;
+            }
+            set {
+                this.telephoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Unit {
+            get {
+                return this.unitField;
+            }
+            set {
+                this.unitField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Website {
+            get {
+                return this.websiteField;
+            }
+            set {
+                this.websiteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Biography {
+            get {
+                return this.biographyField;
+            }
+            set {
+                this.biographyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProfilePropertyDefinition : BaseEntityInfo {
+        
+        private int lengthField;
+        
+        private string propertycategoryField;
+        
+        private string propertynameField;
+        
+        /// <remarks/>
+        public int length {
+            get {
+                return this.lengthField;
+            }
+            set {
+                this.lengthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string propertycategory {
+            get {
+                return this.propertycategoryField;
+            }
+            set {
+                this.propertycategoryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string propertyname {
+            get {
+                return this.propertynameField;
+            }
+            set {
+                this.propertynameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProfilePropertyDefinition))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(UserInfo))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public abstract partial class BaseEntityInfo {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class UserInfo : BaseEntityInfo {
+        
+        private int affiliateIDField;
+        
+        private string displayNameField;
+        
+        private string emailField;
+        
+        private string firstNameField;
+        
+        private bool isDeletedField;
+        
+        private bool isSuperUserField;
+        
+        private string lastIPAddressField;
+        
+        private string lastNameField;
+        
+        private UserMembership membershipField;
+        
+        private System.Guid passwordResetTokenField;
+        
+        private System.DateTime passwordResetExpirationField;
+        
+        private int portalIDField;
+        
+        private UserProfile profileField;
+        
+        private string[] rolesField;
+        
+        private int userIDField;
+        
+        private string usernameField;
+        
+        private string vanityUrlField;
+        
+        /// <remarks/>
+        public int AffiliateID {
+            get {
+                return this.affiliateIDField;
+            }
+            set {
+                this.affiliateIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DisplayName {
+            get {
+                return this.displayNameField;
+            }
+            set {
+                this.displayNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsDeleted {
+            get {
+                return this.isDeletedField;
+            }
+            set {
+                this.isDeletedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsSuperUser {
+            get {
+                return this.isSuperUserField;
+            }
+            set {
+                this.isSuperUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastIPAddress {
+            get {
+                return this.lastIPAddressField;
+            }
+            set {
+                this.lastIPAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public UserMembership Membership {
+            get {
+                return this.membershipField;
+            }
+            set {
+                this.membershipField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.Guid PasswordResetToken {
+            get {
+                return this.passwordResetTokenField;
+            }
+            set {
+                this.passwordResetTokenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime PasswordResetExpiration {
+            get {
+                return this.passwordResetExpirationField;
+            }
+            set {
+                this.passwordResetExpirationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int PortalID {
+            get {
+                return this.portalIDField;
+            }
+            set {
+                this.portalIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public UserProfile Profile {
+            get {
+                return this.profileField;
+            }
+            set {
+                this.profileField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string[] Roles {
+            get {
+                return this.rolesField;
+            }
+            set {
+                this.rolesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int UserID {
+            get {
+                return this.userIDField;
+            }
+            set {
+                this.userIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VanityUrl {
+            get {
+                return this.vanityUrlField;
+            }
+            set {
+                this.vanityUrlField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class UserMembership {
+        
+        private bool approvedField;
+        
+        private System.DateTime createdDateField;
+        
+        private bool isDeletedField;
+        
+        private bool isOnLineField;
+        
+        private System.DateTime lastActivityDateField;
+        
+        private System.DateTime lastLockoutDateField;
+        
+        private System.DateTime lastLoginDateField;
+        
+        private System.DateTime lastPasswordChangeDateField;
+        
+        private bool lockedOutField;
+        
+        private string passwordField;
+        
+        private string passwordAnswerField;
+        
+        private string passwordConfirmField;
+        
+        private string passwordQuestionField;
+        
+        private bool updatePasswordField;
+        
+        /// <remarks/>
+        public bool Approved {
+            get {
+                return this.approvedField;
+            }
+            set {
+                this.approvedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime CreatedDate {
+            get {
+                return this.createdDateField;
+            }
+            set {
+                this.createdDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsDeleted {
+            get {
+                return this.isDeletedField;
+            }
+            set {
+                this.isDeletedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsOnLine {
+            get {
+                return this.isOnLineField;
+            }
+            set {
+                this.isOnLineField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastActivityDate {
+            get {
+                return this.lastActivityDateField;
+            }
+            set {
+                this.lastActivityDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastLockoutDate {
+            get {
+                return this.lastLockoutDateField;
+            }
+            set {
+                this.lastLockoutDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastLoginDate {
+            get {
+                return this.lastLoginDateField;
+            }
+            set {
+                this.lastLoginDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastPasswordChangeDate {
+            get {
+                return this.lastPasswordChangeDateField;
+            }
+            set {
+                this.lastPasswordChangeDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool LockedOut {
+            get {
+                return this.lockedOutField;
+            }
+            set {
+                this.lockedOutField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PasswordAnswer {
+            get {
+                return this.passwordAnswerField;
+            }
+            set {
+                this.passwordAnswerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PasswordConfirm {
+            get {
+                return this.passwordConfirmField;
+            }
+            set {
+                this.passwordConfirmField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PasswordQuestion {
+            get {
+                return this.passwordQuestionField;
+            }
+            set {
+                this.passwordQuestionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool UpdatePassword {
+            get {
+                return this.updatePasswordField;
+            }
+            set {
+                this.updatePasswordField = value;
             }
         }
     }
@@ -2915,7 +3798,55 @@ namespace SpafooWebService.MakeAppointment {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
-    public delegate void UpdateAppStatusCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void ProviderDenyASAPCompletedEventHandler(object sender, ProviderDenyASAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ProviderDenyASAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ProviderDenyASAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void UpdateAppStatusCompletedEventHandler(object sender, UpdateAppStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateAppStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateAppStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
@@ -3053,6 +3984,32 @@ namespace SpafooWebService.MakeAppointment {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void ListServicesByAppIDCompletedEventHandler(object sender, ListServicesByAppIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListServicesByAppIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListServicesByAppIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ServiceInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ServiceInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
     public delegate void UpdateAppointmentCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -3163,6 +4120,32 @@ namespace SpafooWebService.MakeAppointment {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void GetUsersInRoleCompletedEventHandler(object sender, GetUsersInRoleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetUsersInRoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetUsersInRoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserInfo[])(this.results[0]));
             }
         }
     }
@@ -3791,6 +4774,32 @@ namespace SpafooWebService.MakeAppointment {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void GetAdminNotificationCompletedEventHandler(object sender, GetAdminNotificationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAdminNotificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAdminNotificationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public NotificationInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((NotificationInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
     public delegate void GetUserNotificationCompletedEventHandler(object sender, GetUserNotificationCompletedEventArgs e);
     
     /// <remarks/>
@@ -3811,6 +4820,58 @@ namespace SpafooWebService.MakeAppointment {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void WriteExcelCompletedEventHandler(object sender, WriteExcelCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class WriteExcelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal WriteExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void GetHTMLCompletedEventHandler(object sender, GetHTMLCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetHTMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetHTMLCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
