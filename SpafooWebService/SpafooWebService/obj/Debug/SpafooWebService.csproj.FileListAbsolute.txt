@@ -21,3 +21,11 @@ D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newt
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
+D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb

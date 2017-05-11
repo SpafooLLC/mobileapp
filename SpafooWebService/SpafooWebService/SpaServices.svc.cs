@@ -2288,9 +2288,9 @@ namespace SpafooWebService
                 {
 
                     var ChargePrevious = WebCallMethod.WRequestobj(2, "GetHTML", "{\"ModID\": \"" + ModID + "\"}");                   
-                    var objChargePrevious = JsonConvert.DeserializeObject<string>(ChargePrevious);
+                  //  var objChargePrevious = JsonConvert.DeserializeObject<string>(ChargePrevious);
                   
-                    return objChargePrevious;
+                    return ChargePrevious;
                 }
                 catch (Exception ex)
                 {
