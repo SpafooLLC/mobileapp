@@ -70,6 +70,11 @@ var spafoo;
                 timeString = h + timeString.substr(hourEnd, 3) + ampm;
                 return timeString;
             };
+            SharedHttp.prototype.ishome = function (ishm) {
+                //if (ishm)
+                //{ $('.Ishome').show(); }
+                //else { $('.Ishome').hide(); }
+            };
             SharedHttp.prototype.completeAppService = function (UserId, clientID, authTxnIDField, appointmentIDField, payTxnIDField, amountField, comment, PID, PPID) {
                 var self = this;
                 var UserID = UserId;

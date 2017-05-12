@@ -315,6 +315,7 @@
   .pricelist .plmt .left { width: 250px; display: block; float: left; }
   .pricelist .plmt .right { width: 100%; display: block; text-align: right; color:#112173; font-weight: 600; }
   table.plmt { margin: 0; }
+  .bodyblack { background:#000000 !important; }
   .pricelist .mblr { border-left: 1px solid #dddddd; border-right: 1px solid #dddddd;  }
 <<<<<<< HEAD
  .couptab {}
@@ -488,24 +489,27 @@
 	
 }
 @media (min-width:240px) and (max-width:459px){
+  .main-body { margin:20px 20px 20px 20px; padding:0 0 0 0; background-position:center -245px; } 
   .mnav { width:auto; margin:0 auto; }
   .mnav ul { margin:0 auto; padding:0; text-align:center; }
   .mnav li { text-align:center; width:30%; }
-  .mnav li img { width:100%; }
+  .mnav li img { width:75%; }
   .xs-logo p br { display:none; }
+  .xs-logo img { width:150px; }
+  .header { background-position:center -40px; min-height:210px;} 
+  .mnav li.thr { clear:both; margin:30px 0 0 0; } .mnav li.for {  margin:30px 0 0 85px; }
 	
 }
 @media (min-width:240px) and (max-width:400px){
-  .main-body { margin:20px 20px 40px 20px; padding:0 0 0 0; background-position:center -235px; } 
+  .main-body { margin:20px 20px 20px 20px; padding:0 0 0 0; background-position:center -260px; } 
   .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:20px 0 0 0; } .mnav li.for {  margin:20px 0 0 85px; }
   .xs-logo { padding:20px 0 0 0; } 
-  .header { background-position:center -20px; } 
-  .header { min-height:240px; }
+  .header { min-height:197px; background-position:center -52px; }
 }
 @media (min-width:240px) and (max-width:360px){
   .pricelist .plmt .left { width: 200px; }
   .pricelist .plmt .right { width: 100%; }
-  .main-body { margin:20px 20px 40px 20px; padding:0 0 0 0; background-position:center -245px; } 
+  .main-body { margin:20px 20px 20px 20px; padding:0 0 0 0; background-position:center -245px; } 
   .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:20px 0 0 0; } .mnav li.for {  margin:30px 0 0 85px; }
   .mnav li.sec p { display:block; width:100px; } .mnav li.for p { display:block; width:100px; }
   .xs-logo { margin:0; padding:20px 0 0 0; } 

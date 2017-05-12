@@ -119,7 +119,11 @@
                                 </div>
                             </a>
                             <div class="right">
-                                <h2 style="color:red;">Soonest Appointment</h2>
+                                <h2 style="color:red;">ASAP Request</h2>
+                                <div class="asapad">
+                                    <a class="btnacc" href="#/ProMyAvailability/{{s.addressIDField}}/{{s.clientIDField}}/{{s.providerIDField}}/{{s.appointmentIDField}}/{{s.displayNameField}}/{{s.serviceTime}}">Accept</a>
+                                    <a class="btnden" ng-click="papp.ProviderDenyASAP({{s.appointmentIDField}})">Deny</a>
+                                </div>
                                 <h2>{{s.orderDateField}}</h2>
                                 <p>At: <a href="">{{s.addressField}}</a></p>
                                 <p>With: <a href="">{{s.displayNameField}}</a></p>
@@ -148,36 +152,26 @@
                                         <p>Service(s): {{s.ServiceList}}</p>
                                     </td>
                                     <td class="right">
-
-
                                         <a ng-if="!s.isRate" href="#/AddClientReview/{{s.appointmentIDField}}/{{s.clientIDField}}/{{papp.page}}/null/null/null/null/null/null/null/null">
-
                                             <i class="fa fa-star-o fa-2x"></i>
                                             <p ng-if="!s.isRate">Rate this client</p>
                                         </a>
                                         <a ng-if="s.isRate" href="">
-
                                             <i class="fa fa-star-o fa-2x"></i>
                                             <p ng-if="s.isRate">Already Rated!</p>
                                         </a>
                                     </td>
                                 </tr>
-
                             </table>
                         </div>
-
                     </div>
                 </div>
                 <div style="text-align:center" ng-if="papp.ServiceData.length ==0">
                     <p class="red2">No appointments scheduled at this time </p>
-
                 </div>
-
             </div>
         </div>
         <p>&nbsp;</p>
-
         <script type="text/javascript">app.initialize();</script>
-
     </ion-content>
 </ion-view>

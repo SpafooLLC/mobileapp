@@ -32,8 +32,8 @@
                 $.each(self.ServiceData, function (i, item) {
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
-                        self.ServiceData[i].DayField = '00';
-                        self.ServiceData[i].MonthField = '-- -- --';
+                        self.ServiceData[i].DayField = 'ASAP';
+                       // self.ServiceData[i].MonthField = '-- -- --';
                     } else {
                         var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
                         self.ServiceData[i].orderDateField = orderdt;
@@ -42,7 +42,8 @@
                     }
 
                     if (item.atTimeField === 'undefined' || item.atTimeField === undefined || item.atTimeField === null || item.atTimeField === '') {
-                        self.ServiceData[i].atTimeField = '00:00 --'
+                    //    self.ServiceData[i].atTimeField = '00:00 --'
+                        self.ServiceData[i].atTimeField = 'Request'
                     }
                     //else {
                     //    self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
@@ -112,12 +113,16 @@
             var confirmations = confirm("Are you sure to deny this appointment ? ");
             if (confirmations) {
                 var self = this;
-             //   self.CustomerHttp.get("/RemoveApp/" + data).then(function (res: any) { self.getProviderSchedular(self.UserID) });
                 self.CustomerHttp.get("/UpdateAppStatus/" + data + "/6").then(function (res) { self.getProviderSchedular(self.UserID); });
-
             }
         }
-
+        ProviderDenyASAP(data: any) {
+            var confirmations = confirm("Are you sure to deny this appointment ? ");
+            if (confirmations) {
+                var self = this;             
+                self.CustomerHttp.get("/ProviderDenyASAP/" + data ).then(function (res) { self.getProviderSchedular(self.UserID); });
+            }
+        }
         //UnSeenStatus(AppointmentID: any) {
         //    var self = this;
         //    self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {

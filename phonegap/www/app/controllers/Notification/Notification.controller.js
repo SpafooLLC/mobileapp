@@ -114,6 +114,11 @@ var NotificationController;
                                 self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " Denied the Appointment request, ";
                             }
                             break;
+                        case 19:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + "  ' has denied your ASAP appointment request.";
+                            }
+                            break;
                     }
                 }
             }, function (error) {
