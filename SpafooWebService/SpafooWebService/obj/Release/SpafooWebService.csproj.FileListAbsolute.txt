@@ -18,3 +18,13 @@ D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService
 D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.XmlSerializers.dll
 D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
 D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.XmlSerializers.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.csprojResolveAssemblyReference.cache
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.pdb
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.XmlSerializers.dll

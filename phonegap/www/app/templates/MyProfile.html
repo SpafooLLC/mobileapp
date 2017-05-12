@@ -78,7 +78,7 @@
                             <span>{{sr.datedField}}</span>
 
                             <label ui-sref="MySchedule" ng-bind-html="sr.typeNameFields"></label>
-                            <div ng-if="sr.notificationTypeIDField==18">
+                            <div ng-if="sr.notificationTypeIDField==18 || sr.notificationTypeIDField==19">
                                 <a ng-click="mp.gotoOtherProvider({{sr.relatedEntityIDField}})">
                                     Available Providers
                                 </a>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <p ng-if="mp.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at SpaFoo! And, if you ever miss a notification, you can head back here to check it out.</p>
+            <p ng-if="mp.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at Spafoo! And, if you ever miss a notification, you can head back here to check it out.</p>
         </div>
 
 

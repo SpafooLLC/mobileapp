@@ -5,14 +5,12 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; dates: Date; picId: string; picPath: string; AddressDetailRcd :string,
+        uuid: string; dates: Date; picId: string; picPath: string; AddressDetailRcd: string,
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; NotificationList: any;
         Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; HideApp: boolean;
         getLoginStatus(): any;
-
         getAddressDetailRcd(): any;
         setAddressDetailRcd(value: any): any;
-
         setLoginStatus(value: any): any;
         getuserType(): any;
         setuserType(value: any): any;
@@ -39,8 +37,9 @@
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
         HideApp4Me(AppID: any, UserType: any): ng.IPromise<string>;
-        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID:any,PPID:any): any;
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID: any, PPID: any): any;
         UnSeenStatus(AppointmentID: any): void;
+        ishome(Ispg: boolean): void;
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -107,7 +106,7 @@
             this.$state.go(href);
         }
         getFormatedTime(timeString: any): any {
-          
+
             var hourEnd = timeString.indexOf(":");
             var H = +timeString.substr(0, hourEnd);
             var h = H % 12 || 12;
@@ -115,8 +114,13 @@
             timeString = h + timeString.substr(hourEnd, 3) + ampm;
             return timeString;
         }
-
-        completeAppService(UserId: any, clientID: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any,PID:any,PPID:any) {
+        ishome(ishm: boolean): void {
+            //if (ishm)
+            //{ $('.Ishome').show(); }
+            //else { $('.Ishome').hide(); }
+ 
+        }
+        completeAppService(UserId: any, clientID: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID: any, PPID: any) {
 
             var self = this;
 
@@ -142,7 +146,7 @@
                 PaymentTxnID: payTxnIDField,
                 Amount: amountField,
                 PID: PID,
-                PPID:PPID
+                PPID: PPID
             };
             self.CustomerHttp.post(data, '/AppointmentCompleted').then(function (res: any) {
                 self.message = 'Appointment Completed';
@@ -212,7 +216,7 @@
             }
             return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
         }
-       
+
         getProfilePics(customerID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
             if (customerID === null || isNaN(customerID)) {
@@ -273,10 +277,10 @@
             return deferred.promise;
         }
 
-        HideApp4Me(AppID: any, UserType: any):  ng.IPromise<string>  {
+        HideApp4Me(AppID: any, UserType: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
             this.CustomerHttp.get('/HideApp4Me/' + AppID + '/' + UserType).then(function (response: any) {
-                this.HideApp =response; 
+                this.HideApp = response;
 
                 deferred.resolve(this.HideApp);
             }, function (error) { });
@@ -299,12 +303,12 @@
             var self = this;
             this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response: any) {
                 var e = response.GetAppLocationResult
-                
+
                 this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
                 self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
                 //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
-               //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
-           //   alert(this.GetAddressRcd);
+                //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
+                //   alert(this.GetAddressRcd);
                 deferred.resolve(this.GetAddressRcd);
             }, function (error) { });
             return deferred.promise;
@@ -357,15 +361,15 @@
             return deferred.promise;
         }
 
-        UnSeenStatus(AppointmentID: any) :void{
+        UnSeenStatus(AppointmentID: any): void {
             var self = this;
             self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
-               
+
 
             }, function (error) {
             });
         }
-       
+
     }
     angular
         .module('spafoo.httpsharedservice', [])

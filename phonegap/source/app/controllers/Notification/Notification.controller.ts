@@ -5,7 +5,7 @@
         NotificaitonData: any;
         customerID: number;
         NotificationCount: number;
-        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope' ];
+        static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope'];
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -23,9 +23,9 @@
             this.getUserNotificationInfo();
 
         }
-        gotoOtherProvider(AppointmentID:any)
-        {var self = this;
-          //  alert(AppointmentID);
+        gotoOtherProvider(AppointmentID: any) {
+            var self = this;
+            //  alert(AppointmentID);
             self.CustomerHttp.get("/GetServiceFrmNotification/" + AppointmentID).then(function (res) {
                 console.log(res);
                 self.$window.localStorage.setItem('ServiceIDs', res.GetServiceFrmNotificationResult);
@@ -43,8 +43,8 @@
             self.CustomerHttp.get('/GetMyNotification/' + self.customerID).then(function (response: any) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
-                self.$rootScope.NotifiCount = self.NotificaitonData.length; 
-              //  alert()
+                self.$rootScope.NotifiCount = self.NotificaitonData.length;
+                //  alert()
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
 
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy")
@@ -81,11 +81,11 @@
                             break;
 
                         case 11:
-                            if (role == 'C') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize."  }
+                            if (role == 'C') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize." }
                             break;
                         case 10:
-                            if (role == 'P') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has requested an ASAP appointment with you! " } 
-                          //  else{ self.NotificaitonData[i].typeNameFields = "10 Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField; }
+                            if (role == 'P') { self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has requested an ASAP appointment with you! " }
+                            //  else{ self.NotificaitonData[i].typeNameFields = "10 Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField; }
                             break;
                         case 13:
                             if (role == 'P') {
@@ -117,11 +117,18 @@
                             break;
                         case 18:
                             if (role == 'C') {
-                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " Denied the Appointment request, "  ;
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " Denied the Appointment request, ";
                             }
                             break;
+                        case 19:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + "  ' has denied your ASAP appointment request.";
+                            }
+                            break;
+
+
                     }
- 
+
                 }
 
             }, function (error) {

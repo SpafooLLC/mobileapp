@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="AnetApi/xml/v1/schema/AnetApiSchema.xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="AnetApi/xml/v1/schema/AnetApiSchema.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
       <s:import namespace="AnetApi/xml/v1/schema/AnetApiSchema.xsd" />
       <s:element name="AddAppointment">
         <s:complexType>
@@ -64,6 +65,20 @@
           <s:element minOccurs="1" maxOccurs="1" name="AppointmentID" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ProviderDenyASAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProviderDenyASAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderDenyASAPResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdateAppStatus">
         <s:complexType>
           <s:sequence>
@@ -73,7 +88,11 @@
         </s:complexType>
       </s:element>
       <s:element name="UpdateAppStatusResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateAppStatusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="UpdateAppSeenStatus">
         <s:complexType>
@@ -222,6 +241,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListServicesByAppID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListServicesByAppIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListServicesByAppIDResult" type="tns:ArrayOfServiceInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdateAppointment">
         <s:complexType>
           <s:sequence>
@@ -320,6 +353,114 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUsersInRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RN" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CP" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RPP" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersInRoleResult" type="tns:ArrayOfUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserInfo" nillable="true" type="tns:UserInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntityInfo">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="AffiliateID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsSuperUser" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastIPAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Membership" type="tns:UserMembership" />
+              <s:element minOccurs="1" maxOccurs="1" name="PasswordResetToken" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="PasswordResetExpiration" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PortalID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Profile" type="tns:UserProfile" />
+              <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfString" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VanityUrl" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseEntityInfo" abstract="true" />
+      <s:complexType name="ProfilePropertyDefinition">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntityInfo">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="length" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="propertycategory" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="propertyname" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserMembership">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Approved" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOnLine" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastActivityDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastLockoutDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastLoginDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPasswordChangeDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LockedOut" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordAnswer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordConfirm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordQuestion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatePassword" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Cell" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Photo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreferredLocale" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProfileProperties" type="tns:ArrayOfProfilePropertyDefinition" />
+          <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Biography" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProfilePropertyDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProfilePropertyDefinition" nillable="true" type="tns:ProfilePropertyDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AddRating">
         <s:complexType>
           <s:sequence>
@@ -388,7 +529,7 @@
       <s:element name="ChargeCardResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -405,7 +546,7 @@
       <s:element name="AuthCardResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -438,7 +579,7 @@
       <s:element name="ChargeProfileResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -470,7 +611,7 @@
       <s:element name="AuthProfileResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -501,7 +642,7 @@
       <s:element name="ChargePreviousAuthResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -530,7 +671,7 @@
       <s:element name="RefundCardResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -568,7 +709,7 @@
       <s:element name="CreateCustomerProfileResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:CreateCustomerProfileResult" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:CreateCustomerProfileResult" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -616,7 +757,7 @@
       <s:element name="CreateCustomerPaymentProfileResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:CreateCustomerPaymentProfileResult" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:CreateCustomerPaymentProfileResult" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -653,7 +794,7 @@
       <s:element name="GetCustomerProfileResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -682,7 +823,7 @@
       <s:element name="DeleteCustomerPayProfileResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" ref="s1:ErrorResponse" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ErrorResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -817,6 +958,21 @@
           <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetAdminNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PN" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RPP" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdminNotificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdminNotificationResult" type="tns:ArrayOfNotificationInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetUserNotification">
         <s:complexType />
       </s:element>
@@ -827,28 +983,65 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="WriteExcel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteExcelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WriteExcelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHTML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHTMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHTMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="int" type="s:int" />
       <s:element name="ClientLocation" nillable="true" type="tns:ClientLocation" />
       <s:element name="AppointmentInfo" nillable="true" type="tns:AppointmentInfo" />
       <s:element name="ArrayOfAppointmentInfo" nillable="true" type="tns:ArrayOfAppointmentInfo" />
+      <s:element name="ArrayOfServiceInfo" nillable="true" type="tns:ArrayOfServiceInfo" />
       <s:element name="boolean" type="s:boolean" />
+      <s:element name="ArrayOfUserInfo" nillable="true" type="tns:ArrayOfUserInfo" />
       <s:element name="ArrayOfRatingInfo" nillable="true" type="tns:ArrayOfRatingInfo" />
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="ArrayOfAppointmentPhotoInfo" nillable="true" type="tns:ArrayOfAppointmentPhotoInfo" />
       <s:element name="ArrayOfNotificationInfo" nillable="true" type="tns:ArrayOfNotificationInfo" />
     </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
-      <s:element name="ErrorResponse" type="s1:ANetApiResponse" />
+      <s:element name="ErrorResponse" type="s2:ANetApiResponse" />
       <s:complexType name="ANetApiResponse">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="refId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="messages" type="s1:messagesType" />
+          <s:element minOccurs="0" maxOccurs="1" name="messages" type="s2:messagesType" />
           <s:element minOccurs="0" maxOccurs="1" name="sessionToken" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="messagesType">
         <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="resultCode" type="s1:messageTypeEnum" />
+          <s:element minOccurs="1" maxOccurs="1" name="resultCode" type="s2:messageTypeEnum" />
           <s:element minOccurs="0" maxOccurs="unbounded" name="message">
             <s:complexType>
               <s:sequence>
@@ -868,12 +1061,12 @@
       <s:element name="CreateCustomerProfileResult">
         <s:complexType>
           <s:complexContent mixed="false">
-            <s:extension base="s1:ANetApiResponse">
+            <s:extension base="s2:ANetApiResponse">
               <s:sequence>
                 <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
-                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileIdList" type="s1:ArrayOfString" />
-                <s:element minOccurs="0" maxOccurs="1" name="customerShippingAddressIdList" type="s1:ArrayOfString" />
-                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponseList" type="s1:ArrayOfString1" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileIdList" type="s2:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerShippingAddressIdList" type="s2:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponseList" type="s2:ArrayOfString1" />
               </s:sequence>
             </s:extension>
           </s:complexContent>
@@ -892,7 +1085,7 @@
       <s:element name="CreateCustomerPaymentProfileResult">
         <s:complexType>
           <s:complexContent mixed="false">
-            <s:extension base="s1:ANetApiResponse">
+            <s:extension base="s2:ANetApiResponse">
               <s:sequence>
                 <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
                 <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileId" type="s:string" />
@@ -905,12 +1098,12 @@
       <s:element name="createCustomerProfileResponse">
         <s:complexType>
           <s:complexContent mixed="false">
-            <s:extension base="s1:ANetApiResponse">
+            <s:extension base="s2:ANetApiResponse">
               <s:sequence>
                 <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
-                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileIdList" type="s1:ArrayOfString" />
-                <s:element minOccurs="0" maxOccurs="1" name="customerShippingAddressIdList" type="s1:ArrayOfString" />
-                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponseList" type="s1:ArrayOfString1" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileIdList" type="s2:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="customerShippingAddressIdList" type="s2:ArrayOfString" />
+                <s:element minOccurs="0" maxOccurs="1" name="validationDirectResponseList" type="s2:ArrayOfString1" />
               </s:sequence>
             </s:extension>
           </s:complexContent>
@@ -919,7 +1112,7 @@
       <s:element name="createCustomerPaymentProfileResponse">
         <s:complexType>
           <s:complexContent mixed="false">
-            <s:extension base="s1:ANetApiResponse">
+            <s:extension base="s2:ANetApiResponse">
               <s:sequence>
                 <s:element minOccurs="0" maxOccurs="1" name="customerProfileId" type="s:string" />
                 <s:element minOccurs="0" maxOccurs="1" name="customerPaymentProfileId" type="s:string" />
@@ -948,6 +1141,12 @@
   </wsdl:message>
   <wsdl:message name="GetAppLocationSoapOut">
     <wsdl:part name="parameters" element="tns:GetAppLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProviderDenyASAPSoapIn">
+    <wsdl:part name="parameters" element="tns:ProviderDenyASAP" />
+  </wsdl:message>
+  <wsdl:message name="ProviderDenyASAPSoapOut">
+    <wsdl:part name="parameters" element="tns:ProviderDenyASAPResponse" />
   </wsdl:message>
   <wsdl:message name="UpdateAppStatusSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateAppStatus" />
@@ -991,6 +1190,12 @@
   <wsdl:message name="ListAppointmentByClientSoapOut">
     <wsdl:part name="parameters" element="tns:ListAppointmentByClientResponse" />
   </wsdl:message>
+  <wsdl:message name="ListServicesByAppIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ListServicesByAppID" />
+  </wsdl:message>
+  <wsdl:message name="ListServicesByAppIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ListServicesByAppIDResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppointmentSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateAppointment" />
   </wsdl:message>
@@ -1032,6 +1237,12 @@
   </wsdl:message>
   <wsdl:message name="CanSetAvailabilitySoapOut">
     <wsdl:part name="parameters" element="tns:CanSetAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersInRole" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersInRoleResponse" />
   </wsdl:message>
   <wsdl:message name="AddRatingSoapIn">
     <wsdl:part name="parameters" element="tns:AddRating" />
@@ -1207,11 +1418,29 @@
   <wsdl:message name="GetMyNotificationSoapOut">
     <wsdl:part name="parameters" element="tns:GetMyNotificationResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAdminNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdminNotification" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdminNotificationResponse" />
+  </wsdl:message>
   <wsdl:message name="GetUserNotificationSoapIn">
     <wsdl:part name="parameters" element="tns:GetUserNotification" />
   </wsdl:message>
   <wsdl:message name="GetUserNotificationSoapOut">
     <wsdl:part name="parameters" element="tns:GetUserNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:WriteExcel" />
+  </wsdl:message>
+  <wsdl:message name="WriteExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:WriteExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHTML" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHTMLResponse" />
   </wsdl:message>
   <wsdl:message name="AddAppointmentHttpGetIn">
     <wsdl:part name="SID" type="s:string" />
@@ -1240,11 +1469,19 @@
   <wsdl:message name="GetAppLocationHttpGetOut">
     <wsdl:part name="Body" element="tns:ClientLocation" />
   </wsdl:message>
+  <wsdl:message name="ProviderDenyASAPHttpGetIn">
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProviderDenyASAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppStatusHttpGetIn">
     <wsdl:part name="AppID" type="s:string" />
     <wsdl:part name="Status" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="UpdateAppStatusHttpGetOut" />
+  <wsdl:message name="UpdateAppStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppSeenStatusHttpGetIn">
     <wsdl:part name="AppID" type="s:string" />
   </wsdl:message>
@@ -1298,6 +1535,12 @@
   <wsdl:message name="ListAppointmentByClientHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
   </wsdl:message>
+  <wsdl:message name="ListServicesByAppIDHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListServicesByAppIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceInfo" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppointmentHttpGetIn">
     <wsdl:part name="ID" type="s:string" />
     <wsdl:part name="C" type="s:string" />
@@ -1346,6 +1589,14 @@
   <wsdl:message name="CanSetAvailabilityHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
+  <wsdl:message name="GetUsersInRoleHttpGetIn">
+    <wsdl:part name="RN" type="s:string" />
+    <wsdl:part name="CP" type="s:string" />
+    <wsdl:part name="RPP" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInRoleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserInfo" />
+  </wsdl:message>
   <wsdl:message name="AddRatingHttpGetIn">
     <wsdl:part name="RatingByID" type="s:string" />
     <wsdl:part name="RatingToID" type="s:string" />
@@ -1374,7 +1625,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ChargeCardHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="AuthCardHttpGetIn">
     <wsdl:part name="CCNumber" type="s:string" />
@@ -1383,7 +1634,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AuthCardHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="AuthCardJSONHttpGetIn">
     <wsdl:part name="CCNumber" type="s:string" />
@@ -1400,7 +1651,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ChargeProfileHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="ChargeProfileJSONHttpGetIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1416,7 +1667,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AuthProfileHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="AuthProfileJSONHttpGetIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1431,7 +1682,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ChargePreviousAuthHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="ChargePreviousAuthJSONHttpGetIn">
     <wsdl:part name="Txn" type="s:string" />
@@ -1444,7 +1695,7 @@
     <wsdl:part name="AID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="RefundCardHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="RefundCardJSONHttpGetIn">
     <wsdl:part name="AID" type="s:string" />
@@ -1466,7 +1717,7 @@
     <wsdl:part name="phone" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerProfileHttpGetOut">
-    <wsdl:part name="Body" element="s1:createCustomerProfileResponse" />
+    <wsdl:part name="Body" element="s2:createCustomerProfileResponse" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerProfileJSONHttpGetIn">
     <wsdl:part name="UID" type="s:string" />
@@ -1498,7 +1749,7 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerPaymentProfileHttpGetOut">
-    <wsdl:part name="Body" element="s1:createCustomerPaymentProfileResponse" />
+    <wsdl:part name="Body" element="s2:createCustomerPaymentProfileResponse" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerPaymentProfileJSONHttpGetIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1519,7 +1770,7 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetCustomerProfileHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="GetCustomerProfileJSONHttpGetIn">
     <wsdl:part name="UID" type="s:string" />
@@ -1532,7 +1783,7 @@
     <wsdl:part name="PPID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteCustomerPayProfileHttpGetOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="DeleteCustomerPayProfileJSONHttpGetIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1578,9 +1829,28 @@
   <wsdl:message name="GetMyNotificationHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfNotificationInfo" />
   </wsdl:message>
+  <wsdl:message name="GetAdminNotificationHttpGetIn">
+    <wsdl:part name="PN" type="s:string" />
+    <wsdl:part name="RPP" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminNotificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNotificationInfo" />
+  </wsdl:message>
   <wsdl:message name="GetUserNotificationHttpGetIn" />
   <wsdl:message name="GetUserNotificationHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WriteExcelHttpGetIn">
+    <wsdl:part name="RN" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteExcelHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLHttpGetIn">
+    <wsdl:part name="ModID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="AddAppointmentHttpPostIn">
     <wsdl:part name="SID" type="s:string" />
@@ -1609,11 +1879,19 @@
   <wsdl:message name="GetAppLocationHttpPostOut">
     <wsdl:part name="Body" element="tns:ClientLocation" />
   </wsdl:message>
+  <wsdl:message name="ProviderDenyASAPHttpPostIn">
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProviderDenyASAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppStatusHttpPostIn">
     <wsdl:part name="AppID" type="s:string" />
     <wsdl:part name="Status" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="UpdateAppStatusHttpPostOut" />
+  <wsdl:message name="UpdateAppStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppSeenStatusHttpPostIn">
     <wsdl:part name="AppID" type="s:string" />
   </wsdl:message>
@@ -1667,6 +1945,12 @@
   <wsdl:message name="ListAppointmentByClientHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
   </wsdl:message>
+  <wsdl:message name="ListServicesByAppIDHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListServicesByAppIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceInfo" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppointmentHttpPostIn">
     <wsdl:part name="ID" type="s:string" />
     <wsdl:part name="C" type="s:string" />
@@ -1715,6 +1999,14 @@
   <wsdl:message name="CanSetAvailabilityHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
+  <wsdl:message name="GetUsersInRoleHttpPostIn">
+    <wsdl:part name="RN" type="s:string" />
+    <wsdl:part name="CP" type="s:string" />
+    <wsdl:part name="RPP" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInRoleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserInfo" />
+  </wsdl:message>
   <wsdl:message name="AddRatingHttpPostIn">
     <wsdl:part name="RatingByID" type="s:string" />
     <wsdl:part name="RatingToID" type="s:string" />
@@ -1743,7 +2035,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ChargeCardHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="AuthCardHttpPostIn">
     <wsdl:part name="CCNumber" type="s:string" />
@@ -1752,7 +2044,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AuthCardHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="AuthCardJSONHttpPostIn">
     <wsdl:part name="CCNumber" type="s:string" />
@@ -1769,7 +2061,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ChargeProfileHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="ChargeProfileJSONHttpPostIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1785,7 +2077,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AuthProfileHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="AuthProfileJSONHttpPostIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1800,7 +2092,7 @@
     <wsdl:part name="amount" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ChargePreviousAuthHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="ChargePreviousAuthJSONHttpPostIn">
     <wsdl:part name="Txn" type="s:string" />
@@ -1813,7 +2105,7 @@
     <wsdl:part name="AID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="RefundCardHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="RefundCardJSONHttpPostIn">
     <wsdl:part name="AID" type="s:string" />
@@ -1835,7 +2127,7 @@
     <wsdl:part name="phone" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerProfileHttpPostOut">
-    <wsdl:part name="Body" element="s1:createCustomerProfileResponse" />
+    <wsdl:part name="Body" element="s2:createCustomerProfileResponse" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerProfileJSONHttpPostIn">
     <wsdl:part name="UID" type="s:string" />
@@ -1867,7 +2159,7 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerPaymentProfileHttpPostOut">
-    <wsdl:part name="Body" element="s1:createCustomerPaymentProfileResponse" />
+    <wsdl:part name="Body" element="s2:createCustomerPaymentProfileResponse" />
   </wsdl:message>
   <wsdl:message name="CreateCustomerPaymentProfileJSONHttpPostIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1888,7 +2180,7 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetCustomerProfileHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="GetCustomerProfileJSONHttpPostIn">
     <wsdl:part name="UID" type="s:string" />
@@ -1901,7 +2193,7 @@
     <wsdl:part name="PPID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteCustomerPayProfileHttpPostOut">
-    <wsdl:part name="Body" element="s1:ErrorResponse" />
+    <wsdl:part name="Body" element="s2:ErrorResponse" />
   </wsdl:message>
   <wsdl:message name="DeleteCustomerPayProfileJSONHttpPostIn">
     <wsdl:part name="PID" type="s:string" />
@@ -1947,9 +2239,28 @@
   <wsdl:message name="GetMyNotificationHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfNotificationInfo" />
   </wsdl:message>
+  <wsdl:message name="GetAdminNotificationHttpPostIn">
+    <wsdl:part name="PN" type="s:string" />
+    <wsdl:part name="RPP" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminNotificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNotificationInfo" />
+  </wsdl:message>
   <wsdl:message name="GetUserNotificationHttpPostIn" />
   <wsdl:message name="GetUserNotificationHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WriteExcelHttpPostIn">
+    <wsdl:part name="RN" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteExcelHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLHttpPostIn">
+    <wsdl:part name="ModID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:portType name="rhSoap">
     <wsdl:operation name="AddAppointment">
@@ -1963,6 +2274,10 @@
     <wsdl:operation name="GetAppLocation">
       <wsdl:input message="tns:GetAppLocationSoapIn" />
       <wsdl:output message="tns:GetAppLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <wsdl:input message="tns:ProviderDenyASAPSoapIn" />
+      <wsdl:output message="tns:ProviderDenyASAPSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateAppStatus">
       <wsdl:input message="tns:UpdateAppStatusSoapIn" />
@@ -1992,6 +2307,10 @@
       <wsdl:input message="tns:ListAppointmentByClientSoapIn" />
       <wsdl:output message="tns:ListAppointmentByClientSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <wsdl:input message="tns:ListServicesByAppIDSoapIn" />
+      <wsdl:output message="tns:ListServicesByAppIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppointment">
       <wsdl:input message="tns:UpdateAppointmentSoapIn" />
       <wsdl:output message="tns:UpdateAppointmentSoapOut" />
@@ -2019,6 +2338,10 @@
     <wsdl:operation name="CanSetAvailability">
       <wsdl:input message="tns:CanSetAvailabilitySoapIn" />
       <wsdl:output message="tns:CanSetAvailabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <wsdl:input message="tns:GetUsersInRoleSoapIn" />
+      <wsdl:output message="tns:GetUsersInRoleSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddRating">
       <wsdl:input message="tns:AddRatingSoapIn" />
@@ -2136,9 +2459,21 @@
       <wsdl:input message="tns:GetMyNotificationSoapIn" />
       <wsdl:output message="tns:GetMyNotificationSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <wsdl:input message="tns:GetAdminNotificationSoapIn" />
+      <wsdl:output message="tns:GetAdminNotificationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <wsdl:input message="tns:GetUserNotificationSoapIn" />
       <wsdl:output message="tns:GetUserNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <wsdl:input message="tns:WriteExcelSoapIn" />
+      <wsdl:output message="tns:WriteExcelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <wsdl:input message="tns:GetHTMLSoapIn" />
+      <wsdl:output message="tns:GetHTMLSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="rhHttpGet">
@@ -2153,6 +2488,10 @@
     <wsdl:operation name="GetAppLocation">
       <wsdl:input message="tns:GetAppLocationHttpGetIn" />
       <wsdl:output message="tns:GetAppLocationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <wsdl:input message="tns:ProviderDenyASAPHttpGetIn" />
+      <wsdl:output message="tns:ProviderDenyASAPHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateAppStatus">
       <wsdl:input message="tns:UpdateAppStatusHttpGetIn" />
@@ -2182,6 +2521,10 @@
       <wsdl:input message="tns:ListAppointmentByClientHttpGetIn" />
       <wsdl:output message="tns:ListAppointmentByClientHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <wsdl:input message="tns:ListServicesByAppIDHttpGetIn" />
+      <wsdl:output message="tns:ListServicesByAppIDHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppointment">
       <wsdl:input message="tns:UpdateAppointmentHttpGetIn" />
       <wsdl:output message="tns:UpdateAppointmentHttpGetOut" />
@@ -2209,6 +2552,10 @@
     <wsdl:operation name="CanSetAvailability">
       <wsdl:input message="tns:CanSetAvailabilityHttpGetIn" />
       <wsdl:output message="tns:CanSetAvailabilityHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <wsdl:input message="tns:GetUsersInRoleHttpGetIn" />
+      <wsdl:output message="tns:GetUsersInRoleHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="AddRating">
       <wsdl:input message="tns:AddRatingHttpGetIn" />
@@ -2326,9 +2673,21 @@
       <wsdl:input message="tns:GetMyNotificationHttpGetIn" />
       <wsdl:output message="tns:GetMyNotificationHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <wsdl:input message="tns:GetAdminNotificationHttpGetIn" />
+      <wsdl:output message="tns:GetAdminNotificationHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <wsdl:input message="tns:GetUserNotificationHttpGetIn" />
       <wsdl:output message="tns:GetUserNotificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <wsdl:input message="tns:WriteExcelHttpGetIn" />
+      <wsdl:output message="tns:WriteExcelHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <wsdl:input message="tns:GetHTMLHttpGetIn" />
+      <wsdl:output message="tns:GetHTMLHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="rhHttpPost">
@@ -2343,6 +2702,10 @@
     <wsdl:operation name="GetAppLocation">
       <wsdl:input message="tns:GetAppLocationHttpPostIn" />
       <wsdl:output message="tns:GetAppLocationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <wsdl:input message="tns:ProviderDenyASAPHttpPostIn" />
+      <wsdl:output message="tns:ProviderDenyASAPHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateAppStatus">
       <wsdl:input message="tns:UpdateAppStatusHttpPostIn" />
@@ -2372,6 +2735,10 @@
       <wsdl:input message="tns:ListAppointmentByClientHttpPostIn" />
       <wsdl:output message="tns:ListAppointmentByClientHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <wsdl:input message="tns:ListServicesByAppIDHttpPostIn" />
+      <wsdl:output message="tns:ListServicesByAppIDHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppointment">
       <wsdl:input message="tns:UpdateAppointmentHttpPostIn" />
       <wsdl:output message="tns:UpdateAppointmentHttpPostOut" />
@@ -2399,6 +2766,10 @@
     <wsdl:operation name="CanSetAvailability">
       <wsdl:input message="tns:CanSetAvailabilityHttpPostIn" />
       <wsdl:output message="tns:CanSetAvailabilityHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <wsdl:input message="tns:GetUsersInRoleHttpPostIn" />
+      <wsdl:output message="tns:GetUsersInRoleHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="AddRating">
       <wsdl:input message="tns:AddRatingHttpPostIn" />
@@ -2516,9 +2887,21 @@
       <wsdl:input message="tns:GetMyNotificationHttpPostIn" />
       <wsdl:output message="tns:GetMyNotificationHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <wsdl:input message="tns:GetAdminNotificationHttpPostIn" />
+      <wsdl:output message="tns:GetAdminNotificationHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <wsdl:input message="tns:GetUserNotificationHttpPostIn" />
       <wsdl:output message="tns:GetUserNotificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <wsdl:input message="tns:WriteExcelHttpPostIn" />
+      <wsdl:output message="tns:WriteExcelHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <wsdl:input message="tns:GetHTMLHttpPostIn" />
+      <wsdl:output message="tns:GetHTMLHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="rhSoap" type="tns:rhSoap">
@@ -2543,6 +2926,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAppLocation">
       <soap:operation soapAction="http://tempuri.org/GetAppLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <soap:operation soapAction="http://tempuri.org/ProviderDenyASAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2613,6 +3005,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <soap:operation soapAction="http://tempuri.org/ListServicesByAppID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppointment">
       <soap:operation soapAction="http://tempuri.org/UpdateAppointment" style="document" />
       <wsdl:input>
@@ -2669,6 +3070,15 @@
     </wsdl:operation>
     <wsdl:operation name="CanSetAvailability">
       <soap:operation soapAction="http://tempuri.org/CanSetAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <soap:operation soapAction="http://tempuri.org/GetUsersInRole" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2937,8 +3347,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <soap:operation soapAction="http://tempuri.org/GetAdminNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <soap:operation soapAction="http://tempuri.org/GetUserNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <soap:operation soapAction="http://tempuri.org/WriteExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <soap:operation soapAction="http://tempuri.org/GetHTML" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2969,6 +3406,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAppLocation">
       <soap12:operation soapAction="http://tempuri.org/GetAppLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <soap12:operation soapAction="http://tempuri.org/ProviderDenyASAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3039,6 +3485,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <soap12:operation soapAction="http://tempuri.org/ListServicesByAppID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppointment">
       <soap12:operation soapAction="http://tempuri.org/UpdateAppointment" style="document" />
       <wsdl:input>
@@ -3095,6 +3550,15 @@
     </wsdl:operation>
     <wsdl:operation name="CanSetAvailability">
       <soap12:operation soapAction="http://tempuri.org/CanSetAvailability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersInRole" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3363,8 +3827,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <soap12:operation soapAction="http://tempuri.org/GetAdminNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <soap12:operation soapAction="http://tempuri.org/GetUserNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <soap12:operation soapAction="http://tempuri.org/WriteExcel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <soap12:operation soapAction="http://tempuri.org/GetHTML" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3402,12 +3893,23 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <http:operation location="/ProviderDenyASAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppStatus">
       <http:operation location="/UpdateAppStatus" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
-      <wsdl:output />
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <http:operation location="/UpdateAppSeenStatus" />
@@ -3454,6 +3956,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <http:operation location="/ListAppointmentByClient" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <http:operation location="/ListServicesByAppID" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -3511,6 +4022,15 @@
     </wsdl:operation>
     <wsdl:operation name="CanSetAvailability">
       <http:operation location="/CanSetAvailability" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <http:operation location="/GetUsersInRole" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -3767,8 +4287,35 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <http:operation location="/GetAdminNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <http:operation location="/GetUserNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <http:operation location="/WriteExcel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <http:operation location="/GetHTML" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -3806,12 +4353,23 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ProviderDenyASAP">
+      <http:operation location="/ProviderDenyASAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppStatus">
       <http:operation location="/UpdateAppStatus" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
-      <wsdl:output />
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <http:operation location="/UpdateAppSeenStatus" />
@@ -3858,6 +4416,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <http:operation location="/ListAppointmentByClient" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListServicesByAppID">
+      <http:operation location="/ListServicesByAppID" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -3915,6 +4482,15 @@
     </wsdl:operation>
     <wsdl:operation name="CanSetAvailability">
       <http:operation location="/CanSetAvailability" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInRole">
+      <http:operation location="/GetUsersInRole" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -4171,8 +4747,35 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAdminNotification">
+      <http:operation location="/GetAdminNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserNotification">
       <http:operation location="/GetUserNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteExcel">
+      <http:operation location="/WriteExcel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHTML">
+      <http:operation location="/GetHTML" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

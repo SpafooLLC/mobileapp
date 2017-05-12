@@ -13,6 +13,7 @@ var loginController;
             this.toaster = toaster;
             this.$rootScope = $rootScope;
             this.SharedHttp = SharedHttp;
+            SharedHttp.ishome(true);
         }
         loginController.prototype.doLogin = function (username, password) {
             //alert(this.$window.localStorage.getItem('DeviceToken'));

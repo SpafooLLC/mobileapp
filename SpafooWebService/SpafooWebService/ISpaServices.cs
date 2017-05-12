@@ -38,6 +38,10 @@ namespace SpafooWebService
         ReturnValues CreateCustomerProfile(CreditCardInfo info);
 
         [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "CreateCustomerRegistrationProfile")]
+        ReturnValues CreateCustomerRegistrationProfile(CreditCardInfo info);
+
+        [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetUserInfo/{userID}")]
         ServiceDashBoard.UserInfo GetUserInfo(string userID);
         [OperationContract]
@@ -53,6 +57,10 @@ namespace SpafooWebService
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "UpdateCouponCount/{Code}")]
         void UpdateCouponCount(string Code);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetHTML/{ModID}")]
+        string GetHTML(string ModID);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetServiceList/{ParentID}")]
@@ -230,6 +238,10 @@ namespace SpafooWebService
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "UpdateAppStatus/{AppID}/{Status}")]
         ReturnValues UpdateAppStatus(string AppID, string Status);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ProviderDenyASAP/{AppID}")]
+        ReturnValues ProviderDenyASAP(string AppID);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "RemoveApp/{AppID}")]

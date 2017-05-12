@@ -25,11 +25,12 @@
 
                             <label ng-if="getRole=='P'" ui-sref="ProAppointments" ng-bind-html="sr.typeNameFields"></label>
                             <label ng-if="getRole!='P'" ui-sref="MySchedule" ng-bind-html="sr.typeNameFields"></label>
-                            <div ng-if="sr.notificationTypeIDField==18">
+                            <div ng-if="sr.notificationTypeIDField==18 || sr.notificationTypeIDField==19">
                                 <a ng-click="noti.gotoOtherProvider({{sr.relatedEntityIDField}})">
                                     See Other Available Providers
                                 </a>
                             </div>
+
                                 <a ng-click="noti.RemoveNotification({{sr.idField}})" class="redclose">
                                     <i class="fa fa-times-circle" aria-hidden="true"></i>
                                 </a>
@@ -41,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <p ng-if="noti.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at SpaFoo! And, if you ever miss a notification, you can head back here to check it out.</p>
+            <p ng-if="noti.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at Spafoo! And, if you ever miss a notification, you can head back here to check it out.</p>
         </div>
 
 

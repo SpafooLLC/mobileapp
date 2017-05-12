@@ -9,7 +9,9 @@
         </div>
         <div class="inbody-simple">
             <div class="myschedule">
-                <div class="trowsp" ng-repeat="s in ms.ServiceData" ng-if="s.statusField!=3 && s.statusField!=1 ">
+                <div class="trowsp" ng-repeat="s in ms.ServiceData" ng-if="s.statusField!=3 && s.statusField!=1 && s.statusField!=7 && s.statusField!=6  ">
+
+
                     <div class="sce" ng-if="s.statusField==0">
                         <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
@@ -21,7 +23,8 @@
                             <h2>{{s.orderDateField}}</h2>
                             <p>At: <a href="">{{s.addressField}}</a></p>
                             <!--<p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
-                            <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+                <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
+                            
 
                             <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
                             <p>Service(s): <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.ServiceList}}</a></p>
@@ -48,7 +51,7 @@
                     </div>
                     <div class="sce" ng-if="s.statusField==4 || s.statusField==-1">
 
-                        <a href=""  ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
+                        <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">
                             <div class="left">
                                 <div class="date">{{s.DayField}} <span>{{s.MonthField}}</span></div>
                                 <div class="time">{{s.atTimeField}}</div>

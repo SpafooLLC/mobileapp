@@ -37,8 +37,8 @@
                     //self.ServiceData[i].MonthField = orderdt.split(' ')[2];
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
-                        self.ServiceData[i].DayField = '00';
-                        self.ServiceData[i].MonthField = '-- -- --';
+                        self.ServiceData[i].DayField = 'ASAP';
+                     //   self.ServiceData[i].MonthField = '-- -- --';
                     } else {
                         var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
                         self.ServiceData[i].orderDateField = orderdt;
@@ -47,8 +47,9 @@
                     }
 
                     if (item.atTimeField === 'undefined' || item.atTimeField === undefined || item.atTimeField === null || item.atTimeField === '') {
-                        self.ServiceData[i].atTimeField = '00:00 --'
-                    }
+                       // self.ServiceData[i].atTimeField = '00:00 --'
+                           self.ServiceData[i].atTimeField = 'Request'
+                  }
                     //else {
                     //    self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
                     //}
