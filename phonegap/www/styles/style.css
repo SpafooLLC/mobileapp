@@ -64,7 +64,7 @@
   .hnav ul { margin:0; padding:0; }
   .hnav li { list-style:none; display:block; clear:both; }
   .hnav li a { list-style:none; display:block; }
-  .hnav li a img { float:left; margin:0 10px 0 0; }
+  .hnav li a img { float:left; margin:0 10px 0 ; }
   .hnav li.alt { text-align:right; } .hnav li.alt a img { float:right; margin:0 0 0 10px; }
   .hnav li p { font-size:15px; color:#ffffff !important; font-weight:600; margin:0 !important; line-height:65px; }
   
@@ -515,10 +515,6 @@
   .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:20px 0 0 0; } .mnav li.for {  margin:30px 0 0 85px; }
   .mnav li.sec p { display:block; width:100px; } .mnav li.for p { display:block; width:100px; }
   .xs-logo { margin:0; padding:20px 0 0 0; } 
-	.xs-logo img { width: 150px; }
-	.header { background-position:center -53px; min-height:200px; }
-	.main-body { margin: 15px 15px; }
-	.hnav li a img { width: 50px; } .hnav li p { line-height: 50px; }
 }
 
 @media (min-width:240px) and (max-width:520px){
