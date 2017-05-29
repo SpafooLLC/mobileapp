@@ -276,7 +276,7 @@
         }
 
         onError(e: any) {
-            //alert(JSON.stringify(e));
+        
         }
 
         viewSelect(view: any) {
@@ -383,7 +383,6 @@
             var self = this;
             self.selectedServices.splice(index, 1);
             !self.selectedServices.length ? self.MainView = 'Basic-Info' : self.changeSummery();
-
         }
 
         appointmentView() {
@@ -404,7 +403,7 @@
                     calendar: {
                         contentHeight: 'auto',
                         header: { left: 'prev,next today', center: '', right: 'title' },
-                        defaultView: 'month', selectable: true,
+                        defaultView: 'month', selectable: true, timezone: 'local',
                         defaultDate: (new Date()),
                         selectHelper: true,
                         dayClick: function (date: any, jsEvent: any, view: any) {
@@ -654,10 +653,10 @@
                 }
             })
         }
-
+           
         isToday(start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() );
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         }

@@ -18,6 +18,7 @@ var homeController;
                 maximumAge: 3600000
             });
             var self = this;
+            //  self.SharedHttp.IsGPSOn();
             var tabClick = 0;
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();

@@ -83,6 +83,7 @@
   .bread .ptitle a { font-family:'Open Sans', sans-serif; font-size:20px; font-weight:400; color:#112173; display:block; text-transform:uppercase; text-align:center; }
   .bread .ptitle a:hover { color:#cc0000; }
   .fgap { margin-bottom:20px; }
+  .bodyfix { margin:-17px 0 0 0; }
   .fcell .form-control { margin:0 0 15px 0; }
   .fcell .w20 { width:19%; }
   .fcell .w30 { width:29%; }
@@ -401,6 +402,7 @@
   .img-responsive {}
   .clearfix {}
   .form-control-feedback { top:40px  !important; }
+  span.fa.fa-envelope.fa-lg.form-control-feedback {line-height: 44px !important;}
   .modal-body { font-size:12px; line-height:20px; }
   .modal-title { text-align:center; }
   .modal-header { padding:15px 0 0 !important; border-bottom:none !important; }
@@ -509,8 +511,8 @@
 @media (min-width:240px) and (max-width:360px){
   .pricelist .plmt .left { width: 200px; }
   .pricelist .plmt .right { width: 100%; }
-  .main-body { margin:20px 20px 20px 20px; padding:0 0 0 0; background-position:center -245px; } 
-  .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:20px 0 0 0; } .mnav li.for {  margin:30px 0 0 85px; }
+  .main-body { margin:20px 20px 20px 20px; padding:0 0 0 0; background-position:center -260px; } 
+  .mnav li.fst { margin:0; } .mnav li.sec { margin:0px 0 0 85px; } .mnav li.thr { clear:both; margin:40px 0 0 0; } .mnav li.for {  margin:30px 0 0 85px; }
   .mnav li.sec p { display:block; width:100px; } .mnav li.for p { display:block; width:100px; }
   .xs-logo { margin:0; padding:20px 0 0 0; } 
 }

@@ -15,12 +15,14 @@ var FindProviderController;
             $window.localStorage.setItem("url1", 'FindProvider');
             document.addEventListener("deviceready", function () {
                 self.GetWithInMile();
+                self.InitializeMaps(33.448376, -112.074036);
                 // Initialize the map plugin
                 var options = {
                     enableHighAccuracy: true,
                     maximumAge: 3600000
                 };
                 navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
+                self.SharedHttp.IsGPSOn();
                 //navigator.geolocation.getCurrentPosition(self.geolocationSuccess, self.geoLocationError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: false });
             });
             $("#infowindow").hide();
@@ -58,11 +60,10 @@ var FindProviderController;
                 //alert('code: ' + e.code + '\n' + 'message: ' + e.message + '\n');
             });
         };
-        FindProviderController.prototype.onSuccess = function (position) {
+        FindProviderController.prototype.InitializeMaps = function (latitude, longitude) {
             var self = this;
-            FindProviderController.currentLatLong = position;
             self.mapDiv = document.getElementById("map_canvas");
-            var init = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var init = new plugin.google.maps.LatLng(latitude, longitude);
             self.mapOptions = {
                 'backgroundColor': 'white',
                 'mapType': plugin.google.maps.MapTypeId.ROADMAP,
@@ -87,10 +88,15 @@ var FindProviderController;
                 $("#infowindow").hide();
                 //self.infoWindow = false;
             });
+        };
+        FindProviderController.prototype.onSuccess = function (position) {
+            var self = this;
+            FindProviderController.currentLatLong = position;
+            //   alert(parseFloat(FindProviderController.currentLatLong.split(',')[0]) + " , " + parseFloat(FindProviderController.currentLatLong.split(',')[1]))
+            self.InitializeMaps(position.coords.latitude, position.coords.longitude);
             // You have to wait the MAP_READY event.
         };
         FindProviderController.prototype.onError = function (e) {
-            //alert(JSON.stringify('test:'+ e));
         };
         FindProviderController.prototype.getProviders = function (serviceId) {
             var self = this;

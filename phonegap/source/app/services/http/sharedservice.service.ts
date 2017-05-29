@@ -40,6 +40,7 @@
         completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID: any, PPID: any): any;
         UnSeenStatus(AppointmentID: any): void;
         ishome(Ispg: boolean): void;
+        IsGPSOn(): void;
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -114,11 +115,46 @@
             timeString = h + timeString.substr(hourEnd, 3) + ampm;
             return timeString;
         }
+        IsGPSOn(): void {
+            //cordova.plugins.locationAccuracy.canRequest(function (canRequest:any) {
+            //    if (canRequest) {
+            //        cordova.plugins.locationAccuracy.request(function (success:any) {
+            //            // alert("Successfully requested accuracy: " + success.message);
+            //        }, function (error:any) {
+            //            //   alert("Accuracy request failed: error code=" + error.code + "; error message=" + error.message);
+            //            if (error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+            //                if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
+            //                    cordova.plugins.diagnostic.switchToLocationSettings();
+            //                }
+            //            }
+            //        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+            //    }
+            //});
+
+
+            document.addEventListener("deviceready", function () {
+                //default dialog
+                cordova.dialogGPS("To find SpaFoo providers in your area, GPS needs to be turned on.  Press 'OK' to turn it on.",//message
+                    "Use GPS, with wifi or mobile networks.",//description
+                    function (buttonIndex:any) {//callback
+                        switch (buttonIndex) {
+                            case 0: break;//cancel
+                            case 1: break;//neutro option
+                            case 2: break;//user go to configuration
+                        }
+                    },
+                    "Please Turn on GPS",//title
+                    ["Cancel", "Later", "Go"]);//buttons
+            });
+
+        }
+
+
         ishome(ishm: boolean): void {
             //if (ishm)
             //{ $('.Ishome').show(); }
             //else { $('.Ishome').hide(); }
- 
+
         }
         completeAppService(UserId: any, clientID: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID: any, PPID: any) {
 

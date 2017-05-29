@@ -16,7 +16,26 @@ var ProviderListController;
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-            self.GetWithInMile();
+            self.SharedHttp.IsGPSOn();
+            //cordova.plugins.locationAccuracy.canRequest(function (canRequest: any) {
+            //    if (canRequest) {
+            //        cordova.plugins.locationAccuracy.request(function (success: any) {
+            //          //  alert("Successfully requested accuracy: " + JSON.stringify( success));
+            //            //setTimeout(function () {
+            //            // //   navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
+            //            //  //  self.getProviderList(self.ServiceIDs);
+            //            //    $state.go('ProviderList');
+            //            //}, 5000);
+            //        }, function (error: any) {
+            //            //   alert("Accuracy request failed: error code=" + error.code + "; error message=" + error.message);
+            //            if (error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+            //                if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
+            //                    cordova.plugins.diagnostic.switchToLocationSettings();
+            //                }
+            //            }
+            //        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+            //    }
+            //});
             self.proindex = 0;
             var options = {
                 enableHighAccuracy: true,
@@ -32,12 +51,14 @@ var ProviderListController;
             });
         };
         ProviderListController.prototype.getProviderList = function (ServiceID) {
+            //   alert("Service ID :: " + ServiceID);
             var self = this;
+            self.GetWithInMile();
             //  self.CustomerHttp.get('/ListProvidersByServices/' + self.ServiceIDs).then(function (response: any) {
             self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response) {
                 //    self.CustomerHttp.get('/ListProvidersByServices/-1').then(function (response: any) {
                 self.ServiceData = response;
-                console.log(self.ServiceData[0]);
+                //    alert(JSON.stringify(response));
                 for (var i = 0; i <= response.length; i++) {
                     // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
                     self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
@@ -54,6 +75,9 @@ var ProviderListController;
                     if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile)) {
                         self.proindex++;
                     }
+                    if (self.proindex == 0 && parseInt(self.ServiceData[i].distance) >= parseInt(self.InMile)) {
+                        self.NoDatafound = "Sorry, no provider found for the selected service ";
+                    }
                 }
             }, function (error) {
                 if (error === null) {
@@ -69,6 +93,7 @@ var ProviderListController;
             var lat1 = latlong.substring(0, latlong.indexOf(':'));
             var long1 = latlong.substring(latlong.indexOf(':') + 1);
             var self = this;
+            //   alert(JSON.stringify(ProviderListController.currentlatlong) + " ::: Lat1 --> " + lat1 + " Long ::: " + long1);
             var lat2 = ProviderListController.currentlatlong.coords.latitude;
             var long2 = ProviderListController.currentlatlong.coords.longitude;
             var R = 6378137; // Earth’s mean radius in meter

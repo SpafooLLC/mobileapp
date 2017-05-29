@@ -39,6 +39,7 @@ var ProMyAvailabilityController;
                     height: 450,
                     editable: true,
                     eventLimit: 1,
+                    timezone: 'local',
                     selectHelper: true,
                     header: {
                         right: 'today prev,next'
@@ -93,7 +94,7 @@ var ProMyAvailabilityController;
         }
         ProMyAvailabilityController.prototype.isToday = function (start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         };
