@@ -235,7 +235,6 @@ var MakeAppointmentController;
             }, self.onError, options);
         };
         MakeAppointmentController.prototype.onError = function (e) {
-            //alert(JSON.stringify(e));
         };
         MakeAppointmentController.prototype.viewSelect = function (view) {
             var self = this;
@@ -357,7 +356,7 @@ var MakeAppointmentController;
                     calendar: {
                         contentHeight: 'auto',
                         header: { left: 'prev,next today', center: '', right: 'title' },
-                        defaultView: 'month', selectable: true,
+                        defaultView: 'month', selectable: true, timezone: 'local',
                         defaultDate: (new Date()),
                         selectHelper: true,
                         dayClick: function (date, jsEvent, view) {
@@ -593,7 +592,7 @@ var MakeAppointmentController;
         };
         MakeAppointmentController.prototype.isToday = function (start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         };

@@ -54,9 +54,6 @@ var ProAppointmentDetailController;
         ProAppointmentDetailController.prototype.onSuccess = function (position) {
             var self = this;
             ProAppointmentDetailController.currentLatLong = position;
-            //  alert(JSON.stringify(position));
-            // alert(JSON.stringify(ProAppointmentDetailController.currentLatLong.coords.latitude + ", " + ProAppointmentDetailController.currentLatLong.coords.longitude))
-            //    alert(JSON.stringify(ProAppointmentDetailController.clientsPosition))
             launchnavigator.navigate([parseFloat(ProAppointmentDetailController.clientsPosition.split(',')[0]), parseFloat(ProAppointmentDetailController.clientsPosition.split(',')[1])], {
                 start: ProAppointmentDetailController.currentLatLong.coords.latitude + "," + ProAppointmentDetailController.currentLatLong.coords.longitude
             });

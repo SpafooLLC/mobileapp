@@ -402,6 +402,7 @@
   .img-responsive {}
   .clearfix {}
   .form-control-feedback { top:40px  !important; }
+  span.fa.fa-envelope.fa-lg.form-control-feedback {line-height: 44px !important;}
   .modal-body { font-size:12px; line-height:20px; }
   .modal-title { text-align:center; }
   .modal-header { padding:15px 0 0 !important; border-bottom:none !important; }

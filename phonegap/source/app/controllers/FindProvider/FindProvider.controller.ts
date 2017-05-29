@@ -31,13 +31,15 @@
             document.addEventListener("deviceready", function () {
 
                 self.GetWithInMile();
+                self.InitializeMaps(33.448376, -112.074036);
                 // Initialize the map plugin
                 var options = {
                     enableHighAccuracy: true,
                     maximumAge: 3600000
                 };
-                navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
+                    navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
 
+                    self.SharedHttp.IsGPSOn();
                 //navigator.geolocation.getCurrentPosition(self.geolocationSuccess, self.geoLocationError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: false });
 
             });
@@ -87,14 +89,13 @@
 
                 });
         }
-        onSuccess(position: any) {
 
+        InitializeMaps(latitude:any, longitude:any) {
             var self = this;
-            FindProviderController.currentLatLong = position;
             self.mapDiv = document.getElementById("map_canvas");
 
 
-            const init = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            const init = new plugin.google.maps.LatLng(latitude, longitude);
             self.mapOptions = {
                 'backgroundColor': 'white',
                 'mapType': plugin.google.maps.MapTypeId.ROADMAP,
@@ -124,10 +125,18 @@
                 //self.infoWindow = false;
 
             });
+        }
+
+        onSuccess(position: any) {
+            var self = this;
+            FindProviderController.currentLatLong = position;
+         //   alert(parseFloat(FindProviderController.currentLatLong.split(',')[0]) + " , " + parseFloat(FindProviderController.currentLatLong.split(',')[1]))
+            self.InitializeMaps(position.coords.latitude, position.coords.longitude);
+
             // You have to wait the MAP_READY event.
         }
         onError(e: any) {
-            //alert(JSON.stringify('test:'+ e));
+
         }
         getProviders(serviceId: any) {
             var self = this;

@@ -14,7 +14,7 @@
         ProviderID: number;
         AppID: any;
         name: string;
-        totalTime: string;
+        totalTime: string; 
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', 'moment', 'uiCalendarConfig', "$stateParams"];
         constructor(
             private $q: ng.IQService,
@@ -57,6 +57,7 @@
                     height: 450,
                     editable: true,
                     eventLimit: 1,
+                    timezone:'local',
                     selectHelper: true,
                     header: {
                         right: 'today prev,next'
@@ -126,7 +127,7 @@
 
         isToday(start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         }

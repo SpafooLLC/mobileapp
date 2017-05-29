@@ -23,8 +23,8 @@ module AvailableCitiesController {
             var self = this;
             self.CustomerHttp.get('/GetHTML/' + modeId).then(function (response: any) {
              var decoded = angular.element('<textarea />').html(response.GetHTMLResult).text();
-                self.html =  self.$sce.trustAsHtml(decoded)
-            }, function (error) {
+             self.html = self.$sce.trustAsHtml(decoded);
+            }, function (error) {    
             });
         }
     }
