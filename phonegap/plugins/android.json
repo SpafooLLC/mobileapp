@@ -1,0 +1,72 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cl.rmd.cordova.dialoggps": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-googlemaps": {
+            "API_KEY_FOR_ANDROID": "AIzaSyAUYdhqzI3Zyc8svubvqA4Jk9YeB1-xda8",
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "419078761457",
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+            "PACKAGE_NAME": "com.spafoollc"
+        },
+        "cordova-plugin-fastrde-checkgps": {
+            "PACKAGE_NAME": "com.spafoollc"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.spafoollc"
+        }
+    }
+}

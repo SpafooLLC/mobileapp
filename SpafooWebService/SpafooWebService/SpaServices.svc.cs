@@ -2309,6 +2309,93 @@ namespace SpafooWebService
             }
         }
 
+        #region["Forgot Password"]
+        public string RequestVCode(string UserEmailID)
+        {
+            using (TransactionScope trans = new TransactionScope())
+            {
+                try
+                {
+                    //Registration.rh l = new Registration.rh();
+                    //l.RequestVCode
+                    var ChargePrevious = WebCallMethod.WRequestobj(5, "RequestVCode", "{\"UserEmailID\": \"" + UserEmailID + "\"}");
+                    return ChargePrevious;
+                }
+                catch (Exception ex)
+                {
+                    trans.Dispose();
+                    ReturnValues objex = new ReturnValues
+                    {
+                        Failure = ex.Message,
+                        Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
+                    };
+                    throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
+                }
+                finally
+                {
+                    trans.Dispose();
+                }
+            }
+        }
+
+        public string VerifyCode(string UserEmailID, string Code)
+        {
+            using (TransactionScope trans = new TransactionScope())
+            {
+                try
+                {
+                    //Registration.rh l = new Registration.rh();
+                    //l.VerifyCode
+                    var ChargePrevious = WebCallMethod.WRequestobj(5, "VerifyCode", "{\"UserEmailID\": \"" + UserEmailID + "\",\"Code\": \"" + Code + "\"}");
+                    return ChargePrevious;
+                }
+                catch (Exception ex)
+                {
+                    trans.Dispose();
+                    ReturnValues objex = new ReturnValues
+                    {
+                        Failure = ex.Message,
+                        Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
+                    };
+                    throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
+                }
+                finally
+                {
+                    trans.Dispose();
+                }
+            }
+        }
+
+
+        public string ChangePwd(ChangePassword obj)
+        {
+            using (TransactionScope trans = new TransactionScope())
+            {
+                try
+                {
+                    //Registration.rh l = new Registration.rh();
+                    //l.ChangePwd
+                    var ChargePrevious = WebCallMethod.WRequestobj(5, "ChangePwd", JsonConvert.SerializeObject(obj));
+                    return ChargePrevious;
+                }
+                catch (Exception ex)
+                {
+                    trans.Dispose();
+                    ReturnValues objex = new ReturnValues
+                    {
+                        Failure = ex.Message,
+                        Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
+                    };
+                    throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
+                }
+                finally
+                {
+                    trans.Dispose();
+                }
+            }
+        }
+        #endregion
+
 
 
 

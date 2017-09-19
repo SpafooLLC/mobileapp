@@ -13,14 +13,6 @@ D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService
 D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
 D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
 D:\Working Projects\MatthewLee_Projects\Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
-D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
 D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
 D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
 D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
@@ -29,3 +21,11 @@ D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xm
 D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
 D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
 D:\IonicP\SpaFooService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
+D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb

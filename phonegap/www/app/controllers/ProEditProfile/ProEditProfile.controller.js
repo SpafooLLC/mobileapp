@@ -30,6 +30,7 @@ var ProEditProfileController;
             self.CustomerHttp.get('/GetUserJSON/' + self.customerID).then(function (response) {
                 self.ServiceData = JSON.parse(response.GetUserJSONResult);
                 self.ServiceData.Membership.CreatedDate = self.SharedHttp.getFormatedDate(self.ServiceData.Membership.CreatedDate, "dd MMMM yyyy");
+                self.ServiceData.DisplayName1 = self.ServiceData.FirstName + " " + self.ServiceData.LastName[0] + ".";
                 self.getUserNotificationInfo(self.customerID);
                 var str = self.ServiceData.Profile.Biography;
                 var uri_encoded = str.replace(/%([^\d].)/, "%25$1");
@@ -261,8 +262,10 @@ var ProEditProfileController;
                 return;
             }
             if (self.doValidation(Email)) {
-                for (var i = 0; i < self.applPosition.length; i++) {
-                    uPos = uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_' + self.applPosition[i] + '|';
+                if (self.applPosition != undefined) {
+                    for (var i = 0; i < self.applPosition.length; i++) {
+                        uPos = uPos + self.Roles.GetQuestionResult.optionsField[i].onSelectField + '_' + self.applPosition[i] + '|';
+                    }
                 }
                 Cell = $("#Telephone").val();
                 Mob = $("#Cell").val();

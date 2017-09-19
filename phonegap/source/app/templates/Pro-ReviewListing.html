@@ -4,7 +4,8 @@
 
         <div class="bread">
             <a onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-            <div class="ptitle">{{prl.ServiceData.displayNameField}}</div>
+            <!--<div class="ptitle">{{prl.ServiceData.displayNameField}}</div>-->
+            <div class="ptitle"> {{prl.ServiceData.firstNameField }}  {{prl.ServiceData.lastNameField}}</div>
         </div>
         <div class="inbody reviewlist">
             <div class="center">
@@ -17,21 +18,31 @@
 
                     </div>
                 </div>
-                <h2>Past Client Reviews for {{prl.ServiceData.displayNameField}}</h2>
+                <h2>Past Client Reviews for {{prl.ServiceData.firstNameField }}  {{prl.ServiceData.lastNameField}} </h2>
                 <div class="big-ratting-{{prl.RatingField}}"></div>
                 <p class="bmar-xs">from {{prl.Rateperson}} user(s)</p>
             </div>
             <div class="allrev">
 
                 <blockquote ng-repeat="s in prl.ReviewData">
-                    <p>{{s.commentsField}} </p>
-                    <div class="rinfo">
-                        <ul>
-                            <li>{{s.displayNameField}} </li>
-                            <li>- {{s.RegionField}}</li>
-                            <li>- {{s.datedField}}</li>
-                            <li><div class="ratting-{{s.ratingValueField}}"></div></li>
-                        </ul>
+                    <div ng-if="s.displayNameField!='5'">
+                        <p>{{s.commentsField}} </p>
+                        <div class="rinfo">
+                            <ul>
+                                <li>{{s.displayNameField}} </li>
+                                <li>- {{s.RegionField}}</li>
+                                <li>- {{s.datedField}}</li>
+                                <li><div class="ratting-{{s.ratingValueField}}"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div ng-if="s.displayNameField=='5'">
+                        <div class="rinfo">
+                            <ul>
+                                <li><div class="ratting-{{s.ratingValueField}}"></div></li>
+                            </ul>
+                        </div>
                     </div>
                 </blockquote>
 

@@ -16,7 +16,7 @@ var ProviderListController;
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-            self.SharedHttp.IsGPSOn();
+            //  self.SharedHttp.IsGPSOn();
             //cordova.plugins.locationAccuracy.canRequest(function (canRequest: any) {
             //    if (canRequest) {
             //        cordova.plugins.locationAccuracy.request(function (success: any) {
@@ -37,12 +37,12 @@ var ProviderListController;
             //    }
             //});
             self.proindex = 0;
-            var options = {
+            self.options = {
                 enableHighAccuracy: true,
                 maximumAge: 3600000
             };
-            navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
-            setTimeout(function () { self.getProviderList(self.ServiceIDs); }, 1000);
+            // navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
+            self.getProviderList(self.ServiceIDs);
         }
         ProviderListController.prototype.GetWithInMile = function () {
             var self = this;
@@ -51,42 +51,47 @@ var ProviderListController;
             });
         };
         ProviderListController.prototype.getProviderList = function (ServiceID) {
-            //   alert("Service ID :: " + ServiceID);
             var self = this;
-            self.GetWithInMile();
-            //  self.CustomerHttp.get('/ListProvidersByServices/' + self.ServiceIDs).then(function (response: any) {
-            self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response) {
-                //    self.CustomerHttp.get('/ListProvidersByServices/-1').then(function (response: any) {
-                self.ServiceData = response;
-                //    alert(JSON.stringify(response));
-                for (var i = 0; i <= response.length; i++) {
-                    // alert(response.ListProvidersByServicesResult[i].firstNameField + " " + response.ListProvidersByServicesResult[i].lastNameField[0] + ".")
-                    self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
-                    if (self.ServiceData[i].profileField.photoField != null) {
-                        self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
-                        self.GetProTagLine(self.ServiceData[i].userIDField, i);
-                        self.GetMyRating(self.ServiceData[i].userIDField, i);
-                    }
-                    else {
-                        self.ServiceData[i].profileField.photoField = "";
-                    }
-                    ;
-                    self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
-                    if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile)) {
-                        self.proindex++;
-                    }
-                    if (self.proindex == 0 && parseInt(self.ServiceData[i].distance) >= parseInt(self.InMile)) {
-                        self.NoDatafound = "Sorry, no provider found for the selected service ";
-                    }
-                }
-            }, function (error) {
-                if (error === null) {
-                    self.$ionicLoading.hide();
-                }
-                else {
-                    console.log(error);
-                    self.$ionicLoading.hide();
-                }
+            CheckGPS.check(function () {
+                $("#showload").show();
+                setTimeout(function () {
+                    self.GetWithInMile();
+                    navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
+                    setTimeout(function () {
+                        self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response) {
+                            self.ServiceData = response;
+                            for (var i = 0; i <= response.length; i++) {
+                                self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
+                                if (self.ServiceData[i].profileField.photoField != null) {
+                                    self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
+                                    self.GetProTagLine(self.ServiceData[i].userIDField, i);
+                                    self.GetMyRating(self.ServiceData[i].userIDField, i);
+                                }
+                                else {
+                                    self.ServiceData[i].profileField.photoField = "";
+                                }
+                                ;
+                                self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
+                                if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile)) {
+                                    self.proindex++;
+                                }
+                                if (self.proindex == 0 && parseInt(self.ServiceData[i].distance) >= parseInt(self.InMile)) {
+                                    self.NoDatafound = "Sorry, no provider found for the selected service ";
+                                }
+                            }
+                        }, function (error) {
+                            if (error === null) {
+                                self.$ionicLoading.hide();
+                            }
+                            else {
+                                console.log(error);
+                                self.$ionicLoading.hide();
+                            }
+                        });
+                    }, 3000);
+                }, 5000);
+            }, function () {
+                self.SharedHttp.IsGPSOn();
             });
         };
         ProviderListController.prototype.GetDistanceBetween = function (latlong, index) {
@@ -107,8 +112,9 @@ var ProviderListController;
             // returns the distance in meter
         };
         ProviderListController.prototype.onSuccess = function (position) {
+            //  alert(JSON.stringify(position.coords.latitude + ", " + position.coords.longitude));
             ProviderListController.currentlatlong = position;
-            //    alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
+            //  alert( "static Variable :: "+ JSON.stringify(ProviderListController.currentlatlong.coords.latitude + ", " + ProviderListController.currentlatlong.coords.longitude))
         };
         ProviderListController.prototype.rad = function (x) {
             return x * Math.PI / 180;

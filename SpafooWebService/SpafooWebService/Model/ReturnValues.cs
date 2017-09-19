@@ -78,7 +78,8 @@ namespace SpafooWebService.Model
         public string NewPassword { get; set; }
         [DataMember]
         public string ConfirmNewPassword { get; set; }
-
+        [DataMember]
+        public string UserEmailID { get; set; }
 
     }
 

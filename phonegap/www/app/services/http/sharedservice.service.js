@@ -187,7 +187,8 @@ var spafoo;
                 switch (formatType) {
                     case "dd MMMM yyyy": return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
                     case "dd-MMM-yyyy": return (this.dates.getDate() + "-" + month[this.dates.getMonth()] + "-" + this.dates.getFullYear());
-                    case "dd/MM/yyyy": return (this.dates.getDate() + "/" + this.dates.getMonth() + 1 + "/" + this.dates.getFullYear());
+                    case "dd/MM/yyyy": return (this.dates.getDate() + "/" + (this.dates.getMonth() + 1) + "/" + this.dates.getFullYear());
+                    case "MM/dd/yyyy": return ((this.dates.getMonth() + 1) + "/" + this.dates.getDate() + "/" + this.dates.getFullYear());
                     case "weekday dd MMMM yyyy": return (weekday[this.dates.getDay()] + " " + this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
                     case "MM DD": return (month[this.dates.getMonth()] + " " + this.dates.getDate());
                 }

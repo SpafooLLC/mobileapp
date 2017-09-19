@@ -38,9 +38,23 @@ var ProReviewListingController;
                     var str = item.commentsField;
                     var uri_encoded = str.replace(/%([^\d].)/, "%25$1");
                     self.ReviewData[i].commentsField = decodeURIComponent(uri_encoded);
-                    self.ReviewData[i].datedField = self.SharedHttp.getFormatedDate(item.datedField, "dd/MM/yyyy");
+                    self.ReviewData[i].datedField = self.SharedHttp.getFormatedDate(item.datedField, "MM/dd/yyyy");
                     self.SharedHttp.GetUserInfo(item.byUserIDField).then(function (res) {
-                        self.ReviewData[i].displayNameField = res.displayNameField;
+                        switch (self.ReviewData[i].displayNameField) {
+                            case 1:
+                                self.ReviewData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
+                                break;
+                            case 2:
+                                self.ReviewData[i].displayNameField = res.firstNameField;
+                                break;
+                            case 3:
+                                self.ReviewData[i].displayNameField = res.lastNameField;
+                                break;
+                            case 4:
+                                self.ReviewData[i].displayNameField = res.firstNameField + " " + res.lastNameField;
+                                break;
+                        }
+                        // self.ReviewData[i].displayNameField = res.displayNameField;
                         self.ReviewData[i].RegionField = res.profileField.regionField;
                     });
                 });

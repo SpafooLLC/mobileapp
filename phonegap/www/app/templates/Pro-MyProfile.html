@@ -26,8 +26,11 @@
     <p><span>Joined Date:</span> {{pmp.ServiceData.Membership.CreatedDate}}</p>
   </div>
 <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
-<p><span>Name:</span> {{pmp.ServiceData.DisplayName}}</p>
-<p><span>Display Name:</span> {{pmp.ServiceData.Username}}</p>
+
+    
+
+<p><span>Name:</span> {{pmp.ServiceData.FirstName}} {{pmp.ServiceData.LastName}}</p>
+<p><span>Display Name:</span> {{pmp.ServiceData.DisplayName1}}</p>  
 <p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
 <p><span>Gender:</span> {{pmp.ServiceData.Profile.ProfileProperties[0].PropertyValue}}</p>
 <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>

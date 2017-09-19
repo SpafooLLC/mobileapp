@@ -296,5 +296,19 @@ namespace SpafooWebService
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "CanSetAvailability")]
         bool CanSetAvailability(IsProviderSlotFrees obj);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "VerifyCode/{UserEmailID}/{Code}")]
+        string VerifyCode(string UserEmailID, string Code);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "RequestVCode/{UserEmailID}")]
+        string RequestVCode(string UserEmailID);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "ChangePwd")]
+        string ChangePwd(ChangePassword obj);
+
+
+
     }
 }

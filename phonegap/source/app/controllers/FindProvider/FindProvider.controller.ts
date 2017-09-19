@@ -16,6 +16,7 @@
         InMile: number;
         static currentLatLong: any;
         static map: any = 0;
+        options: any;
         $inject = ['$state', '$scope', '$ionicLoading', 'CustomerHttp', 'SharedHttp', '$q', '$window']
         constructor(
             private $state: angular.ui.IStateService,
@@ -31,15 +32,16 @@
             document.addEventListener("deviceready", function () {
 
                 self.GetWithInMile();
-                self.InitializeMaps(33.448376, -112.074036);
                 // Initialize the map plugin
-                var options = {
+                self.options = {
                     enableHighAccuracy: true,
                     maximumAge: 3600000
                 };
-                    navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
 
-                    self.SharedHttp.IsGPSOn();
+                self.SharedHttp.IsGPSOn();
+                navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
+                //  self.InitializeMaps(33.448376, -112.074036);
+
                 //navigator.geolocation.getCurrentPosition(self.geolocationSuccess, self.geoLocationError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: false });
 
             });
@@ -90,7 +92,7 @@
                 });
         }
 
-        InitializeMaps(latitude:any, longitude:any) {
+        InitializeMaps(latitude: any, longitude: any) {
             var self = this;
             self.mapDiv = document.getElementById("map_canvas");
 
@@ -129,10 +131,46 @@
 
         onSuccess(position: any) {
             var self = this;
+           // alert(position.coords.latitude + ", " + position.coords.longitude);
             FindProviderController.currentLatLong = position;
-         //   alert(parseFloat(FindProviderController.currentLatLong.split(',')[0]) + " , " + parseFloat(FindProviderController.currentLatLong.split(',')[1]))
-            self.InitializeMaps(position.coords.latitude, position.coords.longitude);
+            //   alert("Static Variable :: " + parseFloat(FindProviderController.currentLatLong.split(',')[0]) + " , " + parseFloat(FindProviderController.currentLatLong.split(',')[1]))
 
+   
+                self.mapDiv = document.getElementById("map_canvas");
+
+
+                const init = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                self.mapOptions = {
+                    'backgroundColor': 'white',
+                    'mapType': plugin.google.maps.MapTypeId.ROADMAP,
+                    'controls': {
+                        'compass': true,
+                        'myLocationButton': true,
+                        'indoorPicker': true,
+                        'zoom': true
+                    },
+                    'gestures': {
+                        'scroll': true,
+
+                        'rotate': true,
+                        'zoom': true
+                    },
+                    'camera': {
+                        'latLng': init,
+
+                        'zoom': 15,
+                        //'bearing': 50
+                    }
+                };
+                FindProviderController.map = plugin.google.maps.Map.getMap(self.mapDiv, self.mapOptions);
+                FindProviderController.map.on(plugin.google.maps.event.MAP_CLICK, function () {
+
+                    $("#infowindow").hide();
+                    //self.infoWindow = false;
+
+                });
+
+           
             // You have to wait the MAP_READY event.
         }
         onError(e: any) {
@@ -143,31 +181,41 @@
             FindProviderController.map.clear();
             FindProviderController.map.setClickable(true);
             $("#infowindow").hide();
-            self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response: any) {
-                if (response.ListProvidersByServicesResult.length != 0) {
-                    for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
-                        self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
-                        if (i == 0) {
-                            var lat = response.ListProvidersByServicesResult[i].vanityUrlField.substring(0, response.ListProvidersByServicesResult[i].vanityUrlField.indexOf(':'));
-                            var long = response.ListProvidersByServicesResult[i].vanityUrlField.substring(response.ListProvidersByServicesResult[i].vanityUrlField.indexOf(':') + 1);
+            CheckGPS.check(function () {
+                //   alert("GPS is enabled!");
+                $("#showload").show();
+                //setTimeout(function () {
+                    navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
 
-                            const providerLoc = new plugin.google.maps.LatLng(lat, long);
-                            //FindProviderController.map.animateCamera({
-                            //    'target': providerLoc,
-                            //    'zoom': 10
-                            //}, function (marker: any) {
-                            //    marker.showInfoWindow();
-                            //});
-                        }
-                    }
-                } else {
-                    FindProviderController.map.setClickable(false);
-                    self.messages = 'No provider found for the service you have chosen';
-                    $("#PDone").modal();
-                }
-            }, function (e) {
+                //    setTimeout(function () {
+                        self.CustomerHttp.get('/ListProvidersByServices/' + serviceId).then(function (response: any) {
+                            if (response.ListProvidersByServicesResult.length != 0) {
+                                for (var i = 0; i < response.ListProvidersByServicesResult.length; i++) {
+                                    self.addMarkers(response.ListProvidersByServicesResult[i].vanityUrlField, response.ListProvidersByServicesResult[i].userIDField);
+                                    if (i == 0) {
+                                        var lat = response.ListProvidersByServicesResult[i].vanityUrlField.substring(0, response.ListProvidersByServicesResult[i].vanityUrlField.indexOf(':'));
+                                        var long = response.ListProvidersByServicesResult[i].vanityUrlField.substring(response.ListProvidersByServicesResult[i].vanityUrlField.indexOf(':') + 1);
+                                        const providerLoc = new plugin.google.maps.LatLng(lat, long);
+                                    }
+                                }
+                            } else {
+                                FindProviderController.map.setClickable(false);
+                                self.messages = 'No provider found for the service you have chosen';
+                                $("#PDone").modal();
+                            }
+                        }, function (e) {
 
-            })
+                        })
+                //    }, 3000);
+                //}, 5000);
+
+            },
+                function () {
+                    // alert("GPS is disabled!");
+                    self.SharedHttp.IsGPSOn();
+                });
+
+
 
         }
         rad(x: any) {

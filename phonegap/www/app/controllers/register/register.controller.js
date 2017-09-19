@@ -14,13 +14,17 @@ var registerController;
             this.SharedHttp = SharedHttp;
             this.$rootScope = $rootScope;
             window.localStorage.setItem("url", 'Register');
-            $("#PhoneNo").mask("000-000-0000");
-            $("#MobileNo").mask("000-000-0000");
-            $("#Zipcode").mask("00000");
+            // $("#PhoneNo").mask("000-000-0000");
+            setTimeout(function () {
+                $("#MobileNo").mask("000-000-0000");
+                $("#VerifyMobileNo").mask("000-000-0000");
+                $("#Zipcode").mask("00000");
+            }, 2000);
         }
         RegisterController.prototype.doRegister = function (Regdata) {
             var self = this;
             //  alert("hello");
+            $("#MobileNo").mask("000-000-0000");
             if (this.DoValidation(Regdata)) {
                 if (self.SharedHttp.getPicID() === null || self.SharedHttp.getPicID() === '' || self.SharedHttp.getPicID() === undefined || self.SharedHttp.getPicID() === 'undefined') {
                     Regdata.picFID = null;
@@ -105,6 +109,7 @@ var registerController;
             }
             Regdata.PhoneNo = $("#PhoneNo").val();
             Regdata.MobileNo = $("#MobileNo").val();
+            Regdata.VerifyMobileNo = $("#VerifyMobileNo").val();
             Regdata.Zipcode = $("#Zipcode").val();
             if (Regdata.FirstName === null || Regdata.FirstName === '' || Regdata.FirstName == undefined || Regdata == undefined) {
                 self.messages = "Please Enter First Name.";
@@ -116,8 +121,33 @@ var registerController;
                 $("#PDone").modal();
                 return false;
             }
-            if (Regdata.Username === null || Regdata.Username === '' || Regdata.Username == undefined) {
-                self.messages = "Please Enter Username. ";
+            // if (Regdata.Username === null || Regdata.Username === '' || Regdata.Username == undefined) {
+            //     self.messages = "Please Enter Username. ";
+            //     $("#PDone").modal();
+            //     return false;
+            // }
+            if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
+                self.messages = "Please Enter Phone #";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.VerifyMobileNo === null || Regdata.VerifyMobileNo === '' || Regdata.VerifyMobileNo == undefined) {
+                self.messages = "Please Enter Verify Phone #";
+                $("#PDone").modal();
+                return false;
+            }
+            if (Regdata.VerifyMobileNo != Regdata.MobileNo) {
+                self.messages = "Phone # does not Match.";
+                $("#PDone").modal();
+                return false;
+            }
+            else {
+                Regdata.PhoneNo = Regdata.MobileNo;
+                //   Regdata.Username = $("#MobileNo").unmask("000-000-0000").val();
+                Regdata.Username = $("#MobileNo").val();
+            }
+            if (Regdata.ConfirmPassword != Regdata.Password) {
+                self.messages = "Password not Matched.";
                 $("#PDone").modal();
                 return false;
             }
@@ -159,11 +189,11 @@ var registerController;
             //    $("#PDone").modal();
             //    return false;
             //}
-            if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
-                self.messages = "Please Enter Mobile Number.";
-                $("#PDone").modal();
-                return false;
-            }
+            //    if (Regdata.MobileNo === null || Regdata.MobileNo === '' || Regdata.MobileNo == undefined) {
+            //                 self.messages = "Please Enter Mobile Number.";
+            //                 $("#PDone").modal();
+            //                 return false;
+            //             } 
             if (Regdata.Street === null || Regdata.Street === '' || Regdata.Street == undefined) {
                 self.messages = "Please Enter Address.";
                 $("#PDone").modal();
@@ -190,11 +220,11 @@ var registerController;
                 return false;
             }
             //  alert(JSON.stringify(self.imageURL));
-            if (self.imageURL === null || self.imageURL === '' || self.imageURL == undefined) {
-                self.messages = "Please Select Profile Pic.";
-                $("#PDone").modal();
-                return false;
-            }
+            // if (self.imageURL === null || self.imageURL === '' || self.imageURL == undefined) {
+            //     self.messages = "Please Select Profile Pic.";
+            //     $("#PDone").modal();
+            //     return false;
+            // }
             return true;
         };
         RegisterController.prototype.cameraOption = function () {

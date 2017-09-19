@@ -95,6 +95,7 @@
 
                     if (response == "1") {
                         self.MainView = 'Enter-Success';
+                        self.$window.localStorage.setItem("url", 'Register');
                     }
                     else {
                         self.messages = "Password not changed successfully.";

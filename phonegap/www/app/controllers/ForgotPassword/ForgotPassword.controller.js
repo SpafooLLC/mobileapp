@@ -74,6 +74,7 @@ var ForgotPasswordController;
                 self.CustomerHttp.post(data, '/ChangePwd').then(function (response) {
                     if (response == "1") {
                         self.MainView = 'Enter-Success';
+                        self.$window.localStorage.setItem("url", 'Register');
                     }
                     else {
                         self.messages = "Password not changed successfully.";
