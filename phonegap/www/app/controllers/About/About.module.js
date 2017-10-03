@@ -9,7 +9,7 @@
             name: 'About',
             url: '/About',
             templateUrl: 'app/templates/About.html',
-            controller: 'About'
+            controller: 'About as abt'
         };
         $stateProvider.state(AboutState);
     }

@@ -5,16 +5,18 @@
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">My Profile</div>
-            <div class="pnotification">
-                <div class="ico">
-                    <a href="#noti"><i class="fa blue fa-bell fa-1x"></i></a>
+            <a href="#/Notification">
+                <div class="pnotification">
+                    <div class="ico">
+                        <i class="fa blue fa-bell fa-1x"></i>
+                    </div>
+                    <div id='notification'>{{mp.NotificationCount}}</div>
                 </div>
-                <div id='notification'>{{mp.NotificationCount}}</div>
-            </div>
+            </a>
         </div>
         <div class="inbody-simple mprofile">
             <div class="center">
-                <p><a  class="bold" ui-sref="MyProfileEdit" ><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+                <p><a class="bold" ui-sref="MyProfileEdit"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
                 <div class="profile-pic">
                     <div class="round">
 
@@ -23,26 +25,28 @@
 
                     </div>
                 </div>
-                <h3 class="bmar-xs">{{mp.ServiceData.displayNameField}}</h3>
+                
+                <h3 class="bmar-xs">{{mp.ServiceData.displayNameField1}} </h3>
                 <p class="green bmar-sm fs-sm">{{mp.ServiceData.emailField}}</p>
                 <p><span>Joined Date:</span> {{mp.ServiceData.membershipField.createdDateField}}</p>
             </div>
             <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
-            <p><span>Name:</span> {{mp.ServiceData.displayNameField}}</p>
-            <p><span>Display Name:</span>{{mp.ServiceData.usernameField}}</p>
+            <p><span>Name:</span> {{mp.ServiceData.firstNameField}} {{mp.ServiceData.lastNameField}}</p>
+            <p><span>Display Name:</span> {{mp.ServiceData.displayNameField}}</p>
             <p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
-            <p><span>Email:</span> {{mp.ServiceData.emailField}}</p>
+            <p><span>Email:</span> {{mp.ServiceData.emailField}} </p>
 
             <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
-            <p><span>Phone:</span> {{mp.ServiceData.profileField.cellField}}</p>
-            <p><span>Email:</span>{{mp.ServiceData.emailField}}</p>
+
+            <p><span>Cell:</span> {{mp.ServiceData.profileField.cellField}}</p>
+            <p><span>Email:</span> {{mp.ServiceData.emailField}}</p>
             <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{mp.ServiceData.profileField.streetField}}<br />{{mp.ServiceData.profileField.cityField}}<br /> {{mp.ServiceData.profileField.regionField}}-{{mp.ServiceData.profileField.postalCodeField}}</div></p>
             <div class="clearfix"></div>
 
             <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Payment Method</div>
             <div class="center">
-               
-                <table width="100%" cellpadding="0" ng-if="mp.GetCreditCardData!=null" border="0" class="table table-hover">
+
+                <table width="100%" cellpadding="0" ng-if="mp.GetCreditCardData.profile.paymentProfiles!=null" border="0" class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -60,7 +64,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div ng-if="mp.GetCreditCardData ==null">
+                <div ng-if="mp.GetCreditCardData ==null || mp.GetCreditCardData.profile.paymentProfiles==null">
                     <p class="red2">No Payment Method Found</p>
                     <p>Add a credit card so you can easily book and pay!</p>
                 </div>
@@ -71,8 +75,16 @@
             <div ng-if="mp.NotificaitonData!=''" class="nsrow MyNotifications">
                 <div class="notiwrapper">
                     <ul>
-                        <li ng-repeat="sr in mp.NotificaitonData">
-                            <span>{{sr.datedField}}</span> <label ng-bind-html="sr.typeNameField"></label> <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
+                        <li ng-repeat="sr in mp.NotificaitonData" ng-if="sr.typeNameFields!=null">
+                            <span>{{sr.datedField}}</span>
+
+                            <label ui-sref="MySchedule" ng-bind-html="sr.typeNameFields"></label>
+                            <div ng-if="sr.notificationTypeIDField==18 || sr.notificationTypeIDField==19">
+                                <a ng-click="mp.gotoOtherProvider({{sr.relatedEntityIDField}})">
+                                    Available Providers
+                                </a>
+                            </div>
+                            <a ng-click="mp.RemoveNotification({{sr.idField}})" class="redclose">
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -83,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <p ng-if="mp.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at SpaFoo! And, if you ever miss a notification, you can head back here to check it out.</p>
+            <p ng-if="mp.NotificaitonData==''">Hey! This is your notification center. Expect to get fun updates about the app from the team at Spafoo! And, if you ever miss a notification, you can head back here to check it out.</p>
         </div>
 
 

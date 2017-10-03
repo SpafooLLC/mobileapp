@@ -10,6 +10,7 @@
         name: string;
         staticEvents: any;
         message: string;
+        totalTime: number;
         constructor(
             private $q: ng.IQService,
             private $state: angular.ui.IStateService,
@@ -21,11 +22,16 @@
             private $stateParams: angular.ui.IStateParamsService
         ) {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.AddressID = $stateParams.AddressID;
             self.ClientID = $stateParams.ClientID;
             self.ProviderID = $stateParams.ProviderID;
             self.AppID = $stateParams.AppID;
             self.name = $stateParams.Name1;
+            self.totalTime = $stateParams.totalTime;
             self.uiConfig = {
                 calendar: {
                     height: 450,
@@ -43,16 +49,11 @@
                             dateField: moment(date).format('MMM DD'),
                             dateFieldHidden: moment(date).format('MM/DD/YYYY'),
                             proId: 0,
-                            color: '#008000'
+                            color: '#1e319b'
 
-                        });				    // update Calendar event dateFrom
-                        //self.selectedDate = $filter('date')(selectedDate, 'yyyy-MM-dd');;		// update $scope.dateFrom
-                        //console.log('$scope.uiConfig', $scope.uiConfig);
-                        //console.log('uiCalendarConfig', uiCalendarConfig);
+                        });				 
                     },
-                    //eventDrop: this.alertOnDrop,
-                    //eventResize: this.alertOnResize,
-                    //eventRender: this.eventRender
+                   
                 }
 
             };
@@ -85,21 +86,57 @@
                 return;
             }
             for (var i = 0; i < self.staticEvents[0].events.length; i++) {
-                if (!self.staticEvents[0].events[i].hasOwnProperty('endTime') || !self.staticEvents[0].events[i].hasOwnProperty('startTime')) {
-                    this.message = "Choose time on respective date";
+                if (!self.staticEvents[0].events[i].hasOwnProperty('endTime') ) {
+                    self.message = "Choose time on respective date";
                     $("#PDone").modal("toggle");
                     return;
 
                 }
+                if (!self.staticEvents[0].events[i].hasOwnProperty('startTime'))
+                {
+                    self.message = "Choose time on respective date";
+                    $("#PDone").modal("toggle");
+                    return;
+                }
+                var date1 = new Date(self.staticEvents[0].events[i].startTime);
+                var date2 = new Date(self.staticEvents[0].events[i].endTime);
+                //  alert("date1" + date1 + "date2" + date2);
+                if (date2 <= date1) {
+                    this.message = "Start date is greater than end date";
+                    $("#PDone").modal("toggle");
+                    return;
+                }
             }
             for (var i = 0; i < self.staticEvents[0].events.length; i++)
             {
-                 data = { AddressID: self.AddressID, AppID: self.AppID, AtTime: self.staticEvents[0].events[i].startTime, ClientID: self.ClientID, Comment: "", EndTime: self.staticEvents[0].events[i].endTime, ForDate: self.staticEvents[0].events[i].dateFieldHidden, ProviderID: self.ProviderID };  
-                console.log(data);
+                var datestart = new Date(self.staticEvents[0].events[i].startTime);
+                var dateend = new Date(self.staticEvents[0].events[i].endTime);
+                var startResult = 0;
+                var endResult = 0;
+                var start = '';
+                var end = '';
+                if (datestart.getHours() >= 12) {
+                    startResult = datestart.getHours() - 12;
+                    start = startResult + ":" + datestart.getMinutes() + " PM";
+                }
+                else {
+                    start = startResult + ":" + datestart.getMinutes() + " AM";
+                }
+                if (dateend.getHours() >= 12) {
+                    endResult = dateend.getHours() - 12;
+                    end = endResult + ":" + dateend.getMinutes() + " PM";
+                }
+                else {
+                    end = endResult + ":" + dateend.getMinutes() + " AM";
+                }
+
+                data = { AddressID: self.AddressID, AppID: self.AppID, AtTime: start, ClientID: self.ClientID, Comment: "", EndTime: end, ForDate: self.staticEvents[0].events[i].dateFieldHidden, ProviderID: self.ProviderID };  
+      
                 self.CustomerHttp.post(data, "/UpdateAppBasicInfo").then(function (res: any) {
+                  
                 
                     self.CustomerHttp.get("/UpdateAppStatus/" + res + "/5").then(function () {
-                   
+                        self.$state.go("ProAppointments");
                     });
                   
                 });

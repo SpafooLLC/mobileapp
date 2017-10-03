@@ -14,7 +14,8 @@
         workQuality:string;
         timePunctuality:string;
         reviewCSV:string;
-        messages:string;
+        messages: string;
+        check: boolean;
     }
 
     interface IStateParams extends angular.ui.IStateParamsService {
@@ -34,7 +35,8 @@
         workQuality:string;
         timePunctuality:string;
         reviewCSV:string;
-        messages:string;        
+        messages: string;
+        check: boolean;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp','$stateParams'];
         constructor(
             private $q: ng.IQService,
@@ -50,15 +52,21 @@
             private $stateParams: IStateParams
         ) {
             this.getProviderInfo();
+             
 
         }
         getProviderInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.isChecked = false;
             self.providerId = self.$stateParams.providerId;
             self.appointmentID = self.$stateParams.appId;
             self.CustomerHttp.get('/GetUserInfo/' + self.providerId).then(function (response: any) {
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";     
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres;});
             }, function (error) {
                 if (error === null) {
@@ -107,6 +115,33 @@
 
         postRating(){
             var self = this;
+            if (self.rateValue == null || self.rateValue == "") {
+                self.messages = "Please choose rating.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.workQuality == null || self.workQuality == "") {
+                self.messages = "Please choose workQuality.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.timePunctuality == null || self.timePunctuality == "") {
+                self.messages = "Please choose timePunctuality.";
+                $("#PDoneError").modal();
+                return;
+            }
+            if (self.dropDownVal == null || self.dropDownVal == "") {
+                self.messages = "Please choose display name on review page.";
+                $("#PDoneError").modal();
+                return;
+            }
+           
+            if (self.isChecked == false)
+            {
+                self.messages = "Please tick the tickbox to give your confirmation";
+                $("#PDoneError").modal();
+                return;
+            }
             self.ratingCSV = self.rateValue + '|' + self.workQuality + '|' + self.timePunctuality;
             self.reviewCSV = '-1:-1:' + self.commentTxt + ':' + self.dropDownVal;
             console.log(self.ratingCSV);

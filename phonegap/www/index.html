@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,12 +6,13 @@
     <title></title>
     <!-- 3rd party css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="http://dev.spafoo.com/Portals/0/App/styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/bootstrap.css">
     <!-- endinject -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bowercomponents/AngularJS-Toaster/toaster.css" />
     <link rel="stylesheet" href="bowercomponents/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="bowercomponents/ionic-calendar/dist/css/calendar.css" />
     <!--endbower-->
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet"> -->
@@ -32,19 +33,24 @@
     <script src="bowercomponents/jquery/dist/jquery.js"></script>
     <script src="bowercomponents/moment/moment.js"></script>
     <script src="bowercomponents/fullcalendar/dist/fullcalendar.js"></script>
-    <script src="bowercomponents/fullcalendar/dist/gcal.js"></script>
     <script src="bowercomponents/angular-ui-calendar/src/calendar.js"></script>
     <script src="bowercomponents/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bowercomponents/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+    <script src="bowercomponents/ionic-calendar/dist/js/calendar-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <script src="js/bootstrap.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+
     <link href="styles/bootstrap-select.css" rel="stylesheet" />
     <script src="js/bootstrap-select.js"></script>
+    <script src="js/jquery.mask.js"></script>
     <script src="js/jquery.fancybox.js"></script>
+    <script src="js/rangeslider.js"></script>
+
+    <link href="styles/rangeSlider.css" rel="stylesheet" />
+    <link href="styles/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 
     <!-- inject:js -->
@@ -55,12 +61,20 @@
     <script src="app/controllers/AddClientRating/AddClientReview.module.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.controller.js"></script>
     <script src="app/controllers/AddProviderRating/AddProviderReview.module.js"></script>
+    <script src="app/controllers/AvailableCities/AvailableCities.controller.js"></script>
+    <script src="app/controllers/AvailableCities/AvailableCities.module.js"></script>
     <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.controller.js"></script>
     <script src="app/controllers/BasicCreditCardInformation/BasicCreditCard.module.js"></script>
     <script src="app/controllers/ChangePassword/ChangePassword.controller.js"></script>
     <script src="app/controllers/ChangePassword/ChangePassword.module.js"></script>
+    <script src="app/controllers/ContactUs/AvailableCities.js"></script>
+    <script src="app/controllers/ContactUs/ContactUS.module.js"></script>
+    <script src="app/controllers/ContactUs/PrivacyStatement.js"></script>
+    <script src="app/controllers/ContactUs/TermsOfUse.js"></script>
     <script src="app/controllers/FindProvider/FindProvider.controller.js"></script>
     <script src="app/controllers/FindProvider/FindProvider.module.js"></script>
+    <script src="app/controllers/ForgotPassword/ForgotPassword.controller.js"></script>
+    <script src="app/controllers/ForgotPassword/ForgotPassword.module.js"></script>
     <script src="app/controllers/home/home.controller.js"></script>
     <script src="app/controllers/home/home.module.js"></script>
     <script src="app/controllers/login/login.controller.js"></script>
@@ -76,6 +90,8 @@
     <script src="app/controllers/MySchedule/MySchedule.module.js"></script>
     <script src="app/controllers/Notification/Notification.controller.js"></script>
     <script src="app/controllers/Notification/Notification.module.js"></script>
+    <script src="app/controllers/PriceList/PriceList.controller.js"></script>
+    <script src="app/controllers/PriceList/PriceList.module.js"></script>
     <script src="app/controllers/Pro-AppointmentCompleted/ProAppointmentCompleted.controller.js"></script>
     <script src="app/controllers/Pro-AppointmentCompleted/ProAppointmentCompleted.module.js"></script>
     <script src="app/controllers/Pro-AppointmentDetail/ProAppointmentDetail.controller.js"></script>
@@ -99,10 +115,10 @@
     <script src="app/controllers/ProviderPortfolio/ProviderPortfolio.module.js"></script>
     <script src="app/controllers/register/register.controller.js"></script>
     <script src="app/controllers/register/register.module.js"></script>
-    <script src="app/controllers/ScheduleDetail/ScheduleDetail.controller.js"></script>
-    <script src="app/controllers/ScheduleDetail/ScheduleDetail.module.js"></script>
     <script src="app/controllers/RegisterProvider/RegisterProvider.controller.js"></script>
     <script src="app/controllers/RegisterProvider/RegisterProvider.module.js"></script>
+    <script src="app/controllers/ScheduleDetail/ScheduleDetail.controller.js"></script>
+    <script src="app/controllers/ScheduleDetail/ScheduleDetail.module.js"></script>
     <script src="app/controllers/Services/Services.controller.js"></script>
     <script src="app/controllers/Services/Services.module.js"></script>
     <script src="app/controllers/ShareApp/ShareApp.controller.js"></script>
@@ -118,8 +134,9 @@
         <img ng-src="images/Site/reload.gif" alt="Processing..." />
     </div>
 
-    <div class="in-logo"><a href="index.html"><img ng-src="images/Site/SpaFoo-sm.png" /></a></div>
-    <div class="inheader">
+    <div class="in-logo Ishome"><a ui-sref="home">
+        <img ng-src="images/Site/SpaFoo-sm.png" /></a></div>
+    <div class="inheader Ishome">
 
         <div class="titre">
             <button type="button" class="tcon tcon-menu--xbutterfly" aria-label="toggle menu"><span class="tcon-menu__lines" aria-hidden="true"></span><span class="tcon-visuallyhidden">toggle menu</span></button>
@@ -128,13 +145,13 @@
             <div class="nav-wrapper">
                 <div class="vmenu">
                     <ul class="top" ng-if="getRole=='C' && GetLoginStatus==true">
-                        <li>
+                        <li ng-click="m.HideShowMenu()">
                             <a ng-if="GetLoginStatus==true" class="clsmenu" ui-sref="MyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a>
                         </li>
-                        <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
-                        <li><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                        <li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="MySchedule"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                         <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">
                                 <div class="pnotification2">
                                     <div class="ico2">
@@ -145,19 +162,25 @@
                                 <p>Notification</p>
                             </a>
                         </li>
+           
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-plist.png"><p>Price List </p></a></li>   
                     </ul>
                     <ul class="top" ng-if="GetLoginStatus==false">
-                        <li>
+                        <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="home"><img ng-src="images/Site/vm-user.png"><p> Welcome to Spafoo</p></a>
                         </li>
-                        <li><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
-                        <li><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Services</p></a></li>
-
-                    </ul>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="FindProvider"><img ng-src="images/Site/vm-find.png"><p>Find Provider</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-plist.png"><p>Price List </p></a></li>
+    </ul>
                     <ul class="top" ng-if="getRole=='P' && GetLoginStatus==true">
-                        <li><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
-                        <li><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
-                        <li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyProfile"><img ng-src="images/Site/vm-user.png"><p>{{UserProfileName}}</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ProMyScheduleLanding"><img ng-src="images/Site/vm-schedule.png"><p>My Schedule</p></a></li>
+                        <!--<li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="Services"><img ng-src="images/Site/vm-services.png"><p>Professional Services</p></a></li>-->
+                     
+                        <li ng-click="m.HideShowMenu()">
                             <a class="clsmenu" ui-sref="Notification">
                                 <!--<a class="clsmenu" href="MyProfile.html#noti">-->
                                 <div class="pnotification2">
@@ -169,12 +192,17 @@
                                 <p>Notification</p>
                             </a>
                         </li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="AvailableCities"><img ng-src="images/Site/vm-city.png"><p>Available Cities </p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="PriceList"><img ng-src="images/Site/vm-plist.png"><p>Price List </p></a></li>
                     </ul>
+
                     <ul class="bottom">
-                        <li><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
-                        <li><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>
-                        <li><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
-                        <li><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
+                        <!--<li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ShareApp"><img ng-src="images/Site/vm-share.png"><p>Share This App with Friends</p></a></li>-->
+
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="ContactUs"><img ng-src="images/Site/vm-contact.png"><p>Contact US</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="clsmenu" ui-sref="About"><img ng-src="images/Site/vm-about.png"><p>About Spafoo</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a ui-sref="login" class="signout clsmenu" ng-if="GetLoginStatus==false"><img ng-src="images/Site/vm-signout.png"><p>SignIn</p></a></li>
+                        <li ng-click="m.HideShowMenu()"><a class="signout clsmenu" ng-if="GetLoginStatus==true" ng-click="m.doLogOut()"><img ng-src="images/Site/vm-signout.png"><p>SignOut</p></a></li>
 
                     </ul>
                 </div>
@@ -187,18 +215,15 @@
     <script src="js/index.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
-            transformicons.add('.tcon');
-            $(document).ready(function () {
-                $('.image_trombi').hide();
-                $('.titre').click(function () {
-                    $(this).next().slideToggle();
-                    return false;
-                });
-                $('.clsmenu').click(function () {
-                    $('.titre').click();
-                    $('.tcon').removeClass("tcon-transform");
-                });
+        transformicons.add('.tcon');
+        $(document).ready(function () {
+            $('.image_trombi').hide();
+            $('.titre').click(function () {
+                $(this).next().slideToggle();
+                return false;
             });
+
+        });
     </script>
 </body>
 </html>

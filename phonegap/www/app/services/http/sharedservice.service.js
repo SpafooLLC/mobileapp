@@ -16,6 +16,12 @@ var spafoo;
             SharedHttp.prototype.setuserType = function (value) {
                 this.userType = value;
             };
+            SharedHttp.prototype.getAddressDetailRcd = function () {
+                return this.AddressDetailRcd;
+            };
+            SharedHttp.prototype.setAddressDetailRcd = function (value) {
+                this.AddressDetailRcd = value;
+            };
             SharedHttp.prototype.getUuid = function () {
                 return this.uuid;
             };
@@ -64,6 +70,96 @@ var spafoo;
                 timeString = h + timeString.substr(hourEnd, 3) + ampm;
                 return timeString;
             };
+            SharedHttp.prototype.IsGPSOn = function () {
+                //cordova.plugins.locationAccuracy.canRequest(function (canRequest:any) {
+                //    if (canRequest) {
+                //        cordova.plugins.locationAccuracy.request(function (success:any) {
+                //            // alert("Successfully requested accuracy: " + success.message);
+                //        }, function (error:any) {
+                //            //   alert("Accuracy request failed: error code=" + error.code + "; error message=" + error.message);
+                //            if (error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+                //                if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
+                //                    cordova.plugins.diagnostic.switchToLocationSettings();
+                //                }
+                //            }
+                //        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+                //    }
+                //});
+                document.addEventListener("deviceready", function () {
+                    //default dialog
+                    cordova.dialogGPS("To find SpaFoo providers in your area, GPS needs to be turned on.  Press 'OK' to turn it on.", //message
+                    "Use GPS, with wifi or mobile networks.", //description
+                    function (buttonIndex) {
+                        switch (buttonIndex) {
+                            case 0: break; //cancel
+                            case 1: break; //neutro option
+                            case 2: break; //user go to configuration
+                        }
+                    }, "Please Turn on GPS", //title
+                    ["Cancel", "Later", "Go"]); //buttons
+                });
+            };
+            SharedHttp.prototype.ishome = function (ishm) {
+                //if (ishm)
+                //{ $('.Ishome').show(); }
+                //else { $('.Ishome').hide(); }
+            };
+            SharedHttp.prototype.completeAppService = function (UserId, clientID, authTxnIDField, appointmentIDField, payTxnIDField, amountField, comment, PID, PPID) {
+                var self = this;
+                var UserID = UserId;
+                var clientId = clientID;
+                var authTxnIDField = authTxnIDField;
+                var appointmentIDField = appointmentIDField;
+                var payTxnIDField = payTxnIDField;
+                var amountField = amountField;
+                //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+                //self.message = 'Appointment Completed';
+                //$("#PDone").modal();
+                //var data = {
+                //    TxnID: authTxnIDField,
+                //    Amount: amountField
+                //};
+                var data = {
+                    UserID: UserId,
+                    clientId: clientID,
+                    ID: appointmentIDField,
+                    authTxnID: authTxnIDField,
+                    PaymentTxnID: payTxnIDField,
+                    Amount: amountField,
+                    PID: PID,
+                    PPID: PPID
+                };
+                self.CustomerHttp.post(data, '/AppointmentCompleted').then(function (res) {
+                    self.message = 'Appointment Completed';
+                    self.$state.go("ProAppointments");
+                }, function (erError) {
+                });
+                //self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+                //    var response = JSON.parse(res);
+                //    var upData = {
+                //        ID: appointmentIDField,
+                //        Comment: comment,
+                //        PaymentTxnID: payTxnIDField
+                //    };
+                //    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+                //        var navData = {
+                //            ByID: UserID,
+                //            NotTypeID: 8,
+                //            RelatedEntityID: appointmentIDField,
+                //            ToID: clientId
+                //        };
+                //        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+                //            self.message = 'Appointment Completed';
+                //            //$("#PDone").modal();
+                //            self.$state.go("ProAppointments");
+                //        }, function (navError: any) {
+                //        })
+                //    }, function (erError: any) {
+                //    });
+                //}, function (error: any) {
+                //    //alert('someError on ChargePreviosAuth');
+                //});
+            };
             SharedHttp.prototype.getFormatedDate = function (joindates, formatType) {
                 if (formatType != "weekday dd MMMM yyyy") {
                     var abcDate = (joindates).replace("/Date(", "").replace(")/", "");
@@ -91,7 +187,8 @@ var spafoo;
                 switch (formatType) {
                     case "dd MMMM yyyy": return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
                     case "dd-MMM-yyyy": return (this.dates.getDate() + "-" + month[this.dates.getMonth()] + "-" + this.dates.getFullYear());
-                    case "dd/MM/yyyy": return (this.dates.getDate() + "/" + this.dates.getMonth() + 1 + "/" + this.dates.getFullYear());
+                    case "dd/MM/yyyy": return (this.dates.getDate() + "/" + (this.dates.getMonth() + 1) + "/" + this.dates.getFullYear());
+                    case "MM/dd/yyyy": return ((this.dates.getMonth() + 1) + "/" + this.dates.getDate() + "/" + this.dates.getFullYear());
                     case "weekday dd MMMM yyyy": return (weekday[this.dates.getDay()] + " " + this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
                     case "MM DD": return (month[this.dates.getMonth()] + " " + this.dates.getDate());
                 }
@@ -106,7 +203,7 @@ var spafoo;
                 else {
                     this.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response) {
                         if (response.GetProfilePicResult.length > 0) {
-                            this.ImageURl = "http://dev.spafoo.com" + response.GetProfilePicResult;
+                            this.ImageURl = "http://www.spafoo.com" + response.GetProfilePicResult;
                         }
                         else {
                             this.ImageURl = "images/Site/default-User.png";
@@ -150,6 +247,14 @@ var spafoo;
                 }, function (error) { });
                 return deferred.promise;
             };
+            SharedHttp.prototype.HideApp4Me = function (AppID, UserType) {
+                var deferred = this.$q.defer();
+                this.CustomerHttp.get('/HideApp4Me/' + AppID + '/' + UserType).then(function (response) {
+                    this.HideApp = response;
+                    deferred.resolve(this.HideApp);
+                }, function (error) { });
+                return deferred.promise;
+            };
             SharedHttp.prototype.GetUserInfo = function (UserID) {
                 var deferred = this.$q.defer();
                 this.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
@@ -160,9 +265,14 @@ var spafoo;
             };
             SharedHttp.prototype.GetAddressInfo = function (AppointMentID) {
                 var deferred = this.$q.defer();
+                var self = this;
                 this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response) {
                     var e = response.GetAppLocationResult;
                     this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
+                    //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                    //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
+                    //   alert(this.GetAddressRcd);
                     deferred.resolve(this.GetAddressRcd);
                 }, function (error) { });
                 return deferred.promise;
@@ -207,6 +317,12 @@ var spafoo;
                 }, function (error) {
                 });
                 return deferred.promise;
+            };
+            SharedHttp.prototype.UnSeenStatus = function (AppointmentID) {
+                var self = this;
+                self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response) {
+                }, function (error) {
+                });
             };
             SharedHttp.$inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
             return SharedHttp;

@@ -25,18 +25,38 @@
         'spafoo.module.ProMyProfile', 'spafoo.module.ProEditProfile', 'spafoo.module.ProAppointments',
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
         'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
-        'spafoo.module.ProSetSoonest'
-    ];
+        'spafoo.module.ProSetSoonest', "spafoo.module.ContactUs", 'spafoo.module.AvailableCities', 'spafoo.module.PrivacyStatement', 'spafoo.module.TermsOfUse',
+        'spafoo.module.PriceList', 'spafoo.module.ForgotPassword'];
     angular
         .module('spafoo', moduleDependencies)
         .config(configAppUrl)
         .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.views.maxCache(0);
         $ionicConfigProvider.views.swipeBackEnabled(true);
+    })
+        .run(function ($ionicPlatform) {
+        var tabClick = 0;
+        $ionicPlatform.registerBackButtonAction(function () {
+            if (tabClick === 0) {
+                tabClick++;
+                var loc = window.location.href;
+                if (loc.substr(loc.lastIndexOf('/') + 1) != 'home') {
+                    window.history.go(-1);
+                }
+                setTimeout(function () { tabClick = 0; }, 1000);
+            }
+            else {
+                //alert(tabClick + ':else');
+                navigator.app.exitApp();
+            }
+        }, 100);
     });
-    configAppUrl.$inject = ['$urlRouterProvider'];
-    function configAppUrl($urlRouterProvider) {
+    configAppUrl.$inject = ['$urlRouterProvider', '$ionicConfigProvider', '$stateProvider'];
+    function configAppUrl($urlRouterProvider, $ionicConfigProvider, $stateProvider) {
         $urlRouterProvider.otherwise('home');
+        if (!ionic.Platform.isIOS()) {
+            $ionicConfigProvider.scrolling.jsScrolling(true);
+        }
     }
 })();
 

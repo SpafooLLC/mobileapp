@@ -13,15 +13,19 @@ var ProviderPortfolioController;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
             this.$stateParams = $stateParams;
+            var self = this;
             //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
-            this.UserID = $stateParams.userId;
-            this.getProviderPortfolio(this.UserID);
+            self.UserID = $stateParams.userId;
+            self.distance = $stateParams.distance;
+            self.getProviderPortfolio(this.UserID);
+            self.customerType = window.localStorage.getItem("Role");
             $('.fancybox').fancybox();
         }
         ProviderPortfolioController.prototype.getProviderPortfolio = function (UserID) {
             var self = this;
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + ".";
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
                 self.SharedHttp.GetMyRating(UserID).then(function (res) { self.RatingField = res.split(':')[0]; self.Rateperson = res.split(':')[1]; });
                 self.SharedHttp.GetProTagLine(UserID).then(function (res) { self.TagField = res; });

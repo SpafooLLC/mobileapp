@@ -1,7 +1,7 @@
 var MyProfileController;
 (function (MyProfileController_1) {
     var MyProfileController = (function () {
-        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
+        function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -12,13 +12,28 @@ var MyProfileController;
             this.$window = $window;
             this.toaster = toaster;
             this.SharedHttp = SharedHttp;
+            this.$rootScope = $rootScope;
             this.getUserInfo();
         }
+        MyProfileController.prototype.gotoOtherProvider = function (AppointmentID) {
+            var self = this;
+            //  alert(AppointmentID);
+            self.CustomerHttp.get("/GetServiceFrmNotification/" + AppointmentID).then(function (res) {
+                console.log(res);
+                self.$window.localStorage.setItem('ServiceIDs', res.GetServiceFrmNotificationResult);
+                self.$state.go("ProviderList");
+            });
+        };
         MyProfileController.prototype.getUserInfo = function () {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             var customerID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserInfo/' + customerID).then(function (response) {
                 self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField1 = response.GetUserInfoResult.firstNameField + " " + response.GetUserInfoResult.lastNameField[0] + ".";
                 self.ServiceData.membershipField.createdDateField = self.SharedHttp.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
@@ -27,7 +42,6 @@ var MyProfileController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };
@@ -52,32 +66,89 @@ var MyProfileController;
             self.CustomerHttp.get('/GetMyNotification/' + customerID).then(function (response) {
                 self.NotificaitonData = response.GetMyNotificationResult;
                 self.NotificationCount = self.NotificaitonData.length;
+                self.$rootScope.NotifiCount = self.NotificaitonData.length;
                 for (var i = 0; i <= self.NotificaitonData.length; i++) {
                     self.NotificaitonData[i].datedField = self.SharedHttp.getFormatedDate(self.NotificaitonData[i].datedField, "dd-MMM-yyyy");
-                    switch (self.NotificaitonData[i].typeNameField) {
-                        case "AppointmentFixed":
-                            self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section.";
+                    var role = localStorage.getItem('Role');
+                    switch (self.NotificaitonData[i].notificationTypeIDField) {
+                        case 4:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has requested an appointment!";
+                            }
+                            //else {
+                            //    self.NotificaitonData[i].typeNameFields = "Your Appointment has been accepted by " + self.NotificaitonData[i].byNameField + ".For more information, please check 'My Schedule' section."
+                            //}
                             break;
-                        case "ClientReview2Provider":
-                            self.NotificaitonData[i].typeNameField = "Client <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> given review to you";
+                        case 5:
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 24hrs ";
                             break;
-                        case "AppointmentCompleted":
-                            self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has completed the appointment. Please check 'My Schedule' section to rate this activity";
+                        case 6:
+                            self.NotificaitonData[i].typeNameFields = " You have appointment with " + self.NotificaitonData[i].byNameField + " in next 2hrs ";
                             break;
-                        case "IHaveArrived":
-                            self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has arrived to your appointment location";
+                        case 14:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has given you a SpaFoo review!";
+                            }
                             break;
-                        case "AppointmentFixed":
-                            self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        case 8:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = "Thank you for choosing SpaFoo!";
+                            }
                             break;
-                        case "AppointmentFixed":
-                            self.NotificaitonData[i].typeNameField = "Your <a href='#'>Appointment</a> has been fixed. For more information, please check 'My Schedule' section. ";
+                        case 7:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has arrived for your appointment!";
+                            }
                             break;
-                        case "ASAPAppProResp":
-                            self.NotificaitonData[i].typeNameField = "Provider <a href='#'>" + self.NotificaitonData[i].byNameField + "</a> has given Date & Time for requested, ASAP <a href='#'>appointment </a>";
+                        case 11:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has accepted your ASAP appointment.Please review the time set for your appointment and accept or deny it to finalize.";
+                            }
                             break;
-                        case "ASAPAppointment":
-                            self.NotificaitonData[i].typeNameField = "You requested for ASAP <a href='#'>appointment</a>";
+                        case 10:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has requested an ASAP appointment with you! ";
+                            }
+                            //  else{ self.NotificaitonData[i].typeNameFields = "10 Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField; }
+                            break;
+                        case 13:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " did NOT accept the time of your ASAP appointment.";
+                            }
+                            break;
+                        case 12:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has accepted the the time of your ASAP appointment.";
+                            }
+                            break;
+                        case 9:
+                            if (role == 'P') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " has cancelled the appointment.";
+                            }
+                            break;
+                        case 15:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = " Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " ,For more information, please check 'My Schedule' section.";
+                            }
+                            break;
+                        case 16:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = "Your ASAP appointment has been requested with " + self.NotificaitonData[i].byNameField;
+                            }
+                        case 17:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = "Your appointment has been accepted by " + self.NotificaitonData[i].byNameField + " for more information, please check 'My Schedule' section.";
+                            }
+                            break;
+                        case 18:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " Denied the Appointment request, ";
+                            }
+                            break;
+                        case 19:
+                            if (role == 'C') {
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + "  ' has denied your ASAP appointment request.";
+                            }
                             break;
                     }
                 }
@@ -129,7 +200,7 @@ var MyProfileController;
                 });
             }
         };
-        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
+        MyProfileController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$rootScope'];
         return MyProfileController;
     }());
     angular.module('spafoo.ctrl.MyProfile', []).controller('MyProfile', MyProfileController);

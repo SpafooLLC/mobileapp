@@ -19,28 +19,36 @@
             private $window: ng.IWindowService,
             private toaster: ngtoaster.IToasterService,
             private $rootScope: any,
-            private SharedHttp: spafoo.httpsharedservice.ISharedHttp
+            private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
+            
         ) {
-          
+           //  $("#MobileNo").mask("000-000-0000");
+            SharedHttp.ishome(true);
+
         }
 
 
         doLogin(username: string, password: string) {
+            //alert(this.$window.localStorage.getItem('DeviceToken'));
             var self = this;
+            username= $("#MobileNo").unmask("000-000-0000").val();
+             $("#MobileNo").mask("000-000-0000");
             if (username === null || username == '' || username == undefined) {                
-                self.messages = "Please Enter User Name.";
-                $("#PDone").modal();
+                self.messages = "Please enter phone number";   
+                $("#PDoneError").modal();
                 return;
             }
             if (password === null || password == '' || password == undefined) {
-                self.messages = "Please Enter User Name.";
-                $("#PDone").modal();
+                self.messages = "Please enter password";
+                $("#PDoneError").modal();
                 return;
             }
 
             var data = {
                 Username: username,
                 Password: password,
+                HardwareName:this.$window.localStorage.getItem('DeviceName'),
+                DeviceToken:this.$window.localStorage.getItem('DeviceToken') // pawanDeviceToken 379'
             };
 
             self.CustomerHttp.post(data, '/LoginUser').then(function (response:any) {
@@ -57,28 +65,63 @@
                     self.$window.localStorage.setItem('Role', null);
                     self.$rootScope.GetLoginStatus = false;
                     self.messages = "Login Failed, Please enter correct username and password";
-                    $("#PDone").modal();                    
+                    $("#PDoneError").modal();                    
                 }
             }, function (error) {
               
             });
         }
 
+       
+
         getLoggedUser(UserID: any) {
             var self = this;
-            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response:any) {
+            self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
                 self.$rootScope.UserProfileName = response.GetUserInfoResult.displayNameField;
                 self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
                 self.$rootScope.GetLoginStatus = true;
-                self.SharedHttp.GetMyNotification(UserID).then(function (res:any) { self.$rootScope.NotifiCount = res.length; });
-                self.$state.go("home");
-            }, function (error) {});
+                self.SharedHttp.GetMyNotification(UserID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
+                var v = self.$window.localStorage.getItem('url');
+
+                if (v!=null && v == "Register") {
+
+                    self.$window.localStorage.setItem("url", '0');
+                    window.location.href = "#/home";
+                    //self.$state.go("home");
+                }
+
+                else {
+                    if (v!=null && self.$window.localStorage.getItem('Role') == 'P' ) {
+                        //var v = self.$window.localStorage.getItem('url');
+
+                        var c = v.substr(v.indexOf('/') + 1);
+                        c = c.substr(0, c.indexOf('/'));
+
+                        if (c == "MakeAppointment" && self.$window.localStorage.getItem('url1') != "FindProvider") {
+                             
+                            self.$window.localStorage.setItem("url", '0');
+                            window.history.go(-2);
+
+                        } else {
+                            if (self.$window.localStorage.getItem('url1') == "FindProvider") {
+
+                                self.$window.localStorage.setItem("url1", '0');
+                                window.location.href = "#/home";
+                            }
+                            else {
+                                self.$window.localStorage.setItem("url", '0');
+                                window.history.go(-1);
+                            }
+                        }
+                    }
+                    else {
+
+                        window.history.go(-1);
+                    }
+                }
+                //  self.$state.go("home");
+            }, function (error) { });
         }
-
-     
-
-
-
     }
 
     angular.module('spafoo.ctrl.login', []).controller('login', loginController);

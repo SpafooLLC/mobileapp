@@ -16,44 +16,89 @@ var ProviderListController;
             var self = this;
             self.ServiceIDs = self.$window.localStorage.getItem('ServiceIDs');
             // alert(this.ServiceIDs);
-            var options = {
+            //  self.SharedHttp.IsGPSOn();
+            //cordova.plugins.locationAccuracy.canRequest(function (canRequest: any) {
+            //    if (canRequest) {
+            //        cordova.plugins.locationAccuracy.request(function (success: any) {
+            //          //  alert("Successfully requested accuracy: " + JSON.stringify( success));
+            //            //setTimeout(function () {
+            //            // //   navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
+            //            //  //  self.getProviderList(self.ServiceIDs);
+            //            //    $state.go('ProviderList');
+            //            //}, 5000);
+            //        }, function (error: any) {
+            //            //   alert("Accuracy request failed: error code=" + error.code + "; error message=" + error.message);
+            //            if (error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+            //                if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
+            //                    cordova.plugins.diagnostic.switchToLocationSettings();
+            //                }
+            //            }
+            //        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+            //    }
+            //});
+            self.proindex = 0;
+            self.options = {
                 enableHighAccuracy: true,
                 maximumAge: 3600000
             };
-            navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, options);
-            setTimeout(function () { self.getProviderList(self.ServiceIDs); }, 1000);
+            // navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
+            self.getProviderList(self.ServiceIDs);
         }
+        ProviderListController.prototype.GetWithInMile = function () {
+            var self = this;
+            self.CustomerHttp.get('/GetWithInMile').then(function (response) {
+                self.InMile = parseInt(response.GetWithInMileResult);
+            });
+        };
         ProviderListController.prototype.getProviderList = function (ServiceID) {
             var self = this;
-            self.CustomerHttp.get('/ListProvidersByServices/' + ServiceID).then(function (response) {
-                self.ServiceData = response.ListProvidersByServicesResult;
-                for (var i = 0; i <= response.ListProvidersByServicesResult.length; i++) {
-                    if (self.ServiceData[i].profileField.photoField != null) {
-                        self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
-                        self.GetProTagLine(self.ServiceData[i].userIDField, i);
-                        self.GetMyRating(self.ServiceData[i].userIDField, i);
-                    }
-                    else {
-                        self.ServiceData[i].profileField.photoField = "";
-                    }
-                    ;
-                    console.log(self.ServiceData[i].vanityUrlField);
-                    self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
-                }
-            }, function (error) {
-                if (error === null) {
-                    self.$ionicLoading.hide();
-                }
-                else {
-                    console.log(error);
-                    self.$ionicLoading.hide();
-                }
+            CheckGPS.check(function () {
+                $("#showload").show();
+                setTimeout(function () {
+                    self.GetWithInMile();
+                    navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
+                    setTimeout(function () {
+                        self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response) {
+                            self.ServiceData = response;
+                            for (var i = 0; i <= response.length; i++) {
+                                self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
+                                if (self.ServiceData[i].profileField.photoField != null) {
+                                    self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
+                                    self.GetProTagLine(self.ServiceData[i].userIDField, i);
+                                    self.GetMyRating(self.ServiceData[i].userIDField, i);
+                                }
+                                else {
+                                    self.ServiceData[i].profileField.photoField = "";
+                                }
+                                ;
+                                self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
+                                if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile)) {
+                                    self.proindex++;
+                                }
+                                if (self.proindex == 0 && parseInt(self.ServiceData[i].distance) >= parseInt(self.InMile)) {
+                                    self.NoDatafound = "Sorry, no provider found for the selected service ";
+                                }
+                            }
+                        }, function (error) {
+                            if (error === null) {
+                                self.$ionicLoading.hide();
+                            }
+                            else {
+                                console.log(error);
+                                self.$ionicLoading.hide();
+                            }
+                        });
+                    }, 3000);
+                }, 5000);
+            }, function () {
+                self.SharedHttp.IsGPSOn();
             });
         };
         ProviderListController.prototype.GetDistanceBetween = function (latlong, index) {
             var lat1 = latlong.substring(0, latlong.indexOf(':'));
             var long1 = latlong.substring(latlong.indexOf(':') + 1);
             var self = this;
+            //   alert(JSON.stringify(ProviderListController.currentlatlong) + " ::: Lat1 --> " + lat1 + " Long ::: " + long1);
             var lat2 = ProviderListController.currentlatlong.coords.latitude;
             var long2 = ProviderListController.currentlatlong.coords.longitude;
             var R = 6378137; // Earth’s mean radius in meter
@@ -67,8 +112,9 @@ var ProviderListController;
             // returns the distance in meter
         };
         ProviderListController.prototype.onSuccess = function (position) {
+            //  alert(JSON.stringify(position.coords.latitude + ", " + position.coords.longitude));
             ProviderListController.currentlatlong = position;
-            //   alert(JSON.stringify(ProviderListController.currentlatlong.coords.latitude +", "+ProviderListController.currentlatlong.coords.longitude ))
+            //  alert( "static Variable :: "+ JSON.stringify(ProviderListController.currentlatlong.coords.latitude + ", " + ProviderListController.currentlatlong.coords.longitude))
         };
         ProviderListController.prototype.rad = function (x) {
             return x * Math.PI / 180;
@@ -79,8 +125,8 @@ var ProviderListController;
         ProviderListController.prototype.getProfilePics = function (photoID, index) {
             var self = this;
             self.CustomerHttp.get('/GetProfilePic/' + photoID).then(function (response) {
-                //self.profilePic = "http://dev.spafoo.com" + response.GetProfilePicResult;
-                self.ServiceData[index].profileField.photoField = "http://dev.spafoo.com" + response.GetProfilePicResult;
+                //self.profilePic = "http://www.spafoo.com" + response.GetProfilePicResult;
+                self.ServiceData[index].profileField.photoField = "http://www.spafoo.com" + response.GetProfilePicResult;
                 //  alert(self.ServiceData[index].profileField.photoField);
                 self.$ionicLoading.hide();
             }, function (error) {
@@ -101,7 +147,6 @@ var ProviderListController;
                 if (error === null) {
                 }
                 else {
-                    console.log(error);
                 }
             });
         };

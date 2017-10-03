@@ -10,7 +10,7 @@
     function configProSetSoonest($stateProvider: angular.ui.IStateProvider) {
         var ProSetSoonestState: angular.ui.IState = {
             name: 'ProSetSoonest',
-            url: '/ProSetSoonest/:AddressID/:ClientID/:ProviderID/:AppID/:Name1',
+            url: '/ProSetSoonest/:AddressID/:ClientID/:ProviderID/:AppID/:Name1/:totalTime',
             templateUrl: 'app/templates/Pro-SetSoonest.html',
             controller: 'ProSetSoonest as pss'
         };

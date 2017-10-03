@@ -3,12 +3,14 @@
 <div class="bread">
   <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
   <div class="ptitle">My Profile</div>
-  <div class="pnotification">
-    <div class="ico">
-      <a href="Pro-Appointments.html"><i class="fa blue fa-bell fa-1x"></i></a>
-    </div>
-    <div id='notification'>{{pmp.NotificationCount}}</div>
-  </div>
+    <a href="#/Notification">
+        <div class="pnotification">
+            <div class="ico">
+                <i class="fa blue fa-bell fa-1x"></i>
+            </div>
+            <div id='notification'>{{pmp.NotificationCount}}</div>
+        </div>
+    </a>
 </div>
 <div class="inbody-simple mprofile">
   <div class="center">
@@ -19,32 +21,70 @@
         <a ng-if="pmp.proProfilePic!=''"><img ng-src="{{pmp.proProfilePic}}" alt="" draggable="false"></a>
       </div>
     </div>
-    <h3 class="bmar-xs">{{pmp.ServiceData.displayNameField}}</h3>
-    <p class="green bmar-sm fs-sm">{{pmp.ServiceData.emailField}}</p>
-    <p><span>Joined Date:</span> {{pmp.ServiceData.membershipField.createdDateField}}</p>
+    <h3 class="bmar-xs"> {{pmp.ServiceData.DisplayName1}}</h3>
+    <p class="green bmar-sm fs-sm"> {{pmp.ServiceData.Email}}</p>
+    <p><span>Joined Date:</span> {{pmp.ServiceData.Membership.CreatedDate}}</p>
   </div>
 <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
-<p><span>Name:</span> {{pmp.ServiceData.displayNameField}}</p>
-<p><span>Display Name:</span>{{pmp.ServiceData.usernameField}}</p>
-<p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
-<p><span>Email:</span> {{pmp.ServiceData.emailField}}</p>
 
+    
+
+<p><span>Name:</span> {{pmp.ServiceData.FirstName}} {{pmp.ServiceData.LastName}}</p>
+<p><span>Display Name:</span> {{pmp.ServiceData.DisplayName1}}</p>  
+<p><span>Password:</span> ********* (<a ui-sref="ChangePassword"> Change Password </a>) </p>
+<p><span>Gender:</span> {{pmp.ServiceData.Profile.ProfileProperties[0].PropertyValue}}</p>
 <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
-<p><span>Phone:</span> {{pmp.ServiceData.profileField.cellField}}</p>
-<p><span>Email:</span>{{pmp.ServiceData.emailField}}</p>
-<p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{pmp.ServiceData.profileField.streetField}}<br />{{pmp.ServiceData.profileField.cityField}}<br />{{pmp.ServiceData.profileField.regionField}}-{{pmp.ServiceData.profileField.postalCodeField}}</div></p>
+<p><span>Phone:</span> {{pmp.ServiceData.Profile.Telephone}}</p>
+<p><span>Cell:</span> {{pmp.ServiceData.Profile.Cell}}</p>
+<p><span>Email:</span> {{pmp.ServiceData.Email}}</p>
+<p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{pmp.ServiceData.Profile.Street}}<br />{{pmp.ServiceData.Profile.City}}<br />{{pmp.ServiceData.Profile.Region}}-{{pmp.ServiceData.Profile.PostalCode}}</div></p>
   <div class="clearfix"></div>
   
+
+
+<div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Professional Information</div>
+<p ng-if="pmp.ServiceData.Profile.ProfileProperties[2].PropertyValue == 1"><span>Type Of Entity:</span> Individual</p>
+<p ng-if="pmp.ServiceData.Profile.ProfileProperties[2].PropertyValue == 2"><span>Type Of Entity:</span> Business </p>
+<p><span>Professional License:</span> {{pmp.ServiceData.Profile.ProfileProperties[3].PropertyValue}}</p>
+<p><span>SSN:</span> {{pmp.ServiceData.Profile.ProfileProperties[4].PropertyValue}}</p>
+<p><span>EIN:</span> {{pmp.ServiceData.Profile.ProfileProperties[5].PropertyValue}}</p>
+<p><span>Position Applied:&nbsp</span><label ng-repeat="role in pmp.applRole">{{role}},&nbsp</label></p>
+<p class="offered"><span>Service(s) offered:&nbsp</span>
+  <label ng-repeat="service in pmp.serviceOffered">
+          
+      {{service.serviceNameField}}
+
+  </label>
+</p>
+
+
+  <div class="clearfix"></div>
+  
+  
+  
   <div class="bar-head"><i class="fa fa-user"></i> &nbsp;Bio</div>
-  <p>{{pmp.ServiceData.profileField.biographyField}}</p>
+  <p>{{pmp.ServiceData.Profile.Biography}}</p>
   
   <div class="bar-head"><i class="fa fa-image"></i> &nbsp;Work Sample</div>
   <div class="pprofile">
     <ul class="sample tmar-md">
-      <li ng-repeat="s in pmp.WorkSamplesList"><img src="http://dev.spafoo.com{{s.optionTextField}}" alt="" /></li>
+      <li ng-repeat="s in pmp.WorkSamplesList" ng-if="s.optionTextField!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'">
+          <a class="fancybox" href="http://www.Spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
+              <img ng-src="http://www.Spafoo.com{{s.optionTextField}}" alt="" />
+          </a>
+       
+      </li>
     </ul>
   </div>
-  
+
+    <link href="../../styles/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../../js/jquery.fancybox.js"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.fancybox').fancybox();
+            });
+    </script>
 </div>
    </ion-content>
 </ion-view>

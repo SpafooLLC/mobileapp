@@ -2,13 +2,15 @@
     
     class ProviderPortfolioController {
         UserID: number;
-        ServiceData: {};
+        ServiceData: any;
         profilePic: string;
         RatingField: string;
         Rateperson: string;
         TagField: string;
-        ProviderServiceList: {};
-        WorkSamplesList: {};
+        ProviderServiceList: any;
+        WorkSamplesList: any;
+        distance: string;
+        customerType: string;
         static $inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp', '$stateParams'];
         constructor(
             private $q: ng.IQService,
@@ -23,10 +25,14 @@
             private SharedHttp: spafoo.httpsharedservice.ISharedHttp,
             private $stateParams: angular.ui.IStateParamsService
         ) {
-          
+            var self = this;
             //this.UserID = this.$window.localStorage.getItem('ProviderIDs');
-            this.UserID = $stateParams.userId;
-            this.getProviderPortfolio(this.UserID);
+            self.UserID = $stateParams.userId;
+            self.distance = $stateParams.distance;
+            
+            self.getProviderPortfolio(this.UserID);
+            self.customerType = window.localStorage.getItem("Role");
+         
            $('.fancybox').fancybox();
         }
 
@@ -34,7 +40,8 @@
             var self = this;
           
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
-                 self.ServiceData = response.GetUserInfoResult;  
+                self.ServiceData = response.GetUserInfoResult;
+                self.ServiceData.displayNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + ".";
                  self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
                  self.SharedHttp.GetMyRating(UserID).then(function (res) { self.RatingField = res.split(':')[0] ; self.Rateperson = res.split(':')[1] });
                 self.SharedHttp.GetProTagLine(UserID).then(function (res) { self.TagField = res; });
@@ -58,7 +65,6 @@
                 }
             });
         }
-
 
 
         GoToProviderReview() {

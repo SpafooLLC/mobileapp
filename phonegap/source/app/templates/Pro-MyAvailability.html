@@ -1,51 +1,129 @@
 <ion-view>
-    <ion-content>
+    <ion-content scroll="false">
+        <style>
+            .fc-event-container .fc-title {
+                color: white;
+            }
 
+            .fc-day-grid-event .fc-time {
+                display: none !important;
+            }
+
+            .fc-event-container .fc-title {
+                color: #ffffff !important;
+            }
+
+            .fc-day-grid-event .fc-content {
+                text-align: center !important;
+                line-height: 16px;
+                font-size: 12px;
+            }
+
+            H2 {
+                margin: 0 0 10px 0;
+                line-height: 30px;
+                font-weight: normal;
+                font-size: 20px;
+                color: #112173;
+                font-family: 'Balthazar', sans-serif;
+            }
+
+            .fc th {
+                border-style: solid;
+                border-width: 1px;
+                padding: 10px;
+                vertical-align: top;
+                color: #219962;
+            }
+
+            .fc td {
+                border-style: solid;
+                border-width: 1px;
+                padding: 5px;
+                font-weight: 600;
+                vertical-align: top;
+                color: #112173;
+            }
+
+            .pctip {
+                text-align: center;
+                width: 100%;
+                padding: 20px 0 10px;
+                font-weight: 600;
+            }
+
+                .pctip > ul {
+                    padding: 0;
+                    margin-top: 10px;
+                }
+
+                .pctip li {
+                    display: inline-block;
+                    margin: 0 3px;
+                    list-style: none;
+                    padding: 0 0 0 25px;
+                    font-size: 12px;
+                }
+
+            .fc-toolbar {
+                margin-bottom: 5px;
+            }
+
+            .pctip li.pava {
+                background: url(images/Site/pavailable.png) left center no-repeat;
+            }
+
+            .pctip li.pres {
+                background: url(images/Site/preserved.png) left center no-repeat;
+            }
+        </style>
         <div class="bread">
             <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-            <div class="ptitle">My Appointments</div>
+            <div class="ptitle" ng-if="pma.ClientID == 'null'">My Availability</div>
+            <div class="ptitle" ng-if="pma.ClientID != 'null'">Appointment Date & Time</div>
+
         </div>
-        <div class="inbody mavai">
-            <h3 class="center"><i class="fa green fa-square"></i> &nbsp;I am available</h3>
-            <div class="cal">
+        <div style="overflow-y: auto; height:90%">
 
-                <div ui-calendar="pma.uiConfig.calendar" class="span8 calendar" ng-model="pma.staticEvents1" calendar="myCalendar1"></div>
 
+            <div class="inbody mavai">
+                <!--<h3 class="center" ng-if="pma.ClientID == 'null'"><i class="fa blue2 fa-square"></i> I am available &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa red2 fa-square"></i> Reserved Appointment</h3>-->
+                <h3 class="center" ng-if="pma.ClientID != 'null'">Select date/time for appointment with {{pma.name}}</h3>
+                <div class="cal">
+
+                    <div ui-calendar="pma.uiConfig.calendar" class="span8 calendar" ng-model="pma.staticEvents1" calendar="myCalendar1"></div>
+
+
+                </div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="cdatetime">
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr ng-repeat="p in pma.staticEvents1[0].events" ng-if="(p.startTime !=0 && pma.ClientID=='null')||p.proId==-1">
+
+                        <td>{{p.dateField}}</td>
+
+                        <td ng-if="pma.ClientID == 'null'"><input type="time" class="form-control" step="900" ng-model="p.startTime" id="{{'startId'+$index}}"></td>
+                        <td ng-if="pma.ClientID == 'null'"><input type="time" class="form-control" step="900" ng-model="p.endTime" ng-change="pma.getFreeSlot(p.proId,p.dateFieldHidden,p.startTime,p.endTime,p.dateField,$index)"></td>
+                        <td ng-if="pma.ClientID != 'null'"><input type="time" class="form-control" step="900" ng-model="p.startTime" id="{{'startId'+$index}}" ng-change="pma.calculateEndTime(p.proId,p.dateFieldHidden,p.startTime,p.dateField,$index)"></td>
+                        <td ng-if="pma.ClientID != 'null'"><input type="time" class="form-control" step="900" ng-model="p.endTime" disabled="disabled"></td>
+                        <td><a ng-click="pma.deleteEvent(p.id,p.proId,$index)"><i class="fa red fa-trash fa-lg"></i></a></td>
+                        <td><input type="text" hidden ng-model="p.dateFieldHidden" /></td>
+                        <td><input type="text" hidden ng-model="p.proId" /></td>
+
+                    </tr>
+
+                </table>
 
             </div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="cdatetime">
-                <tr>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>&nbsp;</th>
-                </tr>
-                <tr ng-repeat="p in pma.staticEvents1[0].events">
+            <div>
 
-                    <td>{{p.dateField}}</td>
-                    <td class="input-append bootstrap-timepicker-component">
-                        <input type="text" class="timepicker-default input-small" ng-model="p.startTime" onclick="$('.timepicker-default').timepicker({ disableFocus: false });" />
-                        <span class="add-on">
-                        </span>
-                    </td>
-                    <td class="input-append bootstrap-timepicker-component">
-                        <input type="text" class="timepicker-default input-small" ng-model="p.endTime" onclick="$('.timepicker-default').timepicker({ disableFocus: false });" />
-                        <span class="add-on">
-                        </span>
-                    </td>
-                    
-                    <td><a ng-click="pma.deleteEvent(p.id,p.proId,$index)" data-dismiss="modal" data-toggle="modal" data-target="#PDone"><i class="fa red fa-trash fa-lg"></i></a></td>
-                    <td><input type="text" hidden ng-model="p.dateFieldHidden" /></td>
-                    <td><input type="text" hidden ng-model="p.proId" /></td>
-
-                </tr>
-
-            </table>
-        </div>
-
-        <div class="fource-bottom center">
-
-            <a class="block-btn" data-ng-click="pma.doUpdate(pma.staticEvents1[0].events)">Update</a>
+                <a class="block-btn" data-ng-click="pma.doUpdate(pma.staticEvents1[0].events)" ng-if="pma.ClientID == 'null'">Update</a>
+                <a class="block-btn" data-ng-click="pma.setDetails()" ng-if="pma.ClientID != 'null'">set soonest</a>
+            </div>
         </div>
         <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog w90" role="document">
@@ -63,8 +141,26 @@
                 </div>
             </div>
         </div>
-        <p>&nbsp;</p>
+        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{pma.message}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock" ng-click="pma.emptyTimeBox(pma.indexBtn)">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Time Picker -->
 
     </ion-content>
+
 </ion-view>

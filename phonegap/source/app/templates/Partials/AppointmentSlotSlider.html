@@ -1,0 +1,23 @@
+<style>
+    .popup-container .popup {
+        width: 90% !important;
+    }
+</style>
+<div id="NS_dvSliderOuter" style="padding: 10px 20px; width: auto; min-height: 0px; max-height: none; height: 339px;" class="ui-dialog-content ui-widget-content">
+    <div class="times-header text-center">
+        Time slot for date: <span class="balanced"><label id="lblSlotDate">{{ma.onlyDate}}</label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Service Session: <span class="balanced"><label id="lblServiceSession">{{ma.totalDuration}} minute(s)</label></span>
+    </div>
+    <div class="chosens text-center">Chosen slot: [<label id="NS_lblStartHour">{{ma.from}}</label> &nbsp;-&nbsp;<label id="NS_lblEndHour">{{ma.to}}</label>]</div>
+    <div class="padding">
+        <input type="text" name="volume" id="range">
+    </div>
+    <div class="tsinfo assertive text-center">(move the blue handle, to select the slot of your preference)</div>
+    <div class="tsbottom text-center">
+        <span id="lblAvailability" class="positive">Availability:</span><br>
+        <label class="balanced" id="lblAvail" style="display: inline-block;" ng-if="ma.availability"><span class="ava">This slot is available</span></label>
+        <label class="assertive" id="lblAvail1" style="display: inline-block;" ng-if="!ma.availability"><span class="ava">This slot is not available</span></label><br>
+        <img ng-if="ma.availability" style="" id="imgAvail" src="../images/Other/tsgrant.png">
+        <img ng-if="!ma.availability" style="" id="imgAvai2" src="../images/Other/tserror.png">
+    </div>
+
+</div>

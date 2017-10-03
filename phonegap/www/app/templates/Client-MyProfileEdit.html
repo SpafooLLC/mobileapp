@@ -22,7 +22,7 @@
                         <a ng-click="mpe.cameraOption();" ng-if="mpe.profilePic==''"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
                         <a ng-click="mpe.cameraOption();" ng-if="mpe.profilePic!=''"><img ng-src="{{mpe.profilePic}}" alt="" draggable="false"></a>
                     </div>
-                    <div ng-if="mpe.isImageClick"><button ng-click="mpe.capturePhoto('C')">Camera Image</button><button ng-click="mpe.capturePhoto('G')">Galary Image</button></div>
+                    <div ng-if="mpe.isImageClick"><button ng-click="mpe.capturePhoto('C')">Camera Image</button><button ng-click="mpe.capturePhoto('G')">Gallery Image</button></div>
                 </div>
                 <h3 class="bmar-xs">{{mpe.ServiceData.DisplayName}}</h3>
                 <p class="green bmar-sm fs-sm">{{mpe.ServiceData.Email}}</p>
@@ -125,23 +125,70 @@
                 </div>
                 <div class="col-md-6">
                     <label for="exampleInputName2">PostalCode:</label>
-                    <input ng-model="mpe.ServiceData.Profile.PostalCode" maxlength="5"  type="text" class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.PostalCode" id="PostalCode" maxlength="5"  type="text" class="form-control">
                 </div>
-                <div class="col-md-12">
+                <!--<div class="col-md-12">
                     <label for="exampleInputName2">Phone:</label>
-                    <input ng-model="mpe.ServiceData.Profile.Cell" type="text" maxlength="12"  class="form-control">
+                    <input ng-model="mpe.ServiceData.Profile.ProfileProperties[12].PropertyValue" type="text" maxlength="12"  class="form-control">
+                </div>-->
+                <div class="col-md-12">
+                    <label for="exampleInputName2">Mobile:</label>
+                    <input ng-model="mpe.ServiceData.Profile.Cell" id="Cell" type="text" maxlength="12" class="form-control">
                 </div>
             </div>
             <div class="clearfix"></div>
+            
+       </div> 
+       <div class="h50"></div>
             <!--<a href="#" class="block-btn">Update</a>-->
-            <a href="#" ng-show="(mpe.ServiceData.FirstName && mpe.ServiceData.LastName && mpe.ServiceData.DisplayName && mpe.ServiceData.Email && mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue && mpe.ServiceData.Profile.Street
+            <!--<a href="#" ng-show="(mpe.ServiceData.FirstName && mpe.ServiceData.LastName && mpe.ServiceData.DisplayName && mpe.ServiceData.Email && mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue && mpe.ServiceData.Profile.Street
 					 && mpe.ServiceData.Profile.City && mpe.ServiceData.Profile.Region && mpe.ServiceData.Profile.PostalCode && mpe.ServiceData.Profile.Cell );"
 					ng-click="mpe.EditProfile(mpe.ServiceData.FirstName , mpe.ServiceData.LastName , mpe.ServiceData.DisplayName , mpe.ServiceData.Email , mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue , mpe.ServiceData.Profile.Street
 					 , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.Cell)"
 					
-					 class="block-btn">Update</a>
-       </div> 
+					 class="block-btn">Update</a>-->
+        <a href="#" ng-click="mpe.EditProfile(mpe.ServiceData.FirstName , mpe.ServiceData.LastName , mpe.ServiceData.DisplayName , mpe.ServiceData.Email , mpe.ServiceData.Profile.ProfileProperties[0].PropertyValue , mpe.ServiceData.Profile.Street
+                , mpe.ServiceData.Profile.City , mpe.ServiceData.Profile.Region , mpe.ServiceData.Profile.PostalCode , mpe.ServiceData.Profile.Cell)"
+
+                class="block-btn">Update</a>
+
             <script type="text/javascript">app.initialize();</script>
+
+
+            <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red" class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{mpe.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal"  class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{mpe.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
            
     </ion-content>
 </ion-view>

@@ -8,13 +8,13 @@
         <div class="inbody-simple">
             <div class="has-feedback fgap">
                 <label class="control-label">Card Number</label>
-                <input type="text" class="form-control" maxlength="16" ng-model="data.CCNumber">
-                <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel" placeholder="Credit Card Number" class="form-control" ng-change="cc.ValidateNumber(cc.data.CCNumber,'cnum')" maxlength="16" ng-model="cc.data.CCNumber">
             </div>
             <div class="expdate">
-                <p class="control-label bold bmar-sm">Expiry Date</p>
+                <p class="control-label bold bmar-sm">Expiration Date</p>
                 <div class="col-xs-6 fileft">
-                    <select class="form-control w100" ng-model="data.Month">
+                    <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Month">
+                        <option value="" selected="selected">-Select Month-</option>
                         <option value="01">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
@@ -30,38 +30,64 @@
                     </select>
                 </div>
                 <div class="col-xs-6 firight">
-                    <select class="form-control w100" ng-model="data.Year">
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
+                    <select ng-disabled="cc.from == 'reg' && cc.isChecked" class="form-control w100" ng-model="cc.data.Year">
+                        <option value="" selected="selected">-Select Year-</option>
+                        <option ng-repeat="year in  cc.years" value="{{year}}">{{year}}</option>
                     </select>
                 </div>
             </div>
             <div class="expdate">
                 <p class="control-label bold bmar-sm">CVV</p>
                 <div class="col-xs-6 fileft">
-                    <input type="text" class="form-control" maxlength="4" ng-model="data.CVV" placeholder="0000">
+                    <input ng-disabled="cc.from == 'reg' && cc.isChecked" type="tel" class="form-control" ng-change="cc.ValidateNumber(cc.data.CVV,'cvv')" maxlength="4" ng-model="cc.data.CVV" placeholder="0000">
                 </div>
                 <div class="col-xs-6 firight cvv">
                     The last 3-4 digits displyed on the back of  your card
                 </div>
             </div>
-            <!--<div class="checkbox checkbox-primary">
-                <input id="checkbox2" ng-model="data.PayLater"  type="checkbox">
+            <div class="has-feedback fgap">
+                <label class="control-label">Billing Address</label>
+                
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Address :</label>
+                <input type="text" placeholder="Address associated with card"
+                       class="form-control"
+                       ng-model="cc.data.Address">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">City :</label>
+                <input type="text" placeholder="City associated with card" class="form-control"
+                       ng-model="cc.data.City">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">State/Province :</label>
+                <input type="text" placeholder="State/Province associated with card" class="form-control"
+                       ng-model="cc.data.State">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Zip/Postal Code :</label>
+                <input type="tel" placeholder="Zip/Postal Code associated with card" class="form-control"
+                       oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} else if(/\D/.test(this.value)) {this.value = this.value.slice(0, this.value.length-1);}"
+                       maxlength="5"
+                       ng-model="cc.data.Zip">
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Phone :</label>
+                <input id="MobileNo" type="tel" placeholder="Phone number"
+                       class="form-control"
+                       maxlength="10"
+                       ng-model="cc.data.Phone">
+            </div>
+
+            <div ng-if="cc.from == 'reg'" class="checkbox checkbox-primary">
+                <input id="checkbox2" ng-click="cc.checkStatus($event)" type="checkbox">
                 <label for="checkbox2">Add Payment Later</label>
-            </div>-->
+            </div>
 
         </div>
-        <a class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(data)">Add Card</a>
+        <a ng-if="cc.from == 'profile'  && !cc.isChecked" class="modals block-btn" data-toggle="modal" data-ng-click="cc.SubmitCreditCardInfo(cc.data,'A')">Add Card</a>
+        <a ng-if="cc.from == 'reg'" class="modals block-btn" data-ng-click="cc.SubmitCreditCardInfo(cc.data,'R')" data-toggle="modal">Register</a>
         <!-- Modal Payment Terms -->
         <div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -71,7 +97,7 @@
                         <h4 class="modal-title" id="myModalLabel">Payment Terms</h4>
                     </div>
                     <div class="modal-body">
-                        A credit card is required to request an appointment. You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time. You will be charged at the completion of the service. It is the responsibility of the credit card processing agents/companies and the clients to maintain secure financial information and private credit card number documentation. SpaFoo.com accepts no liability for the failure of VISA/MasterCard/American Express/Discover to protect their clients from fraudulent activities and theft of private information. The above mentioned entities are contracted by SpaFoo.com to provide secure transactions.
+                        A credit card is required to request an appointment. You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time. You will be charged at the completion of the service. It is the responsibility of the credit card processing agents/companies and the clients to maintain secure financial information and private credit card number documentation. Spafoo.com accepts no liability for the failure of VISA/MasterCard/American Express/Discover to protect their clients from fraudulent activities and theft of private information. The above mentioned entities are contracted by Spafoo.com to provide secure transactions.
                     </div>
                 </div>
             </div>
@@ -104,7 +130,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
-                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
                     </div>
                     <div class="modal-cpbody center">
                         <p>{{cc.messages}}</p>
@@ -127,7 +153,7 @@
                     <div class="modal-cpbody center">
                         <p>{{cc.Succmesg}}</p>
                         <div class="cpaction">
-                            <a  ng-click="cc.redirectTo('MyProfile')"  class="green-rounded btnblock">Ok</a>
+                            <a ng-click="cc.redirectTo('MyProfile')" class="green-rounded btnblock">Ok</a>
 
                         </div>
                     </div>

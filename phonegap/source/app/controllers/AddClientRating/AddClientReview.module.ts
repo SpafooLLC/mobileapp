@@ -10,7 +10,7 @@
     function configAddClientReview($stateProvider: angular.ui.IStateProvider) {
         var AddClientRatingState: angular.ui.IState = {
             name: 'AddClientReview',
-            url: '/AddClientReview/:appId/:clientId',
+            url: '/AddClientReview/:appId/:clientId/:pageName/:UserID/:authTxnIDField/:appointmentIDField/:payTxnIDField/:amountField/:comment/:PID/:PPID',
             templateUrl: 'app/templates/Pro-AddClientReview.html',
             controller: 'AddClientReview as acr'
         };

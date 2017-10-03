@@ -12,7 +12,9 @@
         UserID: string;
         message: string;
         appointmentPhotoList: any;
-
+        page: string;
+        PPID: any;
+        PID: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp', '$stateParams', '$timeout'];
         constructor(
             private $q: ng.IQService,
@@ -26,21 +28,29 @@
             private $timeout: ITimeoutService
         ) {
             this.getClientInfo();
+            this.page = window.location.hash.split('/')[1];
         }
 
         getClientInfo() {
             var self = this;
+            var status= self.$window.localStorage.getItem('LoginStatus');
+            if(status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === ''){
+                self.$state.go('login');
+            }
             self.UserID = this.$window.localStorage.getItem('CustomerID');
             self.clientId = self.$stateParams.clientId;
             self.authTxnIDField = self.$stateParams.authTxnIDField;
             self.appointmentIDField = self.$stateParams.appointmentIDField;
             self.payTxnIDField = self.$stateParams.payTxnIDField;
             self.amountField = self.$stateParams.amountField;
+            self.PID = self.$stateParams.PID;
+            self.PPID = self.$stateParams.PPID;
+
             self.getAppointmentPhotos(self.appointmentIDField).then(function (res: any) {
                 self.$timeout(function () {
                     self.appointmentPhotoList = res;
                 }, 2000);
-                console.log(self.appointmentPhotoList);
+                //console.log(self.appointmentPhotoList);
             });
             
 
@@ -58,52 +68,65 @@
             return deferred.promise; 
         }
 
-        
-
         CompleteApp() {
             var self = this;
             self.UserID = this.$window.localStorage.getItem('CustomerID');
-            self.clientId = self.$stateParams.clientId;
-            self.authTxnIDField = self.$stateParams.authTxnIDField;
-            self.appointmentIDField = self.$stateParams.appointmentIDField;
-            self.payTxnIDField = self.$stateParams.payTxnIDField;
-            self.amountField = self.$stateParams.amountField;
-
-            //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
-            //self.message = 'Appointment Completed';
-            //$("#PDone").modal();
-            var data = {
-                TxnID: self.authTxnIDField,
-                Amount: self.amountField
-            };
-            self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
-                var response = JSON.parse(res);
-                var upData = {
-                    ID: self.appointmentIDField,
-                    Comment: self.comment,
-                    PaymentTxnID: self.payTxnIDField
-                };
-                self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
-                    var navData = {
-                        ByID: self.UserID,
-                        NotTypeID: 8,
-                        RelatedEntityID: self.appointmentIDField,
-                        ToID: self.clientId
-                    };
-                    self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
-                        self.message = 'Appointment Completed';
-                        $("#PDone").modal();
-                    }, function (navError: any) {
-
-                    })
-                }, function (erError: any) {
-
-                });
-
-            }, function (error: any) {
-                alert('someError on ChargePreviosAuth');
-            });
+           self.clientId = self.$stateParams.clientId;
+           self.authTxnIDField = self.$stateParams.authTxnIDField;
+           self.appointmentIDField = self.$stateParams.appointmentIDField;
+           self.payTxnIDField = self.$stateParams.payTxnIDField;
+           self.amountField = self.$stateParams.amountField;
+           self.SharedHttp.completeAppService(self.UserID, self.clientId, self.authTxnIDField, self.appointmentIDField, self.payTxnIDField, self.amountField, self.comment,self.PID,self.PPID)
         }
+
+        //CompleteApp1() {
+
+            
+        //    var self = this;
+         
+        //    self.UserID = this.$window.localStorage.getItem('CustomerID');
+        //    self.clientId = self.$stateParams.clientId;
+        //    self.authTxnIDField = self.$stateParams.authTxnIDField;
+        //    self.appointmentIDField = self.$stateParams.appointmentIDField;
+        //    self.payTxnIDField = self.$stateParams.payTxnIDField;
+        //    self.amountField = self.$stateParams.amountField;
+          
+        //    //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+        //    //self.message = 'Appointment Completed';
+        //    //$("#PDone").modal();
+        //    var data = {
+        //        TxnID: self.authTxnIDField,
+        //        Amount: self.amountField
+        //    };
+        //    self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+        //        var response = JSON.parse(res);
+        //        var upData = {
+        //            ID: self.appointmentIDField,
+        //            Comment: self.comment,
+        //            PaymentTxnID: self.payTxnIDField
+        //        };
+        //        self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+        //            var navData = {
+        //                ByID: self.UserID,
+        //                NotTypeID: 8,
+        //                RelatedEntityID: self.appointmentIDField,
+        //                ToID: self.clientId
+        //            };
+        //            self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+        //                self.message = 'Appointment Completed';
+        //                //$("#PDone").modal();
+        //                self.$state.go("ProAppointments");
+        //            }, function (navError: any) {
+
+        //            })
+        //        }, function (erError: any) {
+
+        //        });
+
+        //    }, function (error: any) {
+        //        //alert('someError on ChargePreviosAuth');
+        //    });
+        //}
 
         AddSampleImage(fileID: string) {
             var self = this;
@@ -123,7 +146,7 @@
                             'UID': self.UserID,
                             'AID': self.appointmentIDField
                         };
-                        alert(JSON.stringify(params));
+                        //alert(JSON.stringify(params));
                         options.params = params;
 
                         try {
@@ -132,8 +155,8 @@
                             //self.toaster.error('exception generated:' + ex, 'Error');
                         }
 
-                        ft.upload(imageURI, 'http://dev.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r: any) {
-                            alert(JSON.stringify(r));
+                        ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r: any) {
+                          
                             if (r.responseCode === '200' || r.responseCode === 200) {
                                 self.getAppointmentPhotos(self.appointmentIDField).then(function (res: any) {
                                     self.$timeout(function () {
@@ -155,8 +178,9 @@
                             $("#showload").hide();
                         }), options);
                     } else {
-                        //self.messages = "PNG,JPEG,JPG images allowed";
-                        alert('PNG,JPEG,JPG images allowed');
+                        self.messages = "PNG,JPEG,JPG images allowed";
+                        $("#PDone").modal();
+                        //alert('PNG,JPEG,JPG images allowed');
 
                     }
                 }, self.onFail, {

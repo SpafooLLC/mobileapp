@@ -5,10 +5,12 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; dates: Date; picId: string; picPath: string;
+        uuid: string; dates: Date; picId: string; picPath: string; AddressDetailRcd: string,
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; NotificationList: any;
-        Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any;
+        Rateperson: string; ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; HideApp: boolean;
         getLoginStatus(): any;
+        getAddressDetailRcd(): any;
+        setAddressDetailRcd(value: any): any;
         setLoginStatus(value: any): any;
         getuserType(): any;
         setuserType(value: any): any;
@@ -34,6 +36,11 @@
         GetMyNotification(UserID: any): ng.IPromise<string>;
         DoLogin(username: string, password: string): ng.IPromise<string>;
         redirectTo(href: any, ModalId: any): void;
+        HideApp4Me(AppID: any, UserType: any): ng.IPromise<string>;
+        completeAppService(UserID: any, clientId: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID: any, PPID: any): any;
+        UnSeenStatus(AppointmentID: any): void;
+        ishome(Ispg: boolean): void;
+        IsGPSOn(): void;
     }
     export class SharedHttp implements ISharedHttp {
         static $inject = ['$q', 'CustomerHttp', '$window', '$rootScope', '$state'];
@@ -43,14 +50,20 @@
         deviceName: string;
         customerId: string;
         userType: string;
-        uuid: string; picId: string; picPath: string;
+        uuid: string; picId: string; picPath: string; AddressDetailRcd: string;
         profileImageUrl: string; ImageURl: string; TagField: string; starField: string; Rateperson: string;
-        ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; NotificationList: any;
+        ProviderServiceList: {}; WorkSamplesList: {}; GetUserInfoRcd: {}; GetAddressRcd: any; NotificationList: any; HideApp: any;
         getuserType(): any {
             return this.userType;
         }
         setuserType(value: any): any {
             this.userType = value;
+        }
+        getAddressDetailRcd(): any {
+            return this.AddressDetailRcd;
+        }
+        setAddressDetailRcd(value: any): any {
+            this.AddressDetailRcd = value;
         }
         getUuid(): any {
             return this.uuid;
@@ -102,6 +115,111 @@
             timeString = h + timeString.substr(hourEnd, 3) + ampm;
             return timeString;
         }
+        IsGPSOn(): void {
+            //cordova.plugins.locationAccuracy.canRequest(function (canRequest:any) {
+            //    if (canRequest) {
+            //        cordova.plugins.locationAccuracy.request(function (success:any) {
+            //            // alert("Successfully requested accuracy: " + success.message);
+            //        }, function (error:any) {
+            //            //   alert("Accuracy request failed: error code=" + error.code + "; error message=" + error.message);
+            //            if (error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+            //                if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
+            //                    cordova.plugins.diagnostic.switchToLocationSettings();
+            //                }
+            //            }
+            //        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+            //    }
+            //});
+
+
+            document.addEventListener("deviceready", function () {
+                //default dialog
+                cordova.dialogGPS("To find SpaFoo providers in your area, GPS needs to be turned on.  Press 'OK' to turn it on.",//message
+                    "Use GPS, with wifi or mobile networks.",//description
+                    function (buttonIndex:any) {//callback
+                        switch (buttonIndex) {
+                            case 0: break;//cancel
+                            case 1: break;//neutro option
+                            case 2: break;//user go to configuration
+                        }
+                    },
+                    "Please Turn on GPS",//title
+                    ["Cancel", "Later", "Go"]);//buttons
+            });
+
+        }
+
+
+        ishome(ishm: boolean): void {
+            //if (ishm)
+            //{ $('.Ishome').show(); }
+            //else { $('.Ishome').hide(); }
+
+        }
+        completeAppService(UserId: any, clientID: any, authTxnIDField: any, appointmentIDField: any, payTxnIDField: any, amountField: any, comment: any, PID: any, PPID: any) {
+
+            var self = this;
+
+            var UserID = UserId;
+            var clientId = clientID;
+            var authTxnIDField = authTxnIDField;
+            var appointmentIDField = appointmentIDField;
+            var payTxnIDField = payTxnIDField;
+            var amountField = amountField;
+
+            //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
+            //self.message = 'Appointment Completed';
+            //$("#PDone").modal();
+            //var data = {
+            //    TxnID: authTxnIDField,
+            //    Amount: amountField
+            //};
+            var data = {
+                UserID: UserId,
+                clientId: clientID,
+                ID: appointmentIDField,
+                authTxnID: authTxnIDField,
+                PaymentTxnID: payTxnIDField,
+                Amount: amountField,
+                PID: PID,
+                PPID: PPID
+            };
+            self.CustomerHttp.post(data, '/AppointmentCompleted').then(function (res: any) {
+                self.message = 'Appointment Completed';
+                self.$state.go("ProAppointments");
+            }, function (erError: any) {
+
+            });
+            //self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
+            //    var response = JSON.parse(res);
+            //    var upData = {
+            //        ID: appointmentIDField,
+            //        Comment: comment,
+            //        PaymentTxnID: payTxnIDField
+            //    };
+            //    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
+            //        var navData = {
+            //            ByID: UserID,
+            //            NotTypeID: 8,
+            //            RelatedEntityID: appointmentIDField,
+            //            ToID: clientId
+            //        };
+            //        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
+            //            self.message = 'Appointment Completed';
+            //            //$("#PDone").modal();
+            //            self.$state.go("ProAppointments");
+            //        }, function (navError: any) {
+
+            //        })
+            //    }, function (erError: any) {
+
+            //    });
+
+            //}, function (error: any) {
+            //    //alert('someError on ChargePreviosAuth');
+            //});
+        }
+
         getFormatedDate(joindates: any, formatType: any): any {
             if (formatType != "weekday dd MMMM yyyy") {
                 var abcDate = (joindates).replace("/Date(", "").replace(")/", "");
@@ -128,8 +246,9 @@
             switch (formatType) {
                 case "dd MMMM yyyy": return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
                 case "dd-MMM-yyyy": return (this.dates.getDate() + "-" + month[this.dates.getMonth()] + "-" + this.dates.getFullYear());
-                case "dd/MM/yyyy": return (this.dates.getDate() + "/" + this.dates.getMonth() + 1 + "/" + this.dates.getFullYear());
-                case "weekday dd MMMM yyyy": return (weekday[this.dates.getDay()] + " " + this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
+                case "dd/MM/yyyy": return (this.dates.getDate() + "/" + (this.dates.getMonth() + 1) + "/" + this.dates.getFullYear());
+                case "MM/dd/yyyy": return ((this.dates.getMonth() + 1) + "/" + this.dates.getDate() + "/" + this.dates.getFullYear());
+              case "weekday dd MMMM yyyy": return (weekday[this.dates.getDay()] + " " + this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
                 case "MM DD": return (month[this.dates.getMonth()] + " " + this.dates.getDate());
             }
             return (this.dates.getDate() + " " + month[this.dates.getMonth()] + " " + this.dates.getFullYear());
@@ -144,7 +263,7 @@
             else {
                 this.CustomerHttp.get('/GetProfilePic/' + customerID).then(function (response: any) {
                     if (response.GetProfilePicResult.length > 0) {
-                        this.ImageURl = "http://dev.spafoo.com" + response.GetProfilePicResult;
+                        this.ImageURl = "http://www.spafoo.com" + response.GetProfilePicResult;
                     }
                     else {
                         this.ImageURl = "images/Site/default-User.png";
@@ -195,6 +314,18 @@
             return deferred.promise;
         }
 
+        HideApp4Me(AppID: any, UserType: any): ng.IPromise<string> {
+            var deferred = this.$q.defer();
+            this.CustomerHttp.get('/HideApp4Me/' + AppID + '/' + UserType).then(function (response: any) {
+                this.HideApp = response;
+
+                deferred.resolve(this.HideApp);
+            }, function (error) { });
+            return deferred.promise;
+        }
+
+
+
         GetUserInfo(UserID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
             this.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
@@ -206,9 +337,15 @@
 
         GetAddressInfo(AppointMentID: any): ng.IPromise<string> {
             var deferred = this.$q.defer();
+            var self = this;
             this.CustomerHttp.get('/GetAppLocation/' + AppointMentID).then(function (response: any) {
                 var e = response.GetAppLocationResult
+
                 this.GetAddressRcd = (e.addressField + "," + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                self.setAddressDetailRcd((e.addressField + "<br />" + e.cityField + ", " + e.stateField + " - " + e.zipField));
+                //this.GetAddressDetailRcd = (e.addressField + "<br>" + e.cityField + ", " + e.stateField + " - " + e.zipField);
+                //     this.GetAddressRcd = (e.cityField+ ", " + e.stateField );
+                //   alert(this.GetAddressRcd);
                 deferred.resolve(this.GetAddressRcd);
             }, function (error) { });
             return deferred.promise;
@@ -259,6 +396,15 @@
 
             });
             return deferred.promise;
+        }
+
+        UnSeenStatus(AppointmentID: any): void {
+            var self = this;
+            self.CustomerHttp.get('/UpdateAppSeenStatus/' + AppointmentID).then(function (response: any) {
+
+
+            }, function (error) {
+            });
         }
 
     }

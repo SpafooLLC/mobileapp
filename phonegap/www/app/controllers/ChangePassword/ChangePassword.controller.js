@@ -41,27 +41,27 @@ var ChangePasswordController;
             var self = this;
             if (Regdata == undefined) {
                 self.messages = "Please Enter Current Password.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return false;
             }
             if (Regdata.CurrentPassword === null || Regdata.CurrentPassword === '' || Regdata.CurrentPassword == undefined) {
                 self.messages = "Please Enter Current Password.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return false;
             }
             if (Regdata.NewPassword === null || Regdata.NewPassword === '' || Regdata.NewPassword == undefined) {
                 self.messages = "Please Enter New Password.";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return false;
             }
             if (Regdata.ConfirmNewPassword === null || Regdata.ConfirmNewPassword === '' || Regdata.ConfirmNewPassword == undefined) {
                 self.messages = "Please Enter Confirm New Password. ";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return false;
             }
             if (Regdata.ConfirmNewPassword != Regdata.NewPassword) {
                 self.messages = "Password Not Matched. ";
-                $("#PDone").modal();
+                $("#PDoneError").modal();
                 return false;
             }
             return true;

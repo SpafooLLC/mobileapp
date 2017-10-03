@@ -28,16 +28,20 @@
 
         getProviderReview(UserID: any) {
             var self = this;
+            var status = self.$window.localStorage.getItem('LoginStatus');
+            if (status === null || status === 'false' || status === false || status === undefined || status === 'undefined' || status === '') {
+                self.$state.go('login');
+            }
             self.SharedHttp.GetUserInfo(UserID).then(function (res: any) {
                 self.ServiceData = res;
-               
-                self.SharedHttp.GetMyRating(UserID).then(function (ress) { self.RatingField = ress.split(':')[0]; self.Rateperson = ress.split(':')[1] });
-                self.SharedHttp.GetProTagLine(UserID).then(function (resss) { self.TagField = resss; });            
-                self.SharedHttp.getProfilePics(parseInt(res.profileField.photoField)).then(function (imgres) { self.profilePic = imgres; });
-           
-            }).then(function () {  self.getReviewDetails(UserID);});
 
-        
+                self.SharedHttp.GetMyRating(UserID).then(function (ress) { self.RatingField = ress.split(':')[0]; self.Rateperson = ress.split(':')[1] });
+                self.SharedHttp.GetProTagLine(UserID).then(function (resss) { self.TagField = resss; });
+                self.SharedHttp.getProfilePics(parseInt(res.profileField.photoField)).then(function (imgres) { self.profilePic = imgres; });
+
+            }).then(function () { self.getReviewDetails(UserID); });
+
+
         }
 
         getReviewDetails(UserID: any) {
@@ -45,25 +49,36 @@
             self.CustomerHttp.get('/GetMyReview/' + UserID).then(function (response: any) {
                 self.ReviewData = response.GetMyReviewResult;
                 $.each(self.ReviewData, function (i, item) {
-                    var str = item.commentsField ;
+                    var str = item.commentsField;
                     var uri_encoded = str.replace(/%([^\d].)/, "%25$1");
+
                     self.ReviewData[i].commentsField = decodeURIComponent(uri_encoded);
-                    self.ReviewData[i].datedField = self.SharedHttp.getFormatedDate(item.datedField, "dd/MM/yyyy");
-                    
+                    self.ReviewData[i].datedField = self.SharedHttp.getFormatedDate(item.datedField, "MM/dd/yyyy");
+
+
                     self.SharedHttp.GetUserInfo(item.byUserIDField).then(function (res: any) {
-                        self.ReviewData[i].displayNameField = res.displayNameField;
-                     
+
+                        switch (self.ReviewData[i].displayNameField) {
+                            case 1: self.ReviewData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + "."; break;
+                            case 2: self.ReviewData[i].displayNameField = res.firstNameField; break;
+                            case 3: self.ReviewData[i].displayNameField = res.lastNameField; break;
+                            case 4: self.ReviewData[i].displayNameField = res.firstNameField + " " + res.lastNameField; break;
+                         
+
+                        }
+                        // self.ReviewData[i].displayNameField = res.displayNameField;
+
                         self.ReviewData[i].RegionField = res.profileField.regionField;
-                    
-                   });
-                   
-                });​ 
+
+                    });
+
+                });
 
             }, function (error) {
                 if (error === null) {
 
                 } else {
-                    console.log(error);
+                    //console.log(error);
 
                 }
             });

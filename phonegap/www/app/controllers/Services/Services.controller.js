@@ -1,7 +1,7 @@
 var ServicesController;
 (function (ServicesController_1) {
     var ServicesController = (function () {
-        function ServicesController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster) {
+        function ServicesController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -11,9 +11,11 @@ var ServicesController;
             this.CustomerHttp = CustomerHttp;
             this.$window = $window;
             this.toaster = toaster;
+            this.SharedHttp = SharedHttp;
             this.pdata = 0;
             this.getServiceList(-1);
             // this.PreviousID = "-1";
+            //alert("Hi");
         }
         ServicesController.prototype.getServiceList = function (ParentServiceID) {
             var self = this;
@@ -26,15 +28,17 @@ var ServicesController;
                     self.$window.localStorage.setItem('ServiceIDs', self.PreviousID);
                     self.$state.go("ProviderList");
                 }
-                self.PreviousID = response.GetServiceListResult[0].parentIDField;
-                self.pdata = response.GetServiceListResult[0].parentIDField;
+                else {
+                    self.PreviousID = response.GetServiceListResult[0].parentIDField;
+                    self.pdata = response.GetServiceListResult[0].parentIDField;
+                }
                 self.$ionicLoading.hide();
             }, function (error) {
                 if (error === null) {
                     self.$ionicLoading.hide();
                 }
                 else {
-                    console.log(error);
+                    //console.log(error);
                     self.$ionicLoading.hide();
                 }
             });
@@ -58,7 +62,7 @@ var ServicesController;
             });
             self.PreviousID = ParentServiceID;
         };
-        ServicesController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster'];
+        ServicesController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         return ServicesController;
     }());
     angular.module('spafoo.ctrl.Services', []).controller('Services', ServicesController);
