@@ -1,0 +1,29 @@
+
+For Deployement on Android
+
+1. cordova build --release android
+2. jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore Spafoo-release-key.keystore app-release-unsigned.apk Spafoo
+3. passphrase : 9Q2znp40!
+4. C:\Users\cis\AppData\Local\Android\android-sdk\build-tools\24.0.0
+C:\Users\cis\AppData\Local\Android\Sdk\build-tools\28.0.3
+5. zipalign -v 4 app-release-unsigned.apk Spafoo-release(v1.4.5).apk
+
+
+
+For Deployement on IOS
+
+1. we need .csr file
+2. Apple developer Account
+3. Create Certificate in against of .csr
+4. Register package on developer Account
+5. Add UDID
+6. Configure push notification (if required)
+7. Download all the certifcate on MAC machine 
+8. add Distribution and Developement Certificate
+9. add Certificate in Keychain
+10. build the code and upload on itune Store.
+
+
+
+cordova platform remove android && cordova platform add android@6.2.3
+

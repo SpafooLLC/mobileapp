@@ -8,6 +8,8 @@
         'spafoo.module.home',
         'spafoo.module.login',
         'spafoo.module.register',
+        'spafoo.module.GiftCertificate',
+        'spafoo.module.CreditCardGiftCertificate',
         'spafoo.httpservice',
         'toaster',       
         'spafoo.ctrl.Main',
@@ -28,7 +30,7 @@
         'ui.calendar', 'spafoo.module.AddClientReview', 'spafoo.module.ProAppointmentDetail',
         'spafoo.module.Notification', 'spafoo.module.ProAppointmentCompleted', 'spafoo.module.MyProfileEdit', 'angularMoment',
         'spafoo.module.ProSetSoonest', "spafoo.module.ContactUs", 'spafoo.module.AvailableCities', 'spafoo.module.PrivacyStatement', 'spafoo.module.TermsOfUse'
-        , 'spafoo.module.PriceList', 'spafoo.module.ForgotPassword'  ];
+        , 'spafoo.module.PriceList'  ];
 
     angular
         .module('spafoo', moduleDependencies)
