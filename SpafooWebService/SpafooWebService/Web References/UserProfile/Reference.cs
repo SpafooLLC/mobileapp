@@ -23,7 +23,7 @@ namespace SpafooWebService.UserProfile {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="rhSoap", Namespace="http://tempuri.org/")]
@@ -36,6 +36,10 @@ namespace SpafooWebService.UserProfile {
         private System.Threading.SendOrPostCallback RemoveMySampleOperationCompleted;
         
         private System.Threading.SendOrPostCallback ChangePasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ResetPasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChangePasswordQAOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetRegionsOperationCompleted;
         
@@ -90,6 +94,12 @@ namespace SpafooWebService.UserProfile {
         
         /// <remarks/>
         public event ChangePasswordCompletedEventHandler ChangePasswordCompleted;
+        
+        /// <remarks/>
+        public event ResetPasswordCompletedEventHandler ResetPasswordCompleted;
+        
+        /// <remarks/>
+        public event ChangePasswordQACompletedEventHandler ChangePasswordQACompleted;
         
         /// <remarks/>
         public event GetRegionsCompletedEventHandler GetRegionsCompleted;
@@ -315,6 +325,72 @@ namespace SpafooWebService.UserProfile {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ResetPassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ResetPassword(string Username, string PasswordAnswer) {
+            object[] results = this.Invoke("ResetPassword", new object[] {
+                        Username,
+                        PasswordAnswer});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ResetPasswordAsync(string Username, string PasswordAnswer) {
+            this.ResetPasswordAsync(Username, PasswordAnswer, null);
+        }
+        
+        /// <remarks/>
+        public void ResetPasswordAsync(string Username, string PasswordAnswer, object userState) {
+            if ((this.ResetPasswordOperationCompleted == null)) {
+                this.ResetPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnResetPasswordOperationCompleted);
+            }
+            this.InvokeAsync("ResetPassword", new object[] {
+                        Username,
+                        PasswordAnswer}, this.ResetPasswordOperationCompleted, userState);
+        }
+        
+        private void OnResetPasswordOperationCompleted(object arg) {
+            if ((this.ResetPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ResetPasswordCompleted(this, new ResetPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChangePasswordQA", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ChangePasswordQA(string Username, string pwd, string pwdQ, string pwdA) {
+            object[] results = this.Invoke("ChangePasswordQA", new object[] {
+                        Username,
+                        pwd,
+                        pwdQ,
+                        pwdA});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChangePasswordQAAsync(string Username, string pwd, string pwdQ, string pwdA) {
+            this.ChangePasswordQAAsync(Username, pwd, pwdQ, pwdA, null);
+        }
+        
+        /// <remarks/>
+        public void ChangePasswordQAAsync(string Username, string pwd, string pwdQ, string pwdA, object userState) {
+            if ((this.ChangePasswordQAOperationCompleted == null)) {
+                this.ChangePasswordQAOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangePasswordQAOperationCompleted);
+            }
+            this.InvokeAsync("ChangePasswordQA", new object[] {
+                        Username,
+                        pwd,
+                        pwdQ,
+                        pwdA}, this.ChangePasswordQAOperationCompleted, userState);
+        }
+        
+        private void OnChangePasswordQAOperationCompleted(object arg) {
+            if ((this.ChangePasswordQACompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangePasswordQACompleted(this, new ChangePasswordQACompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetRegions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ListEntryInfo[] GetRegions() {
             object[] results = this.Invoke("GetRegions", new object[0]);
@@ -390,7 +466,7 @@ namespace SpafooWebService.UserProfile {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -567,11 +643,11 @@ namespace SpafooWebService.UserProfile {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateUserCompletedEventHandler(object sender, UpdateUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -593,11 +669,11 @@ namespace SpafooWebService.UserProfile {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetProTagLineCompletedEventHandler(object sender, GetProTagLineCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetProTagLineCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -619,15 +695,15 @@ namespace SpafooWebService.UserProfile {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RemoveMySampleCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ChangePasswordCompletedEventHandler(object sender, ChangePasswordCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChangePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -649,11 +725,63 @@ namespace SpafooWebService.UserProfile {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ResetPasswordCompletedEventHandler(object sender, ResetPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ResetPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ResetPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ChangePasswordQACompletedEventHandler(object sender, ChangePasswordQACompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangePasswordQACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChangePasswordQACompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetRegionsCompletedEventHandler(object sender, GetRegionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetRegionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -675,11 +803,11 @@ namespace SpafooWebService.UserProfile {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserTypeCompletedEventHandler(object sender, GetUserTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

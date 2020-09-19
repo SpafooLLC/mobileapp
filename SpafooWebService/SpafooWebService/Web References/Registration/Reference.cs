@@ -23,7 +23,7 @@ namespace SpafooWebService.Registration {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="rhSoap", Namespace="http://tempuri.org/")]
@@ -36,6 +36,8 @@ namespace SpafooWebService.Registration {
         private System.Threading.SendOrPostCallback GetUserReponseOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetFormUserReponseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RemoveFormUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetStepQuestionsOperationCompleted;
         
@@ -71,6 +73,8 @@ namespace SpafooWebService.Registration {
         
         private System.Threading.SendOrPostCallback AddFormUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ListUserFormsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback IsFormUserValidatedOperationCompleted;
         
         private System.Threading.SendOrPostCallback RemoveResponseOperationCompleted;
@@ -86,6 +90,12 @@ namespace SpafooWebService.Registration {
         private System.Threading.SendOrPostCallback GetUserHardwareOperationCompleted;
         
         private System.Threading.SendOrPostCallback ListUserHardwareOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RequestVCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback VerifyCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChangePwdOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -136,6 +146,9 @@ namespace SpafooWebService.Registration {
         
         /// <remarks/>
         public event GetFormUserReponseCompletedEventHandler GetFormUserReponseCompleted;
+        
+        /// <remarks/>
+        public event RemoveFormUserCompletedEventHandler RemoveFormUserCompleted;
         
         /// <remarks/>
         public event GetStepQuestionsCompletedEventHandler GetStepQuestionsCompleted;
@@ -189,6 +202,9 @@ namespace SpafooWebService.Registration {
         public event AddFormUserCompletedEventHandler AddFormUserCompleted;
         
         /// <remarks/>
+        public event ListUserFormsCompletedEventHandler ListUserFormsCompleted;
+        
+        /// <remarks/>
         public event IsFormUserValidatedCompletedEventHandler IsFormUserValidatedCompleted;
         
         /// <remarks/>
@@ -211,6 +227,15 @@ namespace SpafooWebService.Registration {
         
         /// <remarks/>
         public event ListUserHardwareCompletedEventHandler ListUserHardwareCompleted;
+        
+        /// <remarks/>
+        public event RequestVCodeCompletedEventHandler RequestVCodeCompleted;
+        
+        /// <remarks/>
+        public event VerifyCodeCompletedEventHandler VerifyCodeCompleted;
+        
+        /// <remarks/>
+        public event ChangePwdCompletedEventHandler ChangePwdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -321,6 +346,35 @@ namespace SpafooWebService.Registration {
             if ((this.GetFormUserReponseCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetFormUserReponseCompleted(this, new GetFormUserReponseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RemoveFormUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string RemoveFormUser(string username) {
+            object[] results = this.Invoke("RemoveFormUser", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RemoveFormUserAsync(string username) {
+            this.RemoveFormUserAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void RemoveFormUserAsync(string username, object userState) {
+            if ((this.RemoveFormUserOperationCompleted == null)) {
+                this.RemoveFormUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRemoveFormUserOperationCompleted);
+            }
+            this.InvokeAsync("RemoveFormUser", new object[] {
+                        username}, this.RemoveFormUserOperationCompleted, userState);
+        }
+        
+        private void OnRemoveFormUserOperationCompleted(object arg) {
+            if ((this.RemoveFormUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RemoveFormUserCompleted(this, new RemoveFormUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -651,7 +705,23 @@ namespace SpafooWebService.Registration {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RegisterUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string RegisterUser(string UN, string FN, string LN, string EM, string P, string PH, string MB, string STR, string City, string State, string Zip, string GDR, string PID, string UR, string SRVC) {
+        public string RegisterUser(
+                    string UN, 
+                    string FN, 
+                    string LN, 
+                    string EM, 
+                    string P, 
+                    string PH, 
+                    string MB, 
+                    string STR, 
+                    string City, 
+                    string State, 
+                    string Zip, 
+                    string GDR, 
+                    string PID, 
+                    string UR, 
+                    string SRVC, 
+                    int MID) {
             object[] results = this.Invoke("RegisterUser", new object[] {
                         UN,
                         FN,
@@ -667,13 +737,9 @@ namespace SpafooWebService.Registration {
                         GDR,
                         PID,
                         UR,
-                        SRVC});
+                        SRVC,
+                        MID});
             return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void RegisterUserAsync(string UN, string FN, string LN, string EM, string P, string PH, string MB, string STR, string City, string State, string Zip, string GDR, string PID, string UR, string SRVC) {
-            this.RegisterUserAsync(UN, FN, LN, EM, P, PH, MB, STR, City, State, Zip, GDR, PID, UR, SRVC, null);
         }
         
         /// <remarks/>
@@ -693,6 +759,28 @@ namespace SpafooWebService.Registration {
                     string PID, 
                     string UR, 
                     string SRVC, 
+                    int MID) {
+            this.RegisterUserAsync(UN, FN, LN, EM, P, PH, MB, STR, City, State, Zip, GDR, PID, UR, SRVC, MID, null);
+        }
+        
+        /// <remarks/>
+        public void RegisterUserAsync(
+                    string UN, 
+                    string FN, 
+                    string LN, 
+                    string EM, 
+                    string P, 
+                    string PH, 
+                    string MB, 
+                    string STR, 
+                    string City, 
+                    string State, 
+                    string Zip, 
+                    string GDR, 
+                    string PID, 
+                    string UR, 
+                    string SRVC, 
+                    int MID, 
                     object userState) {
             if ((this.RegisterUserOperationCompleted == null)) {
                 this.RegisterUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRegisterUserOperationCompleted);
@@ -712,7 +800,8 @@ namespace SpafooWebService.Registration {
                         GDR,
                         PID,
                         UR,
-                        SRVC}, this.RegisterUserOperationCompleted, userState);
+                        SRVC,
+                        MID}, this.RegisterUserOperationCompleted, userState);
         }
         
         private void OnRegisterUserOperationCompleted(object arg) {
@@ -925,6 +1014,33 @@ namespace SpafooWebService.Registration {
             if ((this.AddFormUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddFormUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListUserForms", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public FormUserInfo[] ListUserForms() {
+            object[] results = this.Invoke("ListUserForms", new object[0]);
+            return ((FormUserInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListUserFormsAsync() {
+            this.ListUserFormsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ListUserFormsAsync(object userState) {
+            if ((this.ListUserFormsOperationCompleted == null)) {
+                this.ListUserFormsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListUserFormsOperationCompleted);
+            }
+            this.InvokeAsync("ListUserForms", new object[0], this.ListUserFormsOperationCompleted, userState);
+        }
+        
+        private void OnListUserFormsOperationCompleted(object arg) {
+            if ((this.ListUserFormsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListUserFormsCompleted(this, new ListUserFormsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1216,6 +1332,99 @@ namespace SpafooWebService.Registration {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RequestVCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string RequestVCode(string UserEmailID, int MID) {
+            object[] results = this.Invoke("RequestVCode", new object[] {
+                        UserEmailID,
+                        MID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RequestVCodeAsync(string UserEmailID, int MID) {
+            this.RequestVCodeAsync(UserEmailID, MID, null);
+        }
+        
+        /// <remarks/>
+        public void RequestVCodeAsync(string UserEmailID, int MID, object userState) {
+            if ((this.RequestVCodeOperationCompleted == null)) {
+                this.RequestVCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRequestVCodeOperationCompleted);
+            }
+            this.InvokeAsync("RequestVCode", new object[] {
+                        UserEmailID,
+                        MID}, this.RequestVCodeOperationCompleted, userState);
+        }
+        
+        private void OnRequestVCodeOperationCompleted(object arg) {
+            if ((this.RequestVCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RequestVCodeCompleted(this, new RequestVCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/VerifyCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string VerifyCode(string UserEmailID, string Code) {
+            object[] results = this.Invoke("VerifyCode", new object[] {
+                        UserEmailID,
+                        Code});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void VerifyCodeAsync(string UserEmailID, string Code) {
+            this.VerifyCodeAsync(UserEmailID, Code, null);
+        }
+        
+        /// <remarks/>
+        public void VerifyCodeAsync(string UserEmailID, string Code, object userState) {
+            if ((this.VerifyCodeOperationCompleted == null)) {
+                this.VerifyCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnVerifyCodeOperationCompleted);
+            }
+            this.InvokeAsync("VerifyCode", new object[] {
+                        UserEmailID,
+                        Code}, this.VerifyCodeOperationCompleted, userState);
+        }
+        
+        private void OnVerifyCodeOperationCompleted(object arg) {
+            if ((this.VerifyCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.VerifyCodeCompleted(this, new VerifyCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChangePwd", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ChangePwd(string UserEmailID, string NewPassword) {
+            object[] results = this.Invoke("ChangePwd", new object[] {
+                        UserEmailID,
+                        NewPassword});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChangePwdAsync(string UserEmailID, string NewPassword) {
+            this.ChangePwdAsync(UserEmailID, NewPassword, null);
+        }
+        
+        /// <remarks/>
+        public void ChangePwdAsync(string UserEmailID, string NewPassword, object userState) {
+            if ((this.ChangePwdOperationCompleted == null)) {
+                this.ChangePwdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangePwdOperationCompleted);
+            }
+            this.InvokeAsync("ChangePwd", new object[] {
+                        UserEmailID,
+                        NewPassword}, this.ChangePwdOperationCompleted, userState);
+        }
+        
+        private void OnChangePwdOperationCompleted(object arg) {
+            if ((this.ChangePwdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangePwdCompleted(this, new ChangePwdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1235,7 +1444,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1280,7 +1489,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1373,7 +1582,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1574,7 +1783,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1655,7 +1864,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1712,7 +1921,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1841,7 +2050,184 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class FormUserInfo {
+        
+        private int userIDField;
+        
+        private string usernameField;
+        
+        private string passwordField;
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string streetField;
+        
+        private string cityField;
+        
+        private string stateField;
+        
+        private string zipField;
+        
+        private string phoneField;
+        
+        private string mobilePhoneField;
+        
+        private string genderField;
+        
+        private string emailField;
+        
+        private System.DateTime lastSavedDateField;
+        
+        /// <remarks/>
+        public int UserID {
+            get {
+                return this.userIDField;
+            }
+            set {
+                this.userIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Street {
+            get {
+                return this.streetField;
+            }
+            set {
+                this.streetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string City {
+            get {
+                return this.cityField;
+            }
+            set {
+                this.cityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string State {
+            get {
+                return this.stateField;
+            }
+            set {
+                this.stateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Zip {
+            get {
+                return this.zipField;
+            }
+            set {
+                this.zipField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Phone {
+            get {
+                return this.phoneField;
+            }
+            set {
+                this.phoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MobilePhone {
+            get {
+                return this.mobilePhoneField;
+            }
+            set {
+                this.mobilePhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Gender {
+            get {
+                return this.genderField;
+            }
+            set {
+                this.genderField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastSavedDate {
+            get {
+                return this.lastSavedDateField;
+            }
+            set {
+                this.lastSavedDateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1958,7 +2344,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2063,7 +2449,7 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2108,11 +2494,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2134,11 +2520,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ListQuestionsCompletedEventHandler(object sender, ListQuestionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListQuestionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2160,11 +2546,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserReponseCompletedEventHandler(object sender, GetUserReponseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserReponseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2186,11 +2572,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetFormUserReponseCompletedEventHandler(object sender, GetFormUserReponseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetFormUserReponseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2212,11 +2598,37 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void RemoveFormUserCompletedEventHandler(object sender, RemoveFormUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RemoveFormUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RemoveFormUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetStepQuestionsCompletedEventHandler(object sender, GetStepQuestionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetStepQuestionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2238,11 +2650,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddCategoryCompletedEventHandler(object sender, AddCategoryCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2264,11 +2676,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetCategoryCompletedEventHandler(object sender, GetCategoryCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2290,15 +2702,15 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddQuestionCompletedEventHandler(object sender, AddQuestionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddQuestionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2320,11 +2732,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetQuestionCompletedEventHandler(object sender, GetQuestionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetQuestionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2346,27 +2758,27 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RemoveQuestionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateQuestionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddOptionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RemoveOptionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RegisterUserCompletedEventHandler(object sender, RegisterUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RegisterUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2388,11 +2800,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ListOfUsersCompletedEventHandler(object sender, ListOfUsersCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListOfUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2414,11 +2826,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateUserStatusCompletedEventHandler(object sender, UpdateUserStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateUserStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2440,11 +2852,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateActiveStatusCompletedEventHandler(object sender, UpdateActiveStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateActiveStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2466,15 +2878,15 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateUserNotesCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserNotesCompletedEventHandler(object sender, GetUserNotesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserNotesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2496,15 +2908,41 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddFormUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListUserFormsCompletedEventHandler(object sender, ListUserFormsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListUserFormsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListUserFormsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public FormUserInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((FormUserInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void IsFormUserValidatedCompletedEventHandler(object sender, IsFormUserValidatedCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IsFormUserValidatedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2526,15 +2964,15 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RemoveResponseCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void SaveFormUserResponseCompletedEventHandler(object sender, SaveFormUserResponseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaveFormUserResponseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2556,11 +2994,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetFormUserServicesCompletedEventHandler(object sender, GetFormUserServicesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetFormUserServicesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2582,11 +3020,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddUserHardwareCompletedEventHandler(object sender, AddUserHardwareCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddUserHardwareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2608,11 +3046,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateUserHardwareCompletedEventHandler(object sender, UpdateUserHardwareCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateUserHardwareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2634,11 +3072,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserHardwareCompletedEventHandler(object sender, GetUserHardwareCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserHardwareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2660,11 +3098,11 @@ namespace SpafooWebService.Registration {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ListUserHardwareCompletedEventHandler(object sender, ListUserHardwareCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListUserHardwareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2681,6 +3119,84 @@ namespace SpafooWebService.Registration {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((NS_UserHardware[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void RequestVCodeCompletedEventHandler(object sender, RequestVCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RequestVCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RequestVCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void VerifyCodeCompletedEventHandler(object sender, VerifyCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class VerifyCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal VerifyCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ChangePwdCompletedEventHandler(object sender, ChangePwdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangePwdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChangePwdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

@@ -23,7 +23,7 @@ namespace SpafooWebService.SpafooServiceReference {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="rhSoap", Namespace="http://tempuri.org/")]
@@ -106,7 +106,8 @@ namespace SpafooWebService.SpafooServiceReference {
                     string HN, 
                     string DT, 
                     int IsWeb, 
-                    string GDR) {
+                    string GDR, 
+                    int MID) {
             object[] results = this.Invoke("RegisterUser", new object[] {
                         UN,
                         FN,
@@ -124,7 +125,8 @@ namespace SpafooWebService.SpafooServiceReference {
                         HN,
                         DT,
                         IsWeb,
-                        GDR});
+                        GDR,
+                        MID});
             return ((string)(results[0]));
         }
         
@@ -146,8 +148,9 @@ namespace SpafooWebService.SpafooServiceReference {
                     string HN, 
                     string DT, 
                     int IsWeb, 
-                    string GDR) {
-            this.RegisterUserAsync(UN, FN, LN, EM, PID, P, S, C, R, Z, Ph, Mo, PicFID, HN, DT, IsWeb, GDR, null);
+                    string GDR, 
+                    int MID) {
+            this.RegisterUserAsync(UN, FN, LN, EM, PID, P, S, C, R, Z, Ph, Mo, PicFID, HN, DT, IsWeb, GDR, MID, null);
         }
         
         /// <remarks/>
@@ -169,6 +172,7 @@ namespace SpafooWebService.SpafooServiceReference {
                     string DT, 
                     int IsWeb, 
                     string GDR, 
+                    int MID, 
                     object userState) {
             if ((this.RegisterUserOperationCompleted == null)) {
                 this.RegisterUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRegisterUserOperationCompleted);
@@ -190,7 +194,8 @@ namespace SpafooWebService.SpafooServiceReference {
                         HN,
                         DT,
                         IsWeb,
-                        GDR}, this.RegisterUserOperationCompleted, userState);
+                        GDR,
+                        MID}, this.RegisterUserOperationCompleted, userState);
         }
         
         private void OnRegisterUserOperationCompleted(object arg) {
@@ -307,11 +312,11 @@ namespace SpafooWebService.SpafooServiceReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RegisterUserCompletedEventHandler(object sender, RegisterUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RegisterUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -333,11 +338,11 @@ namespace SpafooWebService.SpafooServiceReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ValidateUserCompletedEventHandler(object sender, ValidateUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ValidateUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -359,11 +364,11 @@ namespace SpafooWebService.SpafooServiceReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LogoutCompletedEventHandler(object sender, LogoutCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LogoutCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -385,11 +390,11 @@ namespace SpafooWebService.SpafooServiceReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetProfilePicCompletedEventHandler(object sender, GetProfilePicCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetProfilePicCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

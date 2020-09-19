@@ -45,7 +45,7 @@ namespace SpafooWebService
             //{
             try
             {
-                var RegisterData = _objSpafoo.RegisterUser(UserRegister.Username, UserRegister.FirstName, UserRegister.LastName, UserRegister.EmailAddress, UserRegister.PortalID, UserRegister.Password, UserRegister.Street, UserRegister.City, UserRegister.State, UserRegister.Zipcode, UserRegister.PhoneNo, UserRegister.MobileNo, UserRegister.picFID, UserRegister.HardwareName, UserRegister.DeviceToken, 0, "Male");
+                var RegisterData = _objSpafoo.RegisterUser(UserRegister.Username, UserRegister.FirstName, UserRegister.LastName, UserRegister.EmailAddress, UserRegister.PortalID, UserRegister.Password, UserRegister.Street, UserRegister.City, UserRegister.State, UserRegister.Zipcode, UserRegister.PhoneNo, UserRegister.MobileNo, UserRegister.picFID, UserRegister.HardwareName, UserRegister.DeviceToken, 0, "Male",446);
                 string[] StrArr = RegisterData.Split(':');
                 LoginUser _UserLogin = new Model.LoginUser { Username = UserRegister.Username, Password = UserRegister.Password, DeviceToken = UserRegister.DeviceToken, HardwareName = UserRegister.HardwareName };
                 var retUser = LoginUser(_UserLogin);
@@ -627,7 +627,7 @@ namespace SpafooWebService
             }
         }
 
-        public ServiceDashBoard.UserInfo[] ListProvidersByServices_p(clsService obj)
+        public ServiceDashBoard.UserInfo2[] ListProvidersByServices_p(clsService obj)
         {
             try
             {
@@ -649,7 +649,7 @@ namespace SpafooWebService
         }
 
 
-        public ServiceDashBoard.UserInfo[] ListProvidersByServices(string ServiceID)
+        public ServiceDashBoard.UserInfo2[] ListProvidersByServices(string ServiceID)
         {
 
             try
@@ -706,39 +706,32 @@ namespace SpafooWebService
             }
         }
 
-        public ReturnValues GetMyRating(string UserID)
-        {
-            using (TransactionScope trans = new TransactionScope())
-            {
-                try
-                {
+        public ReturnValues GetMyRating(string UserID) {
+            using (TransactionScope trans = new TransactionScope()) {
+                try {
                     ServiceDashBoard.rh _objSpafoo = new ServiceDashBoard.rh();
                     int UID = int.Parse(UserID);
                     var RegisterData = _objSpafoo.GetMyRating(UID);
-                    ReturnValues ReturnObj = new ReturnValues
-                    {
+                    ReturnValues ReturnObj = new ReturnValues {
                         Success = (RegisterData != null ? RegisterData.Rating.ToString() + ":" + RegisterData.ByPeople.ToString() : "0:0")
                     };
 
                     return ReturnObj;
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     trans.Dispose();
 
-                    ReturnValues objex = new ReturnValues
-                    {
+                    ReturnValues objex = new ReturnValues {
                         Failure = ex.Message,
                         Source = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.AbsoluteUri,
                     };
                     throw new WebFaultException<ReturnValues>(objex, System.Net.HttpStatusCode.InternalServerError);
                 }
-                finally
-                {
+                finally {
                     trans.Dispose();
                 }
             }
-        }
+        } 
         public ServiceDashBoard.ServiceInfo[] GetProviderServices(string UserID)
         {
             using (TransactionScope trans = new TransactionScope())
@@ -1054,15 +1047,17 @@ namespace SpafooWebService
                         CCNumber = cCNumber,
                         CSVSRVC = cSVSRVC,
                         ClientID = int.Parse(clientID.ToString()),
-                        Comment = comment
-                        ,
+                        Comment = comment,
                         EditAppID = int.Parse(editAppID),
                         EndTime = endTime,
                         Expriry = expriry,
                         ForDate = forDate,
                         PayTxnID = payTxnID,
                         PayProfileID = PayProfileID,
-                        ProviderID = int.Parse(ProviderID)
+                        ProviderID = int.Parse(ProviderID),AnyProviderIDs= int.Parse(ProviderID),
+                        Discount=0
+
+
                     };
                     //MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
 
