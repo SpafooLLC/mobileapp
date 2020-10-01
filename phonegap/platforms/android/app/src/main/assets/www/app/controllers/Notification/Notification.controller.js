@@ -1,6 +1,6 @@
 var NotificationController;
 (function (NotificationController_1) {
-    var NotificationController = /** @class */ (function () {
+    var NotificationController = (function () {
         function NotificationController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
@@ -116,7 +116,7 @@ var NotificationController;
                             break;
                         case 19:
                             if (role == 'C') {
-                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " is unavailable for the ASAP appointment you requested.";
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " is unavailable for the ASAP appointment you requested";
                             }
                             break;
                     }

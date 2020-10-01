@@ -1,0 +1,116 @@
+﻿<ion-view view-title="Provider List" scroll="true">
+        <ion-content>
+            <div class="bread">
+                <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+                <div class="ptitle">Provider</div>
+            </div>
+            
+           
+    
+    <div class="pprofile pinfo">
+        <div class="piheader">
+        <div class="pinfo-pic">
+            <div class="round"><img ng-src="{{PvP.profilePic}}" alt=""></div>
+            <div class="pdetail">
+              <h3>{{PvP.ServiceData.displayNameField}}</h3>
+              <p>{{PvP.TagField}}</p>
+              <div class="xs-ratting-{{PvP.RatingField}} rate"></div>
+              
+              
+              <span class="rtotal">({{PvP.Rateperson}})</span>
+            </div>
+          </div>
+        <div class="owrap"><img class="mainimg" ng-src="{{PvP.profilePic}}"></div>
+        </div>
+        <div class="tline">{{PvP.TagField}}</div>
+        
+      
+          <div class="tab pitabbg" role="tabpanel">
+              <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active"><a aria-controls="home" role="tab" ng-click="PvP.showTab('Info')" data-toggle="tab">Info</a></li>
+                  <li role="presentation"><a aria-controls="profile" role="tab"  ng-click="PvP.showTab('Reviews')" data-toggle="tab">Reviews</a></li>
+                  <li role="presentation"><a aria-controls="messages" role="tab"  ng-click="PvP.showTab('Services')" data-toggle="tab">Services</a></li>
+              </ul>
+              
+              <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade in active" id="Info">
+                      <div class="mprofile">
+                      <p><span>Phone:</span>   {{PvP.ServiceData.profileField.cellField}}</p>
+                      <p><span>Email:</span>  {{PvP.ServiceData.emailField}}</p>
+                      <p><span>Address:</span>  {{PvP.ServiceData.profileField.streetField}} <br /> {{PvP.ServiceData.profileField.cityField}} ,  {{PvP.ServiceData.profileField.regionField}}    {{PvP.ServiceData.profileField.postalCodeField}} </p> 
+                      <div class="bar-head">Bio</div>
+                      {{PvP.ServiceData.profileField.biographyField}}
+                      <div class="bar-head2">Work Sample</div>
+                    </div>
+                    <div class="sample">
+                            <ul>
+                                    <li ng-repeat="s in PvP.WorkSamplesList" ng-if="s.optionTextField!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'">
+                                        <a class="fancybox" href="http://www.Spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
+                                            <img ng-src="http://www.Spafoo.com{{s.optionTextField}}" alt="" />
+                                        </a>
+                                    </li>
+                                </ul>
+                        
+                    </div>
+                      
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Reviews">
+                    <div class="reviewlist">
+                      <div class="center">
+                        <h2>Past Client Reviews for Scott R.</h2>
+                        <div class="big-ratting-{{PvP.RatingField}}"></div>
+                        <p class="bmar-xs">from {{PvP.Rateperson}} user(s)</p>
+                      </div>
+                      <div class="allrev">
+                       <blockquote  ng-repeat="s in PvP.ReviewData">
+                        <p>{{s.commentsField}}</p>
+                        <div class="rinfo">
+                          <ul>
+                            <li>{{s.displayNameField}} </li>
+                            
+                            <li>- {{s.datedField}}</li>
+                            <li><div class="ratting-{{s.ratingValueField}}"></div></li>
+                          </ul>
+                        </div>
+                        
+                      </div>
+                    </div>
+                </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Services">
+                     <h2 class="center">Services Offered</h2>
+                     <table width="100%" border="0" cellpadding="0" class="table table-striped" cellspacing="0">
+                        <tr ng-repeat="s in PvP.ProviderServiceList">
+                            {{s.serviceNameField}}
+                          <td>{{s.serviceNameField}}</td>
+                          <td  class="pricealigns">${{s.minimumField}} to ${{s.rangeToField}}<br></td>
+                        </tr>
+                       
+                    </table>
+                </div>
+              </div>
+          </div>
+      
+        
+        
+        
+        
+      </div>
+      <div class="action">
+            <div class="col-xs-12 nopad" ng-if="PvP.customerType!='P'"><a href="#/MakeAppointment/{{PvP.UserID}}/null/NORMAL" class="bluesm-btn block ml1px">Contact this Provider</a></div>
+            
+      </div>
+            <script type="text/javascript">app.initialize();</script>
+    
+    
+            <link href="../../styles/jquery.fancybox.css" rel="stylesheet" />
+            <script src="../../js/jquery.fancybox.js"></script>
+    
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.fancybox').fancybox();
+                });
+            </script>
+        </ion-content>
+    
+    </ion-view>
+    

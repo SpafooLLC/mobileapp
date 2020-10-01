@@ -1,6 +1,6 @@
 var ProAppointmentsController;
 (function (ProAppointmentsController_1) {
-    var ProAppointmentsController = /** @class */ (function () {
+    var ProAppointmentsController = (function () {
         function ProAppointmentsController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
@@ -25,7 +25,6 @@ var ProAppointmentsController;
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
                         self.ServiceData[i].DayField = 'ASAP';
-                        // self.ServiceData[i].MonthField = '-- -- --';
                     }
                     else {
                         var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
@@ -58,7 +57,7 @@ var ProAppointmentsController;
                         self.ServiceData[i].displayNameField = res.firstNameField + " " + res.lastNameField[0] + ".";
                         ;
                         self.ServiceData[i].userIDField = res.userIDField;
-                        if (self.ServiceData[i].statusField == 1) { //self.ServiceData[i].clientIDField
+                        if (self.ServiceData[i].statusField == 1) {
                             self.CustomerHttp.get('/DidIRated/' + UserID + '/' + self.ServiceData[i].appointmentIDField).then(function (res) {
                                 self.ServiceData[i].isRate = res.DidIRatedResult;
                             }, function (error) { });

@@ -1,0 +1,86 @@
+﻿
+<ion-view view-title="Provider List" scroll="true">
+    <ion-content>
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">select a provider</div>
+        </div>
+        <div class="inbody-simple">
+          
+            <div class="prolist">
+             
+                    <li class="AnyProviders"  ng-if="pl.proindex!=0" ng-click="pl.AnyProvider()" >
+                        <div>
+                                <a href="#" >Any Available Provider</a>
+                            </div>
+                        </li>
+                        <li ng-repeat="sr in pl.ServiceData | orderBy:'userInfoField.distance'"  ng-if="sr.userInfoField.distance<=pl.InMile"  >
+                      
+                            <a  href="#/ProviderPortfolio/{{sr.userInfoField.userIDField}}/{{sr.userInfoField.distance}}">
+                                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                          <td class="left">
+                                              <!--  ng-if="sr.userInfoField.distance<=pl.InMile"   <a  ng-click="pl.GoToProviderPortfolio({{sr.userInfoField.userIDField}})" ng-if="sr.userInfoField.profileField.photoField==''"><img ng-src="images/Site/default-User.png"></a>
+                                              <a ng-click="pl.GoToProviderPortfolio({{sr.userInfoField.userIDField}})" ng-if="sr.userInfoField.profileField.photoField!=''"><img ng-src="{{sr.userInfoField.profileField.photoField}}" alt=""></a>-->
+                                              <a  href="#/ProviderPortfolio/{{sr.userInfoField.userIDField}}/{{sr.userInfoField.distance}}" ng-if="sr.userInfoField.profileField.photoField==''"><img ng-src="images/Site/default-User.png"></a>
+                                              <a  href="#/ProviderPortfolio/{{sr.userInfoField.userIDField}}/{{sr.userInfoField.distance}}" ng-if="sr.userInfoField.profileField.photoField!=''"><img ng-src="{{sr.userInfoField.profileField.photoField}}" alt=""></a>
+                                          </td>
+                                          <td class="middle">
+                                              <a href="#/ProviderPortfolio/{{sr.userInfoField.userIDField}}/{{sr.userInfoField.distance}}"><h3>{{sr.userInfoField.displayNameField}}</h3></a>
+                                              
+                                               <p ng-bind-html="sr.TagField"></p>
+                                              <div ng-if="sr.starField!=null" class="ratting-{{sr.starField}}"></div>
+                                              <div ng-if="sr.starField==null" class="ratting-0"></div> 
+                                          </td>
+                                          <td class="right">
+                                              ${{sr.minimumField}} to ${{sr.rangeToField}}
+                                              <i class="fa fa-map-marker fa-2x"></i>
+                                              <h4>{{sr.userInfoField.distance}}</h4>
+                                              <span>miles</span>
+                                          </td>
+                                      </tr>
+                                  </table>
+                              </a>
+                          </li>   
+                
+                        <!-- <li ng-repeat="sr in pl.ServiceData | orderBy:'distance'"  ng-if="sr.distance<=pl.InMile"  >
+                      
+                      <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="left">
+                                        <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}" ng-if="sr.profileField.photoField==''"><img ng-src="images/Site/default-User.png"></a>
+                                        <a  href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}" ng-if="sr.profileField.photoField!=''"><img ng-src="{{sr.profileField.photoField}}" alt=""></a>
+                                    </td>
+                                    <td class="middle">
+                                        <a href="#/ProviderPortfolio/{{sr.userIDField}}/{{sr.distance}}"><h3>{{sr.displayNameField}}</h3></a>
+                                        
+                                        <p ng-bind-html="sr.TagField"></p>
+                                        <div ng-if="sr.starField!=null" class="ratting-{{sr.starField}}"></div>
+                                        <div ng-if="sr.starField==null" class="ratting-0"></div>
+                                    </td>
+                                    <td class="right">
+                                        ${{sr.minimumField}} to ${{sr.rangeToField}}
+                                        <i class="fa fa-map-marker fa-2x"></i>
+                                        <h4>{{sr.distance}}</h4>
+                                        <span>miles</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                    </li>
+             -->
+             
+                <div style="text-align:center" ng-if="pl.proindex==0">
+                    <p class="red2">{{pl.NoDatafound}}</p>
+
+                </div>
+            </div>
+        </div>
+        <!--<div class="center"><a href="#" class="fs-xs">Load More...</a></div>-->
+
+        <script type="text/javascript">app.initialize();</script>
+
+    </ion-content>
+</ion-view>

@@ -1,6 +1,6 @@
 var ProReviewListingController;
 (function (ProReviewListingController_1) {
-    var ProReviewListingController = /** @class */ (function () {
+    var ProReviewListingController = (function () {
         function ProReviewListingController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;
@@ -62,7 +62,6 @@ var ProReviewListingController;
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
         };

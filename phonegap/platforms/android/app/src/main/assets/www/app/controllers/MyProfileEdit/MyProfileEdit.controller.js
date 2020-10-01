@@ -1,6 +1,6 @@
 var MyProfileEditController;
 (function (MyProfileEditController_1) {
-    var MyProfileEditController = /** @class */ (function () {
+    var MyProfileEditController = (function () {
         function MyProfileEditController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $timeout) {
             this.$q = $q;
             this.$state = $state;
@@ -33,11 +33,10 @@ var MyProfileEditController;
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
         };
-        MyProfileEditController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Country, PostalCode, Phone, Mob) {
+        MyProfileEditController.prototype.EditProfile = function (FirstName, LastName, DisplayName, Email, Gender, Street, City, Country, PostalCode, Phone, Mob, proPic) {
             var self = this;
             var uPos = '';
             Phone = "";
@@ -93,11 +92,10 @@ var MyProfileEditController;
                 $("#PDoneError").modal();
                 return;
             }
-            //  alert(self.profilePic);
-            if (self.profilePic == "" || self.profilePic == null) {
-                self.messages = "Please Select Profile Pic.";
+            if (self.profilePic === null || self.profilePic === '' || self.profilePic == undefined) {
+                self.messages = "Please select profile image.";
                 $("#PDoneError").modal();
-                return;
+                return false;
             }
             if (self.doValidation(Email)) {
                 //alert(FirstName + ", " + LastName + ", " + DisplayName + ", " + Email + ", " + Gender + ", " + Street + ", " + City + ", " + Country + ", " + PostalCode + ", " + Cell);
@@ -123,7 +121,6 @@ var MyProfileEditController;
                 }, function (error) {
                     //console.log(error);
                 });
-                //console.log(data);
             }
         };
         MyProfileEditController.prototype.doValidation = function (Email) {
@@ -164,8 +161,6 @@ var MyProfileEditController;
                             //alert(self.proProfilePic);
                             self.SharedHttp.setProfileImage('file://' + imageURI);
                             self.postImage();
-                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
-                            //}, 1000);
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
@@ -189,12 +184,10 @@ var MyProfileEditController;
                             //alert(self.proProfilePic);
                             self.SharedHttp.setProfileImage(imageURI);
                             self.postImage();
-                            //}, 1000);
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDoneError").modal();
-                            //alert('PNG,JPEG,JPG images allowed');
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -204,7 +197,6 @@ var MyProfileEditController;
                         correctOrientation: true
                     });
                 }
-                // Take picture using device camera and retrieve image as base64-encoded string
             }
             catch (ex) {
                 self.messages = 'Profile Image can\'t update';

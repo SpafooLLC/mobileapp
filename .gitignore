@@ -221,3 +221,5 @@ HTML/SpafooPhonegapHTML/spec/lib/jasmine-1.2.0/jasmine-html.js
 HTML/SpafooPhonegapHTML/spec/lib/jasmine-1.2.0/jasmine.css
 HTML/SpafooPhonegapHTML/spec/lib/jasmine-1.2.0/jasmine.js
 phonegap/source (7).zip
+phonegap/node_modules/
+phonegap/platforms/

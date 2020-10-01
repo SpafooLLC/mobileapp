@@ -82,11 +82,7 @@
         </div>
         <div class="tpad-xs checkbox checkbox-primary" style="margin-top: 40px">
             <input ng-model="ma.chkBilling" checked="" ng-click="ma.HandleCCAddresUI();" type="checkbox">
-            <label for="chkBilling">
-                    Billing address different than profile address?
-                <!-- Billing address same as specified in your profile ? -->
-            
-            </label>
+            <label for="chkBilling">Billing address same as specified in your profile ?</label>
         </div>
 
         <div ng-model="ma.divBillingAdd" ng-show="ma.IsHidden" id="divBillingAdd">
@@ -130,7 +126,7 @@
                 <a class="modals" data-toggle="modal" ng-click="ma.showPTerm()">
                     payment
                     terms
-                </a>
+                </a>.
             </span>
             <!--<input id="checkbox4" ng-model="ma.saveCardInfo" type="checkbox">
             <label for="checkbox4">Securely save card on file for future payments</label>-->

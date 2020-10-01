@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "www/js"
+  },
+  "exclude": [
+    "node_modules",
+    "www/lib",
+    "platforms",
+    "bld",
+    ".vscode",
+    "bowercomponents"
+  ]
+}
+// gulp.task('tsc', function () {
+//  var sourcemaps
+//  = require("gulp-sourcemaps");
+//  var ts
+//  = require('gulp-typescript');
+//  //var tsProject = ts.createProject('tsconfig.json');
+//  var tsProject
+//  = allTypeScript;
+
+//  var tsResult=
+//  gulp .src(tsProject)
+//  .pipe(sourcemaps.init()) .pipe(ts(
+//  {
+//    "target": "es5",
+//    declarationFiles: false,
+//    noExternalResolve: true,
+
+//  }
+//  )); console.log(buildPathApp);
+//  tsResult.pipe(gulp.dest(buildPathApp)); return
+//  tsResult.js .pipe(sourcemaps.write('.'))
+//  .pipe(gulp.dest(buildPathApp));
+//});
+
+
+
+
+
+
+//gulp.task('tsc', function () {
+//    var sourcemaps = require("gulp-sourcemaps");
+//    var ts = require('gulp-typescript');
+//    var tsProject = ts.createProject('tsconfig.json');
+//    return tsProject
+//        .src('source')
+//        .pipe(sourcemaps.init())
+//        .pipe(ts(tsProject))
+//        .js
+//        .pipe(sourcemaps.write('./',
+//        {
+//            includeContent: true,
+//            sourceRoot: function (file) {
+//                return file.cwd + '../../app/';
+//            }
+//        }))
+//        .pipe(gulp.dest('www/js/'));
+//});

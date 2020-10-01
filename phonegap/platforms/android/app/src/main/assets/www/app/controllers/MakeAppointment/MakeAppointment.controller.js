@@ -1,6 +1,6 @@
 var MakeAppointmentController;
 (function (MakeAppointmentController_1) {
-    var MakeAppointmentController = /** @class */ (function () {
+    var MakeAppointmentController = (function () {
         function MakeAppointmentController($q, $state, $scope, $location, CustomerHttp, $window, $rootScope, SharedHttp, $stateParams, $ionicPopup) {
             this.$q = $q;
             this.$state = $state;
@@ -254,10 +254,6 @@ var MakeAppointmentController;
                         else {
                             self.info.zip = result.postalCode;
                         }
-                        /*self.info.address = result.subThoroughfare || '' + " " + result.thoroughfare || '';
-                        self.info.city = result.locality || '';
-                        self.info.state = result.adminArea || '';
-                        self.info.zip = result.postalCode || '';*/
                     }
                 });
             }, self.onError, options);
@@ -510,7 +506,6 @@ var MakeAppointmentController;
                     to: from
                 });
                 self.isSlotAvailable();
-                //}, 3000)
             }
         };
         MakeAppointmentController.prototype.destroySlider = function () {
@@ -777,10 +772,6 @@ var MakeAppointmentController;
                 //    if (resp.transactionResponse.responseCode == 1) {
                 //        self.transId = resp.transactionResponse.transId;
                 self.finalMakeAppointment();
-                //    } else {
-                //        self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
-                //    }
-                //})
             }
             else {
                 //    alert('hi');
@@ -823,12 +814,6 @@ var MakeAppointmentController;
                         self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + response.Success);
                     }
                 }, function (error) { });
-                //}
-                //} else {
-                //    //self.modalGoback = true;
-                //    self.showIonicAlert('Sorry, the transaction was NOT successfull cause of the following reason ' + resp.transactionResponse.errors[0].errorText);
-                //}
-                //   });
             }
         };
         MakeAppointmentController.prototype.wronInfoGoBack = function () {
@@ -885,7 +870,8 @@ var MakeAppointmentController;
                 Discount: (self.discountPrice != undefined ? self.discountPrice : '0'),
                 AnyProviderIDs: self.UserID.replace('-1|', '')
             };
-            self.CustomerHttp.post(obj, '/MakeAppointment').then(function (response) {
+            var urlPost = '/MakeAppointment1?AddressID=' + obj.AddressID + '&AtTime=' + obj.AtTime + '&CCNumber=' + obj.CCNumber + '&CSVSRVC=' + obj.CSVSRVC + '&ClientID=' + obj.ClientID + '&Comment=' + obj.Comment + '&EditAppID=' + obj.EditAppID + '&EndTime=' + obj.EndTime + '&Expriry=' + obj.Expriry + '&ForDate=' + obj.ForDate + '&PayTxnID=' + obj.PayTxnID + '&ProviderID=' + obj.ProviderID + '&PayProfileID=' + obj.PayProfileID + '&Discount=' + obj.Discount + '&AnyProviderIDs=' + obj.AnyProviderIDs;
+            self.CustomerHttp.get(urlPost).then(function (response) {
                 if (!isNaN(parseInt(response))) {
                     self.$state.go('MySchedule');
                 }

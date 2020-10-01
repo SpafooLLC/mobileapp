@@ -38,6 +38,7 @@
   "main": [
     "dist/fullcalendar.js",
     "dist/fullcalendar.css"
+  
   ],
   "ignore": [
     "*",

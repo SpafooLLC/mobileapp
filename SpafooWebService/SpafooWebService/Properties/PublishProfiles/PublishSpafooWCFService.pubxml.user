@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\publishSpafoo</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\publishSpafoo</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AuthorizeNet.dll">
@@ -16,13 +16,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2020 20:41:28</publishTime>
     </File>
     <File Include="bin/SpafooWebService.dll">
-      <publishTime>09/18/2020 19:39:32</publishTime>
+      <publishTime>09/25/2020 03:36:56</publishTime>
     </File>
     <File Include="bin/SpafooWebService.dll.config">
       <publishTime>08/31/2020 20:41:28</publishTime>
     </File>
     <File Include="bin/SpafooWebService.pdb">
-      <publishTime>09/18/2020 19:39:32</publishTime>
+      <publishTime>09/25/2020 03:36:56</publishTime>
     </File>
     <File Include="bin/SpafooWebService.XmlSerializers.dll">
       <publishTime>09/18/2020 17:10:12</publishTime>
@@ -139,28 +139,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/04/2020 16:36:09</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/CouponInfo.datasource">
-      <publishTime>09/16/2020 15:58:39</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/Reference.map">
       <publishTime>08/12/2016 15:24:00</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/ServiceInfo.datasource">
-      <publishTime>09/16/2020 15:58:38</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/UserInfo.datasource">
-      <publishTime>09/16/2020 15:58:39</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/UserInfo2.datasource">
-      <publishTime>09/16/2020 15:58:39</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/UserRatingInfo.datasource">
-      <publishTime>09/16/2020 15:58:39</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/UserReviewInfo.datasource">
-      <publishTime>09/16/2020 15:58:39</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/ServiceDashBoard/WorkSample.datasource">
-      <publishTime>09/16/2020 15:58:39</publishTime>
+      <publishTime>09/24/2020 16:00:25</publishTime>
     </File>
     <File Include="Web References/SpafooServiceReference/Reference.map">
       <publishTime>08/20/2016 19:46:08</publishTime>
@@ -172,7 +172,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/29/2016 15:24:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/18/2020 19:39:34</publishTime>
+      <publishTime>09/25/2020 03:36:04</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -1,9 +1,7 @@
 var mainController;
 (function (mainController) {
-    var MainController = /** @class */ (function () {
-        function MainController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, $rootScope, SharedHttp
-        //private $cordovaGoogleAnalytics:any/*: UniversalAnalyticsPlugin*/
-        ) {
+    var MainController = (function () {
+        function MainController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, $rootScope, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
             this.$ionicPopup = $ionicPopup;
@@ -24,11 +22,7 @@ var mainController;
             if (customerID != null) {
                 seldf.SharedHttp.GetMyNotification(customerID).then(function (res) { seldf.$rootScope.NotifiCount = res.length; });
             }
-            try {
-                document.addEventListener('deviceready', seldf.onDeviceReady, false);
-            }
-            catch (e) {
-            }
+            document.addEventListener('deviceready', seldf.onDeviceReady, false);
         }
         MainController.prototype.onDeviceReady = function () {
             if (device.platform === 'iOS') {
@@ -36,8 +30,7 @@ var mainController;
             }
             var push = PushNotification.init({
                 android: {
-                    //senderID: "24553703183"
-                    senderID: "419078761457"
+                    senderID: "24553703183"
                 },
                 browser: {
                     pushServiceURL: 'http://push.api.phonegap.com/v1/push'
@@ -52,16 +45,16 @@ var mainController;
             push.on('registration', function (data) {
                 // alert(JSON.stringify(data) + ", Device Name :: " + device.model + ", :: Token :: " + data.registrationId);
                 try {
-                    //  alert(JSON.stringify(data));
+                    //alert(JSON.stringify(data));
                     localStorage.setItem('DeviceToken', data.registrationId);
                     localStorage.setItem('DeviceName', device.model);
                 }
                 catch (e) {
-                    alert(JSON.stringify("Error :: " + e));
                 }
             });
             push.on('notification', function (data) {
                 //var i = 2;
+                // alert(JSON.stringify(data));
                 if (!data.additionalData.foreground) {
                     //cordova.plugins.notification.badge.set(i);
                     window.location.href = "#/Notification";
@@ -74,12 +67,9 @@ var mainController;
                 // data.additionalData
             });
             push.on('error', function (e) {
-                // alert("Push Error : " + JSON.stringify(e) + " DeviceToken : " + localStorage.getItem('DeviceToken'));
+                // alert("Pawan :::::>" +JSON.stringify(e));
                 // e.message
             });
-            window.ga.debugMode();
-            window.ga.startTrackerWithId('UA-97984442-1');
-            window.ga.setAllowIDFACollection(true);
         };
         MainController.prototype.doLogOut = function () {
             this.$rootScope.GetLoginStatus = false;
@@ -100,12 +90,9 @@ var mainController;
             $('.tcon').removeClass("tcon-transform");
         };
         MainController.prototype.GoRegistertext = function (IsProvider) {
-            // var self = this;
-            // self.$state.go("RegisterProvider");
             var target = "_blank";
             var options = "location=yes,hidden=yes,beforeload=yes";
             $("#showload").show();
-            // var   inAppBrowserRef = cordova.InAppBrowser.open('http://www.spafoo.com/provider-registration', target, options);
             window.open(encodeURI('http://www.spafoo.com/provider-registration'), '_system', 'location=yes');
             setTimeout(function () {
                 $("#showload").hide();

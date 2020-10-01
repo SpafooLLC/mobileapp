@@ -1,6 +1,6 @@
 var ProSetSoonestController;
 (function (ProSetSoonestController_1) {
-    var ProSetSoonestController = /** @class */ (function () {
+    var ProSetSoonestController = (function () {
         function ProSetSoonestController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;
@@ -47,8 +47,7 @@ var ProSetSoonestController;
                         events: [],
                         color: 'green',
                         textColor: 'black' // an option!
-                    }
-                ];
+                    }];
         }
         ProSetSoonestController.prototype.deleteEvent = function ($index) {
             var self = this;

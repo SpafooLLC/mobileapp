@@ -211,7 +211,7 @@
   .osummery .cart li .sname .fa-lg { vertical-align:0 !important; }
   .osummery .cart li .qbox { width:65px; }
   .osummery .cart li .qbox .form-control { width:60px;  }
-  .osummery .cart li .price { text-align:right; width:40px; color:#209263; font-size:16px; font-weight:600; }
+  .osummery .cart li .price { text-align:right; width:120px; color:#209263; font-size:16px; font-weight:600; }
   .osummery .cart .finfo { color:#209263; font-size:52px; font-weight:300; text-align:center; line-height:70px;  background:#e7e7e7; padding:16px 0; margin-bottom:15px; }
   .osummery .cart .finfo span { vertical-align:middle; color:#111111; font-size:24px; font-weight:400; text-align:center; line-height:70px; padding-right:10px; }
   .osummery .cart .finfo span.usd { color:#111111; font-size:24px; font-weight:400; text-align:center; line-height:30px; padding:0 0 0 10px; vertical-align:super; }
@@ -574,3 +574,38 @@ td.price.pcoupon a{
     margin: 1px 0 0 5px;
    
 }
+
+
+/* ---------- Provider Info ------ */
+.pinfo .owrap { position:relative; }
+.pinfo .owrap .mainimg { display:block; }
+.pinfo .owrap:before { content:""; position: absolute; top:0; left:0; height:100%; width:100%; background: rgba(0,0,0,0.6); z-index:2; }
+.pinfo .pinfo-pic { margin:0 0 0 0; position:absolute; z-index:99; bottom:15px; left:15px; }
+.pinfo .pinfo-pic .round { border-radius:50%; width:100px; height:100px; overflow:hidden; margin:0 auto; border:3px solid #ffffff; float:left; }
+.pinfo .pinfo-pic .round img { display:block; height:100%; width:100%; }
+.pinfo .piheader { position:relative; }
+.pinfo .pdetail { float:left; margin:15px 0 0 15px; }
+.pinfo .pdetail h3 { color:#ffffff; margin:0; font-size:26px; }
+.pinfo .pdetail p { color:#ffffff; margin:0 0 5px; }
+.pinfo .rate { float:left; }
+.pinfo .rtotal { float:left; color:#ffffff; }
+.xs-ratting-0 { width:92px; height:21px; background:url(../images/Site/xs-ratting-0.png) top left no-repeat;  }
+.xs-ratting-1 { width:92px; height:21px; background:url(../images/Site/xs-ratting-1.png) top left no-repeat;  }
+.xs-ratting-2 { width:92px; height:21px; background:url(../images/Site/xs-ratting-2.png) top left no-repeat;  }
+.xs-ratting-3 { width:92px; height:21px; background:url(../images/Site/xs-ratting-3.png) top left no-repeat;  }
+.xs-ratting-4 { width:92px; height:21px; background:url(../images/Site/xs-ratting-4.png) top left no-repeat;  }
+.xs-ratting-5 { width:92px; height:21px; background:url(../images/Site/xs-ratting-5.png) top left no-repeat;  }
+.pinfo .tline { background:#17a463; padding:15px 15px 30px; font-size:18px; text-align:center; color:#ffffff; font-weight:600; border-top:1px solid #ffffff; margin:2px 0 0 0; }
+.bar-head2 { background:#e7e7e7; color:#112173; font-family:'Balthazar', sans-serif; font-weight:600; font-size:18px; padding:10px 0; display:block; text-align:center; margin:20px 0 0 0;}
+.pinfo .mprofile span { font-size:15px; }
+.pitabbg { background:#17a463; }
+a:hover,a:focus{ text-decoration: none; outline: none; }
+.tab .nav-tabs{ border: none; margin: 0; }
+.tab .nav-tabs li a { padding: 10px; margin-right:0; font-size: 16px; font-weight: 600; color: #ffffff; text-transform: uppercase; border: none; border-radius: 0;  background: transparent; z-index: 2; position: relative; transition: all 0.3s ease 0s; }
+.tab .nav-tabs li a:hover, .tab .nav-tabs li.active a{ border: none; background:none; color:#ffffff !important; }
+.tab .nav-tabs li a:before{ content: ""; width: 100%; height: 4px; background: #17a463; border: 1px solid #17a463; border-radius: 2px; position: absolute; bottom: 0; left: 0; }
+.tab .nav-tabs li a:after{ content: ""; width: 0; height: 4px; background: #000000; border: 1px solid #000000; border-radius: 2px; position: absolute; bottom: 0; left: 0; opacity: 0; z-index: 1; transition: all 1s ease 0s; }
+.tab .nav-tabs li:hover a:after, .tab .nav-tabs li.active a:after{ width: 100%; opacity: 1; }
+.tab .tab-content{ padding:30px 15px 15px; margin-top:1px; background: #ffffff; position: relative; }
+.tab .nav-tabs > li { width:33%; text-align:center; }
+.pricealigns{text-align: right;}

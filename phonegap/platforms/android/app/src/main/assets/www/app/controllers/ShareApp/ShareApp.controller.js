@@ -1,6 +1,6 @@
 var ShareAppController;
 (function (ShareAppController_1) {
-    var ShareAppController = /** @class */ (function () {
+    var ShareAppController = (function () {
         function ShareAppController($state, $scope, $ionicLoading) {
             this.$inject = ['$state', '$scope', '$ionicLoading'];
         }

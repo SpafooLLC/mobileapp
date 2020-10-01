@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget defaultlocale="en-US" id="com.spafoollc" version="1.4.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget defaultlocale="en-US" id="com.spafoollc" version="1.4.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Spafoo</name>
     <description>An Ionic Framework and Cordova project for Visual Studio</description>
     <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
@@ -28,7 +28,7 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
-    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyAUYdhqzI3Zyc8svubvqA4Jk9YeB1-xda8" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyCvg3a7zf42GJpHsfpisWQPjjEYXIXwwcs" />
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:usesCleartextTraffic="true" />
@@ -104,12 +104,13 @@
         <icon height="150" src="resources/windows/icon/wide310x150.scale-100.png" width="310" />
     </platform>
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
-    <plugin name="cordova-plugin-compat" spec="1.0.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.3" />
     <plugin name="cordova-plugin-device" spec="~1.1.2" />
-    <plugin name="cordova-plugin-geolocation" spec="2.2.0" />
     <plugin name="cordova-plugin-request-location-accuracy" />
     <plugin name="cordova-plugin-splashscreen" spec="~3.1.0" />
     <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
+    <plugin name="phonegap-plugin-push" spec="^1.10.5">
+        <variable name="SENDER_ID" value="419078761457" />
+    </plugin>
 </widget>

@@ -39,3 +39,13 @@ D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\D
 D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CopyComplete
 D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
 D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CoreCompileInputs.cache
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CopyComplete
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojAssemblyReference.cache

@@ -1,6 +1,6 @@
 var AddClientReviewController;
 (function (AddClientReviewController_1) {
-    var AddClientReviewController = /** @class */ (function () {
+    var AddClientReviewController = (function () {
         function AddClientReviewController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;
@@ -49,7 +49,6 @@ var AddClientReviewController;
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
             self.CustomerHttp.get('/ListRating/1').then(function (response) {
@@ -59,7 +58,6 @@ var AddClientReviewController;
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
         };

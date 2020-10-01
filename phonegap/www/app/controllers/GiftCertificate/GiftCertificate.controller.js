@@ -1,7 +1,6 @@
 var GiftCertificateController;
 (function (GiftCertificateController_1) {
-    // export interface IGiftCertificate {
-    var GiftCertificateController = /** @class */ (function () {
+    var GiftCertificateController = (function () {
         function GiftCertificateController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $timeout, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;

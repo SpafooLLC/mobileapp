@@ -1,6 +1,6 @@
 var ProEditProfileController;
 (function (ProEditProfileController_1) {
-    var ProEditProfileController = /** @class */ (function () {
+    var ProEditProfileController = (function () {
         function ProEditProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $timeout) {
             this.$q = $q;
             this.$state = $state;
@@ -63,7 +63,6 @@ var ProEditProfileController;
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
         };
@@ -84,11 +83,9 @@ var ProEditProfileController;
                 self.NotificationCount = self.NotificaitonData.length;
             }, function (error) {
                 if (error === null) {
-                    //self.$ionicLoading.hide();
                 }
                 else {
                     console.log(error);
-                    //self.$ionicLoading.hide();
                 }
             });
         };
@@ -113,13 +110,10 @@ var ProEditProfileController;
                             //alert(self.proProfilePic);
                             self.SharedHttp.setProfileImage('file://' + imageURI);
                             self.postImage();
-                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
-                            //}, 1000);
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
-                            //alert('PNG,JPEG,JPG images allowed');
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -139,12 +133,10 @@ var ProEditProfileController;
                             //alert(self.proProfilePic);
                             self.SharedHttp.setProfileImage(imageURI);
                             self.postImage();
-                            //}, 1000);
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
                             $("#PDone").modal();
-                            //alert('PNG,JPEG,JPG images allowed');
                         }
                     }, self.onFail, {
                         quality: 50,
@@ -154,7 +146,6 @@ var ProEditProfileController;
                         correctOrientation: true
                     });
                 }
-                // Take picture using device camera and retrieve image as base64-encoded string
             }
             catch (ex) {
                 self.messages = "Can\'nt upload image";
@@ -182,7 +173,6 @@ var ProEditProfileController;
                 var ft = new FileTransfer();
             }
             catch (ex) {
-                //self.toaster.error('exception generated:' + ex, 'Error');
             }
             ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mProfileHandler.ashx', (function (r) {
                 //alert(JSON.stringify(r));
@@ -266,7 +256,7 @@ var ProEditProfileController;
                 $("#PDone").modal();
                 return;
             }
-            if (Cell == "" || Cell == null) {
+            if (Mob == "" || Mob == null) {
                 self.messages = "Please Enter Mobile No.";
                 $("#PDone").modal();
                 return;
@@ -316,7 +306,6 @@ var ProEditProfileController;
                         self.$ionicLoading.hide();
                     }
                 });
-                //console.log(data);
             }
         };
         ProEditProfileController.prototype.doValidation = function (Email) {
@@ -388,7 +377,6 @@ var ProEditProfileController;
                                     var ft = new FileTransfer();
                                 }
                                 catch (ex) {
-                                    //self.toaster.error('exception generated:' + ex, 'Error');
                                 }
                                 ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
                                     //alert(JSON.stringify(r));
@@ -417,7 +405,6 @@ var ProEditProfileController;
                             else {
                                 self.messages = "PNG,JPEG,JPG images allowed";
                                 $("#PDone").modal();
-                                //alert('PNG,JPEG,JPG images allowed');
                             }
                         }, self.onFail, {
                             quality: 50,
@@ -426,12 +413,10 @@ var ProEditProfileController;
                             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
                             correctOrientation: true
                         });
-                        // Take picture using device camera and retrieve image as base64-encoded string
                     }
                     catch (ex) {
                         self.messages = "Can\'nt upload image";
                         $("#PDone").modal();
-                        //alert('Can\'nt upload image');
                     }
                     finally {
                         self.isImageClick = false;
@@ -440,7 +425,6 @@ var ProEditProfileController;
                 else {
                     self.messages = "You can upload 8 files only.";
                     $("#PDone").modal();
-                    //alert('PNG,JPEG,JPG images allowed');
                 }
             });
         };

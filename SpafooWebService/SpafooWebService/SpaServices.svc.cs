@@ -1678,24 +1678,27 @@ namespace SpafooWebService
             {
                 try
                 {
-                    //MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
-                    var ChargePrevious = WebCallMethod.WRequestobj(2, "ChargeProfileJSON", "{\"PID\": \"" + obj.PID + "\",\"PPID\": \"" + obj.PPID + "\",\"amount\": \"" + obj.Amount + "\"}");
-                    //          var  ChargePrevious = WebCallMethod.WRequestobj(2, "ChargePreviousAuthJSON", "{\"Txn\": \"" + obj.authTxnID + "\",\"amount\": \"" + obj.Amount + "\"}");
-                    var objChargePrevious = JsonConvert.DeserializeObject<Model.ANetApiResponse>(ChargePrevious);
+                    ////MakeAppointment.rh _objSpafoo = new MakeAppointment.rh();
+                    //var ChargePrevious = WebCallMethod.WRequestobj(2, "ChargeProfileJSON", "{\"PID\": \"" + obj.PID + "\",\"PPID\": \"" + obj.PPID + "\",\"amount\": \"" + obj.Amount + "\"}");
+                    ////          var  ChargePrevious = WebCallMethod.WRequestobj(2, "ChargePreviousAuthJSON", "{\"Txn\": \"" + obj.authTxnID + "\",\"amount\": \"" + obj.Amount + "\"}");
+                    //var objChargePrevious = JsonConvert.DeserializeObject<Model.ANetApiResponse>(ChargePrevious);
 
                     ReturnValues objreturn = null;
-                    if (objChargePrevious.messages.message[0].code == "I00001")
-                    {
+                    //if (objChargePrevious.messages.message[0].code == "I00001")
+                    //{
 
-                        var getUserType121 = WebCallMethod.WRequestobj(2, "UpdateAppointment", "{\"ID\": \"" + obj.ID + "\",\"C\": \"" + obj.Comment + "\",\"PaymentTxnID\": \"" + objChargePrevious.transactionResponse.transId + "\" }");
-                        AddNotification(new AddNotifications { ByID = obj.UserID, NotTypeID = 8, RelatedEntityID = obj.ID, ToID = obj.clientId });
+                    //var getUserType121 = WebCallMethod.WRequestobj(2, "UpdateAppointment",
+                    //    "{\"ID\": \"" + obj.ID + "\",\"C\": \"" + obj.Comment + "\",\"PaymentTxnID\": \"" + objChargePrevious.transactionResponse.transId + "\" }");
+                    var getUserType121 = WebCallMethod.WRequestobj(2, "UpdateAppointment",
+                         "{\"ID\": \"" + obj.ID + "\",\"C\": \"" + obj.Comment + "\",\"PaymentTxnID\": \"0\" }");
+                    AddNotification(new AddNotifications { ByID = obj.UserID, NotTypeID = 8, RelatedEntityID = obj.ID, ToID = obj.clientId });
 
                         objreturn = new ReturnValues { Success = "Update Successfully" };
-                    }
-                    else
-                    {
-                        objreturn = new ReturnValues { Success = "Not Update Successfully" };
-                    }
+                    //}
+                    //else
+                    //{
+                    //    objreturn = new ReturnValues { Success = "Not Update Successfully" };
+                    //}
                     return objreturn;
                 }
                 catch (Exception ex)

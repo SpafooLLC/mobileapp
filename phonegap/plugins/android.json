@@ -1,0 +1,78 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-googlemaps": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PLAY_SERVICES_LOCATION_VERSION": "16.+",
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "phonegap-plugin-push": {
+      "SENDER_ID": "419078761457",
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+      "GOOGLE_API_KEY_FOR_ANDROID": "AIzaSyCvg3a7zf42GJpHsfpisWQPjjEYXIXwwcs",
+      "OKHTTP_VERSION": "3.12.0",
+      "PACKAGE_NAME": "com.spafoollc"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-androidx-build": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.spafoollc"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.spafoollc"
+    }
+  }
+}

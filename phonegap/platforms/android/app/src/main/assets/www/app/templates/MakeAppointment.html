@@ -155,7 +155,7 @@
         </style>
         <div class="bread">
             <a href="" ng-click="ma.viewSelect('Basic-Info')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
-            <div class="ptitle">order summary</div>
+            <div class="ptitle">Appointment summary</div>
         </div>
         <div class="inbody osummery">
             {{ma.renderCalender()}}
@@ -167,26 +167,29 @@
             <div class="cart">
                 <div class="heading">SERVICES</div>
                 <ul>
-                    <li ng-repeat="service in ma.selectedServices">
+                    <li ng-repeat="service in ma.selectedServices track by $index">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="sname"><a ng-click="ma.removeService($index)"><i class="fa fa-trash-o fa-lg deleteadd "></i></a> &nbsp; {{service.serviceNameField}}</td>
-                                <td class="qbox"><input required ng-change="ma.changeSummery(ma.selectedServices[$index].qtyField)" oninput="javascript: if (!this.value.length || /\D/.test(this.value) || this.value == 0) {this.value = 1; this.select(); } else if(this.value > 10 ) {this.value = 10;}" onfocus="this.select();" type="tel" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td>
-                                <td class="price">${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }}</td>
+                                <!-- <td class="qbox"><input required ng-change="ma.changeSummery(ma.selectedServices[$index].qtyField)" readonly oninput="javascript: if (!this.value.length || /\D/.test(this.value) || this.value == 0) {this.value = 1; this.select(); } else if(this.value > 10 ) {this.value = 10;}" onfocus="this.select();" type="tel" min="1" ng-model="ma.selectedServices[$index].qtyField" id="{{service.serviceNameField}}" value="1" class="form-control center" placeholder="1"></td> -->
+                                <td class="price">
+                                    <!-- ${{isNaN(service.priceField * ma.selectedServices[$index].qtyField) ? service.priceField : service.priceField * ma.selectedServices[$index].qtyField }} -->
+                                    ${{service.minimumField}} to ${{service.rangeToField}}
+                                </td>
                             </tr>
                         </table>
                     </li>
                 </ul>
 
                     <!--<div class="heading">I HAVE A COUPON</div>-->
-                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
                      <tr>
                          <td class="qbox"><input required type="text" ng-model="ma.CouponCode" class="form-control" placeholder="Coupon Code"></td>
                          <td class="price pcoupon">
                              <a href="" ng-click="ma.ValidateCoupon(ma.CouponCode)" class="green-rounded">Validate</a>
                          </td>
                      </tr>
-                 </table>
+                 </table> 
  
                 <div style="text-align:center" ng-if="ma.ISvalidCoupon==false">
                     <p class="red2">Sorry, Invalid or expired Coupon </p>
@@ -211,10 +214,10 @@
                      <span>Total</span> 
                      {{ ma.totalDiscountPrice !=null? ma.totalDiscountPrice : ma.totalPrice }}
                      <span class="usd">USD</span>
-                 </div>
+                 </div>-->
             </div>
         </div>
-        <label style="width:100%;text-align:center">You will not be charged a fee until services are rendered.</label>
+        <!-- <label style="width:100%;text-align:center">You will not be charged a fee until services are rendered.</label> -->
         <div class="enter">
             <a href="" ng-click="ma.appointmentView()" class="block-btn">continue</a>
         </div>
@@ -350,8 +353,9 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-xs-6 nopad"><a data-dismiss="modal" data-toggle="modal" class="green-btn block">Cancel</a></div>
-                        <div class="col-xs-6 nopad"><a ng-click="ma.paymentMethod()" class="bluesm-btn block">Ok</a></div>
-                    </div>
+                        <div class="col-xs-6 nopad"><a ng-click="ma.finalMakeAppointment()" class="bluesm-btn block">Ok</a></div>
+                                          <!-- <div class="col-xs-6 nopad"><a ng-click="ma.paymentMethod()" class="bluesm-btn block">Ok</a></div> -->
+                   </div>
                 </div>
             </div>
         </div>

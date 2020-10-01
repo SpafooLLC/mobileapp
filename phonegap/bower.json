@@ -1,5 +1,5 @@
 {
-  "name": "hchoice",
+  "name": "ionic-ts-blank",
   "private": true,
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.3.0"
@@ -8,27 +8,10 @@
     "ionic": "*",
     "AngularJS-Toaster": "2.0.0",
     "ng-password-strength": "0.2.1",
-    "angular-ui-calendar": "latest",
-    "bootstrap-timepicker": "0.5.2",
-    "ionic-calendar": "^0.3.0"
+    "angular-ui-calendar": "latest"
   },
   "resolutions": {
     "angular": ">= 1.0.8",
     "ionic": "1.3.0"
-  },
-  "authors": [
-    "Pawan Jatav <pawan.j@cisinlabs.com>"
-  ],
-  "description": "",
-  "main": "",
-  "license": "MIT",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "www/lib",
-    "test",
-    "tests"
-  ]
+  }
 }

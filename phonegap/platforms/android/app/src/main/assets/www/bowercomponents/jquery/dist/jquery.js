@@ -1446,8 +1446,12 @@ Sizzle.attr = function( elem, name ) {
 			undefined;
 
 	return val !== undefined ?
-	    val : ((support.attributes || !documentIsHTML) ? elem.getAttribute(name) : ((val = elem.getAttributeNode(name)) && val.specified) ? val.value : null);
-
+		val :
+		support.attributes || !documentIsHTML ?
+			elem.getAttribute( name ) :
+			(val = elem.getAttributeNode(name)) && val.specified ?
+				val.value :
+				null;
 };
 
 Sizzle.error = function( msg ) {

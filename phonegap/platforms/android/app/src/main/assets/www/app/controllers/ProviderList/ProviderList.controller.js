@@ -1,6 +1,6 @@
 var ProviderListController;
 (function (ProviderListController_1) {
-    var ProviderListController = /** @class */ (function () {
+    var ProviderListController = (function () {
         function ProviderListController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
@@ -53,31 +53,36 @@ var ProviderListController;
         };
         ProviderListController.prototype.getProviderList = function (ServiceID) {
             var self = this;
-            CheckGPS.check(function () {
+            document.addEventListener("deviceready", function () {
+                //   CheckGPS.check(function () {
                 $("#showload").show();
                 self.CustomerHttp.get('/GetWithInMile').then(function (response) {
                     self.InMile = parseInt(response.GetWithInMileResult);
                     navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
-                    // setTimeout(function () {
+                    //  setTimeout(function () {
                     self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response) {
                         self.ServiceData = response;
                         for (var i = 0; i <= response.length; i++) {
-                            self.GetDistanceBetween(self.ServiceData[i].vanityUrlField, i);
-                            if (parseInt(self.ServiceData[i].distance) <= parseInt(self.InMile)) {
-                                self.ServiceData[i].displayNameField = self.ServiceData[i].firstNameField + " " + self.ServiceData[i].lastNameField[0] + ".";
-                                if (self.ServiceData[i].profileField.photoField != null) {
-                                    self.getProfilePics(self.ServiceData[i].profileField.photoField, i);
-                                    self.GetProTagLine(self.ServiceData[i].userIDField, i);
-                                    self.GetMyRating(self.ServiceData[i].userIDField, i);
+                            self.GetDistanceBetween(self.ServiceData[i].userInfoField.vanityUrlField, i);
+                            var sid = parseInt(self.ServiceIDs);
+                            var pricedata = self.ServiceData[i].servicesField.filter(function (z) { return z.serviceIDField == sid; })[0];
+                            self.ServiceData[i].minimumField = pricedata.minimumField;
+                            self.ServiceData[i].rangeToField = pricedata.rangeToField;
+                            if (parseInt(self.ServiceData[i].userInfoField.distance) <= parseInt(self.InMile)) {
+                                self.ServiceData[i].userInfoField.displayNameField = self.ServiceData[i].userInfoField.firstNameField + " " + self.ServiceData[i].userInfoField.lastNameField[0] + ".";
+                                if (self.ServiceData[i].userInfoField.profileField.photoField != null) {
+                                    self.getProfilePics(self.ServiceData[i].userInfoField.profileField.photoField, i);
+                                    self.GetProTagLine(self.ServiceData[i].userInfoField.userIDField, i);
+                                    self.GetMyRating(self.ServiceData[i].userInfoField.userIDField, i);
                                 }
                                 else {
-                                    self.ServiceData[i].profileField.photoField = "";
+                                    self.ServiceData[i].userInfoField.profileField.photoField = "";
                                 }
                                 ;
                                 self.proindex++;
-                                self.ProviderIDlst += self.ServiceData[i].userIDField + "|";
+                                self.ProviderIDlst += self.ServiceData[i].userInfoField.userIDField + "|";
                             }
-                            if (self.proindex == 0 && parseInt(self.ServiceData[i].distance) >= parseInt(self.InMile)) {
+                            if (self.proindex == 0 && parseInt(self.ServiceData[i].userInfoField.distance) >= parseInt(self.InMile)) {
                                 self.NoDatafound = "Sorry, no provider found for the selected service ";
                             }
                         }
@@ -90,10 +95,12 @@ var ProviderListController;
                             self.$ionicLoading.hide();
                         }
                     });
-                    //  }, 3000);
+                    //    }, 3000);
                 });
-            }, function () {
-                self.SharedHttp.IsGPSOn();
+                // },
+                //     function () {
+                //         self.SharedHttp.IsGPSOn();
+                //     });
             });
         };
         ProviderListController.prototype.GetDistanceBetween = function (latlong, index) {
@@ -110,7 +117,7 @@ var ProviderListController;
                 Math.cos(self.rad(lat1)) * Math.cos(self.rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c;
-            self.ServiceData[index].distance = (d / 1609.344).toFixed(1);
+            self.ServiceData[index].userInfoField.distance = (d / 1609.344).toFixed(1);
             // returns the distance in meter
         };
         ProviderListController.prototype.onSuccess = function (position) {
@@ -122,13 +129,14 @@ var ProviderListController;
             return x * Math.PI / 180;
         };
         ;
-        ProviderListController.prototype.onError = function () {
+        ProviderListController.prototype.onError = function (fnerr) {
+            console.log(fnerr);
         };
         ProviderListController.prototype.getProfilePics = function (photoID, index) {
             var self = this;
             self.CustomerHttp.get('/GetProfilePic/' + photoID).then(function (response) {
                 //self.profilePic = "http://www.spafoo.com" + response.GetProfilePicResult;
-                self.ServiceData[index].profileField.photoField = "http://www.spafoo.com" + response.GetProfilePicResult;
+                self.ServiceData[index].userInfoField.profileField.photoField = "http://www.spafoo.com" + response.GetProfilePicResult;
                 //  alert(self.ServiceData[index].profileField.photoField);
                 self.$ionicLoading.hide();
             }, function (error) {
@@ -149,7 +157,6 @@ var ProviderListController;
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
         };
@@ -179,7 +186,7 @@ var ProviderListController;
             self.$window.localStorage.setItem('ProviderIDs', UserID);
             self.$state.go("ProviderPortfolio");
         };
-        ProviderListController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHHttp'];
+        ProviderListController.$inject = ['$q', '$state', '$ionicPopup', '$ionicLoading', '$scope', '$location', 'CustomerHttp', '$window', 'toaster', 'SharedHttp'];
         return ProviderListController;
     }());
     angular.module('spafoo.ctrl.ProviderList', []).controller('ProviderList', ProviderListController);

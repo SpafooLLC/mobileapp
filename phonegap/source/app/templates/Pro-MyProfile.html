@@ -1,0 +1,118 @@
+<ion-view view-title="Provider Profile Edit" scroll="true">
+    <ion-content>
+<div class="bread">
+  <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+  <div class="ptitle">My Profile</div>
+    <a href="#/Notification">
+        <div class="pnotification">
+            <div class="ico">
+                <i class="fa blue fa-bell fa-1x"></i>
+            </div>
+            <div id='notification'>{{pmp.NotificationCount}}</div>
+        </div>
+    </a>
+</div>
+<div class="inbody-simple mprofile">
+  <div class="">
+    <p><a  ng-click="pmp.GoRegistertext()"  class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+    <!-- <p><a href="#/ProEditProfile" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p> -->
+   <div class="pprofile pinfo">
+        <div class="piheader">
+        <div class="pinfo-pic">
+            <div class="round"><img ng-src="{{pmp.profilePic}}" alt=""></div>
+            <div class="pdetail">
+              <h3>{{pmp.ServiceData.displayNameField}}</h3>
+              <p>{{pmp.TagField}}</p>
+              <div class="xs-ratting-{{pmp.RatingField}} rate"></div>
+              
+              
+              <span class="rtotal">({{pmp.Rateperson}})</span>
+            </div>
+          </div>
+        <div class="owrap"><img class="mainimg" ng-src="{{pmp.profilePic}}"></div>
+        </div>
+        <div class="tline">{{pmp.TagField}}</div>
+        
+      
+          <div class="tab pitabbg" role="tabpanel">
+              <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active"><a aria-controls="home" role="tab" ng-click="pmp.showTab('Info')" data-toggle="tab">Info</a></li>
+                  <li role="presentation"><a aria-controls="profile" role="tab"  ng-click="pmp.showTab('Reviews')" data-toggle="tab">Reviews</a></li>
+                  <li role="presentation"><a aria-controls="messages" role="tab"  ng-click="pmp.showTab('Services')" data-toggle="tab">Services</a></li>
+              </ul>
+              
+              <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade in active" id="Info">
+                      <div class="mprofile">
+                      <p><span>Phone:</span>   {{pmp.ServiceData.profileField.cellField}}</p>
+                      <p><span>Email:</span>  {{pmp.ServiceData.emailField}}</p>
+                      <p><span>Address:</span>  {{pmp.ServiceData.profileField.streetField}} <br /> {{pmp.ServiceData.profileField.cityField}} ,  {{pmp.ServiceData.profileField.regionField}}    {{pmp.ServiceData.profileField.postalCodeField}} </p> 
+                      <div class="bar-head">Bio</div>
+                      {{pmp.ServiceData.profileField.biographyField}}
+                      <div class="bar-head2">Work Sample</div>
+                    </div>
+                    <div class="sample">
+                            <ul>
+                                    <li ng-repeat="s in pmp.WorkSamplesList" ng-if="s.optionTextField!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'">
+                                        <a class="fancybox" href="http://www.Spafoo.com{{s.optionTextField}}" data-fancybox-group="gallery">
+                                            <img ng-src="http://www.Spafoo.com{{s.optionTextField}}" alt="" />
+                                        </a>
+                                    </li>
+                                </ul>
+                        
+                    </div>
+                      
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Reviews">
+                    <div class="reviewlist">
+                      <div class="center">
+                        <h2>Past Client Reviews for Scott R.</h2>
+                        <div class="big-ratting-{{PvP.RatingField}}"></div>
+                        <p class="bmar-xs">from {{PvP.Rateperson}} user(s)</p>
+                      </div>
+                      <div class="allrev">
+                       <blockquote  ng-repeat="s in PvP.ReviewData">
+                        <p>{{s.commentsField}}</p>
+                        <div class="rinfo">
+                          <ul>
+                            <li>{{s.displayNameField}} </li>
+                            
+                            <li>- {{s.datedField}}</li>
+                            <li><div class="ratting-{{s.ratingValueField}}"></div></li>
+                          </ul>
+                        </div>
+                        
+                      </div>
+                    </div>
+                </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Services">
+                     <h2 class="center">Services Offered</h2>
+                     <table width="100%" border="0" cellpadding="0" class="table table-striped" cellspacing="0">
+                        <tr ng-repeat="s in pmp.ProviderServiceList">
+                            {{s.serviceNameField}}
+                          <td>{{s.serviceNameField}}</td>
+                          <td  class="pricealigns">${{s.minimumField}} to ${{s.rangeToField}}<br></td>
+                        </tr>
+                       
+                    </table>
+                </div>
+              </div>
+          </div>
+      
+        
+        
+        
+        
+      </div>
+    <link href="../../styles/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../../js/jquery.fancybox.js"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.fancybox').fancybox();
+            });
+    </script>
+</div>
+   </ion-content>
+</ion-view>
+

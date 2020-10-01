@@ -1,6 +1,6 @@
 var ProMyAvailabilityController;
 (function (ProMyAvailabilityController_1) {
-    var ProMyAvailabilityController = /** @class */ (function () {
+    var ProMyAvailabilityController = (function () {
         function ProMyAvailabilityController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp, moment, uiCalendarConfig, $stateParams) {
             this.$q = $q;
             this.$state = $state;
@@ -32,15 +32,13 @@ var ProMyAvailabilityController;
                     // your event source
                     {
                         events: [],
-                    }
-                ];
+                    }];
             var count = 0;
             self.uiConfig = {
                 calendar: {
                     height: 450,
                     editable: true,
                     eventLimit: 1,
-                    timezone: 'local',
                     selectHelper: true,
                     header: {
                         right: 'today prev,next'
@@ -288,7 +286,6 @@ var ProMyAvailabilityController;
                 else {
                     //alert(endResult);
                     end = dateend.getHours() + ":" + getendmin + " AM";
-                    //alert("end" + end);
                 }
                 var getmin1 = '';
                 if (datestart.getMinutes() < 10) {
@@ -351,7 +348,6 @@ var ProMyAvailabilityController;
             else {
                 //alert(endResult);
                 end1 = dateend.getHours() + ":" + endmin + " AM";
-                //alert("end" + end);
             }
             if (datestart1.getMinutes() < 10) {
                 startmin = "0" + datestart1.getMinutes();

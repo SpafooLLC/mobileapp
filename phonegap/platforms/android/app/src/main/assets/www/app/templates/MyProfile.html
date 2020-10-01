@@ -25,7 +25,6 @@
 
                     </div>
                 </div>
-                
                 <h3 class="bmar-xs">{{mp.ServiceData.displayNameField1}} </h3>
                 <p class="green bmar-sm fs-sm">{{mp.ServiceData.emailField}}</p>
                 <p><span>Joined Date:</span> {{mp.ServiceData.membershipField.createdDateField}}</p>
@@ -43,7 +42,7 @@
             <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs"> {{mp.ServiceData.profileField.streetField}}<br />{{mp.ServiceData.profileField.cityField}}<br /> {{mp.ServiceData.profileField.regionField}}-{{mp.ServiceData.profileField.postalCodeField}}</div></p>
             <div class="clearfix"></div>
 
-            <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Payment Method</div>
+            <!-- <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Payment Method</div>
             <div class="center">
 
                 <table width="100%" cellpadding="0" ng-if="mp.GetCreditCardData.profile.paymentProfiles!=null" border="0" class="table table-hover">
@@ -69,7 +68,7 @@
                     <p>Add a credit card so you can easily book and pay!</p>
                 </div>
                 <a href="#/BasicCreditCard/profile" class="blue-btn">Add New card</a>
-            </div>
+            </div> -->
 
             <div class="bar-head"><i class="fa fa-bell-o"></i> &nbsp;Notification Center<a id="noti"></a></div>
             <div ng-if="mp.NotificaitonData!=''" class="nsrow MyNotifications">

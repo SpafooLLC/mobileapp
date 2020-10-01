@@ -1,0 +1,65 @@
+Google play console 
+
+spafoollc@gmail.com / Gemini23! is the login
+
+
+phonegap
+
+ionic cordova plugin add cordova-plugin-googlemaps  --variable API_KEY_FOR_ANDROID="AIzaSyAUYdhqzI3Zyc8svubvqA4Jk9YeB1-xda8" 
+cordova plugin add https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps --variable API_KEY_FOR_ANDROID="AIzaSyCvg3a7zf42GJpHsfpisWQPjjEYXIXwwcs"
+
+ionic cordova plugin rm uk.co.workingedge.phonegap.plugin.launchnavigator --variable GOOGLE_API_KEY_FOR_ANDROID="AIzaSyCvg3a7zf42GJpHsfpisWQPjjEYXIXwwcs"
+
+ <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+cordova-plugin-fastrde-checkgps@1.0.0
+plugin.google.maps@1.3.9
+cordova-plugin-file
+cordova-plugin-file-transfer
+build
+ordova-plugin-fastrde-checkgps
+phonegap-plugin-push@1.10.5
+
+  <plugin name="phonegap-plugin-push" spec="^1.10.5">
+        <variable name="SENDER_ID" value="419078761457" />
+    </plugin>
+
+
+Android restricted Google map API Credential =AIzaSyCvg3a7zf42GJpHsfpisWQPjjEYXIXwwcs
+
+IOS restricted Google map API Credential =AIzaSyCWAgvsAnGL3jC8bZq8BF45GKQKnqWUveM
+
+  <feature name="GoogleMaps">
+        <param name="android-package" value="plugin.google.maps.GoogleMaps" />
+        <param name="onload" value="true" />
+        <param name="onreset" value="true" />
+    </feature>
+    <feature name="External">
+        <param name="android-package" value="plugin.google.maps.External" />
+    </feature>
+    <feature name="Geocoder">
+        <param name="android-package" value="plugin.google.maps.MyGeocoder" />
+    </feature>
+
+keytool -list -v -keystore Spafoo-release-key.keystore -alias Spafoo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ var spafoo;
 (function (spafoo) {
     var httpsharedservice;
     (function (httpsharedservice) {
-        var SharedHttp = /** @class */ (function () {
+        var SharedHttp = (function () {
             function SharedHttp($q, CustomerHttp, $window, $rootScope, $state) {
                 this.$q = $q;
                 this.CustomerHttp = CustomerHttp;
@@ -71,38 +71,14 @@ var spafoo;
                 return timeString;
             };
             SharedHttp.prototype.IsGPSOn = function () {
-                //cordova.plugins.locationAccuracy.canRequest(function (canRequest:any) {
-                //    if (canRequest) {
-                //        cordova.plugins.locationAccuracy.request(function (success:any) {
-                //            // alert("Successfully requested accuracy: " + success.message);
-                //        }, function (error:any) {
-                //            //   alert("Accuracy request failed: error code=" + error.code + "; error message=" + error.message);
-                //            if (error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
-                //                if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
-                //                    cordova.plugins.diagnostic.switchToLocationSettings();
-                //                }
-                //            }
-                //        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
-                //    }
-                //});
-                document.addEventListener("deviceready", function () {
-                    //default dialog
-                    cordova.dialogGPS("To find SpaFoo providers in your area, GPS needs to be turned on.  Press 'OK' to turn it on.", //message
-                    "Use GPS, with wifi or mobile networks.", //description
-                    function (buttonIndex) {
-                        switch (buttonIndex) {
-                            case 0: break; //cancel
-                            case 1: break; //neutro option
-                            case 2: break; //user go to configuration
-                        }
-                    }, "Please Turn on GPS", //title
-                    ["Cancel", "Later", "Go"]); //buttons
-                });
-            };
-            SharedHttp.prototype.ishome = function (ishm) {
-                //if (ishm)
-                //{ $('.Ishome').show(); }
-                //else { $('.Ishome').hide(); }
+                var GPsRetur = false;
+                document.addEventListener('deviceready', function () {
+                    CheckGPS.check(function win() {
+                        //alert('GPS Enable');
+                    }, function fail() {
+                        // alert('GPS Disable');
+                    });
+                }, false);
             };
             SharedHttp.prototype.completeAppService = function (UserId, clientID, authTxnIDField, appointmentIDField, payTxnIDField, amountField, comment, PID, PPID, discount) {
                 var self = this;
@@ -112,13 +88,6 @@ var spafoo;
                 var appointmentIDField = appointmentIDField;
                 var payTxnIDField = payTxnIDField;
                 var amountField = amountField;
-                //console.log(self.UserID + ':' + self.clientId + ':' + self.authTxnIDField + ':' + self.appointmentIDField + ':' + self.payTxnIDField + ':' + self.amountField + ':' + self.comment);
-                //self.message = 'Appointment Completed';
-                //$("#PDone").modal();
-                //var data = {
-                //    TxnID: authTxnIDField,
-                //    Amount: amountField
-                //};
                 var data = {
                     UserID: UserId,
                     clientId: clientID,
@@ -134,31 +103,6 @@ var spafoo;
                     self.$state.go("ProAppointments");
                 }, function (erError) {
                 });
-                //self.CustomerHttp.post(data, '/ChargePreviousAuth').then(function (res: any) {
-                //    var response = JSON.parse(res);
-                //    var upData = {
-                //        ID: appointmentIDField,
-                //        Comment: comment,
-                //        PaymentTxnID: payTxnIDField
-                //    };
-                //    self.CustomerHttp.post(upData, '/UpdateAppointment').then(function (upRes: any) {
-                //        var navData = {
-                //            ByID: UserID,
-                //            NotTypeID: 8,
-                //            RelatedEntityID: appointmentIDField,
-                //            ToID: clientId
-                //        };
-                //        self.CustomerHttp.post(navData, '/AddNotification').then(function (navRes: any) {
-                //            self.message = 'Appointment Completed';
-                //            //$("#PDone").modal();
-                //            self.$state.go("ProAppointments");
-                //        }, function (navError: any) {
-                //        })
-                //    }, function (erError: any) {
-                //    });
-                //}, function (error: any) {
-                //    //alert('someError on ChargePreviosAuth');
-                //});
             };
             SharedHttp.prototype.getFormatedDate = function (joindates, formatType) {
                 if (formatType != "weekday dd MMMM yyyy") {

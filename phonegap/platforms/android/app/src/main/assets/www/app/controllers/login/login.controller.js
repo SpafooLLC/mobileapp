@@ -1,6 +1,6 @@
 var loginController;
 (function (loginController_1) {
-    var loginController = /** @class */ (function () {
+    var loginController = (function () {
         function loginController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, $rootScope, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
@@ -14,15 +14,14 @@ var loginController;
             this.$rootScope = $rootScope;
             this.SharedHttp = SharedHttp;
             $("#MobileNo").mask("000-000-0000");
-            SharedHttp.ishome(true);
         }
         loginController.prototype.doLogin = function (username, password) {
-            //alert(this.$window.localStorage.getItem('DeviceToken'));
+            //ßalert(this.$window.localStorage.getItem('DeviceToken'));
             var self = this;
             username = $("#MobileNo").unmask("000-000-0000").val();
             $("#MobileNo").mask("000-000-0000");
             if (username === null || username == '' || username == undefined) {
-                self.messages = "Please enter phone number";
+                self.messages = "Please enter user name";
                 $("#PDoneError").modal();
                 return;
             }
@@ -35,7 +34,7 @@ var loginController;
                 Username: username,
                 Password: password,
                 HardwareName: this.$window.localStorage.getItem('DeviceName'),
-                DeviceToken: this.$window.localStorage.getItem('DeviceToken') // pawanDeviceToken 379'
+                DeviceToken: this.$window.localStorage.getItem('DeviceToken')
             };
             self.CustomerHttp.post(data, '/LoginUser').then(function (response) {
                 if (parseInt(response.Source)) {
@@ -56,6 +55,17 @@ var loginController;
             }, function (error) {
             });
         };
+        //getLoggedUser(UserID: any) {
+        //    var self = this;
+        //    self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response:any) {
+        //        self.$rootScope.UserProfileName = response.GetUserInfoResult.displayNameField;
+        //        self.$window.localStorage.setItem('CustomerName', response.GetUserInfoResult.displayNameField);
+        //        self.$rootScope.GetLoginStatus = true;
+        //        self.SharedHttp.GetMyNotification(UserID).then(function (res: any) { self.$rootScope.NotifiCount = res.length; });
+        //        window.history.go(-1)
+        //      //  self.$state.go("home");
+        //    }, function (error) {});
+        //}
         loginController.prototype.getLoggedUser = function (UserID) {
             var self = this;
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response) {
@@ -64,10 +74,31 @@ var loginController;
                 self.$rootScope.GetLoginStatus = true;
                 self.SharedHttp.GetMyNotification(UserID).then(function (res) { self.$rootScope.NotifiCount = res.length; });
                 var v = self.$window.localStorage.getItem('url');
+                //if (v == "Register") {
+                //    self.$window.localStorage.setItem("url", '0');
+                //    window.location.href = "#/home";
+                //    //self.$state.go("home");
+                //}
+                //else {
+                //    if (self.$window.localStorage.getItem('Role') == 'P') {
+                //        //var v = self.$window.localStorage.getItem('url');
+                //        var c = v.substr(v.indexOf('/') + 1);
+                //        c = c.substr(0, c.indexOf('/'));
+                //        if (c == "MakeAppointment") {
+                //            self.$window.localStorage.setItem("url", '0');
+                //            window.history.go(-2);
+                //        } else {
+                //            self.$window.localStorage.setItem("url", '0');
+                //            window.history.go(-1);
+                //        }
+                //    }
+                //    else {
+                //        window.history.go(-1);
+                //    }
+                //}
                 if (v != null && v == "Register") {
                     self.$window.localStorage.setItem("url", '0');
                     window.location.href = "#/home";
-                    //self.$state.go("home");
                 }
                 else {
                     if (v != null && self.$window.localStorage.getItem('Role') == 'P') {

@@ -1,6 +1,6 @@
 var RegisterProviderController;
 (function (RegisterProviderController_1) {
-    var RegisterProviderController = /** @class */ (function () {
+    var RegisterProviderController = (function () {
         function RegisterProviderController($state, $scope, $ionicLoading) {
             this.$inject = ['$state', '$scope', '$ionicLoading'];
         }

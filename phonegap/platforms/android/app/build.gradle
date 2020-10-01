@@ -99,10 +99,10 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-android-support-gradle-release/spafoollc-cordova-android-support-gradle-release.gradle"
-apply from: "../cordova-support-google-services/spafoollc-build.gradle"
-apply from: "../phonegap-plugin-multidex/spafoollc-multidex.gradle"
+apply from: "../cordova-androidx-build/spafoollc-cordova-androidx-build.gradle"
 apply from: "../cordova-plugin-googlemaps/spafoollc-tbxml-android.gradle"
 apply from: "../cordova-plugin-googlemaps/spafoollc-pgm-custom.gradle"
+apply from: "../phonegap-plugin-push/spafoollc-push.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -298,13 +298,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
-    implementation "com.google.android.gms:play-services-analytics:+"
-    implementation "com.google.android.gms:play-services-location:+"
-    implementation "com.squareup.okhttp3:okhttp:3+"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.legacy:legacy-support-v13:1.0.0"
-    implementation "me.leolin:ShortcutBadger:1.1.17@aar"
-    implementation "com.google.firebase:firebase-messaging:17.0.+"
+    implementation "com.google.android.gms:play-services-location:16.+"
+    implementation "com.android.support:support-v13:24+"
+    implementation "com.google.android.gms:play-services-gcm:15+"
+    implementation "me.leolin:ShortcutBadger:1.1.14@aar"
+    implementation "com.squareup.okhttp3:okhttp:3.12.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

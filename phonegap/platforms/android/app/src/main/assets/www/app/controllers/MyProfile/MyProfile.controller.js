@@ -1,6 +1,6 @@
 var MyProfileController;
 (function (MyProfileController_1) {
-    var MyProfileController = /** @class */ (function () {
+    var MyProfileController = (function () {
         function MyProfileController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
@@ -37,12 +37,11 @@ var MyProfileController;
                 self.ServiceData.membershipField.createdDateField = self.SharedHttp.getFormatedDate(response.GetUserInfoResult.membershipField.createdDateField, "dd MMMM yyyy");
                 self.getUserNotificationInfo(customerID);
                 self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
-                self.GetCustomerProfile(customerID);
+                // self.GetCustomerProfile(customerID);
             }, function (error) {
                 if (error === null) {
                 }
                 else {
-                    //console.log(error);
                 }
             });
         };
@@ -143,12 +142,12 @@ var MyProfileController;
                             break;
                         case 18:
                             if (role == 'C') {
-                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " is unavailable for the appointment you requested.";
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " is unavailable for the appointment you requested. ";
                             }
                             break;
                         case 19:
                             if (role == 'C') {
-                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " is unavailable for the ASAP appointment you requested.";
+                                self.NotificaitonData[i].typeNameFields = self.NotificaitonData[i].byNameField + " is unavailable for the ASAP appointment you requested";
                             }
                             break;
                     }

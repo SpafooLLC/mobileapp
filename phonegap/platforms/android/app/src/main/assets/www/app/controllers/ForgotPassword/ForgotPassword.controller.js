@@ -1,6 +1,6 @@
 var ForgotPasswordController;
 (function (ForgotPasswordController_1) {
-    var ForgotPasswordController = /** @class */ (function () {
+    var ForgotPasswordController = (function () {
         function ForgotPasswordController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window) {
             this.$q = $q;
             this.$state = $state;

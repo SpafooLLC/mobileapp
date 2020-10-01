@@ -1,6 +1,6 @@
 var ProAppointmentCompletedController;
 (function (ProAppointmentCompletedController_1) {
-    var ProAppointmentCompletedController = /** @class */ (function () {
+    var ProAppointmentCompletedController = (function () {
         function ProAppointmentCompletedController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp, $stateParams, $timeout) {
             this.$q = $q;
             this.$state = $state;
@@ -121,7 +121,6 @@ var ProAppointmentCompletedController;
                             var ft = new FileTransfer();
                         }
                         catch (ex) {
-                            //self.toaster.error('exception generated:' + ex, 'Error');
                         }
                         ft.upload(imageURI, 'http://www.spafoo.com/DesktopModules/NS_ManageScheduledServices/Scripts/jquery-uploadify/mHandler.ashx', (function (r) {
                             if (r.responseCode === '200' || r.responseCode === 200) {
@@ -149,7 +148,6 @@ var ProAppointmentCompletedController;
                     else {
                         self.messages = "PNG,JPEG,JPG images allowed";
                         $("#PDone").modal();
-                        //alert('PNG,JPEG,JPG images allowed');
                     }
                 }, self.onFail, {
                     quality: 50,
@@ -158,12 +156,10 @@ var ProAppointmentCompletedController;
                     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
                     correctOrientation: true
                 });
-                // Take picture using device camera and retrieve image as base64-encoded string
             }
             catch (ex) {
                 self.message = "Can\'nt upload image";
                 $("#PDone").modal();
-                //alert('Can\'nt upload image');
             }
             finally {
                 self.isImageClick = false;

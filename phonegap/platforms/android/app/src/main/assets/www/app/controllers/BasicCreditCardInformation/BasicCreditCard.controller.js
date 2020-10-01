@@ -1,6 +1,6 @@
 var BasicCreditCardController;
 (function (BasicCreditCardController_1) {
-    var BasicCreditCardController = /** @class */ (function () {
+    var BasicCreditCardController = (function () {
         function BasicCreditCardController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;
@@ -14,12 +14,7 @@ var BasicCreditCardController;
             this.SharedHttp = SharedHttp;
             this.$stateParams = $stateParams;
             this.init();
-            var self = this;
             $("#MobileNo").mask("000-000-0000");
-            self.SharedHttp.GetUserInfo(self.$window.localStorage.getItem('CustomerID')).then(function (res) {
-                self.UserName = res.firstNameField + " " + res.lastNameField;
-                self.UserEmail = res.emailField;
-            });
         }
         BasicCreditCardController.prototype.init = function () {
             var self = this;
@@ -80,7 +75,7 @@ var BasicCreditCardController;
         //        data.UID = self.$window.localStorage.getItem('CustomerID');
         //        data.Expiry = data.Month + "/" + data.Year; 
         //        self.$ionicLoading.show();
-        //        self.CustomerHttp.post(data, '/CreateCustomerRegistrationProfile').then(function (response) {
+        //        self.CustomerHttp.post(data, '/CreateCustomerProfile').then(function (response) {
         //            self.Succmesg = "Credit Card Information Added Successfully.";
         //            $("#PSuccess").modal();  
         //        }, function (error) { });
@@ -96,8 +91,6 @@ var BasicCreditCardController;
                         data.UID = self.$window.localStorage.getItem('CustomerID');
                         data.Expiry = data.Month + "/" + data.Year;
                         data.Phone = $("#MobileNo").val();
-                        data.Name = self.UserName;
-                        data.Email = self.UserEmail;
                         self.CustomerHttp.post(data, '/CreateCustomerRegistrationProfile').then(function (response) {
                             self.Succmesg = "Credit Card Information Added Successfully.";
                             $("#PSuccess").modal();
@@ -112,8 +105,6 @@ var BasicCreditCardController;
                     else if (this.DoValidation(CData)) {
                         var data = CData;
                         data.UID = self.$window.localStorage.getItem('CustomerID');
-                        data.Name = self.UserName;
-                        data.Email = self.UserEmail;
                         data.Expiry = data.Month + "/" + data.Year;
                         data.Phone = $("#MobileNo").val();
                         self.CustomerHttp.post(data, '/CreateCustomerRegistrationProfile').then(function (response) {

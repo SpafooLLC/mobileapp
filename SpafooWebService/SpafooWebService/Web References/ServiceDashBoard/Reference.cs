@@ -50,6 +50,8 @@ namespace SpafooWebService.ServiceDashBoard {
         
         private System.Threading.SendOrPostCallback GetUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetUserInfoOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetUserJSONOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetUserPicOperationCompleted;
@@ -147,6 +149,9 @@ namespace SpafooWebService.ServiceDashBoard {
         
         /// <remarks/>
         public event GetUserCompletedEventHandler GetUserCompleted;
+        
+        /// <remarks/>
+        public event GetUserInfoCompletedEventHandler GetUserInfoCompleted;
         
         /// <remarks/>
         public event GetUserJSONCompletedEventHandler GetUserJSONCompleted;
@@ -488,6 +493,35 @@ namespace SpafooWebService.ServiceDashBoard {
             if ((this.GetUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetUserCompleted(this, new GetUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUserInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserInfo GetUserInfo(int UID) {
+            object[] results = this.Invoke("GetUserInfo", new object[] {
+                        UID});
+            return ((UserInfo)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetUserInfoAsync(int UID) {
+            this.GetUserInfoAsync(UID, null);
+        }
+        
+        /// <remarks/>
+        public void GetUserInfoAsync(int UID, object userState) {
+            if ((this.GetUserInfoOperationCompleted == null)) {
+                this.GetUserInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUserInfoOperationCompleted);
+            }
+            this.InvokeAsync("GetUserInfo", new object[] {
+                        UID}, this.GetUserInfoOperationCompleted, userState);
+        }
+        
+        private void OnGetUserInfoOperationCompleted(object arg) {
+            if ((this.GetUserInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetUserInfoCompleted(this, new GetUserInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2291,6 +2325,32 @@ namespace SpafooWebService.ServiceDashBoard {
         private object[] results;
         
         internal GetUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserInfo Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserInfo)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetUserInfoCompletedEventHandler(object sender, GetUserInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetUserInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetUserInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

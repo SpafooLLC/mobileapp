@@ -1,13 +1,22 @@
 {
-  "name": "hchoiceIonic",
+  "name": "io.cordova.myapp2d2b1c",
   "integrations": {
     "cordova": {}
   },
   "type": "ionic1",
+  "gulpDependantTasks": [
+    "tsc",
+    "sass"
+  ],
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
   "watchPatterns": [
     "scss/**/*",
     "www/**/*",
     "!www/lib/**/*",
     "!www/**/*.map"
-  ]
+  ],
+  "id": "webmaster@spafoo.com"
 }

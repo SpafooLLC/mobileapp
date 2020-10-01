@@ -1,6 +1,6 @@
 var registerController;
 (function (registerController) {
-    var RegisterController = /** @class */ (function () {
+    var RegisterController = (function () {
         function RegisterController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $timeout, SharedHttp, $rootScope) {
             this.$q = $q;
             this.$state = $state;
@@ -44,17 +44,16 @@ var registerController;
                         self.$window.localStorage.setItem('CustomerID', response.CustomerID);
                         self.$window.localStorage.setItem('Role', response.Usertype);
                         self.$window.localStorage.setItem('LoginStatus', "true");
-                        //  self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
-                        //self.$state.go("home");
-                        self.SharedHttp.GetUserInfo(response.CustomerID).then(function (res) {
-                            self.$rootScope.UserProfileName = res.displayNameField;
-                            self.$window.localStorage.setItem('CustomerName', res.displayNameField);
-                            self.$rootScope.GetLoginStatus = true;
-                            self.$state.go("BasicCreditCard", { from: 'reg' });
+                        self.SharedHttp.DoLogin(data.Username, data.Password).then(function (e) {
+                            self.$state.go("home");
+                            // self.SharedHttp.GetUserInfo(response.CustomerID).then(function (res: any) {
+                            //     self.$rootScope.UserProfileName = res.displayNameField;
+                            //     self.$window.localStorage.setItem('CustomerName', res.displayNameField);
+                            //     self.$rootScope.GetLoginStatus = true;
+                            //     self.$state.go("BasicCreditCard", { from: 'reg' });
                         });
                         self.SharedHttp.GetMyNotification(response.CustomerID).then(function (res) { self.$rootScope.NotifiCount = res.length; });
                         self.$rootScope.getRole = (self.$window.localStorage.getItem('Role') == "P" ? "P" : "C");
-                        // });
                     }
                     else if (response.Success == "UserAlreadyRegistered") {
                         self.messages = "Username already exists. Please select new username.";
@@ -77,13 +76,14 @@ var registerController;
                 });
             }
         };
+        // GoRegistertext(IsProvider: any) {
+        //     var self = this;
+        //     self.$state.go("RegisterProvider");
+        // }
         RegisterController.prototype.GoRegistertext = function (IsProvider) {
-            // var self = this;
-            // self.$state.go("RegisterProvider");
             var target = "_blank";
             var options = "location=yes,hidden=yes,beforeload=yes";
             $("#showload").show();
-            // var   inAppBrowserRef = cordova.InAppBrowser.open('http://www.spafoo.com/provider-registration', target, options);
             window.open(encodeURI('http://www.spafoo.com/provider-registration'), '_system', 'location=yes');
             setTimeout(function () {
                 $("#showload").hide();
@@ -133,7 +133,7 @@ var registerController;
             }
             else {
                 Regdata.PhoneNo = Regdata.MobileNo;
-                //   Regdata.Username = $("#MobileNo").unmask("000-000-0000").val();
+                //Regdata.Username = $("#MobileNo").unmask("000-000-0000").val();
                 Regdata.Username = $("#MobileNo").val();
             }
             if (Regdata.ConfirmPassword != Regdata.Password) {
@@ -204,11 +204,11 @@ var registerController;
                 $("#PDone").modal();
                 return false;
             }
-            if (Regdata.termscondition === null || Regdata.termscondition === '' || Regdata.termscondition == undefined) {
-                self.messages = "Please check the Payment terms";
-                $("#PDone").modal();
-                return false;
-            }
+            // if (Regdata.termscondition === null || Regdata.termscondition === '' || Regdata.termscondition == undefined) {
+            //     self.messages = "Please check the Payment terms";
+            //     $("#PDone").modal();
+            //     return false;
+            // }
             //  alert(JSON.stringify(self.imageURL));
             // if (self.imageURL === null || self.imageURL === '' || self.imageURL == undefined) {
             //     self.messages = "Please Select Profile Pic.";
@@ -233,8 +233,6 @@ var registerController;
                         if (extension === 'PNG' || extension === 'JPEG' || extension === 'JPG') {
                             self.SharedHttp.setProfileImage('file://' + imageURI);
                             self.postImage();
-                            // alert(self.SharedHttp.getProfileImage() + '-----' + self.imageURL);
-                            //}, 1000);
                         }
                         else {
                             self.messages = "PNG,JPEG,JPG images allowed";
@@ -271,7 +269,6 @@ var registerController;
                         correctOrientation: true
                     });
                 }
-                // Take picture using device camera and retrieve image as base64-encoded string
             }
             catch (ex) {
                 self.messages = "Can\'nt upload image";
@@ -307,7 +304,6 @@ var registerController;
                         self.imageURL = "http://www.spafoo.com" + resArr[1];
                     }, 2000);
                     $("#showload").hide();
-                    //alert(JSON.stringify(r));
                 }
                 else {
                     self.toaster.error('Something went wrong with the server', 'Error');

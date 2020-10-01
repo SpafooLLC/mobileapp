@@ -1,4 +1,9 @@
+ftp server 
+Server : websvc.spafoo.com 
+user: SpafoooDev 
+Password: 9Q2znp40
 
+============================================================
 For Deployement on Android
 
 1. cordova build --release android
@@ -6,7 +11,7 @@ For Deployement on Android
 3. passphrase : 9Q2znp40!
 4. C:\Users\cis\AppData\Local\Android\android-sdk\build-tools\24.0.0
 C:\Users\cis\AppData\Local\Android\Sdk\build-tools\28.0.3
-5. zipalign -v 4 app-release-unsigned.apk Spafoo-release(v1.4.5).apk
+5. zipalign -v 4 app-release-unsigned.apk Spafoo-release(v1.4.6).apk
 
 
 

@@ -1,6 +1,6 @@
 var CreditCardGiftCertificateController;
 (function (CreditCardGiftCertificateController_1) {
-    var CreditCardGiftCertificateController = /** @class */ (function () {
+    var CreditCardGiftCertificateController = (function () {
         function CreditCardGiftCertificateController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;

@@ -1,6 +1,6 @@
 var MyScheduleController;
 (function (MyScheduleController_1) {
-    var MyScheduleController = /** @class */ (function () {
+    var MyScheduleController = (function () {
         function MyScheduleController($q, $state, $scope, $location, CustomerHttp, $window, SharedHttp) {
             this.$q = $q;
             this.$state = $state;
@@ -30,7 +30,6 @@ var MyScheduleController;
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
                         self.ServiceData[i].DayField = 'ASAP';
-                        //   self.ServiceData[i].MonthField = '-- -- --';
                     }
                     else {
                         var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");

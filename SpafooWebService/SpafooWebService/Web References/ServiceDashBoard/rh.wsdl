@@ -267,6 +267,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUserInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfoResult" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetUserJSON">
         <s:complexType>
           <s:sequence>
@@ -594,6 +608,12 @@
   <wsdl:message name="GetUserSoapOut">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="GetUserJSONSoapIn">
     <wsdl:part name="parameters" element="tns:GetUserJSON" />
   </wsdl:message>
@@ -742,6 +762,12 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:UserInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpGetOut">
     <wsdl:part name="Body" element="tns:UserInfo" />
   </wsdl:message>
   <wsdl:message name="GetUserJSONHttpGetIn">
@@ -900,6 +926,12 @@
   <wsdl:message name="GetUserHttpPostOut">
     <wsdl:part name="Body" element="tns:UserInfo" />
   </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:UserInfo" />
+  </wsdl:message>
   <wsdl:message name="GetUserJSONHttpPostIn">
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
@@ -1037,6 +1069,10 @@
       <wsdl:input message="tns:GetUserSoapIn" />
       <wsdl:output message="tns:GetUserSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoSoapIn" />
+      <wsdl:output message="tns:GetUserInfoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <wsdl:input message="tns:GetUserJSONSoapIn" />
       <wsdl:output message="tns:GetUserJSONSoapOut" />
@@ -1139,6 +1175,10 @@
       <wsdl:input message="tns:GetUserHttpGetIn" />
       <wsdl:output message="tns:GetUserHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoHttpGetIn" />
+      <wsdl:output message="tns:GetUserInfoHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <wsdl:input message="tns:GetUserJSONHttpGetIn" />
       <wsdl:output message="tns:GetUserJSONHttpGetOut" />
@@ -1240,6 +1280,10 @@
     <wsdl:operation name="GetUser">
       <wsdl:input message="tns:GetUserHttpPostIn" />
       <wsdl:output message="tns:GetUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoHttpPostIn" />
+      <wsdl:output message="tns:GetUserInfoHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <wsdl:input message="tns:GetUserJSONHttpPostIn" />
@@ -1387,6 +1431,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://tempuri.org/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://tempuri.org/GetUserInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1622,6 +1675,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <soap12:operation soapAction="http://tempuri.org/GetUserJSON" style="document" />
       <wsdl:input>
@@ -1846,6 +1908,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <http:operation location="/GetUserInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <http:operation location="/GetUserJSON" />
       <wsdl:input>
@@ -2059,6 +2130,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUser">
       <http:operation location="/GetUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <http:operation location="/GetUserInfo" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

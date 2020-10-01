@@ -1,6 +1,6 @@
 var AboutController;
 (function (AboutController_1) {
-    var AboutController = /** @class */ (function () {
+    var AboutController = (function () {
         function AboutController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, $sce) {
             this.$q = $q;
             this.$state = $state;

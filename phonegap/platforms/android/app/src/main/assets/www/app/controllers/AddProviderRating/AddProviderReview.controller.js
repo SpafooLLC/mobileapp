@@ -1,6 +1,6 @@
 var AddProviderReviewController;
 (function (AddProviderReviewController_1) {
-    var AddProviderReviewController = /** @class */ (function () {
+    var AddProviderReviewController = (function () {
         function AddProviderReviewController($q, $state, $ionicPopup, $ionicLoading, $scope, $location, CustomerHttp, $window, toaster, SharedHttp, $stateParams) {
             this.$q = $q;
             this.$state = $state;
