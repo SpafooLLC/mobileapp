@@ -1,0 +1,6 @@
+D:\work\Foodesk\website\bin\NS_MakeAppointment.dll
+D:\work\Foodesk\website\bin\NS_MakeAppointment.pdb
+D:\work\Foodesk\website\DesktopModules\NS_MakeAppointment\obj\Debug\NS_MakeAppointment.dll
+D:\work\Foodesk\website\DesktopModules\NS_MakeAppointment\obj\Debug\NS_MakeAppointment.pdb
+D:\work\Foodesk\website\DesktopModules\NS_MakeAppointment\obj\Debug\NS_MakeAppointment.csprojResolveAssemblyReference.cache
+D:\work\Foodesk\website\bin\NS_MakeAppointment.dll.config

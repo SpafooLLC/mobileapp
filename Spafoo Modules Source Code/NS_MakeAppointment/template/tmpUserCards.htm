@@ -1,0 +1,15 @@
+﻿<div class="blue bold center">Card number ending with</div>
+{#foreach $T as C}
+<div class="ccshowinfo">
+    <div class="radio radio-info">
+        <input type="radio" name="rblUserCard" value="{$T.C.customerPaymentProfileId}" id="rblUserCard_{$T.C.customerPaymentProfileId}" ppid="{$T.C.customerPaymentProfileId}" />
+        <label for="rblUserCard_{$T.C.customerPaymentProfileId}">{$T.C.payment.Item.cardNumber}</label>
+    </div>
+</div>
+{#/for}
+<div class="ccshowinfox">
+    <div class="radio radio-info">
+        <input type="radio" checked="checked" name="rblUserCard" id="rblUserCard_0" value="0" />
+        <label for="rblUserCard_0">Specify new card information in Next step</label>
+    </div>
+</div>

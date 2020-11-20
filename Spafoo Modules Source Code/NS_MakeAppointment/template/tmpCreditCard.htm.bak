@@ -1,0 +1,130 @@
+﻿<div class="inbody-simple">
+    <div id="dvNewCardInfo">
+        <div class="has-feedback fgap">
+            <label class="control-label">Name on Card</label>
+            <input id="NS_txtCCUserName" type="text" class="form-control">
+            <span class="fa fa-user fa-lg form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="has-feedback fgap">
+            <label class="control-label">Card Number</label>
+            <input id="NS_txtCCCardNumber" type="text" class="form-control">
+            <span class="fa fa-credit-card-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+        </div>
+
+        <div class="ccradio">
+            <div class="radio radio-info radio-inline">
+                <input type="radio" name="radioInline" value="1" id="inlineRadio1">
+                <label for="inlineRadio1"><img src="/DesktopModules/NS_MakeAppointment/Images/Site/cc-v.png" /></label>
+            </div>
+            <div class="radio radio-info radio-inline">
+                <input type="radio" name="radioInline" value="2" id="inlineRadio2">
+                <label for="inlineRadio2"><img src="/DesktopModules/NS_MakeAppointment/Images/Site/cc-ae.png" /></label>
+            </div>
+            <div class="radio radio-info radio-inline">
+                <input type="radio" name="radioInline" value="3" id="inlineRadio3">
+                <label for="inlineRadio3"><img src="/DesktopModules/NS_MakeAppointment/Images/Site/cc-mc.png" /></label>
+            </div>
+            <div class="radio radio-info radio-inline">
+                <input type="radio" name="radioInline" value="4" id="inlineRadio4">
+                <label for="inlineRadio4"><img src="/DesktopModules/NS_MakeAppointment/Images/Site/cc-d.png" /></label>
+            </div>
+        </div>
+        <div class="expdate">
+            <p class="control-label bold bmar-sm">Expiry Date</p>
+            <div class="col-xs-6 fileft">
+                <select id="ddlCCMonth" class="form-control w100">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div class="col-xs-6 firight">
+                <select id="ddlCCYear" class="form-control w100">
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2023">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2026">2027</option>
+                </select>
+            </div>
+        </div>
+        <div class="expdate">
+            <p class="control-label bold bmar-sm">CVV</p>
+            <div class="col-xs-6 fileft">
+                <input id="NS_txtCCCVV" type="text" class="form-control">
+            </div>
+            <div class="col-xs-6 firight cvv">
+                The last 3 digits displyed on the back of  your card
+            </div>
+        </div>
+        <div class="checkbox checkbox-primary">
+            <input id="chkBilling" type="checkbox" checked onclick="HandleCCAddresUI(this);">
+            <label for="chkBilling">Billing address same as specified in your profile ?</label>
+        </div>
+        <div id="NS_dvCCAddress" style="display:none;">
+            <div class="has-feedback fgap">
+                <label class="control-label">Address</label>
+                <input id="NS_txtCCAddress" type="text" class="form-control" />
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">City</label>
+                <input id="NS_txtCCCity" type="text" class="form-control" />
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">State/Province</label>
+                <input id="NS_txtCCState" type="text" class="form-control" />
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Zip/Postal Code</label>
+                <input id="NS_txtCCZip" type="text" class="form-control" />
+            </div>
+            <div class="has-feedback fgap">
+                <label class="control-label">Phone</label>
+                <input id="NS_txtCCPhone" type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div id="dvProfilePayment" class="NS_Off">
+        <label id="lblProfileInfo"></label>
+    </div>
+    <div class="tpad-xs checkbox checkbox-primary">
+        <input id="NS_chkAccept" type="checkbox">
+        <label for="NS_chkAccept">With payment, I accept the <a class="modals" data-toggle="modal" data-target="#PTerms">payment terms</a>.</label>
+        <div style="display:none">
+            <br />
+            <input type="checkbox" id="NS_chkSaveToProfile" />
+            <label for="NS_chkSaveToProfile">Securely save card on file for future payments</label>
+        </div>
+    </div>
+</div>
+<div class="h30"></div>
+<a class="modals block-btn" id="NS_btnPayNow" onclick="NS_ChargeMyCard(this,event); return false;">Pay Now</a>
+<!-- Modal Payment Terms -->
+<div class="modal fade" id="PTerms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title" id="myModalLabel">Payment Terms</h4>
+            </div>
+            <div class="modal-body">
+                A credit card is required to request an appointment. You will be charged $25 for a cancellation within 12 hours of the start of your requested appointment time. You will be charged at the completion of the service. It is the responsibility of the credit card processing agents/companies and the clients to maintain secure financial information and private credit card number documentation. SpaFoo.com accepts no liability for the failure of VISA/MasterCard/American Express/Discover to protect their clients from fraudulent activities and theft of private information. The above mentioned entities are contracted by SpaFoo.com to provide secure transactions.
+            </div>
+        </div>
+    </div>
+</div>

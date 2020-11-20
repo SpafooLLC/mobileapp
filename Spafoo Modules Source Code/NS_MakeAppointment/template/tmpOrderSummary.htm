@@ -1,0 +1,55 @@
+﻿<div class="inbody osummery">
+    <div class="head">
+        <h3><label>Service Session:</label>&nbsp;<label id="NSD_MA_lblTotalServiceSession"></label></h3>
+        <p><strong><label id="NSD_MA_lblOrderTime"></label></strong> &nbsp;at <a href="#" onclick="GotoMyProfile(); return false;" class="norblue"><label id="NSD_MA_lblUserLocation"></label></a></p>
+        <p style="margin-top:10px;">With: <a href="#" onclick="ShowProID();return false;" class="norblue"><label id="NSD_MA_lblProviderName"></label></a></p>
+    </div>
+    <div class="cart">
+        <div class="heading">Selected Services</div>
+        <ul>
+            {#foreach $T as S}
+            <li>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="sname"><a href="" class="trashw" onclick="NS_RemoveItem(this,event); return false;"><span class="trash"><span></span><i></i></span></a> &nbsp;&nbsp;&nbsp;{$T.S.name}</td>
+                        <td class="qbox"><input onblur="NSD_MA_ReTotal();" type="text" value="{$T.S.Qty}" rate="{$T.S.price}" duration="{$T.S.Duration}" id="txtOrderQty_{$T.S.ID}" class="NSOrderInput form-control center" placeholder="1"></td>
+                        <td class="price">$<label id="lblItemTotal_{$T.S.ID}">{$T.S.price*$T.S.Qty}</label></td>
+                    </tr>
+                </table>
+            </li>
+            {#/for}
+        </ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="tblue" width="100%">Coupon Code</td>
+                <td><input type="text" id="NS_txtCoupon" class="form-control center" style="width:150px;" /></td>
+                <td style="padding-left:20px;"><input type="button" class="green-rounded-sm" value="Validate" id="NS_btnValidateCoupon" onclick="return NSD_MA_ApplyCoupon();" /></td>
+            </tr>
+        </table>
+        <div class="finfo">
+            <table class="distab" align="right" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="tbblack" style="padding-right:80px;">Sub Total:</td>
+                    <td class="tbbgreen" align="right"><label id="lblSubTotal"></label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div class="osmline"></div></td>
+                </tr>
+                <tr>
+                    <td class="tbblack">Coupon Discount:</td>
+                    <td class="tbbgreen" align="right">- <label id="lblCDiscount"></label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div class="osmline"></div></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"> <span>Total</span><label class="pmakla" id="NSD_MA_lblOrderTotal">0.00</label><span class="usd">USD</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="enter">
+    <label style='width:100%;text-align:center; padding:10px 0 30px;'>You will not be charged a fee until after services are rendered.</label>
+    <a href="#" onclick="NSD_MA_ShowCalendar(); return false;" class="block-btn">continue</a>
+</div>

@@ -1,0 +1,29 @@
+﻿<div class="inbody pprofile">
+    <div class="baruprovider">Client Location</div>
+    <div class="provermap">
+        <div id="mapcanvas" style="width:100%;height:300px;">{initialize($T.Location)}</div>
+    </div>
+    <div class="bar">
+        <div class="fleft"><i class="fa fa-info green"></i> &nbsp;Not Complete</div>
+        <div class="fright"><a href="#" onclick="GetRouteFrom(); return false;">Get Directions</a></div>
+    </div>
+    <div class="scdetail">
+        <h1>{NS_FormatDate($T.ForDate,'DD dd MM yy')}</h1>
+        <p class="blue">{$T.AtTime} <br/>
+            {$T.Location.Address}<br />
+            {$T.Location.City}, {$T.Location.State}, {$T.Location.Zip}
+        </p>
+        <p><span>With: </span>{$T.ClientInfo.FirstName} {NS_IntialLetter($T.ClientInfo.LastName)}</p>
+        <p>
+            <span>Service(s): </span>
+            {#foreach $T.Services as C}
+            {$T.C.ServiceName}{#if $T.C.Qty>1}({$T.C.Qty}){#/if},&nbsp;
+            {#/for}
+        </p>
+        {#if $T.Comments!=""}
+        <p><span>Comment: </span>{$T.Comments}</p>
+        {#/if}
+    </div>
+</div>
+<p>&nbsp;</p>
+<a href="#" onclick="MakeAppointmentCompleted(); return false;" class="block-btn">I've arrived</a>  

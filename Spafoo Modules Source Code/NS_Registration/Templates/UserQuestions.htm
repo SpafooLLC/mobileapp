@@ -1,0 +1,89 @@
+﻿{#foreach $T as rs}
+<div id="NSR_UR_Step_{$T.rs.StepID}" style="width:100%;margin-bottom:20px;margin-top:20px;min-height
+:18px;"
+{#if $T.rs$iteration=='0' } class='NS_On' {#else} class='NS_Off' {#/if} >
+    {#foreach $T.rs.Categories as C}
+            <div class="sec-title" style="{#if $T.rs$iteration=='0' }display:none; {#/if }">
+                <h3>{$T.C.QCategoryDesc}</h3>
+            </div>
+    {#foreach $T.C.Questions as Q}
+    <div id="NSR_dvMQuestion_{$T.Q.QuestionID}" class="form-group proapp NSR_Questions" 
+         {#if $T.Q.IsFullWidth==true} style="clear:both; overflow: hidden;" {#/if}>
+    {#if $T.Q.QType!='IAgree'}
+    <div class="label-right col-sm-2">
+        <label>{NS_ParseString($T.Q.QuestionText)}
+        {#if $T.Q.IsRequired==true}
+        <span id="NSR_lblRequired_{$T.Q.QuestionID}" class="NS_RequiredCap" style="color:red;display:none;">*</span>
+        {#/if}</label>
+    </div>
+    {#/if}
+    <div id="NSR_QContainer_{$T.Q.QuestionID}" 
+         {#if $T.Q.IsFullWidth==true}
+             {#if $T.Q.IsRequired==true} 
+                {#if $T.Q.QType=='IAgree'} class="col-sm-12 NS_Required"{#else} class="col-sm-10 NS_Required"  {#/if}
+             {#else} class="col-md-10"
+             {#/if}
+        {#else}
+            {#if $T.Q.IsRequired==true} class="col-sm-4 NS_Required"
+            {#else} class="col-md-4"
+            {#/if}
+        {#/if}
+        >
+    {#if $T.Q.QType=='IAgree'}
+    <div style="width:100%;">
+    <label id="lbl{$T.Q.QuestionID}">
+        {NS_ParseString($T.Q.QuestionText)}
+        {#if $T.Q.IsRequired==true}
+        <span id="NSR_lblRequired_{$T.Q.QuestionID}" class="NS_RequiredCap" style="display:none;">*</span>
+        {#/if}
+    </label>
+</div> 
+    {#foreach $T.Q.Options as O}
+<div style="width:100%;">
+   <div class="checkgap">
+    <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" name="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" />
+    <label for="chk_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
+   </div>
+</div>
+    {#/for}
+    {#/if}
+    {#if $T.Q.QType == 'TextBox'}
+        <input type="text" id="tb_{$T.Q.QuestionID}" class="form-control" title="{$T.Q.HintText}" maxlength="1000" name="tb_{$T.Q.QuestionID}" />
+    {#elseif $T.Q.QType=='Multiline'}
+            <textarea id="tb_{$T.Q.QuestionID}" class="form-control"  name="tb_{$T.Q.QuestionID}" title="{$T.Q.HintText}" maxlength="1000" rows="6" cols="80"></textarea>
+    {#elseif $T.Q.QType=='Radio' }
+        {#foreach $T.Q.Options as O}
+            <input type="radio" id="rbl_{$T.Q.QuestionID}_{$T.O.OptionID}" name="rbl_{$T.Q.QuestionID}" />
+            <label for="rbl_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
+        {#/for}
+    {#elseif $T.Q.QType=='CheckBox' }
+    <table cellspacing="5" cellpadding="5" style="width:100%;">
+        <tr>
+            {#foreach $T.Q.Options as O}
+            <td style="width:25%;height:30px;">
+                <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" selectid="{$T.O.OnSelect}" name="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" class="dnnFormItem" />
+                <label for="chk_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
+            </td>
+       {#if (($T.O$iteration+1)%4)==0} </tr>{#/if}
+        {#/for}
+    </table>
+    {#elseif $T.Q.QType=='File'}
+        <input type="file" id="NSRFile_{$T.Q.QuestionID}" class="NSR_FileControl" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
+    {#elseif $T.Q.QType=='Images'}
+            <input type="file" value="Browse..." id="NSRFile_{$T.Q.QuestionID}" class="NSR_Croppable" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
+    {#if $T.Q.QuestionID==14}    
+        <div id="MainCropper_{$T.Q.QuestionID}" style="margin-bottom:20px;margin-top:10px;width:400px;height:400px;background-color:lightgray;border:solid 1px gray"></div>
+    {#else}    
+        <div id="MainCropper_{$T.Q.QuestionID}" style="margin-bottom:20px;margin-top:10px;width:380px;height:380px;background-color:lightgray;border:solid 1px gray" ></div>
+    {#/if}    
+{#elseif $T.Q.QType=='Date'}
+        <input type="text" id="tb_{$T.Q.QuestionID}" class="NSR_Date" name="tb_{$T.Q.QuestionID}" />
+    {#elseif $T.Q.QType=='LinkedDoc'}
+        <a href="http://{$T.Q.HintText}" target="_blank">Download</a>
+    {#/if}
+</div>
+    </div>
+    {#/for}
+    {#/for}
+</div>
+{#/for}

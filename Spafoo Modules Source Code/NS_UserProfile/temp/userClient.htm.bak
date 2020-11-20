@@ -1,0 +1,92 @@
+﻿<div class="inbody-simple mprofile">
+    <div class="center">
+        <p><a href="#" onclick="NS_EditUser(); return false;" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Edit Profile</a></p>
+        <div class="profile-pic">
+            <div class="round"><a href="#"><img src="{$T.Profile.PhotoURL}" alt=""></a>
+           
+            </div>
+        </div>
+        <h3 class="bmar-xs">{$T.FirstName} {NS_IntialLetter($T.LastName)}</h3>
+        <p class="green bmar-sm fs-sm">{$T.Email}</p>
+        <p><span>Joined Date:</span> {NS_FormatJSONDate($T.CreatedOnDate,'dd MM yy')}</p>
+    </div>
+    <div class="bar-head"><i class="fa fa-info"></i> &nbsp;Personal Information</div>
+    <p><span>Name:</span> {$T.FirstName} {$T.LastName}</p>
+    <p><span>Display Name:</span> {$T.DisplayName}</p>
+    <p><span>Gender:</span> {$T.Profile.ProfileProperties[0].PropertyValue}</p>
+    <p><span>Password:</span> ******** (&nbsp;<a href="#" onclick="NS_UP_OpenDlgChangePwd(); return false;">change password</a>&nbsp;)</p></p>
+    <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Contact Information</div>
+    <p><span>Cell:</span> {$T.Profile.Cell}</p>
+    <p><span>Email:</span> {$T.Email}</p>
+    <p><div class="fleft"><span class="blue bold">Address:</span></div> <div class="fleft pl-xs">{$T.Profile.Street}<br />{$T.Profile.City}, {$T.Profile.Region} {$T.Profile.PostalCode}</div></p>
+    <div class="clearfix"></div>
+    <div class="bar-head"><i class="fa fa-credit-card"></i> &nbsp;Payment Method</div>
+    <div class="center" id="dvNoPaymentMethod">
+        <p class="red2">No Payment Method Found</p>
+        <p>Add a credit card so you can easily book and pay!</p>
+        <a href="#" class="blue-btn" onclick="ShowAddCCForm(event);" >Add a credit card</a>
+    </div>
+    <div id="dvAddCCForm" >
+        <div class="nsrow">
+            <div class="NS_Caption">Card Number:</div>
+            <div class="NS_Input">
+                <input id="txtCardNumber" placeholder="Credit Card Number" data-mask="0000000000000000" type="text" class="form-control" style="width:100%; " />
+            </div>
+        </div>
+        <div class="nsrow">
+            <div class="NS_Caption">Expiry :</div>
+            <div class="NS_Input">
+                <div class="col-xs-6 nopadl">
+                    <select id="ddlCCMonth" class="form-control w100">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 nopadr">
+                    <select id="ddlCCYear" class="form-control w100">
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2023">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+	                <option value="2027">2027</option>
+	            </select>
+                </div>
+            </div>
+        </div>
+        <div class="nsrow">
+            <div class="NS_Caption">Card Code :</div>
+            <div class="NS_Input">
+                <input id="txtCardCode" placeholder="3 or 4 digit number on back of a credit card" type="text" data-mask="0000" class="form-control" style="width:100%; " />
+            </div>
+        </div>
+        <div class="nsrow center">
+            <a href="#" class="graysm" onclick="UpdateCCInfo(event,this);">Update</a>
+            <a href="#" class="graysm" onclick="CloseCCForm(event);">Cancel</a>
+        </div>
+    </div>
+    <div id="dvCCList" style="display:none;">
+    </div>
+    <div class="clearfix"></div>
+    <div id="dvNotificationSec" class="bar-head"><i class="fa fa-bell-o"></i> &nbsp;Notification Center<a id="noti"></a></div>
+    <div class="nsrow MyNotifications" >
+        {GetMyNotification()}
+        <p>Hey! This is your notification center. Expect to get fun updates about the app from the team at SpaFoo! And, if you ever miss a notification, you can head back here to check it out.</p>
+    </div>
+</div>

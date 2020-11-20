@@ -1,0 +1,11 @@
+﻿<ul class="sample tmar-md">
+    {#foreach $T as S}
+        <li>
+            <div id="MainCropper_{$T.S$Index}" style="margin-bottom:20px;margin-top:10px;width:100%;height:100%;background-color:lightgray;border:solid 1px gray">
+                <img src="{$T.S.OptionText}" alt="">
+            </div>
+            <input type="file" id="NSRfile_{$T.S$index}" class="NSR_FileControl" fileid="{$T.S.ID}" />        
+            <div class="ns-sremove" onclick="RemoveMySample('{$T.S.OptionText}')"><i class="fa fa-trash-o fa-lg"></i></div> 
+        </li>
+    {#/for}
+</ul>

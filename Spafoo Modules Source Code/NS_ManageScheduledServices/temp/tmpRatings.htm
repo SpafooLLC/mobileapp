@@ -1,0 +1,18 @@
+﻿<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>&nbsp;</td>
+        <td align="center">Excellent</td>
+        <td align="center">Good</td>
+        <td align="center">Fair</td>
+        <td align="center">Poor</td>
+    </tr>
+    {#foreach $T as R}
+    <tr>
+        <td align="left" valign="bottom">{$T.R.RatingName}</td>
+        <td align="center"><div class="radio radio-info"><input type="radio" name="rblRating_{$T.R.RatingTypeID}" value="Excellent" id="rblRating_1_{$T.R.RatingTypeID}"><label for="rblRating_1_{$T.R.RatingTypeID}"></label></div></td>
+        <td align="center"><div class="radio radio-info"><input type="radio" name="rblRating_{$T.R.RatingTypeID}" value="Good" id="rblRating_2_{$T.R.RatingTypeID}"><label for="rblRating_2_{$T.R.RatingTypeID}"></label></div></td>
+        <td align="center"><div class="radio radio-info"><input type="radio" name="rblRating_{$T.R.RatingTypeID}" value="Fair" id="rblRating_3_{$T.R.RatingTypeID}"><label for="rblRating_3_{$T.R.RatingTypeID}"></label></div></td>
+        <td align="center"><div class="radio radio-info"><input type="radio" name="rblRating_{$T.R.RatingTypeID}" value="Poor" id="rblRating_4_{$T.R.RatingTypeID}"><label for="rblRating_4_{$T.R.RatingTypeID}"></label></div></td>
+    </tr>
+    {#/for}
+</table>

@@ -1,0 +1,68 @@
+﻿{#param name=CUser}
+<div class="notiwrapper">
+<ul>
+{#foreach $T as S}
+{#if $T.S.NotificationTypeID==4} {* Appointment fixed - Provider *}
+<li id="dvNotiRow_{$T.S.ID}">
+        <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+        <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has requested an <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>!
+        <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+  </li>
+{#/if}
+{#if $T.S.NotificationTypeID==5} {* Before 24hrs of appointment *}
+<li id="dvNotiRow_{$T.S.ID}" style="width:100%;">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+   You have appointment with <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">
+    {$T.S.ByName}</a> in next 24 hrs.
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==6}{* Before 2hrs of appointment *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    You have appointment with <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">
+    {$T.S.ByName}</a> in next 2 hrs.
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==9} {* Appointment is cancelled *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has cancelled the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==10}{* ASAP appointment requested *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has requested an ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> with you!
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==12} {* Client Accepted ASAP appointment *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has accepted the time of your ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>.
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==13}{* Client denied ASAP appointment *}
+<li id="dvNotiRow_{$T.S.ID}" style="width:100%;">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> did NOT accept the time of your ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>.
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#if $T.S.NotificationTypeID==14} {* Client given review to you *}
+<li id="dvNotiRow_{$T.S.ID}">
+    <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+    <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has given you a SpaFoo review!
+    <a class="redclose" onclick="RemoveMyNotification({$T.S.ID},event)"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+</li>
+{#/if}
+{#/for}
+</ul>
+    <div align="center" id="dvClearAll">
+        <div class="clearnoti" onclick="NS_ClearAll();">Clear All Notifications</div>
+    </div>
+</div>

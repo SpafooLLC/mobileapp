@@ -1,0 +1,43 @@
+﻿<div class="action">
+    <div class="col-xs-61 nopad1"><a class="green-btn block mr1px" href="#" onclick="NS_GotoASAP(event);" style="display:none;">ASAP - I'm Ready Now!</a>&nbsp;</div>
+    <div class="col-xs-6 nopad" onclick="NS_GotoMakeAppointment(event);"><a class="bluesm-btn block ml1px" href="#">Schedule Appointment</a></div>
+</div>
+<img class="mainimg" onerror="NS_UserOnError(this)" src='{$T.Profile.PhotoURL}'>
+<div class="bar">
+    <div class="fleft">
+        <i class="fa fa-map-marker fa-lg"></i>
+        <label id="NSD_lblUserDistance_{$T.UserID}">
+            &nbsp;
+            {NSD_GetDistance($T.Profile.Street, $T.Profile.City, $T.Profile.Region, $T.Profile.Country, $T.UserID)}
+        </label>
+    </div>
+    <div class="fright"><a href="#" onclick="NS_GotoMakeAppointment(event);">Make Appointment</a></div>
+</div>
+<div class="infobox">
+    <h1 id ="NSD_UName_{$T.UserID}">{$T.FirstName} {NS_IntialLetter($T.LastName)}</h1>
+    <h3><label id="lblUserTagLineID_{$T.UserID}">{GetUserTagLine($T.UserID)}</label></h3>
+    <div class="stars stars-example-bootstrap">{NS_GetMyRating($T.UserID,NS_GetIDRating)}
+        <div id="NSD_starRatingID_{$T.UserID}" class="ratting-0"></div>   
+    </div>
+    <div><label id="NSD_lblRatingID_{$T.UserID}" style="cursor:pointer;" class="lblUserView" onclick='NS_OpenUserReview()'></label></div>
+</div>
+<div class="offered">
+    <h4>Services offered:</h4>
+    <div id="NSD_dvProviderService">
+        {NSD_GetProviderServices($T.UserID)}
+    </div>
+</div>
+{#if $T.Profile.Biography!=null} 
+    <div class="bio">
+        <span>Bio: </span>
+        <div id="dvProBio"></div>
+    </div>
+{#/if}
+<div class="sample">
+    <h4>Work Samples</h4>
+    <div id="NSD_dvProviderWorkSamples">{NSD_GetProviderSamples($T.UserID)}</div>
+</div>
+<div class="action">
+    <div class="col-xs-61 nopad1"><a class="green-btn block mr1px" href="#" onclick="NS_GotoASAP(event);" style="display:none;">ASAP - I'm Ready Now!</a>&nbsp;</div>
+    <div class="col-xs-6 nopad" onclick="NS_GotoMakeAppointment(event);"><a class="bluesm-btn block ml1px" href="#">Schedule Appointment</a></div>
+</div>

@@ -1,0 +1,13 @@
+﻿<div class="inbody appcompt">
+    <div class="h30"></div>
+    <p class="bmar-sm">Appointment Photos</p>
+    <div id="dvAppointmentPhotos">{GetAppointmentPhotos()}</div>
+    <div class="tpad-mid"></div>
+    <p class="bmar-sm">Comments</p>
+    <textarea name="textarea" id="txtComments" class="form-control" rows="5" onkeyup="textCounter(this, 'remainingCo', 500);"></textarea>
+    <span id='remainingCo'></span>
+    <div class="tpad-xs"></div>
+    <p class="bmar-sm">Rate this client <a href="#" onclick="ShowProviderRating(1); return false;">Click Here</a></p>
+</div>
+<p>&nbsp;</p>
+<a href="#" class="block-btn" onclick="CaptureCardOrProfile(this); return false;">Appointment Completed</a>

@@ -1,0 +1,5 @@
+﻿1>------ Rebuild All started: Project: NS_ServiceDashBoard, Configuration: Debug Any CPU ------
+1>E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\Properties\AssemblyInfo.cs(34,32,34,44): warning CS7035: The specified version string does not conform to the recommended format - major.minor.build.revision
+1>E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\rh.asmx.cs(171,30,171,32): warning CS0168: The variable 'ex' is declared but never used
+1>  NS_ServiceDashBoard -> E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\bin\NS_ServiceDashBoard.dll
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========

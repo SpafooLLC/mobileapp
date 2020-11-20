@@ -1,0 +1,17 @@
+﻿<div class="services">
+    <ul>
+    {#foreach $T as S}
+        <li>
+            <a href="#" onclick="NS_OnServiceClick({$T.S.ServiceID},event)">
+                <h2 id="NSD_SName_{$T.S.ServiceID}">{$T.S.ServiceName}</h2>
+                <h3>{$T.S.ShortDescription}</h3>
+                <img onerror="NS_ServiceOnError(this)" {#if $T.S.Image=='' }
+                     src="/DesktopModules/NS_ServiceDashBoard/imgs/NA.jpg"
+                     {#else}
+                     src="/Images/NS_ServiceDB/{$T.S.Image}"
+                     {#/if} />
+            </a>
+        </li>
+        {#/for}
+</ul>
+</div>

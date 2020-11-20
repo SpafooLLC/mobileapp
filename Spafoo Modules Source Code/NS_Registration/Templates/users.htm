@@ -1,0 +1,44 @@
+﻿<table style="width:100%;">
+    <tr>
+        <td><label style="font-weight:bold;">Username</label></td>
+        <td><label style="font-weight:bold;">FirstName</label></td>
+        <td><label style="font-weight:bold;">LastName</label></td>
+        <td><label style="font-weight:bold;">Email</label></td>
+        <td><label style="font-weight:bold;">Status</label></td>
+        <td>&nbsp;</td>
+    </tr>
+    {#foreach $T as U}
+    <tr>
+        <td>{$T.U$index+1}. {$T.U.Username}</td>
+        <td>{$T.U.FirstName}</td>
+        <td>{$T.U.LastName}</td>
+        <td>{$T.U.Email}</td>
+        <td>
+            {#if $T.U.Status=='Rejected'}
+            <a href="#" onclick="return NSR_ShowReason('{$T.U.RejectionReason}');" class="NSR_ALink">{$T.U.Status}</a>
+            {#else}
+            {$T.U.Status}
+            {#/if}
+        </td>
+        <td><a href="#" onclick="return NSR_GetUserResponse({$T.U.UserID})" class="NSR_ALink">View Response</a></td>
+        <td>
+        {#if $T.U.Status=='Pending'}
+            <a href="#" onclick="return NSR_UpdateStatus({$T.U.UserID},1)" class="NSR_ALink">Approve</a>
+        {#/if}
+        </td>
+        <td>
+            {#if $T.U.Status=='Pending'}
+                <a href="#" onclick="return NSR_OpenReason({$T.U.UserID})" class="NSR_ALink">Reject</a>
+            {#/if}
+        </td>
+        <td>
+            {#if $T.U.Status=='Approved'}
+                <select id="slStatus_{$T.U.UserID}" onchange="NSR_ConfirmChange(this,{$T.U.UserID});" >
+                    <option value="1" {#if $T.U.IsApproved==true}selected{#/if} >Active</option>
+                    <option value="2" {#if $T.U.IsApproved==false}selected{#/if}>In-Active</option>
+                </select>
+            {#/if}
+        </td>
+    </tr>
+    {#/for}
+</table>

@@ -1,0 +1,119 @@
+﻿{#foreach $T as S}
+{#if $T.S.NotificationTypeID==2} {* Provider Registered *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">{$T.S.DisplayText}</div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==3} {* Profile Updated *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">{$T.S.DisplayText}</div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==4} {* Appointment fixed *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;"><a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">Appointment</a> fixed by <a href="#">{$T.S.ByName}</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==5} {* Before 24hrs of appointment *}
+<div id="dvNotiRow_{$T.S.ID}" style="width:100%;">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">{$T.S.DisplayText}</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==6}{* Before 2hrs of appointment *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">{$T.S.DisplayText}</div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==7}{* Provider Says "I Have Arrived" *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Provider <a href="#">{$T.S.ByName}</a> has arrived to your <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> location</div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==8} {* Appointment is completed *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Provider <a href="#">{$T.S.ByName}</a> has completed the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==9} {* Appointment is cancelled *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Client <a href="#">{$T.S.ByName}</a> has cancelled the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==10}{* ASAP appointment requested *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Client <a href="#">{$T.S.ByName}</a> has requested for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==11} {* ASAP, Provider given date and time to Appointment *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Provider <a href="#">{$T.S.ByName}</a> has given Date & Time for requested, ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==12} {* Client Accepted ASAP appointment *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Client <a href="#" class="NS_UserTooltip">{$T.S.ByName}</a> has accepted the Date & Time given by you for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==13}{* Client denied ASAP appointment *}
+<div id="dvNotiRow_{$T.S.ID}" style="width:100%;">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Client <a href="#">{$T.S.ByName}</a> did NOT accepted the Date & Time given by you for ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a></div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#if $T.S.NotificationTypeID==14} {* Client given review to you *}
+<div id="dvNotiRow_{$T.S.ID}" class="NS_NotiRow">
+    <div style="float:left;width:10%;">{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</div>
+    <div style="float:left;width: auto; margin-right: 10px;">Client <a href="#">{$T.S.ByName}</a> has given review to you</div>
+    <div style="float:left;width:10%;">
+        <img src="/Icons/Sigma/RedError_16x16_Standard.png" style="cursor:pointer" onclick="RemoveMyNotification({$T.S.ID})" />
+    </div>
+</div>
+{#/if}
+{#/for}

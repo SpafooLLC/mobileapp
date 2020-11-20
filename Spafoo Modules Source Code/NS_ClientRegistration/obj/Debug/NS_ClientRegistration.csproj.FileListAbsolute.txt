@@ -1,0 +1,5 @@
+D:\work\Foodesk\website\bin\NS_ClientRegistration.dll
+D:\work\Foodesk\website\bin\NS_ClientRegistration.pdb
+D:\work\Foodesk\website\DesktopModules\NS_ClientRegistration\obj\Debug\NS_ClientRegistration.dll
+D:\work\Foodesk\website\DesktopModules\NS_ClientRegistration\obj\Debug\NS_ClientRegistration.pdb
+D:\work\Foodesk\website\DesktopModules\NS_ClientRegistration\obj\Debug\NS_ClientRegistration.csprojResolveAssemblyReference.cache

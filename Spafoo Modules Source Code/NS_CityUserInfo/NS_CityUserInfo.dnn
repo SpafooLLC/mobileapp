@@ -1,0 +1,194 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="NS_CityUserInfo" type="Module" version="1.0.0">
+  <friendlyName>NS_CityUserInfo</friendlyName>
+  <description>NS_CityUserInfo</description>
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes />
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>NS_CityUserInfo</moduleName>
+        <foldername>NS_CityUserInfo</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>NS_CityUserInfo</friendlyName>
+            <definitionName>NS_CityUserInfo</definitionName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/NS_CityUserInfo/ViewNS_CityUserInfo.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>NS_CityUserInfo.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\NS_CityUserInfo</basePath>
+        <file>
+          <name>Default.aspx</name>
+        </file>
+        <file>
+          <name>EditNS_CityUserInfo.ascx</name>
+        </file>
+        <file>
+          <name>RequestHandler.asmx</name>
+        </file>
+        <file>
+          <path>Scripts\CLEditor1_3_0\images</path>
+          <name>buttons.gif</name>
+        </file>
+        <file>
+          <path>Scripts\CLEditor1_3_0\images</path>
+          <name>toolbar.gif</name>
+        </file>
+        <file>
+          <path>Scripts\CLEditor1_3_0</path>
+          <name>jquery.cleditor.css</name>
+        </file>
+        <file>
+          <path>Scripts\CLEditor1_3_0</path>
+          <name>jquery.cleditor.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>animated-overlay.gif</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_diagonals-thick_18_b81900_40x40.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_diagonals-thick_20_666666_40x40.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_flat_10_000000_40x100.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_glass_100_f6f6f6_1x400.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_glass_100_fdf5ce_1x400.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_glass_65_ffffff_1x400.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_gloss-wave_35_f6a828_500x100.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_highlight-soft_100_eeeeee_1x100.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-bg_highlight-soft_75_ffe45c_1x100.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-icons_222222_256x240.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-icons_228ef1_256x240.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-icons_ef8c08_256x240.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-icons_ffd27a_256x240.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness\images</path>
+          <name>ui-icons_ffffff_256x240.png</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker\css\ui-lightness</path>
+          <name>jquery-ui-1.10.3.custom.min.css</name>
+        </file>
+        <file>
+          <path>Scripts\DatePicker</path>
+          <name>jquery-ui-1.10.3.custom.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\jqPrint</path>
+          <name>jquery.jqprint.0.3.js</name>
+        </file>
+        <file>
+          <path>Scripts\Mask</path>
+          <name>jquery.maskedinput.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\Module</path>
+          <name>Module.js</name>
+        </file>
+        <file>
+          <path>Scripts\Uplodify</path>
+          <name>jquery.uploadify-3.1.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\Uplodify</path>
+          <name>uploadify-cancel.png</name>
+        </file>
+        <file>
+          <path>Scripts\Uplodify</path>
+          <name>uploadify.css</name>
+        </file>
+        <file>
+          <path>Scripts\Uplodify</path>
+          <name>uploadify.swf</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
+          <name>testUploadify.aspx</name>
+        </file>
+        <file>
+          <name>ViewNS_CityUserInfo.ascx</name>
+        </file>
+        <file>
+          <name>DocumentHandler.ashx</name>
+        </file>
+        <file>
+          <name>NS_CityUserInfo.dnn</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

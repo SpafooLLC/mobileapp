@@ -1,0 +1,48 @@
+  .NS_TabOff{display:none;}
+  .NS_TabOn{display:block;}
+  .NS_CityTabs{background-color:#E5E5E5; width:135px; cursor:pointer; border-top-left-radius:5px; border-top-right-radius:5px; float:left;line-height:24px;margin-right:1px;text-align:center;text-transform:capitalize;border:solid 1px silver;border-bottom:none;}
+  .NS_CityTabs:hover{background-color:DarkGray;cursor:pointer;height:28px;line-height:28px;margin-top:-3px;color:Black;}
+  .NS_City_TabsSel{background-color:#505050;cursor:default;color:white;border-top-left-radius:5px;border-top-right-radius:5px;border:solid 1px silver;border-bottom:none;float:left;height:28px;line-height:28px;margin-right:1px;margin-top:-3px;text-align:center;width:135px;}
+  .NS_TabSegment{border:solid thin #E5E5E5;min-height:170px;padding:15px;border-color:Silver; margin-bottom:10px; background: rgb(254,254,254); background: -moz-linear-gradient(-45deg,  rgba(254,254,254,1) 32%, rgba(234,234,234,1) 86%); background: -webkit-gradient(linear, left top, right bottom, color-stop(32%,rgba(254,254,254,1)), color-stop(86%,rgba(234,234,234,1))); background: -webkit-linear-gradient(-45deg,  rgba(254,254,254,1) 32%,rgba(234,234,234,1) 86%); background: -o-linear-gradient(-45deg,  rgba(254,254,254,1) 32%,rgba(234,234,234,1) 86%); background: -ms-linear-gradient(-45deg,  rgba(254,254,254,1) 32%,rgba(234,234,234,1) 86%); background: linear-gradient(135deg,  rgba(254,254,254,1) 32%,rgba(234,234,234,1) 86%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#eaeaea',GradientType=1 ); }
+  .NS_ColCaption{width:40%;font-size:14px;}
+  .NS_ColInput{width:60%;}
+  .NS_City_InputBox{width:200px;border:solid 1px lightgray;}
+  .NS_City_InputArea{border:solid 1px lightgray;}
+  .NS_City_InputAreaNoHTML{border:solid 1px lightgray;}
+  .NS_ColCaptionIndent{width:20%;font-size:14px;padding-left:15px;}
+  .NS_City_Buttons{background-color: #505050;cursor:pointer;border: 2px solid lightgrey; border-radius: 5px;color: white;padding: 6px;width: 135px;}
+  .NS_City_Buttons:hover{background-color:#808080;}
+ .NS_City_NextText{text-transform:uppercase;font-size:18px;color:#000;cursor:pointer;}
+  .cityui { display:block; overflow:hidden; }
+  .cityui .segleft { width:70%; float:left; }
+  .cityui .segright { width:28%; float:right; }
+  .csr-inst .left { width:70%; float:left; }
+  .csr-inst .right { width:28%; float:right; }
+  
+  .cityui table { border-collapse:separate !important; border-spacing:5px !important; }
+  .cityui .form-control { padding:0 0 0 5px !important; width:95% !important; }
+/*========================================================*/
+/*  Media Styles                                          */
+/*========================================================*/
+
+@media (min-width:240px) and (max-width:766px){
+  .NS_CityTabs{ width:100%; border-top-left-radius:0px; border-top-right-radius:0px; float:none; height:30px; line-height:30px; margin-right:0px;text-align:center; text-transform:capitalize; border-bottom:1px solid #ffffff; }
+  .NS_CityTabs:hover{ background-color:DarkGray; width:100%; border-top-left-radius:0px; border-top-right-radius:0px; height:30px; float:none; line-height:30px; margin-right:0px;text-align:center; text-transform:capitalize; border-bottom:1px solid #ffffff; }
+  .NS_City_TabsSel{background-color:#505050; cursor:default;color:white; border-top-left-radius:0px;border-top-right-radius:0px;border:solid 0px silver; border-bottom:1px solid #ffffff; float:none;height:30px;line-height:30px;margin-right:0px; margin-top:0px; text-align:center; width:100%;}
+	.cityui .segleft { width:100%; float:none; }
+  .cityui .segright { width:100%; float:none; clear:both; }
+  #NS_City_TabFooter { text-align:center; } 
+  .NS_City_Buttons { border:0; margin:4px 2px;}
+  .NS_City_NextText{ margin:20px 0 10px 0; text-transform:uppercase; font-size:18px; color:#01479d; cursor:pointer; text-align:center; display:block; }
+  .NS_City_NextText:hover { color:#cc0000; }
+  .res-table td { display:block; }
+  .xsptop { padding:20px 0 6px 0  !important;}
+  .uploadify { text-align:center; margin:0 auto; }
+  .res-table-center td { display:block; text-align:center; }
+  .cityui .form-control { padding:0 0 0 5px !important; width:100% !important; }
+  .NS_ColCaption{width:100%; padding:0 0 5px 0; } .NS_ColCaptionIndent{width:100%; padding:0 0 5px 0; }
+  .NS_ColInput{width:100%;  padding:0 0 15px 0;}
+   .csr-inst .left { width:100%; float:none; }
+  .csr-inst .right { width:108%; float:none; text-align:center; margin:40px 0 0 0; }
+  
+}

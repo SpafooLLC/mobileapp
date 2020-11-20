@@ -1,0 +1,5 @@
+D:\work\Foodesk\website\DesktopModules\NS_CityUserInfo\obj\Debug\NS.Modules.NS_CityUserInfo.csprojResolveAssemblyReference.cache
+D:\work\Foodesk\website\bin\NS_CityUserInfo.dll
+D:\work\Foodesk\website\bin\NS_CityUserInfo.pdb
+D:\work\Foodesk\website\DesktopModules\NS_CityUserInfo\obj\Debug\NS_CityUserInfo.dll
+D:\work\Foodesk\website\DesktopModules\NS_CityUserInfo\obj\Debug\NS_CityUserInfo.pdb

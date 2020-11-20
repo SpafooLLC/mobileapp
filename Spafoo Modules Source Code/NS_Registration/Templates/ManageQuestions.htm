@@ -1,0 +1,107 @@
+﻿    {#foreach $T  as C}
+        <div style="clear:both;margin-left: 10px; margin-bottom: 10px; margin-top: 10px; background-color: lightgray; padding-left: 10px; line-height: 30px; height: 30px; width: 97%;">
+            <div style="width:50%;float:left;"><label style="font-size:18px;">{$T.C.QCategoryDesc}</label>&nbsp;<a href="#" onclick="return NSR_OpenEditHeader({$T.C.QCategoryID});" style="font-size:10px;font-weight:bold;color:blue;">Edit</a>&nbsp;&nbsp;<a href="#" onclick="NSR_RemoveHeader({$T.C.QCategoryID});" style="font-size:10px;font-weight:bold;color:blue;display:none;">Remove</a></div>
+            <div style="float: left; text-align: right; padding-right: 10px; width: 48%;">
+                <input type="button" value="Add New Question" onclick="NSR_OpenAddNew({$T.C.QCategoryID})" id="btnNewQuestion_{$T.C.QCategoryID}" />
+            </div>
+            </div>
+    {#foreach $T.C.Questions as Q}
+    <div style="margin-left: 10px; width: 98%; margin-bottom: 20px; margin-top: 20px; min-height: 50px;" class="dnnFormItem">
+        {#if $T.Q.QType!='IAgree'}
+        <div style="width:25%;float:left;text-align:right;">
+            <label>{NS_ParseString($T.Q.QuestionText)}</label>
+        </div>
+        {#/if}
+        <div id="NSR_QContainer_{$T.Q.QuestionID}" style="width: 75%; float: left;">
+        {#if $T.Q.QType=='IAgree'}
+        <div style="float:left;width:100%;padding-left:5px;padding-right:5px;margin-right:5px;margin-bottom:10px;">
+            <label id="lbl{$T.Q.QuestionID}">{NS_ParseString($T.Q.QuestionText)}</label> &nbsp;
+            <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />
+            <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+        </div>
+        {#foreach $T.Q.Options as O}
+        <div style="min-width:100px;width:100%;clear:none;float:left;padding-left:10px;padding-right:5px;margin-left:10px;padding-bottom:15px;margin-bottom:10px;">
+           <div style="width:auto;float:left;">
+               <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" />
+           </div>
+             <div style="width:90%;float:left;">
+                 <label for="chk_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
+             </div>
+        </div>
+        {#/for}
+        
+        {#/if}
+        {#if $T.Q.QType == 'TextBox'}
+        <div style="width:99%;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;float:left;">
+            <div style="width:25%;float:left;"><input type="text" id="tb_{$T.Q.QuestionID}" style="width:84%;" /></div>
+            <div style="width:75%;float:left;text-align:right;">
+                <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit"/>
+                <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+            </div>
+        </div>
+        {#elseif $T.Q.QType == 'Multiline'}
+        <div style="width:99%;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;float:left;">
+            <div style="width:25%;float:left;">
+                <textarea id="tb_{$T.Q.QuestionID}" name="tb_{$T.Q.QuestionID}" rows="6" cols="80" style="width:auto;"></textarea>
+            </div>
+            <div style="width:75%;float:left;text-align:right;">
+                <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />
+                <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+            </div>
+        </div>
+        {#elseif $T.Q.QType=='Radio' }
+            <div style="width:auto;float:left;">
+                {#foreach $T.Q.Options as O}
+                    <div style="width:auto;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;float:left;">
+                        <input type="radio" id="rbl_{$T.Q.QuestionID}_{$T.O.OptionID}" name="rbl_{$T.Q.QuestionID}" />
+                        <label for="rbl_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
+                    </div>
+                {#/for}
+            </div>
+            <div style="width:40%;float:right;text-align:right;">
+                <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" value="Edit" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" />
+                <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+            </div>
+        {#elseif $T.Q.QType=='CheckBox' }
+        {#foreach $T.Q.Options as O}
+        <div class="dnnFormItem" style="min-width:100px;width:auto;clear:none;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+            <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" />
+            <label for="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" style="float:right;">{$T.O.OptionText}</label>
+        </div>
+        {#/for}<input type="button" value="Edit" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" />&nbsp;<input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+        {#elseif $T.Q.QType=='File'}
+        <div style="min-width:100px;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+            <input type="file" id="NSR_File{$T.Q.QuestionID}" class="NSR_FileControl" /> &nbsp;
+            <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />
+        </div>
+        {#elseif $T.Q.QType=='Images'}
+        <div style="min-width:100px;padding-left:5px;padding-right:5px;margin-left:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+            <input type="file" id="NSR_File{$T.Q.QuestionID}" class="NSR_FileControl" /> &nbsp;
+            <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" value="Edit" />
+        </div>
+        {#elseif $T.Q.QType=='Date'}
+        <div style="min-width:100px;width:99%;padding-left:5px;padding-right:0px;margin-left:5px;margin-right:0px;padding-bottom:5px;margin-bottom:5px;float:left;">
+            <div style="width:25%;float:left;">
+                <input type="text" id="tb_{$T.Q.QuestionID}" class="NSR_Date" style="width:88%;" />
+            </div>
+            <div style="width:75%;float:left;text-align:right">
+                <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" value="Edit" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" />
+                <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+            </div>
+            </div>
+            {#elseif $T.Q.QType=='LinkedDoc'}
+            <div style="min-width:100px;width:99%;padding-left:5px;padding-right:0px;margin-left:5px;margin-right:0px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                <div style="width:25%;float:left;">
+                    <a href="http://{$T.Q.HintText}" target="_blank">Download</a>
+                </div>
+                <div style="width:75%;float:left;text-align:right">
+                    <input type="button" id="btnUpdateQuestion_{$T.Q.QuestionID}" value="Edit" onclick="NSR_OpenEditQuestion({$T.C.QCategoryID},{$T.Q.QuestionID})" />
+                    <input type="button" id="btnRemoveQuestion_{$T.Q.QuestionID}" value="Remove" onclick="NSR_RemoveQuestion({$T.Q.QuestionID});" />
+                </div>
+            </div>
+            {#/if}
+
+    </div>
+    </div>
+    {#/for}
+    {#/for}

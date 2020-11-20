@@ -1,0 +1,5 @@
+D:\work\Foodesk\website\DesktopModules\NS_ManageScheduledServices\obj\Debug\NS_ManageScheduledServices.csprojResolveAssemblyReference.cache
+D:\work\Foodesk\website\bin\NS_ManageScheduledServices.dll
+D:\work\Foodesk\website\bin\NS_ManageScheduledServices.pdb
+D:\work\Foodesk\website\DesktopModules\NS_ManageScheduledServices\obj\Debug\NS_ManageScheduledServices.dll
+D:\work\Foodesk\website\DesktopModules\NS_ManageScheduledServices\obj\Debug\NS_ManageScheduledServices.pdb

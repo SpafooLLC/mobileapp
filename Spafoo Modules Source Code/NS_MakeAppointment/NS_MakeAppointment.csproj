@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D61A32C-0F21-453F-A981-BD8E5A3A5304}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Netsam.Modules.NS_MakeAppointment</RootNamespace>
+    <AssemblyName>NS_MakeAppointment</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet">
+      <HintPath>packages\AuthorizeNet.1.8.10\lib\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke, Version=7.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Html, Version=7.3.2.109, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.Modules.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\dnn732x\bin\ExcelLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NS_Registration, Version=0.0.1.21688, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NS_Registration.dll</HintPath>
+    </Reference>
+    <Reference Include="NS_ServiceDashBoard, Version=0.0.1.24726, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NS_ServiceDashBoard.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\NotificationController.cs" />
+    <Compile Include="Components\AppointmentController.cs" />
+    <Compile Include="Components\AuthorizeCreditCard.cs" />
+    <Compile Include="Components\CapturePreviouslyAuthorizedAmount.cs" />
+    <Compile Include="Components\ChargeCreditCard.cs" />
+    <Compile Include="Components\AuthorizeCustomerProfile.cs" />
+    <Compile Include="Components\ChargeCustomerProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\CreateCustomerPaymentProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\CreateCustomerProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\CreateCustomerProfileFromTransaction.cs" />
+    <Compile Include="Components\CustomerProfiles\CreateCustomerShippingAddress.cs" />
+    <Compile Include="Components\CustomerProfiles\DeleteCustomerPaymentProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\DeleteCustomerProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\DeleteCustomerShippingAddress.cs" />
+    <Compile Include="Components\CustomerProfiles\GetCustomerPaymentProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\GetCustomerPaymentProfileList.cs" />
+    <Compile Include="Components\CustomerProfiles\GetCustomerProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\GetCustomerProfileIds.cs" />
+    <Compile Include="Components\CustomerProfiles\GetCustomerShippingAddress.cs" />
+    <Compile Include="Components\CustomerProfiles\GetHostedProfilePage.cs" />
+    <Compile Include="Components\CustomerProfiles\UpdateCustomerPaymentProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\UpdateCustomerProfile.cs" />
+    <Compile Include="Components\CustomerProfiles\UpdateCustomerShippingAddress.cs" />
+    <Compile Include="Components\CustomerProfiles\ValidateCustomerPaymentProfile.cs" />
+    <Compile Include="Components\NotificationService.cs" />
+    <Compile Include="Components\NotiScheduler.cs" />
+    <Compile Include="Components\RefundTransaction.cs" />
+    <Compile Include="Components\XMLController.cs" />
+    <Compile Include="Data\DataProvider.cs" />
+    <Compile Include="NS_MakeAppointmentModuleBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NS_MakeAppointmentModuleSettingsBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit.ascx.cs">
+      <DependentUpon>Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit.ascx.designer.cs">
+      <DependentUpon>Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DataProviders\SqlDataProvider\SqlDataProvider.cs" />
+    <Compile Include="rh.asmx.cs">
+      <DependentUpon>rh.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings.ascx.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.ascx.designer.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="View.ascx.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View.ascx.designer.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+    <Content Include="Edit.ascx" />
+    <Content Include="Images\Other\calendar.png" />
+    <Content Include="Images\Other\EllenPage.jpg" />
+    <Content Include="Images\Other\map-JosephGordon.png" />
+    <Content Include="Images\Other\map-MarionCotillard.png" />
+    <Content Include="Images\Other\time-picker.png" />
+    <Content Include="Images\Provider\Icon\AnastasiaT.jpg" />
+    <Content Include="Images\Provider\Icon\ChloeS.jpg" />
+    <Content Include="Images\Provider\Icon\HeatherM.jpg" />
+    <Content Include="Images\Provider\Icon\JohanQ.jpg" />
+    <Content Include="Images\Provider\Icon\JuliaJ.jpg" />
+    <Content Include="Images\Provider\Icon\MelissaL.jpg" />
+    <Content Include="Images\Provider\Icon\OliviaW.jpg" />
+    <Content Include="Images\Provider\Icon\RobertM.jpg" />
+    <Content Include="Images\Provider\Icon\scott.jpg" />
+    <Content Include="Images\Provider\Icon\SmithP.jpg" />
+    <Content Include="Images\Provider\Icon\TiffaniT.jpg" />
+    <Content Include="Images\Provider\Icon\TrentS.jpg" />
+    <Content Include="Images\Provider\Preview\AnastasiaT.jpg" />
+    <Content Include="Images\Provider\Preview\ScottR.jpg" />
+    <Content Include="Images\Provider\Profile\ScottR.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\19c139825a08a755354fe8cff70b9a5d.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\2-twist-and-pin-updo-for-medium-length-hair.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\diy-wedding-hairstyle-wavy-updo-006.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\haircut-for-kids1.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\Mens-Modern-Haircuts-2012-12.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\party-hairstyles-for-long-hair.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\Trendy-Short-Hairstyle.jpg" />
+    <Content Include="Images\Provider\Samples\ScottR\Vintage-updo.jpg" />
+    <Content Include="Images\Services\Child.jpg" />
+    <Content Include="Images\Services\Curly.jpg" />
+    <Content Include="Images\Services\Haircut.jpg" />
+    <Content Include="Images\Services\Mackeup.jpg" />
+    <Content Include="Images\Services\ManicurePedicure.jpg" />
+    <Content Include="Images\Services\Massage.jpg" />
+    <Content Include="Images\Services\Men.jpg" />
+    <Content Include="Images\Services\Straight.jpg" />
+    <Content Include="Images\Services\Updo-Braid.jpg" />
+    <Content Include="Images\Services\Wavy.jpg" />
+    <Content Include="Images\Services\Women.jpg" />
+    <Content Include="Images\Services\WomenHair.jpg" />
+    <Content Include="Images\Services\WomenStyle.jpg" />
+    <Content Include="Images\Site\bcnt-bg.png" />
+    <Content Include="Images\Site\blank.gif" />
+    <Content Include="Images\Site\cc-ae.png" />
+    <Content Include="Images\Site\cc-d.png" />
+    <Content Include="Images\Site\cc-mc.png" />
+    <Content Include="Images\Site\cc-v.png" />
+    <Content Include="Images\Site\ccard.png" />
+    <Content Include="Images\Site\clientmap.png" />
+    <Content Include="Images\Site\cont-cro.png" />
+    <Content Include="Images\Site\dropimg.png" />
+    <Content Include="Images\Site\fancybox_loading%402x.gif" />
+    <Content Include="Images\Site\fancybox_loading.gif" />
+    <Content Include="Images\Site\fancybox_overlay.png" />
+    <Content Include="Images\Site\fancybox_sprite%402x.png" />
+    <Content Include="Images\Site\fancybox_sprite.png" />
+    <Content Include="Images\Site\ico-app.png" />
+    <Content Include="Images\Site\ico-appointment.png" />
+    <Content Include="Images\Site\ico-ava.png" />
+    <Content Include="Images\Site\ico-certified.png" />
+    <Content Include="Images\Site\ico-login.png" />
+    <Content Include="Images\Site\ico-register.png" />
+    <Content Include="Images\Site\mobile-crv.png" />
+    <Content Include="Images\Site\modals-close.png" />
+    <Content Include="Images\Site\new-star.png" />
+    <Content Include="Images\Site\noimg.png" />
+    <Content Include="Images\Site\pback.png" />
+    <Content Include="Images\Site\ratting-0.png" />
+    <Content Include="Images\Site\ratting-1.png" />
+    <Content Include="Images\Site\ratting-2.png" />
+    <Content Include="Images\Site\ratting-3.png" />
+    <Content Include="Images\Site\ratting-4.png" />
+    <Content Include="Images\Site\ratting-5.png" />
+    <Content Include="Images\Site\register-default.png" />
+    <Content Include="Images\Site\Spafoo-Logo.png" />
+    <Content Include="Images\Site\SpaFoo-sm.png" />
+    <Content Include="Images\Site\vm-about.png" />
+    <Content Include="Images\Site\vm-find.png" />
+    <Content Include="Images\Site\vm-schedule.png" />
+    <Content Include="Images\Site\vm-services.png" />
+    <Content Include="Images\Site\vm-share.png" />
+    <Content Include="Images\Site\vm-signout.png" />
+    <Content Include="Images\Site\vm-user.png" />
+    <Content Include="License.txt" />
+    <Content Include="module.css" />
+    <Content Include="ReleaseNotes.txt" />
+    <Content Include="rh.asmx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\fullCalendar\fullcalendar.min.css" />
+    <Content Include="Scripts\fullCalendar\fullcalendar.min.js" />
+    <Content Include="Scripts\fullCalendar\moment.min.js" />
+    <Content Include="Scripts\jqRangeSlider\classic.css" />
+    <Content Include="Scripts\jqRangeSlider\iThing-min.css" />
+    <Content Include="Scripts\jqRangeSlider\jQDateRangeSlider-withRuler-min.js" />
+    <Content Include="Scripts\Module_v2.0 - 21_10_2016.js" />
+    <Content Include="Scripts\Module_v2.0 - Copy.js" />
+    <Content Include="Scripts\Module_v2.0.js" />
+    <Content Include="Settings.ascx" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\checkbox.css" />
+    <Content Include="Styles\font-awesome.min.css" />
+    <Content Include="template\tmpUserCards.htm" />
+    <Content Include="template\tmpCreditCard.htm" />
+    <Content Include="template\tmpPaymentMethod.htm" />
+    <Content Include="template\tmpOrderSummary.htm" />
+    <Content Include="template\tmpProviderServcies.htm" />
+    <Content Include="View.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NS_MakeAppointment.dnn">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BuildScripts\ModulePackage.targets" />
+    <Content Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\View.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Edit.ascx.resx" />
+    <Content Include="App_LocalResources\Settings.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Providers\DataProviders\SqlDataProvider\00.00.01.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>
+          </DevelopmentServerVPath>
+          <IISUrl>http://www.foodesk3.in/desktopmodules/NS_MakeAppointment</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://www.foodesk3.in</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <Extension>zip</Extension>
+    <DNNFileName>NS_MakeAppointment</DNNFileName>
+    <PackageName>NS_MakeAppointment</PackageName>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\packages\MSBuildTasks.1.4.0.74\tools</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="BuildScripts\ModulePackage.Targets" />
+  <Target Name="AfterBuild" DependsOnTargets="PackageModule">
+  </Target>
+</Project>

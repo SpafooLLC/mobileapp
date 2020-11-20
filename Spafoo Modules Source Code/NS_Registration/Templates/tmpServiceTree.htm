@@ -1,0 +1,23 @@
+﻿{#template MAIN}
+<div>
+    {#include entry root=$T}
+</div>
+{#/template MAIN}
+
+{*Recursed subtemplate*}
+{#template entry}
+{#foreach $T as S}
+    {#if $T.S.Children.length>0}
+       <div class="NSRAccor" style="margin-bottom:15px;">
+    <h3>{$T.S.ServiceName}</h3>
+    <div>
+        {#include entry root=$T.S.Children}
+    </div>
+</div>
+    {#else}
+<div>
+    <label style="font-weight:normal;margin:0px;"><input id="chkSRVC_{$T.S.ServiceID}" type="checkbox" style="margin:0px;" />&nbsp;{$T.S.ServiceName}</label>
+</div> 
+    {#/if}
+{#/for}
+{#/template entry}

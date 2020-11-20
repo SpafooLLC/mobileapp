@@ -1,0 +1,167 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="NS_ManageScheduledServices" type="Module" version="1.0.0">
+  <friendlyName>NS_ManageScheduledServices</friendlyName>
+  <description />
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes />
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>NS_ManageScheduledServices</moduleName>
+        <foldername>NS_ManageScheduledServices</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>NS_ManageScheduledServices</friendlyName>
+            <definitionName>NS_ManageScheduledServices</definitionName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/NS_ManageScheduledServices/View.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>NS_ManageScheduledServices.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\NS_ManageScheduledServices</basePath>
+        <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>rh.asmx</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>bootbox.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\pickmeup</path>
+          <name>jquery.pickmeup.min.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>mClient.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>mProvider.js</name>
+        </file>
+        <file>
+          <path>Scripts\pickmeup</path>
+          <name>pickmeup.css</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpAppointmentPhotos.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpProDateAvail.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpProMyAvailability.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpRateProvider.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpScheduleID.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpClientSchedule.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpRatings.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpRateClient.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpAppoCompleted.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpAppointmentID.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpMySchedule.htm</name>
+        </file>
+        <file>
+          <path>UC</path>
+          <name>ucManageClient.ascx</name>
+        </file>
+        <file>
+          <path>UC</path>
+          <name>ucManageProvider.ascx</name>
+        </file>
+        <file>
+          <name>View.ascx</name>
+        </file>
+        <file>
+          <name>NS_ManageScheduledServices.dnn</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>Handler.ashx</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

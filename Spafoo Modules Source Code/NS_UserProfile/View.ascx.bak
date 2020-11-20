@@ -1,0 +1,258 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_UserProfile.View" %>
+<asp:Panel ID="pnlOuter" runat="server"></asp:Panel>
+<style>
+    .NS_Caption{min-width:10%;overflow:visible;}
+    .NS_Input{width:100%;}
+    .NS_InputRow{float: left;height: 80px;padding: 10px;width:50%;float:left;}
+    .NS_NotiRow{width: 100%; margin-top: 10px; margin-bottom: 10px; height: 30px;}
+</style>
+<link href="/DesktopModules/NS_UserProfile/Scripts/pace/dataurl.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://cdn.jtsage.com/jtsage-datebox/4.0.0/jtsage-datebox-4.0.0.bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css" rel="stylesheet" />
+<link href="/DesktopModules/NS_UserProfile/Scripts/tooltip/tooltipster.bundle.min.css" rel="stylesheet" />
+<script src="/DesktopModules/NS_UserProfile/Scripts/pace/pace.min.js"></script>
+<script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery-jtemplates/jquery-jtemplates.js"></script>
+<script src="/DesktopModules/NS_MakeAppointment/Scripts/bootstrap.js"></script>
+<script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js"></script>
+<script src="/DesktopModules/NS_Registration/Scripts/jquery.mask.min.js"></script>
+<script src="/DesktopModules/NS_UserProfile/Scripts/tooltip/tooltipster.bundle.min.js"></script>
+<script src="/DesktopModules/NS_ServiceDashBoard/Scripts/NS_Common.js"></script>
+<script>
+    var NS_IsProvider=false;
+    var NS_UP_UID=<%=this.UserId%>;
+    var NSR_UploadPath='<%=this.UploadWorkSamplePath%>';
+    var NSR_UploadProfilePicPath='<%=this.UploadProfilePicPath%>';
+    var NS_UP_HomeTab='<%=this.AppHomeTab%>';
+
+    function NSR_UP_MakeRequest(WBurl, WBData, SuccessCB, FailedCB, vAsync) {
+        var pAsync = true;
+        if (vAsync != undefined) { pAsync = vAsync; }
+        $.ajax({
+            type: "POST", dataType: "json", contentType: "application/json; charset=utf-8", url: WBurl, async: pAsync, data: WBData,
+            success: function (data, resp) {
+                if (SuccessCB != undefined) { SuccessCB(data.d, resp); }
+            },
+            error: function (a, b) { if (FailedCB != undefined) { FailedCB(a, b); } }
+        });
+    }
+
+    function NSR_sendFile(file, fileCtrl) {
+        var formData = new FormData();
+        formData.append('file', $(fileCtrl)[0].files[0]);
+        var FileID=$(fileCtrl).attr('FileID');
+        formData.append('FileId',FileID);
+        $(fileCtrl).after('<div class="NSR_UplNotify" style="font-weight:bold">Uploading...</div>')
+        $.ajax({
+            type: 'post',data: formData,processData: false, contentType: false,
+            url: '/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/Handler.ashx',
+            success: function (status) {
+                if (status != 'error') {
+                    $(fileCtrl).attr('uploadedFile', NSR_UploadPath + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
+                    $(fileCtrl).prev().attr('src',NSR_UploadPath + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
+                    $(".NSR_UplNotify").hide();
+                     GetUserWorkSample();
+                }
+            },
+            error: function () {
+                bootbox.alert("Whoops something went wrong!");
+            }
+        });
+    }
+
+    function NSR_UpdateProfilePic(file, fileCtrl) {
+        var formData = new FormData();
+        formData.append('file', $(fileCtrl)[0].files[0]);
+        $(fileCtrl).after('<div class="NSR_UplNotify" style="font-weight:bold">Uploading...</div>')
+        $.ajax({
+            type: 'post',data: formData,processData: false, contentType: false,
+            url: '/DesktopModules/NS_UserProfile/Scripts/jquery-uploadify/ProfileHandler.ashx',
+            success: function (status) {
+                $(fileCtrl).attr('uploadedFile', NSR_UploadProfilePicPath + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
+                $(fileCtrl).prev().children().attr('src',NSR_UploadProfilePicPath + "/" + $(fileCtrl)[0].files[0].name.replace(/ /g, '~'));
+                $(".NSR_UplNotify").hide();
+            },
+            error: function () {
+                bootbox.alert("Whoops something went wrong!");
+            }
+        });
+    }
+
+    function NS_FormatDate(d,f) {
+        var SCB_Date = new Date(d);
+        return $.datepicker.formatDate(f, SCB_Date);
+    }
+    function NS_FormatJSONDate(d,f) {
+        // parse JSON formatted date to javascript date object
+        var date = new Date(parseInt(d.substr(6)));
+        // format display date (e.g. 04/10/2012)
+        return $.datepicker.formatDate(f, date);
+    }
+    function NS_EditUser(){
+        if (NS_UP_UID == -1) { bootbox.alert('You need to login to access this area.'); return false;}
+        
+        $("#lblTopHeader").text('Edit Profile');
+        var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetUser";
+        var _data = "{'UID':'" + NS_UP_UID + "'}";
+        $(".mainouter").hide();
+        $(".dvEditClientInfo").show().text("Just a min...")
+        NSR_UP_MakeRequest(_URL, _data, NS_EditUser_SuCB);
+    }
+
+    function NS_EditUser_SuCB(d) {
+        if (NS_IsProvider==false)
+            $(".dvEditClientInfo").setTemplateURL('/DesktopModules/NS_UserProfile/temp/editClientUser.htm?q=' + $.now());
+        else
+            $(".dvEditClientInfo").setTemplateURL('/DesktopModules/NS_UserProfile/temp/editProUser.htm?q=' + $.now());
+        $(".dvEditClientInfo").show().processTemplate(d);
+        $(".NSR_ProfilePicControl").on('change', function () {
+            var file;
+            if ((file = this.files[0])) {
+                NSR_UpdateProfilePic(file, this, NS_SDB_OnFileUpload);
+            }
+        });
+    }
+
+    function NS_SDB_OnFileUpload(d){
+        bootbox.alert('File uploaded successfully');
+    }
+    function NS_CancelEdit(){
+        $(".dvEditClientInfo").hide();
+        $(".mainouter").show();
+        $("#lblTopHeader").text('My Profile');
+    }
+    function NS_UpdateUser(){
+        if (NS_UP_UID==-1){return false;}
+        //UpdateUser(int UserID,string FN,string LN,string E,string P,string Str,string City,string Region,string PC,string DN,string Bio)
+        var _URL = "/DesktopModules/NS_UserProfile/rh.asmx/UpdateUser";
+        var FN=$("#txtFN").val().trim();
+        var LN=$("#txtLN").val().trim();
+        var E=$("#txtE").val().trim();
+        var str=$("#txtStr").val().trim();
+        var City=$("#txtCity").val().trim();
+        var Region=$("#txtRegion").val().trim();
+        var Postal=$("#txtPC").val().trim();
+        var Phone=$("#txtP").val().trim();
+        var DN=$("#txtDN").val().trim();
+        
+        var TagLine='';
+        if ($("#txtTagLine").length>0){
+            TagLine= $("#txtTagLine").val().trim();
+             TagLine=escape(htmlEncode(TagLine));
+        }
+            
+        var Bio='';
+        if ($("#txtBio").length>0){
+            Bio=$("#txtBio").val().trim();
+            Bio=escape(htmlEncode(Bio));
+        }
+        var _data = "{'UserID':'" + NS_UP_UID + "','FN':'"+FN+"','LN':'"+LN+"','E':'"+E+"','P':'"+Phone+"','Str':'"+str+"','City':'"+City+"','Region':'"+Region+"','PC':'"+Postal+"','DN':'"+DN+"','Bio':'"+Bio+"','TagLine':'"+TagLine+"'}";
+        
+        NSR_UP_MakeRequest(_URL, _data, NS_UpdateUser_SuCB);
+    }
+    function NS_UpdateUser_SuCB(d){
+        if (d=='Success'){
+            bootbox.alert('Information is updated successfully',function(){
+                window.location.reload();
+            });
+        }
+    }
+    function GetMyNotification() {
+        var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/GetMyNotification";
+        var _data = "{'MyID':'" + NS_UP_UID + "'}";
+        $(".MyNotifications").text("Please wait, while we are loading notifications");
+        NSR_UP_MakeRequest(_URL, _data, GetMyNotification_SuCB);
+    }
+    function GetMyNotification_SuCB(d){
+        $(".MyNotifications").setTemplateURL('/DesktopModules/NS_UserProfile/temp/Notifications.htm?q=' + $.now());
+        $(".MyNotifications").setParam('CUser',NS_UP_UID);
+        $(".MyNotifications").processTemplate(d);
+        if (d.length==0){$("#dvClearAll").hide();$(".notiwrapper").hide();}
+        $('.NS_AppTooltip').tooltipster({
+            content: 'Loading...',contentAsHTML: true,
+            // 'instance' is basically the tooltip. More details in the "Object-oriented Tooltipster" section.
+            functionBefore: function(instance, helper) {
+                var $origin = $(helper.origin);
+                // we set a variable so the data is only loaded once via Ajax, not every time the tooltip opens
+                if ($origin.data('loaded') !== true) {
+                    var URL="/DesktopModules/NS_MakeAppointment/rh.asmx/GetAppointment";
+                    var data="{'ID':'"+helper.origin.id.split('_')[1]+"'}";
+                    NSR_UP_MakeRequest(URL,data,function(d){
+                        var _Header="";
+                        if (d.ForDate!=""){
+                            _Header="<h2>"+NS_FormatDate(d.ForDate,'DD dd MM yy')+"</h2>";
+                        }
+                        var _Services="";
+                        for(var i=0;i<d.Services.length;i++){
+                            _Services+=d.Services[i].ServiceName+",";
+                        }
+                        // call the 'content' method to update the content of our tooltip with the returned data
+                        var _HTML=' <div class="sce"><div class="left"> '+ 
+                    '<div class="date">'+ ((d.ForDate=='')?'&nbsp;':NS_FormatDate(d.ForDate,'dd')) +' <span>'+((d.ForDate=='')?'&nbsp;':NS_FormatDate(d.ForDate,'MM'))+'</span></div>'+
+                    '<div class="time">' + d.AtTime + '</div>' +
+                '</div><div class="right">'+_Header+
+                    '<p>At: <span class="blue">'+d.Location.City+','+ d.Location.State +'</span></p>'+
+                    '<p>With: <span class="blue">'+d.ClientInfo.LastName +' '+ d.ClientInfo.FirstName+'</span></p>'+
+                    '<p>Service(s): <span class="blue">'+_Services+'</span></p>'+
+    '</div></div>';
+                        instance.content(_HTML);
+                        // to remember that the data has been loaded
+                    $origin.data('loaded', true);                
+                    });
+                }
+            }
+        });
+        $('.NSUserTip').tooltipster({content: 'Loading...',contentAsHTML: true,interactive:true,
+            // 'instance' is basically the tooltip. More details in the "Object-oriented Tooltipster" section.
+            functionBefore: function(instance, helper) {
+                var $origin = $(helper.origin);
+                // we set a variable so the data is only loaded once via Ajax, not every time the tooltip opens
+                if ($origin.data('loaded') !== true) {
+                    var URL="/DesktopModules/NS_ServiceDashboard/rh.asmx/GetUserPic";
+                    var data="{'UID':'"+helper.origin.id.split('_')[1]+"'}";
+                    var _HTML="";
+                    NSR_UP_MakeRequest(URL,data,function(d){
+                        _HTML="<img style='height:75px;width:75px;' src='"+d+"'/>";
+                        instance.content(_HTML);
+                        // to remember that the data has been loaded
+                        $origin.data('loaded', true); 
+                    });
+                }
+            }});
+    }
+    function NS_ScrollToNoti(){
+        $('html, body').animate({
+            scrollTop: $("#dvNotificationSec").offset().top
+        }, 500);
+    }
+    function RemoveMyNotification(ID) {
+        bootbox.confirm('Are you sure to remove this information ?',function(r){
+            if(r){
+                var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/RemoveNotification";
+                var _data = "{'ID':'" + ID + "'}";
+                NSR_UP_MakeRequest(_URL, _data, function(){
+                    bootbox.alert('Notification removed successfully',function(){
+                        $("#dvNotiRow_"+ID).fadeOut(500, function() { $(this).remove(); });
+                        if ($(".notiwrapper ul>li").length==0){
+                            $("#dvClearAll").hide();
+                        }
+                    });
+                });
+            }
+        });
+    }
+
+    function NS_ClearAll(){
+        bootbox.confirm('Are you sure to remove ALL notifications ?',function(r){
+            if(r){
+                var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/RemoveUserNotification";
+                var _data = "{'UID':'" + NS_UP_UID + "'}";
+                NSR_UP_MakeRequest(_URL, _data, function(){
+                    bootbox.alert('Notification removed successfully',function(){
+                        GetMyNotification();
+                    });
+                });
+            }
+        });
+    }
+</script>

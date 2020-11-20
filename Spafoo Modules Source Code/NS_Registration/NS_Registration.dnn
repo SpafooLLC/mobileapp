@@ -1,0 +1,153 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="NS_Registration" type="Module" version="1.0.0">
+  <friendlyName>NS_Registration</friendlyName>
+  <description>Netsam Registration</description>
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes />
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>NS_Registration</moduleName>
+        <foldername>NS_Registration</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>NS_Registration</friendlyName>
+            <definitionName>NS_Registration</definitionName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/NS_Registration/View.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>Settings</controlKey>
+                <controlSrc>desktopmodules/ns_registration/Settings.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle>Settings</controlTitle>
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>NS_Registration.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\NS_Registration</basePath>
+        <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>rh.asmx</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>jquery-hint.js</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-jtemplates</path>
+          <name>jquery-jtemplates.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>Admin.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>jquery.formsaver.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>jquery.mask.min.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>module.js</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>tmpServiceTree.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>UserResponse.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>users.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>step.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>ManageQuestions.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>UserQuestions.htm</name>
+        </file>
+        <file>
+          <name>View.ascx</name>
+        </file>
+        <file>
+          <name>NS_Registration.dnn</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>Handler.ashx</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

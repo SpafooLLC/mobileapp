@@ -1,0 +1,10 @@
+﻿<table style="width:100%;">
+    <tr>
+        {#foreach $T as C}
+        <td>
+            <input type="checkbox" id="chkUserPos_{$T.C.OptionID}" selectid="{$T.C.OnSelect}" />
+            <label for="chkUserPos_{$T.C.OptionID}">{$T.C.OptionText}</label>
+        </td>
+        {#/for}
+    </tr>
+</table>

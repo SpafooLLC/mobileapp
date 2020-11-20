@@ -1,0 +1,5 @@
+D:\work\Foodesk\website\bin\NS_PriceList.dll
+D:\work\Foodesk\website\bin\NS_PriceList.pdb
+D:\work\Foodesk\website\DesktopModules\NS_PriceList\obj\Debug\NS_PriceList.dll
+D:\work\Foodesk\website\DesktopModules\NS_PriceList\obj\Debug\NS_PriceList.pdb
+D:\work\Foodesk\website\DesktopModules\NS_PriceList\obj\Debug\NS_PriceList.csprojResolveAssemblyReference.cache

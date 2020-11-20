@@ -1,0 +1,141 @@
+﻿{#foreach $T as rs}
+<div id="NSR_UR_Step_{$T.rs.StepID}" class="NSR_Step">
+    {#foreach $T.rs.Categories as C}
+    <div class="NSR_RCatDesc">
+        <label style="font-size:18px;">{$T.C.QCategoryDesc}</label>
+    </div>
+    {#if $T.rs$first}
+    <div id="NSR_dvUserDetail_1" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            Full Name
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.FirstName!=null}
+            {$T.rs.UserDetail.FirstName}{#/if} &nbsp;{#if $T.rs.UserDetail.LastName!=null}{$T.rs.UserDetail.LastName}{#/if} &nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_2" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            Email
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.Email!=null}  {$T.rs.UserDetail.Email}{#/if}&nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_2" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            Street
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.Street!=null}  {$T.rs.UserDetail.Street}{#/if}
+            &nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_2" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            City
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.City!=null}  {$T.rs.UserDetail.City}{#/if}&nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_3" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            State
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.State!=null}{$T.rs.UserDetail.State}{#/if}&nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_4" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            Zip
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.Zip!=null}{$T.rs.UserDetail.Zip}{#/if}&nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_5" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            Phone
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.Phone!=null}{$T.rs.UserDetail.Phone}{#/if}&nbsp;
+        </div>
+    </div>
+    <div id="NSR_dvUserDetail_6" class="dnnFormItem NSR_Questions NSR_Row">
+        <div class="NSR_RCol1">
+            Mobile Phone
+        </div>
+        <div class="NSR_RCol2">
+            {#if $T.rs.UserDetail.MobilePhone!=null}{$T.rs.UserDetail.MobilePhone}{#/if}&nbsp;
+        </div>
+    </div>
+
+    {#/if}
+    {#foreach $T.C.Questions as Q}
+
+    <div id="NSR_dvMQuestion_{$T.Q.QuestionID}" class="dnnFormItem NSR_Questions NSR_Row">
+        {#if $T.Q.QType!='IAgree'}
+        <div class="NSR_RCol1">
+            {NS_ParseString($T.Q.QuestionText)}
+        </div>
+        {#/if}
+        <div id="NSR_QContainer_{$T.Q.QuestionID}" class="NSR_RCol2">
+            {#if $T.Q.QType=='IAgree'}
+            <div style="width:80%;padding-right:5px;margin-right:5px;margin-bottom:10px;font-weight:bold;color:seagreen;margin-left:10px;">
+                {#if $T.Q.QuestionText!=null}{NS_ParseString($T.Q.QuestionText)}{#/if}
+            </div>
+            <div style="min-width:100px;padding-left:10px;padding-right:5px;margin-left:10px;padding-bottom:15px;margin-bottom:10px;">
+                {#if $T.Q.OptionText!=null}{NS_ParseString($T.Q.OptionText)}{#/if}
+            </div>
+            {#/if}
+            {#if $T.Q.QType == 'TextBox'}
+            <div style="width:80%; padding-right: 5px;margin-right: 5px; float: left; height: 50px;margin-left:10px;">
+                {#if $T.Q.OptionText==''}&nbsp;{#/if} 
+                {#if $T.Q.OptionText!=null}{NS_ParseString($T.Q.OptionText)}{#/if}
+            </div>
+            {#elseif $T.Q.QType=='Radio'}
+            <div style="width:auto;padding-right:5px;margin-right:5px;float:left;">
+                {$T.Q.OptionText}
+            </div>
+            {#elseif $T.Q.QType=='CheckBox' }
+            <div class="dnnFormItem" style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                {NSR_ToComma($T.Q.OptionText)}
+            </div>
+            {#elseif $T.Q.QType=='File'}
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                {#if NSR_CheckFileExt($T.Q.QType,$T.Q.OptionText)=='Image'}
+                <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" />
+                {#/if}
+                {#if NSR_CheckFileExt($T.Q.QType,$T.Q.OptionText)=='Doc'}
+                <a href="/images/ns_registration/{$T.Q.OptionText}" target="_blank">view document</a>
+                {#/if}
+            </div>
+            {#elseif $T.Q.QType=='Images'}
+            {#if $T.Q.QuestionID=='14'}
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                <img src="{$T.rs.UserDetail.Profile.PhotoURL}" style="width:200px;height:150px;" />
+            </div>
+            {#else}
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
+                <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" />
+            </div>
+            {#/if}
+            {#/if}
+            {#if $T.Q.QType=='Date'}
+            <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;height:50px;margin-left:10px;">
+                {#if $T.Q.OptionText==''}&nbsp;{#/if}{$T.Q.OptionText}
+            </div>
+            {#/if}
+            {#if $T.Q.QType == 'Multiline'}
+            <div style="width: 80%; padding-right: 5px;margin-right: 5px; float: left; margin-left:10px;">
+                {#if $T.Q.OptionText==''}&nbsp;{#/if}  {NS_ParseString($T.Q.OptionText)}
+            </div>
+            {#/if}
+        </div>
+    </div>
+    {#/for}
+    {#/for}
+</div>
+{#/for}

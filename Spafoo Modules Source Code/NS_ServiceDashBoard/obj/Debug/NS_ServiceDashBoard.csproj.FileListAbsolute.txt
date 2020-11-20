@@ -1,0 +1,12 @@
+D:\work\Foodesk\website\bin\NS_ServiceDashBoard.dll
+D:\work\Foodesk\website\bin\NS_ServiceDashBoard.pdb
+D:\work\Foodesk\website\DesktopModules\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.csprojResolveAssemblyReference.cache
+D:\work\Foodesk\website\DesktopModules\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.dll
+D:\work\Foodesk\website\DesktopModules\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.pdb
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.csproj.CoreCompileInputs.cache
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.dll
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.pdb
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\bin\NS_ServiceDashBoard.dll
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\bin\NS_ServiceDashBoard.pdb
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.csproj.CopyComplete
+E:\abdus projects\C drive\Projects\spafoo\Spafoo-master\Spafoo Modules Source Code\NS_ServiceDashBoard\obj\Debug\NS_ServiceDashBoard.csprojAssemblyReference.cache

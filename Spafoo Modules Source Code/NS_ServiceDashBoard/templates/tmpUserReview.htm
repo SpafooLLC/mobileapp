@@ -1,0 +1,36 @@
+﻿<div class="prolist" style="text-align:left;">
+    {#foreach $T as S}
+    <li>
+        <div style='width:100%'>
+            {#if $T.S.Comments=='-1' }
+            {#elseif $T.S.Comments=='undefined'}
+            {#else}
+            {NS_ParseString($T.S.Comments)}
+            {#/if}
+        </div>
+        <div style='width:100%;'>
+            <div style="width: auto; float: left; margin-top: 5px; margin-right: 10px; margin-bottom: 5px; height: 21px;">
+                {#if $T.S.DisplayName==1}
+                {* First name and last name initial*}
+                {$T.S.ByUser.FirstName} {$T.S.ByUser.LastName} - {$T.S.ByUser.Profile.Region} - {NS_FormatJSONDate($T.S.Dated,'mm/dd/yy')}
+                {#/if}
+                {#if $T.S.DisplayName==2}
+                {* First name only*}
+                {$T.S.ByUser.FirstName} - {$T.S.ByUser.Profile.Region} - {NS_FormatJSONDate($T.S.Dated,'mm/dd/yy')}
+                {#/if}
+                {#if $T.S.DisplayName==3}
+                {* Last name only *}
+                {$T.S.ByUser.LastName} - {$T.S.ByUser.Profile.Region} - {NS_FormatJSONDate($T.S.Dated,'mm/dd/yy')}
+                {#/if}
+                {#if $T.S.DisplayName==4}
+                {* Full name*}
+                {$T.S.ByUser.FirstName} {$T.S.ByUser.LastName} - {$T.S.ByUser.Profile.Region} - {NS_FormatJSONDate($T.S.Dated,'mm/dd/yy')}
+                {#/if}
+            </div><div class="stars stars-example-bootstrap" style="float:left;">
+                <div class="ratting-{$T.S.RatingValue}"></div>
+            </div>
+
+        </div>
+    </li>
+    {#/for}
+</div>

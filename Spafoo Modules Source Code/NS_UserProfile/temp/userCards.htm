@@ -1,0 +1,23 @@
+﻿<div class="savedcc">
+    <table width="100%" border="0" cellpadding="0" class="table table-hover">
+<thead>
+        <tr>
+            <th>#</td>
+            <th>Card Number</td>
+            <th>Expiry</td>
+            <th>&nbsp;</td>
+        </tr>
+    </thead>
+            {#foreach $T as C}
+        <tr> 
+            <td>{$T.C$index+1}</td>
+            <td>{$T.C.payment.Item.cardNumber}</td>
+            <td>XXXX</td>
+            <td><a href="#" onclick="RemovePayProfile({$T.C.customerPaymentProfileId},event,this);">Remove</a></td>
+        </tr>
+        {#/for}
+    </table>
+<div class="center" style="margin:20px 0;">
+        <a href="#" class="blue-btn" onclick="ShowAddCCForm(event);">Add new card</a>
+    </div>
+</div>

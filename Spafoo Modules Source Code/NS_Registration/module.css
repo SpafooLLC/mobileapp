@@ -1,0 +1,146 @@
+
+.proapp {
+}
+.proapp .label-right {
+    text-align: right;
+}
+.proapp label {
+    color: #333333;
+    margin: 3px 0 0 !important;
+}
+.proapp .col-sm-2 {
+    padding: 0 !important;
+    width: 14.667% !important;
+}
+.proapp .form-control {
+    width: 100% !important;
+}
+#NSR_QContainer_5 label {
+    font-weight: 500 !important;
+}
+#NSR_QContainer_6 label {
+    font-weight: 500 !important;
+}
+.txtbutn {
+    color: #333333;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.txtbutn:hover {
+    color: #1e319b;
+    text-decoration: none;
+}
+.sec-title {
+    clear: both;
+}
+.sec-title h3 {
+    border-bottom: 1px solid #ccc !important;
+    color: #219962 !important;
+    font-size: 18px;
+    margin: 20px 0;
+    padding: 0 0 5px;
+}
+.informat {
+    font-size: 12px;
+    height: 25px;
+    margin: -21px 0 6px;
+    overflow: hidden;
+    position: absolute;
+}
+#NSR_dvMQuestion_19 label {
+    display: block;
+    font-weight: 500 !important;
+}
+#NSR_dvMQuestion_20 label {
+    display: block;
+    font-weight: 500 !important;
+}
+#NSR_dvMQuestion_21 label {
+    display: block;
+    font-weight: 500 !important;
+}
+#NSR_dvMQuestion_19 input[type="checkbox"] {
+    float: left;
+    margin: 9px 7px 0 0 !important;
+}
+#NSR_dvMQuestion_20 input[type="checkbox"] {
+    float: left;
+    margin: 9px 7px 0 0 !important;
+}
+#NSR_dvMQuestion_21 input[type="checkbox"] {
+    float: left;
+    margin: 9px 7px 0 0 !important;
+}
+.proapp input[type="checkbox"], .proapp input[type="radio"] {
+    margin: 0 3px 0 0;
+}
+.proapp input[type="checkbox"] + label, .proapp input[type="radio"] + label {
+    margin: 0 8px 0 0 !important;
+}
+.proapp .dnnFormRequired {
+    border-left: 3px solid #1e319b !important;
+}
+.proapp .NS_Required .form-control {
+    border-left: 3px solid #1e319b !important;
+}
+#NSR_UR_Step_3 .proapp:nth-child(4) {
+    clear: both;
+}
+#NSR_UR_Step_3 .proapp:nth-child(9) {
+    clear: both;
+}
+.checkgap {
+    margin-bottom: 20px;
+}
+
+
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+  }
+  .ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 7px black;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }
+
+.NSR_Row {width:100%;margin-bottom:20px;margin-top:20px;min-height:18px;clear:both;}
+.NSR_RCol1 {width: 15%; float: left; text-align: right; font-weight: bold; color: seagreen}
+.NSR_RCol2 {width:85%;float:left;padding-left:10px;}
+.NSR_RCatDesc {width:100%;margin-bottom:10px;margin-top:10px;color:darkblue ;border-bottom:dotted;text-align:center;}
+.NSR_Step {width:100%;margin-bottom:20px;margin-top:20px;min-height:18px;clear:both;}

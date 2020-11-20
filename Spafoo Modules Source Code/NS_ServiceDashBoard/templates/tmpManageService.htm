@@ -1,0 +1,32 @@
+﻿{#foreach $T as S}
+<div class="NS_SRows">
+    <label>Service Name</label>
+    <input id="NS_SDB_txtServiceName" type="text" value="{$T.S.ServiceName}" class="NS_SName" placeholder="Service Name" />
+</div>
+<div class="NS_SRows">
+    <label>Short Description</label>
+    <input id="NS_SDB_txtShortDesc" type="text" value="{$T.S.ShortDescription}" class="NS_SDesc" placeholder="Short Description" />
+</div>
+
+<div>
+    <input type="file" id="NS_SDB_File" class="NSR_FileControl NS_Upload" uploadedfile="{$T.S.Image}" />
+    <img id="NS_SDB_upldImage" style="width:100%;height:250px;" onerror="NS_ServiceOnError(this)" placeholder="Service related image" {#if $T.S.Image=='' }
+         src="/DesktopModules/NS_ServiceDashBoard/imgs/NA.jpg"
+         {#else}
+         src="/Images/NS_ServiceDB/{$T.S.Image}" 
+         {#/if} />
+    
+</div>
+<div class="NS_SRows">
+    <label>Price</label>
+    <input id="NS_SDB_txtPrice" type="text" value="{$T.S.Price}" class="NS_SInfo" placeholder="Price" />
+</div>
+<div class="NS_SRows">
+    <label>Duration (in Min)</label>
+    <input id="NS_SDB_txtDuration" type="text" value="{$T.S.Duration}" class="NS_SInfo" placeholder="Duration (in minute)" />
+</div>
+<div class="NS_SRows">
+    <input type="button" value="Update" class="dnnPrimaryAction" onclick="NS_AddUpdateService(event);" />&nbsp;
+    &nbsp;<input type="button" value="Remove" onclick="NS_RemoveService(event);" class="dnnPrimaryAction" />
+</div>
+{#/for}

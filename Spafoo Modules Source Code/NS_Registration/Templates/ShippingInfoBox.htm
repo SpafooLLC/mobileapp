@@ -1,0 +1,23 @@
+﻿ {#if $T.RecepientName!=null}
+    {$T.RecepientName}<br/>
+    {Shop_GSC_SubStr($T.Address1,20)}<br/>
+    {#if $T.Address2!=''}
+        {Shop_GSC_SubStr($T.Address2,20)}<br/>
+    {#/if}
+    {#if $T.Address3!=''}
+        {Shop_GSC_SubStr($T.Address3,20)}<br/>
+    {#/if}
+    {#if $T.City!=''} {Shop_GSC_SubStr($T.City)}&nbsp; {#/if}
+    {#if $T.Region!=''}
+        {Shop_GSC_SubStr($T.Region)}<br/>
+    {#else}
+        {#if $T.City!=''} <br /> {#/if}
+    {#/if}
+    {#if $T.PostalCode!=''} {$T.PostalCode}&nbsp; {#/if}
+    {#if $T.Country!=''}
+        {$T.Country}
+    {#/if}
+    {#if $T.PhoneNo!=''}
+        <br/>Ph {$T.PhoneNo}
+    {#/if}
+{#/if}
