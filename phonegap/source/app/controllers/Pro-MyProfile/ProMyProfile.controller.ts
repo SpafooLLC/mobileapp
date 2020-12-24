@@ -44,12 +44,13 @@
           $("#"+tabname).addClass("in").addClass("active");
         
         }
+        
         GoRegistertext() { 
             var target = "_blank";
 
             var options = "location=yes,hidden=yes,beforeload=yes";
             $("#showload").show();
-             window.open(encodeURI('http://www.spafoo.com/provider-registration'), '_system', 'location=yes');
+             window.open(encodeURI('http://www.spafoo.com/my-profile'), '_system', 'location=yes');
             setTimeout(() => {
                 $("#showload").hide();
             }, 15000);
@@ -75,7 +76,7 @@
                 var uri_encoded =str!=null? str.replace(/%([^\d].)/, "%25$1"):"";                
                 var decoded = decodeURIComponent(uri_encoded);
                 self.ServiceData.profileField.biographyField = decoded;
-                 
+                 self.getUserNotificationInfo(UserID);
                
                  //self.GetProviderServices(UserID)
 

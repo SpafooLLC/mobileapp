@@ -34,8 +34,10 @@
                                               <div ng-if="sr.starField==null" class="ratting-0"></div> 
                                           </td>
                                           <td class="right">
-                                              ${{sr.minimumField}} to ${{sr.rangeToField}}
-                                              <i class="fa fa-map-marker fa-2x"></i>
+                                            <span ng-if='sr.minimumField!=sr.rangeToField'>${{sr.minimumField}} to ${{sr.rangeToField}}</span>
+                                            <span  ng-if='sr.minimumField==sr.rangeToField'>${{sr.minimumField}}</span>
+                                            <br>
+                                              <!-- <i class="fa fa-map-marker fa-2x"></i> -->
                                               <h4>{{sr.userInfoField.distance}}</h4>
                                               <span>miles</span>
                                           </td>

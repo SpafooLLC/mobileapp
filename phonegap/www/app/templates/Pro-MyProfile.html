@@ -91,7 +91,9 @@
                         <tr ng-repeat="s in pmp.ProviderServiceList">
                             {{s.serviceNameField}}
                           <td>{{s.serviceNameField}}</td>
-                          <td  class="pricealigns">${{s.minimumField}} to ${{s.rangeToField}}<br></td>
+                          <td ng-if='s.minimumField!=s.rangeToField' class="pricealigns">${{s.minimumField}} to ${{s.rangeToField}}<br></td>
+                          <td  ng-if='s.minimumField==s.rangeToField' class="pricealigns">${{s.minimumField}} <br></td>
+                          
                         </tr>
                        
                     </table>

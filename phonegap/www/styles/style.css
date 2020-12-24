@@ -608,4 +608,5 @@ a:hover,a:focus{ text-decoration: none; outline: none; }
 .tab .nav-tabs li:hover a:after, .tab .nav-tabs li.active a:after{ width: 100%; opacity: 1; }
 .tab .tab-content{ padding:30px 15px 15px; margin-top:1px; background: #ffffff; position: relative; }
 .tab .nav-tabs > li { width:33%; text-align:center; }
+
 .pricealigns{text-align: right;}

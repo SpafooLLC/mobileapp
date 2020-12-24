@@ -12,36 +12,37 @@ var ProAppointmentDetailController;
             var self = this;
             this.AppID = this.$window.localStorage.getItem('AppointmentIDs');
             this.getClientSchedular(this.AppID);
-            document.addEventListener("deviceready", function () {
-                var self = this;
-                self.mapDiv = document.getElementById("map_area");
-                var init = new plugin.google.maps.LatLng(-1, -1);
-                self.mapOptions = {
-                    'backgroundColor': 'white',
-                    'mapType': plugin.google.maps.MapTypeId.ROADMAP,
-                    'controls': {
-                        'compass': true,
-                        'myLocationButton': true,
-                        'indoorPicker': true,
-                        'zoom': true
-                    },
-                    'gestures': {
-                        'scroll': true,
-                        'rotate': true,
-                        'zoom': true
-                    },
-                    'camera': {
-                        'latLng': init,
-                        'zoom': 15,
-                    }
-                };
-                ProAppointmentDetailController.map = plugin.google.maps.Map.getMap(self.mapDiv, self.mapOptions);
-                ProAppointmentDetailController.map.on(plugin.google.maps.event.MAP_CLICK, function () {
-                    $("#infowindow").hide();
-                    //self.infoWindow = false;
-                });
-                // You have to wait the MAP_READY event.
-            });
+            // document.addEventListener("deviceready", function () {
+            //     var self = this;
+            //     self.mapDiv = document.getElementById("map_area");
+            //     const init = new plugin.google.maps.LatLng(-1, -1);
+            //     self.mapOptions = {
+            //         'backgroundColor': 'white',
+            //         'mapType': plugin.google.maps.MapTypeId.ROADMAP,
+            //         'controls': {
+            //             'compass': true,
+            //             'myLocationButton': true,
+            //             'indoorPicker': true,
+            //             'zoom': true
+            //         },
+            //         'gestures': {
+            //             'scroll': true,
+            //             'rotate': true,
+            //             'zoom': true
+            //         },
+            //         'camera': {
+            //             'latLng': init,
+            //             'zoom': 15,
+            //             //'bearing': 50
+            //         }
+            //     };
+            //     ProAppointmentDetailController.map = plugin.google.maps.Map.getMap(self.mapDiv, self.mapOptions);
+            //     ProAppointmentDetailController.map.on(plugin.google.maps.event.MAP_CLICK, function () {
+            //         $("#infowindow").hide();
+            //         //self.infoWindow = false;
+            //     });
+            //     // You have to wait the MAP_READY event.
+            // });
         }
         ProAppointmentDetailController.prototype.NavigateMaps = function () {
             var self = this;

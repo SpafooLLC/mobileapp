@@ -2,9 +2,6 @@
   "name": "com.spafoo",
   "version": "1.1.1",
   "description": "ionic-ts-tabs: An Ionic project",
-  "resolutions": {
-    "graceful-fs": "4.2.4"
-  },
   "dependencies": {
     "@ionic-native/geolocation": "^5.28.0",
     "@ionic-native/launch-navigator": "^5.28.0",
@@ -37,6 +34,7 @@
     "gulp-sass": "^3.1.0",
     "ionic-plugin-keyboard": "~2.1.0",
     "main-bower-files": "2.13.1",
+    "npm-force-resolutions": "0.0.3",
     "phonegap-plugin-push": "^1.11.1",
     "rimraf": "2.5.4",
     "run-sequence": "1.2.2",
@@ -59,6 +57,9 @@
     "bower": "node_modules/.bin/bower install",
     "typings": "node_modules/.bin/typings install",
     "postinstall": "npm run typings && npm run bower && npm run build"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.4"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",

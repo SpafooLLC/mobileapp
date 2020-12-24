@@ -82,8 +82,10 @@
                         <tr ng-repeat="s in PvP.ProviderServiceList">
                             {{s.serviceNameField}}
                           <td>{{s.serviceNameField}}</td>
-                          <td  class="pricealigns">${{s.minimumField}} to ${{s.rangeToField}}<br></td>
-                        </tr>
+                          <td  ng-if='s.minimumField == s.rangeToField' class="pricealigns">${{s.minimumField}} <br></td>
+                          <td ng-if='s.minimumField !== s.rangeToField' class="pricealigns"> 
+                             ${{s.minimumField}} to ${{s.rangeToField}}<br></td>
+                               </tr>
                        
                     </table>
                 </div>
