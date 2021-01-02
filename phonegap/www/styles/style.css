@@ -238,6 +238,7 @@
   .myschedule .sce .left .date { text-align:center; padding:10px 0 10px 0; background:#219962; color:#ffffff; font-family:'Open Sans', sans-serif; font-size:40px; line-height:50px; font-weight:300; }
   .myschedule .sce .left .date span { clear:both; display:block;  font-size:13px; line-height:18px; }
   .myschedule .sce .left .time { text-align:center; padding:5px 0 5px 0; background:#112173; color:#ffffff; }
+  .add2c{text-align:center; padding:5px 0 5px 0; background:black; color:white; }
   .myschedule .sce .right { float:left; padding:0px 0 0 0; }
   .myschedule .sce .right h2 {  color:#112173; font-family:'Balthazar', sans-serif; font-weight:600; font-size:20px; line-height:26px; margin:0 0 8px 0; }
   .myschedule .sce .right p {  color:#219962; font-weight:600; font-size:15px; margin:0 0 1px 0; }

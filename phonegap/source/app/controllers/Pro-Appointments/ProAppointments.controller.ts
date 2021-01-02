@@ -1,6 +1,7 @@
 ﻿module ProAppointmentsController {
 
     class ProAppointmentsController {
+
         UserID: any;
         ServiceData: any;
         isRated: boolean;
@@ -20,6 +21,32 @@
             this.UserID = this.$window.localStorage.getItem('CustomerID');
             this.getProviderSchedular(this.UserID);
             this.page = window.location.hash.split('/')[1];
+        }
+
+        log(data: any){
+            // <a href="http://localhost:61874/SpaServices.svc/GetCalendarURL/">
+            console.log("data data data data", data);
+            var self = this;
+            debugger;
+            self.CustomerHttp.get('/GetCalendarURL/' + data.appointmentIDField)
+            .then((res: any)=>{
+                console.log("response from GetCalendarURL ", res);
+                if(res.GetCalendarURLResult != null || res.GetCalendarURLResult != ''){
+                    alert("added to calendar");
+
+                    var target = "_blank";
+
+            var options = "location=yes,hidden=yes,beforeload=yes";
+            $("#showload").show();
+             window.open(encodeURI(res.GetCalendarURLResult), '_system', 'location=yes');
+            setTimeout(() => {
+                $("#showload").hide();
+            }, 15000);
+                }
+                
+            }).catch(err=>{
+                console.error("some error in GetCalendarURL ", err);
+            })
         }
 
         getProviderSchedular(UserID: any) {

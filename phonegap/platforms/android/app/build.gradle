@@ -299,7 +299,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation "com.google.android.gms:play-services-location:16.+"
-    implementation "com.android.support:support-v13:24+"
+    implementation  "com.android.support:support-v13:27.+"
     implementation "com.google.android.gms:play-services-gcm:15+"
     implementation "me.leolin:ShortcutBadger:1.1.14@aar"
     implementation "com.squareup.okhttp3:okhttp:3.12.0"

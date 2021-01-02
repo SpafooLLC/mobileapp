@@ -13,6 +13,28 @@ var ProAppointmentsController;
             this.getProviderSchedular(this.UserID);
             this.page = window.location.hash.split('/')[1];
         }
+        ProAppointmentsController.prototype.log = function (data) {
+            // <a href="http://localhost:61874/SpaServices.svc/GetCalendarURL/">
+            console.log("data data data data", data);
+            var self = this;
+            debugger;
+            self.CustomerHttp.get('/GetCalendarURL/' + data.appointmentIDField)
+                .then(function (res) {
+                console.log("response from GetCalendarURL ", res);
+                if (res.GetCalendarURLResult != null || res.GetCalendarURLResult != '') {
+                    alert("added to calendar");
+                    var target = "_blank";
+                    var options = "location=yes,hidden=yes,beforeload=yes";
+                    $("#showload").show();
+                    window.open(encodeURI(res.GetCalendarURLResult), '_system', 'location=yes');
+                    setTimeout(function () {
+                        $("#showload").hide();
+                    }, 15000);
+                }
+            }).catch(function (err) {
+                console.error("some error in GetCalendarURL ", err);
+            });
+        };
         ProAppointmentsController.prototype.getProviderSchedular = function (UserID) {
             var self = this;
             var status = self.$window.localStorage.getItem('LoginStatus');
