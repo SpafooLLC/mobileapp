@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{F80397BA-5308-4825-8655-A7285C31B260}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>NS_MakeAppointment</AssemblyName>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet">
+      <HintPath>bin\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke">
+      <HintPath>bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Web.Services\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Web.Extensions\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="NS_ServiceDashBoard">
+      <HintPath>bin\NS_ServiceDashBoard.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelLibrary">
+      <HintPath>bin\ExcelLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Html">
+      <HintPath>bin\DotNetNuke.Modules.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NS_Registration">
+      <HintPath>bin\NS_Registration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\AppointmentController.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\AppointmentInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\AppointmentPhotoInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\BasicAppointmentInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\ANetAuthProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\AuthorizeCreditCard.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\AuthorizeCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\CapturePreviouslyAuthorizedAmount.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\ChargeCreditCard.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\ChargeCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\RefundTransaction.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\XAuthorizeCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CIM\XMLController.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\ClientLocation.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\CreateCustomerPaymentProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\CreateCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\CreateCustomerProfileFromTransaction.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\CreateCustomerShippingAddress.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\DeleteCustomerPaymentProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\DeleteCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\DeleteCustomerShippingAddress.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\GetCustomerPaymentProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\GetCustomerPaymentProfileList.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\GetCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\GetCustomerProfileIds.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\GetCustomerShippingAddress.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\GetHostedProfilePage.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\UpdateCustomerPaymentProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\UpdateCustomerProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\UpdateCustomerShippingAddress.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\CustomerProfiles\ValidateCustomerPaymentProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\NotificationController.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\NotificationInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\NotificationService.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\NotificationType.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\NS_MinUserInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\NS_UserInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\PaymentProfileController.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\RatingController.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\RatingInfo.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Components\UserPaymentProfile.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Data\DataProvider.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment.Data\SqlDataProvider.cs" />
+    <Compile Include="Netsam.Modules.MakeAppointment\Edit.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Netsam.Modules.MakeAppointment\MakeAppointmentModuleBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Netsam.Modules.MakeAppointment\MakeAppointmentModuleSettingsBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Netsam.Modules.MakeAppointment\rh.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Netsam.Modules.MakeAppointment\View.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Netsam.Modules.NS_MakeAppointment\Notif_Scheduler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Netsam.Common\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
