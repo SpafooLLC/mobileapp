@@ -31,6 +31,8 @@
           <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Minimum" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RangeTo" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="Duration" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfServiceInfo" />
@@ -124,13 +126,19 @@
       <s:element name="ListProvidersByServicesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListProvidersByServicesResult" type="tns:ArrayOfUserInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListProvidersByServicesResult" type="tns:ArrayOfUserInfo2" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfUserInfo">
+      <s:complexType name="ArrayOfUserInfo2">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="UserInfo" nillable="true" type="tns:UserInfo" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserInfo2" nillable="true" type="tns:UserInfo2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserInfo2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="userInfo" type="tns:UserInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="services" type="tns:ArrayOfServiceInfo" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="UserInfo">
@@ -259,6 +267,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUserInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfoResult" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetUserJSON">
         <s:complexType>
           <s:sequence>
@@ -361,6 +383,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateCouponCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCouponCountResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="ValidateCoupon">
         <s:complexType>
           <s:sequence>
@@ -385,6 +417,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="StartsFrom" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="EndsOn" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="NoOfCoupons" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Remains" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="ValidateCouponJSON">
@@ -481,9 +514,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ProviderServicesMapping">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProviderServicesMappingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderServicesMappingResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ArrayOfServiceInfo" nillable="true" type="tns:ArrayOfServiceInfo" />
       <s:element name="int" type="s:int" />
-      <s:element name="ArrayOfUserInfo" nillable="true" type="tns:ArrayOfUserInfo" />
+      <s:element name="ArrayOfUserInfo2" nillable="true" type="tns:ArrayOfUserInfo2" />
       <s:element name="ArrayOfWorkSample" nillable="true" type="tns:ArrayOfWorkSample" />
       <s:element name="UserInfo" nillable="true" type="tns:UserInfo" />
       <s:element name="string" nillable="true" type="s:string" />
@@ -561,6 +608,12 @@
   <wsdl:message name="GetUserSoapOut">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="GetUserJSONSoapIn">
     <wsdl:part name="parameters" element="tns:GetUserJSON" />
   </wsdl:message>
@@ -596,6 +649,12 @@
   </wsdl:message>
   <wsdl:message name="GetWithInMileSoapOut">
     <wsdl:part name="parameters" element="tns:GetWithInMileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCouponCountSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCouponCount" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCouponCountSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCouponCountResponse" />
   </wsdl:message>
   <wsdl:message name="ValidateCouponSoapIn">
     <wsdl:part name="parameters" element="tns:ValidateCoupon" />
@@ -638,6 +697,12 @@
   </wsdl:message>
   <wsdl:message name="UpdateCouponSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateCouponResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProviderServicesMappingSoapIn">
+    <wsdl:part name="parameters" element="tns:ProviderServicesMapping" />
+  </wsdl:message>
+  <wsdl:message name="ProviderServicesMappingSoapOut">
+    <wsdl:part name="parameters" element="tns:ProviderServicesMappingResponse" />
   </wsdl:message>
   <wsdl:message name="GetServicesInHttpGetIn">
     <wsdl:part name="SID" type="s:string" />
@@ -685,7 +750,7 @@
     <wsdl:part name="SIDs" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListProvidersByServicesHttpGetOut">
-    <wsdl:part name="Body" element="tns:ArrayOfUserInfo" />
+    <wsdl:part name="Body" element="tns:ArrayOfUserInfo2" />
   </wsdl:message>
   <wsdl:message name="GetWorkSamplesHttpGetIn">
     <wsdl:part name="PID" type="s:string" />
@@ -697,6 +762,12 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:UserInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpGetOut">
     <wsdl:part name="Body" element="tns:UserInfo" />
   </wsdl:message>
   <wsdl:message name="GetUserJSONHttpGetIn">
@@ -734,6 +805,10 @@
   <wsdl:message name="GetWithInMileHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="UpdateCouponCountHttpGetIn">
+    <wsdl:part name="Code" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCouponCountHttpGetOut" />
   <wsdl:message name="ValidateCouponHttpGetIn">
     <wsdl:part name="Code" type="s:string" />
   </wsdl:message>
@@ -785,6 +860,12 @@
   <wsdl:message name="UpdateCouponHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
+  <wsdl:message name="ProviderServicesMappingHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProviderServicesMappingHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:message name="GetServicesInHttpPostIn">
     <wsdl:part name="SID" type="s:string" />
   </wsdl:message>
@@ -831,7 +912,7 @@
     <wsdl:part name="SIDs" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListProvidersByServicesHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfUserInfo" />
+    <wsdl:part name="Body" element="tns:ArrayOfUserInfo2" />
   </wsdl:message>
   <wsdl:message name="GetWorkSamplesHttpPostIn">
     <wsdl:part name="PID" type="s:string" />
@@ -843,6 +924,12 @@
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:UserInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoHttpPostOut">
     <wsdl:part name="Body" element="tns:UserInfo" />
   </wsdl:message>
   <wsdl:message name="GetUserJSONHttpPostIn">
@@ -880,6 +967,10 @@
   <wsdl:message name="GetWithInMileHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="UpdateCouponCountHttpPostIn">
+    <wsdl:part name="Code" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCouponCountHttpPostOut" />
   <wsdl:message name="ValidateCouponHttpPostIn">
     <wsdl:part name="Code" type="s:string" />
   </wsdl:message>
@@ -931,6 +1022,12 @@
   <wsdl:message name="UpdateCouponHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
+  <wsdl:message name="ProviderServicesMappingHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProviderServicesMappingHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:portType name="rhSoap">
     <wsdl:operation name="GetServicesIn">
       <wsdl:input message="tns:GetServicesInSoapIn" />
@@ -972,6 +1069,10 @@
       <wsdl:input message="tns:GetUserSoapIn" />
       <wsdl:output message="tns:GetUserSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoSoapIn" />
+      <wsdl:output message="tns:GetUserInfoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <wsdl:input message="tns:GetUserJSONSoapIn" />
       <wsdl:output message="tns:GetUserJSONSoapOut" />
@@ -995,6 +1096,10 @@
     <wsdl:operation name="GetWithInMile">
       <wsdl:input message="tns:GetWithInMileSoapIn" />
       <wsdl:output message="tns:GetWithInMileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <wsdl:input message="tns:UpdateCouponCountSoapIn" />
+      <wsdl:output message="tns:UpdateCouponCountSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ValidateCoupon">
       <wsdl:input message="tns:ValidateCouponSoapIn" />
@@ -1023,6 +1128,10 @@
     <wsdl:operation name="UpdateCoupon">
       <wsdl:input message="tns:UpdateCouponSoapIn" />
       <wsdl:output message="tns:UpdateCouponSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <wsdl:input message="tns:ProviderServicesMappingSoapIn" />
+      <wsdl:output message="tns:ProviderServicesMappingSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="rhHttpGet">
@@ -1066,6 +1175,10 @@
       <wsdl:input message="tns:GetUserHttpGetIn" />
       <wsdl:output message="tns:GetUserHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoHttpGetIn" />
+      <wsdl:output message="tns:GetUserInfoHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <wsdl:input message="tns:GetUserJSONHttpGetIn" />
       <wsdl:output message="tns:GetUserJSONHttpGetOut" />
@@ -1089,6 +1202,10 @@
     <wsdl:operation name="GetWithInMile">
       <wsdl:input message="tns:GetWithInMileHttpGetIn" />
       <wsdl:output message="tns:GetWithInMileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <wsdl:input message="tns:UpdateCouponCountHttpGetIn" />
+      <wsdl:output message="tns:UpdateCouponCountHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="ValidateCoupon">
       <wsdl:input message="tns:ValidateCouponHttpGetIn" />
@@ -1117,6 +1234,10 @@
     <wsdl:operation name="UpdateCoupon">
       <wsdl:input message="tns:UpdateCouponHttpGetIn" />
       <wsdl:output message="tns:UpdateCouponHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <wsdl:input message="tns:ProviderServicesMappingHttpGetIn" />
+      <wsdl:output message="tns:ProviderServicesMappingHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="rhHttpPost">
@@ -1160,6 +1281,10 @@
       <wsdl:input message="tns:GetUserHttpPostIn" />
       <wsdl:output message="tns:GetUserHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoHttpPostIn" />
+      <wsdl:output message="tns:GetUserInfoHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <wsdl:input message="tns:GetUserJSONHttpPostIn" />
       <wsdl:output message="tns:GetUserJSONHttpPostOut" />
@@ -1183,6 +1308,10 @@
     <wsdl:operation name="GetWithInMile">
       <wsdl:input message="tns:GetWithInMileHttpPostIn" />
       <wsdl:output message="tns:GetWithInMileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <wsdl:input message="tns:UpdateCouponCountHttpPostIn" />
+      <wsdl:output message="tns:UpdateCouponCountHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ValidateCoupon">
       <wsdl:input message="tns:ValidateCouponHttpPostIn" />
@@ -1211,6 +1340,10 @@
     <wsdl:operation name="UpdateCoupon">
       <wsdl:input message="tns:UpdateCouponHttpPostIn" />
       <wsdl:output message="tns:UpdateCouponHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <wsdl:input message="tns:ProviderServicesMappingHttpPostIn" />
+      <wsdl:output message="tns:ProviderServicesMappingHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="rhSoap" type="tns:rhSoap">
@@ -1305,6 +1438,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://tempuri.org/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <soap:operation soapAction="http://tempuri.org/GetUserJSON" style="document" />
       <wsdl:input>
@@ -1352,6 +1494,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetWithInMile">
       <soap:operation soapAction="http://tempuri.org/GetWithInMile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <soap:operation soapAction="http://tempuri.org/UpdateCouponCount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1415,6 +1566,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateCoupon">
       <soap:operation soapAction="http://tempuri.org/UpdateCoupon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <soap:operation soapAction="http://tempuri.org/ProviderServicesMapping" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1515,6 +1675,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <soap12:operation soapAction="http://tempuri.org/GetUserJSON" style="document" />
       <wsdl:input>
@@ -1562,6 +1731,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetWithInMile">
       <soap12:operation soapAction="http://tempuri.org/GetWithInMile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCouponCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1625,6 +1803,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateCoupon">
       <soap12:operation soapAction="http://tempuri.org/UpdateCoupon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <soap12:operation soapAction="http://tempuri.org/ProviderServicesMapping" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1721,6 +1908,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <http:operation location="/GetUserInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <http:operation location="/GetUserJSON" />
       <wsdl:input>
@@ -1774,6 +1970,13 @@
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <http:operation location="/UpdateCouponCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="ValidateCoupon">
       <http:operation location="/ValidateCoupon" />
@@ -1829,6 +2032,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateCoupon">
       <http:operation location="/UpdateCoupon" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <http:operation location="/ProviderServicesMapping" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1925,6 +2137,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <http:operation location="/GetUserInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserJSON">
       <http:operation location="/GetUserJSON" />
       <wsdl:input>
@@ -1978,6 +2199,13 @@
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCouponCount">
+      <http:operation location="/UpdateCouponCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="ValidateCoupon">
       <http:operation location="/ValidateCoupon" />
@@ -2033,6 +2261,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateCoupon">
       <http:operation location="/UpdateCoupon" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProviderServicesMapping">
+      <http:operation location="/ProviderServicesMapping" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

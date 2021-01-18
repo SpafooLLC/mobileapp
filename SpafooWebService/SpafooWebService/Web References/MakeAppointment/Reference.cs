@@ -23,7 +23,7 @@ namespace SpafooWebService.MakeAppointment {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="rhSoap", Namespace="http://tempuri.org/")]
@@ -40,6 +40,10 @@ namespace SpafooWebService.MakeAppointment {
         
         private System.Threading.SendOrPostCallback UpdateAppStatusOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AcceptAppointmentOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Unavailable4AppointmentOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateAppSeenStatusOperationCompleted;
         
         private System.Threading.SendOrPostCallback MakeAppointmentOperationCompleted;
@@ -48,9 +52,17 @@ namespace SpafooWebService.MakeAppointment {
         
         private System.Threading.SendOrPostCallback GetAppointmentOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetBasicAppointmentOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListAllAppointmentByAnyOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ListAppointmentByProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ListAppointmentByProviderJSONOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ListAppointmentByClientOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListAppointmentByClientJSONOperationCompleted;
         
         private System.Threading.SendOrPostCallback ListServicesByAppIDOperationCompleted;
         
@@ -71,6 +83,22 @@ namespace SpafooWebService.MakeAppointment {
         private System.Threading.SendOrPostCallback GetUsersInRoleOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddRatingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SendNotificationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetCalendarPreferenceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetCalendarURLOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddCalendarPreferenceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SaveCalendarPreferenceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SendTextOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SendText2PhoneOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetUsersByRoleOperationCompleted;
         
         private System.Threading.SendOrPostCallback DidIRatedOperationCompleted;
         
@@ -190,6 +218,12 @@ namespace SpafooWebService.MakeAppointment {
         public event UpdateAppStatusCompletedEventHandler UpdateAppStatusCompleted;
         
         /// <remarks/>
+        public event AcceptAppointmentCompletedEventHandler AcceptAppointmentCompleted;
+        
+        /// <remarks/>
+        public event Unavailable4AppointmentCompletedEventHandler Unavailable4AppointmentCompleted;
+        
+        /// <remarks/>
         public event UpdateAppSeenStatusCompletedEventHandler UpdateAppSeenStatusCompleted;
         
         /// <remarks/>
@@ -202,10 +236,22 @@ namespace SpafooWebService.MakeAppointment {
         public event GetAppointmentCompletedEventHandler GetAppointmentCompleted;
         
         /// <remarks/>
+        public event GetBasicAppointmentCompletedEventHandler GetBasicAppointmentCompleted;
+        
+        /// <remarks/>
+        public event ListAllAppointmentByAnyCompletedEventHandler ListAllAppointmentByAnyCompleted;
+        
+        /// <remarks/>
         public event ListAppointmentByProviderCompletedEventHandler ListAppointmentByProviderCompleted;
         
         /// <remarks/>
+        public event ListAppointmentByProviderJSONCompletedEventHandler ListAppointmentByProviderJSONCompleted;
+        
+        /// <remarks/>
         public event ListAppointmentByClientCompletedEventHandler ListAppointmentByClientCompleted;
+        
+        /// <remarks/>
+        public event ListAppointmentByClientJSONCompletedEventHandler ListAppointmentByClientJSONCompleted;
         
         /// <remarks/>
         public event ListServicesByAppIDCompletedEventHandler ListServicesByAppIDCompleted;
@@ -236,6 +282,30 @@ namespace SpafooWebService.MakeAppointment {
         
         /// <remarks/>
         public event AddRatingCompletedEventHandler AddRatingCompleted;
+        
+        /// <remarks/>
+        public event SendNotificationCompletedEventHandler SendNotificationCompleted;
+        
+        /// <remarks/>
+        public event GetCalendarPreferenceCompletedEventHandler GetCalendarPreferenceCompleted;
+        
+        /// <remarks/>
+        public event GetCalendarURLCompletedEventHandler GetCalendarURLCompleted;
+        
+        /// <remarks/>
+        public event AddCalendarPreferenceCompletedEventHandler AddCalendarPreferenceCompleted;
+        
+        /// <remarks/>
+        public event SaveCalendarPreferenceCompletedEventHandler SaveCalendarPreferenceCompleted;
+        
+        /// <remarks/>
+        public event SendTextCompletedEventHandler SendTextCompleted;
+        
+        /// <remarks/>
+        public event SendText2PhoneCompletedEventHandler SendText2PhoneCompleted;
+        
+        /// <remarks/>
+        public event GetUsersByRoleCompletedEventHandler GetUsersByRoleCompleted;
         
         /// <remarks/>
         public event DidIRatedCompletedEventHandler DidIRatedCompleted;
@@ -499,6 +569,67 @@ namespace SpafooWebService.MakeAppointment {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AcceptAppointment", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int AcceptAppointment(int ProviderID, int AppID) {
+            object[] results = this.Invoke("AcceptAppointment", new object[] {
+                        ProviderID,
+                        AppID});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AcceptAppointmentAsync(int ProviderID, int AppID) {
+            this.AcceptAppointmentAsync(ProviderID, AppID, null);
+        }
+        
+        /// <remarks/>
+        public void AcceptAppointmentAsync(int ProviderID, int AppID, object userState) {
+            if ((this.AcceptAppointmentOperationCompleted == null)) {
+                this.AcceptAppointmentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAcceptAppointmentOperationCompleted);
+            }
+            this.InvokeAsync("AcceptAppointment", new object[] {
+                        ProviderID,
+                        AppID}, this.AcceptAppointmentOperationCompleted, userState);
+        }
+        
+        private void OnAcceptAppointmentOperationCompleted(object arg) {
+            if ((this.AcceptAppointmentCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AcceptAppointmentCompleted(this, new AcceptAppointmentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Unavailable4Appointment", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void Unavailable4Appointment(int ProviderId, int AppID) {
+            this.Invoke("Unavailable4Appointment", new object[] {
+                        ProviderId,
+                        AppID});
+        }
+        
+        /// <remarks/>
+        public void Unavailable4AppointmentAsync(int ProviderId, int AppID) {
+            this.Unavailable4AppointmentAsync(ProviderId, AppID, null);
+        }
+        
+        /// <remarks/>
+        public void Unavailable4AppointmentAsync(int ProviderId, int AppID, object userState) {
+            if ((this.Unavailable4AppointmentOperationCompleted == null)) {
+                this.Unavailable4AppointmentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUnavailable4AppointmentOperationCompleted);
+            }
+            this.InvokeAsync("Unavailable4Appointment", new object[] {
+                        ProviderId,
+                        AppID}, this.Unavailable4AppointmentOperationCompleted, userState);
+        }
+        
+        private void OnUnavailable4AppointmentOperationCompleted(object arg) {
+            if ((this.Unavailable4AppointmentCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Unavailable4AppointmentCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateAppSeenStatus", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void UpdateAppSeenStatus(int AppID) {
             this.Invoke("UpdateAppSeenStatus", new object[] {
@@ -528,7 +659,7 @@ namespace SpafooWebService.MakeAppointment {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/MakeAppointment", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int MakeAppointment(int ClientID, int ProviderID, int AddressID, string ForDate, string AtTime, string EndTime, string CSVSRVC, string PayTxnID, string CCNumber, string Expriry, string Comment, string PayProfileID, int EditAppID) {
+        public int MakeAppointment(int ClientID, int ProviderID, int AddressID, string ForDate, string AtTime, string EndTime, string CSVSRVC, string PayTxnID, string CCNumber, string Expriry, string Comment, string PayProfileID, int EditAppID, decimal Discount, string AnyProviderIDs) {
             object[] results = this.Invoke("MakeAppointment", new object[] {
                         ClientID,
                         ProviderID,
@@ -542,17 +673,35 @@ namespace SpafooWebService.MakeAppointment {
                         Expriry,
                         Comment,
                         PayProfileID,
-                        EditAppID});
+                        EditAppID,
+                        Discount,
+                        AnyProviderIDs});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void MakeAppointmentAsync(int ClientID, int ProviderID, int AddressID, string ForDate, string AtTime, string EndTime, string CSVSRVC, string PayTxnID, string CCNumber, string Expriry, string Comment, string PayProfileID, int EditAppID) {
-            this.MakeAppointmentAsync(ClientID, ProviderID, AddressID, ForDate, AtTime, EndTime, CSVSRVC, PayTxnID, CCNumber, Expriry, Comment, PayProfileID, EditAppID, null);
+        public void MakeAppointmentAsync(int ClientID, int ProviderID, int AddressID, string ForDate, string AtTime, string EndTime, string CSVSRVC, string PayTxnID, string CCNumber, string Expriry, string Comment, string PayProfileID, int EditAppID, decimal Discount, string AnyProviderIDs) {
+            this.MakeAppointmentAsync(ClientID, ProviderID, AddressID, ForDate, AtTime, EndTime, CSVSRVC, PayTxnID, CCNumber, Expriry, Comment, PayProfileID, EditAppID, Discount, AnyProviderIDs, null);
         }
         
         /// <remarks/>
-        public void MakeAppointmentAsync(int ClientID, int ProviderID, int AddressID, string ForDate, string AtTime, string EndTime, string CSVSRVC, string PayTxnID, string CCNumber, string Expriry, string Comment, string PayProfileID, int EditAppID, object userState) {
+        public void MakeAppointmentAsync(
+                    int ClientID, 
+                    int ProviderID, 
+                    int AddressID, 
+                    string ForDate, 
+                    string AtTime, 
+                    string EndTime, 
+                    string CSVSRVC, 
+                    string PayTxnID, 
+                    string CCNumber, 
+                    string Expriry, 
+                    string Comment, 
+                    string PayProfileID, 
+                    int EditAppID, 
+                    decimal Discount, 
+                    string AnyProviderIDs, 
+                    object userState) {
             if ((this.MakeAppointmentOperationCompleted == null)) {
                 this.MakeAppointmentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMakeAppointmentOperationCompleted);
             }
@@ -569,7 +718,9 @@ namespace SpafooWebService.MakeAppointment {
                         Expriry,
                         Comment,
                         PayProfileID,
-                        EditAppID}, this.MakeAppointmentOperationCompleted, userState);
+                        EditAppID,
+                        Discount,
+                        AnyProviderIDs}, this.MakeAppointmentOperationCompleted, userState);
         }
         
         private void OnMakeAppointmentOperationCompleted(object arg) {
@@ -652,6 +803,62 @@ namespace SpafooWebService.MakeAppointment {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBasicAppointment", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BasicAppointmentInfo GetBasicAppointment(int ID) {
+            object[] results = this.Invoke("GetBasicAppointment", new object[] {
+                        ID});
+            return ((BasicAppointmentInfo)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBasicAppointmentAsync(int ID) {
+            this.GetBasicAppointmentAsync(ID, null);
+        }
+        
+        /// <remarks/>
+        public void GetBasicAppointmentAsync(int ID, object userState) {
+            if ((this.GetBasicAppointmentOperationCompleted == null)) {
+                this.GetBasicAppointmentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBasicAppointmentOperationCompleted);
+            }
+            this.InvokeAsync("GetBasicAppointment", new object[] {
+                        ID}, this.GetBasicAppointmentOperationCompleted, userState);
+        }
+        
+        private void OnGetBasicAppointmentOperationCompleted(object arg) {
+            if ((this.GetBasicAppointmentCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBasicAppointmentCompleted(this, new GetBasicAppointmentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAllAppointmentByAny", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BasicAppointmentInfo[] ListAllAppointmentByAny() {
+            object[] results = this.Invoke("ListAllAppointmentByAny", new object[0]);
+            return ((BasicAppointmentInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListAllAppointmentByAnyAsync() {
+            this.ListAllAppointmentByAnyAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ListAllAppointmentByAnyAsync(object userState) {
+            if ((this.ListAllAppointmentByAnyOperationCompleted == null)) {
+                this.ListAllAppointmentByAnyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListAllAppointmentByAnyOperationCompleted);
+            }
+            this.InvokeAsync("ListAllAppointmentByAny", new object[0], this.ListAllAppointmentByAnyOperationCompleted, userState);
+        }
+        
+        private void OnListAllAppointmentByAnyOperationCompleted(object arg) {
+            if ((this.ListAllAppointmentByAnyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListAllAppointmentByAnyCompleted(this, new ListAllAppointmentByAnyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAppointmentByProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public AppointmentInfo[] ListAppointmentByProvider(int UID) {
             object[] results = this.Invoke("ListAppointmentByProvider", new object[] {
@@ -681,6 +888,35 @@ namespace SpafooWebService.MakeAppointment {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAppointmentByProviderJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ListAppointmentByProviderJSON(int UID) {
+            object[] results = this.Invoke("ListAppointmentByProviderJSON", new object[] {
+                        UID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListAppointmentByProviderJSONAsync(int UID) {
+            this.ListAppointmentByProviderJSONAsync(UID, null);
+        }
+        
+        /// <remarks/>
+        public void ListAppointmentByProviderJSONAsync(int UID, object userState) {
+            if ((this.ListAppointmentByProviderJSONOperationCompleted == null)) {
+                this.ListAppointmentByProviderJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListAppointmentByProviderJSONOperationCompleted);
+            }
+            this.InvokeAsync("ListAppointmentByProviderJSON", new object[] {
+                        UID}, this.ListAppointmentByProviderJSONOperationCompleted, userState);
+        }
+        
+        private void OnListAppointmentByProviderJSONOperationCompleted(object arg) {
+            if ((this.ListAppointmentByProviderJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListAppointmentByProviderJSONCompleted(this, new ListAppointmentByProviderJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAppointmentByClient", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public AppointmentInfo[] ListAppointmentByClient(int UID) {
             object[] results = this.Invoke("ListAppointmentByClient", new object[] {
@@ -706,6 +942,35 @@ namespace SpafooWebService.MakeAppointment {
             if ((this.ListAppointmentByClientCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ListAppointmentByClientCompleted(this, new ListAppointmentByClientCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAppointmentByClientJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ListAppointmentByClientJSON(int UID) {
+            object[] results = this.Invoke("ListAppointmentByClientJSON", new object[] {
+                        UID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListAppointmentByClientJSONAsync(int UID) {
+            this.ListAppointmentByClientJSONAsync(UID, null);
+        }
+        
+        /// <remarks/>
+        public void ListAppointmentByClientJSONAsync(int UID, object userState) {
+            if ((this.ListAppointmentByClientJSONOperationCompleted == null)) {
+                this.ListAppointmentByClientJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListAppointmentByClientJSONOperationCompleted);
+            }
+            this.InvokeAsync("ListAppointmentByClientJSON", new object[] {
+                        UID}, this.ListAppointmentByClientJSONOperationCompleted, userState);
+        }
+        
+        private void OnListAppointmentByClientJSONOperationCompleted(object arg) {
+            if ((this.ListAppointmentByClientJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListAppointmentByClientJSONCompleted(this, new ListAppointmentByClientJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1028,6 +1293,248 @@ namespace SpafooWebService.MakeAppointment {
             if ((this.AddRatingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddRatingCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendNotification", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string SendNotification(int UserID, int RoleID, string Message) {
+            object[] results = this.Invoke("SendNotification", new object[] {
+                        UserID,
+                        RoleID,
+                        Message});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendNotificationAsync(int UserID, int RoleID, string Message) {
+            this.SendNotificationAsync(UserID, RoleID, Message, null);
+        }
+        
+        /// <remarks/>
+        public void SendNotificationAsync(int UserID, int RoleID, string Message, object userState) {
+            if ((this.SendNotificationOperationCompleted == null)) {
+                this.SendNotificationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendNotificationOperationCompleted);
+            }
+            this.InvokeAsync("SendNotification", new object[] {
+                        UserID,
+                        RoleID,
+                        Message}, this.SendNotificationOperationCompleted, userState);
+        }
+        
+        private void OnSendNotificationOperationCompleted(object arg) {
+            if ((this.SendNotificationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendNotificationCompleted(this, new SendNotificationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCalendarPreference", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetCalendarPreference(int UserID) {
+            object[] results = this.Invoke("GetCalendarPreference", new object[] {
+                        UserID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCalendarPreferenceAsync(int UserID) {
+            this.GetCalendarPreferenceAsync(UserID, null);
+        }
+        
+        /// <remarks/>
+        public void GetCalendarPreferenceAsync(int UserID, object userState) {
+            if ((this.GetCalendarPreferenceOperationCompleted == null)) {
+                this.GetCalendarPreferenceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCalendarPreferenceOperationCompleted);
+            }
+            this.InvokeAsync("GetCalendarPreference", new object[] {
+                        UserID}, this.GetCalendarPreferenceOperationCompleted, userState);
+        }
+        
+        private void OnGetCalendarPreferenceOperationCompleted(object arg) {
+            if ((this.GetCalendarPreferenceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCalendarPreferenceCompleted(this, new GetCalendarPreferenceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCalendarURL", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetCalendarURL(int AppointmentID) {
+            object[] results = this.Invoke("GetCalendarURL", new object[] {
+                        AppointmentID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCalendarURLAsync(int AppointmentID) {
+            this.GetCalendarURLAsync(AppointmentID, null);
+        }
+        
+        /// <remarks/>
+        public void GetCalendarURLAsync(int AppointmentID, object userState) {
+            if ((this.GetCalendarURLOperationCompleted == null)) {
+                this.GetCalendarURLOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCalendarURLOperationCompleted);
+            }
+            this.InvokeAsync("GetCalendarURL", new object[] {
+                        AppointmentID}, this.GetCalendarURLOperationCompleted, userState);
+        }
+        
+        private void OnGetCalendarURLOperationCompleted(object arg) {
+            if ((this.GetCalendarURLCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCalendarURLCompleted(this, new GetCalendarURLCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddCalendarPreference", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string AddCalendarPreference(int UserID) {
+            object[] results = this.Invoke("AddCalendarPreference", new object[] {
+                        UserID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddCalendarPreferenceAsync(int UserID) {
+            this.AddCalendarPreferenceAsync(UserID, null);
+        }
+        
+        /// <remarks/>
+        public void AddCalendarPreferenceAsync(int UserID, object userState) {
+            if ((this.AddCalendarPreferenceOperationCompleted == null)) {
+                this.AddCalendarPreferenceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddCalendarPreferenceOperationCompleted);
+            }
+            this.InvokeAsync("AddCalendarPreference", new object[] {
+                        UserID}, this.AddCalendarPreferenceOperationCompleted, userState);
+        }
+        
+        private void OnAddCalendarPreferenceOperationCompleted(object arg) {
+            if ((this.AddCalendarPreferenceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddCalendarPreferenceCompleted(this, new AddCalendarPreferenceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaveCalendarPreference", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string SaveCalendarPreference(int UserID, string CalendarPreference) {
+            object[] results = this.Invoke("SaveCalendarPreference", new object[] {
+                        UserID,
+                        CalendarPreference});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SaveCalendarPreferenceAsync(int UserID, string CalendarPreference) {
+            this.SaveCalendarPreferenceAsync(UserID, CalendarPreference, null);
+        }
+        
+        /// <remarks/>
+        public void SaveCalendarPreferenceAsync(int UserID, string CalendarPreference, object userState) {
+            if ((this.SaveCalendarPreferenceOperationCompleted == null)) {
+                this.SaveCalendarPreferenceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveCalendarPreferenceOperationCompleted);
+            }
+            this.InvokeAsync("SaveCalendarPreference", new object[] {
+                        UserID,
+                        CalendarPreference}, this.SaveCalendarPreferenceOperationCompleted, userState);
+        }
+        
+        private void OnSaveCalendarPreferenceOperationCompleted(object arg) {
+            if ((this.SaveCalendarPreferenceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SaveCalendarPreferenceCompleted(this, new SaveCalendarPreferenceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendText", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string SendText(int UserID, string Message) {
+            object[] results = this.Invoke("SendText", new object[] {
+                        UserID,
+                        Message});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendTextAsync(int UserID, string Message) {
+            this.SendTextAsync(UserID, Message, null);
+        }
+        
+        /// <remarks/>
+        public void SendTextAsync(int UserID, string Message, object userState) {
+            if ((this.SendTextOperationCompleted == null)) {
+                this.SendTextOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendTextOperationCompleted);
+            }
+            this.InvokeAsync("SendText", new object[] {
+                        UserID,
+                        Message}, this.SendTextOperationCompleted, userState);
+        }
+        
+        private void OnSendTextOperationCompleted(object arg) {
+            if ((this.SendTextCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendTextCompleted(this, new SendTextCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendText2Phone", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string SendText2Phone(string PhoneNumber, string Message) {
+            object[] results = this.Invoke("SendText2Phone", new object[] {
+                        PhoneNumber,
+                        Message});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendText2PhoneAsync(string PhoneNumber, string Message) {
+            this.SendText2PhoneAsync(PhoneNumber, Message, null);
+        }
+        
+        /// <remarks/>
+        public void SendText2PhoneAsync(string PhoneNumber, string Message, object userState) {
+            if ((this.SendText2PhoneOperationCompleted == null)) {
+                this.SendText2PhoneOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendText2PhoneOperationCompleted);
+            }
+            this.InvokeAsync("SendText2Phone", new object[] {
+                        PhoneNumber,
+                        Message}, this.SendText2PhoneOperationCompleted, userState);
+        }
+        
+        private void OnSendText2PhoneOperationCompleted(object arg) {
+            if ((this.SendText2PhoneCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendText2PhoneCompleted(this, new SendText2PhoneCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUsersByRole", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public NS_MinUserInfo[] GetUsersByRole(string RoleName) {
+            object[] results = this.Invoke("GetUsersByRole", new object[] {
+                        RoleName});
+            return ((NS_MinUserInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetUsersByRoleAsync(string RoleName) {
+            this.GetUsersByRoleAsync(RoleName, null);
+        }
+        
+        /// <remarks/>
+        public void GetUsersByRoleAsync(string RoleName, object userState) {
+            if ((this.GetUsersByRoleOperationCompleted == null)) {
+                this.GetUsersByRoleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUsersByRoleOperationCompleted);
+            }
+            this.InvokeAsync("GetUsersByRole", new object[] {
+                        RoleName}, this.GetUsersByRoleOperationCompleted, userState);
+        }
+        
+        private void OnGetUsersByRoleOperationCompleted(object arg) {
+            if ((this.GetUsersByRoleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetUsersByRoleCompleted(this, new GetUsersByRoleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2116,7 +2623,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2197,7 +2704,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2338,7 +2845,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2395,7 +2902,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2429,7 +2936,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="AnetApi/xml/v1/schema/AnetApiSchema.xsd")]
     public enum messageTypeEnum {
@@ -2442,7 +2949,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2475,7 +2982,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2520,7 +3027,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2565,7 +3072,64 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class NS_MinUserInfo {
+        
+        private int userIDField;
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string phoneNumberField;
+        
+        /// <remarks/>
+        public int UserID {
+            get {
+                return this.userIDField;
+            }
+            set {
+                this.userIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PhoneNumber {
+            get {
+                return this.phoneNumberField;
+            }
+            set {
+                this.phoneNumberField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2790,7 +3354,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2837,7 +3401,7 @@ namespace SpafooWebService.MakeAppointment {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProfilePropertyDefinition))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UserInfo))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2846,7 +3410,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3059,7 +3623,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3236,141 +3800,12 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ServiceInfo {
-        
-        private int serviceIDField;
-        
-        private string serviceNameField;
-        
-        private string shortDescriptionField;
-        
-        private string imageField;
-        
-        private int parentIDField;
-        
-        private int qtyField;
-        
-        private decimal priceField;
-        
-        private int durationField;
-        
-        private int serviceTypeIDField;
-        
-        private ServiceInfo[] childrenField;
-        
-        /// <remarks/>
-        public int ServiceID {
-            get {
-                return this.serviceIDField;
-            }
-            set {
-                this.serviceIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ServiceName {
-            get {
-                return this.serviceNameField;
-            }
-            set {
-                this.serviceNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ShortDescription {
-            get {
-                return this.shortDescriptionField;
-            }
-            set {
-                this.shortDescriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Image {
-            get {
-                return this.imageField;
-            }
-            set {
-                this.imageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int ParentID {
-            get {
-                return this.parentIDField;
-            }
-            set {
-                this.parentIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Qty {
-            get {
-                return this.qtyField;
-            }
-            set {
-                this.qtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal Price {
-            get {
-                return this.priceField;
-            }
-            set {
-                this.priceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Duration {
-            get {
-                return this.durationField;
-            }
-            set {
-                this.durationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int ServiceTypeID {
-            get {
-                return this.serviceTypeIDField;
-            }
-            set {
-                this.serviceTypeIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ServiceInfo[] Children {
-            get {
-                return this.childrenField;
-            }
-            set {
-                this.childrenField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class AppointmentInfo {
+    public partial class BasicAppointmentInfo {
         
         private int appointmentIDField;
         
@@ -3411,6 +3846,8 @@ namespace SpafooWebService.MakeAppointment {
         private string cCNumberField;
         
         private string expiryField;
+        
+        private decimal discountField;
         
         /// <remarks/>
         public int AppointmentID {
@@ -3611,10 +4048,494 @@ namespace SpafooWebService.MakeAppointment {
                 this.expiryField = value;
             }
         }
+        
+        /// <remarks/>
+        public decimal Discount {
+            get {
+                return this.discountField;
+            }
+            set {
+                this.discountField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ServiceInfo {
+        
+        private int serviceIDField;
+        
+        private string serviceNameField;
+        
+        private string shortDescriptionField;
+        
+        private string imageField;
+        
+        private int parentIDField;
+        
+        private int qtyField;
+        
+        private decimal priceField;
+        
+        private decimal minimumField;
+        
+        private decimal rangeToField;
+        
+        private int durationField;
+        
+        private int serviceTypeIDField;
+        
+        private int providerIDField;
+        
+        private ServiceInfo[] childrenField;
+        
+        /// <remarks/>
+        public int ServiceID {
+            get {
+                return this.serviceIDField;
+            }
+            set {
+                this.serviceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ServiceName {
+            get {
+                return this.serviceNameField;
+            }
+            set {
+                this.serviceNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ShortDescription {
+            get {
+                return this.shortDescriptionField;
+            }
+            set {
+                this.shortDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Image {
+            get {
+                return this.imageField;
+            }
+            set {
+                this.imageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ParentID {
+            get {
+                return this.parentIDField;
+            }
+            set {
+                this.parentIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Qty {
+            get {
+                return this.qtyField;
+            }
+            set {
+                this.qtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Price {
+            get {
+                return this.priceField;
+            }
+            set {
+                this.priceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Minimum {
+            get {
+                return this.minimumField;
+            }
+            set {
+                this.minimumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal RangeTo {
+            get {
+                return this.rangeToField;
+            }
+            set {
+                this.rangeToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Duration {
+            get {
+                return this.durationField;
+            }
+            set {
+                this.durationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ServiceTypeID {
+            get {
+                return this.serviceTypeIDField;
+            }
+            set {
+                this.serviceTypeIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ProviderID {
+            get {
+                return this.providerIDField;
+            }
+            set {
+                this.providerIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ServiceInfo[] Children {
+            get {
+                return this.childrenField;
+            }
+            set {
+                this.childrenField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class AppointmentInfo {
+        
+        private int appointmentIDField;
+        
+        private string payProfileIDField;
+        
+        private string customerProfileIDField;
+        
+        private string payTxnIDField;
+        
+        private string authTxnIDField;
+        
+        private int clientIDField;
+        
+        private string clientPhoneField;
+        
+        private string clientEmailField;
+        
+        private int providerIDField;
+        
+        private string providerPhoneField;
+        
+        private string providerEmailField;
+        
+        private string forDateField;
+        
+        private System.DateTime orderDateField;
+        
+        private string atTimeField;
+        
+        private string endTimeField;
+        
+        private string commentsField;
+        
+        private int statusField;
+        
+        private int seenStatusField;
+        
+        private int addressIDField;
+        
+        private int hasNotifiedField;
+        
+        private ServiceInfo[] servicesField;
+        
+        private decimal amountField;
+        
+        private string cCNumberField;
+        
+        private string expiryField;
+        
+        private decimal discountField;
+        
+        /// <remarks/>
+        public int AppointmentID {
+            get {
+                return this.appointmentIDField;
+            }
+            set {
+                this.appointmentIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PayProfileID {
+            get {
+                return this.payProfileIDField;
+            }
+            set {
+                this.payProfileIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CustomerProfileID {
+            get {
+                return this.customerProfileIDField;
+            }
+            set {
+                this.customerProfileIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PayTxnID {
+            get {
+                return this.payTxnIDField;
+            }
+            set {
+                this.payTxnIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AuthTxnID {
+            get {
+                return this.authTxnIDField;
+            }
+            set {
+                this.authTxnIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ClientID {
+            get {
+                return this.clientIDField;
+            }
+            set {
+                this.clientIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ClientPhone {
+            get {
+                return this.clientPhoneField;
+            }
+            set {
+                this.clientPhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ClientEmail {
+            get {
+                return this.clientEmailField;
+            }
+            set {
+                this.clientEmailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ProviderID {
+            get {
+                return this.providerIDField;
+            }
+            set {
+                this.providerIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ProviderPhone {
+            get {
+                return this.providerPhoneField;
+            }
+            set {
+                this.providerPhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ProviderEmail {
+            get {
+                return this.providerEmailField;
+            }
+            set {
+                this.providerEmailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ForDate {
+            get {
+                return this.forDateField;
+            }
+            set {
+                this.forDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime OrderDate {
+            get {
+                return this.orderDateField;
+            }
+            set {
+                this.orderDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AtTime {
+            get {
+                return this.atTimeField;
+            }
+            set {
+                this.atTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EndTime {
+            get {
+                return this.endTimeField;
+            }
+            set {
+                this.endTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Comments {
+            get {
+                return this.commentsField;
+            }
+            set {
+                this.commentsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int SeenStatus {
+            get {
+                return this.seenStatusField;
+            }
+            set {
+                this.seenStatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int AddressID {
+            get {
+                return this.addressIDField;
+            }
+            set {
+                this.addressIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int HasNotified {
+            get {
+                return this.hasNotifiedField;
+            }
+            set {
+                this.hasNotifiedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ServiceInfo[] Services {
+            get {
+                return this.servicesField;
+            }
+            set {
+                this.servicesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CCNumber {
+            get {
+                return this.cCNumberField;
+            }
+            set {
+                this.cCNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Expiry {
+            get {
+                return this.expiryField;
+            }
+            set {
+                this.expiryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Discount {
+            get {
+                return this.discountField;
+            }
+            set {
+                this.discountField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3674,7 +4595,7 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3719,11 +4640,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AddAppointmentCompletedEventHandler(object sender, AddAppointmentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddAppointmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3745,11 +4666,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AddAddressCompletedEventHandler(object sender, AddAddressCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddAddressCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3771,11 +4692,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetAppLocationCompletedEventHandler(object sender, GetAppLocationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAppLocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3797,11 +4718,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ProviderDenyASAPCompletedEventHandler(object sender, ProviderDenyASAPCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ProviderDenyASAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3823,11 +4744,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateAppStatusCompletedEventHandler(object sender, UpdateAppStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateAppStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3849,15 +4770,45 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void AcceptAppointmentCompletedEventHandler(object sender, AcceptAppointmentCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AcceptAppointmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AcceptAppointmentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Unavailable4AppointmentCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateAppSeenStatusCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void MakeAppointmentCompletedEventHandler(object sender, MakeAppointmentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MakeAppointmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3879,11 +4830,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateAppBasicInfoCompletedEventHandler(object sender, UpdateAppBasicInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateAppBasicInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3905,11 +4856,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetAppointmentCompletedEventHandler(object sender, GetAppointmentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAppointmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3931,11 +4882,63 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetBasicAppointmentCompletedEventHandler(object sender, GetBasicAppointmentCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBasicAppointmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBasicAppointmentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BasicAppointmentInfo Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BasicAppointmentInfo)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ListAllAppointmentByAnyCompletedEventHandler(object sender, ListAllAppointmentByAnyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListAllAppointmentByAnyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListAllAppointmentByAnyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BasicAppointmentInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BasicAppointmentInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ListAppointmentByProviderCompletedEventHandler(object sender, ListAppointmentByProviderCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListAppointmentByProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3957,11 +4960,37 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ListAppointmentByProviderJSONCompletedEventHandler(object sender, ListAppointmentByProviderJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListAppointmentByProviderJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListAppointmentByProviderJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ListAppointmentByClientCompletedEventHandler(object sender, ListAppointmentByClientCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListAppointmentByClientCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3983,11 +5012,37 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ListAppointmentByClientJSONCompletedEventHandler(object sender, ListAppointmentByClientJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListAppointmentByClientJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListAppointmentByClientJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ListServicesByAppIDCompletedEventHandler(object sender, ListServicesByAppIDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListServicesByAppIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4009,23 +5064,23 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UpdateAppointmentCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RemoveAppCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void HideApp4MeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void IsProviderSlotFreeCompletedEventHandler(object sender, IsProviderSlotFreeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IsProviderSlotFreeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4047,11 +5102,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void IsProviderSlotFreeEMCompletedEventHandler(object sender, IsProviderSlotFreeEMCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IsProviderSlotFreeEMCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4073,11 +5128,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetProOccupiedSlotsCompletedEventHandler(object sender, GetProOccupiedSlotsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetProOccupiedSlotsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4099,11 +5154,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CanSetAvailabilityCompletedEventHandler(object sender, CanSetAvailabilityCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CanSetAvailabilityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4125,11 +5180,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetUsersInRoleCompletedEventHandler(object sender, GetUsersInRoleCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUsersInRoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4151,15 +5206,223 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AddRatingCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SendNotificationCompletedEventHandler(object sender, SendNotificationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendNotificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendNotificationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetCalendarPreferenceCompletedEventHandler(object sender, GetCalendarPreferenceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCalendarPreferenceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCalendarPreferenceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetCalendarURLCompletedEventHandler(object sender, GetCalendarURLCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCalendarURLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCalendarURLCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void AddCalendarPreferenceCompletedEventHandler(object sender, AddCalendarPreferenceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddCalendarPreferenceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddCalendarPreferenceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SaveCalendarPreferenceCompletedEventHandler(object sender, SaveCalendarPreferenceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SaveCalendarPreferenceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SaveCalendarPreferenceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SendTextCompletedEventHandler(object sender, SendTextCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendTextCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendTextCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SendText2PhoneCompletedEventHandler(object sender, SendText2PhoneCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendText2PhoneCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendText2PhoneCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetUsersByRoleCompletedEventHandler(object sender, GetUsersByRoleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetUsersByRoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetUsersByRoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public NS_MinUserInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((NS_MinUserInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void DidIRatedCompletedEventHandler(object sender, DidIRatedCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DidIRatedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4181,11 +5444,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ListRatingCompletedEventHandler(object sender, ListRatingCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4207,11 +5470,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ChargeCardCompletedEventHandler(object sender, ChargeCardCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChargeCardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4233,11 +5496,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AuthCardCompletedEventHandler(object sender, AuthCardCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AuthCardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4259,11 +5522,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AuthCardJSONCompletedEventHandler(object sender, AuthCardJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AuthCardJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4285,11 +5548,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ChargeProfileCompletedEventHandler(object sender, ChargeProfileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChargeProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4311,11 +5574,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ChargeProfileJSONCompletedEventHandler(object sender, ChargeProfileJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChargeProfileJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4337,11 +5600,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AuthProfileCompletedEventHandler(object sender, AuthProfileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AuthProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4363,11 +5626,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AuthProfileJSONCompletedEventHandler(object sender, AuthProfileJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AuthProfileJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4389,11 +5652,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ChargePreviousAuthCompletedEventHandler(object sender, ChargePreviousAuthCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChargePreviousAuthCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4415,11 +5678,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ChargePreviousAuthJSONCompletedEventHandler(object sender, ChargePreviousAuthJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChargePreviousAuthJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4441,11 +5704,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RefundCardCompletedEventHandler(object sender, RefundCardCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RefundCardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4467,11 +5730,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RefundCardJSONCompletedEventHandler(object sender, RefundCardJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RefundCardJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4493,11 +5756,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CreateCustomerProfileCompletedEventHandler(object sender, CreateCustomerProfileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CreateCustomerProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4519,11 +5782,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CreateCustomerProfileJSONCompletedEventHandler(object sender, CreateCustomerProfileJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CreateCustomerProfileJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4545,11 +5808,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CreateCustomerPaymentProfileCompletedEventHandler(object sender, CreateCustomerPaymentProfileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CreateCustomerPaymentProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4571,11 +5834,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CreateCustomerPaymentProfileJSONCompletedEventHandler(object sender, CreateCustomerPaymentProfileJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CreateCustomerPaymentProfileJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4597,11 +5860,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetCustomerProfileCompletedEventHandler(object sender, GetCustomerProfileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCustomerProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4623,11 +5886,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetCustomerProfileJSONCompletedEventHandler(object sender, GetCustomerProfileJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCustomerProfileJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4649,11 +5912,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void DeleteCustomerPayProfileCompletedEventHandler(object sender, DeleteCustomerPayProfileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DeleteCustomerPayProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4675,11 +5938,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void DeleteCustomerPayProfileJSONCompletedEventHandler(object sender, DeleteCustomerPayProfileJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DeleteCustomerPayProfileJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4701,11 +5964,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetAppointmentPhotosCompletedEventHandler(object sender, GetAppointmentPhotosCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAppointmentPhotosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4727,31 +5990,31 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AddAppointmentPhotoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RemoveAppointmentPhotoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void AddNotificationCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RemoveNotificationCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void RemoveUserNotificationCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetMyNotificationCompletedEventHandler(object sender, GetMyNotificationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetMyNotificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4773,11 +6036,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetAdminNotificationCompletedEventHandler(object sender, GetAdminNotificationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAdminNotificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4799,11 +6062,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetUserNotificationCompletedEventHandler(object sender, GetUserNotificationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserNotificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4825,11 +6088,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void WriteExcelCompletedEventHandler(object sender, WriteExcelCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WriteExcelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4851,11 +6114,11 @@ namespace SpafooWebService.MakeAppointment {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void GetHTMLCompletedEventHandler(object sender, GetHTMLCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetHTMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

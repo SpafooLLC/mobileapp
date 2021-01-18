@@ -94,6 +94,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AcceptAppointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptAppointmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AcceptAppointmentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Unavailable4Appointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Unavailable4AppointmentResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="UpdateAppSeenStatus">
         <s:complexType>
           <s:sequence>
@@ -120,6 +146,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="PayProfileID" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="EditAppID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="AnyProviderIDs" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -173,7 +201,11 @@
           <s:element minOccurs="0" maxOccurs="1" name="PayTxnID" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="AuthTxnID" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientEmail" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProviderPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProviderEmail" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="ForDate" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="OrderDate" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="AtTime" type="s:string" />
@@ -187,6 +219,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
           <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:decimal" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfServiceInfo">
@@ -203,9 +236,66 @@
           <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Minimum" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RangeTo" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="Duration" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfServiceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBasicAppointment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBasicAppointmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBasicAppointmentResult" type="tns:BasicAppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BasicAppointmentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AppointmentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayProfileID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerProfileID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayTxnID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthTxnID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="AtTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeenStatus" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasNotified" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Services" type="tns:ArrayOfServiceInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiry" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListAllAppointmentByAny">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListAllAppointmentByAnyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAllAppointmentByAnyResult" type="tns:ArrayOfBasicAppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBasicAppointmentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BasicAppointmentInfo" nillable="true" type="tns:BasicAppointmentInfo" />
         </s:sequence>
       </s:complexType>
       <s:element name="ListAppointmentByProvider">
@@ -227,6 +317,20 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="AppointmentInfo" nillable="true" type="tns:AppointmentInfo" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ListAppointmentByProviderJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAppointmentByProviderJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAppointmentByProviderJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ListAppointmentByClient">
         <s:complexType>
           <s:sequence>
@@ -238,6 +342,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ListAppointmentByClientResult" type="tns:ArrayOfAppointmentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAppointmentByClientJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAppointmentByClientJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAppointmentByClientJSONResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -475,6 +593,136 @@
       <s:element name="AddRatingResponse">
         <s:complexType />
       </s:element>
+      <s:element name="SendNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendNotificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendNotificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCalendarPreference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCalendarPreferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCalendarPreferenceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCalendarURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppointmentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCalendarURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCalendarURLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCalendarPreference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCalendarPreferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddCalendarPreferenceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCalendarPreference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CalendarPreference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCalendarPreferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveCalendarPreferenceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendText">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendTextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendTextResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendText2Phone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendText2PhoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendText2PhoneResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersByRoleResult" type="tns:ArrayOfNS_MinUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNS_MinUserInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NS_MinUserInfo" nillable="true" type="tns:NS_MinUserInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NS_MinUserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="DidIRated">
         <s:complexType>
           <s:sequence>
@@ -1014,12 +1262,15 @@
       <s:element name="int" type="s:int" />
       <s:element name="ClientLocation" nillable="true" type="tns:ClientLocation" />
       <s:element name="AppointmentInfo" nillable="true" type="tns:AppointmentInfo" />
+      <s:element name="BasicAppointmentInfo" nillable="true" type="tns:BasicAppointmentInfo" />
+      <s:element name="ArrayOfBasicAppointmentInfo" nillable="true" type="tns:ArrayOfBasicAppointmentInfo" />
       <s:element name="ArrayOfAppointmentInfo" nillable="true" type="tns:ArrayOfAppointmentInfo" />
+      <s:element name="string" nillable="true" type="s:string" />
       <s:element name="ArrayOfServiceInfo" nillable="true" type="tns:ArrayOfServiceInfo" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="ArrayOfUserInfo" nillable="true" type="tns:ArrayOfUserInfo" />
+      <s:element name="ArrayOfNS_MinUserInfo" nillable="true" type="tns:ArrayOfNS_MinUserInfo" />
       <s:element name="ArrayOfRatingInfo" nillable="true" type="tns:ArrayOfRatingInfo" />
-      <s:element name="string" nillable="true" type="s:string" />
       <s:element name="ArrayOfAppointmentPhotoInfo" nillable="true" type="tns:ArrayOfAppointmentPhotoInfo" />
       <s:element name="ArrayOfNotificationInfo" nillable="true" type="tns:ArrayOfNotificationInfo" />
     </s:schema>
@@ -1154,6 +1405,18 @@
   <wsdl:message name="UpdateAppStatusSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateAppStatusResponse" />
   </wsdl:message>
+  <wsdl:message name="AcceptAppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:AcceptAppointment" />
+  </wsdl:message>
+  <wsdl:message name="AcceptAppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:AcceptAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="Unavailable4AppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:Unavailable4Appointment" />
+  </wsdl:message>
+  <wsdl:message name="Unavailable4AppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:Unavailable4AppointmentResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdateAppSeenStatusSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateAppSeenStatus" />
   </wsdl:message>
@@ -1178,17 +1441,41 @@
   <wsdl:message name="GetAppointmentSoapOut">
     <wsdl:part name="parameters" element="tns:GetAppointmentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetBasicAppointmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBasicAppointment" />
+  </wsdl:message>
+  <wsdl:message name="GetBasicAppointmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBasicAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAllAppointmentByAnySoapIn">
+    <wsdl:part name="parameters" element="tns:ListAllAppointmentByAny" />
+  </wsdl:message>
+  <wsdl:message name="ListAllAppointmentByAnySoapOut">
+    <wsdl:part name="parameters" element="tns:ListAllAppointmentByAnyResponse" />
+  </wsdl:message>
   <wsdl:message name="ListAppointmentByProviderSoapIn">
     <wsdl:part name="parameters" element="tns:ListAppointmentByProvider" />
   </wsdl:message>
   <wsdl:message name="ListAppointmentByProviderSoapOut">
     <wsdl:part name="parameters" element="tns:ListAppointmentByProviderResponse" />
   </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByProviderJSON" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByProviderJSONResponse" />
+  </wsdl:message>
   <wsdl:message name="ListAppointmentByClientSoapIn">
     <wsdl:part name="parameters" element="tns:ListAppointmentByClient" />
   </wsdl:message>
   <wsdl:message name="ListAppointmentByClientSoapOut">
     <wsdl:part name="parameters" element="tns:ListAppointmentByClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByClientJSON" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAppointmentByClientJSONResponse" />
   </wsdl:message>
   <wsdl:message name="ListServicesByAppIDSoapIn">
     <wsdl:part name="parameters" element="tns:ListServicesByAppID" />
@@ -1249,6 +1536,54 @@
   </wsdl:message>
   <wsdl:message name="AddRatingSoapOut">
     <wsdl:part name="parameters" element="tns:AddRatingResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:SendNotification" />
+  </wsdl:message>
+  <wsdl:message name="SendNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:SendNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarPreferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCalendarPreference" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarPreferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCalendarPreferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarURLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCalendarURL" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarURLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCalendarURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCalendarPreferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:AddCalendarPreference" />
+  </wsdl:message>
+  <wsdl:message name="AddCalendarPreferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:AddCalendarPreferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveCalendarPreferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveCalendarPreference" />
+  </wsdl:message>
+  <wsdl:message name="SaveCalendarPreferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveCalendarPreferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendTextSoapIn">
+    <wsdl:part name="parameters" element="tns:SendText" />
+  </wsdl:message>
+  <wsdl:message name="SendTextSoapOut">
+    <wsdl:part name="parameters" element="tns:SendTextResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendText2PhoneSoapIn">
+    <wsdl:part name="parameters" element="tns:SendText2Phone" />
+  </wsdl:message>
+  <wsdl:message name="SendText2PhoneSoapOut">
+    <wsdl:part name="parameters" element="tns:SendText2PhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersByRole" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersByRoleResponse" />
   </wsdl:message>
   <wsdl:message name="DidIRatedSoapIn">
     <wsdl:part name="parameters" element="tns:DidIRated" />
@@ -1482,6 +1817,18 @@
   <wsdl:message name="UpdateAppStatusHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
+  <wsdl:message name="AcceptAppointmentHttpGetIn">
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AcceptAppointmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Unavailable4AppointmentHttpGetIn">
+    <wsdl:part name="ProviderId" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Unavailable4AppointmentHttpGetOut" />
   <wsdl:message name="UpdateAppSeenStatusHttpGetIn">
     <wsdl:part name="AppID" type="s:string" />
   </wsdl:message>
@@ -1500,6 +1847,8 @@
     <wsdl:part name="Comment" type="s:string" />
     <wsdl:part name="PayProfileID" type="s:string" />
     <wsdl:part name="EditAppID" type="s:string" />
+    <wsdl:part name="Discount" type="s:string" />
+    <wsdl:part name="AnyProviderIDs" type="s:string" />
   </wsdl:message>
   <wsdl:message name="MakeAppointmentHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1523,17 +1872,39 @@
   <wsdl:message name="GetAppointmentHttpGetOut">
     <wsdl:part name="Body" element="tns:AppointmentInfo" />
   </wsdl:message>
+  <wsdl:message name="GetBasicAppointmentHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBasicAppointmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:BasicAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAllAppointmentByAnyHttpGetIn" />
+  <wsdl:message name="ListAllAppointmentByAnyHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBasicAppointmentInfo" />
+  </wsdl:message>
   <wsdl:message name="ListAppointmentByProviderHttpGetIn">
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListAppointmentByProviderHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
   </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderJSONHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="ListAppointmentByClientHttpGetIn">
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListAppointmentByClientHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientJSONHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="ListServicesByAppIDHttpGetIn">
     <wsdl:part name="ID" type="s:string" />
@@ -1605,6 +1976,59 @@
     <wsdl:part name="AppID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AddRatingHttpGetOut" />
+  <wsdl:message name="SendNotificationHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="RoleID" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendNotificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarPreferenceHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarPreferenceHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarURLHttpGetIn">
+    <wsdl:part name="AppointmentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarURLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddCalendarPreferenceHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddCalendarPreferenceHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveCalendarPreferenceHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="CalendarPreference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveCalendarPreferenceHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendTextHttpGetIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendTextHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendText2PhoneHttpGetIn">
+    <wsdl:part name="PhoneNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendText2PhoneHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByRoleHttpGetIn">
+    <wsdl:part name="RoleName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByRoleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNS_MinUserInfo" />
+  </wsdl:message>
   <wsdl:message name="DidIRatedHttpGetIn">
     <wsdl:part name="ByUserID" type="s:string" />
     <wsdl:part name="AppID" type="s:string" />
@@ -1892,6 +2316,18 @@
   <wsdl:message name="UpdateAppStatusHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
+  <wsdl:message name="AcceptAppointmentHttpPostIn">
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AcceptAppointmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Unavailable4AppointmentHttpPostIn">
+    <wsdl:part name="ProviderId" type="s:string" />
+    <wsdl:part name="AppID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Unavailable4AppointmentHttpPostOut" />
   <wsdl:message name="UpdateAppSeenStatusHttpPostIn">
     <wsdl:part name="AppID" type="s:string" />
   </wsdl:message>
@@ -1910,6 +2346,8 @@
     <wsdl:part name="Comment" type="s:string" />
     <wsdl:part name="PayProfileID" type="s:string" />
     <wsdl:part name="EditAppID" type="s:string" />
+    <wsdl:part name="Discount" type="s:string" />
+    <wsdl:part name="AnyProviderIDs" type="s:string" />
   </wsdl:message>
   <wsdl:message name="MakeAppointmentHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1933,17 +2371,39 @@
   <wsdl:message name="GetAppointmentHttpPostOut">
     <wsdl:part name="Body" element="tns:AppointmentInfo" />
   </wsdl:message>
+  <wsdl:message name="GetBasicAppointmentHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBasicAppointmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:BasicAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAllAppointmentByAnyHttpPostIn" />
+  <wsdl:message name="ListAllAppointmentByAnyHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBasicAppointmentInfo" />
+  </wsdl:message>
   <wsdl:message name="ListAppointmentByProviderHttpPostIn">
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListAppointmentByProviderHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
   </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderJSONHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByProviderJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="ListAppointmentByClientHttpPostIn">
     <wsdl:part name="UID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListAppointmentByClientHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfAppointmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientJSONHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAppointmentByClientJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="ListServicesByAppIDHttpPostIn">
     <wsdl:part name="ID" type="s:string" />
@@ -2015,6 +2475,59 @@
     <wsdl:part name="AppID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AddRatingHttpPostOut" />
+  <wsdl:message name="SendNotificationHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="RoleID" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendNotificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarPreferenceHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarPreferenceHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarURLHttpPostIn">
+    <wsdl:part name="AppointmentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCalendarURLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddCalendarPreferenceHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddCalendarPreferenceHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveCalendarPreferenceHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="CalendarPreference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveCalendarPreferenceHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendTextHttpPostIn">
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendTextHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendText2PhoneHttpPostIn">
+    <wsdl:part name="PhoneNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendText2PhoneHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByRoleHttpPostIn">
+    <wsdl:part name="RoleName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByRoleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNS_MinUserInfo" />
+  </wsdl:message>
   <wsdl:message name="DidIRatedHttpPostIn">
     <wsdl:part name="ByUserID" type="s:string" />
     <wsdl:part name="AppID" type="s:string" />
@@ -2283,6 +2796,14 @@
       <wsdl:input message="tns:UpdateAppStatusSoapIn" />
       <wsdl:output message="tns:UpdateAppStatusSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <wsdl:input message="tns:AcceptAppointmentSoapIn" />
+      <wsdl:output message="tns:AcceptAppointmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <wsdl:input message="tns:Unavailable4AppointmentSoapIn" />
+      <wsdl:output message="tns:Unavailable4AppointmentSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <wsdl:input message="tns:UpdateAppSeenStatusSoapIn" />
       <wsdl:output message="tns:UpdateAppSeenStatusSoapOut" />
@@ -2299,13 +2820,29 @@
       <wsdl:input message="tns:GetAppointmentSoapIn" />
       <wsdl:output message="tns:GetAppointmentSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <wsdl:input message="tns:GetBasicAppointmentSoapIn" />
+      <wsdl:output message="tns:GetBasicAppointmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <wsdl:input message="tns:ListAllAppointmentByAnySoapIn" />
+      <wsdl:output message="tns:ListAllAppointmentByAnySoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <wsdl:input message="tns:ListAppointmentByProviderSoapIn" />
       <wsdl:output message="tns:ListAppointmentByProviderSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <wsdl:input message="tns:ListAppointmentByProviderJSONSoapIn" />
+      <wsdl:output message="tns:ListAppointmentByProviderJSONSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <wsdl:input message="tns:ListAppointmentByClientSoapIn" />
       <wsdl:output message="tns:ListAppointmentByClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <wsdl:input message="tns:ListAppointmentByClientJSONSoapIn" />
+      <wsdl:output message="tns:ListAppointmentByClientJSONSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ListServicesByAppID">
       <wsdl:input message="tns:ListServicesByAppIDSoapIn" />
@@ -2346,6 +2883,38 @@
     <wsdl:operation name="AddRating">
       <wsdl:input message="tns:AddRatingSoapIn" />
       <wsdl:output message="tns:AddRatingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <wsdl:input message="tns:SendNotificationSoapIn" />
+      <wsdl:output message="tns:SendNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <wsdl:input message="tns:GetCalendarPreferenceSoapIn" />
+      <wsdl:output message="tns:GetCalendarPreferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <wsdl:input message="tns:GetCalendarURLSoapIn" />
+      <wsdl:output message="tns:GetCalendarURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <wsdl:input message="tns:AddCalendarPreferenceSoapIn" />
+      <wsdl:output message="tns:AddCalendarPreferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <wsdl:input message="tns:SaveCalendarPreferenceSoapIn" />
+      <wsdl:output message="tns:SaveCalendarPreferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <wsdl:input message="tns:SendTextSoapIn" />
+      <wsdl:output message="tns:SendTextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <wsdl:input message="tns:SendText2PhoneSoapIn" />
+      <wsdl:output message="tns:SendText2PhoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <wsdl:input message="tns:GetUsersByRoleSoapIn" />
+      <wsdl:output message="tns:GetUsersByRoleSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DidIRated">
       <wsdl:input message="tns:DidIRatedSoapIn" />
@@ -2497,6 +3066,14 @@
       <wsdl:input message="tns:UpdateAppStatusHttpGetIn" />
       <wsdl:output message="tns:UpdateAppStatusHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <wsdl:input message="tns:AcceptAppointmentHttpGetIn" />
+      <wsdl:output message="tns:AcceptAppointmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <wsdl:input message="tns:Unavailable4AppointmentHttpGetIn" />
+      <wsdl:output message="tns:Unavailable4AppointmentHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <wsdl:input message="tns:UpdateAppSeenStatusHttpGetIn" />
       <wsdl:output message="tns:UpdateAppSeenStatusHttpGetOut" />
@@ -2513,13 +3090,29 @@
       <wsdl:input message="tns:GetAppointmentHttpGetIn" />
       <wsdl:output message="tns:GetAppointmentHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <wsdl:input message="tns:GetBasicAppointmentHttpGetIn" />
+      <wsdl:output message="tns:GetBasicAppointmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <wsdl:input message="tns:ListAllAppointmentByAnyHttpGetIn" />
+      <wsdl:output message="tns:ListAllAppointmentByAnyHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <wsdl:input message="tns:ListAppointmentByProviderHttpGetIn" />
       <wsdl:output message="tns:ListAppointmentByProviderHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <wsdl:input message="tns:ListAppointmentByProviderJSONHttpGetIn" />
+      <wsdl:output message="tns:ListAppointmentByProviderJSONHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <wsdl:input message="tns:ListAppointmentByClientHttpGetIn" />
       <wsdl:output message="tns:ListAppointmentByClientHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <wsdl:input message="tns:ListAppointmentByClientJSONHttpGetIn" />
+      <wsdl:output message="tns:ListAppointmentByClientJSONHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="ListServicesByAppID">
       <wsdl:input message="tns:ListServicesByAppIDHttpGetIn" />
@@ -2560,6 +3153,38 @@
     <wsdl:operation name="AddRating">
       <wsdl:input message="tns:AddRatingHttpGetIn" />
       <wsdl:output message="tns:AddRatingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <wsdl:input message="tns:SendNotificationHttpGetIn" />
+      <wsdl:output message="tns:SendNotificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <wsdl:input message="tns:GetCalendarPreferenceHttpGetIn" />
+      <wsdl:output message="tns:GetCalendarPreferenceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <wsdl:input message="tns:GetCalendarURLHttpGetIn" />
+      <wsdl:output message="tns:GetCalendarURLHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <wsdl:input message="tns:AddCalendarPreferenceHttpGetIn" />
+      <wsdl:output message="tns:AddCalendarPreferenceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <wsdl:input message="tns:SaveCalendarPreferenceHttpGetIn" />
+      <wsdl:output message="tns:SaveCalendarPreferenceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <wsdl:input message="tns:SendTextHttpGetIn" />
+      <wsdl:output message="tns:SendTextHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <wsdl:input message="tns:SendText2PhoneHttpGetIn" />
+      <wsdl:output message="tns:SendText2PhoneHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <wsdl:input message="tns:GetUsersByRoleHttpGetIn" />
+      <wsdl:output message="tns:GetUsersByRoleHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="DidIRated">
       <wsdl:input message="tns:DidIRatedHttpGetIn" />
@@ -2711,6 +3336,14 @@
       <wsdl:input message="tns:UpdateAppStatusHttpPostIn" />
       <wsdl:output message="tns:UpdateAppStatusHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <wsdl:input message="tns:AcceptAppointmentHttpPostIn" />
+      <wsdl:output message="tns:AcceptAppointmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <wsdl:input message="tns:Unavailable4AppointmentHttpPostIn" />
+      <wsdl:output message="tns:Unavailable4AppointmentHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <wsdl:input message="tns:UpdateAppSeenStatusHttpPostIn" />
       <wsdl:output message="tns:UpdateAppSeenStatusHttpPostOut" />
@@ -2727,13 +3360,29 @@
       <wsdl:input message="tns:GetAppointmentHttpPostIn" />
       <wsdl:output message="tns:GetAppointmentHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <wsdl:input message="tns:GetBasicAppointmentHttpPostIn" />
+      <wsdl:output message="tns:GetBasicAppointmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <wsdl:input message="tns:ListAllAppointmentByAnyHttpPostIn" />
+      <wsdl:output message="tns:ListAllAppointmentByAnyHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <wsdl:input message="tns:ListAppointmentByProviderHttpPostIn" />
       <wsdl:output message="tns:ListAppointmentByProviderHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <wsdl:input message="tns:ListAppointmentByProviderJSONHttpPostIn" />
+      <wsdl:output message="tns:ListAppointmentByProviderJSONHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <wsdl:input message="tns:ListAppointmentByClientHttpPostIn" />
       <wsdl:output message="tns:ListAppointmentByClientHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <wsdl:input message="tns:ListAppointmentByClientJSONHttpPostIn" />
+      <wsdl:output message="tns:ListAppointmentByClientJSONHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ListServicesByAppID">
       <wsdl:input message="tns:ListServicesByAppIDHttpPostIn" />
@@ -2774,6 +3423,38 @@
     <wsdl:operation name="AddRating">
       <wsdl:input message="tns:AddRatingHttpPostIn" />
       <wsdl:output message="tns:AddRatingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <wsdl:input message="tns:SendNotificationHttpPostIn" />
+      <wsdl:output message="tns:SendNotificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <wsdl:input message="tns:GetCalendarPreferenceHttpPostIn" />
+      <wsdl:output message="tns:GetCalendarPreferenceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <wsdl:input message="tns:GetCalendarURLHttpPostIn" />
+      <wsdl:output message="tns:GetCalendarURLHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <wsdl:input message="tns:AddCalendarPreferenceHttpPostIn" />
+      <wsdl:output message="tns:AddCalendarPreferenceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <wsdl:input message="tns:SaveCalendarPreferenceHttpPostIn" />
+      <wsdl:output message="tns:SaveCalendarPreferenceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <wsdl:input message="tns:SendTextHttpPostIn" />
+      <wsdl:output message="tns:SendTextHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <wsdl:input message="tns:SendText2PhoneHttpPostIn" />
+      <wsdl:output message="tns:SendText2PhoneHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <wsdl:input message="tns:GetUsersByRoleHttpPostIn" />
+      <wsdl:output message="tns:GetUsersByRoleHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="DidIRated">
       <wsdl:input message="tns:DidIRatedHttpPostIn" />
@@ -2951,6 +3632,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <soap:operation soapAction="http://tempuri.org/AcceptAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <soap:operation soapAction="http://tempuri.org/Unavailable4Appointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <soap:operation soapAction="http://tempuri.org/UpdateAppSeenStatus" style="document" />
       <wsdl:input>
@@ -2987,6 +3686,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <soap:operation soapAction="http://tempuri.org/GetBasicAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <soap:operation soapAction="http://tempuri.org/ListAllAppointmentByAny" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <soap:operation soapAction="http://tempuri.org/ListAppointmentByProvider" style="document" />
       <wsdl:input>
@@ -2996,8 +3713,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <soap:operation soapAction="http://tempuri.org/ListAppointmentByProviderJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <soap:operation soapAction="http://tempuri.org/ListAppointmentByClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <soap:operation soapAction="http://tempuri.org/ListAppointmentByClientJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3088,6 +3823,78 @@
     </wsdl:operation>
     <wsdl:operation name="AddRating">
       <soap:operation soapAction="http://tempuri.org/AddRating" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <soap:operation soapAction="http://tempuri.org/SendNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <soap:operation soapAction="http://tempuri.org/GetCalendarPreference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <soap:operation soapAction="http://tempuri.org/GetCalendarURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <soap:operation soapAction="http://tempuri.org/AddCalendarPreference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <soap:operation soapAction="http://tempuri.org/SaveCalendarPreference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <soap:operation soapAction="http://tempuri.org/SendText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <soap:operation soapAction="http://tempuri.org/SendText2Phone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <soap:operation soapAction="http://tempuri.org/GetUsersByRole" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3431,6 +4238,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <soap12:operation soapAction="http://tempuri.org/AcceptAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <soap12:operation soapAction="http://tempuri.org/Unavailable4Appointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <soap12:operation soapAction="http://tempuri.org/UpdateAppSeenStatus" style="document" />
       <wsdl:input>
@@ -3467,6 +4292,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <soap12:operation soapAction="http://tempuri.org/GetBasicAppointment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <soap12:operation soapAction="http://tempuri.org/ListAllAppointmentByAny" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <soap12:operation soapAction="http://tempuri.org/ListAppointmentByProvider" style="document" />
       <wsdl:input>
@@ -3476,8 +4319,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <soap12:operation soapAction="http://tempuri.org/ListAppointmentByProviderJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <soap12:operation soapAction="http://tempuri.org/ListAppointmentByClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <soap12:operation soapAction="http://tempuri.org/ListAppointmentByClientJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3568,6 +4429,78 @@
     </wsdl:operation>
     <wsdl:operation name="AddRating">
       <soap12:operation soapAction="http://tempuri.org/AddRating" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <soap12:operation soapAction="http://tempuri.org/SendNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <soap12:operation soapAction="http://tempuri.org/GetCalendarPreference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <soap12:operation soapAction="http://tempuri.org/GetCalendarURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <soap12:operation soapAction="http://tempuri.org/AddCalendarPreference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <soap12:operation soapAction="http://tempuri.org/SaveCalendarPreference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <soap12:operation soapAction="http://tempuri.org/SendText" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <soap12:operation soapAction="http://tempuri.org/SendText2Phone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersByRole" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3911,6 +4844,22 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <http:operation location="/AcceptAppointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <http:operation location="/Unavailable4Appointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <http:operation location="/UpdateAppSeenStatus" />
       <wsdl:input>
@@ -3945,6 +4894,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <http:operation location="/GetBasicAppointment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <http:operation location="/ListAllAppointmentByAny" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <http:operation location="/ListAppointmentByProvider" />
       <wsdl:input>
@@ -3954,8 +4921,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <http:operation location="/ListAppointmentByProviderJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <http:operation location="/ListAppointmentByClient" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <http:operation location="/ListAppointmentByClientJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4044,6 +5029,78 @@
         <http:urlEncoded />
       </wsdl:input>
       <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <http:operation location="/SendNotification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <http:operation location="/GetCalendarPreference" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <http:operation location="/GetCalendarURL" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <http:operation location="/AddCalendarPreference" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <http:operation location="/SaveCalendarPreference" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <http:operation location="/SendText" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <http:operation location="/SendText2Phone" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <http:operation location="/GetUsersByRole" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DidIRated">
       <http:operation location="/DidIRated" />
@@ -4371,6 +5428,22 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AcceptAppointment">
+      <http:operation location="/AcceptAppointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unavailable4Appointment">
+      <http:operation location="/Unavailable4Appointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="UpdateAppSeenStatus">
       <http:operation location="/UpdateAppSeenStatus" />
       <wsdl:input>
@@ -4405,6 +5478,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBasicAppointment">
+      <http:operation location="/GetBasicAppointment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllAppointmentByAny">
+      <http:operation location="/ListAllAppointmentByAny" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByProvider">
       <http:operation location="/ListAppointmentByProvider" />
       <wsdl:input>
@@ -4414,8 +5505,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByProviderJSON">
+      <http:operation location="/ListAppointmentByProviderJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListAppointmentByClient">
       <http:operation location="/ListAppointmentByClient" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAppointmentByClientJSON">
+      <http:operation location="/ListAppointmentByClientJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -4504,6 +5613,78 @@
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
       <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendNotification">
+      <http:operation location="/SendNotification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarPreference">
+      <http:operation location="/GetCalendarPreference" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarURL">
+      <http:operation location="/GetCalendarURL" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCalendarPreference">
+      <http:operation location="/AddCalendarPreference" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCalendarPreference">
+      <http:operation location="/SaveCalendarPreference" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText">
+      <http:operation location="/SendText" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendText2Phone">
+      <http:operation location="/SendText2Phone" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByRole">
+      <http:operation location="/GetUsersByRole" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DidIRated">
       <http:operation location="/DidIRated" />

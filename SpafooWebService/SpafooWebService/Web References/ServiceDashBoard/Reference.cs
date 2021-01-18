@@ -23,7 +23,7 @@ namespace SpafooWebService.ServiceDashBoard {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="rhSoap", Namespace="http://tempuri.org/")]
@@ -50,6 +50,8 @@ namespace SpafooWebService.ServiceDashBoard {
         
         private System.Threading.SendOrPostCallback GetUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetUserInfoOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetUserJSONOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetUserPicOperationCompleted;
@@ -61,6 +63,8 @@ namespace SpafooWebService.ServiceDashBoard {
         private System.Threading.SendOrPostCallback GetMyRaReOnAppOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetWithInMileOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateCouponCountOperationCompleted;
         
         private System.Threading.SendOrPostCallback ValidateCouponOperationCompleted;
         
@@ -75,6 +79,8 @@ namespace SpafooWebService.ServiceDashBoard {
         private System.Threading.SendOrPostCallback AddCouponOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateCouponOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ProviderServicesMappingOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -145,6 +151,9 @@ namespace SpafooWebService.ServiceDashBoard {
         public event GetUserCompletedEventHandler GetUserCompleted;
         
         /// <remarks/>
+        public event GetUserInfoCompletedEventHandler GetUserInfoCompleted;
+        
+        /// <remarks/>
         public event GetUserJSONCompletedEventHandler GetUserJSONCompleted;
         
         /// <remarks/>
@@ -161,6 +170,9 @@ namespace SpafooWebService.ServiceDashBoard {
         
         /// <remarks/>
         public event GetWithInMileCompletedEventHandler GetWithInMileCompleted;
+        
+        /// <remarks/>
+        public event UpdateCouponCountCompletedEventHandler UpdateCouponCountCompleted;
         
         /// <remarks/>
         public event ValidateCouponCompletedEventHandler ValidateCouponCompleted;
@@ -182,6 +194,9 @@ namespace SpafooWebService.ServiceDashBoard {
         
         /// <remarks/>
         public event UpdateCouponCompletedEventHandler UpdateCouponCompleted;
+        
+        /// <remarks/>
+        public event ProviderServicesMappingCompletedEventHandler ProviderServicesMappingCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetServicesIn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -396,10 +411,10 @@ namespace SpafooWebService.ServiceDashBoard {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListProvidersByServices", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public UserInfo[] ListProvidersByServices(string SIDs) {
+        public UserInfo2[] ListProvidersByServices(string SIDs) {
             object[] results = this.Invoke("ListProvidersByServices", new object[] {
                         SIDs});
-            return ((UserInfo[])(results[0]));
+            return ((UserInfo2[])(results[0]));
         }
         
         /// <remarks/>
@@ -478,6 +493,35 @@ namespace SpafooWebService.ServiceDashBoard {
             if ((this.GetUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetUserCompleted(this, new GetUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUserInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserInfo GetUserInfo(int UID) {
+            object[] results = this.Invoke("GetUserInfo", new object[] {
+                        UID});
+            return ((UserInfo)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetUserInfoAsync(int UID) {
+            this.GetUserInfoAsync(UID, null);
+        }
+        
+        /// <remarks/>
+        public void GetUserInfoAsync(int UID, object userState) {
+            if ((this.GetUserInfoOperationCompleted == null)) {
+                this.GetUserInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUserInfoOperationCompleted);
+            }
+            this.InvokeAsync("GetUserInfo", new object[] {
+                        UID}, this.GetUserInfoOperationCompleted, userState);
+        }
+        
+        private void OnGetUserInfoOperationCompleted(object arg) {
+            if ((this.GetUserInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetUserInfoCompleted(this, new GetUserInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -652,6 +696,34 @@ namespace SpafooWebService.ServiceDashBoard {
             if ((this.GetWithInMileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetWithInMileCompleted(this, new GetWithInMileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCouponCount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateCouponCount(string Code) {
+            this.Invoke("UpdateCouponCount", new object[] {
+                        Code});
+        }
+        
+        /// <remarks/>
+        public void UpdateCouponCountAsync(string Code) {
+            this.UpdateCouponCountAsync(Code, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateCouponCountAsync(string Code, object userState) {
+            if ((this.UpdateCouponCountOperationCompleted == null)) {
+                this.UpdateCouponCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCouponCountOperationCompleted);
+            }
+            this.InvokeAsync("UpdateCouponCount", new object[] {
+                        Code}, this.UpdateCouponCountOperationCompleted, userState);
+        }
+        
+        private void OnUpdateCouponCountOperationCompleted(object arg) {
+            if ((this.UpdateCouponCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateCouponCountCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -882,6 +954,35 @@ namespace SpafooWebService.ServiceDashBoard {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ProviderServicesMapping", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int ProviderServicesMapping(int UserID) {
+            object[] results = this.Invoke("ProviderServicesMapping", new object[] {
+                        UserID});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ProviderServicesMappingAsync(int UserID) {
+            this.ProviderServicesMappingAsync(UserID, null);
+        }
+        
+        /// <remarks/>
+        public void ProviderServicesMappingAsync(int UserID, object userState) {
+            if ((this.ProviderServicesMappingOperationCompleted == null)) {
+                this.ProviderServicesMappingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnProviderServicesMappingOperationCompleted);
+            }
+            this.InvokeAsync("ProviderServicesMapping", new object[] {
+                        UserID}, this.ProviderServicesMappingOperationCompleted, userState);
+        }
+        
+        private void OnProviderServicesMappingOperationCompleted(object arg) {
+            if ((this.ProviderServicesMappingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ProviderServicesMappingCompleted(this, new ProviderServicesMappingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -901,7 +1002,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -921,6 +1022,10 @@ namespace SpafooWebService.ServiceDashBoard {
         private int qtyField;
         
         private decimal priceField;
+        
+        private decimal minimumField;
+        
+        private decimal rangeToField;
         
         private int durationField;
         
@@ -999,6 +1104,26 @@ namespace SpafooWebService.ServiceDashBoard {
         }
         
         /// <remarks/>
+        public decimal Minimum {
+            get {
+                return this.minimumField;
+            }
+            set {
+                this.minimumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal RangeTo {
+            get {
+                return this.rangeToField;
+            }
+            set {
+                this.rangeToField = value;
+            }
+        }
+        
+        /// <remarks/>
         public int Duration {
             get {
                 return this.durationField;
@@ -1030,7 +1155,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1052,6 +1177,8 @@ namespace SpafooWebService.ServiceDashBoard {
         private System.DateTime endsOnField;
         
         private int noOfCouponsField;
+        
+        private int remainsField;
         
         /// <remarks/>
         public int ID {
@@ -1132,10 +1259,20 @@ namespace SpafooWebService.ServiceDashBoard {
                 this.noOfCouponsField = value;
             }
         }
+        
+        /// <remarks/>
+        public int Remains {
+            get {
+                return this.remainsField;
+            }
+            set {
+                this.remainsField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1216,7 +1353,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1249,7 +1386,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1282,7 +1419,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1507,7 +1644,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1554,7 +1691,7 @@ namespace SpafooWebService.ServiceDashBoard {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProfilePropertyDefinition))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UserInfo))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1563,7 +1700,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1776,7 +1913,7 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1953,11 +2090,44 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class UserInfo2 {
+        
+        private UserInfo userInfoField;
+        
+        private ServiceInfo[] servicesField;
+        
+        /// <remarks/>
+        public UserInfo userInfo {
+            get {
+                return this.userInfoField;
+            }
+            set {
+                this.userInfoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ServiceInfo[] services {
+            get {
+                return this.servicesField;
+            }
+            set {
+                this.servicesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetServicesInCompletedEventHandler(object sender, GetServicesInCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetServicesInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1979,11 +2149,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetServiceCompletedEventHandler(object sender, GetServiceCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2005,11 +2175,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ListRootBottomServiceCompletedEventHandler(object sender, ListRootBottomServiceCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListRootBottomServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2031,11 +2201,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetProviderServicesCompletedEventHandler(object sender, GetProviderServicesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetProviderServicesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2057,11 +2227,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddServiceCompletedEventHandler(object sender, AddServiceCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2083,19 +2253,19 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RemoveServiceCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AssignServiceCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ListProvidersByServicesCompletedEventHandler(object sender, ListProvidersByServicesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListProvidersByServicesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2108,20 +2278,20 @@ namespace SpafooWebService.ServiceDashBoard {
         }
         
         /// <remarks/>
-        public UserInfo[] Result {
+        public UserInfo2[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((UserInfo[])(this.results[0]));
+                return ((UserInfo2[])(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetWorkSamplesCompletedEventHandler(object sender, GetWorkSamplesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWorkSamplesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2143,11 +2313,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserCompletedEventHandler(object sender, GetUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2169,11 +2339,37 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetUserInfoCompletedEventHandler(object sender, GetUserInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetUserInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetUserInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserInfo Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserInfo)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserJSONCompletedEventHandler(object sender, GetUserJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2195,11 +2391,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetUserPicCompletedEventHandler(object sender, GetUserPicCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserPicCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2221,11 +2417,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetMyRatingCompletedEventHandler(object sender, GetMyRatingCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetMyRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2247,11 +2443,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetMyReviewCompletedEventHandler(object sender, GetMyReviewCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetMyReviewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2273,11 +2469,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetMyRaReOnAppCompletedEventHandler(object sender, GetMyRaReOnAppCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetMyRaReOnAppCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2299,11 +2495,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetWithInMileCompletedEventHandler(object sender, GetWithInMileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWithInMileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2325,11 +2521,15 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void UpdateCouponCountCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ValidateCouponCompletedEventHandler(object sender, ValidateCouponCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ValidateCouponCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2351,11 +2551,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ValidateCouponJSONCompletedEventHandler(object sender, ValidateCouponJSONCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ValidateCouponJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2377,11 +2577,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetCouponCompletedEventHandler(object sender, GetCouponCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCouponCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2403,11 +2603,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ListCouponCompletedEventHandler(object sender, ListCouponCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListCouponCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2429,15 +2629,15 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void RemoveCouponCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void AddCouponCompletedEventHandler(object sender, AddCouponCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddCouponCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2459,11 +2659,11 @@ namespace SpafooWebService.ServiceDashBoard {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateCouponCompletedEventHandler(object sender, UpdateCouponCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateCouponCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2471,6 +2671,32 @@ namespace SpafooWebService.ServiceDashBoard {
         private object[] results;
         
         internal UpdateCouponCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ProviderServicesMappingCompletedEventHandler(object sender, ProviderServicesMappingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ProviderServicesMappingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ProviderServicesMappingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

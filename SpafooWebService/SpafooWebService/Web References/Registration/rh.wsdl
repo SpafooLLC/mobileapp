@@ -147,6 +147,20 @@
           <s:element minOccurs="0" maxOccurs="1" name="Questions" type="tns:ArrayOfQuestionInfo" />
         </s:sequence>
       </s:complexType>
+      <s:element name="RemoveFormUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFormUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveFormUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetStepQuestions">
         <s:complexType>
           <s:sequence>
@@ -305,6 +319,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="UR" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="SRVC" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -426,6 +441,39 @@
       <s:element name="AddFormUserResponse">
         <s:complexType />
       </s:element>
+      <s:element name="ListUserForms">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListUserFormsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListUserFormsResult" type="tns:ArrayOfFormUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFormUserInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FormUserInfo" nillable="true" type="tns:FormUserInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FormUserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastSavedDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="IsFormUserValidated">
         <s:complexType>
           <s:sequence>
@@ -583,6 +631,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="RequestVCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmailID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestVCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RequestVCodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyCodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePwd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePwdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangePwdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="ArrayOfSteps" nillable="true" type="tns:ArrayOfSteps" />
       <s:element name="ArrayOfFormUserSteps" nillable="true" type="tns:ArrayOfFormUserSteps" />
@@ -591,6 +684,7 @@
       <s:element name="QCategoryInfo" nillable="true" type="tns:QCategoryInfo" />
       <s:element name="QuestionInfo" nillable="true" type="tns:QuestionInfo" />
       <s:element name="ArrayOfNSR_User" nillable="true" type="tns:ArrayOfNSR_User" />
+      <s:element name="ArrayOfFormUserInfo" nillable="true" type="tns:ArrayOfFormUserInfo" />
       <s:element name="ArrayOfServiceInfo" nillable="true" type="tns:ArrayOfServiceInfo" />
       <s:element name="ArrayOfNS_UserHardware" nillable="true" type="tns:ArrayOfNS_UserHardware" />
     </s:schema>
@@ -618,6 +712,12 @@
   </wsdl:message>
   <wsdl:message name="GetFormUserReponseSoapOut">
     <wsdl:part name="parameters" element="tns:GetFormUserReponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFormUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveFormUser" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFormUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFormUserResponse" />
   </wsdl:message>
   <wsdl:message name="GetStepQuestionsSoapIn">
     <wsdl:part name="parameters" element="tns:GetStepQuestions" />
@@ -721,6 +821,12 @@
   <wsdl:message name="AddFormUserSoapOut">
     <wsdl:part name="parameters" element="tns:AddFormUserResponse" />
   </wsdl:message>
+  <wsdl:message name="ListUserFormsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListUserForms" />
+  </wsdl:message>
+  <wsdl:message name="ListUserFormsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListUserFormsResponse" />
+  </wsdl:message>
   <wsdl:message name="IsFormUserValidatedSoapIn">
     <wsdl:part name="parameters" element="tns:IsFormUserValidated" />
   </wsdl:message>
@@ -769,6 +875,24 @@
   <wsdl:message name="ListUserHardwareSoapOut">
     <wsdl:part name="parameters" element="tns:ListUserHardwareResponse" />
   </wsdl:message>
+  <wsdl:message name="RequestVCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestVCode" />
+  </wsdl:message>
+  <wsdl:message name="RequestVCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestVCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyCode" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePwdSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePwd" />
+  </wsdl:message>
+  <wsdl:message name="ChangePwdSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePwdResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldHttpGetIn" />
   <wsdl:message name="HelloWorldHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -788,6 +912,12 @@
   </wsdl:message>
   <wsdl:message name="GetFormUserReponseHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfFormUserSteps" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFormUserHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFormUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetStepQuestionsHttpGetIn">
     <wsdl:part name="StepID" type="s:string" />
@@ -875,6 +1005,7 @@
     <wsdl:part name="PID" type="s:string" />
     <wsdl:part name="UR" type="s:string" />
     <wsdl:part name="SRVC" type="s:string" />
+    <wsdl:part name="MID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="RegisterUserHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -928,6 +1059,10 @@
     <wsdl:part name="Email" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AddFormUserHttpGetOut" />
+  <wsdl:message name="ListUserFormsHttpGetIn" />
+  <wsdl:message name="ListUserFormsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFormUserInfo" />
+  </wsdl:message>
   <wsdl:message name="IsFormUserValidatedHttpGetIn">
     <wsdl:part name="un" type="s:string" />
     <wsdl:part name="p" type="s:string" />
@@ -993,6 +1128,27 @@
   <wsdl:message name="ListUserHardwareHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfNS_UserHardware" />
   </wsdl:message>
+  <wsdl:message name="RequestVCodeHttpGetIn">
+    <wsdl:part name="UserEmailID" type="s:string" />
+    <wsdl:part name="MID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RequestVCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCodeHttpGetIn">
+    <wsdl:part name="UserEmailID" type="s:string" />
+    <wsdl:part name="Code" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangePwdHttpGetIn">
+    <wsdl:part name="UserEmailID" type="s:string" />
+    <wsdl:part name="NewPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangePwdHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldHttpPostIn" />
   <wsdl:message name="HelloWorldHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -1012,6 +1168,12 @@
   </wsdl:message>
   <wsdl:message name="GetFormUserReponseHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfFormUserSteps" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFormUserHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFormUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetStepQuestionsHttpPostIn">
     <wsdl:part name="StepID" type="s:string" />
@@ -1099,6 +1261,7 @@
     <wsdl:part name="PID" type="s:string" />
     <wsdl:part name="UR" type="s:string" />
     <wsdl:part name="SRVC" type="s:string" />
+    <wsdl:part name="MID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="RegisterUserHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -1152,6 +1315,10 @@
     <wsdl:part name="Email" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AddFormUserHttpPostOut" />
+  <wsdl:message name="ListUserFormsHttpPostIn" />
+  <wsdl:message name="ListUserFormsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFormUserInfo" />
+  </wsdl:message>
   <wsdl:message name="IsFormUserValidatedHttpPostIn">
     <wsdl:part name="un" type="s:string" />
     <wsdl:part name="p" type="s:string" />
@@ -1217,6 +1384,27 @@
   <wsdl:message name="ListUserHardwareHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfNS_UserHardware" />
   </wsdl:message>
+  <wsdl:message name="RequestVCodeHttpPostIn">
+    <wsdl:part name="UserEmailID" type="s:string" />
+    <wsdl:part name="MID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RequestVCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCodeHttpPostIn">
+    <wsdl:part name="UserEmailID" type="s:string" />
+    <wsdl:part name="Code" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangePwdHttpPostIn">
+    <wsdl:part name="UserEmailID" type="s:string" />
+    <wsdl:part name="NewPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangePwdHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="rhSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1233,6 +1421,10 @@
     <wsdl:operation name="GetFormUserReponse">
       <wsdl:input message="tns:GetFormUserReponseSoapIn" />
       <wsdl:output message="tns:GetFormUserReponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <wsdl:input message="tns:RemoveFormUserSoapIn" />
+      <wsdl:output message="tns:RemoveFormUserSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetStepQuestions">
       <wsdl:input message="tns:GetStepQuestionsSoapIn" />
@@ -1302,6 +1494,10 @@
       <wsdl:input message="tns:AddFormUserSoapIn" />
       <wsdl:output message="tns:AddFormUserSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <wsdl:input message="tns:ListUserFormsSoapIn" />
+      <wsdl:output message="tns:ListUserFormsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <wsdl:input message="tns:IsFormUserValidatedSoapIn" />
       <wsdl:output message="tns:IsFormUserValidatedSoapOut" />
@@ -1334,6 +1530,18 @@
       <wsdl:input message="tns:ListUserHardwareSoapIn" />
       <wsdl:output message="tns:ListUserHardwareSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <wsdl:input message="tns:RequestVCodeSoapIn" />
+      <wsdl:output message="tns:RequestVCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <wsdl:input message="tns:VerifyCodeSoapIn" />
+      <wsdl:output message="tns:VerifyCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <wsdl:input message="tns:ChangePwdSoapIn" />
+      <wsdl:output message="tns:ChangePwdSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="rhHttpGet">
     <wsdl:operation name="HelloWorld">
@@ -1351,6 +1559,10 @@
     <wsdl:operation name="GetFormUserReponse">
       <wsdl:input message="tns:GetFormUserReponseHttpGetIn" />
       <wsdl:output message="tns:GetFormUserReponseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <wsdl:input message="tns:RemoveFormUserHttpGetIn" />
+      <wsdl:output message="tns:RemoveFormUserHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetStepQuestions">
       <wsdl:input message="tns:GetStepQuestionsHttpGetIn" />
@@ -1420,6 +1632,10 @@
       <wsdl:input message="tns:AddFormUserHttpGetIn" />
       <wsdl:output message="tns:AddFormUserHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <wsdl:input message="tns:ListUserFormsHttpGetIn" />
+      <wsdl:output message="tns:ListUserFormsHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <wsdl:input message="tns:IsFormUserValidatedHttpGetIn" />
       <wsdl:output message="tns:IsFormUserValidatedHttpGetOut" />
@@ -1452,6 +1668,18 @@
       <wsdl:input message="tns:ListUserHardwareHttpGetIn" />
       <wsdl:output message="tns:ListUserHardwareHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <wsdl:input message="tns:RequestVCodeHttpGetIn" />
+      <wsdl:output message="tns:RequestVCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <wsdl:input message="tns:VerifyCodeHttpGetIn" />
+      <wsdl:output message="tns:VerifyCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <wsdl:input message="tns:ChangePwdHttpGetIn" />
+      <wsdl:output message="tns:ChangePwdHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="rhHttpPost">
     <wsdl:operation name="HelloWorld">
@@ -1469,6 +1697,10 @@
     <wsdl:operation name="GetFormUserReponse">
       <wsdl:input message="tns:GetFormUserReponseHttpPostIn" />
       <wsdl:output message="tns:GetFormUserReponseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <wsdl:input message="tns:RemoveFormUserHttpPostIn" />
+      <wsdl:output message="tns:RemoveFormUserHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetStepQuestions">
       <wsdl:input message="tns:GetStepQuestionsHttpPostIn" />
@@ -1538,6 +1770,10 @@
       <wsdl:input message="tns:AddFormUserHttpPostIn" />
       <wsdl:output message="tns:AddFormUserHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <wsdl:input message="tns:ListUserFormsHttpPostIn" />
+      <wsdl:output message="tns:ListUserFormsHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <wsdl:input message="tns:IsFormUserValidatedHttpPostIn" />
       <wsdl:output message="tns:IsFormUserValidatedHttpPostOut" />
@@ -1569,6 +1805,18 @@
     <wsdl:operation name="ListUserHardware">
       <wsdl:input message="tns:ListUserHardwareHttpPostIn" />
       <wsdl:output message="tns:ListUserHardwareHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <wsdl:input message="tns:RequestVCodeHttpPostIn" />
+      <wsdl:output message="tns:RequestVCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <wsdl:input message="tns:VerifyCodeHttpPostIn" />
+      <wsdl:output message="tns:VerifyCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <wsdl:input message="tns:ChangePwdHttpPostIn" />
+      <wsdl:output message="tns:ChangePwdHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="rhSoap" type="tns:rhSoap">
@@ -1602,6 +1850,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFormUserReponse">
       <soap:operation soapAction="http://tempuri.org/GetFormUserReponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <soap:operation soapAction="http://tempuri.org/RemoveFormUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1762,6 +2019,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <soap:operation soapAction="http://tempuri.org/ListUserForms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <soap:operation soapAction="http://tempuri.org/IsFormUserValidated" style="document" />
       <wsdl:input>
@@ -1834,6 +2100,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <soap:operation soapAction="http://tempuri.org/RequestVCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <soap:operation soapAction="http://tempuri.org/VerifyCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <soap:operation soapAction="http://tempuri.org/ChangePwd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="rhSoap12" type="tns:rhSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1866,6 +2159,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFormUserReponse">
       <soap12:operation soapAction="http://tempuri.org/GetFormUserReponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <soap12:operation soapAction="http://tempuri.org/RemoveFormUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2026,6 +2328,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <soap12:operation soapAction="http://tempuri.org/ListUserForms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <soap12:operation soapAction="http://tempuri.org/IsFormUserValidated" style="document" />
       <wsdl:input>
@@ -2098,6 +2409,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <soap12:operation soapAction="http://tempuri.org/RequestVCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <soap12:operation soapAction="http://tempuri.org/VerifyCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <soap12:operation soapAction="http://tempuri.org/ChangePwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="rhHttpGet" type="tns:rhHttpGet">
     <http:binding verb="GET" />
@@ -2130,6 +2468,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFormUserReponse">
       <http:operation location="/GetFormUserReponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <http:operation location="/RemoveFormUser" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -2276,6 +2623,15 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <http:operation location="/ListUserForms" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <http:operation location="/IsFormUserValidated" />
       <wsdl:input>
@@ -2339,6 +2695,33 @@
     </wsdl:operation>
     <wsdl:operation name="ListUserHardware">
       <http:operation location="/ListUserHardware" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <http:operation location="/RequestVCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <http:operation location="/VerifyCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <http:operation location="/ChangePwd" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -2385,6 +2768,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RemoveFormUser">
+      <http:operation location="/RemoveFormUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStepQuestions">
       <http:operation location="/GetStepQuestions" />
       <wsdl:input>
@@ -2524,6 +2916,15 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="ListUserForms">
+      <http:operation location="/ListUserForms" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IsFormUserValidated">
       <http:operation location="/IsFormUserValidated" />
       <wsdl:input>
@@ -2587,6 +2988,33 @@
     </wsdl:operation>
     <wsdl:operation name="ListUserHardware">
       <http:operation location="/ListUserHardware" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestVCode">
+      <http:operation location="/RequestVCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCode">
+      <http:operation location="/VerifyCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePwd">
+      <http:operation location="/ChangePwd" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

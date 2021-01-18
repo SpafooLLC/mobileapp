@@ -29,3 +29,33 @@ D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\bin\Newt
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojResolveAssemblyReference.cache
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojAssemblyReference.cache
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CoreCompileInputs.cache
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CopyComplete
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CoreCompileInputs.cache
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CopyComplete
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb
+D:\SpafooProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojAssemblyReference.cache
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csprojAssemblyReference.cache
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CoreCompileInputs.cache
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.csproj.CopyComplete
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.dll
+E:\abdus projects\C drive\Projects\spafoo\Jan4SpafooWebService\SpafooWebService\SpafooWebService\obj\Debug\SpafooWebService.pdb

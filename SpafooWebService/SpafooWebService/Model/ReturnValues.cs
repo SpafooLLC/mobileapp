@@ -170,6 +170,11 @@ namespace SpafooWebService.Model
         public string PayProfileID { get; set; }
         [DataMember]
         public int EditAppID { get; set; }
+        [DataMember]
+        public decimal Discount { get; set; }
+        [DataMember]
+        public int AnyProviderIDs { get; set; }
+
     }
 
     #endregion

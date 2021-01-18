@@ -28,3 +28,15 @@ D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Rele
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.dll
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.pdb
 D:\Working Projects\MatthewLee_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.XmlSerializers.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll.config
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.XmlSerializers.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\SpafooWebService.pdb
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\bin\Newtonsoft.Json.xml
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.csprojAssemblyReference.cache
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.csproj.CoreCompileInputs.cache
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.csproj.CopyComplete
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.dll
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.pdb
+D:\PawanProject\Spafoo_Ionic5\New_Spafoo\SpafooWebService\SpafooWebService\obj\Release\SpafooWebService.XmlSerializers.dll

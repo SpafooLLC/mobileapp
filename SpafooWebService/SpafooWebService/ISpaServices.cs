@@ -100,11 +100,11 @@ namespace SpafooWebService
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ListProvidersByServices/{ServiceID}")]
-        ServiceDashBoard.UserInfo[] ListProvidersByServices(string ServiceID);
+        ServiceDashBoard.UserInfo2[] ListProvidersByServices(string ServiceID);
 
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "ListProvidersByServices_p")]
-        ServiceDashBoard.UserInfo[] ListProvidersByServices_p(clsService obj);
+        ServiceDashBoard.UserInfo2[] ListProvidersByServices_p(clsService obj);
 
 
         [OperationContract]
@@ -130,6 +130,7 @@ namespace SpafooWebService
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetMyRating/{UserID}")]
         ReturnValues GetMyRating(string UserID);
+         
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetProTagLine/{UserID}")]
@@ -150,10 +151,14 @@ namespace SpafooWebService
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ListAppointmentByClient/{UserID}")]
         AppointmentInfo[] ListAppointmentByClient(string UserID);
-
+               
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAppointment/{AppointMentID}")]
         AppointmentInfo GetAppointment(string AppointMentID);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetCalendarURL/{AppointMentID}")]
+        string GetCalendarURL(string AppointMentID);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAppLocation/{AppointMentID}")]
