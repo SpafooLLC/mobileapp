@@ -1,0 +1,49 @@
+﻿<ion-view view-title="Provider Appointment Detail" scroll="true">
+    <ion-content>
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i
+                    class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Appointment details</div>
+        </div>
+        <div class="inbody pprofile">
+            <!-- <div class="baruprovider">Client Location</div> -->
+            <!-- <div class="provermap">
+               
+                <div style="height:250px;width:auto" id="map_area">
+
+                </div>
+            </div> -->
+            <div class="barx">
+                <div class="fleft">
+                    <i class="fa fa-info green"></i> &nbsp;Not Complete
+                </div>
+
+                <div class="fright" style="margin: 0 0 0 10px;">
+                    <a href="tel:{{pad.ServiceData.telephoneField }}">
+                        <div class="bsbutton">call</div>
+                    </a>
+                </div>
+
+                <div class="fright" ng-click="pad.NavigateMaps()">
+                    <div class="bsbutton">Get Direction</div>
+                </div>&nbsp;
+
+                <div class="fright" style="display:none">
+                    <a href="tel:{{pad.ServiceData.telephoneField }}">
+                        <i class="fa fa-mobile-phone fa-lg"></i> &nbsp;Make a Call</a>
+                </div>
+            </div>
+            <div class="scdetail">
+                <h1>{{pad.ServiceData.orderDateField}}</h1>
+                <p class="blue">{{pad.ServiceData.atTimeField}} at {{pad.ServiceData.addressField}} </p>
+                <p><span>With: </span> {{pad.ServiceData.displayNameField}} </p>
+                <p><span>Service(s): </span> {{pad.ServiceData.ServiceList}}</p>
+                <p ng-if="pad.ServiceData.commentsField.trim().length"><span>Comment: </span>
+                    {{pad.ServiceData.commentsField}}</p>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <a href="#/ProAppointmentCompleted/{{pad.ServiceData.clientIDField}}/{{pad.ServiceData.authTxnIDField}}/{{pad.ServiceData.appointmentIDField}}/{{pad.ServiceData.payTxnIDField}}/{{pad.ServiceData.amountField}}/{{pad.ServiceData.PID}}/{{pad.ServiceData.PPID}}/{{pad.ServiceData.discount}}"
+            class="block-btn">I've arrived</a>
+    </ion-content>
+</ion-view>

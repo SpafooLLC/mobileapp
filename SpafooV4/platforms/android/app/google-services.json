@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901663933956",
+    "project_id": "spafoo2020",
+    "storage_bucket": "spafoo2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901663933956:android:3191e3c89e5b03ddedd751",
+        "android_client_info": {
+          "package_name": "com.spafoollc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901663933956-f0a5qapudtcjeek4m15k419m8ln7qvc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYtBBWlOb_RG_-879pyjvjKz-eqFfLUAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901663933956-f0a5qapudtcjeek4m15k419m8ln7qvc1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

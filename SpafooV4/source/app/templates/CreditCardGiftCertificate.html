@@ -1,0 +1,101 @@
+<ion-view view-title="Credit Card Information">
+    <ion-Content>
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Credit Card Information</div>
+        </div>
+        <div class="inbody-simple">
+          <div class="has-feedback fgap">
+                <label class="control-label">Name on card</label>
+                <input ng-disabled="ccgc.from == 'reg' && ccgc.isChecked" type="text" placeholder="Name on card" class="form-control"  maxlength="50"
+                 ng-model="ccgc.data.CardName">
+            </div>  
+             <div class="has-feedback fgap">
+                <label class="control-label">Card Number</label>
+                <input ng-disabled="ccgc.from == 'reg' && ccgc.isChecked" type="tel" placeholder="Credit Card Number" 
+                class="form-control" ng-change="ccgc.ValidateNumber(ccgc.data.CCNumber,'cnum')" maxlength="16" ng-model="ccgc.data.CCNumber">
+            </div>
+            <div class="expdate">
+                <p class="control-label bold bmar-sm">Expiration Date</p>
+                <div class="col-xs-6 fileft">
+                    <select ng-disabled="ccgc.from == 'reg' && ccgc.isChecked" class="form-control w100" ng-model="ccgc.data.Month">
+                        <option value="" selected="selected">-Select Month-</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 firight">
+                    <select ng-disabled="ccgc.from == 'reg' && ccgc.isChecked" class="form-control w100" ng-model="ccgc.data.Year">
+                        <option value="" selected="selected">-Select Year-</option>
+                        <option ng-repeat="year in  ccgc.years" value="{{year}}">{{year}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="expdate">
+                <p class="control-label bold bmar-sm">CVV</p>
+                <div class="col-xs-6 fileft">
+                    <input ng-disabled="ccgc.from == 'reg' && ccgc.isChecked" type="tel" class="form-control" ng-change="ccgc.ValidateNumber(ccgc.data.CVV,'cvv')" maxlength="4" ng-model="ccgc.data.CVV" placeholder="0000">
+                </div>
+                <div class="col-xs-12 firight cvv">
+                    Please enter the card verification value (cvv) for this card.  It is a 3 digit number at back (Visa, MC, Discover) or a 4 digit number at front (Amex) of the card.
+                </div>
+            </div>
+         
+
+        </div>
+        
+        <a  class="modals block-btn" data-ng-click="ccgc.SubmitCreditCardInfo(ccgc.data)" data-toggle="modal">Submit</a>
+        <!-- Modal Payment Terms -->
+        
+        
+        <!-- Modal Payment Done -->
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{ccgc.messages}}</p>
+                        <div class="cpaction">
+                            <a ng-if="ccgc.from=='reg'" data-dismiss="modal" data-toggle="modal" ui-sref="home" class="green-rounded btnblock">Ok</a>
+                            <a ng-if="ccgc.from=='profile'" data-dismiss="modal" data-toggle="modal" ui-sref="MyProfile" class="green-rounded btnblock">Ok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="PSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p ng-bind-html="ccgc.Succmesg"></p>
+                        <div class="cpaction">
+                            <a ng-click="ccgc.redirectTo('GiftCertificate')" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">app.initialize();</script>
+
+    </ion-Content>
+</ion-view>

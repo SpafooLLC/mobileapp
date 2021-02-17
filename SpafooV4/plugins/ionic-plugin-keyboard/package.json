@@ -1,0 +1,64 @@
+{
+  "_from": "ionic-plugin-keyboard@~2.1.0",
+  "_id": "ionic-plugin-keyboard@2.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-EOVAuYg9XHhuZXv/gXIDGmMtC2Q=",
+  "_location": "/ionic-plugin-keyboard",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "ionic-plugin-keyboard@~2.1.0",
+    "name": "ionic-plugin-keyboard",
+    "escapedName": "ionic-plugin-keyboard",
+    "rawSpec": "~2.1.0",
+    "saveSpec": null,
+    "fetchSpec": "~2.1.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ionic-plugin-keyboard/-/ionic-plugin-keyboard-2.1.0.tgz",
+  "_shasum": "10e540b9883d5c786e657bff8172031a632d0b64",
+  "_spec": "ionic-plugin-keyboard@~2.1.0",
+  "_where": "D:\\SpafooProject\\MattewLeeSpafoo",
+  "author": {
+    "name": "Ionic"
+  },
+  "bugs": {
+    "url": "https://github.com/driftyco/ionic-plugin-keyboard/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "ionic-plugin-keyboard",
+    "platforms": [
+      "android",
+      "ios",
+      "blackberry10",
+      "wp8",
+      "windows"
+    ]
+  },
+  "deprecated": false,
+  "description": "Ionic Keyboard Plugin",
+  "homepage": "https://github.com/driftyco/ionic-plugin-keyboard#readme",
+  "issue": "https://github.com/driftyco/ionic-plugin-keyboard/issues",
+  "keywords": [
+    "ionic",
+    "cordova",
+    "keyboard",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-blackberry10",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "license": "Apache 2.0",
+  "name": "ionic-plugin-keyboard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/driftyco/ionic-plugin-keyboard.git"
+  },
+  "version": "2.1.0"
+}

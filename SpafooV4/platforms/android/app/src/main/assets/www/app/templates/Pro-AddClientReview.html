@@ -1,0 +1,100 @@
+<ion-view view-title="Add Client Review" scroll="true">
+    <ion-content>
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Add Client Review</div>
+        </div>
+        <div class="inbody acreview">
+            <div class="center">
+                <p>Please rate the Client using the following performance</p>
+                <h2>{{acr.ServiceData.firstNameField}} </h2>
+                <div class="profile-pic">
+                    <div class="round">
+                        <a ng-if="!acr.profilePic"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
+                        <a ng-if="acr.profilePic"><img ng-src="{{acr.profilePic}}" alt="" draggable="false"></a>
+                    </div>
+                </div>
+                <p class="bmar-xs">How would you rate this client?</p>
+                <div class="stars">
+                    <input ng-click="acr.getRate('5');" class="star star-5" id="star-5-2" type="radio" name="star" />
+                    <label class="star star-5" for="star-5-2"></label>
+                    <input ng-click="acr.getRate('4');" class="star star-4" id="star-4-2" type="radio" name="star" />
+                    <label class="star star-4" for="star-4-2"></label>
+                    <input ng-click="acr.getRate('3');" class="star star-3" id="star-3-2" type="radio" name="star" />
+                    <label class="star star-3" for="star-3-2"></label>
+                    <input ng-click="acr.getRate('2');" class="star star-2" id="star-2-2" type="radio" name="star" />
+                    <label class="star star-2" for="star-2-2"></label>
+                    <input ng-click="acr.getRate('1');" class="star star-1" id="star-1-2" type="radio" name="star" />
+                    <label class="star star-1" for="star-1-2"></label>
+                </div>
+            </div>
+            <div class="tpad-mid"></div>
+            <p class="bmar-sm">About Client</p>
+            <input ng-model="acr.aboutClientLike" type="text" class="form-control" placeholder="What i like">
+            <div class="bmar-xs"></div>
+            <input ng-model="acr.aboutClientDislike" type="text" class="form-control" placeholder="What i disliked">
+            <div class="tpad-mid"></div>
+            <div class="greview">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td align="center">Excellent</td>
+                        <td align="center">Good</td>
+                        <td align="center">Fair</td>
+                        <td align="center">Poor</td>
+                    </tr>
+                    <tr ng-repeat="rate in acr.listRateData.ListRatingResult track by $index">
+                        <td align="left" valign="bottom">{{rate.ratingNameField}}</td>
+                        <td align="center"><div class="radio radio-info"><input ng-click="acr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'1');" type="radio" name="{{rate.ratingNameField}}" value="1" id="{{$index}}inlineRadio1"><label for="{{$index}}inlineRadio1"></label></div></td>
+                        <td align="center"><div class="radio radio-info"><input ng-click="acr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'2');" type="radio" name="{{rate.ratingNameField}}" value="2" id="{{$index}}inlineRadio2"><label for="{{$index}}inlineRadio2"></label></div></td>
+                        <td align="center"><div class="radio radio-info"><input ng-click="acr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'3');" type="radio" name="{{rate.ratingNameField}}" value="3" id="{{$index}}inlineRadio3"><label for="{{$index}}inlineRadio3"></label></div></td>
+                        <td align="center"><div class="radio radio-info"><input ng-click="acr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'4');" type="radio" name="{{rate.ratingNameField}}" value="4" id="{{$index}}inlineRadio4"><label for="{{$index}}inlineRadio4"></label></div></td>
+                    </tr>
+                </table>
+            </div>
+            <textarea ng-model="acr.commentTxt" name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
+            <div class="tpad-xs"></div>
+        </div>
+     <!--   <a data-toggle="modal" data-target="#ThankYou" class="block-btn" ng-show="acr.aboutClientDislike && acr.aboutClientLike && acr.rateValue  && acr.communication && acr.cooperation && acr.attitude && acr.timePunctuality" ng-click="acr.postRating();">Submit</a>-->
+        <a data-toggle="modal" data-target="#ThankYou" class="block-btn" ng-click="acr.postRating();">Submit</a>
+        <!-- Modal Thank You -->
+        <!--  <div class="modal hide fade in" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">-->
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--<button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>-->
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{acr.messages}} </p>
+                        <div class="cpaction">
+                            <!--<div class="col-xs-6 pca"><a ng-click="acr.redirectTo('FindProvider')" class="gray-rounded btnblock" ng-if="acr.pageName !='ProAppointmentCompleted'">Make Appointment</a></div>-->
+                            <!-- <div class="col-xs-6 pok"><a ng-click="acr.redirectTo('MySchedule')" class="green-rounded btnblock">My Schedule</a></div>-->
+                           <a ng-click="acr.redirectTo('ProAppointments')" class="green-rounded btnblock zimp" ng-if="acr.pageName !='ProAppointmentCompleted'">My Schedule</a>
+                            <a ng-click="acr.CompleteApp()" class="green-rounded btnblock zimp" ng-if="acr.pageName=='ProAppointmentCompleted'">Appointment Completed</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="PDoneError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i style="color:red;" class="fa fa-exclamation-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{acr.messages}} </p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

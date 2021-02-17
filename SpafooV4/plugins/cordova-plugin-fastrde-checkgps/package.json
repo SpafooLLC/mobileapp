@@ -1,0 +1,59 @@
+{
+  "_from": "cordova-plugin-fastrde-checkgps@^1.0.0",
+  "_id": "cordova-plugin-fastrde-checkgps@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-qIhpcuVMAQxFCWwGszfKPkDsIQM=",
+  "_location": "/cordova-plugin-fastrde-checkgps",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-fastrde-checkgps@^1.0.0",
+    "name": "cordova-plugin-fastrde-checkgps",
+    "escapedName": "cordova-plugin-fastrde-checkgps",
+    "rawSpec": "^1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-fastrde-checkgps/-/cordova-plugin-fastrde-checkgps-1.0.0.tgz",
+  "_shasum": "a8886972e54c010c45096c06b337ca3e40ec2103",
+  "_spec": "cordova-plugin-fastrde-checkgps@^1.0.0",
+  "_where": "D:\\SpafooProject\\Spafoo_Ionic5\\New_Spafoo\\phonegap",
+  "author": {
+    "name": "Fabian Strachanski"
+  },
+  "bugs": {
+    "url": "https://github.com/fastrde/cordova-plugin-fastrde-checkgps/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-fastrde-checkgps",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "check if GPS is enabled on Android and iOS",
+  "homepage": "https://github.com/fastrde/cordova-plugin-fastrde-checkgps#readme",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "gps",
+    "geolocation",
+    "checkgps"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-fastrde-checkgps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastrde/cordova-plugin-fastrde-checkgps.git"
+  },
+  "version": "1.0.0"
+}
