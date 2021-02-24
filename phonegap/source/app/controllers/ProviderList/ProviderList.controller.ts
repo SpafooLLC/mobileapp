@@ -71,27 +71,32 @@
 
         }
         getProviderList(ServiceID: any) {
+            debugger;
             var self = this;
-            document.addEventListener("deviceready", function () {
+            //document.addEventListener("deviceready", function () {
              
                 //   CheckGPS.check(function () {
                 $("#showload").show();            
                 self.CustomerHttp.get('/GetWithInMile').then(function (response: any) {
-                    self.InMile = parseInt(response.GetWithInMileResult);
-
+                    debugger;
+                   self.InMile = parseInt(response.GetWithInMileResult);
+                    // self.InMile  = 1000000;
                     navigator.geolocation.getCurrentPosition(self.onSuccess, self.onError, self.options);
-                    //  setTimeout(function () {
+                      setTimeout(function () {
                     self.CustomerHttp.post({ ServiceID: self.ServiceIDs }, '/ListProvidersByServices_p').then(function (response: any) {
+                        console.log("reponse list provider by serive", response);
                         self.ServiceData = response;
-
-                        for (var i = 0; i <= response.length; i++) {
+                        debugger;
+                        for (var i = 0; i < response.length; i++) {
+                            debugger;
                             self.GetDistanceBetween(self.ServiceData[i].userInfoField.vanityUrlField, i);
                             var sid = parseInt(self.ServiceIDs);
                             var pricedata = self.ServiceData[i].servicesField.filter((z: any) => z.serviceIDField == sid)[0];
-                            self.ServiceData[i].minimumField = pricedata.minimumField;
-                            self.ServiceData[i].rangeToField = pricedata.rangeToField;
+                           // self.ServiceData[i].minimumField = pricedata.minimumField;
+                           // self.ServiceData[i].rangeToField = pricedata.rangeToField;
 
-                            if (parseInt(self.ServiceData[i].userInfoField.distance) <= parseInt(self.InMile)) {
+                            if (parseInt(self.ServiceData[i].userInfoField.distance) <= parseInt(self.InMile))
+                             {
                                 self.ServiceData[i].userInfoField.displayNameField = self.ServiceData[i].userInfoField.firstNameField + " " + self.ServiceData[i].userInfoField.lastNameField[0] + ".";
 
                                 if (self.ServiceData[i].userInfoField.profileField.photoField != null) {
@@ -116,7 +121,7 @@
                             self.$ionicLoading.hide();
                         }
                     });
-                    //    }, 3000);
+                        }, 3000);
 
                 });
                 // },
@@ -124,7 +129,7 @@
                 //         self.SharedHttp.IsGPSOn();
                 //     });
 
-            });
+           // });
         }
         GetDistanceBetween(latlong: any, index: any) {
             var lat1 = latlong.substring(0, latlong.indexOf(':'));

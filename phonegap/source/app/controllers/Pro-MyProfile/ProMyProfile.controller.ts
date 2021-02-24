@@ -65,6 +65,9 @@
             var UserID = self.$window.localStorage.getItem('CustomerID');
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
                 self.ServiceData = response.GetUserInfoResult;
+                var temp = self.ServiceData.profileField.cellField ;
+                self.ServiceData.profileField.cellField = temp[0]+temp[1]+temp[2]  + "-" + temp[3]+temp[4]+temp[5] +"-" + temp[6]+temp[7]+temp[8]+temp[9];
+
                 self.ServiceData.displayNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + ".";
                  self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });
                  self.SharedHttp.GetMyRating(UserID).then(function (res) { self.RatingField = res.split(':')[0] ; self.Rateperson = res.split(':')[1] });
@@ -151,6 +154,8 @@
         getReviewDetails(UserID: any) {
             var self = this;
             self.CustomerHttp.get('/GetMyReview/' + UserID).then(function (response: any) {
+                debugger
+                console.log("asssssssss ", response)
                 self.ReviewData = response.GetMyReviewResult;
                 $.each(self.ReviewData, function (i, item) {
                     var str = item.commentsField;

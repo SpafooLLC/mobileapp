@@ -62,6 +62,7 @@
                         right: 'today prev,next'
                     },
                     dayClick: function (date: any, jsEvent: any, view: any) {
+                        debugger;
                      //   alert(JSON.stringify(date) + "---->  " + JSON.stringify(new Date().setHours(0)));
                         if (!self.isToday(date, jsEvent)) {
                             self.message = "Selected date should not be before current date";
@@ -125,6 +126,7 @@
         }
 
         isToday(start, todayAnd) {
+            debugger;
             var today = new Date();
             today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
@@ -133,13 +135,14 @@
 
 
         bookedSlot() {
+            debugger;
             var self = this;
             var date = new Date()
             var end = date.setDate(date.getDate() + 30);
             var data = { ProID: window.localStorage.getItem("CustomerID"), StartDateTime: moment().format('MM/DD/YYYY'), EndDateTime: moment(end).format('MM/DD/YYYY') };
 
             self.CustomerHttp.post(data, '/GetProOccupiedSlots').then(function (res) {
-
+                debugger;
                 for (var i = 0; i < res.length; i++) {
 
                     self.staticEvents1[0].events.push({
@@ -160,7 +163,7 @@
 
 
         availList() {
-
+            debugger;
             var self = this;
 
 
@@ -168,7 +171,7 @@
             //    self.staticEvents[0].events.push(val)
             self.eventSource = [self.staticEvents, self.staticEvents1];
             self.CustomerHttp.get('/ListMyAvail/' + self.userId).then(function (res: any) {
-
+                debugger;
                 self.serviceData = JSON.parse(res.ListMyAvailResult);
 
                 for (var i = 0; i < self.serviceData.length; i++) {
@@ -264,7 +267,7 @@
 
         }
         deleteEvent(avaiId: any, proId: any, $index: any) {
-
+            debugger;
             var con = confirm("Are you sure want to remove?");
             if (con) {
                 if (avaiId == null || avaiId == "" || avaiId == undefined || avaiId == "undefined" || avaiId == 0) {
@@ -279,6 +282,7 @@
 
         }
         convertFormat(date: any) {
+            debugger;
             var datestart = new Date(date);
 
             var startResult = 0;
@@ -311,7 +315,7 @@
         }
 
         doUpdate(data: any) {
-
+            debugger;
             // alert(JSON.stringify(data));
             var csv = "";
 
@@ -424,7 +428,8 @@
             });
         }
         getFreeSlot(proId: any, date: any, start: any, end: any, dateField: any, $index: any) {
-
+            debugger;
+            debugger;
             var self = this;
             var datestart1 = new Date(start);
             var dateend = new Date(end);
@@ -485,6 +490,7 @@
             var data = { ProID: localStorage.getItem('CustomerID'), StartDateTime: date + " " + start1, EndDateTime: date + " " + end1 };
 
             self.CustomerHttp.post(data, "/CanSetAvailability").then(function (res) {
+                debugger;
                 if (res == false) {
                     self.indexBtn = $index;
                     //self.message = "Slot from " + start1 + " to " + end1 +" on " + dateField + " is not available";
@@ -500,6 +506,7 @@
             })
         }
         emptyTimeBox(index: any) {
+            debugger;
             var self = this;
             if (typeof (index) == "number") {
                 delete self.staticEvents1[0].events[index].startTime;
@@ -509,6 +516,7 @@
         }
         calculateEndTime(proId: any, dateFieldHidden: any, startTime: any, dateField: any, index: any) {
 
+            debugger;
             var self = this;
             var date = new Date(startTime);
 
@@ -521,7 +529,7 @@
             self.getFreeSlot(proId, dateFieldHidden, startTime, self.staticEvents1[0].events[index].endTime, dateField, index);
         }
         setDetails() {
-
+            debugger;
             var self = this;
             var data = {};
             if (data == 0) {

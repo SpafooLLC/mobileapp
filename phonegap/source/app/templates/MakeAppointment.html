@@ -117,7 +117,7 @@
                     <label for="checkbox2">Women</label>
                 </div>-->
 
-                <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in ma.ProviderServiceList">
+                <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in ma.ProviderServiceList" >
                     <input id="checkbox{{$index+1}}" class="serviceChecks" type="checkbox" ng-model="ma.checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
                     <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
                 </div>
@@ -240,6 +240,7 @@
         </div>
     </ion-content>
 </ion-view>
+
 <ion-view view-title="APPOINTMENT DATE & TIME" ng-if="ma.MainView == 'Appointment-DateTime'">
     <ion-content scroll="false">
         <style>
@@ -256,14 +257,14 @@
             .pctip li.pava { background: url(images/Site/pavailable.png) left center no-repeat; }
             .pctip li.pres { background: url(images/Site/preserved.png) left center no-repeat; }
         </style>
-        <div class="bread">
+        <div class="bread" id="1">
             <a href="" ng-click="ma.viewSelect('Order-Summary')" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
             <div class="ptitle">APPOINTMENT DATE & TIME</div>
         </div>
-        <div style="overflow-y: auto; height:90%">
-            <div class="inbody osummery">
-                <div class="info margin-bottom-10">{{ma.viewTitle}}</div>
-                <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1"></div>
+        <div style="overflow-y: auto; height:90%" id="2">
+            <div class="inbody osummery" id="3">
+                <div class="info margin-bottom-10" id="4">{{ma.viewTitle}}</div>
+                <div ui-calendar="ma.uiConfig.calendar" class="span8 calendar" ng-model="ma.staticEvents" calendar="myCalendar1" id="5"></div>
                 <!--<calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode"
                           range-changed="reloadSource(startTime, endTime)"
                           event-selected="onEventSelected(event)" title-changed="ma.onViewTitleChanged(title)"
@@ -272,7 +273,7 @@
                 </calendar>-->
             </div>
         </div>
-        <div class="modal fade" id="PDoneSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="PDoneSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="6">
             <div class="modal-dialog w90" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -361,6 +362,7 @@
         </div>
     </ion-content>
 </ion-view>
+
 <ion-view view-title="PAYMENT METHOD" ng-if="ma.MainView == 'Payment-Method'">
     <ion-content>
         <div class="bread">

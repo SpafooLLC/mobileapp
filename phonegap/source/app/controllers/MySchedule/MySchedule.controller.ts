@@ -27,9 +27,11 @@
                 self.$state.go('login');
             }
             self.CustomerHttp.get('/ListAppointmentByClient/' + UserID).then(function (response: any) {
+                console.log("ListAppointmentByClient", response);
                 self.ServiceData = response.ListAppointmentByClientResult;
                 $.each(self.ServiceData, function (i, item) {
-                   
+                    var temp = self.ServiceData[i].providerPhoneField ;
+                    self.ServiceData[i].providerPhoneField = temp[0]+temp[1]+temp[2]  + "-" + temp[3]+temp[4]+temp[5] +"-" + temp[6]+temp[7]+temp[8]+temp[9];
                     var orderdt = self.SharedHttp.getFormatedDate(item.forDateField, "weekday dd MMMM yyyy");
                     //self.ServiceData[i].orderDateField = orderdt;
                     //self.ServiceData[i].atTimeField = self.SharedHttp.getFormatedTime(item.atTimeField);
@@ -109,11 +111,13 @@
             self.$window.localStorage.setItem('AppointmentIDs', AppointmentID);
             self.$state.go("ScheduleDetail");
         }
+
         acceptAppointment(data: any)
         {
             var self = this;
             self.CustomerHttp.get("/UpdateAppStatus/" + data + "/0").then(function (res) { self.getClientSchedular(self.UserID); });
         }
+        
         denyAppointment(data: any) {
             var confirmations = confirm("Are you sure to deny this appointment ? ");
             if (confirmations) {

@@ -142,8 +142,10 @@
 
                             <div class="right">
                                 <h2>{{s.orderDateField}}</h2>
-                                <p>At: <a href="">{{s.addressField}}</a></p>
                                 <p>With: <a href="">{{s.displayNameField}}</a></p>
+                                <p>At: <a href="">{{s.addressField}}</a></p>
+                                <p ><span>Phone:</span> <a href="tel:{{s.clientPhoneField}}">{{s.clientPhoneField}}</a></p>
+                               <p><span>Email:</span> <a href="mailto:{{s.clientEmailField}}">{{s.clientEmailField}}</a></p>
                                 <p>Service(s): <a href=""
                                         ng-click="papp.GoToProviderPortfolio({{s.providerIDField}})">{{s.ServiceList}}</a>
                                 </p>

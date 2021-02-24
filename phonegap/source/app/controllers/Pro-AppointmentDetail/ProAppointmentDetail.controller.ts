@@ -9,7 +9,8 @@
         mapOptions: any;
         static clientsPosition: any;
         static map: any;
-        currloc: any;
+        currloc: any; 
+        static currlocClient:string;
         static currentLatLong: any;
         static $inject = ['$q', '$state', '$scope', '$location', 'CustomerHttp', '$window', 'SharedHttp'];
         constructor(
@@ -90,12 +91,12 @@
         }
 
 onSuccess(position: any) {
-            var self = this;
+            var selfs = this;
             ProAppointmentDetailController.currentLatLong = position;
           //  alert(JSON.stringify(position));
            // alert(JSON.stringify(ProAppointmentDetailController.currentLatLong.coords.latitude + ", " + ProAppointmentDetailController.currentLatLong.coords.longitude))
         //    alert(JSON.stringify(ProAppointmentDetailController.clientsPosition))
-            launchnavigator.navigate([parseFloat(ProAppointmentDetailController.clientsPosition.split(',')[0]), parseFloat(ProAppointmentDetailController.clientsPosition.split(',')[1])], {
+            launchnavigator.navigate(ProAppointmentDetailController.currlocClient, {
                 start: ProAppointmentDetailController.currentLatLong.coords.latitude + "," + ProAppointmentDetailController.currentLatLong.coords.longitude
 
             });
@@ -122,7 +123,9 @@ onSuccess(position: any) {
                 self.ServiceData.MonthField = orderdt.split(' ')[2];
                 self.amountField = self.ServiceData.amountField;
                 self.authTxnIDField = self.ServiceData.authTxnIDField;
-                self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) { self.ServiceData.addressField = e; self.addMarkers(); });
+                self.SharedHttp.GetAddressInfo(self.ServiceData.appointmentIDField).then(function (e: any) { 
+                   ProAppointmentDetailController.currlocClient=e; 
+                    self.ServiceData.addressField = e; self.addMarkers(); });
                 var serviceName = "";
                 $.each(self.ServiceData.servicesField, function (ig, sitem) {
                     serviceName += sitem.serviceNameField + ",";

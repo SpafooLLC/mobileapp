@@ -1,4 +1,6 @@
-﻿module MakeAppointmentController {
+﻿import { idText, isThisTypeNode } from "typescript";
+
+module MakeAppointmentController {
     interface IMakeAppointmentController {
         UserID: any;
         ServiceData: {};
@@ -6,8 +8,12 @@
         address: string; city: string; state: string; zip: string;
     }
     class MakeAppointmentController implements IMakeAppointmentController {
+        
+        saveModal: any = true;
+        latestAvailable: any;
+        showCheck: boolean = true;
+        slotAvailalbe: boolean = false;
         UserID: any;
-
         customer_PaymentProfileId: string;
         MainView: string;
         ProviderServiceList: {};
@@ -33,6 +39,7 @@
             private $ionicPopup: ionic.popup.IonicPopupService
         ) {
 
+            console.log("inside constructor");
             this.UserID = this.$stateParams.userId;
             this.AppID = 0;
             this.ServiceData = {};
@@ -58,7 +65,6 @@
                 mySelect.find('option:disabled').prop('disabled', false);
                 mySelect.selectpicker('refresh');
             });
-
             this.isOpenSelectAdress = '';
             this.info = {};
             this.addressId = '';
@@ -71,6 +77,10 @@
             this.isEdit = false;
             if (this.$stateParams.appointmentId != "null" && this.$stateParams.appointmentId != "") {
                 this.AppointmentID = this.$stateParams.appointmentId;
+                debugger;
+                this.showCheck = false;
+            console.log("inside check, value hange", this.showCheck);
+
                 this.isEdit = true;
                 this.AppID = this.AppointmentID;
             }
@@ -430,6 +440,7 @@
                         defaultDate: (new Date()),
                         selectHelper: true,
                         dayClick: function (date: any, jsEvent: any, view: any) {
+                            //change made by neeraj, w.r.t change request no. 3, date1/15/2021
                             self.onTimeSelected(date, jsEvent);
                         },
                         editable: true,
@@ -439,7 +450,7 @@
                     }
                 };
                 setTimeout(function () {
-                    $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa red2 fa-square"></i> Provider Not Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
+                    $('.fc-toolbar > .fc-center').html('<div class="pctip"><i class="fa green fa-square"></i> Available &nbsp;&nbsp;&nbsp;<i class="fa blue fa-square"></i> Already Reserved</div>');
                 }, 0);
                 //self.getOccupiedSlots();
                 self.MainView = 'Appointment-DateTime'
@@ -460,8 +471,13 @@
                     StartDateTime: start,
                 };
                 self.CustomerHttp.get('/ListMyAvail/' + self.UserID).then(function (res: any) {
+                    debugger;
+                    var temp =  JSON.parse(res.ListMyAvailResult);
+                    //self.latestAvailable = temp[0].StartTime;
+                    console.log("ListMyAvail", temp);
 
                     var aviles = JSON.parse(res.ListMyAvailResult);
+                    if(aviles.length > 0) self.slotAvailalbe = true;
                     for (var i = 0; i < aviles.length; i++) {
                         var starthours = aviles[i].StartTime.Hours > 9 ? aviles[i].StartTime.Hours : '0' + aviles[i].StartTime.Hours;
                         var startminutes = aviles[i].StartTime.Minutes > 9 ? aviles[i].StartTime.Minutes : '0' + aviles[i].StartTime.Minutes;
@@ -471,14 +487,18 @@
                         var dateMonth1 = self.SharedHttp.getFormatedDate(dateMonth, "MM DD");
                         var abcDate = (dateMonth).replace("/Date(", "").replace(")/", "");
 
+                        //change made by neeraj, change request 2, date 1/15/2021
                         self.staticEvents[0].events.push({
                             start: moment(parseInt(abcDate)).format('YYYY-MM-DD'),
-                            title: moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm A') + ' - ' + moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm A'),
+                            title: moment(starthours + ':' + startminutes, 'HH:mm').format('h:mm A') + ' - ' + moment(endhours + ':' + endminutes, 'HH:mm').format('h:mm A') ,
                             dateField: dateMonth1,
-                            color: '#ff0000'
+                            color: 'green'
                         });
                     }
+                    debugger;
+                    console.log("postObj", postObj);
                     self.CustomerHttp.post(postObj, '/GetProOccupiedSlots').then(function (d: any) {
+                        console.log("GetProOccupiedSlots", d);
                         var _Today = new Date();
                         $.each(d, function (i, o) {
                             self.staticEvents[0].events.push({ title: moment(o.atTimeField, 'HH:mm').format('h:mm A') + ' - ' + moment(o.endTimeField, 'HH:mm').format('h:mm A'), start: o.forDateField + ' ' + o.atTimeField, end: o.forDateField + ' ' + o.endTimeField, color: '#1e319b', textColor: 'white' });
@@ -494,14 +514,25 @@
 
         onTimeSelected(time, event) {
             var self = this;
+            debugger;
             self.availability = false;
-            if (!self.isToday(time, true)) {
+            if (!self.isToday(time, true) ) {
+                debugger;
                 //   alert(time);
+                self.saveModal = false;
                 self.showIonicAlert('Sorry, you cannot select date before today');
-            } else {
+            }
+            else if(!self.slotAvailalbe){
+                debugger;
+                self.saveModal = false;
 
+                self.showIonicAlert('Sorry, no time slots are availalbe');
+            } else {
+            debugger;
                 var mins = parseInt(moment().format('m'));
                 var hrs = parseInt(moment().format('h'));
+                //var hrs = self.latestAvailable.Hours;
+               //var mins = self.latestAvailable.Minutes;
                 var A = moment().format('A');
 
                 if (mins > 0 && mins < 15) { mins = 15 } else if (mins > 15 && mins < 30) { mins = 30 } else if (mins > 30 && mins < 45) { mins = 45 } else if (mins > 45) { mins = 0; hrs = hrs + 1; }
@@ -527,6 +558,10 @@
                 var min = self.isToday(time, false) ? todayCurrentTime : moment('00:00', 'h:mm A').format("X");
 
                 var max = moment('23:45', 'h:mm A').format("X");
+
+                console.log("to", to);
+                console.log("from", from);
+
                 //setTimeout(function(){
                 $("#range").ionRangeSlider({
                     type: "double",
@@ -583,6 +618,7 @@
 
             }
             else {
+                self.saveModal = false;
                 self.showIonicAlert('Please select an available time slot');
             }
         }
@@ -595,12 +631,14 @@
         }
 
         actionAfterOk(ac) {// ||  self.totalPrice==0
-            var self = this;
-            if (self.action == '' && self.totalPrice == 0) {
-                self.finalMakeAppointment();
-            }
-            else if (self.action == 'redirectAfterAppointment') {
-                self.redirectAfterAppointment();
+            if(this.saveModal){
+                var self = this;
+                if (self.action == '' && self.totalPrice == 0) {
+                    self.finalMakeAppointment();
+                }
+                else if (self.action == 'redirectAfterAppointment') {
+                    self.redirectAfterAppointment();
+                }
             }
         }
 
@@ -681,18 +719,20 @@
         }
 
         isSlotAvailable() {
+            debugger;
             var self = this;
             if (self.UserID.indexOf('|') <= -1) {
                 var appId = self.$window.localStorage.getItem('AppointmentIDs');
                 var providerId = self.$stateParams.userId;
                 var postObj = {
                     AppID: self.AppID,
-                    EndDateTime: self.onlyDate + ' ' + self.from,
+                    EndDateTime: self.onlyDate + ' ' + self.to,
                     ProID: providerId,
-                    StartDateTime: self.onlyDate + ' ' + self.to
+                    StartDateTime: self.onlyDate + ' ' + self.from
                 };
                 var url = self.isEdit ? '/IsProviderSlotFreeEM' : '/IsProviderSlotFree';
                 self.CustomerHttp.post(postObj, url).then(function (response: any) {
+                    debugger;
                     if (response === true) {
                         self.selectedFrom = self.from;
                         self.selectedTo = self.to;
@@ -712,7 +752,7 @@
 
         isToday(start, todayAnd) {
             var today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);//added 1 by neeraj because earlier it was letting a previous day selection
             var check = new Date(start._d.getFullYear(), start._d.getMonth(), start._d.getDate() + 1);
             return todayAnd ? check >= today : moment(check).format('X') == moment(today).format('X');
         }

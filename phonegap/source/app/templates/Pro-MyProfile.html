@@ -44,7 +44,7 @@
               <div class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="Info">
                       <div class="mprofile">
-                      <p><span>Phone:</span>   {{pmp.ServiceData.profileField.cellField}}</p>
+                      <p ><span>Phone:</span> <a href="tel:{{pmp.ServiceData.profileField.cellField}}">{{pmp.ServiceData.profileField.cellField}}</a></p>
                       <p><span>Email:</span>  {{pmp.ServiceData.emailField}}</p>
                       <p><span>Address:</span>  {{pmp.ServiceData.profileField.streetField}} <br /> {{pmp.ServiceData.profileField.cityField}} ,  {{pmp.ServiceData.profileField.regionField}}    {{pmp.ServiceData.profileField.postalCodeField}} </p> 
                       <div class="bar-head">Bio</div>
@@ -66,7 +66,7 @@
                   <div role="tabpanel" class="tab-pane fade" id="Reviews">
                     <div class="reviewlist">
                       <div class="center">
-                        <h2>Past Client Reviews for Scott R.</h2>
+                        <h2>Past Client Reviews for {{pmp.ServiceData.displayNameField}}</h2>
                         <div class="big-ratting-{{PvP.RatingField}}"></div>
                         <p class="bmar-xs">from {{PvP.Rateperson}} user(s)</p>
                       </div>

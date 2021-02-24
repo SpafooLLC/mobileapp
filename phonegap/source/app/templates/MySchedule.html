@@ -20,13 +20,18 @@
                             </div>
                         </a>
                         <div class="right">
+                            <h2 style="color:green">Appointment Scheduled</h2>
                             <h2>{{s.orderDateField}}</h2>
+                            <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
                             <p>At: <a href="">{{s.addressField}}</a></p>
                             <!--<p>With: <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.displayNameField}}</a></p>
                 <p>Service(s): <a href="#/ProviderPortfolio/{{s.providerIDField}}/null">{{s.ServiceList}}</a></p>-->
                             
 
-                            <p>With: <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.displayNameField}}</a></p>
+                            
+                            <p ><span>Phone:</span> <a href="tel:{{s.providerPhoneField}}">{{s.providerPhoneField}}</a></p>
+                            <p><span>Email:</span> <a href="mailto:{{s.providerEmailField}}">{{s.providerEmailField}}</a></p>
+
                             <p>Service(s): <a href="" ng-click="ms.GoToScheduleDetail({{s.appointmentIDField}})">{{s.ServiceList}}</a></p>
                         </div>
                     </div>

@@ -49,6 +49,7 @@
             };
 
             self.CustomerHttp.post(data, '/LoginUser').then(function (response:any) {
+                console.log("rsposne from login ", response)
                 if (parseInt(response.Source)) {
                     self.$window.localStorage.setItem('CustomerID', response.Source);
                     self.$window.localStorage.setItem('Role', response.Usertype);

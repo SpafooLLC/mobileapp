@@ -37,7 +37,8 @@ module spafoo.httpservice {
             }).error(function (error) {
                 deferred.reject(error);
                 $("#showload").hide();
-                alert('Connection : Please Check Internet Connection.');
+                //alert('Connection : Please Check Internet Connection.');
+                console.log("some error occured", error);
             });
             return deferred.promise;
         }
@@ -51,7 +52,8 @@ module spafoo.httpservice {
             }).error(function (error) {
                 deferred.reject(error);
                 $("#showload").hide();
-                alert('Connection : Please Check Internet Connection.');
+                console.log("some error occured", error);
+                //alert('Connection : Please Check Internet Connection.');
             });
             return deferred.promise;
         }

@@ -11,15 +11,18 @@
             <img class="mainimg" ng-src="{{scD.ServiceData.profilePic}}">
             <div class="bar">
                 <div class="fleft"><i class="fa fa-info green"></i> &nbsp;Booked</div>
-                <div class="fright"><a href="" ng-click="scD.CancelSchdule()" ><i class="fa fa-trash-o"></i> &nbsp;Cancel</a> &nbsp;&nbsp;&nbsp;<a href="#/MakeAppointment/{{scD.ServiceData.providerIDField}}/{{scD.AppointmentID}}/NORMAL"><i class="fa fa-edit"></i> &nbsp;Edit</a></div>
+                <div class="fright"><a href="" ng-click="scD.CancelSchdule()" ><i class="fa fa-trash-o"></i> &nbsp;Cancel</a> &nbsp;&nbsp;&nbsp;</div>
+
+                <!-- <a href="#/MakeAppointment/{{scD.ServiceData.providerIDField}}/{{scD.AppointmentID}}/NORMAL"><i class="fa fa-edit"></i> &nbsp;Edit</a> -->
             </div>
             <div class="scdetail">
 
 
                 <h1>{{scD.ServiceData.orderDateField}}</h1>
                 <p class="blue">{{scD.ServiceData.atTimeField}}   </p>
-                <p class="blue" ng-bind-html="scD.ServiceData.addressField">   </p>
-   <p><span>With: </span> {{scD.ServiceData.displayNameField}} </p>
+                <!-- <p class="blue" ng-bind-html="scD.ServiceData.addressField">   </p> -->
+                <p><span>With: </span> {{scD.ServiceData.displayNameField}} </p>
+                <span>Mob: </span><a href="tel:{{scD.ServiceData.cellField}}">{{scD.ServiceData.cellField}}</a>
                 <p><span>Service(s): </span> {{scD.ServiceData.ServiceList}}</p>
                 <p ng-if="scD.ServiceData.commentsField.trim().length"><span>Comment: </span> {{scD.ServiceData.commentsField}}</p>
             </div>

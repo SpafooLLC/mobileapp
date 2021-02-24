@@ -46,6 +46,9 @@ showTab(tabname:any){
             var self = this;
           
             self.CustomerHttp.get('/GetUserInfo/' + UserID).then(function (response: any) {
+                console.log("asdsadsadsadsadsad", response);
+                var temp = response.GetUserInfoResult.profileField.cellField ;
+                response.GetUserInfoResult.profileField.cellField = temp[0]+temp[1]+temp[2]  + "-" + temp[3]+temp[4]+temp[5] +"-" + temp[6]+temp[7]+temp[8]+temp[9];
                 self.ServiceData = response.GetUserInfoResult;
                 self.ServiceData.displayNameField = self.ServiceData.firstNameField + " " + self.ServiceData.lastNameField[0] + ".";
                  self.SharedHttp.getProfilePics(self.ServiceData.profileField.photoField).then(function (imgres) { self.profilePic = imgres; });

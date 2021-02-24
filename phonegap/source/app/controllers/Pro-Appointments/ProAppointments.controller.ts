@@ -43,6 +43,9 @@
                 $("#showload").hide();
             }, 15000);
                 }
+                else{
+                    alert("can not add to calendar");
+                }
                 
             }).catch(err=>{
                 console.error("some error in GetCalendarURL ", err);
@@ -56,8 +59,12 @@
                 self.$state.go('login');
             }
             self.CustomerHttp.get('/ListAppointmentByProvider/' + UserID).then(function (response: any) {
+                console.log("ListAppointmentByProvider", response)
                 self.ServiceData = response.ListAppointmentByProviderResult;
                 $.each(self.ServiceData, function (i, item) {
+                    
+                    var temp = self.ServiceData[i].clientPhoneField ;
+                    self.ServiceData[i].clientPhoneField = temp[0]+temp[1]+temp[2]  + "-" + temp[3]+temp[4]+temp[5] +"-" + temp[6]+temp[7]+temp[8]+temp[9];
                     if (item.forDateField === 'undefined' || item.forDateField === undefined || item.forDateField === null || item.forDateField === '') {
                         self.ServiceData[i].orderDateField = '';
                         self.ServiceData[i].DayField = 'ASAP';
