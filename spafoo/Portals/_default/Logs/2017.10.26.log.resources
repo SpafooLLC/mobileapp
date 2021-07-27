@@ -1,0 +1,38 @@
+2017-10-26 10:21:51,068 [THD-01][Thread:44][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Collections.Specialized.NameObjectCollectionBase.BaseGet(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.Handler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_Registration\Scripts\jquery-uploadify\Handler.ashx:line 13
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-10-26 10:23:59,786 [THD-01][Thread:11][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Collections.Specialized.NameObjectCollectionBase.BaseGet(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.Handler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_Registration\Scripts\jquery-uploadify\Handler.ashx:line 13
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-10-26 16:53:25,880 [THD-01][Thread:14][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005)
+   at System.Web.CachedPathData.ValidatePath(String physicalPath)
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2017-10-26 16:53:27,380 [THD-01][Thread:14][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005)
+   at System.Web.CachedPathData.ValidatePath(String physicalPath)
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2017-10-26 20:26:09,849 [THD-01][Thread:13][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Collections.Specialized.NameObjectCollectionBase.BaseGet(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.HandlerX.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_Registration\Scripts\jquery-uploadify\HandlerX.ashx:line 14
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-10-26 20:26:10,349 [THD-01][Thread:25][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Collections.Specialized.NameObjectCollectionBase.BaseGet(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.HandlerX.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_Registration\Scripts\jquery-uploadify\HandlerX.ashx:line 14
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

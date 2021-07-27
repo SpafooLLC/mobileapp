@@ -1,0 +1,119 @@
+2017-03-25 06:16:43,868 [THD-01][Thread:10][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:43,915 [THD-01][Thread:10][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:45,931 [THD-01][Thread:10][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:45,931 [THD-01][Thread:10][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:49,009 [THD-01][Thread:13][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:49,009 [THD-01][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:52,462 [THD-01][Thread:19][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:52,462 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:54,368 [THD-01][Thread:15][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 06:16:54,368 [THD-01][Thread:15][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Entities.Users.UserController.ChangePasswordByToken(Int32 portalid, String username, String newPassword, String resetToken)
+   at DotNetNuke.Modules.Admin.Security.PasswordReset.cmdChangePassword_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-03-25 09:15:20,227 [THD-01][Thread:31][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-03-25 10:29:00,524 [THD-01][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Netsam.Modules.NSR_Registration.mHandler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_ManageScheduledServices\Scripts\jquery-uploadify\mHandler.ashx:line 13
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-03-25 10:29:16,899 [THD-01][Thread:18][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Netsam.Modules.NSR_Registration.mHandler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_ManageScheduledServices\Scripts\jquery-uploadify\mHandler.ashx:line 13
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-03-25 10:29:26,852 [THD-01][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Netsam.Modules.NSR_Registration.mHandler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_ManageScheduledServices\Scripts\jquery-uploadify\mHandler.ashx:line 13
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-03-25 11:30:30,712 [THD-01][Thread:10][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Netsam.Modules.NSR_Registration.mHandler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_ManageScheduledServices\Scripts\jquery-uploadify\mHandler.ashx:line 13
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

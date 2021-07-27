@@ -2,9 +2,9 @@
     <div class="h30"></div>
     <div class="center">
         <p>Please rate the Provider using the following performance </p>
-        <h2>{$T.FirstName} {$T.LastName}</h2>
+        <h2>{$T.FirstName} {NS_IntialLetter($T.LastName)}</h2>
         <div class="profile-pic">
-            <div class="round"><a href="#"><img src="{$T.Profile.PhotoURL}" alt="{$T.FirstName} {$T.LastName}"></a></div>
+            <div class="round"><a href="#"><img src="{$T.Profile.PhotoURL}" alt=""></a></div>
         </div>
         <p class="bmar-xs">How would you rate this provider?</p>
         <div class="stars">
@@ -24,7 +24,8 @@
         Loading...
         {LoadRatings()}
     </div>
-    <textarea name="textarea" id="txtURComment" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
+    <textarea name="textarea" id="txtURComment" class="form-control" rows="5" placeholder="Optional Comment" onkeyup="textCounter(this, 'remainingcC', 500);"></textarea>
+    <span id='remainingcC'></span>
     <div class="tpad-mid"></div>
     <p class="bmar-sm">Display my name on review page</p>
     <select id="ddlDisplayMyNameAs" class="form-control w100">
@@ -43,20 +44,18 @@
 </div>
 <a data-toggle="modal" onclick="AddProviderRating(); return false;" class="block-btn">Submit</a>
 <!-- Modal Thank You -->
-<div class="modal fade" id="ThankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="ThankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
                 <h4 class="modal-title" id="myModalLabel">Thank You</h4>
             </div>
             <div class="modal-cpbody2 center">
                 <p>Thank you for submitting a Spafoo review.</p>
-                <p>Your opinion counts and we appreciate you sharing  your review with us.</p>
+                <p>Your opinion counts and we appreciate you sharing your review with us.</p>
                 <p>&nbsp;</p>
-                <div class="cpaction">
-                    <div class="col-xs-6 pca"><a href="#" onclick="NS_GotoMakeAppointment(event); return false;" class="gray-rounded btnblock">Make Appointment</a></div>
-                    <div class="col-xs-6 pok"><a href="#" onclick="GotoHomeTab(); return false;" class="green-rounded btnblock">Spafoo Home</a></div>
+                <div class="cpaction mfcnt">
+                    <div><a href="#" onclick="document.location.reload(); return false;" class="green-rounded2">My Schedule</a></div>
                 </div>
             </div>
         </div>

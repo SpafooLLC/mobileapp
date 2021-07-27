@@ -1,0 +1,18 @@
+2019-01-16 07:59:02,930 [THD-01][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ArgumentException: Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2019-01-16 07:59:13,993 [THD-01][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ArgumentException: Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2019-01-16 07:59:17,102 [THD-01][Thread:38][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ArgumentException: Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)

@@ -10,7 +10,7 @@
     <email />
   </owner>
   <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
-  <releaseNotes />
+  <releaseNotes>This package has no Release Notes</releaseNotes>
   <components>
     <component type="Module">
       <desktopModule>
@@ -44,6 +44,7 @@
       <assemblies>
         <basePath>bin</basePath>
         <assembly>
+          <path>bin</path>
           <name>NS_FindProvider.dll</name>
         </assembly>
       </assemblies>
@@ -52,13 +53,16 @@
       <files>
         <basePath>DesktopModules\NS_FindProvider</basePath>
         <file>
-          <name>Edit.ascx</name>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
         </file>
         <file>
-          <name>License.txt</name>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
         </file>
         <file>
-          <name>ReleaseNotes.txt</name>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
         </file>
         <file>
           <path>Scripts\multiselect</path>
@@ -73,25 +77,22 @@
           <name>Module.js</name>
         </file>
         <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
           <name>Settings.ascx</name>
         </file>
         <file>
           <name>View.ascx</name>
-        </file>
-        <file>
-          <name>NS_FindProvider.dnn</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>View.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Edit.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Settings.ascx.resx</name>
         </file>
       </files>
     </component>

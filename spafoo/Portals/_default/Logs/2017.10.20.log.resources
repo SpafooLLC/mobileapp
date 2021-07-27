@@ -1,0 +1,4 @@
+2017-10-20 07:36:35,403 [THD-01][Thread:22][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error:  is currently unavailable." ctrl="ASP.admin_tabs_export_ascx" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Entities.Tabs.TabController.SerializeTab(XmlDocument tabXml, Hashtable tabs, TabInfo tab, PortalInfo portal, Boolean includeContent)
+   at DotNetNuke.Modules.Admin.Tabs.Export.SerializeTab(XmlDocument xmlTemplate, XmlNode nodeTabs)
+   at DotNetNuke.Modules.Admin.Tabs.Export.OnExportClick(Object sender, EventArgs e)"

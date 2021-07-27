@@ -1,13 +1,19 @@
-﻿<div class="inbody-simple mprofile">
+<div class="inbody-simple mprofile">
     <div class="center">
         <p><a href="#" onclick="NS_CancelEdit(); return false;" class="bold"><i class="fa fa-edit fa-lg"></i> &nbsp;Cancel</a></p>
         <div class="profile-pic">
-            <div class="round">
-                <a href="#"><img src="{$T.Profile.PhotoURL}" alt=""></a>
-                <input type="file" class="NS_uplDiv NSR_ProfilePicControl" />
-            </div>
+            <div id="MainCropper_10000" class="mst" style=" margin:0 auto; border-radius:50%; width:300px; height:300px; background-image:url(/DesktopModules/NS_MakeAppointment/Images/Site/register-default.png);" >
+                <img id="NS_imgUserProfilePic" src="{$T.Profile.PhotoURL}" alt="" style='border-radius:50%;height:100%;width:100%;'>
+            </div> 
+            <img src="/portals/0/images/rook2.png" onclick="return SaveCroppedImage();"/>
+            <!-- <input type="file" id="NSRFile_10000" class="NS_uplDiv NSR_ProfilePicControl" /> -->
+            
+            <div class="cfileup">
+		  <input type="file" id="NSRFile_10000" class="inputfile inputfile-1 NS_uplDiv NSR_ProfilePicControl" style="display:none;"  />
+		    <label for="NSRFile_10000"><img src="/portals/0/images/ico-upload.png"  />&nbsp;&nbsp; <span>Choose a file&hellip;</span></label>
+	      </div> 
         </div>
-        <h3 class="bmar-xs">{$T.FirstName} {$T.LastName}</h3>
+        <h3 class="bmar-xs">{$T.FirstName} {NS_IntialLetter($T.LastName)}</h3>
         <p class="green bmar-sm fs-sm"> {$T.Email}</p>
         <p><span>Joined Date:</span> {NS_FormatJSONDate($T.CreatedOnDate,'dd MM yy')}</p>
     </div>
@@ -53,25 +59,26 @@
     <div class="NS_InputRow">
         <div class="NS_Caption">Street:</div>
         <div class="NS_Input">
-            <input id="txtStr" type="text" {#if $T.Profile.Street!=null} value="{$T.Profile.Street}" {#/if} class="form-control" style="width:100%;" />
+            <input id="txtStr" type="text" {#if $T.Profile.Street!=null} value="{$T.Profile.Street}" {#/if} class="form-control EditInput" style="width:100%;" />
         </div>
     </div>
     <div class="NS_InputRow">
         <div class="NS_Caption">City:</div>
         <div class="NS_Input">
-            <input id="txtCity" type="text" value="{$T.Profile.City}" class="form-control" style="width:100%;" />
+            <input id="txtCity" type="text" value="{$T.Profile.City}" class="form-control EditInput" style="width:100%;" />
         </div>
     </div>
     <div class="NS_InputRow">
         <div class="NS_Caption">Region:</div>
         <div class="NS_Input">
-            <input id="txtRegion" type="text" value="{$T.Profile.Region}" class="form-control" style="width:100%;" />
+            <select id="ddlRegion" class="form-control EditInput"></select>
+            <!--<input id="txtRegion" type="text" value="{$T.Profile.Region}" class="form-control" style="width:100%;" />-->
         </div>
     </div>
     <div class="NS_InputRow">
         <div class="NS_Caption">PostalCode:</div>
         <div class="NS_Input">
-            <input id="txtPC" type="text" value="{$T.Profile.PostalCode}" class="form-control" style="width:100%;" />
+            <input id="txtPC" type="text" value="{$T.Profile.PostalCode}" class="form-control EditInput" style="width:100%;" />
         </div>
     </div>
     <div class="NS_InputRow">
@@ -80,6 +87,17 @@
             <input id="txtP" type="text" value="{$T.Profile.Telephone}" class="form-control" style="width:100%;" />
         </div>
     </div>
+    <div class="NS_InputRow">
+        <div class="NS_Caption">Cell:</div>
+        <div class="NS_Input">
+            <input id="txtCell" type="text" value="{$T.Profile.Cell}" class="form-control" style="width:100%;" />
+        </div>
+    </div>
+    <!--<div class="NS_InputRow">
+        <div id="NS_ContactMap" style="height:350px;width:450px;">
+            {NS_InitMap($T.Profile)}
+        </div>
+    </div>-->
     <div class="clearfix"></div>
 	    <div class="bar-head"><i class="fa fa-envelope-o"></i> &nbsp;Professionl Information</div>
     <div class="NS_InputRow">

@@ -142,6 +142,22 @@ namespace DotNetNuke.Modules.Admin.Security
             }
         }
 
+	    protected bool UsernameDisabled
+	    {
+		    get
+		    {
+				return PortalController.GetPortalSettingAsBoolean("Registration_UseEmailAsUserName", PortalId, false);
+		    }
+	    }
+
+	    private bool ShowEmailField
+	    {
+		    get
+		    {
+			    return MembershipProviderConfig.RequiresUniqueEmail || UsernameDisabled;
+		    }
+	    }
+
         #endregion
 
         #region Private Methods
@@ -149,7 +165,7 @@ namespace DotNetNuke.Modules.Admin.Security
         private void GetUser()
         {
             ArrayList arrUsers;
-            if (MembershipProviderConfig.RequiresUniqueEmail && !String.IsNullOrEmpty(txtEmail.Text.Trim()) && (String.IsNullOrEmpty(txtUsername.Text.Trim()) || divUsername.Visible == false))
+			if (MembershipProviderConfig.RequiresUniqueEmail && !String.IsNullOrEmpty(txtEmail.Text.Trim()) && (String.IsNullOrEmpty(txtUsername.Text.Trim()) || divUsername.Visible == false))
             {
                 arrUsers = UserController.GetUsersByEmail(PortalSettings.PortalId, txtEmail.Text, 0, Int32.MaxValue, ref _userCount);
                 if (arrUsers != null && arrUsers.Count == 1)
@@ -226,9 +242,9 @@ namespace DotNetNuke.Modules.Admin.Security
                 _ipAddress = Request.UserHostAddress;
             }
 
-            bool usernameDisabled = PortalController.GetPortalSettingAsBoolean("Registration_UseEmailAsUserName", PortalId, false);
-            divEmail.Visible = MembershipProviderConfig.RequiresUniqueEmail || usernameDisabled;
-            divUsername.Visible = !usernameDisabled;
+
+			divEmail.Visible = ShowEmailField;
+			divUsername.Visible = !UsernameDisabled;
             divCaptcha.Visible = UseCaptcha;
 
             if (UseCaptcha)
@@ -253,23 +269,12 @@ namespace DotNetNuke.Modules.Admin.Security
             var moduleMessageType = ModuleMessage.ModuleMessageType.GreenSuccess;
             var canSend = true;
 
-            if (MembershipProviderConfig.RequiresQuestionAndAnswer && String.IsNullOrEmpty(txtAnswer.Text))
-            {
-                GetUser();
-                if (_user != null)
-                {
-                    lblQuestion.Text = _user.Membership.PasswordQuestion;
-                }
-                divQA.Visible = true;
-                return;
-            }
-
             if ((UseCaptcha && ctlCaptcha.IsValid) || (!UseCaptcha))
             {
                 if (String.IsNullOrEmpty(txtUsername.Text.Trim()))
                 {
                     //No UserName provided
-                    if (MembershipProviderConfig.RequiresUniqueEmail)
+                    if (ShowEmailField)
                     {
                         if (String.IsNullOrEmpty(txtEmail.Text.Trim()))
                         {
@@ -309,35 +314,13 @@ namespace DotNetNuke.Modules.Admin.Security
                         {
                             canSend = false;
                         }
-                        else
+                        else 
                         {
-                            //if (MembershipProviderConfig.PasswordRetrievalEnabled)
-                            //{
-                            //    try
-                            //    {
-                            //        _user.Membership.Password = UserController.GetPassword(ref _user, txtAnswer.Text);
-                            //    }
-                            //    catch (Exception exc)
-                            //    {
-                            //        Logger.Error(exc);
-
-                            //        canSend = false;
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    try
-                            //    {
-                            //        _user.Membership.Password = UserController.GeneratePassword();
-                            //        UserController.ResetPassword(_user, txtAnswer.Text);
-                            //    }
-                            //    catch (Exception exc)
-                            //    {
-                            //        Logger.Error(exc);
-
-                            //        canSend = false;
-                            //    }
-                            //}
+                            if (_user.Membership.Approved == false)
+                            {
+                                Mail.SendMail(_user, MessageType.PasswordReminderUserIsNotApproved, PortalSettings);
+                                canSend = false;
+                            }
                             if (MembershipProviderConfig.PasswordRetrievalEnabled || MembershipProviderConfig.PasswordResetEnabled)
                             {
                                 UserController.ResetPasswordToken(_user);
@@ -364,6 +347,7 @@ namespace DotNetNuke.Modules.Admin.Security
                     if (canSend)
                     {
                         LogSuccess();
+						cancelButton.Attributes["resourcekey"] = "cmdClose";
                     }
                     else
                     {

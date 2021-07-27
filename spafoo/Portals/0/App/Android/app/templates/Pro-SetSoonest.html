@@ -1,0 +1,51 @@
+
+<ion-view>
+    <ion-content>
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">MY AVAILABILITY</div>
+        </div>
+        <div class="inbody mavai">
+            <h3 class="center"><i class="fa green fa-square"></i> &nbsp;Appointment with {{pss.name}}</h3>
+            <div class="cal">
+                <div ui-calendar="pss.uiConfig.calendar" class="span8 calendar" ng-model="pss.staticEvents" calendar="myCalendar"></div>
+            </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="cdatetime">
+                <tr>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr ng-repeat="s in pss.staticEvents[0].events">
+                    <td>{{s.dateField}}</td>
+                    <td><input type="time" class="form-control" ng-model="s.startTime"></td>
+                    <td><input type="time" class="form-control" ng-model="s.endTime"></td>
+                    <td><a ng-click="pss.deleteEvent($index)"><i class="fa red fa-trash fa-lg"></i></a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="fource-bottom center">
+
+            <a class="block-btn" data-ng-click="pss.setDetails()">set soonest</a>
+        </div>
+        <p>&nbsp;</p>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{pss.message}}</p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Time Picker -->
+    </ion-content>
+</ion-view>

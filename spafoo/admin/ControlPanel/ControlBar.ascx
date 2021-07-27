@@ -110,6 +110,7 @@
                                             <input type="submit" value="<%= GetString("Tool.SwitchSites.Button") %>" id="controlBar_SwitchSiteButton" class="dnnPrimaryAction" />
                                         </div>
                                     </li>
+                                    <% } %>
                                     <% if (ShowSwitchLanguagesPanel())
                                        { %>
                                     <li>
@@ -120,7 +121,7 @@
                                             <input type="submit" value="<%= GetString("Tool.SwitchSites.Button") %>" id="controlBar_SwitchLanguageButton" class="dnnPrimaryAction" />
                                         </div>
                                     </li>
-                                    <% } %>
+                                    
                                     <% } %>
                                 </ul>
                             </dd>
@@ -335,7 +336,7 @@
             <div class="viewportSeparator left"></div>
             <div class="viewportSeparator right"></div>
             <div class="ControlModuleContainer">
-                <dnn:DnnPageDropDownList ID="PageList" runat="server" CssClass="dnnLeftComboBox dnnBlackDropDown" IncludeAllTabTypes="True" IncludeDisabledTabs="True" />
+                <dnn:DnnPageDropDownList ID="PageList" runat="server" CssClass="dnnLeftComboBox dnnBlackDropDown" IncludeAllTabTypes="True" IncludeDisabledTabs="True" IncludeActiveTab="True"/>
                 <dnn:DnnComboBox ID="VisibilityLst" runat="server" CssClass="dnnLeftComboBox" Enabled="false" Skin="DnnBlack" ViewStateMode="Disabled" />
                 <div class="ControlBar_chckCopyModule">
                     <input type="checkbox" id="ControlBar_Module_chkCopyModule" /><label for="ControlBar_Module_chkCopyModule"><%= GetString("Tool.MakeCopy.Text") %></label></div>

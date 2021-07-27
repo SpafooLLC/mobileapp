@@ -1,0 +1,37 @@
+2017-11-13 12:14:01,917 [THD-01][Thread:15][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 172.58.144.191
+	Port: 37648
+	Referer: https://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Linux; Android 7.0; SAMSUNG SM-N920T Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/6.2 Chrome/56.0.2924.87 Mobile Safari/537.36
+	ViewState: UwHTgNjubJiZEPaPz93UipB+1bHGnEHhTBnFd1pVXZuqRhBrCz9Kgpcl9y9FVWCHe+R9YXwa+ChMMony3f8QNOzlHCfQofWSk8bj3QrVLCIqBmhHa6CwUN8Ts3Dy65SCqwWNwJlxjXsZxeOfxI/uHtBIzV+dD8ygyK0gu1tm/80QUwGwgczmHCx/dDcluTtjia2qrylmnDf72jsTif/3aX/wipd1ERlvS3O6jHsbx3RDI03JCNlVEJvTYNeGicqsCSDO17ANFUHqCYJtgpDZvA2F+BrkHMJ8WrLm/8ovczOLZw3N6bReZn5kFn+tNCl5EmsIlxH4hHSa9CyiSuqf1q6YjYRT0KdeYRHkkyPsbEyatiFJuYk+UAuny52oCobGpEfJbxMtPK0Zmdt36UEgYpU0vPt4NCw080uXBf1LfUwJwcwNa2CyBI4EDzMX81gsT0WH6H52c/AXLDdXO11wrK/bW0NvJPugtiJvNg==
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2017-11-13 12:14:01,995 [THD-01][Thread:15][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: The client disconnected. ---> System.Web.HttpException: The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 172.58.144.191
+	Port: 37648
+	Referer: https://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Linux; Android 7.0; SAMSUNG SM-N920T Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/6.2 Chrome/56.0.2924.87 Mobile Safari/537.36
+	ViewState: UwHTgNjubJiZEPaPz93UipB+1bHGnEHhTBnFd1pVXZuqRhBrCz9Kgpcl9y9FVWCHe+R9YXwa+ChMMony3f8QNOzlHCfQofWSk8bj3QrVLCIqBmhHa6CwUN8Ts3Dy65SCqwWNwJlxjXsZxeOfxI/uHtBIzV+dD8ygyK0gu1tm/80QUwGwgczmHCx/dDcluTtjia2qrylmnDf72jsTif/3aX/wipd1ERlvS3O6jHsbx3RDI03JCNlVEJvTYNeGicqsCSDO17ANFUHqCYJtgpDZvA2F+BrkHMJ8WrLm/8ovczOLZw3N6bReZn5kFn+tNCl5EmsIlxH4hHSa9CyiSuqf1q6YjYRT0KdeYRHkkyPsbEyatiFJuYk+UAuny52oCobGpEfJbxMtPK0Zmdt36UEgYpU0vPt4NCw080uXBf1LfUwJwcwNa2CyBI4EDzMX81gsT0WH6H52c/AXLDdXO11wrK/bW0NvJPugtiJvNg==
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowMacValidationError(Exception inner, String persistedState)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---
+2017-11-13 19:32:23,917 [THD-01][Thread:18][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

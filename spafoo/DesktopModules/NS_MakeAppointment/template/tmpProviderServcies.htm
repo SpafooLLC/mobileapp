@@ -1,6 +1,6 @@
 ﻿{#foreach $T as S}
 <div class="checkbox checkbox-primary checkbox-inline">
-    <input id="chk_ProSRVC_{$T.S.ServiceID}" price="{$T.S.Price}" type="checkbox" onclick="SetEditStatus(1)">&nbsp;
+    <input id="chk_ProSRVC_{$T.S.ServiceID}" price="{$T.S.Price}" duration="{$T.S.Duration}" type="checkbox" onclick="SetEditStatus(1)">&nbsp;
     <label for="chk_ProSRVC_{$T.S.ServiceID}">{$T.S.ServiceName}</label>
 </div>
 {#/for}

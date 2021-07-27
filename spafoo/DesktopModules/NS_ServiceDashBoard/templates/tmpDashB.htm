@@ -1,11 +1,12 @@
-﻿<div class="services">
+﻿<script src="http://spafoo.com/DesktopModules/NS_ServiceDashBoard/templates/jquery.gray.min.js"></script>
+<div class="services">
     <ul>
     {#foreach $T as S}
         <li>
             <a href="#" onclick="NS_OnServiceClick({$T.S.ServiceID},event)">
                 <h2 id="NSD_SName_{$T.S.ServiceID}">{$T.S.ServiceName}</h2>
                 <h3>{$T.S.ShortDescription}</h3>
-                <img onerror="NS_ServiceOnError(this)" {#if $T.S.Image=='' }
+                <img class="grayscale grayscale-fade" onerror="NS_ServiceOnError(this)" {#if $T.S.Image=='' }
                      src="/DesktopModules/NS_ServiceDashBoard/imgs/NA.jpg"
                      {#else}
                      src="/Images/NS_ServiceDB/{$T.S.Image}"

@@ -1,0 +1,30 @@
+2021-02-15 06:40:21,440 [1019474-web1][Thread:115][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'LuceneController is disposed and cannot be used anymore'.
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.CheckDisposed()
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.get_Writer()
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.Delete(Query query)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentInternal(SearchDocument searchDocument, Boolean autoCommit)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentsByModule(Int32 portalId, Int32 moduleId, Int32 moduleDefId)
+   at DotNetNuke.Services.Search.SearchDataStore.StoreSearchItems(SearchItemInfoCollection searchItems)
+   at DotNetNuke.Services.Search.SearchEngine.IndexContent(DateTime startDate)
+   at DotNetNuke.Services.Search.SearchEngineScheduler.DoWork()
+2021-02-15 06:40:21,518 [1019474-web1][Thread:115][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'LuceneController is disposed and cannot be used anymore'.
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.CheckDisposed()
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.get_Writer()
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.Delete(Query query)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentInternal(SearchDocument searchDocument, Boolean autoCommit)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentsByModule(Int32 portalId, Int32 moduleId, Int32 moduleDefId)
+   at DotNetNuke.Services.Search.SearchDataStore.StoreSearchItems(SearchItemInfoCollection searchItems)
+   at DotNetNuke.Services.Search.SearchEngine.IndexContent(DateTime startDate)
+   at DotNetNuke.Services.Search.SearchEngineScheduler.DoWork()
+2021-02-15 06:40:21,549 [1019474-web1][Thread:115][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'LuceneController is disposed and cannot be used anymore'.
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.CheckDisposed()
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.get_Writer()
+   at DotNetNuke.Services.Search.Internals.LuceneControllerImpl.Delete(Query query)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentInternal(SearchDocument searchDocument, Boolean autoCommit)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentsByModule(Int32 portalId, Int32 moduleId, Int32 moduleDefId)
+   at DotNetNuke.Services.Search.SearchDataStore.StoreSearchItems(SearchItemInfoCollection searchItems)
+   at DotNetNuke.Services.Search.SearchEngine.IndexContent(DateTime startDate)
+   at DotNetNuke.Services.Search.SearchEngineScheduler.DoWork()

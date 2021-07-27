@@ -1,0 +1,94 @@
+2017-11-28 06:18:09,161 [THD-01][Thread:26][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-11-28 06:19:34,395 [THD-01][Thread:46][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-11-28 06:19:53,817 [THD-01][Thread:26][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-11-28 06:22:39,052 [THD-01][Thread:38][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-11-28 06:26:41,724 [THD-01][Thread:49][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Data.SqlClient.SqlException (0x80131904): Violation of UNIQUE KEY constraint 'IX_Users'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (5048584406).
+Cannot insert duplicate key row in object 'dbo.aspnet_Users' with unique index 'aspnet_Users_Index'. The duplicate key value is (de55760b-9099-46fd-a367-9bb828a998b5, 5048584406).
+The statement has been terminated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at PetaPoco.Database.Execute(String sql, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteNonQuery(String connectionString, CommandType type, String sql, Object[] args)
+   at DotNetNuke.Data.DataProvider.ChangeUsername(Int32 userId, String newUsername)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ChangeUsername(Int32 userId, String newUsername)
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+ClientConnectionId:96488395-ca39-42fa-a28b-48fa0c4fe97a
+2017-11-28 06:27:15,489 [THD-01][Thread:10][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-11-28 10:41:19,177 [THD-01][Thread:13][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Data.SqlClient.SqlException (0x80131904): Violation of UNIQUE KEY constraint 'IX_Users'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (5042354825).
+Cannot insert duplicate key row in object 'dbo.aspnet_Users' with unique index 'aspnet_Users_Index'. The duplicate key value is (de55760b-9099-46fd-a367-9bb828a998b5, 5042354825).
+The statement has been terminated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at PetaPoco.Database.Execute(String sql, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteNonQuery(String connectionString, CommandType type, String sql, Object[] args)
+   at DotNetNuke.Data.DataProvider.ChangeUsername(Int32 userId, String newUsername)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ChangeUsername(Int32 userId, String newUsername)
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+ClientConnectionId:fde50962-c70b-4ebb-83dc-1ff02c771c15
+2017-11-28 10:43:14,552 [THD-01][Thread:23][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2017-11-28 10:45:34,270 [THD-01][Thread:26][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Data.SqlClient.SqlException (0x80131904): Violation of UNIQUE KEY constraint 'IX_Users'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (5042354825).
+Cannot insert duplicate key row in object 'dbo.aspnet_Users' with unique index 'aspnet_Users_Index'. The duplicate key value is (de55760b-9099-46fd-a367-9bb828a998b5, 5042354825).
+The statement has been terminated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at PetaPoco.Database.Execute(String sql, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteNonQuery(String connectionString, CommandType type, String sql, Object[] args)
+   at DotNetNuke.Data.DataProvider.ChangeUsername(Int32 userId, String newUsername)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.ChangeUsername(Int32 userId, String newUsername)
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+ClientConnectionId:fde50962-c70b-4ebb-83dc-1ff02c771c15
+2017-11-28 10:47:14,052 [THD-01][Thread:24][ERROR] DotNetNuke.Modules.Admin.Users.Password - System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ChangePassword(UserInfo user, String oldPassword, String newPassword)
+   at DotNetNuke.Modules.Admin.Users.Password.cmdUpdate_Click(Object sender, EventArgs e)

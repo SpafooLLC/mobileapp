@@ -82,6 +82,10 @@
     </file>
     <file>
       <path>Images/</path>
+      <name>CustomLinksSprites.gif</name>
+    </file>
+    <file>
+      <path>Images/</path>
       <name>DMXManager.gif</name>
     </file>
     <file>
@@ -167,6 +171,10 @@
     <file>
       <path>Dialogs/</path>
       <name>LinkManager.ascx</name>
+    </file>
+    <file>
+      <path>Dialogs/</path>
+      <name>TemplateManager.ascx</name>
     </file>
     <file>
       <path>Dialogs/</path>

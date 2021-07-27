@@ -1,0 +1,13 @@
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}MINILOGIN_GetRoles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}MINILOGIN_GetRoles
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}MINILOGIN_GetRoles]
+
+AS
+
+	SELECT     *
+	FROM       {databaseOwner}[{objectQualifier}AllDnnSkins_Login_Role] 
+
+
+

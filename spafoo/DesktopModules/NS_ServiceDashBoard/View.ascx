@@ -10,6 +10,7 @@
     var NSR_SDB_SID = '<%=this.Session.SessionID%>';
     var NSR_SDB_WSUrl = '/DesktopModules/NS_ServiceDashBoard/rh.asmx/';
     var NSR_SDB_AppointmentTab = '<%=this.MakeAppointmenTab%>';
+    var NSR_SDB_IsProvider=<%=this.IsProvider%>;
     function NSR_SDB_MakeRequest(WBurl, WBData, SuccessCB, FailedCB, vAsync) {
         var pAsync = true;
         if (vAsync != undefined) { pAsync = vAsync;}

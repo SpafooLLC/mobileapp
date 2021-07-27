@@ -1,0 +1,4 @@
+2019-01-07 14:29:46,165 [THD-01][Thread:8][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Invalid API Method 
+(error type System.ArgumentException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)
+   at DnnSharp.Common.Api.ApiContext.Execute(IHttpHandler handler, HttpContext httpContext, Action`2 log)
+

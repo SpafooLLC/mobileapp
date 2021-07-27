@@ -1,0 +1,40 @@
+2021-01-22 23:00:35,476 [1019474-web1][Thread:91][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 94.181.47.232
+	Port: 39680
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=/
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.24 Safari/537.36
+	ViewState: S/0eF4qzcx8aNa5q/QbvckMxB3iBwPSVySOAWLa9i+wTuhzVtcZtB5A38W9ejOEc77wFObf+BUipnSp/0HIg0J0MQHDU0YMcr3JKBg1IuVZyQU2d0BnpYvynS2BohRt+2O/sz9ZjmczshSrglbXIMTjHT8Vfq6Wo5gsaXcezFsPEJbvLgqFC6T3PyI8eWDTxLzhrmODRhjaV/8Q9y8hvwqbB3QFAXOOvuDupxZHN41GwJB7AaYjItuImUWX900vZ+AkeFC/2pb0hLhsU5PEbud/F6N/T55WyoCSWbqY97wZ8AD58UratZ7/PbE/2XM1GM4FTB5BDAyIGeGkpq1JCxRgIaQ85rOXhL44EawcD4aQodkfk85jJ0yz1jSOao31QwpszsauXTfaUII8jEu1BHP9ybxvlIpcbEC8mxBg2DZqPQReJMZx8cB2vxpvb2LPR5O84aceASYAuZzLmlkS3UAxwtobrUCQHLwXLkA==,3oGdLIrmAmzEReB62usVmmHEQFuNicABSe7CBjsrHITuLce6kgjXZv8LFVejn4gsal1b7ugDQ3N1NFGlQe05634wnPo= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2021-01-22 23:00:35,523 [1019474-web1][Thread:91][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 94.181.47.232
+	Port: 39680
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=/
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.24 Safari/537.36
+	ViewState: S/0eF4qzcx8aNa5q/QbvckMxB3iBwPSVySOAWLa9i+wTuhzVtcZtB5A38W9ejOEc77wFObf+BUipnSp/0HIg0J0MQHDU0YMcr3JKBg1IuVZyQU2d0BnpYvynS2BohRt+2O/sz9ZjmczshSrglbXIMTjHT8Vfq6Wo5gsaXcezFsPEJbvLgqFC6T3PyI8eWDTxLzhrmODRhjaV/8Q9y8hvwqbB3QFAXOOvuDupxZHN41GwJB7AaYjItuImUWX900vZ+AkeFC/2pb0hLhsU5PEbud/F6N/T55WyoCSWbqY97wZ8AD58UratZ7/PbE/2XM1GM4FTB5BDAyIGeGkpq1JCxRgIaQ85rOXhL44EawcD4aQodkfk85jJ0yz1jSOao31QwpszsauXTfaUII8jEu1BHP9ybxvlIpcbEC8mxBg2DZqPQReJMZx8cB2vxpvb2LPR5O84aceASYAuZzLmlkS3UAxwtobrUCQHLwXLkA==,3oGdLIrmAmzEReB62usVmmHEQFuNicABSe7CBjsrHITuLce6kgjXZv8LFVejn4gsal1b7ugDQ3N1NFGlQe05634wnPo= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

@@ -1,0 +1,256 @@
+2016-10-17 00:19:20,470 [THD-01][Thread:23][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 00:19:20,564 [THD-01][Thread:23][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:19:20,564 [THD-01][Thread:23][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:19:20,579 [THD-01][Thread:23][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:24:26,360 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 00:24:26,360 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:24:26,360 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:24:26,376 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:29:32,345 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 00:29:32,345 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:29:32,345 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:29:32,360 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:34:38,376 [THD-01][Thread:59][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 00:34:38,392 [THD-01][Thread:59][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:34:38,392 [THD-01][Thread:59][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:34:38,407 [THD-01][Thread:59][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:39:44,314 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 00:39:44,314 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:39:44,314 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:39:44,314 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:44:47,376 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 00:44:47,376 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:44:47,376 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 00:44:47,376 [THD-01][Thread:31][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 05:14:39,860 [THD-01][Thread:10][ERROR] DotNetNuke.Modules.Admin.Users.Password - System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Entities.Users.UserController.ResetPassword(UserInfo user, String passwordAnswer)
+   at DotNetNuke.Entities.Users.UserController.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Modules.Admin.Users.Password.cmdUpdate_Click(Object sender, EventArgs e)
+2016-10-17 05:27:01,001 [THD-01][Thread:10][ERROR] DotNetNuke.Modules.Admin.Users.Password - System.Web.Security.MembershipPasswordException: The user account has been locked out.
+   at System.Web.Security.SqlMembershipProvider.ResetPassword(String username, String passwordAnswer)
+   at System.Web.Security.MembershipUser.ResetPassword(String passwordAnswer)
+   at DotNetNuke.Entities.Users.UserController.ResetPassword(UserInfo user, String passwordAnswer)
+   at DotNetNuke.Entities.Users.UserController.ResetAndChangePassword(UserInfo user, String newPassword)
+   at DotNetNuke.Modules.Admin.Users.Password.cmdUpdate_Click(Object sender, EventArgs e)
+2016-10-17 05:29:37,360 [THD-01][Thread:32][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpFailedRecipientException: Mailbox unavailable. The server response was: <netsamprovider@netsam.com> No such user here
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2016-10-17 15:19:59,704 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 15:19:59,782 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:19:59,782 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:19:59,798 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:25:04,595 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 15:25:04,610 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:25:04,610 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:25:04,626 [THD-01][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:30:10,564 [THD-01][Thread:30][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 15:30:10,579 [THD-01][Thread:30][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:30:10,579 [THD-01][Thread:30][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:30:10,579 [THD-01][Thread:30][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:35:16,579 [THD-01][Thread:35][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 15:35:16,626 [THD-01][Thread:35][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:35:16,626 [THD-01][Thread:35][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:35:16,626 [THD-01][Thread:35][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:40:22,548 [THD-01][Thread:50][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 15:40:22,564 [THD-01][Thread:50][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:40:22,564 [THD-01][Thread:50][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 15:40:22,564 [THD-01][Thread:50][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:26:39,017 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 22:26:39,095 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:26:39,095 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:26:39,110 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:31:44,001 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 22:31:44,001 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:31:44,001 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:31:44,017 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:36:49,985 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 22:36:49,985 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:36:49,985 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:36:50,001 [THD-01][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:41:55,970 [THD-01][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-17 22:41:55,970 [THD-01][Thread:24][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:41:55,970 [THD-01][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-17 22:41:55,970 [THD-01][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()

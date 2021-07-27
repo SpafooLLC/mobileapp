@@ -10,7 +10,7 @@
     <email />
   </owner>
   <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
-  <releaseNotes />
+  <releaseNotes>This package has no Release Notes</releaseNotes>
   <components>
     <component type="Module">
       <desktopModule>
@@ -44,6 +44,11 @@
       <assemblies>
         <basePath>bin</basePath>
         <assembly>
+          <path>bin</path>
+          <name>NS_MakeAppointment.dll</name>
+        </assembly>
+        <assembly>
+          <path>bin</path>
           <name>NS_ManageScheduledServices.dll</name>
         </assembly>
       </assemblies>
@@ -52,24 +57,36 @@
       <files>
         <basePath>DesktopModules\NS_ManageScheduledServices</basePath>
         <file>
-          <name>Edit.ascx</name>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
         </file>
         <file>
-          <name>License.txt</name>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
         </file>
         <file>
-          <name>ReleaseNotes.txt</name>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
         </file>
         <file>
-          <name>rh.asmx</name>
+          <path>Scripts\jquery-uploadify</path>
+          <name>Handler.ashx</name>
         </file>
         <file>
-          <path>Scripts</path>
-          <name>bootbox.min.js</name>
+          <path>Scripts\jquery-uploadify</path>
+          <name>mHandler.ashx</name>
         </file>
         <file>
           <path>Scripts\pickmeup</path>
           <name>jquery.pickmeup.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\pickmeup</path>
+          <name>pickmeup.css</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>bootbox.min.js</name>
         </file>
         <file>
           <path>Scripts</path>
@@ -78,45 +95,6 @@
         <file>
           <path>Scripts</path>
           <name>mProvider.js</name>
-        </file>
-        <file>
-          <path>Scripts\pickmeup</path>
-          <name>pickmeup.css</name>
-        </file>
-        <file>
-          <name>Settings.ascx</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpAppointmentPhotos.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpProDateAvail.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpProMyAvailability.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpRateProvider.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpScheduleID.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpClientSchedule.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpRatings.htm</name>
-        </file>
-        <file>
-          <path>temp</path>
-          <name>tmpRateClient.htm</name>
         </file>
         <file>
           <path>temp</path>
@@ -128,7 +106,47 @@
         </file>
         <file>
           <path>temp</path>
+          <name>tmpAppointmentPhotos.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpAppPhotos.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpClientSchedule.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpCompletedAppView.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
           <name>tmpMySchedule.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpProDateAvail.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpProMyAvailability.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpRateClient.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpRateProvider.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpRatings.htm</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpScheduleID.htm</name>
         </file>
         <file>
           <path>UC</path>
@@ -139,26 +157,25 @@
           <name>ucManageProvider.ascx</name>
         </file>
         <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>rh.asmx</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
           <name>View.ascx</name>
-        </file>
-        <file>
-          <name>NS_ManageScheduledServices.dnn</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>View.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Edit.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Settings.ascx.resx</name>
-        </file>
-        <file>
-          <path>Scripts\jquery-uploadify</path>
-          <name>Handler.ashx</name>
         </file>
       </files>
     </component>

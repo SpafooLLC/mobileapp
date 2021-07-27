@@ -1,0 +1,28 @@
+05:03:00.697 | Errors | dcc3f1af | avt.Action Form #450 | Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+05:03:13.307 | Errors | 894555f6 | avt.Action Form #450 | Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+05:03:31.697 | Errors | f7b20710 | avt.Action Form #450 | Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+
+05:03:34.010 | Errors | 40585835 | avt.Action Form #450 | Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+

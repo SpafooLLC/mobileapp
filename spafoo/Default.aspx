@@ -17,49 +17,6 @@
     <asp:PlaceHolder runat="server" ID="ClientDependencyHeadJs"></asp:PlaceHolder>
     <asp:placeholder id="CSS" runat="server" />
     <asp:placeholder id="SCRIPTS" runat="server" />
-    <script language="JavaScript" type="text/javascript">
-		
-// defining flags
-var isCtrl = false;
-var isShift = false;
-
-// the magic :)
-$(document).ready(function() {
-	
-	
-	// action on key up
-	$(document).keyup(function(e) {
-
-		if(e.which == 17) {
-			isCtrl = false;
-		}
-		if(e.which == 16) {
-			isShift = false;
-		}
-	});
-	// action on key down
-	$(document).keydown(function(e) {
-		if(e.which == 17) {
-			isCtrl = true; 
-		}
-		if(e.which == 16) {
-			isShift = true; 
-		}
-		if(e.which == 65 && isCtrl && isShift) { 
-			
-var url =$(location).attr('href')+"?ctl=login";   
-$(location).attr('href',url);
-		} 
-if(e.which == 90 && isCtrl && isShift) { 
-		
-var url ="/admin/ctl/logoff.aspx";    
-$(location).attr('href',url);
-		} 
-	});
-	
-});		
-		
-</script>
 </head>
 <body id="Body" runat="server">
     

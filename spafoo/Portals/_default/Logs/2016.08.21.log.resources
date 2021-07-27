@@ -1,0 +1,41 @@
+2016-08-21 22:18:58,358 [THD-01][Thread:42][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.11
+	Port: 2736
+	Referer: http://www.spafoo.com/Admin/User-Accounts/pagesize/50/filter/All
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36
+	ViewState: b7DyOlJmJzDDuP83Q4Yf4v2cJH+6TZsCE6sR8k8csZFi5L6H19BQJHmQcEmUP2X0BO0beSZisSLxO5mj0FzujdicC5eafS0vUdxd9c1eZYGSC5GOCZT1DebROXXpl5TfWf5q9VlT5xEkrfMM1bR0UULMAxvtSWXGDodNQAGOFfkTVMeGFZV8IXOzgmO6j/sBDu4lTMlGi04bYTjR8GapbOkAM9Tn9Ql6mJGS84wbyElLuylc7WazT5SEdw9RpyMCTZd3Kap3nvBb0mKCdskdBHffHeGZYnPaX3jQ/mGSad2MB69Y55W+4HR3a4wYp2bSXFY2obrBynfwEfjmqz9Y4bO5M0hW2/bgdPc7siFJHxEn4qhlcd5VzcQ0OCtu/kzPFoPRr77HxjiXU+whLQZVf0dTzu3DFzVl6Z99JWT6iOR6JuS3Xi5qnLeTDwGSkZm15jiJXEAWyQ21cLg1abcwzyw919w3XRifVprrkpdm/dzR8E1aBChafrgVb2s6AebxFvHEV5NpArb63Nqjdu+pBFaMM+hWTGUT+amgRgE7uIVqQSUtz50VQf/yEPFbUsQ4+RXO5ANET5O/2gLDSfXLFWh4tUKCVYX56EnXwcZ5CkKAlqDMAZsZI7NwKNLhKyVDwI/3qOnYa2reMuiZPtgx7ZOLrmh0VmsZAJYVJXfd2vyV+DJk/uUrSOFM9ZS4/8810HTsTeSnY4rPVopKE7Tdd564ulnoUPZUf85HfKeaE/z... ---> System.FormatException: Invalid length for a Base-64 char array or string.
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-08-21 22:18:58,576 [THD-01][Thread:42][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: The client disconnected. ---> System.Web.HttpException: The client disconnected. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 43.225.3.11
+	Port: 2736
+	Referer: http://www.spafoo.com/Admin/User-Accounts/pagesize/50/filter/All
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36
+	ViewState: b7DyOlJmJzDDuP83Q4Yf4v2cJH+6TZsCE6sR8k8csZFi5L6H19BQJHmQcEmUP2X0BO0beSZisSLxO5mj0FzujdicC5eafS0vUdxd9c1eZYGSC5GOCZT1DebROXXpl5TfWf5q9VlT5xEkrfMM1bR0UULMAxvtSWXGDodNQAGOFfkTVMeGFZV8IXOzgmO6j/sBDu4lTMlGi04bYTjR8GapbOkAM9Tn9Ql6mJGS84wbyElLuylc7WazT5SEdw9RpyMCTZd3Kap3nvBb0mKCdskdBHffHeGZYnPaX3jQ/mGSad2MB69Y55W+4HR3a4wYp2bSXFY2obrBynfwEfjmqz9Y4bO5M0hW2/bgdPc7siFJHxEn4qhlcd5VzcQ0OCtu/kzPFoPRr77HxjiXU+whLQZVf0dTzu3DFzVl6Z99JWT6iOR6JuS3Xi5qnLeTDwGSkZm15jiJXEAWyQ21cLg1abcwzyw919w3XRifVprrkpdm/dzR8E1aBChafrgVb2s6AebxFvHEV5NpArb63Nqjdu+pBFaMM+hWTGUT+amgRgE7uIVqQSUtz50VQf/yEPFbUsQ4+RXO5ANET5O/2gLDSfXLFWh4tUKCVYX56EnXwcZ5CkKAlqDMAZsZI7NwKNLhKyVDwI/3qOnYa2reMuiZPtgx7ZOLrmh0VmsZAJYVJXfd2vyV+DJk/uUrSOFM9ZS4/8810HTsTeSnY4rPVopKE7Tdd564ulnoUPZUf85HfKeaE/z... ---> System.FormatException: Invalid length for a Base-64 char array or string.
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---

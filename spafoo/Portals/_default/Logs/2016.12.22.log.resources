@@ -1,0 +1,17 @@
+2016-12-22 13:27:38,371 [THD-01][Thread:34][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ArgumentException: Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2016-12-22 13:28:04,308 [THD-01][Thread:29][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.ArgumentException: Can't send email because the email address to send to could not be determined.
+   at DnnSharp.Common.Actions.Communications.SendEmail.GetRecipients(ActionContext data)
+   at DnnSharp.Common.Actions.Communications.SendEmail.Execute(ActionContext context)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData formData, FormContext context, IActionImpl action)
+   at avt.ActionForm.Core.Actions.ActionInfo.Execute(ActionFormSettings settings, FormData data, eActionContext context)
+   at avt.ActionForm.ActionFormSettings.ExecuteActions(IList`1 actions, FormData data, eActionContext context)
+2016-12-22 18:31:18,730 [THD-01][Thread:30][ERROR] DotNetNuke.Modules.Admin.Users.EditUser - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.EditUser.cmdUpdate_Click(Object sender, EventArgs e)

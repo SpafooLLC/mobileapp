@@ -2,7 +2,7 @@
   <files>
     <file>
       <path />
-      <name>07.03.00.txt</name>
+      <name>07.04.02.txt</name>
     </file>
     <file>
       <path>App_LocalResources/</path>
@@ -26,11 +26,7 @@
     </file>
     <file>
       <path>Images/</path>
-      <name>PremiumOnly.png</name>
-    </file>
-    <file>
-      <path>Images/</path>
-      <name>World.png</name>
+      <name>Optimization.png</name>
     </file>
     <file>
       <path />

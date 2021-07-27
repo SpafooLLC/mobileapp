@@ -70,12 +70,12 @@ var NS_SDB_SaveStatus = -1;
             _Img = $(Pre + "File").attr("uploadedFile");
         }
         var _Price = $(Pre + "txtPrice").val().trim();
-        var _Tax = $(Pre + "txtTax").val().trim();
+        var _Duration = $(Pre + "txtDuration").val().trim();
         if (_Price == '') { _Price = 0; }
-        if (_Tax == '') { _Tax = 0; }
+        if (_Duration == '') { _Duration = 0; }
         var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/AddService";
         //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
-        var _data = "{'SID':'" + NS_SDB_CurrentServiceID + "','SN':'" + _SN + "','SD':'" + _SD + "','Image':'" + _Img + "','PID':'" + NS_SDB_CParentID + "','Price':'" + _Price + "','Tax':'" + _Tax + "'}";
+        var _data = "{'SID':'" + NS_SDB_CurrentServiceID + "','SN':'" + _SN + "','SD':'" + _SD + "','Image':'" + _Img + "','PID':'" + NS_SDB_CParentID + "','Price':'" + _Price + "','Duration':'" + _Duration + "'}";
         NSR_SDB_MakeRequest(_URL, _data, NS_OnServiceAdded_SuCB);
     }
 

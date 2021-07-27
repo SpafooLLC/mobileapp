@@ -1,62 +1,88 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.NS_Registration.View" %>
-<asp:Panel ID="pnlAdmin" runat="server" Visible="false" >
-    <div id="NSR_Admin" style="width:100%;" class="dnnForm">
+<%@ Register src="/desktopmodules/NS_ClientRegistration/ucCropImageReg.ascx" tagname="ucCropImage" tagprefix="uc1" %>
+<%@ Register Src="~/controls/texteditor.ascx" TagPrefix="dnn" TagName="texteditor" %>
+<asp:Panel ID="pnlAdmin" runat="server" Visible="false">
+    <div id="NSR_Admin" style="width: 100%;" class="dnnForm">
         <ul class="dnnAdminTabNav">
             <li><a href="#NSR_ManageResponse">Manage User Response</a></li>
             <li><a href="#NSR_ManageQuestion">Manage Questions</a></li>
+            <li><a href="#NSR_ManageEmail">Manage Email</a></li>
         </ul>
         <div id="NSR_ManageResponse" class="dnnClear">
             <div style="width: 100%;">
-                <div style="width:60%;float:left;">
+                <div style="width: 60%; float: left;">
+                    <input type="radio" id="rblStatusS" name="rblStatus" onclick="NSR_SetStatus('Started');" value="Started" /> <label for="rblStatusS">Started</label>
                     <input type="radio" id="rblStatusP" name="rblStatus" checked="checked" onclick="NSR_SetStatus('Pending')" value="Pending" /><label for="rblStatusP">Pending</label>
                     <input type="radio" id="rblStatusA" name="rblStatus" onclick="NSR_SetStatus('Approved')" value="Approved" /><label for="rblStatusA">Approved</label>
                     <input type="radio" id="rblStatusR" name="rblStatus" onclick="NSR_SetStatus('Rejected')" value="Rejected" /><label for="rblStatusR">Rejected</label>
                     <input type="radio" id="rblStatusAL" name="rblStatus" onclick="NSR_SetStatus('All')" value="All" /><label for="rblStatusAL">All</label>
                 </div>
-                <div style="width:40%;float:left;">
-                    <input type="text" id="NSR_txtKeyword" placeholder="user first name / last name" style="width:70%;" />
+                <div style="width: 40%; float: left;">
+                    <input type="text" id="NSR_txtKeyword" placeholder="user first name / last name" style="width: 70%;" />
                     <input type="button" id="NSR_btnSearchUser" value="Search" onclick="NSR_GetUsers();" />
                 </div>
             </div>
             <div style="width: 100%;" id="NSR_dvUserList">
             </div>
-
         </div>
-    <div id="NSR_ManageQuestion" class="dnnClear">
-        <div id="NSR_C1" style="width:15%;border-bottom:solid double dashed red;height:auto;float:left;">
-            <input type="button" id="nsrAddNewStep" value="Add New Steps" class="dnnPrimaryAction" />
-            <ul id="ulSteps"></ul>
-        </div>
-        <div id="NSR_AdminSteps" style="width:83%;min-height:250px;float:left;border:solid 1px lightgray;">
-            <div style="height:50px;border-bottom:solid 1px lightgray">
-                <div style="float: right; line-height: 50px; margin: 4px 10px 0px 0px;">
-                    <label id="lblCurrentStep" style="font-weight:bold;"></label>
-                    &nbsp;
+        <div id="NSR_ManageQuestion" class="dnnClear">
+            <div id="NSR_C1" style="width: 15%; border-bottom: solid double dashed red; height: auto; float: left;">
+                <input type="button" id="nsrAddNewStep" value="Add New Steps" class="dnnPrimaryAction" />
+                <ul id="ulSteps"></ul>
+            </div>
+            <div id="NSR_AdminSteps" style="width: 83%; min-height: 250px; float: left; border: solid 1px lightgray;">
+                <div style="height: 50px; border-bottom: solid 1px lightgray">
+                    <div style="float: right; line-height: 50px; margin: 4px 10px 0px 0px;">
+                        <label id="lblCurrentStep" style="font-weight: bold;"></label>
+                        &nbsp;
                     <input type="button" value="Add Question Header" id="btnAddSection" onclick="NSR_OpenQuestionHeader()" class="dnnPrimaryAction" />
+                    </div>
+                </div>
+                <div id="NSR_dvStepCategories" style="width: 100%;">
                 </div>
             </div>
-            <div id="NSR_dvStepCategories" style="width:100%;">
-            </div>
         </div>
-   </div>
- </div>
-    <div id="dlgNewQuestion" title="Add New Question" style="width:400px;height:350px">
+        <div id="NSR_ManageEmail" class="dnnClear">
+            <asp:Panel ID="pnlEmailContent" runat="server" Visible="false">
+               <div id="dvEmailContent" style="display: block;">
+                    <label style="font-weight: bold;">Provider Welcome E-mail: </label>
+                    <label style="font-weight:normal;">Available Token:&nbsp;[UserName] [FirstName] [LastName] [ResetLink]</label>
+                    <dnn:texteditor runat="server" ID="txtWelcomeEditor" DefaultMode="Html" Width="99%" HtmlEncode="true" ChooseMode="false" />
+                    <br />
+                    <label style="font-weight: bold;">Provider Approved E-mail: </label>
+                    <label style="font-weight:normal;">Available Token:&nbsp;[UserName] [FirstName] [LastName]</label>
+                    <dnn:texteditor runat="server" ID="txtApprovedEditor" DefaultMode="Html" Width="99%" HtmlEncode="true" ChooseMode="false" />
+                    <br />
+                    <label style="font-weight: bold;">Provider Rejected E-mail: </label>
+                    <label style="font-weight:normal;">Available Token:&nbsp;[UserName] [FirstName] [LastName] [NS_Reason]</label>
+                    <dnn:texteditor runat="server" ID="txtRejectedEditor" DefaultMode="Html" Width="99%" HtmlEncode="true" ChooseMode="false" />
+                    <br />
+                    <label style="font-weight: bold;">Password Reminder E-mail: </label>
+                    <label style="font-weight:normal;">Available Token:&nbsp;[UserName] [FirstName] [LastName] [VerificationCode]</label>
+                    <dnn:texteditor runat="server" ID="txtPasswordReminderEditor" DefaultMode="Html" Width="99%" HtmlEncode="true" ChooseMode="false" />
+
+                    <asp:Button ID="btnSaveEmailContent" runat="server" Text="UPDATE" OnClick="btnSaveEmailContent_Click" />
+                </div>
+            </asp:Panel>
+        </div>
+    </div>
+    <div id="dlgNewQuestion" title="Add New Question" style="width: 400px; height: 350px">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
-            <div style="width: 25%; float: left; height:40px;">
+            <div style="width: 25%; float: left; height: 40px;">
                 <label>Question Text</label>
             </div>
             <div style="width: 75%; float: left;">
                 <input type="text" id="txtQuestionText" style="width: 92%;" />
             </div>
-            <div style="width: 25%; float: left;height:70px;">&nbsp;</div>
-            <div style="width: 75%; float: left; height:70px;">
+            <div style="width: 25%; float: left; height: 70px;">&nbsp;</div>
+            <div style="width: 75%; float: left; height: 70px;">
                 <input type="checkbox" id="chkRequired" />&nbsp;<label for="chkRequired">Required ?</label>&nbsp;&nbsp;
                 <input type="checkbox" id="chkVisible" checked="checked" />&nbsp;<label for="chkVisible">Visible ?</label>
                 <br />
-                    <input type="checkbox" id="chkIsFullWidth" />&nbsp;<label for="chkIsFullWidth">Full Width ?</label>
+                <input type="checkbox" id="chkIsFullWidth" />&nbsp;<label for="chkIsFullWidth">Full Width ?</label>
             </div>
             <div style="width: 25%; float: left; height: 40px; clear: both;">
-                <label>Hint Text</label>
+                <label>Hint Text/ Link URL</label>
             </div>
             <div style="width: 75%; float: left;">
                 <input type="text" id="txtHintText" style="width: 92%;" />
@@ -65,36 +91,37 @@
                 <label>Question Type</label>
             </div>
             <div style="width: 75%; float: left;">
-                <div style="width:40%;float:left;">
-                <select id="ddlQuestionType" onchange="NSR_ShowSubOptions();" style="width:100%;">
-                    <option value="TextBox">TextBox</option>
-                    <option value="Multiline">Multiline</option>
-                    <option value="Radio">Radio</option>
-                    <option value="Date">Date</option>
-                    <option value="CheckBox">CheckBox</option>
-                    <option value="File">File</option>
-                    <option value="Images">Images</option>
-                    <option value="IAgree">I Agree</option>
-                </select>
+                <div style="width: 40%; float: left;">
+                    <select id="ddlQuestionType" onchange="NSR_ShowSubOptions();" style="width: 100%;">
+                        <option value="TextBox">TextBox</option>
+                        <option value="Multiline">Multiline</option>
+                        <option value="Radio">Radio</option>
+                        <option value="Date">Date</option>
+                        <option value="CheckBox">CheckBox</option>
+                        <option value="File">File</option>
+                        <option value="Images">Images</option>
+                        <option value="IAgree">I Agree</option>
+                        <option value="LinkedDoc">Linked Document</option>
+                    </select>
                     <br />
-                    <input id="btnAddOption" type="button" value="Add Options" onclick="return NSR_OpenGetOptions();" style="display:none;" />
-                 </div>
-                <div style="width: 55%; padding-left: 10px; float: right;display:none;">
-                    <select id="ddlSubOption" size="5" style="width:100%;"></select>
+                    <input id="btnAddOption" type="button" value="Add Options" onclick="return NSR_OpenGetOptions();" style="display: none;" />
+                </div>
+                <div style="width: 55%; padding-left: 10px; float: right; display: none;">
+                    <select id="ddlSubOption" size="5" style="width: 100%;"></select>
                 </div>
             </div>
         </div>
     </div>
-    <div id="dlgEditQuestion" title="Edit Question" style="width:400px;height:350px">
+    <div id="dlgEditQuestion" title="Edit Question" style="width: 400px; height: 350px">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
-            <div style="width: 25%; float: left; height:40px;">
+            <div style="width: 25%; float: left; height: 40px;">
                 <label>Question Text</label>
             </div>
             <div style="width: 75%; float: left;">
                 <input type="text" id="txtEQuestionText" style="width: 92%;" />
             </div>
-            <div style="width: 25%; float: left;height:70px;">&nbsp;</div>
-            <div style="width: 75%; float: left; height:70px;">
+            <div style="width: 25%; float: left; height: 70px;">&nbsp;</div>
+            <div style="width: 75%; float: left; height: 70px;">
                 <div style="float: left; width: 69%;">
                     <input type="checkbox" id="chkERequired" />&nbsp;<label for="chkERequired">Required ?</label>&nbsp;&nbsp;
                 <input type="checkbox" id="chkEVisible" checked="checked" />&nbsp;<label for="chkEVisible">Visible ?</label>
@@ -102,12 +129,12 @@
                     <input type="checkbox" id="chkEisFullWidth" />&nbsp;<label for="chkEisFullWidth">Full Width ?</label>
                 </div>
                 <div style="width: 27%; float: left; text-align: left;">
-                    <label> Order </label>
-                    <input type="text" id="txtEOrder" maxlength="2" style="width:50px;" />
+                    <label>Order </label>
+                    <input type="text" id="txtEOrder" maxlength="2" style="width: 50px;" />
                 </div>
             </div>
             <div style="width: 25%; float: left; height: 40px; clear: both;">
-                <label>Hint Text</label>
+                <label>Hint Text/ Link URL</label>
             </div>
             <div style="width: 75%; float: left;">
                 <input type="text" id="txtEHintText" style="width: 92%;" />
@@ -116,23 +143,25 @@
                 <label>Question Type</label>
             </div>
             <div style="width: 75%; float: left;">
-                <div style="width:40%;float:left;">
-                <select id="ddlEQuestionType" onchange="NSR_ShowSubOptions();" style="width:100%;">
-                    <option value="TextBox">TextBox</option>
-                     <option value="Multiline">Multiline</option>
-                    <option value="Radio">Radio</option>
-                    <option value="Date">Date</option>
-                    <option value="CheckBox">CheckBox</option>
-                    <option value="File">File</option>
-                    <option value="Images">Images</option>
-                    <option value="IAgree">I Agree</option>
-                </select>
+                <div style="width: 40%; float: left;">
+                    <select id="ddlEQuestionType" onchange="NSR_ShowSubOptions();" style="width: 100%;">
+                        <option value="TextBox">TextBox</option>
+                        <option value="Multiline">Multiline</option>
+                        <option value="Radio">Radio</option>
+                        <option value="Date">Date</option>
+                        <option value="CheckBox">CheckBox</option>
+                        <option value="File">File</option>
+                        <option value="Images">Images</option>
+                        <option value="IAgree">I Agree</option>
+                        <option value="LinkedDoc">Linked Document</option>
+                    </select>
                     <br />
-                    <input id="btnEAddOption" type="button" value="Add Options" onclick="return NSR_OpenEGetOptions();" style="display:none;" />
-                 </div>
-                <div style="width: 55%; padding-left: 10px; float: right;display:none;">
-                    <select id="ddlESubOption" size="5" style="margin:0px;width:100%;"></select><br /><br />
-                    <input id="btnEDeleteOption" type="button" value="Remove Option" onclick="NSR_DeleteOption();"/>
+                    <input id="btnEAddOption" type="button" value="Add Options" onclick="return NSR_OpenEGetOptions();" style="display: none;" />
+                </div>
+                <div style="width: 55%; padding-left: 10px; float: right; display: none;">
+                    <select id="ddlESubOption" size="5" style="margin: 0px; width: 100%;"></select><br />
+                    <br />
+                    <input id="btnEDeleteOption" type="button" value="Remove Option" onclick="NSR_DeleteOption();" />
                 </div>
             </div>
         </div>
@@ -140,9 +169,11 @@
     <div id="dlgNewQHeader" title="Add Question Header">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
             <div style="width: 25%; float: left; line-height: 30px;">
-                <label>Header Text :</label></div>
-            <div style="width: 75%;float:left;">
-                <input type="text" id="txtHeaderText" style="width: 92%;" /></div>
+                <label>Header Text :</label>
+            </div>
+            <div style="width: 75%; float: left;">
+                <input type="text" id="txtHeaderText" style="width: 92%;" />
+            </div>
 
         </div>
     </div>
@@ -165,213 +196,269 @@
     <div id="dlgRejectReason" title="Rejection Reason">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
             <div style="width: 25%; float: left; line-height: 30px;">
-                <label>Reason :</label></div>
-            <div style="width: 75%;float:left;">
-                <input type="text" id="txtRejectReason" style="width: 92%;" /></div>
+                <label>Reason :</label>
+            </div>
+            <div style="width: 75%; float: left;">
+                <input type="text" id="txtRejectReason" style="width: 92%;" />
+            </div>
         </div>
     </div>
     <div id="dlgAddOption" title="Add Option">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
             <div style="width: 25%; float: left;">
-                <label>Option Text</label><br /><span class="NSR_ALink">(max :1000 character)</span>
+                <label>Option Text</label><br />
+                <span class="NSR_ALink">(max :1000 character)</span>
             </div>
             <div style="width: 75%; float: left;">
-                <textarea id="txtOptionText" maxlength="1000" cols="40" rows="4" style="width:auto;"></textarea>
+                <textarea id="txtOptionText" maxlength="1000" cols="40" rows="4" style="width: auto;"></textarea>
             </div>
             <div style="width: 25%; float: left;">
                 <label>
                     On Selection
                 </label>
                 <br />
-                <span  class="NSR_ALink">(add user to role)</span>
+                <span class="NSR_ALink">(add user to role)</span>
             </div>
             <div style="width: 75%; float: left;">
                 <asp:DropDownList runat="server" ID="ddlOnSelectRole"></asp:DropDownList>
             </div>
         </div>
     </div>
-     <div id="dlgEditOption" title="Add Option">
+    <div id="dlgEditOption" title="Add Option">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
             <div style="width: 25%; float: left;">
-                <label>Option Text</label><br /><span class="NSR_ALink">(max :1000 character)</span>
+                <label>Option Text</label><br />
+                <span class="NSR_ALink">(max :1000 character)</span>
             </div>
             <div style="width: 75%; float: left;">
-                <textarea id="txtEOptionText" maxlength="1000" cols="40" rows="4" style="width:auto;"></textarea>
+                <textarea id="txtEOptionText" maxlength="1000" cols="40" rows="4" style="width: auto;"></textarea>
             </div>
             <div style="width: 25%; float: left;">
                 <label>
                     On Selection
                 </label>
                 <br />
-                <span  class="NSR_ALink">(add user to role)</span>
+                <span class="NSR_ALink">(add user to role)</span>
             </div>
             <div style="width: 75%; float: left;">
                 <asp:DropDownList runat="server" ID="ddlEOnSelectRole"></asp:DropDownList>
             </div>
         </div>
     </div>
-     <div id="dlgUserNotes" title="Take Notes">
+    <div id="dlgUserNotes" title="Take Notes">
         <div style="width: 100%; margin-top: 20px;" class="dnnFormItem">
             <div style="width: 15%; float: left; line-height: 30px;">
-                <label>Notes :</label></div>
+                <label>Notes :</label>
+            </div>
             <div style="width: 85%; float: left;">
                 <textarea id="txtUserText" rows="12" style="padding: 0px; margin: 0px; width: 100%; max-width: 100%"></textarea>
             </div>
         </div>
     </div>
 </asp:Panel>
+
 <asp:Panel ID="pnlUser" runat="server" Visible="true">
-<div id="NSR_ModuleOuter" style="width: 100%;">
-    <div id="NSR_pnlFirst" style="width: 100%;" class="dnnFormItem proapp">
+    <div id="NSR_ModuleOuter" style="width: 100%;">
+        <div class="form-group optbtn">
+            <div id="NSR_dvPreviouslySaved"><label  onclick="return NSR_PrevSaved();" class="txtbutn">Continue Saved Application</label></div>
+            <div id="NSR_dvSaveMyDetail"><label onclick="return NSR_SaveMyDetail();" class="txtbutn">Save for Later</label></div>
+        </div>
+        <div id="NSR_pnlFirst" style="width: 100%;" class="dnnFormItem proapp">
+            <div class="form-group">
+                <div class="label-right col-md-2">
+                    <label>
+                        Phone#
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbUserName" ValidationGroup="NSR"></asp:RequiredFieldValidator></label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="NS_tbUserName" title="please specify unique username" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="NS_tbUserName" Display="Dynamic" ErrorMessage="10 digits please" ForeColor="Red" SetFocusOnError="True" ValidationExpression="^[\s\S]{10,}$" ValidationGroup="NSR"></asp:RegularExpressionValidator>
+                </div>
+                <div class="label-right col-md-2">
+                    <label>
+                        Verify Phone#
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbVerifyUserName" ValidationGroup="NSR"></asp:RequiredFieldValidator></label>
+                </div>
+                <div class="col-md-4">
+                   <asp:TextBox ID="NS_tbVerifyUserName" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                     <asp:CompareValidator ID="CompareValidator2" runat="server" CssClass="informat" ControlToCompare="NS_tbUserName" ControlToValidate="NS_tbVerifyUserName" Display="Dynamic" ErrorMessage="Phone # does not match" ValidationGroup="NSR" ForeColor="Red"></asp:CompareValidator>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label-right col-md-2">
+                    <label>Password<asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbPassword" ValidationGroup="NSR"></asp:RequiredFieldValidator></label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="NS_tbPassword" title="please specify password in atleast 7 characters" runat="server" CssClass="dnnFormRequired form-control" TextMode="Password"></asp:TextBox>
+                </div>
+                <div class="label-right col-md-2">
+                    <label>Confirm Password</label><asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbConfirmPassword" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="NS_tbConfirmPassword" title="please re-enter the password" runat="server" CssClass="dnnFormRequired form-control" TextMode="Password"></asp:TextBox>
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" CssClass="informat" ControlToCompare="NS_tbPassword" ControlToValidate="NS_tbConfirmPassword" Display="Dynamic" ErrorMessage="Password does not match" ValidationGroup="NSR" ForeColor="Red"></asp:CompareValidator>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <div class="label-right col-sm-2">
-                <label>Username
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbUserName" ValidationGroup="NSR"></asp:RequiredFieldValidator></label></div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_tbUserName" title="please specify unique username" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox></div>
-            <div class="label-right col-sm-2">
-                <label>Email</label><asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbEmail" ValidationGroup="NSR"></asp:RequiredFieldValidator></div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_tbEmail" title="please specify your e-mail id" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" CssClass="informat" ControlToValidate="NS_tbEmail" Display="Dynamic" ErrorMessage="Invalid email format" ForeColor="Red" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="NSR"></asp:RegularExpressionValidator>
+            <div class="form-group">
+                <div class="label-right col-md-2">
+                    <label>
+                        First Name
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbFirstName" ValidationGroup="NSR"></asp:RequiredFieldValidator></label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="NS_tbFirstName" title="please specify your first name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                </div>
+                <div class="label-right col-md-2">
+                    <label>Last Name</label><asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbLastName" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="NS_tbLastName" title="please specify your last name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="label-right col-md-2">
+                    <label>Street</label></div>
+                <div class="col-md-4">
+                    <asp:TextBox title="please specify street detail" ID="tbStreet" runat="server" CssClass="form-control"></asp:TextBox></div>
+                <div class="label-right col-md-2">
+                    <label>City</label><asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbCity" ValidationGroup="NSR"></asp:RequiredFieldValidator></div>
+                <div class="col-md-4">
+                    <asp:TextBox title="please specify your city" ID="NS_tbCity" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox></div>
+            </div>
+
+            <div class="form-group">
+                <div class="label-right col-md-2">
+                    <label>State</label><asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="ddlState" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="ddlState" title="please choose your state or region" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="label-right col-md-2">
+                    <label>Zip</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox title="please specify your postal code" ID="tbPostalCode" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label-right col-md-2">
+                    <label>
+                       Gender
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control">
+                        <asp:ListItem Text="Male" Value="Male" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div class="label-right col-md-2">
+                    <label>Email</label><asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbEmail" ValidationGroup="NSR"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="NS_tbEmail" title="please specify your e-mail id" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" CssClass="informat" ControlToValidate="NS_tbEmail" Display="Dynamic" ErrorMessage="Invalid email format" ForeColor="Red" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="NSR"></asp:RegularExpressionValidator>
+                </div>
+            </div>
+        </div>
+        <div id="NSR_dvDynamicStep1" style="clear: both; display: block; width: 100%;" class="dnnFormItem">
+        </div>
+        <div id="NSR_dvFixedStepOuter" class="form-group" style="clear: both;">
+            <div class="label-right col-md-2" style="width: 14%; float: left; text-align: right;">
+                
+            </div>
+            <div id="NSR_dvFixedStep1" class="col-md-10 NS_Required dnnFormItem" style="display: block; width: 86%;">
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="label-right col-sm-2">
-                <label>Password<asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbPassword" ValidationGroup="NSR"></asp:RequiredFieldValidator></label></div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_tbPassword" title="please specify password in atleast 7 characters" runat="server" CssClass="dnnFormRequired form-control" TextMode="Password"></asp:TextBox></div>
-            <div class="label-right col-sm-2">
-                <label>Confirm Password</label><asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbConfirmPassword" ValidationGroup="NSR"></asp:RequiredFieldValidator></div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_tbConfirmPassword" title="please re-enter the password" runat="server" CssClass="dnnFormRequired form-control" TextMode="Password"></asp:TextBox>
-                <asp:CompareValidator ID="CompareValidator1" runat="server" CssClass="informat" ControlToCompare="NS_tbPassword" ControlToValidate="NS_tbConfirmPassword" Display="Dynamic" ErrorMessage="Password does not match" ValidationGroup="NSR" ForeColor="Red"></asp:CompareValidator>
-            </div>
+        <div style="clear: both; display: block; overflow: hidden">
+            <table align="center">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="width: 300px; margin: 10px 0;">
+                            <input type="button" id="btnNextStep" value="NEXT STEP" style="width: 300px;" class="btn submit form-button btn-info  btn-block " />
+                        </div>
+                        <div style="width: 300px; float: left; text-align: center;clear:both;">
+                            <label id="lblStepCaption" class="txtbutn">Step 1 of 4</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
-
-        <div class="form-group">
-            <div class="label-right col-sm-2">
-                <label>First Name
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbFirstName" ValidationGroup="NSR"></asp:RequiredFieldValidator></label></div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_tbFirstName" title="please specify your first name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox></div>
-            <div class="label-right col-sm-2">
-                <label>Last Name</label><asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbLastName" ValidationGroup="NSR"></asp:RequiredFieldValidator></div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_tbLastName" title="please specify your last name" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox></div>
-        </div>
-    
-
-    
-    <div class="form-group">
-      <div class="label-right col-sm-2"><label>Street</label></div>
-      <div class="col-sm-4"><asp:TextBox title="please specify street detail" ID="tbStreet" runat="server" CssClass="form-control" ></asp:TextBox></div>
-      <div class="label-right col-sm-2"><label>City</label><asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="NS_tbCity" ValidationGroup="NSR"></asp:RequiredFieldValidator></div>
-      <div class="col-sm-4"><asp:TextBox title="please specify your city" ID="NS_tbCity" runat="server" CssClass="dnnFormRequired form-control" ></asp:TextBox></div>
     </div>
-    
-        <div class="form-group">
-            <div class="label-right col-sm-2">
-                <label>State</label><asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" Display="Dynamic" ErrorMessage="&nbsp;*" ForeColor="Red" SetFocusOnError="True" ControlToValidate="ddlState" ValidationGroup="NSR"></asp:RequiredFieldValidator></div>
-            <div class="col-sm-4">
-                <asp:DropDownList ID="ddlState" title="please choose your state or region" runat="server" CssClass="form-control"></asp:DropDownList></div>
-            <div class="label-right col-sm-2">
-                <label>Zip</label>
-            </div>
-            <div class="col-sm-4">
-                <asp:TextBox title="please specify your postal code" ID="tbPostalCode" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="label-right col-sm-2">
-                <label>
-                    Phone<asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="NS_Phone" Display="Dynamic" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="NSR"></asp:RequiredFieldValidator>
-                </label>
-            </div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_Phone" title="please specify your telephone number" runat="server" CssClass="dnnFormRequired form-control"></asp:TextBox>
-            </div>
-            <div class="label-right col-sm-2">
-                <label>
-                    Mobile Phone
-                </label>
-            </div>
-            <div class="col-sm-4">
-                <asp:TextBox ID="NS_txtMobilePhone" title="please specify your mobile number" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="label-right col-sm-2">
-                <label>
-                    Gender
-                </label>
-            </div>
-            <div class="col-sm-4">
-                <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="Male" Value="Male" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="label-right col-sm-2">
-                <label>
-                    &nbsp;
-                </label>
-            </div>
-            <div class="col-sm-4">
-                &nbsp;
-            </div>
-        </div>
-    </div>
-    <div id="NSR_dvDynamicStep1" style="clear:both; display:block; width:100%; " class="dnnFormItem">
-
-    </div>
-    <div id="NSR_dvFixedStepOuter" class="form-group" style="clear:both;">
-        <div class="label-right col-sm-2" style="width:14%;float:left;text-align:right;">
-            <label>
-                Services Offered
-            </label>
-        </div>
-        <div id="NSR_dvFixedStep1" class="col-sm-10 NS_Required dnnFormItem" style="display: block; width: 86%;">
-        </div>
-    </div>
-    
-    <div style="clear:both; display:block; overflow:hidden">
-    <table align="center">
-        <tr>
-          <td>&nbsp;</td>
+</asp:Panel>
+<div id="dialog-SaveFormUser" title="User detail" style="display:none;" >
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="NS_tblReport">
+<tr>
+            <td>
+                <label for="Username">Phone#</label></td>
         </tr>
         <tr>
             <td>
-                <div style="width: 300px;margin:10px 0;">
-                    <input type="button" id="btnNextStep" value="NEXT STEP" style="width: 300px;" class="btn submit form-button btn-info  btn-block " />
-                </div>
-                <div style="width: 150px;float:left;text-align:center;">
-                    <label onclick="return NSR_SaveMyDetail();" class="txtbutn">Save for Later</label>
-                </div>
-                <div style="width: 150px;float:left;text-align:center;">
-                    <label id="lblStepCaption" class="txtbutn">Step 1 of 4</label>
-                </div>            </td>
+                <input type="text" id="txtUN" placeholder="specify your phone#" class="dnnFormRequired form-control" style="width:100%;" /></td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">Password</label></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="password" id="txtNPwd" placeholder="specify your password" class="dnnFormRequired form-control" style="width:100%;"/></td>
         </tr>
     </table>
-    </div>
 </div>
-    </asp:Panel>
-<input type="button" value="Click Me" onclick="NSR_SaveUserResponse();"/>
+<uc1:ucCropImage ID="ucCropImage1" runat="server" />
 <style>
-.NS_RequiredCap{ font-size:12px; font-weight:bold; line-height:12px; margin:7px 0 0 4px; position:absolute; }
-.NS_On {display:block;}
-.NS_Off {display:none;}
-.NSR_ALink{font-size:11px;font-weight:bold;color:blue !important;}
-.NSR_ALink:hover{font-size:11px;font-weight:bold;color:blue !important;text-decoration:underline !important;
-}
-textarea.blur{color:Gray;font-size:11px;}
-input.blur{color:Gray;font-size:11px;}
+    .NS_RequiredCap {
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 12px;
+        margin: 7px 0 0 4px;
+        position: absolute;
+    }
+
+    .NS_On {
+        display: block;
+    }
+
+    .NS_Off {
+        display: none;
+    }
+
+    .NSR_ALink {
+        font-size: 11px;
+        font-weight: bold;
+        color: blue !important;
+    }
+
+        .NSR_ALink:hover {
+            font-size: 11px;
+            font-weight: bold;
+            color: blue !important;
+            text-decoration: underline !important;
+        }
+
+    textarea.blur {
+        color: Gray;
+        font-size: 11px;
+    }
+
+    input.blur {
+        color: Gray;
+        font-size: 11px;
+    }
 </style>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 <link href="/DesktopModules/NS_Registration/bootstrap.css" rel="stylesheet" />
+
 <script src="/DesktopModules/NS_Registration/Scripts/jquery-jtemplates/jquery-jtemplates.js"></script>
 <script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js" type="text/javascript"></script>
 <script src="/DesktopModules/NS_MakeAppointment\Scripts/bootstrap.js"></script>
@@ -395,7 +482,8 @@ input.blur{color:Gray;font-size:11px;}
     var NSR_PID=<%=this.PortalId%>;
     var NSR_HTBUrl='<%=this.HomeTabUrl%>';
     var NSR_SID='<%=this.Session.SessionID%>';
-    var NSR_UID=-1;
+    var NSR_UID = -1;
+    var NSR_MID = <%=this.ModuleId%>;
     function NSR_MakeRequest(WBurl,WBData,SuccessCB,FailedCB) {
         $.ajax({
             type: "POST", dataType: "json", contentType: "application/json; charset=utf-8",
@@ -521,7 +609,7 @@ input.blur{color:Gray;font-size:11px;}
             var C=d.length;
             var _ext=d.substr(S,10);
             
-            if (_ext=='.gif' || (_ext=='.png') || (_ext=='.jpeg') || (_ext=='.jpg'))
+            if (_ext=='.gif' || (_ext=='.png') || (_ext=='.jpeg') || (_ext.toLowerCase()=='.jpg'))
             {return 'Image';}
             if ((_ext=='.doc') || (_ext=='.docx') || (_ext=='.pdf'))
             {return 'Doc';}

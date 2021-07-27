@@ -1,4 +1,4 @@
-﻿/*
+/*
 NS_MakeRequest : WBurl, WBData, SuccessCB, FailedCB, vAsync
 */
 
@@ -97,5 +97,18 @@ function NS_LoadReport() {
     }
     else {
         NS_LoadReportByPro();
+    }
+}
+
+function NS_GetXLByProNSrvc() {
+    var _URL = "/DesktopModules/NS_PriceList/rh.asmx/GetExcel"
+    var _data = "{'F':'" + $("#NS_txtFrom").val() + "','T':'" + $("#NS_txtTo").val() + "'}";
+    $("#NS_dvReports").prepend('<p id="NS_pInfo" style="color:blue;">Please wait, while we are processing.</p>');
+    NS_MakeRequest(_URL, _data, NS_DownloadFile);
+}
+function NS_DownloadFile(d) {
+    $("#NS_pInfo").remove();
+    if (d.trim() != "") {
+        window.open("http://"+$(location).attr('hostname') + "/desktopmodules/ns_pricelist/" + d);
     }
 }

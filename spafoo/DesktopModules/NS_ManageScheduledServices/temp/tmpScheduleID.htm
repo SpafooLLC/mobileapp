@@ -17,13 +17,14 @@
         {#/if}
         <p class="blue">
             {#if $T.ForDate!='' }
-                {$T.AtTime} at 
+                {$T.AtTime} <br/> 
             {#/if}
-        {$T.Location.City}, {$T.Location.State}</p>
-        <p><span>With: </span> {$T.ProviderInfo.LastName} {$T.ProviderInfo.FirstName}</p>
+            {$T.Location.Address}<br />
+            {$T.Location.City}, {$T.Location.State}, {$T.Location.Zip}</p>
+        <p><span>With: </span> {$T.ProviderInfo.FirstName} {NS_IntialLetter($T.ProviderInfo.LastName)} </p>
         <p>
             <span>Service(s): </span>{#foreach $T.Services as C}
-            {$T.C.ServiceName},&nbsp;
+            {$T.C.ServiceName}{#if $T.C.Qty>1}({$T.C.Qty}){#/if},&nbsp;
             {#/for}
         </p>
         {#if $T.Comments!=""}

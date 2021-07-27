@@ -1,0 +1,12 @@
+2021-02-08 17:30:30,870 [1019474-web1][Thread:85][ERROR] DotNetNuke.UI.Modules.ModuleHost - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()
+2021-02-08 17:30:30,932 [1019474-web1][Thread:85][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error: SMSLogs is currently unavailable." ctrl="DotNetNuke.UI.Modules.ModuleControlBase" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()"
+2021-02-08 17:32:18,357 [1019474-web1][Thread:101][ERROR] DotNetNuke.UI.Modules.ModuleHost - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()
+2021-02-08 17:32:18,419 [1019474-web1][Thread:101][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error: SMSLogs is currently unavailable." ctrl="DotNetNuke.UI.Modules.ModuleControlBase" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()"
+2021-02-08 17:32:38,092 [1019474-web1][Thread:120][ERROR] DotNetNuke.UI.Modules.ModuleHost - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()
+2021-02-08 17:32:38,092 [1019474-web1][Thread:120][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error: SMSLogs is currently unavailable." ctrl="DotNetNuke.UI.Modules.ModuleControlBase" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()"

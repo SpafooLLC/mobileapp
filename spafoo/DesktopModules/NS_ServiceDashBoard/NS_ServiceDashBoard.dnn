@@ -10,7 +10,7 @@
     <email />
   </owner>
   <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
-  <releaseNotes />
+  <releaseNotes>This package has no Release Notes</releaseNotes>
   <components>
     <component type="Module">
       <desktopModule>
@@ -44,6 +44,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
             </moduleControls>
           </moduleDefinition>
@@ -54,6 +55,7 @@
       <assemblies>
         <basePath>bin</basePath>
         <assembly>
+          <path>bin</path>
           <name>NS_ServiceDashBoard.dll</name>
         </assembly>
       </assemblies>
@@ -62,11 +64,40 @@
       <files>
         <basePath>DesktopModules\NS_ServiceDashBoard</basePath>
         <file>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
+        </file>
+        <file>
           <path>css</path>
           <name>fontawesome-stars.css</name>
         </file>
         <file>
-          <name>Edit.ascx</name>
+          <path>imgs</path>
+          <name>fancybox_loading.gif</name>
+        </file>
+        <file>
+          <path>imgs</path>
+          <name>fancybox_loading@2x.gif</name>
+        </file>
+        <file>
+          <path>imgs</path>
+          <name>fancybox_overlay.png</name>
+        </file>
+        <file>
+          <path>imgs</path>
+          <name>fancybox_sprite.png</name>
+        </file>
+        <file>
+          <path>imgs</path>
+          <name>fancybox_sprite@2x.png</name>
         </file>
         <file>
           <path>imgs</path>
@@ -78,19 +109,15 @@
         </file>
         <file>
           <path>imgs</path>
+          <name>noti-ball.png</name>
+        </file>
+        <file>
+          <path>imgs</path>
+          <name>noti-line.png</name>
+        </file>
+        <file>
+          <path>imgs</path>
           <name>plus_minus_icons.png</name>
-        </file>
-        <file>
-          <name>License.txt</name>
-        </file>
-        <file>
-          <name>module.css</name>
-        </file>
-        <file>
-          <name>ReleaseNotes.txt</name>
-        </file>
-        <file>
-          <name>rh.asmx</name>
         </file>
         <file>
           <path>Scripts\jquery-barrating</path>
@@ -101,19 +128,32 @@
           <name>bootstrap-select.js</name>
         </file>
         <file>
+          <path>Scripts\jquery-fancybox</path>
+          <name>jquery.fancybox.js</name>
+        </file>
+        <file>
           <path>Scripts\jquery-jtemplates</path>
           <name>jquery-jtemplates.js</name>
         </file>
         <file>
-          <path>Scripts\jquery-fancybox</path>
-          <name>jquery.fancybox.js</name>
+          <path>Scripts\jquery-uploadify</path>
+          <name>Handler.ashx</name>
         </file>
         <file>
           <path>Scripts\jquery.cookie</path>
           <name>jquery.cookie.js</name>
         </file>
         <file>
-          <name>Settings.ascx</name>
+          <path>Scripts\nprogress</path>
+          <name>nprogress.css</name>
+        </file>
+        <file>
+          <path>Scripts\nprogress</path>
+          <name>nprogress.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>NS_Common.js</name>
         </file>
         <file>
           <path>Styles</path>
@@ -133,7 +173,11 @@
         </file>
         <file>
           <path>templates</path>
-          <name>tmpProWorkSample.htm</name>
+          <name>tmpDashB.htm</name>
+        </file>
+        <file>
+          <path>templates</path>
+          <name>tmpManageService.htm</name>
         </file>
         <file>
           <path>templates</path>
@@ -149,15 +193,15 @@
         </file>
         <file>
           <path>templates</path>
-          <name>tmpDashB.htm</name>
-        </file>
-        <file>
-          <path>templates</path>
-          <name>tmpManageService.htm</name>
+          <name>tmpProWorkSample.htm</name>
         </file>
         <file>
           <path>templates</path>
           <name>tmpServiceTree.htm</name>
+        </file>
+        <file>
+          <path>templates</path>
+          <name>tmpUserReview.htm</name>
         </file>
         <file>
           <path>uc</path>
@@ -176,26 +220,29 @@
           <name>MServices.js</name>
         </file>
         <file>
+          <path>uc</path>
+          <name>tmpUserReview.htm</name>
+        </file>
+        <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>rh.asmx</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
           <name>View.ascx</name>
-        </file>
-        <file>
-          <name>NS_ServiceDashBoard.dnn</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>View.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Edit.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Settings.ascx.resx</name>
-        </file>
-        <file>
-          <path>Scripts\jquery-uploadify</path>
-          <name>Handler.ashx</name>
         </file>
       </files>
     </component>

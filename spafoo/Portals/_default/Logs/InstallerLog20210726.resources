@@ -1,0 +1,94 @@
+07/26/2021 20:00:02 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Applying Upgrade Script 07.04.02
+07/26/2021 20:00:02 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpgradeVersion:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.SqlDataProvider
+07/26/2021 20:00:02 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start ExecuteScript:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End ExecuteScript:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpgradeVersion:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Applying Upgrade Script 07.04.02.01
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpgradeVersion:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.01.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start ExecuteScript:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.01.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End ExecuteScript:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.01.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpdateConfig:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpdateConfig:7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End UpdateConfig:7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End UpdateConfig:07.04.02.01
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start DeleteFiles:07.04.02.01
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpgradeVersion:D:\WebData\Spafoo\Providers\DataProviders\SqlDataProvider\07.04.02.01.SqlDataProvider
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Upgrading Application to 7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start Application Upgrades: 7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Upgrading Application to 7.4.2.1
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start Application Upgrades: 7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Updating Config for 7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpdateConfig:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpdateConfig:7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End UpdateConfig:7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End UpdateConfig:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Updating Config for 7.4.2.1
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpdateConfig:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start UpdateConfig:7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End UpdateConfig:7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade End UpdateConfig:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Deleting Older Files for 7.4.2
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start DeleteFiles:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Deleting Older Files for 7.4.2.1
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start DeleteFiles:07.04.02
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Upgrading Application
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DDRMenu_07.04.02_Install.zip
+07/26/2021 20:00:03 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DDRMenu_07.04.02_Install.zip
+07/26/2021 20:00:05 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:05 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_CoreMessaging_07.04.02_Install.zip
+07/26/2021 20:00:05 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_CoreMessaging_07.04.02_Install.zip
+07/26/2021 20:00:06 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_DigitalAssetsManagement_07.04.02_Install.zip
+07/26/2021 20:00:06 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_DigitalAssetsManagement_07.04.02_Install.zip
+07/26/2021 20:00:07 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_HtmlEditorManager_07.04.00_Install.zip
+07/26/2021 20:00:07 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_HtmlEditorManager_07.04.00_Install.zip
+07/26/2021 20:00:07 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_HTML_07.04.02_Install.zip
+07/26/2021 20:00:07 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_HTML_07.04.02_Install.zip
+07/26/2021 20:00:08 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_Journal_07.04.02_Install.zip
+07/26/2021 20:00:08 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_Journal_07.04.02_Install.zip
+07/26/2021 20:00:09 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_MemberDirectory_07.04.02_Install.zip
+07/26/2021 20:00:09 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_MemberDirectory_07.04.02_Install.zip
+07/26/2021 20:00:10 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_MobileManagement_07.04.02_Install.zip
+07/26/2021 20:00:11 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_MobileManagement_07.04.02_Install.zip
+07/26/2021 20:00:11 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_PreviewProfileManagement_07.04.02_Install.zip
+07/26/2021 20:00:11 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_PreviewProfileManagement_07.04.02_Install.zip
+07/26/2021 20:00:11 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=key
+07/26/2021 20:00:12 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_RazorHost_07.04.02_Install.zip
+07/26/2021 20:00:12 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_RazorHost_07.04.02_Install.zip
+07/26/2021 20:00:13 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_SocialGroups_07.04.02_Install.zip
+07/26/2021 20:00:13 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_SocialGroups_07.04.02_Install.zip
+07/26/2021 20:00:14 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - DNNCE_Taxonomy_07.04.02_Install.zip
+07/26/2021 20:00:14 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_Taxonomy_07.04.02_Install.zip
+07/26/2021 20:00:14 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Library - DNNCE_UrlManagement_07.04.02_Install.zip
+07/26/2021 20:00:14 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\DNNCE_UrlManagement_07.04.02_Install.zip
+07/26/2021 20:00:15 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Module - SecurityAnalyzer_01.00.01_Install.zip
+07/26/2021 20:00:15 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\SecurityAnalyzer_01.00.01_Install.zip
+07/26/2021 20:00:16 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Library - Telerik_07.03.04_Install.zip
+07/26/2021 20:00:16 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Module\Telerik_07.03.04_Install.zip
+07/26/2021 20:00:17 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:17 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:17 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:17 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing JavaScript_Library - jQuery.zip
+07/26/2021 20:00:17 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\JavaScriptLibrary\jQuery.zip
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing JavaScript_Library - Knockout.zip
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\JavaScriptLibrary\Knockout.zip
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Provider - DNNMenuNavigationProvider_07.04.02_Install.zip
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Provider\DNNMenuNavigationProvider_07.04.02_Install.zip
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Provider - FiftyOneClientCapabilityProvider_07.04.02_Install.zip
+07/26/2021 20:00:18 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Provider\FiftyOneClientCapabilityProvider_07.04.02_Install.zip
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateAttribute:attributeName=defaultProvider
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing Provider - RadEditorProvider_07.04.02_Install.zip
+07/26/2021 20:00:20 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\Provider\RadEditorProvider_07.04.02_Install.zip
+07/26/2021 20:00:22 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:22 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateAttribute:attributeName=settingsControlPath
+07/26/2021 20:00:22 [INFO] DotNetNuke.Services.Installer.XmlMerge Start UpdateNode: keyAttribute=name
+07/26/2021 20:00:23 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing JavaScript_Library - jQueryMigrate.zip
+07/26/2021 20:00:23 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\JavaScriptLibrary\jQueryMigrate.zip
+07/26/2021 20:00:23 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing JavaScript_Library - jQueryUI.zip
+07/26/2021 20:00:23 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\JavaScriptLibrary\jQueryUI.zip
+07/26/2021 20:00:23 [INFO] DotNetNuke.Services.Upgrade.Internals.Steps.BaseInstallationStep Installing JavaScript_Library - KnockoutMapping.zip
+07/26/2021 20:00:23 [INFO] DotNetNuke.Services.Upgrade.Upgrade Start InstallPackage:D:\WebData\Spafoo\Install\JavaScriptLibrary\KnockoutMapping.zip

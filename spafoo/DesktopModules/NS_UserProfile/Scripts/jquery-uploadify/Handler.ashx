@@ -26,7 +26,8 @@ namespace Netsam.Modules.NSR_UserProfile
             }
 
             // Save file to physical folder
-            string _FileName = uploadFiles.FileName.Replace(' ', '_');
+            //string _FileName = uploadFiles.FileName.Replace(' ', '_');
+            string _FileName = "Sample_" + System.DateTime.Now.ToString("yyyyMMdd_hhmmss") + System.IO.Path.GetExtension(uploadFiles.FileName); // uploadFiles.FileName.Replace(' ', '_');            
             string pathToSave = TargetFolder + "/" + _FileName;
             uploadFiles.SaveAs(pathToSave);
             // Save information to database 

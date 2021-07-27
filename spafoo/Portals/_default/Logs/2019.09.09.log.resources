@@ -1,0 +1,246 @@
+2019-09-09 01:56:50,594 [IH-WEB02-DAL][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.admin_containers_solpartactions_ascx" exc="System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.get_ModuleActions()
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.LoadActions(HttpRequest request)
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.get_Actions()
+   at DotNetNuke.UI.Containers.ActionBase.OnLoad(EventArgs e)"
+2019-09-09 01:56:50,782 [IH-WEB02-DAL][Thread:9][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 01:56:50,782 [IH-WEB02-DAL][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=93&error=An unexpected error has occurred&content=0
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 08:43:17,631 [IH-WEB02-DAL][Thread:14][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 177.137.162.220
+	Port: 54379
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+	ViewState: jLwkUE5TRyThJOAT8Twu++LolqQ0niLqsr3Zvr16GRayNTc1Q7LqGYZmxvP+ckG5rjl+lEH4u9Flw2Flmy4qSPSEgwS9E48N96BSmicYU0iQFGzyHlTuGk9BfvoFYhBL6LU3k71Xa049GwVVJzEGutrLr2OEZ0/yJ3cFbDf1X1zNosWuwi+CZ8TWJIUKDpGemE3QZ9i8HEZZFVUuunXWyGIfT5hNXieLICQcwu9U54im/k02eFhFa/To2RmR7OlUx1/+nC/JpNoq9M8r+UDISN4uak8RixT8ELc7yybL3rusL6WPIUhV86K+PqZ3yfN8GxXGastlFNa+dtsfG/kYVben8xfR0DxYrb6070BiTtgYBJxEOA8KC4Mz6THoN+5UT+XMfuaa5AXA5fbNn0259YYJNXgyUtNzcJulMky9ZZ323uYdCoLqasX0TqxqhmGV/ApgLEHuKb/HF1p44Yf95/JH49rlM2kf9GkElA==,r406Q4MePkIrqCyZsBM/PtI0HMxaCtR6YxUmc5dd0EU7PJp40gq8j16lcLW5t2z+NrYl6GJNg/ZhM7BcyVa0ZHmtoFw= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 08:43:17,663 [IH-WEB02-DAL][Thread:14][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 177.137.162.220
+	Port: 54379
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+	ViewState: jLwkUE5TRyThJOAT8Twu++LolqQ0niLqsr3Zvr16GRayNTc1Q7LqGYZmxvP+ckG5rjl+lEH4u9Flw2Flmy4qSPSEgwS9E48N96BSmicYU0iQFGzyHlTuGk9BfvoFYhBL6LU3k71Xa049GwVVJzEGutrLr2OEZ0/yJ3cFbDf1X1zNosWuwi+CZ8TWJIUKDpGemE3QZ9i8HEZZFVUuunXWyGIfT5hNXieLICQcwu9U54im/k02eFhFa/To2RmR7OlUx1/+nC/JpNoq9M8r+UDISN4uak8RixT8ELc7yybL3rusL6WPIUhV86K+PqZ3yfN8GxXGastlFNa+dtsfG/kYVben8xfR0DxYrb6070BiTtgYBJxEOA8KC4Mz6THoN+5UT+XMfuaa5AXA5fbNn0259YYJNXgyUtNzcJulMky9ZZ323uYdCoLqasX0TqxqhmGV/ApgLEHuKb/HF1p44Yf95/JH49rlM2kf9GkElA==,r406Q4MePkIrqCyZsBM/PtI0HMxaCtR6YxUmc5dd0EU7PJp40gq8j16lcLW5t2z+NrYl6GJNg/ZhM7BcyVa0ZHmtoFw= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 16:00:41,380 [IH-WEB02-DAL][Thread:10][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 45.168.168.9
+	Port: 43864
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299
+	ViewState: vERjdhdlyMvWDMsCtHe5ND3P54qdLDyojsONdei4UBH0OWzQ3ikaKgDk8gMvHWT/fFT5u6D2MDmnz9+OE0g3VycvSDL7GLUcScKxrSYAxcm+myAYpivmn7OtcM5WmBGrQM2D/EyOpYM0xhwaI6BZo8O5ApJZ7yn35DBG6CrOsM7xnzcj75dU74Rw+WxsJj3c8JHeF162IzEpQmvYDHaSfxtKLpPUm4rndIFCiEQIcTLyjO3a1C/9NiF3cZr092ejXbSUUyZ9nrdph+1iD9pGnoOvK7KBM6EPUYQhcS3eFGvCTZpzT3PpLYPjKJpVu5pBeVRCidX5gN1/R0o93qx3Iv86erd55h/RN3UmmcIFNITXG/pDLTp231vQeC2VOLDig42jlaMZsTqfHbW1dnUCEDiRlM7sErJ2GMipmkMy+FJeGhxcaGLKweQJkWi9gHv5mJHqNdmKC9/SMGxzKQZRD6SNZ860LJ3Qm+4A4Q==,d2WZNr47Zi1q6CbCGC0MbJO0nE52jihqKzNCbtOIKnqsSTiEOEHhNXvyCbxjVTw6kgzveWPNZNT6uZP3WwtPAgV2UX0= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 16:00:41,427 [IH-WEB02-DAL][Thread:10][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 45.168.168.9
+	Port: 43864
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299
+	ViewState: vERjdhdlyMvWDMsCtHe5ND3P54qdLDyojsONdei4UBH0OWzQ3ikaKgDk8gMvHWT/fFT5u6D2MDmnz9+OE0g3VycvSDL7GLUcScKxrSYAxcm+myAYpivmn7OtcM5WmBGrQM2D/EyOpYM0xhwaI6BZo8O5ApJZ7yn35DBG6CrOsM7xnzcj75dU74Rw+WxsJj3c8JHeF162IzEpQmvYDHaSfxtKLpPUm4rndIFCiEQIcTLyjO3a1C/9NiF3cZr092ejXbSUUyZ9nrdph+1iD9pGnoOvK7KBM6EPUYQhcS3eFGvCTZpzT3PpLYPjKJpVu5pBeVRCidX5gN1/R0o93qx3Iv86erd55h/RN3UmmcIFNITXG/pDLTp231vQeC2VOLDig42jlaMZsTqfHbW1dnUCEDiRlM7sErJ2GMipmkMy+FJeGhxcaGLKweQJkWi9gHv5mJHqNdmKC9/SMGxzKQZRD6SNZ860LJ3Qm+4A4Q==,d2WZNr47Zi1q6CbCGC0MbJO0nE52jihqKzNCbtOIKnqsSTiEOEHhNXvyCbxjVTw6kgzveWPNZNT6uZP3WwtPAgV2UX0= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 16:04:10,503 [IH-WEB02-DAL][Thread:11][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 103.87.26.127
+	Port: 42368
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36 OPR/54.0.2952.64
+	ViewState: BGdqslo4Uj9Wb2I1mhLrNtRZxibwBIb8lQ+X/fucSgxXfIDN59nqkwutRTYHEUpTmTECkac00+bffmx76LTb4pd/fsg434iarYx+bFdvRTdnDf8hv0gcrxjxZtPrJneHRscvpF7MdSeBv8K3s4ui8EpgLKP00BN6AOhhYCJpCZUeEo/KS3CDRKRkbpn9sOZT9eZr3xcspxrVWdTuHaRqBD4Amfu41e2stGSIGODlBNlFWmEflSd8wG8hndEpPQXsNCghxJmZE8kLgUq21QUT/ylRsPeenjZFtTZaEXfOKQjMzlhRw68jo1qrEve1SYNjvYneOiZzglG4cU84O0i+J7ejIqDatFm/h6++4zbj8jv/KYsa2PFc+H1w70P+ha3Q2k/myDgks2EMcOpxjA6dJtCL2db0OWPtGwbsfNxl29l2CAnjY2Xteoge0t08WLB/ZEe9BqgxKgCoB96USXfbFWCA/GmVLtNqGaBovw==,si+0Z6YtlI/0CVqh3cDDA6RNnSUG/kj3wfqMuujMcPSNwumQU+t+5m7TW5KuZmRhSUWhxg8voWJedLZclUS81tVpBEw= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 16:04:10,503 [IH-WEB02-DAL][Thread:11][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 103.87.26.127
+	Port: 42368
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36 OPR/54.0.2952.64
+	ViewState: BGdqslo4Uj9Wb2I1mhLrNtRZxibwBIb8lQ+X/fucSgxXfIDN59nqkwutRTYHEUpTmTECkac00+bffmx76LTb4pd/fsg434iarYx+bFdvRTdnDf8hv0gcrxjxZtPrJneHRscvpF7MdSeBv8K3s4ui8EpgLKP00BN6AOhhYCJpCZUeEo/KS3CDRKRkbpn9sOZT9eZr3xcspxrVWdTuHaRqBD4Amfu41e2stGSIGODlBNlFWmEflSd8wG8hndEpPQXsNCghxJmZE8kLgUq21QUT/ylRsPeenjZFtTZaEXfOKQjMzlhRw68jo1qrEve1SYNjvYneOiZzglG4cU84O0i+J7ejIqDatFm/h6++4zbj8jv/KYsa2PFc+H1w70P+ha3Q2k/myDgks2EMcOpxjA6dJtCL2db0OWPtGwbsfNxl29l2CAnjY2Xteoge0t08WLB/ZEe9BqgxKgCoB96USXfbFWCA/GmVLtNqGaBovw==,si+0Z6YtlI/0CVqh3cDDA6RNnSUG/kj3wfqMuujMcPSNwumQU+t+5m7TW5KuZmRhSUWhxg8voWJedLZclUS81tVpBEw= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 21:57:39,947 [IH-WEB02-DAL][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.admin_containers_solpartactions_ascx" exc="System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.get_ModuleActions()
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.LoadActions(HttpRequest request)
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.get_Actions()
+   at DotNetNuke.UI.Containers.ActionBase.OnLoad(EventArgs e)"
+2019-09-09 21:57:40,103 [IH-WEB02-DAL][Thread:7][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-09-09 21:57:40,119 [IH-WEB02-DAL][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=93&error=An unexpected error has occurred&content=0
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

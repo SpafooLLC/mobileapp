@@ -1,0 +1,229 @@
+2019-07-11 07:17:26,360 [IH-WEB02-DAL][Thread:19][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 188.138.188.34
+	Port: 62430
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+	ViewState: v0uvBc/NOoLsq8N5AWBl/aQAge8gW9oNUk1eRno/qOU+nkxqraABvBSmxon+7BS3SrFAoRA3ZjSfH+58+RSvUP7rfqNARCIS4g3T37kOZI459K5OqlFZhLwLxVqVyYhwtmtlWp7VVlYUfkKOlhMm0OQSVG409iEQYZhGJvQ29NlD/887UfJMXtktzF6NNF95VYSyP18rxy09dR65tSRLOfQR8LDG5/TAa1SGYHROvlonhZX0cP4YRg8Gr+xzvhrhFlj9vO/qp08913YhZiXsjMyiU3k+w2RX8TgOaf4OIxOHQBZuwdWyMYQuy2AaRCgLke+L0wlm5gnD3gZO+KLppCk1NZQpTQYkEH2p8Z+92sO2wsBZNHd6UptmHA5WsgDEmLqBZnbTsvgMbU9fwyKc7/ovceNMcXumhD0HFfjluHDD68ifyTBRfp5JEAof0aUHUMYHmOBbTA9+fuwg+2ENCGC0j0oBU7kDO3dfJQ==,1SpSDwxdr1uGZnuzE/kc6hkm747bmpE5ALEn9V3R0m9HBNMTTdJ3PEobWSX3vEY9HwhV9r2RPEW94lerUyNCBvu0H08= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 07:17:26,407 [IH-WEB02-DAL][Thread:19][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 188.138.188.34
+	Port: 62430
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=%2f
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+	ViewState: v0uvBc/NOoLsq8N5AWBl/aQAge8gW9oNUk1eRno/qOU+nkxqraABvBSmxon+7BS3SrFAoRA3ZjSfH+58+RSvUP7rfqNARCIS4g3T37kOZI459K5OqlFZhLwLxVqVyYhwtmtlWp7VVlYUfkKOlhMm0OQSVG409iEQYZhGJvQ29NlD/887UfJMXtktzF6NNF95VYSyP18rxy09dR65tSRLOfQR8LDG5/TAa1SGYHROvlonhZX0cP4YRg8Gr+xzvhrhFlj9vO/qp08913YhZiXsjMyiU3k+w2RX8TgOaf4OIxOHQBZuwdWyMYQuy2AaRCgLke+L0wlm5gnD3gZO+KLppCk1NZQpTQYkEH2p8Z+92sO2wsBZNHd6UptmHA5WsgDEmLqBZnbTsvgMbU9fwyKc7/ovceNMcXumhD0HFfjluHDD68ifyTBRfp5JEAof0aUHUMYHmOBbTA9+fuwg+2ENCGC0j0oBU7kDO3dfJQ==,1SpSDwxdr1uGZnuzE/kc6hkm747bmpE5ALEn9V3R0m9HBNMTTdJ3PEobWSX3vEY9HwhV9r2RPEW94lerUyNCBvu0H08= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 13:03:45,368 [IH-WEB02-DAL][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.admin_containers_solpartactions_ascx" exc="System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.get_ModuleActions()
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.LoadActions(HttpRequest request)
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.get_Actions()
+   at DotNetNuke.UI.Containers.ActionBase.OnLoad(EventArgs e)"
+2019-07-11 13:03:45,540 [IH-WEB02-DAL][Thread:7][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 13:03:45,555 [IH-WEB02-DAL][Thread:7][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=93&error=An unexpected error has occurred&content=0
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 18:31:48,800 [IH-WEB02-DAL][Thread:48][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.admin_containers_solpartactions_ascx" exc="System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.get_ModuleActions()
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.LoadActions(HttpRequest request)
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.get_Actions()
+   at DotNetNuke.UI.Containers.ActionBase.OnLoad(EventArgs e)"
+2019-07-11 18:31:48,940 [IH-WEB02-DAL][Thread:48][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 18:31:48,940 [IH-WEB02-DAL][Thread:48][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=93&error=An unexpected error has occurred&content=0
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 20:09:26,123 [IH-WEB02-DAL][Thread:49][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="An error has occurred." ctrl="ASP.admin_containers_solpartactions_ascx" exc="System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.get_ModuleActions()
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.LoadActions(HttpRequest request)
+   at DotNetNuke.UI.Modules.ModuleInstanceContext.get_Actions()
+   at DotNetNuke.UI.Containers.ActionBase.OnLoad(EventArgs e)"
+2019-07-11 20:09:26,123 [IH-WEB02-DAL][Thread:49][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2019-07-11 20:09:26,123 [IH-WEB02-DAL][Thread:49][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=93&error=An unexpected error has occurred&content=0
+System.TypeInitializationException: The type initializer for 'DnnSharp.Common.Licensing.v3.RegCoreClient' threw an exception. ---> System.UnauthorizedAccessException: Access to the path 'D:\WebData\Spafoo\bin\DnnSharp.lic' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at DnnSharp.Common.Licensing.v3.RegCoreClient.LoadAllActivations()
+   at DnnSharp.Common.Licensing.v3.RegCoreClient..cctor()
+   --- End of inner exception stack trace ---
+   at avt.ActionForm.Core.App.IsActivated()
+   at avt.ActionForm.Main.BindData()
+   at avt.ActionForm.Main.Page_Load(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

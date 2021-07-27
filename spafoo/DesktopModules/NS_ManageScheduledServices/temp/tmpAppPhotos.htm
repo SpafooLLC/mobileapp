@@ -1,0 +1,9 @@
+﻿<ul id="dv" class="appimggrid">
+    {#foreach $T as S}
+    {#if $T.S.FilePath!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'}
+    <li>
+        <img src="{$T.S.FilePath}" alt="" />
+    </li>
+    {#/if}
+    {#/for}
+</ul>

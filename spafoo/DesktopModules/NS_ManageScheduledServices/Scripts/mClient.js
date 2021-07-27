@@ -1,4 +1,4 @@
-﻿var _CurrentAppointmentID = -1;
+var _CurrentAppointmentID = -1;
 var oAppointment = "";
 $(document).ready(function () {
     ShowMySchedule();
@@ -9,8 +9,8 @@ function ShowMySchedule() {
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/ListAppointmentByClient";
     //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
     var _data = "{'UID':'" + NS_MSS_UID + "'}";
-    $("#dbClientSchedule").show().text("Just a min...")
-    NSR_MSS_MakeRequest(_URL, _data, ShowMySchedule_SuCB);
+    $("#dbClientSchedule").show().html(NS_Waiting)
+    NS_MakeRequest(_URL, _data, ShowMySchedule_SuCB);
 }
 
 function ShowMySchedule_SuCB(d) {
@@ -29,20 +29,28 @@ function ShowAppointmentID(ID) {// Shows Appointment In-Depth information
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/GetAppointment";
     var _data = "{'ID':'" + ID + "'}";
     $("#dbClientSchedule").hide();
-    $("#dvProviderID").show().text("Just a min...").attr('prev','dbClientSchedule')
-    NSR_MSS_MakeRequest(_URL, _data, ShowAppointment_SuCB,undefined,false);
+    $("#dvProviderID").show().html(NS_Waiting).attr('prev','dbClientSchedule')
+    NS_MakeRequest(_URL, _data, ShowAppointment_SuCB, undefined, false);
 }
 function ShowAppointment_SuCB(d) {
-    oAppointment = d;
-    $("#dvProviderID").setTemplateURL('/DesktopModules/NS_ManageScheduledServices/temp/tmpScheduleID.htm?q=' + $.now());
-    $("#dvProviderID").show().processTemplate(d);
+    if (d != null) {
+        oAppointment = d;
+        $("#dvProviderID").setTemplateURL('/DesktopModules/NS_ManageScheduledServices/temp/tmpScheduleID.htm?q=' + $.now());
+        $("#dvProviderID").show().processTemplate(d);
+    }
+    else {
+        $("#dvProviderID").show().html("Sorry, cause of some issue, could not load the detail");
+    }
+   
 }
 function ShowProviderRating(AID) {
+    var _DIR = $("#NS_aRateLink_" + AID).attr('rated');
+    if (_DIR == 'true') return false; // if already rated , then no need to show details
     $("#lblTopHeader").text('ADD Provider REVIEW');
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/GetAppointment";
     var _data = "{'ID':'" + AID + "'}";
     $("#dbClientSchedule").hide();
-    NSR_MSS_MakeRequest(_URL, _data, function (d) {
+    NS_MakeRequest(_URL, _data, function (d) {
         oAppointment = d;
         $("#dvClientRating").setTemplateURL('/DesktopModules/NS_ManageScheduledServices/temp/tmpRateProvider.htm?q=' + $.now());
         $("#dvClientRating").show().processTemplate(d.ProviderInfo).attr('prev','dbClientSchedule');
@@ -52,7 +60,7 @@ function LoadRatings() {
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/ListRating";
     //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
     var _data = "{'RatingTypeID':'2'}"; // 1 - Ratings for Client Rating , 2 - Ratings for Provider Rating
-    NSR_MSS_MakeRequest(_URL, _data, LoadRatings_SuCB);
+    NS_MakeRequest(_URL, _data, LoadRatings_SuCB);
 }
 function LoadRatings_SuCB(d) {
     $(".greview").setTemplateURL('/DesktopModules/NS_ManageScheduledServices/temp/tmpRatings.htm?q=' + $.now());
@@ -80,13 +88,13 @@ function AddProviderRating() {
     // User Review informtion processing
     // ReviewCSV: ILike:IDLike:Comments:DisplayNameAs
         var URComment = '-1';
-        if ($("#txtURComment").val().trim() != '') { URComment = $("#txtURComment").val().trim();}
+        if ($("#txtURComment").val().trim() != '') { URComment =escape($("#txtURComment").val().trim());}
     var oReviewCSV = "-1:-1:" + URComment + ":" + $("#ddlDisplayMyNameAs :selected").val();
     if ((oReviewCSV.trim() == "") || (OtherRatings.trim() == "")) { bootbox.alert('Could not submit. Please give Rating and Review.'); return false; }
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/AddRating";
     //int RatingByID, int RatingToID, decimal RatingValue, int RatingTypeID (0-Star Rating ,>0 - Other Rating)
-    var _data = "{'RatingByID':'" + oAppointment.ClientID + "','RatingToID':'" + oAppointment.ProviderID + "','RatingCSV':'" + OtherRatings + "','ReviewCSV':'" + oReviewCSV + "'}";
-    NSR_MSS_MakeRequest(_URL, _data, ShowThanks_SuCB);
+    var _data = "{'RatingByID':'" + oAppointment.ClientID + "','RatingToID':'" + oAppointment.ProviderID + "','RatingCSV':'" + OtherRatings + "','ReviewCSV':'" + oReviewCSV + "','AppID':'" + oAppointment.AppointmentID + "'}";
+    NS_MakeRequest(_URL, _data, ShowThanks_SuCB);
 }
 function ShowThanks_SuCB() {
     $('#ThankYou').modal('show');
@@ -107,8 +115,8 @@ function NS_CancelAppointment() {
 function NS_DoCancelAppointment() {
     //RefundCard(string TxnID, string CCNumber, string Expiry,decimal Amount)
     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/RefundCard";
-    var _data = "{'AID':'" + oAppointment.AppointmentID + "','TxnID':'" + oAppointment.AuthTxnID + "','Amount':'" + oAppointment.Amount + "'}";
-    NSR_MSS_MakeRequest(_URL, _data, NS_DoCancelAppointment_SuCB);
+    var _data = "{'AID':'" + oAppointment.AppointmentID + "','TxnID':'" + oAppointment.AuthTxnID + "'}";
+    NS_MakeRequest(_URL, _data, NS_DoCancelAppointment_SuCB);
 }
 function NS_DoCancelAppointment_SuCB(d) {
     if (d.transactionResponse != undefined) {
@@ -150,38 +158,4 @@ function NS_EditAppointment() {
     oAppointment.Location = null; oAppointment.Services = null;
     $.cookie('NS_MA_oApp', JSON.stringify(oAppointment));
     window.location = NS_MSS_AppointmentTab; // goto Appointment tab for editing
-}
-function NS_React2Response(AID, Status) {
-    if (Status == 1) {
-        bootbox.confirm('Are you sure to accept ??', function (r) {
-            if (r) {
-                var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/UpdateAppStatus";
-                var _data = "{'AppID':'" + AID + "','Status':'0'}";
-                NSR_MSS_MakeRequest(
-                    _URL, _data,
-                    function (d) {
-                        bootbox.alert('Appointment updated successfully', function () {
-                            window.location.reload();
-                        });
-                    }
-                )
-            }
-        });
-    }
-    if (Status == 0) {
-        bootbox.confirm('Are you sure to deny ??', function (r) {
-            if (r) {
-                var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/RemoveApp";
-                var _data = "{'ID':'" + AID + "'}";
-                NSR_MSS_MakeRequest(
-                    _URL, _data,
-                    function (d) {
-                        bootbox.alert('Appointment updated successfully', function () {
-                            window.location.reload();
-                        });
-                    }
-                );
-            }
-        });
-    }
 }

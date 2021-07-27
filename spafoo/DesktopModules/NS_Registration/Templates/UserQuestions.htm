@@ -1,4 +1,4 @@
-﻿{#foreach $T as rs}
+{#foreach $T as rs}
 <div id="NSR_UR_Step_{$T.rs.StepID}" style="width:100%;margin-bottom:20px;margin-top:20px;min-height
 :18px;"
 {#if $T.rs$iteration=='0' } class='NS_On' {#else} class='NS_Off' {#/if} >
@@ -10,7 +10,7 @@
     <div id="NSR_dvMQuestion_{$T.Q.QuestionID}" class="form-group proapp NSR_Questions" 
          {#if $T.Q.IsFullWidth==true} style="clear:both; overflow: hidden;" {#/if}>
     {#if $T.Q.QType!='IAgree'}
-    <div class="label-right col-sm-2">
+    <div class="label-right col-md-2">
         <label>{NS_ParseString($T.Q.QuestionText)}
         {#if $T.Q.IsRequired==true}
         <span id="NSR_lblRequired_{$T.Q.QuestionID}" class="NS_RequiredCap" style="color:red;display:none;">*</span>
@@ -20,11 +20,11 @@
     <div id="NSR_QContainer_{$T.Q.QuestionID}" 
          {#if $T.Q.IsFullWidth==true}
              {#if $T.Q.IsRequired==true} 
-                {#if $T.Q.QType=='IAgree'} class="col-sm-12 NS_Required"{#else} class="col-sm-10 NS_Required"  {#/if}
+                {#if $T.Q.QType=='IAgree'} class="col-md-12 NS_Required"{#else} class="col-md-10 NS_Required"  {#/if}
              {#else} class="col-md-10"
              {#/if}
         {#else}
-            {#if $T.Q.IsRequired==true} class="col-sm-4 NS_Required"
+            {#if $T.Q.IsRequired==true} class="col-md-4 NS_Required"
             {#else} class="col-md-4"
             {#/if}
         {#/if}
@@ -57,10 +57,10 @@
             <label for="rbl_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
         {#/for}
     {#elseif $T.Q.QType=='CheckBox' }
-<table cellspacing="5" cellpadding="5" style="width:100%;">
+<table cellspacing="5" cellpadding="5" class="uqres" style="width:100%;">
     <tr>
         {#foreach $T.Q.Options as O}
-        <td style="width:25%;height:30px;">
+        <td style="width:25%;">
             <input type="checkbox" id="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" selectid="{$T.O.OnSelect}" name="chk_{$T.Q.QuestionID}_{$T.O.OptionID}" class="dnnFormItem" />
             <label for="chk_{$T.Q.QuestionID}_{$T.O.OptionID}">{$T.O.OptionText}</label>
         </td>
@@ -70,9 +70,16 @@
     {#elseif $T.Q.QType=='File'}
         <input type="file" id="NSRFile_{$T.Q.QuestionID}" class="NSR_FileControl" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
     {#elseif $T.Q.QType=='Images'}
-        <input type="file" id="NSRFile_{$T.Q.QuestionID}" class="NSR_FileControl" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
+        <input type="file" value="Browse..." id="NSRFile_{$T.Q.QuestionID}" class="NSR_Croppable" qtype="{$T.Q.QType}" qid="{$T.Q.QuestionID}" />
+        {#if $T.Q.QuestionID==14}    
+	   <div id="MainCropper_{$T.Q.QuestionID}" style="margin-bottom:20px;margin-top:10px;width:320px;height:320px;background-color:lightgray;border:solid 1px gray;border-radius:50%;"></div>
+	{#else}    
+	   <div id="MainCropper_{$T.Q.QuestionID}" style="margin-bottom:20px;margin-top:10px;width:300px;height:300px;background-color:lightgray;border:solid 1px gray" ></div>
+	{#/if}   
     {#elseif $T.Q.QType=='Date'}
         <input type="text" id="tb_{$T.Q.QuestionID}" class="NSR_Date" name="tb_{$T.Q.QuestionID}" />
+    {#elseif $T.Q.QType=='LinkedDoc'}
+        <a href="http://{$T.Q.HintText}" target="_blank">Download</a>        
     {#/if}
 </div>
     </div>

@@ -1,0 +1,35 @@
+﻿
+<table style="width:100%;" cellpadding="0" cellspacing="0" class="table table-hover nwrp">
+    <tr>
+        <td><label style="font-weight:bold;">&nbsp;</label></td>
+        <td><label style="font-weight:bold;">Name</label></td>
+        <td><label style="font-weight:bold;">Coupon Code</label></td>
+        <td><label style="font-weight:bold;">Discount</label></td>
+        <td><label style="font-weight:bold;">Valid From</label></td>
+        <td><label style="font-weight:bold;">Expiration Date</label></td>
+        <td><label style="font-weight:bold;">Total Coupons</label></td>
+        <td><label style="font-weight:bold;">Remaining</label></td>
+    </tr>
+    {#foreach $T as U}
+    <tr>
+        <td>
+            <img src="/images/edit_pen.gif" title="Edit" style='cursor:pointer;' onclick="NS_EditCoupon({$T.U.ID})" />
+            &nbsp;&nbsp;&nbsp;
+            <img src="/images/delete.gif" title="Remove" style='cursor:pointer;' onclick="NS_RemoveCoupon({$T.U.ID})" />
+        </td>
+        <td>{$T.U.Name}</td>
+        <td>{$T.U.Code}</td>
+        <td>{$T.U.Discount}&nbsp;{$T.U.DiscountType}</td>
+        <td>{NS_FormatJSONDate($T.U.StartsFrom,'M dd, yy')}</td>
+        <td>
+            {NS_FormatJSONDate($T.U.EndsOn,'M dd, yy')}
+        </td>
+        <td>
+            {$T.U.NoOfCoupons}
+        </td>
+        <td>
+            {$T.U.Remains}
+        </td>
+    </tr>
+    {#/for}
+</table>

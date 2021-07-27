@@ -17,7 +17,9 @@ table.NS_tblReport td, .NS_tblReport th {
     
     padding: 8px;
 }
-
+table.NS_tblReport th {
+    color:#FFF !important;
+}
 table.NS_tblReport tr:nth-child(even){background-color: #f2f2f2}
 
 table.NS_tblReport th {

@@ -13,6 +13,7 @@ namespace Netsam.Modules.NSR_Registration
             HttpPostedFile uploadFiles = context.Request.Files[0];
             string _QID = context.Request.Form["QuestionID"].ToString();
             int iQuestionID = int.Parse(_QID);
+            string _FileName = "Img" + System.DateTime.Now.ToString("yyyyMMddhhmmss") + System.IO.Path.GetExtension(uploadFiles.FileName); // uploadFiles.FileName.Replace(' ', '_');
             if (iQuestionID == 14)
             {/* selfie image if uploaded, 
               * upload it first to host user DNN folder 
@@ -30,20 +31,31 @@ namespace Netsam.Modules.NSR_Registration
                 {
                     System.IO.Directory.CreateDirectory(TargetFolder);
                 }
-                string _FileName = uploadFiles.FileName.Replace(' ', '_');
+              //  string _FileName = uploadFiles.FileName.Replace(' ', '_');
 
                 IFileInfo objFile = FileManager.Instance.AddFile(userFolder, _FileName, uploadFiles.InputStream);
+               
                 context.Response.Write(objFile.FileId.ToString());
             }
             else
             {
+                string virtualPath = HttpContext.Current.Session.SessionID;
                 string TargetFolder = HttpContext.Current.Server.MapPath("~/images/NS_Registration/" + HttpContext.Current.Session.SessionID);
                 if (!System.IO.Directory.Exists(TargetFolder))
                 {
                     System.IO.Directory.CreateDirectory(TargetFolder);
                 }
-                string pathToSave = TargetFolder + "/" + uploadFiles.FileName.Replace(' ', '_');
-                uploadFiles.SaveAs(pathToSave);
+                string pathToSave = TargetFolder + "/" + _FileName;//uploadFiles.FileName.Replace(' ', '_');
+                if (!System.IO.File.Exists(pathToSave))
+                {
+                    uploadFiles.SaveAs(pathToSave);
+                    context.Response.Write(virtualPath + "/" + _FileName);
+                }
+                else
+                {
+                    context.Response.Write("Already");
+                }
+                
             }
         }
 

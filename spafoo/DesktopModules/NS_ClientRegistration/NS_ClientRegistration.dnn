@@ -10,7 +10,7 @@
     <email />
   </owner>
   <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
-  <releaseNotes />
+  <releaseNotes>This package has no Release Notes</releaseNotes>
   <components>
     <component type="Module">
       <desktopModule>
@@ -44,6 +44,7 @@
       <assemblies>
         <basePath>bin</basePath>
         <assembly>
+          <path>bin</path>
           <name>NS_ClientRegistration.dll</name>
         </assembly>
       </assemblies>
@@ -51,6 +52,26 @@
     <component type="File">
       <files>
         <basePath>DesktopModules\NS_ClientRegistration</basePath>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
+        </file>
+        <file>
+          <path>Script\jquery-uploadify</path>
+          <name>rhProfilePic.ashx</name>
+        </file>
+        <file>
+          <path>Script</path>
+          <name>Module.js</name>
+        </file>
         <file>
           <name>Edit.ascx</name>
         </file>
@@ -64,29 +85,10 @@
           <name>rh.asmx</name>
         </file>
         <file>
-          <path>Script</path>
-          <name>Module.js</name>
-        </file>
-        <file>
           <name>Settings.ascx</name>
         </file>
         <file>
           <name>View.ascx</name>
-        </file>
-        <file>
-          <name>NS_ClientRegistration.dnn</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>View.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Edit.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Settings.ascx.resx</name>
         </file>
       </files>
     </component>

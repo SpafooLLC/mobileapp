@@ -1,0 +1,8 @@
+2017-04-21 02:17:37,988 [THD-01][Thread:26][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.NSR_UserProfile.mHandler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_UserProfile\Scripts\jquery-uploadify\mHandler.ashx:line 50
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-04-21 02:18:01,550 [THD-01][Thread:8][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.NSR_UserProfile.mHandler.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_UserProfile\Scripts\jquery-uploadify\mHandler.ashx:line 50
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

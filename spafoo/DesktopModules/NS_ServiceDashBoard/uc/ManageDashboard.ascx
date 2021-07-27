@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ManageDashboard.ascx.cs" Inherits="Netsam.Modules.ServiceDashBoard.uc.ManageDashboard" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ManageDashboard.ascx.cs" Inherits="Netsam.Modules.ServiceDashBoard.uc.ManageDashboard" %>
 <div id="NS_dvDashboardOuter" style="width:100%;">
     <div class="bread">
         <div class="pback" onclick="NS_OnPreviousClick(event); return false;"><i class="fa fa-angle-left fa-2x"></i></div>
@@ -12,10 +12,8 @@
         <div id="NS_dvDBProProfile" class="inbody pprofile" style="display: none;"></div>
     </div>
 </div>
-
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="/DesktopModules/NS_ServiceDashBoard/css/fontawesome-stars.css">
-<link href="/DesktopModules/NS_ServiceDashBoard/Styles/Styles/jquery.fancybox.css" rel="stylesheet" />
 <link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css" rel="stylesheet" />
 <style>
 .NS_TopHeader {color: darkblue;font-size: 20px;text-transform: uppercase;}
@@ -28,7 +26,7 @@
 .NSD_EachRow {cursor:pointer;margin-bottom:25px;width:100%;}
 </style>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery-jtemplates/jquery-jtemplates.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyAaMEqVj82GZtDuCqOrf6OwYnMYR_yE0HY"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery-barrating/jquery.barrating.min.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery-fancybox/jquery.fancybox.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery.cookie/jquery.cookie.js"></script>

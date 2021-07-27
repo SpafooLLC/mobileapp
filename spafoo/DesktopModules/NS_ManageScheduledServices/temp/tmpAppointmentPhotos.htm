@@ -1,9 +1,9 @@
-﻿<ul class="appimggrid">
+<ul class="appimggrid">
     {#foreach $T as S}
     <li>
         <img src="{$T.S.FilePath}" alt="">
         <input type="file" class="NSR_FileControl" fileid="{$T.S.ID}" />
-        <div class="ns-sremove" onclick="NS_RemoveAppoPhoto('{$T.S.ID}')"><i class="fa fa-trash-o fa-lg">Remove</i></div>
+        <div class="ns-sremove" onclick="NS_RemoveAppoPhoto('{$T.S.ID}')"><i class="fa fa-trash-o fa-lg"></i></div>
     </li>
     {#/for}
 </ul>

@@ -10,7 +10,7 @@
     <email />
   </owner>
   <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
-  <releaseNotes />
+  <releaseNotes>This package has no Release Notes</releaseNotes>
   <components>
     <component type="Module">
       <desktopModule>
@@ -44,6 +44,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
             </moduleControls>
           </moduleDefinition>
@@ -54,6 +55,7 @@
       <assemblies>
         <basePath>bin</basePath>
         <assembly>
+          <path>bin</path>
           <name>NS_Registration.dll</name>
         </assembly>
       </assemblies>
@@ -62,28 +64,48 @@
       <files>
         <basePath>DesktopModules\NS_Registration</basePath>
         <file>
-          <name>Edit.ascx</name>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
         </file>
         <file>
-          <name>License.txt</name>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
         </file>
         <file>
-          <name>ReleaseNotes.txt</name>
-        </file>
-        <file>
-          <name>rh.asmx</name>
-        </file>
-        <file>
-          <path>Scripts</path>
-          <name>jquery-hint.js</name>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
         </file>
         <file>
           <path>Scripts\jquery-jtemplates</path>
           <name>jquery-jtemplates.js</name>
         </file>
         <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>Handler.ashx</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>jquery.uploadify.min.js</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>uploadify-cancel.png</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>uploadify.css</name>
+        </file>
+        <file>
+          <path>Scripts\jquery-uploadify</path>
+          <name>uploadify.swf</name>
+        </file>
+        <file>
           <path>Scripts</path>
           <name>Admin.js</name>
+        </file>
+        <file>
+          <path>Scripts</path>
+          <name>jquery-hint.js</name>
         </file>
         <file>
           <path>Scripts</path>
@@ -98,11 +120,20 @@
           <name>module.js</name>
         </file>
         <file>
-          <name>Settings.ascx</name>
+          <path>Templates</path>
+          <name>ManageQuestions.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>step.htm</name>
         </file>
         <file>
           <path>Templates</path>
           <name>tmpServiceTree.htm</name>
+        </file>
+        <file>
+          <path>Templates</path>
+          <name>UserQuestions.htm</name>
         </file>
         <file>
           <path>Templates</path>
@@ -113,38 +144,28 @@
           <name>users.htm</name>
         </file>
         <file>
-          <path>Templates</path>
-          <name>step.htm</name>
+          <name>bootstrap.css.bak</name>
         </file>
         <file>
-          <path>Templates</path>
-          <name>ManageQuestions.htm</name>
+          <name>Edit.ascx</name>
         </file>
         <file>
-          <path>Templates</path>
-          <name>UserQuestions.htm</name>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>rh.asmx</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
         </file>
         <file>
           <name>View.ascx</name>
-        </file>
-        <file>
-          <name>NS_Registration.dnn</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>View.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Edit.ascx.resx</name>
-        </file>
-        <file>
-          <path>App_LocalResources</path>
-          <name>Settings.ascx.resx</name>
-        </file>
-        <file>
-          <path>Scripts\jquery-uploadify</path>
-          <name>Handler.ashx</name>
         </file>
       </files>
     </component>

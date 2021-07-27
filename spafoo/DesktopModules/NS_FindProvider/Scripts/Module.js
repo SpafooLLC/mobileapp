@@ -1,4 +1,4 @@
-﻿var map = "";
+var map = "";
 var NSD_SourceAddress = "";
 var NS_ChoosenProvider = "";
 $(document).ready(function () {
@@ -37,7 +37,7 @@ function NS_OnServiceSelect(o) {
     if (id == -1) return false
     $(".fpbottom").hide();
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/ListProvidersByServices";
-    var _data = "{'SID':'" + id + "'}";
+    var _data = "{'SIDs':'" + id + "'}";
     NSR_FP_MakeRequest(_URL, _data, NS_ListProvidersByServices_SuCB);
 }
 function NS_ListProvidersByServices_SuCB(d) {
@@ -67,6 +67,9 @@ function initialize(rows) {
         if (status == google.maps.GeocoderStatus.OK) {
             coords.push(results[0].geometry.location);
             plotmap(coords, address);
+        }
+        else {
+            PlotAnnoyMap();
         }
     });
 }
@@ -100,7 +103,7 @@ function AddMarker(UA) {
     $.each(UA, function (i, o) {
         var coords = [];
         var geocoder = new google.maps.Geocoder();
-        var address = o.Profile.Street + "," + o.Profile.City + "," + o.Profile.Region+","+o.Profile.Country;
+        var address = o.Profile.Street + "," + o.Profile.City + "," + o.Profile.Region+","+o.Profile.PostalCode+", USA";
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 // use D I R E C T I O N   S E R V I C E  to calcualte the duration from current position of the user
@@ -112,36 +115,42 @@ function AddMarker(UA) {
                     origins: [NSD_SourceAddress], destinations: [destination], avoidHighways: false, avoidTolls: false,
                     travelMode: google.maps.TravelMode.DRIVING, unitSystem: google.maps.UnitSystem.METRIC
                 }, function (response, status) {
+                   
                     if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
                         try {
                             // if provider is within 50 miles only then show it to the client
                             if (response.rows[0].elements[0].distance.text.split(' ')[0] <= 50) {
-                                var duration = response.rows[0].elements[0].duration.text;
+                            var duration = '';
+                            if (response.rows[0].elements[0].duration != undefined) {
+                                duration = response.rows[0].elements[0].duration.text;
+                            }
+                                
                                 var _content = '<div class="map-info-window"><div class="mwl"><h3>' + o.DisplayName + '</h3><p>' + duration + " away" + '</p></div><div class="mwr"><a href="#" onclick="ShowProID(' + o.UserID + ')" class="mwm" title="More Information">More<br>Info</a></div></div>';
                                 var SingleRow = [_content, results[0].geometry.location.lat(), results[0].geometry.location.lng(), o.UserID];
-                                locations.push(SingleRow)
-                            }
+                                locations.push(SingleRow);
+                           }
                         } catch (e) { }
                     }
-                    else {
+                  //  else {
                         
                        // var _content = '<div class="map-info-window"><div class="mwl"><h3>' + o.DisplayName + '</h3><p>&nbsp;</p></div><div class="mwr"><a href="#" onclick="ShowProID(' + o.UserID + ')" class="mwm" title="More Information">More<br>Info</a></div></div>';
                        // var SingleRow = [_content, results[0].geometry.location.lat(), results[0].geometry.location.lng(), o.UserID];
                       //  locations.push(SingleRow)
-                    }
+                 //   }
                 });
             }
         });
     });
-    deleteMarkers();
-   
+     deleteMarkers();
+    
    
     var marker, i;
     setTimeout(function () {
         for (i = 0; i < locations.length; i++) {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                map: map
+                map: map,
+                icon: 'https://www.spafoo.com/images/MapSpafoo.png'
             });
             var infowindow = new google.maps.InfoWindow();
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -211,7 +220,7 @@ function GetUserTagLine(ID) {
 function PlotAnnoyMap() {
     var mapCanvas = document.getElementById('mapcanvas');
     var geocoder = new google.maps.Geocoder(); $("#mapcanvas").show();
-    var _Lati = 32.7357; _longi = -97.1081; // Lati and Longi for USA
+     var _Lati = 30.9843; _longi = -91.9623; // Lati and Longi for USA
     var mapOptions = {
         zoom: 8,
         center: new google.maps.LatLng(_Lati, _longi)

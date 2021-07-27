@@ -1,0 +1,12 @@
+2017-02-12 22:57:33,899 [THD-01][Thread:41][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpFailedRecipientException: Mailbox unavailable. The server response was: <netsampro@netsam.com> No such user here
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2017-02-12 23:00:51,836 [THD-01][Thread:16][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpFailedRecipientException: Mailbox unavailable. The server response was: <netsampro@netsam.com> No such user here
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2017-02-12 23:00:52,008 [THD-01][Thread:16][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpFailedRecipientException: Mailbox unavailable. The server response was: <netsampro@netsam.com> No such user here
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)

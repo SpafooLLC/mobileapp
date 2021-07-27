@@ -1,4 +1,4 @@
-﻿{#foreach $T as rs}
+{#foreach $T as rs}
 <div id="NSR_UR_Step_{$T.rs.StepID}" class="NSR_Step">
     {#foreach $T.rs.Categories as C}
     <div class="NSR_RCatDesc">
@@ -61,14 +61,6 @@
             {$T.rs.UserDetail.Profile.Telephone}&nbsp;
         </div>
     </div>
-    <div id="NSR_dvUserDetail_6" class="dnnFormItem NSR_Questions NSR_Row">
-        <div class="NSR_RCol1">
-            Mobile Phone
-        </div>
-        <div class="NSR_RCol2">
-            {$T.rs.UserDetail.Profile.Cell}&nbsp;
-        </div>
-    </div>
     {#/if}
     {#foreach $T.C.Questions as Q}
     <div id="NSR_dvMQuestion_{$T.Q.QuestionID}" class="dnnFormItem NSR_Questions NSR_Row">
@@ -101,7 +93,7 @@
             {#elseif $T.Q.QType=='File'}
             <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
                 {#if NSR_CheckFileExt($T.Q.QType,$T.Q.OptionText)=='Image'}
-                <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" />
+                <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" onclick="NS_OpenImage(this);return false;" />
                 {#/if}
                 {#if NSR_CheckFileExt($T.Q.QType,$T.Q.OptionText)=='Doc'}
                 <a href="/images/ns_registration/{$T.Q.OptionText}" target="_blank">view document</a>
@@ -110,11 +102,11 @@
             {#elseif $T.Q.QType=='Images'}
             {#if $T.Q.QuestionID=='14'}
             <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
-                <img src="{$T.rs.UserDetail.Profile.PhotoURL}" style="width:200px;height:150px;" />
+                <img src="{$T.rs.UserDetail.Profile.PhotoURL}" style="width:200px;height:150px;" onclick="NS_OpenImage(this);return false;" />
             </div>
             {#else}
             <div style="min-width:100px;padding-right:5px;margin-right:5px;padding-bottom:5px;margin-bottom:5px;float:left;">
-                <img src="/images/ns_registration/{$T.Q.OptionText}" style="width:200px;height:150px;" />
+                <img src="{NSR_ParseImageName($T.Q.OptionText)}" style="width:200px;height:150px;" onclick="NS_OpenImage(this);return false;" />
             </div>
             {#/if}
             {#/if}
@@ -124,7 +116,7 @@
             </div>
             {#/if}
             {#if $T.Q.QType == 'Multiline'}
-            <div style="width: 80%; padding-right: 5px;margin-right: 5px; float: left; height: 50px;margin-left:10px;">
+            <div style="width: 80%; padding-right: 5px;margin-right: 5px; float: left;margin-left:10px;">
                 {#if $T.Q.OptionText==''}&nbsp;{#/if}  {NS_ParseString($T.Q.OptionText)}
             </div>
             {#/if}

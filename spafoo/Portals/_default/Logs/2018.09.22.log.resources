@@ -1,0 +1,27 @@
+2018-09-22 12:52:34,598 [THD-01][Thread:22][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2018-09-22 12:52:39,691 [THD-01][Thread:29][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2018-09-22 12:54:08,035 [THD-01][Thread:30][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2018-09-22 12:54:32,816 [THD-01][Thread:30][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2018-09-22 13:31:17,191 [THD-01][Thread:16][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)

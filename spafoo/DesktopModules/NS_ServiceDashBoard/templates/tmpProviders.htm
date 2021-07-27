@@ -1,6 +1,6 @@
-﻿<div class="prolist">
+<div class="prolist">
     {#foreach $T as S}
-    {#if $T.S.DisplayName!='D'}
+    {#if NSD_InRange($T.S.VanityUrl,0)!='D'}
     <li>
         <a onclick="NSD_ShowProviderDetail({$T.S.UserID},event);">
             <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -20,7 +20,7 @@
                         <td class="right">
                             <i class="fa fa-map-marker fa-2x"></i>
                             <h4 id="NSD_dvUserDistance_{$T.S.UserID}">
-                                {NSD_GetDistance($T.S.Profile.Street, $T.S.Profile.City, $T.S.Profile.Region, $T.S.Profile.Country, $T.S.UserID)}
+                                {NSD_InRange($T.S.VanityUrl,1)}
                             </h4>
                             <span>miles</span>
                         </td>

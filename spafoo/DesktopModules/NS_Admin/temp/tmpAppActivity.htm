@@ -1,0 +1,71 @@
+{#param name=CUser}
+<div class="notiwrapper moti2">
+    <ul>
+        {#foreach $T as S}
+        {#if $T.S.NotificationTypeID==15} {* Appointment fixed - Client*}
+        <li id="dvNotiRow_{$T.S.ID}">
+             <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">
+                {$T.S.ByName}
+            </a> accepted the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> with
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">
+                {$T.S.ToName}
+            </a>
+        </li>
+        {#/if}
+        {#if $T.S.NotificationTypeID==8} {* Appointment is completed *}
+        <li id="dvNotiRow_{$T.S.ID}">
+            <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">
+                {$T.S.ByName}
+            </a> has completed the <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> with
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">
+                {$T.S.ToName}
+            </a>
+        </li>
+        {#/if}
+        {#if $T.S.NotificationTypeID==16}{* ASAP appointment requested *}
+        <li id="dvNotiRow_{$T.S.ID}">
+            <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">
+                {$T.S.ToName}
+            </a>
+            has requested ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> with <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">
+                {$T.S.ByName}
+            </a>
+        </li>
+        {#/if}
+        {#if $T.S.NotificationTypeID==11} {* ASAP, Provider given date and time for Appointment *}
+        <li id="dvNotiRow_{$T.S.ID}">
+            <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has accepted ASAP <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a>
+            with <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">{$T.S.ToName}</a>.
+        </li>
+        {#/if}
+        {#if $T.S.NotificationTypeID==17} {* Provider accepted appointment *}
+        <li id="dvNotiRow_{$T.S.ID}">
+            <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has accepted the
+            <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> with client
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">{$T.S.ToName}</a>
+        </li>
+        {#/if}
+		{#if $T.S.NotificationTypeID==4} {* Client requested for appointment *}
+        <li id="dvNotiRow_{$T.S.ID}">
+           <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has requested an
+            <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> with 
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">{$T.S.ToName}</a>
+        </li>
+        {#/if}
+        {#if $T.S.NotificationTypeID==18} {* Provider Denied the Appointment request *}
+        <li id="dvNotiRow_{$T.S.ID}" class="ProDeny">
+            <span>{NS_FormatJSONDate($T.S.Dated,'dd-M-yy')}</span>
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityByID}">{$T.S.ByName}</a> has denied <a href="#" id="aAppTT_{$T.S.RelatedEntityID}" class="NS_AppTooltip">appointment</a> request from client
+            <a href="#" class="NSUserTip" id="NSUser_{$T.S.ActivityToID}">{$T.S.ToName}</a>.
+        </li>
+        {#/if}
+        {#/for}
+    </ul>
+    <div class="newContent" align="center"><label onclick="return NS_LoadNotifications('more');" style="cursor:pointer;color:blue;" class="reg_login">Load More</label></div>
+</div>

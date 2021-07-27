@@ -1,0 +1,67 @@
+2020-10-23 00:29:09,379 [1019474-web1][Thread:118][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The process cannot access the file 'D:\WebData\Spafoo\Portals\0-System\Cache\Pages\95_12501F292E5A603685E3125A20F9FDC5BC468018D1CD219CABAB93D3EFC7C5A9.data.resources' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.File.InternalWriteAllBytes(String path, Byte[] bytes, Boolean checkHost)
+   at DotNetNuke.Services.ModuleCache.FileProvider.SetModule(Int32 tabModuleId, String cacheKey, TimeSpan duration, Byte[] output)
+2020-10-23 00:29:09,379 [1019474-web1][Thread:102][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.IO.IOException: The process cannot access the file 'D:\WebData\Spafoo\Portals\0-System\Cache\Pages\95_12501F292E5A603685E3125A20F9FDC5BC468018D1CD219CABAB93D3EFC7C5A9.attrib.resources' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding)
+   at System.IO.File.WriteAllLines(String path, String[] contents)
+   at DotNetNuke.Services.ModuleCache.FileProvider.SetModule(Int32 tabModuleId, String cacheKey, TimeSpan duration, Byte[] output)
+2020-10-23 00:49:59,156 [1019474-web1][Thread:68][ERROR] DotNetNuke.Common.Utilities.FileSystemUtils - System.IO.IOException: The process cannot access the file 'D:\WebData\Spafoo\Portals\0-System\Cache\Pages\95_12501F292E5A603685E3125A20F9FDC5BC468018D1CD219CABAB93D3EFC7C5A9.data.resources' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at DotNetNuke.Common.Utilities.FileSystemUtils.DeleteFileWithWait(String filename, Int16 waitInMilliseconds, Int16 maxAttempts)
+2020-10-23 08:35:15,580 [1019474-web1][Thread:104][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.rhProfilePicX.ProcessRequest(HttpContext context) in d:\WebData\Spafoo\DesktopModules\NS_ClientRegistration\Script\jquery-uploadify\rhProfilePicX.ashx:line 18
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-10-23 23:56:05,695 [1019474-web1][Thread:52][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 46.33.32.5
+	Port: 58447
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=/
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+	ViewState: K4ajMzrMEnjMX8gAxM9DnbzU3H4a7LoBkmrfBSX2swpdUaEDBM4pCXzuKdjnykgdFaZSMASdanQeXzVXHOSVDjvUzhyos3S1mER+AjUT0RBhxEpbKCjOWaFMs8YiY5G6BSiQugKUPSZTba8sxeJJMDNAt7g76k4ah4oXH4hhKr7Eh++NFZ/5eAkHbSGgEfYs9WA2aaz8hYuaZEVpc9WrDYUbVbBL61u8dSnzgJkeImMVZE028dKJxNgEAqwwt4hglxH+aTLxuCp3tki/ynK+8J3GLPknedh5+gv+mb+OvOM6pfP/OiFAIMc4LddwkgaHnSPmrPqfiwBpw2b7dZXwa/U6UkL/+38TEMFkoHjJXJJxWOwBrj6Vecha2SngQhHfAtq6e+C/+8VxkmkVO+JyKH7dAsoL1F7v4RJ29nSL6K0tGuG1EL+2V96q9zDP71SuI4BZrImph5jPU/Gq8g6w9laBKM0AQGR8tDZ4VA==,sbXIkE/mvRSP30yD+moNFmu8/c6QbesAQTPzjEO0BKMZrO3aAzNubTQg0Nm80MMKdBUMM7CXmaK+lMi3XF66AOe60H0= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2020-10-23 23:56:05,757 [1019474-web1][Thread:52][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 46.33.32.5
+	Port: 58447
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=/
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+	ViewState: K4ajMzrMEnjMX8gAxM9DnbzU3H4a7LoBkmrfBSX2swpdUaEDBM4pCXzuKdjnykgdFaZSMASdanQeXzVXHOSVDjvUzhyos3S1mER+AjUT0RBhxEpbKCjOWaFMs8YiY5G6BSiQugKUPSZTba8sxeJJMDNAt7g76k4ah4oXH4hhKr7Eh++NFZ/5eAkHbSGgEfYs9WA2aaz8hYuaZEVpc9WrDYUbVbBL61u8dSnzgJkeImMVZE028dKJxNgEAqwwt4hglxH+aTLxuCp3tki/ynK+8J3GLPknedh5+gv+mb+OvOM6pfP/OiFAIMc4LddwkgaHnSPmrPqfiwBpw2b7dZXwa/U6UkL/+38TEMFkoHjJXJJxWOwBrj6Vecha2SngQhHfAtq6e+C/+8VxkmkVO+JyKH7dAsoL1F7v4RJ29nSL6K0tGuG1EL+2V96q9zDP71SuI4BZrImph5jPU/Gq8g6w9laBKM0AQGR8tDZ4VA==,sbXIkE/mvRSP30yD+moNFmu8/c6QbesAQTPzjEO0BKMZrO3aAzNubTQg0Nm80MMKdBUMM7CXmaK+lMi3XF66AOe60H0= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

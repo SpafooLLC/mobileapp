@@ -686,18 +686,24 @@ namespace DotNetNuke.Modules.Admin.Tabs
                 var folder = FolderManager.Instance.GetFolder(cboFolders.SelectedItemValueAsInt);
                 if (folder != null)
                 {
-                    var arrFiles = Globals.GetFileList(PortalId, "page.template", false, folder.FolderPath);
-                    foreach (FileItem objFile in arrFiles)
+                    var files = Globals.GetFileList(PortalId, "page.template", false, folder.FolderPath);
+                    foreach (FileItem file in files)
                     {
-                        var fileItem = new ListItem { Text = objFile.Text.Replace(".page.template", ""), Value = objFile.Text };
-                        cboTemplate.AddItem(fileItem.Text, fileItem.Value);
-                        if (!Page.IsPostBack && fileItem.Text == "Default")
-                        {
-                            cboTemplate.ClearSelection();
-                            cboTemplate.FindItemByText("Default").Selected = true;
-                        }
+                        cboTemplate.AddItem(file.Text.Replace(".page.template", ""), file.Value);
                     }
+
                     cboTemplate.InsertItem(0, Localization.GetString("None_Specified"), "");
+
+					if (!Page.IsPostBack)
+					{
+						cboTemplate.ClearSelection();
+						var defaultItem = cboTemplate.FindItemByText("Default");
+						if (defaultItem != null)
+						{
+							defaultItem.Selected = true;
+						}
+					}
+
                     if (cboTemplate.SelectedIndex == -1)
                     {
                         cboTemplate.SelectedIndex = 0;
@@ -780,7 +786,7 @@ namespace DotNetNuke.Modules.Admin.Tabs
 
             //Set Tab's position
             var positionTabId = Null.NullInteger;
-            if (!string.IsNullOrEmpty(cboPositionTab.SelectedValue))
+            if (!string.IsNullOrEmpty(cboPositionTab.SelectedValue) && cboPositionTab.Items.Count > 0)
             {
                 positionTabId = Int32.Parse(cboPositionTab.SelectedValue);
             }
@@ -930,19 +936,19 @@ namespace DotNetNuke.Modules.Admin.Tabs
                 }
 
                 //Create Localized versions
-                if (PortalSettings.ContentLocalizationEnabled && cultureTypeList.SelectedValue == "Localized")
+                if (PortalSettings.ContentLocalizationEnabled && cultureTypeList.SelectedValue == "Localized" && Tab.PortalID != -1)
                 {
                     TabController.Instance.CreateLocalizedCopies(Tab);
                     //Refresh tab
                     _tab = TabController.Instance.GetTab(Tab.TabID, Tab.PortalID, true);
 
 					//change the localized pages order to match original order.
-	                if (positionTabId > Null.NullInteger)
+	                if (positionTabId > Null.NullInteger && _tab.LocalizedTabs.Count > 1)
 	                {
-		                var positionTab = TabController.Instance.GetTab(positionTabId, Tab.PortalID);
+		                var positionTab = TabController.Instance.GetTab(positionTabId, _tab.PortalID);
 		                if (positionTab != null)
 		                {
-			                foreach (var localizedTab in Tab.LocalizedTabs.Values)
+			                foreach (var localizedTab in _tab.LocalizedTabs.Values)
 			                {
 				                var cultureCode = localizedTab.CultureCode;
 								if (positionTab.LocalizedTabs.ContainsKey(cultureCode))
@@ -1046,9 +1052,9 @@ namespace DotNetNuke.Modules.Admin.Tabs
                         try
                         {
                             // open the XML file
-                            var folder = FolderManager.Instance.GetFolder(cboFolders.SelectedItemValueAsInt);
-                            if (folder != null)
-                                xmlDoc.Load(PortalSettings.HomeDirectoryMapPath + folder.FolderPath + cboTemplate.SelectedValue);
+                            var fileId = Convert.ToInt32(cboTemplate.SelectedValue);
+							var templateFile = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(fileId);
+							xmlDoc.Load(DotNetNuke.Services.FileSystem.FileManager.Instance.GetFileContent(templateFile));
                         }
                         catch (Exception ex)
                         {
@@ -1545,8 +1551,21 @@ namespace DotNetNuke.Modules.Admin.Tabs
                 }
 
                 CheckLocalizationVisibility();
-
-                BindLocalization(false);
+                //DNN-5882 if parent page is a superTab - hide localization options
+                if (PortalSettings.ActiveTab.IsSuperTab && PortalSettings.ActiveTab.ParentId != -1)
+                {
+                    localizationTab.Visible = false;
+                    cmdUpdateLocalization.Visible = false;
+                    MakeTranslatable.Visible = false;
+                    MakeNeutral.Visible = false;
+                    AddMissing.Visible = false;
+                    readyForTranslationButton.Visible = false;
+                }
+                else
+                {
+                    BindLocalization(false);
+                }
+                
 
                 cancelHyperLink.NavigateUrl = Globals.NavigateURL();
 

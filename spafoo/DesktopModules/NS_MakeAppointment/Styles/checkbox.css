@@ -32,7 +32,8 @@
       padding-left: 5px;
       padding-top:0px;
       font-size: 11px;
-      color: #555555; }
+      color: #555555;
+			top:-2px; }
   .checkbox input[type="checkbox"],
   .checkbox input[type="radio"] {
     opacity: 0;

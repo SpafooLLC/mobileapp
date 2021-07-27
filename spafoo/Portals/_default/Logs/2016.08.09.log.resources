@@ -1,0 +1,95 @@
+2016-08-09 02:31:59,872 [THD-01][Thread:44][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/GetUserNotification'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-08-09 04:31:50,483 [THD-01][Thread:83][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/RegisterUser'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-08-09 04:40:17,311 [THD-01][Thread:81][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/RegisterUser'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-08-09 04:43:34,514 [THD-01][Thread:89][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/RegisterUser'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-08-09 04:46:19,545 [THD-01][Thread:90][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/RegisterUser'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-08-09 06:42:15,920 [THD-01][Thread:13][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.ArgumentOutOfRangeException: Value of '12/31/9999 12:00:00 AM' is not valid for 'SelectedDate'. 'SelectedDate' should be between 'MinDate' and 'MaxDate'.
+Parameter name: SelectedDate
+   at Telerik.Web.UI.RadDatePicker.set_SelectedDate(Nullable`1 value)
+   at DotNetNuke.Modules.Admin.Security.SecurityRoles.GetDates(Int32 UserId, Int32 RoleId)
+   at DotNetNuke.Modules.Admin.Security.SecurityRoles.cboUsers_SelectedIndexChanged(Object sender, EventArgs e)
+   at Telerik.Web.UI.RadComboBox.OnSelectedIndexChanged()
+   at System.Web.UI.Page.RaiseChangedEvents()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-08-09 06:42:16,123 [THD-01][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=67&error=Value+of+%2712%2f31%2f9999+12%3a00%3a00+AM%27+is+not+valid+for+%27SelectedDate%27.+%27SelectedDate%27+should+be+between+%27MinDate%27+and+%27MaxDate%27.%0d%0aParameter+name%3a+SelectedDate
+System.ArgumentOutOfRangeException: Value of '12/31/9999 12:00:00 AM' is not valid for 'SelectedDate'. 'SelectedDate' should be between 'MinDate' and 'MaxDate'.
+Parameter name: SelectedDate
+   at Telerik.Web.UI.RadDatePicker.set_SelectedDate(Nullable`1 value)
+   at DotNetNuke.Modules.Admin.Security.SecurityRoles.GetDates(Int32 UserId, Int32 RoleId)
+   at DotNetNuke.Modules.Admin.Security.SecurityRoles.cboUsers_SelectedIndexChanged(Object sender, EventArgs e)
+   at Telerik.Web.UI.RadComboBox.OnSelectedIndexChanged()
+   at System.Web.UI.Page.RaiseChangedEvents()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-08-09 06:50:34,904 [THD-01][Thread:6][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)
+2016-08-09 12:07:22,826 [THD-01][Thread:47][ERROR] DotNetNuke.Modules.Admin.Users.Password - System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ChangePassword(UserInfo user, String oldPassword, String newPassword)
+   at DotNetNuke.Modules.Admin.Users.Password.cmdUpdate_Click(Object sender, EventArgs e)
+2016-08-09 12:07:55,483 [THD-01][Thread:45][ERROR] DotNetNuke.Modules.Admin.Users.Password - System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ChangePassword(UserInfo user, String oldPassword, String newPassword)
+   at DotNetNuke.Modules.Admin.Users.Password.cmdUpdate_Click(Object sender, EventArgs e)
+2016-08-09 12:22:17,014 [THD-01][Thread:37][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.UserLogin(Int32 portalId, UserInfo user, String portalName, String ip, Boolean createPersistentCookie)
+   at DotNetNuke.Modules.Admin.Authentication.Login.ValidateUser(UserInfo objUser, Boolean ignoreExpiring)
+   at DotNetNuke.Modules.Admin.Authentication.Login.UserAuthenticated(Object sender, UserAuthenticatedEventArgs e)
+   at DotNetNuke.Modules.Admin.Authentication.Login.OnLoginClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-08-09 12:22:17,045 [THD-01][Thread:37][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.UserLogin(Int32 portalId, UserInfo user, String portalName, String ip, Boolean createPersistentCookie)
+   at DotNetNuke.Modules.Admin.Authentication.Login.ValidateUser(UserInfo objUser, Boolean ignoreExpiring)
+   at DotNetNuke.Modules.Admin.Authentication.Login.UserAuthenticated(Object sender, UserAuthenticatedEventArgs e)
+   at DotNetNuke.Modules.Admin.Authentication.Login.OnLoginClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

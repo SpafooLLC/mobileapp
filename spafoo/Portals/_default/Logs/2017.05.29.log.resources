@@ -1,0 +1,55 @@
+2017-05-29 02:03:27,081 [THD-01][Thread:13][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Collections.Specialized.NameObjectCollectionBase.BaseGet(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.rhProfilePicX.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_ClientRegistration\Script\jquery-uploadify\rhProfilePicX.ashx:line 17
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-05-29 02:03:38,487 [THD-01][Thread:18][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-05-29 07:49:27,112 [THD-01][Thread:12][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Request format is unrecognized for URL unexpectedly ending in '/'.
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.CoreGetHandler(Type type, HttpContext context, HttpRequest request, HttpResponse response)
+   at System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   at System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-05-29 07:49:37,237 [THD-01][Thread:12][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Collections.Specialized.NameObjectCollectionBase.BaseGet(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at Netsam.Modules.NSR_Registration.rhProfilePicX.ProcessRequest(HttpContext context) in c:\webDataDNN\spafoo\DesktopModules\NS_ClientRegistration\Script\jquery-uploadify\rhProfilePicX.ashx:line 17
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2017-05-29 19:42:47,628 [THD-01][Thread:44][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005)
+   at System.Web.CachedPathData.ValidatePath(String physicalPath)
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2017-05-29 19:42:50,316 [THD-01][Thread:47][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005)
+   at System.Web.CachedPathData.ValidatePath(String physicalPath)
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2017-05-29 23:43:42,222 [THD-01][Thread:46][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error: Site Log is currently unavailable." ctrl="ASP.desktopmodules_admin_sitelog_sitelog_ascx" exc="System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'r' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DbEnumerator.MoveNext()
+   at Telerik.Web.UI.GridDataTableFromEnumerable.FillData()
+   at Telerik.Web.UI.GridResolveEnumerable.EnsureInitialized()
+   at Telerik.Web.UI.GridEnumerableFromDataView..ctor(GridTableView owner, IEnumerable enumerable, Boolean CaseSensitive, Boolean autoGenerateColumns, GridColumnCollection presentColumns, String[] additionalField, Boolean retrieveAllFields, Boolean enableSplitHeaderText)
+   at Telerik.Web.UI.GridDataSourceHelper.CreateGridEnumerable(GridTableView owner, IEnumerable enumerable, Boolean caseSensitive, Boolean autoGenerateColumns, GridColumnCollection presentColumns, String[] additionalField, Boolean retrieveAllFields, Boolean enableSplitHeaderText)
+   at Telerik.Web.UI.GridTableView.get_ResolvedDataSource()
+   at Telerik.Web.UI.GridTableView.CreateChildControls(IEnumerable dataSource, Boolean useDataSource)
+   at System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   at Telerik.Web.UI.GridTableView.PerformSelect()
+   at Telerik.Web.UI.GridTableView.DataBind()
+   at DotNetNuke.Modules.Admin.SiteLog.SiteLog.BindData()
+   at DotNetNuke.Modules.Admin.SiteLog.SiteLog.OnDisplayClick(Object sender, EventArgs e)
+ClientConnectionId:66fa10eb-d32a-469b-99f4-24a94f6cc630"

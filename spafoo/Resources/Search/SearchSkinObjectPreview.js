@@ -90,7 +90,8 @@
 
                     //attach see more       
                     $('.searchSkinObjectPreview_more', $wrap).on('click', function () {
-                        var href = $wrap.next().attr('href');
+	                    var $searchButton = $wrap.parents('.SearchContainer').length ? $wrap.parent().next() : $wrap.next();
+                        var href = $searchButton.attr('href');
                         var code = href.replace('javascript:', '');
                         eval(code);
                         return false;
@@ -118,7 +119,7 @@
 
                 $('.searchInputContainer input').on('keyup', function(e) {
                     var k = e.keyCode || e.witch;
-                    if (self._ignoreKeyCodes.indexOf(k) > -1) return;
+                    if ($.inArray(k, self._ignoreKeyCodes) > -1) return;
 
                     var $this = $(this);
                     var $wrap = $this.parent();

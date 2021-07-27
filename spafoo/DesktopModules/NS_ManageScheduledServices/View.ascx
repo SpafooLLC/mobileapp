@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.ManageScheduledServices.View" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View.ascx.cs" Inherits="Netsam.Modules.ManageScheduledServices.View" %>
 <asp:Panel ID="pnlOuter" runat="server"></asp:Panel>
 <link rel="stylesheet" href="http://cdn.jtsage.com/jtsage-datebox/4.0.0/jtsage-datebox-4.0.0.bootstrap.min.css" />
 <link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css" rel="stylesheet" />
@@ -8,6 +8,7 @@
 <script src="/DesktopModules/NS_ManageScheduledServices/Scripts/bootbox.min.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/jquery.cookie/jquery.cookie.js"></script>
 <script src="/DesktopModules/NS_ServiceDashBoard/Scripts/ns_Common.js"></script>
+
 <script>
     var NS_MSS_UID=<%=this.UserId%>;
     var NSR_SEID='<%=this.Session.SessionID%>';
@@ -80,9 +81,64 @@
         }
         return s;
     }
+    function DidIRated(AppID) {
+        var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/DidIRated";
+        //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
+        var _data = "{'ByUserID':'" + NS_MSS_UID + "','AppID':'" + AppID + "'}";
+        NSR_MSS_MakeRequest(_URL, _data, function(d){
+            if (d == true) {
+                $("#NS_pRateLabel_" + AppID).text("Already Rated!");
+            }
+            $("#NS_aRateLink_" + AppID).attr('rated', d);
+        });
+    }
+    function HideApp4Me(AID,UT) {
+        bootbox.confirm('Are you sure to remove ?',function(r){
+        if(r==true){
+            var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/HideApp4Me";
+            var _data = "{'AID':'" + AID + "','UserType':'" + UT + "'}";
+            NSR_MSS_MakeRequest(_URL, _data, function(d){
+                bootbox.alert("Removed successfully",function() {
+                    $("#dvAcomApp_"+AID).slideUp();
+        }); }); } });
+    }
+     function NS_React2Response(AID, Status) {
+        if (Status == 1) {
+            bootbox.confirm('Are you sure to accept ??', function (r) {
+                if (r) {
+                    var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/UpdateAppStatus";
+                    var _data = "{'AppID':'" + AID + "','Status':'0'}";
+                    NS_MakeRequest(
+                        _URL, _data,
+                        function (d) {
+                            bootbox.alert('Appointment updated successfully', function () {
+                                window.location.reload();
+                            });
+                        }
+                    )
+                }
+            });
+        }
+        if (Status == 0) {
+            bootbox.confirm('Are you sure to deny ??', function (r) {
+                if (r) {
+                     var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/UpdateAppStatus";
+                    var _data = "{'AppID':'" + AID + "','Status':'6'}";
+                    NS_MakeRequest(
+                        _URL, _data,
+                        function (d) {
+                            bootbox.alert('Appointment updated successfully', function () {
+                                window.location.reload();
+                            });
+                        }
+                    );
+                }
+            });
+        }
+    }
 </script>
 <style>
-    .highlight:not(.pmu-today) {
+.highlight:not(.pmu-today) {
     background-color:#219962 !important;
 }
 .highlight:not(.pmu-today):hover {

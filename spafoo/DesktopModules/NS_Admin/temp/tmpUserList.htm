@@ -1,0 +1,20 @@
+﻿{#param name=CP}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-hover">
+    {#if $P.CP==1}
+<tr>
+        <td>&nbsp;</td>
+        <td><label style="font-weight:bold;">FirstName</label></td>
+        <td><label style="font-weight:bold;">LastName</label></td>
+        <td><label style="font-weight:bold;">Email</label></td>
+    </tr>
+    {#/if}
+    {#foreach $T as U}
+        <tr>
+            <td>&nbsp;</td>
+            <td>{$T.U.FirstName}</td>
+            <td>{$T.U.LastName}</td>
+            <td>{$T.U.Email}</td>
+        </tr>
+    {#/for}
+</table>
+<div class="newContent" align="center"><label onclick="return NS_LoadUsers(CN,'more');" style="cursor:pointer;color:blue;" class="reg_login">Load More</label></div>

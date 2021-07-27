@@ -1,0 +1,35 @@
+﻿<div class="inbody-simple mprofile">
+    <div class="center">
+        <div class="profile-pic">
+            <div class="round"><a href="#"><img src="{$T.ClientInfo.Profile.PhotoURL}" alt=""></a></div>
+        </div>
+        <h3 class="bmar-xs">{$T.ClientInfo.FirstName} {NS_IntialLetter($T.ClientInfo.LastName)}</h3>
+        <p class="green bmar-sm fs-sm">{NS_FormatDate($T.ForDate,'dd MM yy')}</p>
+        <p><span>Service(s) Provided:</span> 
+            {#foreach $T.Services as C}
+            {$T.C.ServiceName},&nbsp;
+            {#/for}
+        </p>
+        <p>
+            <span>My Rating & Comments</span>
+            <div class="stars" onclick="return false;">
+                <input class="star star-5" id="star-5-2" type="radio" name="star" />
+                <label class="star star-5" for="star-5-2"></label>
+                <input class="star star-4" id="star-4-2" type="radio" name="star" />
+                <label class="star star-4" for="star-4-2"></label>
+                <input class="star star-3" id="star-3-2" type="radio" name="star" />
+                <label class="star star-3" for="star-3-2"></label>
+                <input class="star star-2" id="star-2-2" type="radio" name="star" />
+                <label class="star star-2" for="star-2-2"></label>
+                <input class="star star-1" id="star-1-2" type="radio" name="star" />
+                <label class="star star-1" for="star-1-2"></label>
+            </div>
+            <div id="dvProRatingOnApp">{GetMyRaReOnApp()}</div>
+        </p>
+    </div>
+    <div class="bar-head">Appointment Photos</div>
+    <div id="dvAppPhotos">{ListAppPhotos()}</div>
+    <div class="bar-head">What Other Providers Have To Say For {$T.ClientInfo.FirstName} {NS_IntialLetter($T.ClientInfo.LastName)}</div>
+   <div id="dvAppClientReview">{ListMyReviews()}</div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,16 @@
+2018-10-23 09:19:46,698 [THD-01][Thread:6][ERROR] DotNetNuke.HttpModules.Exceptions.ExceptionModule - System.UriFormatException: Invalid URI: The hostname could not be parsed.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Web.Util.UriUtil.BuildUriImpl(String scheme, String serverName, String port, String path, String queryString, Boolean useLegacyRequestUrlGeneration)
+   at System.Web.HttpRequest.BuildUrl(Func`1 pathAccessor)
+   at System.Web.HttpRequest.get_Url()
+   at DotNetNuke.Common.Initialize.ProcessHttpModule(HttpRequest request, Boolean allowUnknownExtensions, Boolean checkOmitFromRewriteProcessing)
+   at DotNetNuke.HttpModules.Exceptions.ExceptionModule.OnErrorRequest(Object s, EventArgs e)
+2018-10-23 09:19:46,745 [THD-01][Thread:6][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.UriFormatException: Invalid URI: The hostname could not be parsed.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Web.Util.UriUtil.BuildUriImpl(String scheme, String serverName, String port, String path, String queryString, Boolean useLegacyRequestUrlGeneration)
+   at System.Web.HttpRequest.BuildUrl(Func`1 pathAccessor)
+   at System.Web.HttpRequest.get_Url()
+   at DotNetNuke.Common.Initialize.ProcessHttpModule(HttpRequest request, Boolean allowUnknownExtensions, Boolean checkOmitFromRewriteProcessing)
+   at DotNetNuke.HttpModules.RequestFilter.RequestFilterModule.FilterRequest(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

@@ -1,0 +1,47 @@
+{#template MAIN}
+<div>
+    {#include entry root=$T}
+</div>
+{#/template MAIN}
+
+{*Recursed subtemplate*}
+{#template entry}
+{#foreach $T as S}
+    {#if $T.S.Children.length>0}
+       <div class="col-md-6" style="margin-bottom:15px;">
+    <h3>{$T.S.ServiceName}</h3>
+    <div>
+        {#include entry root=$T.S.Children}
+    </div>
+</div>
+    {#else}
+<div class="makrow">
+      <div class="sidp-l">
+     <input id="chkSRVC_{$T.S.ServiceID}" type="checkbox" style="margin:0px;" />&nbsp;{$T.S.ServiceName}
+      </div>
+      <div class="sidp-r">
+      <table class="unktab" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+        <input type="text" maxlength="3" id="txtSRVCMin_{$T.S.ServiceID}" value="{$T.S.Minimum}" class="form-control prw">
+        </div>
+        </td>
+        <td style="font-size:15px; font-weight:600; padding:0 10px;">to</td>
+        <td>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" maxlength="3" id="txtSRVCRangeTo_{$T.S.ServiceID}" class="form-control prw" value="{$T.S.RangeTo}">
+         </div>
+          </td>
+      </tr>
+    </table>
+
+       
+     </div>
+
+</div> 
+    {#/if}
+{#/for}
+{#/template entry}

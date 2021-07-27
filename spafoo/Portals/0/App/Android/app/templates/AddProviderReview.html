@@ -1,0 +1,107 @@
+<ion-view view-title="Add Provider Review" scroll="true">
+    <ion-content>
+<div class="bread">
+  <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+  <div class="ptitle">Add Provider Review</div>
+</div>
+<div class="inbody apreview">
+  <div class="center">
+    <p>Please rate the Provider using the following performance </p>
+    <h2>{{apr.ServiceData.firstNameField}} {{apr.ServiceData.lastNameField}}</h2>
+    <div class="profile-pic">
+      <div class="round">  
+        <a ng-if="!apr.profilePic"><img ng-src="images/Site/register-default.png" alt="" draggable="false"></a>
+        <a ng-if="apr.profilePic"><img ng-src="{{apr.profilePic}}" alt="" draggable="false"></a>
+      </div>
+    </div>
+    <p class="bmar-xs">How would you rate this provider?</p>
+    <div class="stars">
+      <input ng-click="apr.getRate('5');" class="star star-5" id="star-5-2" type="radio" name="star"/>
+      <label class="star star-5" for="star-5-2"></label>
+      <input ng-click="apr.getRate('4');" class="star star-4" id="star-4-2" type="radio" name="star"/>
+      <label class="star star-4" for="star-4-2"></label>
+      <input ng-click="apr.getRate('3');" class="star star-3" id="star-3-2" type="radio" name="star"/>
+      <label class="star star-3" for="star-3-2"></label>
+      <input ng-click="apr.getRate('2');" class="star star-2" id="star-2-2" type="radio" name="star"/>
+      <label class="star star-2" for="star-2-2"></label>
+      <input ng-click="apr.getRate('1');" class="star star-1" id="star-1-2" type="radio" name="star"/>
+      <label class="star star-1" for="star-1-2"></label>
+    </div>
+  </div>
+    <div class="greview">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td align="center">Excellent</td>
+        <td align="center">Good</td>
+        <td align="center">Fair</td>
+        <td align="center">Poor</td>
+      </tr>
+      <tr ng-repeat="rate in apr.listRateData.ListRatingResult track by $index">
+        <td align="left" valign="bottom">{{rate.ratingNameField}}</td>
+        <td align="center"><div class="radio radio-info"><input ng-click="apr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'1');" type="radio" name="{{rate.ratingNameField}}" value="1" id="{{$index}}inlineRadio1"><label for="{{$index}}inlineRadio1"></label></div></td>
+        <td align="center"><div class="radio radio-info"><input ng-click="apr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'2');" type="radio" name="{{rate.ratingNameField}}" value="2" id="{{$index}}inlineRadio2"><label for="{{$index}}inlineRadio2"></label></div></td>
+        <td align="center"><div class="radio radio-info"><input ng-click="apr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'3');" type="radio" name="{{rate.ratingNameField}}" value="3" id="{{$index}}inlineRadio3"><label for="{{$index}}inlineRadio3"></label></div></td>
+        <td align="center"><div class="radio radio-info"><input ng-click="apr.postRateInfo(rate.ratingNameField,rate.ratingTypeIDField,'4');" type="radio" name="{{rate.ratingNameField}}" value="4" id="{{$index}}inlineRadio4"><label for="{{$index}}inlineRadio4"></label></div></td>
+      </tr>
+    </table>
+    </div>
+    <textarea ng-model="apr.commentTxt" name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
+    <div class="tpad-mid"></div>
+    <p class="bmar-sm">Display my name on review page</p>
+    <select ng-model="apr.dropDownVal" class="form-control w100">
+        <option value="1">First name and last name initial</option>
+        <option value="2">First name only</option>
+        <option value="3">Last name only</option>
+        <option value="4">Full name</option>
+        <option value="5">Hide my name</option>
+      </select>
+    <div class="tpad-xs"></div>
+    <div class="checkbox checkbox-primary">
+      <input id="checkbox3" ng-checked="apr.isChecked" ng-click="apr.toggleCheck();" type="checkbox">
+      <label for="checkbox3" id="iconfirm">I confirm that the information contained in this Review Form is true, accurate, and represents my actual first-hand experience. I confirm that I do not work for, am not in competition with, or am not in any way related to Spafoo or the provider in this review.</label>
+    </div>
+    <div class="tpad-xs"></div>
+</div>
+<a data-toggle="modal"  class="block-btn" ng-show="apr.isChecked && apr.rateValue && apr.commentTxt && apr.dropDownVal && apr.workQuality && apr.timePunctuality" ng-click="apr.postRating();">Submit</a>
+<!-- Modal Thank You -->
+<!--<div class="modal fade" id="ThankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog w90" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+        <h4 class="modal-title" id="myModalLabel">Thank You</h4>
+      </div>
+      <div class="modal-cpbody2 center">
+        <p>Thank you for submitting a Spafoo review.</p>
+        <p>Your opinion counts and we appreciate you sharing  your review with us.</p>
+        <p>&nbsp;</p>
+        
+        <div class="cpaction">
+          <div class="col-xs-6 pca"><a href="MakeAppointment.html" class="gray-rounded btnblock">Make Appointment</a></div>
+          <div class="col-xs-6 pok"><a href="index.html" class="green-rounded btnblock">Spafoo Home</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+  <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p >{{apr.messages}} </p>
+                        <div class="cpaction">
+                            <div class="col-xs-6 pca"><a ng-click="apr.redirectTo('FindProvider')" class="gray-rounded btnblock">Make Appointment</a></div>
+                            <div class="col-xs-6 pok"><a ng-click="apr.redirectTo('home')" class="green-rounded btnblock">Spafoo Home</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ion-content>
+</ion-view>

@@ -1,0 +1,26 @@
+2016-08-19 06:54:59,202 [THD-01][Thread:6][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.UserLogin(Int32 portalId, UserInfo user, String portalName, String ip, Boolean createPersistentCookie)
+   at DotNetNuke.Modules.Admin.Authentication.Login.ValidateUser(UserInfo objUser, Boolean ignoreExpiring)
+   at DotNetNuke.Modules.Admin.Authentication.Login.UserAuthenticated(Object sender, UserAuthenticatedEventArgs e)
+   at DotNetNuke.Modules.Admin.Authentication.Login.OnLoginClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-08-19 06:54:59,312 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.UserLogin(Int32 portalId, UserInfo user, String portalName, String ip, Boolean createPersistentCookie)
+   at DotNetNuke.Modules.Admin.Authentication.Login.ValidateUser(UserInfo objUser, Boolean ignoreExpiring)
+   at DotNetNuke.Modules.Admin.Authentication.Login.UserAuthenticated(Object sender, UserAuthenticatedEventArgs e)
+   at DotNetNuke.Modules.Admin.Authentication.Login.OnLoginClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

@@ -1,0 +1,122 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="NS_Admin" type="Module" version="1.0.0">
+  <friendlyName>NS_Admin</friendlyName>
+  <description />
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes />
+  <components>
+    <component type="Script">
+      <scripts>
+        <basePath>DesktopModules\NS_Admin</basePath>
+        <script type="Install">
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>00.00.01.SqlDataProvider</name>
+          <version>00.00.01</version>
+        </script>
+        <script type="UnInstall">
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>Uninstall.SqlDataProvider</name>
+          <version>1.0.0</version>
+        </script>
+      </scripts>
+    </component>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>NS_Admin</moduleName>
+        <foldername>NS_Admin</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>NS_Admin</friendlyName>
+            <definitionName>NS_Admin</definitionName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/NS_Admin/View.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>NS_Admin.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\NS_Admin</basePath>
+        <file>
+          <name>Edit.ascx</name>
+        </file>
+        <file>
+          <name>License.txt</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>ReleaseNotes.txt</name>
+        </file>
+        <file>
+          <name>Settings.ascx</name>
+        </file>
+        <file>
+          <path>UC</path>
+          <name>ucAppActivity.ascx</name>
+        </file>
+        <file>
+          <path>UC</path>
+          <name>ucExportEmail.ascx</name>
+        </file>
+        <file>
+          <path>temp</path>
+          <name>tmpAppActivity.htm</name>
+        </file>
+        <file>
+          <path>js</path>
+          <name>AppActivity.js</name>
+        </file>
+        <file>
+          <name>View.ascx</name>
+        </file>
+        <file>
+          <name>NS_Admin.dnn</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>View.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Edit.ascx.resx</name>
+        </file>
+        <file>
+          <path>App_LocalResources</path>
+          <name>Settings.ascx.resx</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

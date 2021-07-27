@@ -1,23 +1,23 @@
-	#dnnMenu{ float:right; margin:10px 0 0 0; padding:0; clear:both; width:100%;}
-	#dnnMenu ul{z-index:223; white-space:nowrap; padding:0; margin:0; float:right;}
+	#dnnMenu{ margin:10px 0 0 0; padding:0; clear:both; width:100%; text-align:center; }
+	#dnnMenu ul{ z-index:223; white-space:nowrap; padding:0; margin:0 auto; text-align:center; }
 	#dnnMenu .topLevel{position:relative;}
 	#dnnMenu .topLevel li{ list-style-type:none; position:relative; list-style-image:none; margin:0 0 8px 0; padding:0 0 0 1px;}
 
 	
 	/* Main Menu Idel */
 	#dnnMenu .topLevel li a{display:block; white-space:nowrap; text-decoration:none; list-style-image:none; }
-	#dnnMenu .topLevel li a div{display:block; background:none; text-align:right; }
-	#dnnMenu .topLevel li a div div{ font-family:'Open Sans', serif; color:#ffffff; display:inline-block; font-weight:400; height:34px; line-height:34px; padding:0 10px 0 18px; margin:0x; font-size:20px; }
+	#dnnMenu .topLevel li a div{display:block; background:none; text-align:center; }
+	#dnnMenu .topLevel li a div div{ font-family:'Playfair Display', serif; color:#ffffff; display:inline-block; font-weight:700; font-size:34pt; line-height:40pt; padding:15px 0; margin:0px; }
 	
 	/* Main Menu Hover */
 	#dnnMenu .topLevel li a:hover, #dnnMenu .topLevel li a:active{ white-space:nowrap; background:none; text-decoration:none;}
 	#dnnMenu .topLevel li a:hover div, #dnnMenu .topLevel li a:active div{background:none;}
-	#dnnMenu .topLevel li a:hover div div, #dnnMenu .topLevel li a:active div div{ font-family:'Open Sans', serif; color:#219962; font-weight:400; cursor:pointer; line-height:34px; padding:0 10px 0 18px; font-size:20px;}
+	#dnnMenu .topLevel li a:hover div div, #dnnMenu .topLevel li a:active div div{ font-family:'Playfair Display', serif; color:#219962; font-weight:700;  font-size:34pt; cursor:pointer; line-height:40pt; padding:15px 0; }
 	
 	/* Main Menu Active */
 	#dnnMenu .topLevel li.breadcrumb a{whitte-space:nowrap; background:none;text-decoration:none;}
 	#dnnMenu .topLevel li.breadcrumb a div{ padding:0;}
-	#dnnMenu .topLevel li.breadcrumb a div div{ font-family:'Open Sans', serif; color:#219962; font-weight:400; cursor:pointer; line-height:34px; padding:0 10px 0 18px; font-size:20px;}
+	#dnnMenu .topLevel li.breadcrumb a div div{ font-family:'Playfair Display', serif; color:#219962; font-weight:700; cursor:pointer; line-height:40pt; font-size:34pt; padding:15px 0;}
 	#dnnMenu .topLevel li.breadcrumb a div div:hover {color:#219962;}
 	/*#dnnMenu .topLevel li.haschild a div{background:url(images/haschild.png) 97% 50% no-repeat; padding:0px 20px 0 18px; }
 	#dnnMenu .topLevel li.haschild a:hover div{background:url(images/haschildsel.png) 97% 50% no-repeat #636363; padding:0px 20px 0 18px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; font-size:15px;}*/
@@ -50,4 +50,20 @@
 	
 	#dnnMenu img {max-height: 28px; margin-right: 6px; vertical-align: middle;}
 
+@media (min-width: 767px) and (max-width: 991px) {
+
+  #dnnMenu .topLevel li a div div{ font-weight:400; height:34px; line-height:30pt; padding:15px 0; margin:0x; font-size:30pt; }
+  #dnnMenu .topLevel li a:hover div div, #dnnMenu .topLevel li a:active div div{ font-weight:400; cursor:pointer; line-height:30pt; padding:15px 0; font-size:30pt;}
+  #dnnMenu .topLevel li.breadcrumb a div div{ font-weight:400; cursor:pointer; line-height:30pt; padding:15px 0; font-size:30pt;}
+
+  
+}
+@media (min-width:240px) and (max-width:766px){
+  #dnnMenu{ margin:0 0 0 0; }
+  #dnnMenu .topLevel li a div div{ font-weight:400; line-height:26pt; padding:8px 0; margin:0x; font-size:20pt; }
+  #dnnMenu .topLevel li a:hover div div, #dnnMenu .topLevel li a:active div div{ font-weight:400; line-height:26pt; padding:8px 0; font-size:20pt;}
+  #dnnMenu .topLevel li.breadcrumb a div div{ font-weight:400; line-height:26pt; padding:8px 0; font-size:20pt;}
+
+  
+}
 

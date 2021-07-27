@@ -1,0 +1,16 @@
+<div class="prolist">
+    {#foreach $T as S}
+    <li>
+    	<div style='width:100%'>
+        {$T.S.Comments}
+        </div>
+        <div style='width:100%;'>
+        <div class="stars stars-example-bootstrap">
+            <div class="ratting-{$T.S.RatingValue}"></div>
+            &nbsp;<span>{$T.S.ByUser.FirstName} &nbsp; {$T.S.ByUser.LastName}</span>
+        </div>
+        
+        </div>
+    </li>
+    {#/for}
+</div>

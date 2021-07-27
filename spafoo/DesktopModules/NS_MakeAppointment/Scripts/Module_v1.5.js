@@ -12,6 +12,7 @@ var NS_MA_IsSoonest = false;
 
 $(document).ready(function () {
     NSD_MA_CurrentPro = $.cookie('NSD_CurrentUser');// this cookie is created when user comes through service dashboard module
+    BindRegions('NS_MA_txtState');
     LoadEditData();
     if (NS_MA_ClientID == -1) {
         bootbox.alert("You need to log in, to access this area");
@@ -80,6 +81,7 @@ function NSD_GetMyPosition() {
                     restState += aryState[i] + " ";
                 }
                 $("#NS_MA_txtState").val(restState);
+                
                 $("#NS_MA_txtZip").val(aryState[aryState.length - 1]);
                 var _restaddress = "";
                 for (var i = 0; i < (aryLength - 3) ; i++) {
@@ -165,7 +167,7 @@ function ValidateformInput() {
     if (street == '') { bootbox.alert('Please specify street'); return false; }
     var city = $("#NS_MA_txtCity").val().trim();
     if (city == '') { bootbox.alert('Please specify City'); return false; }
-    var state = $("#NS_MA_txtState").val().trim();
+    var state = $("#NS_MA_txtState").val();
     if (state == '') { bootbox.alert('Please specify state'); return false; }
     var zip = $("#NS_MA_txtZip").val().trim();
     if (zip == '') { bootbox.alert('Please specify zip/postal code'); return false; }
@@ -294,6 +296,7 @@ function NSD_MA_ShowCreditCard(e) {
     var rblSelecteID = $("input[name='rblUserCard']:checked").attr('id');
     var rblSelectedText = $("label[for='" + rblSelecteID + "']").text()
     var oOther = JSON.parse($.cookie('NS_Other'));
+   // oOther.other[0].OrderTotal = oUserInput.Amount
     if (NSD_MA_SelectedProfileID != "0" && NSD_MA_SelectedProfileID != undefined) {
         //  $("#dvNewCardInfo").addClass("NS_Off").removeClass('NS_On');
         // $("#dvProfilePayment").addClass("NS_On").removeClass('NS_Off');
@@ -319,7 +322,7 @@ function NSD_MA_ShowCreditCard(e) {
         $("#dvCreditCard").addClass("NS_On").removeClass('NS_Off').processTemplate("");
         $("#NS_txtCCCardNumber").mask('0000000000000000');
         $("#NS_txtCCCVV").mask('0000');
-        $("#NS_MACC_lblOrderTotal").text(oOther.other[0].OrderTotal);
+        $("#NS_MACC_lblOrderTotal").text(oUserInput.Amount);
         $("#dvOrderSummary").addClass("NS_Off").removeClass('NS_On');
 
         $("#dvNewCardInfo").addClass("NS_On").removeClass('NS_Off');;
@@ -434,7 +437,6 @@ function NS_ChargeMyCard(o, e) {
                         var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/AuthCard";
                         //string CCNumber, string Expiry, string CardCode, decimal amount
                         var _data = "{'CCNumber':'" + oUserInput.CardNumber + "','Expiry':'" + oUserInput.Expiry + "','CardCode':'" + oUserInput.CVV + "','amount':'" + oUserInput.Amount + "'}";
-                        debugger;
                         if (NSD_MA_SelectedProfileID != '0' && NSD_MA_SelectedProfileID != undefined) {
                             // _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/ChargeProfile";
                             _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/AuthProfile";
@@ -453,7 +455,6 @@ function NS_ChargeMyCard(o, e) {
     }
 }
 function NS_ChargeMyCard_SuCB(d) {
-    debugger;
     if (d.transactionResponse.errors == null) {
         if (d.transactionResponse.responseCode == 1) {
             oUserInput.PayTxnID = "";//d.transactionResponse.transId;

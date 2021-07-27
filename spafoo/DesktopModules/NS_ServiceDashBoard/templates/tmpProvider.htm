@@ -1,4 +1,13 @@
-﻿<img class="mainimg" onerror="NS_UserOnError(this)" src='{$T.Profile.PhotoURL}'>
+<div class="action">
+    <div class="col-xs-61 nopad1"><a class="green-btn block mr1px" href="#" onclick="NS_GotoASAP(event);" style="display:none">ASAP - I'm Ready Now!</a>&nbsp;</div>
+    <div class="col-xs-6 nopad" onclick="NS_GotoMakeAppointment(event);"><a class="bluesm-btn block ml1px" href="#">Schedule Appointment</a></div>
+</div>
+<div class="clear"></div>
+<div class="pport-pic">
+  <div class="round">
+    <img class="mainimg" onerror="NS_UserOnError(this)" src='{$T.Profile.PhotoURL}'>
+  </div>
+</div>
 <div class="bar">
     <div class="fleft">
         <i class="fa fa-map-marker fa-lg"></i>
@@ -26,7 +35,7 @@
 {#if $T.Profile.Biography!=null} 
     <div class="bio">
         <span>Bio: </span>
-        {NS_ParseString($T.Profile.Biography)}
+        {htmlDecode(htmlDecode(NS_ParseString($T.Profile.Biography)))}
     </div>
 {#/if}
 <div class="sample">
@@ -34,6 +43,6 @@
     <div id="NSD_dvProviderWorkSamples">{NSD_GetProviderSamples($T.UserID)}</div>
 </div>
 <div class="action">
-    <div class="col-xs-6 nopad"><a class="green-btn block mr1px" href="#" onclick="NS_GotoASAP(event);">ASAP - I'm Ready Now!</a></div>
+    <div class="col-xs-61 nopad1"><a class="green-btn block mr1px" href="#" onclick="NS_GotoASAP(event);" style="display:none;">ASAP - I'm Ready Now!</a>&nbsp;</div>
     <div class="col-xs-6 nopad" onclick="NS_GotoMakeAppointment(event);"><a class="bluesm-btn block ml1px" href="#">Schedule Appointment</a></div>
 </div>

@@ -1,0 +1,48 @@
+2021-02-17 01:12:15,715 [1019474-web1][Thread:71][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 94.181.47.232
+	Port: 21674
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=/
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4089.0 Safari/537.36
+	ViewState: XQmNJ3SHTdjTp1qWK9xHM7SIbX8Y0LJYzyVSwBlhrJB+klJCfSzouYx4q07PZeeq7qHb0+41aPuIRDRRPqcoaDtCDcAL1DE8t1cyuParco4eMdaNDswYfBIiCZjKyZdL13Qb30tQSPL/XHCvglh7n0wn/+eTueL+3vIs7l6Nf+vMECJR5l5k2+piQ2exw90/VAwIIfvMXuQeDceh3p3MkFdhsi/znSFDalIkcWaMO9qOeTld1xyCswduarHuJSTJVLeOscpETXi7RnqCYttWmzYEqSm81WbOc8F5aaZDLbvLRTwM1hPxPBXUZPzMT2Mik33beevFmMwmUxuox+eMfXqw0i6nXy2O1/n45qNGaXaOYqAXbsfhTagxY6mym/97hFzyD0swvX/wRoysRDgw++a8fHkLcf5TqN/GyuBTvIFf9pWnT2rjVc9qk0Exh/2ybOiC7Tire2MHc9ZpqRpBtT5O4UBpzJlXXUv1Aw==,2uJIbAjJnemJJH+AQ4oHVyOtOattgbJS8y1yltKtkQ7IRIbkiJqjVpWqHZZtikrgphb2L9O1L6iW21ViE6+mNGaiztg= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2021-02-17 01:12:15,762 [1019474-web1][Thread:71][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Web.HttpException (0x80004005): The state information is invalid for this page and might be corrupted. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 94.181.47.232
+	Port: 21674
+	Referer: http://www.spafoo.com/Customer-Login?returnurl=/
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4089.0 Safari/537.36
+	ViewState: XQmNJ3SHTdjTp1qWK9xHM7SIbX8Y0LJYzyVSwBlhrJB+klJCfSzouYx4q07PZeeq7qHb0+41aPuIRDRRPqcoaDtCDcAL1DE8t1cyuParco4eMdaNDswYfBIiCZjKyZdL13Qb30tQSPL/XHCvglh7n0wn/+eTueL+3vIs7l6Nf+vMECJR5l5k2+piQ2exw90/VAwIIfvMXuQeDceh3p3MkFdhsi/znSFDalIkcWaMO9qOeTld1xyCswduarHuJSTJVLeOscpETXi7RnqCYttWmzYEqSm81WbOc8F5aaZDLbvLRTwM1hPxPBXUZPzMT2Mik33beevFmMwmUxuox+eMfXqw0i6nXy2O1/n45qNGaXaOYqAXbsfhTagxY6mym/97hFzyD0swvX/wRoysRDgw++a8fHkLcf5TqN/GyuBTvIFf9pWnT2rjVc9qk0Exh/2ybOiC7Tire2MHc9ZpqRpBtT5O4UBpzJlXXUv1Aw==,2uJIbAjJnemJJH+AQ4oHVyOtOattgbJS8y1yltKtkQ7IRIbkiJqjVpWqHZZtikrgphb2L9O1L6iW21ViE6+mNGaiztg= ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_ComputeResultLength(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2021-02-17 08:17:07,077 [1019474-web1][Thread:166][ERROR] DotNetNuke.Services.Search.Internals.LuceneControllerImpl - Search Document error: Portal ID: 0, Tab ID: 128, Module ID: 498, Mod. Def.ID: 140, Url: , Unique Key: 13, Last Modified: 2017-09-30T06:33:57.7070000, Culture: , Search Type: 1
+Lucene.Net.Store.AlreadyClosedException: this IndexWriter is closed
+   at Lucene.Net.Index.IndexWriter.EnsureOpen(Boolean includePendingClose)
+   at Lucene.Net.Index.IndexWriter.EnsureOpen()
+   at Lucene.Net.Index.IndexWriter.DeleteDocuments(Query query)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.DeleteSearchDocumentInternal(SearchDocument searchDocument, Boolean autoCommit)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.AddSearchDocumentInternal(SearchDocument searchDocument, Boolean autoCommit)
+   at DotNetNuke.Services.Search.Internals.InternalSearchControllerImpl.AddSearchDocuments(IEnumerable`1 searchDocuments)

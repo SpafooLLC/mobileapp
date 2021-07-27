@@ -1,4 +1,4 @@
-﻿{#template MAIN}
+{#template MAIN}
 <div>
     {#include entry root=$T}
 </div>
@@ -15,7 +15,7 @@
     </div>
 </div>
     {#else}
-<div style="width:100%;margin-bottom:10px;">
+<div>
     <label style="font-weight:normal;margin:0px;"><input id="chkSRVC_{$T.S.ServiceID}" type="checkbox" style="margin:0px;" />&nbsp;{$T.S.ServiceName}</label>
 </div> 
     {#/if}

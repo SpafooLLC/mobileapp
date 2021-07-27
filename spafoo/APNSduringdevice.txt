@@ -1,0 +1,16 @@
+POST /testnotification.aspx HTTP/1.1
+Cache-Control: max-age=0
+Connection: keep-alive
+Content-Length: 472
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .ASPXANONYMOUS=IvQSOKEJ1AEkAAAAMTQzYjA5M2ItMjM4Yi00MTMyLTgwMjktZWViZWJlZGZjZjA40; __utmz=190948712.1523614132.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _ga=GA1.2.1369252377.1523614132; __utma=190948712.1369252377.1523614132.1523626931.1523632524.3; dnn_IsMobile=False; DotNetNukeAnonymous=1f3368e9-dee7-4580-b77d-4a4861eea216
+Host: www.spafoo.com
+Referer: https://www.spafoo.com/testnotification.aspx
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+Origin: https://www.spafoo.com
+Upgrade-Insecure-Requests: 1
+
+__VIEWSTATE=ylmKoahQjI4CS2gAoGm9N5rlziI6z%2B2Fbj6oqv3MpdUNeJ2%2Fv2qmQc253t6QRKUIgWTByBSDC8ocSaYQ8esJyEvGndg%3D&__VIEWSTATEGENERATOR=3D3713C3&__VIEWSTATEENCRYPTED=&__EVENTVALIDATION=u05okcnBIRBraGqUe5isl0xpSQ5axa5bS85F6NeWLcFJknzY6zpqEH9ioj6fX92C9141RyTGSd4kjsau5o8qYAbyBNisS73rjMwXT%2B8DzJAgtLaTbb6S%2BYqTdhdGrH90ZrPqM5Hf050IdWTNKdFCO3i0MPK9a8vQacyEKA%3D%3D&txttoken=5abb9193d9b5e92a5f201d70e8509ca5a23e1032df7661465e0e128b3aa71c95&txtmessage=sadfasdfsadf&btnsubmit=submit

@@ -1,0 +1,6 @@
+2016-07-31 16:37:50,857 [THD-01][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Error rendering URLControl subcontrols. ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at DotNetNuke.Web.UI.WebControls.DnnUrlControl.DoRenderTypeControls()
+   at DotNetNuke.Web.UI.WebControls.DnnUrlControl.OnPreRender(EventArgs e)
+   --- End of inner exception stack trace ---

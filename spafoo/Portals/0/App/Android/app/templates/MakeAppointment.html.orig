@@ -1,0 +1,92 @@
+<ion-view view-title="Make Appointment">
+    <ion-content>
+
+
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">Make appointment with </div>
+        </div>
+        <div class="makeapp"><a href="ProviderPortfolio.html">{{ma.ServiceData.displayNameField}}</a></div>
+
+        <select ng-model="AppointAddress" ng-change="ma.changedValue(AppointAddress)" id="basic2" class="show-tick maddcont form-control" multiple>
+            <option selected class="fa fa-location-arrow" value="1">&nbsp;&nbsp;My Current Location</option>
+            <option class="fa fa-map-marker" value="2">&nbsp;&nbsp;My Profile Address</option>
+            <option class="fa fa-cog" value="3">&nbsp;&nbsp;Custom Address</option>
+        </select>
+
+
+
+
+        <div class="inbody">
+            <div class="fcell">
+                <div class="has-feedback">
+                    <input type="date" class="form-control" ng-model="data.AppointDate" placeholder="Select Date">
+                    <span class="fa fa-calendar fa-lg form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="has-feedback">
+                    <input type="time" class="form-control" ng-model="data.Appointtime" placeholder="Select Time">
+                    <span class="fa fa-clock-o fa-lg form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <p class="bmar-sm">Select Service(s)</p>
+
+<<<<<<< HEAD
+                <!--<div class="checkbox checkbox-primary checkbox-inline">
+=======
+
+                <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in service_list">
+                    <input id="checkbox{{$index+1}}" type="checkbox" ng-model="checked_services[$index]" ng-value="service.serviceIDField">
+                    <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
+                </div>
+                
+                <!-- 
+                <div class="checkbox checkbox-primary checkbox-inline">
+>>>>>>> f0f76bb73e85d7fe8df97c25811547965f48d93f
+                    <input id="checkbox2" type="checkbox">
+                    <label for="checkbox2">Women</label>
+                </div>-->
+                <div class="checkbox checkbox-primary checkbox-inline" ng-repeat="service in ma.ProviderServiceList">
+                    <input id="checkbox{{$index+1}}" type="checkbox" ng-model="checked_services[$index]" value="{{service.serviceIDField}}:1:{{service.priceField}}">
+                    <label for="checkbox{{$index+1}}">{{service.serviceNameField}}</label>&nbsp;&nbsp;
+                </div>
+<<<<<<< HEAD
+=======
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox3" type="checkbox">
+                    <label for="checkbox3">Kids</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox4" type="checkbox">
+                    <label for="checkbox4">Cuts</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox5" type="checkbox">
+                    <label for="checkbox5">Women</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox6" type="checkbox">
+                    <label for="checkbox6">Iron</label>
+                </div>
+                <div class="checkbox checkbox-primary checkbox-inline">
+                    <input id="checkbox7" type="checkbox">
+                    <label for="checkbox7">Styles </label>
+                </div> -->
+
+>>>>>>> f0f76bb73e85d7fe8df97c25811547965f48d93f
+
+                <div class="bmar-md"></div>
+                <textarea name="textarea" id="textarea" class="form-control" rows="5" placeholder="Optional Comment"></textarea>
+                <p class="bmar-xs">Soonest appointment available?</p>
+                <!--<a href="OrderSummary.html" class="green-rounded">ASAP</a>-->
+            </div>
+        </div>
+
+        <a href="OrderSummary.html" ng-click="ma.CreateAppointment(data)" class="block-btn">ASAP</a>
+
+
+
+        <script type="text/javascript">app.initialize();</script>
+
+
+    </ion-content>
+</ion-view>

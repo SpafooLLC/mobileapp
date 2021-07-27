@@ -1,0 +1,120 @@
+2016-10-14 03:03:06,471 [THD-01][Thread:33][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Net.Mail.SmtpFailedRecipientException: Mailbox unavailable. The server response was: <khurram@netsam.com> No such user here
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at DotNetNuke.Services.Mail.Mail.SendMailInternal(MailMessage mailMessage, String subject, String body, MailPriority priority, MailFormat bodyFormat, Encoding bodyEncoding, IEnumerable`1 attachments, String smtpServer, String smtpAuthentication, String smtpUsername, String smtpPassword, Boolean smtpEnableSSL)
+2016-10-14 03:35:08,830 [THD-01][Thread:28][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.GetUserMessage(Int32 NotificationTypeID, Int32 RelatedEntityID)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-14 03:35:08,892 [THD-01][Thread:28][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.GetUserMessage(Int32 NotificationTypeID, Int32 RelatedEntityID)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-14 04:08:27,080 [THD-01][Thread:46][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=55&def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.GetUserMessage(Int32 NotificationTypeID, Int32 RelatedEntityID)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-14 04:11:32,049 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=55&def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.GetUserMessage(Int32 NotificationTypeID, Int32 RelatedEntityID)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-14 13:27:41,111 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-14 13:27:41,189 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-14 13:27:41,205 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-14 13:27:41,205 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-14 13:30:54,517 [THD-01][Thread:6][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.UserLogin(Int32 portalId, UserInfo user, String portalName, String ip, Boolean createPersistentCookie)
+   at DotNetNuke.Modules.Admin.Authentication.Login.ValidateUser(UserInfo objUser, Boolean ignoreExpiring)
+   at DotNetNuke.Modules.Admin.Authentication.Login.UserAuthenticated(Object sender, UserAuthenticatedEventArgs e)
+   at DotNetNuke.Modules.Admin.Authentication.Login.OnLoginClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-10-14 13:30:54,517 [THD-01][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred&content=0
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.UserLogin(Int32 portalId, UserInfo user, String portalName, String ip, Boolean createPersistentCookie)
+   at DotNetNuke.Modules.Admin.Authentication.Login.ValidateUser(UserInfo objUser, Boolean ignoreExpiring)
+   at DotNetNuke.Modules.Admin.Authentication.Login.UserAuthenticated(Object sender, UserAuthenticatedEventArgs e)
+   at DotNetNuke.Modules.Admin.Authentication.Login.OnLoginClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-10-14 13:31:35,267 [THD-01][Thread:23][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ResetPasswordToken(UserInfo user, Boolean sendEmail)
+   at DotNetNuke.Modules.Admin.Security.SendPassword.OnSendPasswordClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-10-14 13:31:35,267 [THD-01][Thread:23][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ResetPasswordToken(UserInfo user, Boolean sendEmail)
+   at DotNetNuke.Modules.Admin.Security.SendPassword.OnSendPasswordClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-10-14 13:32:46,033 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?def=ErrorMessage
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Netsam.Modules.MakeAppointment.Components.NotificationService.SendToiOS(String DeviceID, String Message)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+2016-10-14 13:32:46,033 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Scheduling.SchedulerClient - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-14 13:32:46,033 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-14 13:32:46,033 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Services.Exceptions.Exceptions.ProcessPageLoadException(Exception exc, String URL)
+   at Netsam.Modules.MakeAppointment.Components.NotificationController.AddNotification(Int32 ByID, Int32 ToID, Int32 NotTypeID, Int32 Privacy, Int32 RelatedEntityID)
+   at Netsam.Modules.NS_MakeAppointment.Notif_Scheduler.DoWork()
+2016-10-14 13:32:52,174 [THD-01][Thread:20][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ResetPasswordToken(UserInfo user, Boolean sendEmail)
+   at DotNetNuke.Modules.Admin.Security.SendPassword.OnSendPasswordClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2016-10-14 13:32:52,174 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=115&error=An unexpected error has occurred
+System.Configuration.Provider.ProviderException: The E-mail supplied is invalid.
+   at System.Web.Security.SqlMembershipProvider.UpdateUser(MembershipUser user)
+   at System.Web.Security.MembershipUser.Update()
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUserMembership(UserInfo user)
+   at DotNetNuke.Security.Membership.AspNetMembershipProvider.UpdateUser(UserInfo user)
+   at DotNetNuke.Entities.Users.UserController.UpdateUser(Int32 portalId, UserInfo user, Boolean loggedAction, Boolean clearCache)
+   at DotNetNuke.Entities.Users.UserController.ResetPasswordToken(UserInfo user, Boolean sendEmail)
+   at DotNetNuke.Modules.Admin.Security.SendPassword.OnSendPasswordClick(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

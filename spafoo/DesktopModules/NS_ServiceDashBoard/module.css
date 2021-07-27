@@ -3,6 +3,9 @@
     margin-top:10px;
     margin-left:10px;
 }
+.tree li  {
+   list-style: none;
+}
 .tree li a {
     line-height: 25px;
 cursor:pointer;
@@ -114,7 +117,7 @@ border: medium double #d9dadb;
     color:black !important;
 }
 .NS_SRows {
-height:50px;width:100%;margin-top:10px !important;
+height:60px;width:100%;margin-top:10px !important;
 }
 .NS_Update{
        background-color: blue;

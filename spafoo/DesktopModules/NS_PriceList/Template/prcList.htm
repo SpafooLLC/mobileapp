@@ -1,4 +1,4 @@
-﻿{#foreach $T as S}
+{#foreach $T as S}
 <div class="col-md-4">
     <div class="plist">
         <h3>{$T.S.ServiceName}</h3>
@@ -7,19 +7,25 @@
             {#if $T.S1.Children.length==0}
             <tr>
                 <td> {$T.S1.ServiceName}</td>
-                <td class="price"> from ${$T.S1.Price}</td>
+                <td class="price">${$T.S1.Price}</td>
             </tr>
             {#else}
             {#foreach $T.S1.Children as S2}
             {#if $T.S2.Children.length==0}
             <tr>
                 <td>{$T.S2.ServiceName}</td>
-                <td class="price">from ${$T.S2.Price}</td>
+                <td class="price">${$T.S2.Price}</td>
             </tr>
             {#/if}
             {#/for}
             {#/if}
             {#/for}
+            {#if $T.S.Children.length==0}
+            <tr>
+                <td>{$T.S.ServiceName}</td>
+                <td class="price">${$T.S.Price}</td>
+            </tr>
+            {#/if}
         </table>
     </div>
 </div>

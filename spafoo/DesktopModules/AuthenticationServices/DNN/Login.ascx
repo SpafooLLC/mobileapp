@@ -22,7 +22,7 @@
     <div class="dnnFormItem">
         <asp:label id="lblLogin" runat="server" AssociatedControlID="cmdLogin" CssClass="dnnFormLabel" ViewStateMode="Disabled" />
         <asp:LinkButton id="cmdLogin" resourcekey="cmdLogin" cssclass="dnnPrimaryAction" text="Login" runat="server" />
-		<asp:LinkButton id="cmdCancel" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdCancel" CausesValidation="false" />
+		<asp:HyperLink id="cancelLink" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdCancel" CausesValidation="false" />
         
     </div>
 	<div class="dnnFormItem">
@@ -54,6 +54,21 @@
 		}
 		
 		$(document).ready(function () {
+
+			$('.dnnLoginService').on('keydown', function(e) {
+				if (e.keyCode === 13) {
+					var $loginButton = $('#<%=cmdLogin.ClientID%>');
+					if ($loginButton.hasClass("dnnDisabledAction")) {
+						return false;
+					}
+
+					$loginButton.addClass("dnnDisabledAction");
+					eval($loginButton.attr('href'));
+					e.preventDefault();
+					return false;
+				}
+			});
+
 			setUpLogin();
 			Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
 				setUpLogin();

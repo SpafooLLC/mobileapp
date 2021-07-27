@@ -127,7 +127,7 @@
           box-shadow: none;
 }
 .bootstrap-select .dropdown-menu li {
- list-style:none; border-bottom:1px solid #cccccc; padding:5px 0 5px 0;
+ list-style:none; border-bottom:1px solid #cccccc;
 }
 
 .bootstrap-select.btn-group .dropdown-menu li {
@@ -282,14 +282,14 @@
 
 
 .maddcont { border-bottom:1px solid #cccccc !important; -webkit-border-radius: 0px  !important; -moz-border-radius: 0px  !important; border-radius: 0px  !important;  }
-.maddcont .btn { padding:11px 0 0;  }
+.maddcont .btn { padding:4px 0 5px 10px; font-size:15px;  }
 .maddcont .caret { border-bottom:12px solid !important; border-left:12px solid transparent !important; border-right:none !important; border-top:none !important;   }
 
 .bootstrap-select .btn { border:0 !important;}
 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default { background:none !important; border:0px solid #ffffff !important; }
 .bootstrap-select .dropdown-toggle { box-shadow:none !important; }
  .bootstrap-select .dropdown-toggle:focus{ outline:none !important; }
-.bootstrap-select .dropdown-menu { height:280px; margin:1px 0 0  !important; border-top:none !important; -webkit-border-radius: 0px  !important; -moz-border-radius: 0px  !important; border-radius: 0px  !important; box-shadow:none !important; min-width:97% !important; left:auto !important; right:0 !important; }
+.bootstrap-select .dropdown-menu {  margin:1px 0 0  !important; border-top:none !important; -webkit-border-radius: 0px  !important; -moz-border-radius: 0px  !important; border-radius: 0px  !important; box-shadow:none !important; min-width:97% !important; left:auto !important; right:0 !important; }
 
 .bs-searchbox { margin:120px 0 0; position:absolute; }
 .bs-searchbox .bsstate { padding:0 10px !important; }

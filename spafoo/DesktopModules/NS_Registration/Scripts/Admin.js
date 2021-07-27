@@ -1,4 +1,4 @@
-﻿var _CurrentStep = 1;
+var _CurrentStep = 1;
 var _CurrentQCategory = -1;
 var _CurrentQID;
 var NSR_CUID = -1;
@@ -172,6 +172,7 @@ function NSR_GetQuestion(ID) {
 function NSR_BindEditQuestion(r) {//Function.r.QuestionText
     $("#txtEQuestionText").val(NS_ParseString(r.QuestionText));
     $("#ddlEQuestionType").val(r.QType);
+    $("#txtEHintText").val(r.HintText);
     $("#chkEVisible").attr('checked', r.IsVisible);
     $("#chkERequired").attr('checked', r.IsRequired);
     $("#chkEisFullWidth").attr('checked', r.IsFullWidth);
@@ -402,7 +403,7 @@ function NSR_LoadCategories() {
 }
 function NSR_BindCategories(data) {
     if (data.length > 0) {
-        var o = $("#NSR_dvStepCategories").html('Please wait, while we are processing...');
+        var o = $("#NSR_dvStepCategories").html('Please wait, while we are loading...');
         o.setTemplateURL('/DesktopModules/NS_Registration/Templates/ManageQuestions.htm?v=' + $.now());
         o.processTemplate(data);
     } else {
@@ -417,8 +418,13 @@ function NSR_GetUsers() {
     NSR_MakeRequest(_URL, _Data, NSR_BindUsers);
 }
 function NSR_SetStatus(S) {
-    _CurrStatus = S;
-    NSR_GetUsers();
+   if (S != 'Started') {
+        _CurrStatus = S;
+        NSR_GetUsers();
+    }
+    else {
+        NS_ListFormUsers();
+    }
 }
 
 function NSR_BindUsers(r) {
@@ -537,4 +543,66 @@ function NSR_btnSearchUser() {
     NSR_MakeRequest(url, data, function () {
         bootbox.alert("Status updated successfully.");
     });
+}
+
+function NS_ListFormUsers() {
+    var url = '/DesktopModules/NS_Registration/rh.asmx/ListUserForms';
+    var data = "";
+    NSR_MakeRequest(url, data, NSR_OnListFormUsers);
+}
+
+function NSR_OnListFormUsers(r) {
+    if (r.length > 0) {
+        var o = $("#NSR_dvUserList").html('Please wait, while we are processing...');
+        o.setTemplateURL('/DesktopModules/NS_Registration/Templates/usersStarted.htm?v=' + $.now());
+        o.processTemplate(r);
+    }
+    else {
+        $("#NSR_dvUserList").html('No records found');
+    }
+}
+
+function NSR_ShowPartialUserResponse(UN) {
+    var url = '/DesktopModules/NS_Registration/rh.asmx/GetFormUserReponse';
+    var data = "{'username':'" + UN + "'}";
+    NSR_MakeRequest(url, data, NSR_OnShowPartialUserResponse);
+}
+function NSR_OnShowPartialUserResponse(data) {
+    var $dialog = $('<div id="NSR_dvReadUserResponse">Please wait, while we are loadng details for you</div>').html(data)
+   .dialog({
+       autoOpen: true,modal: true, height: 600,width: '90%',
+       buttons: { "Close": function () { $(this).dialog("destroy").remove(); } },
+       title: "User Partial Response"
+   });
+
+    var o = $("#NSR_dvReadUserResponse");
+    o.setTemplateURL('/DesktopModules/NS_Registration/Templates/UserResponseForm.htm?v=' + $.now());
+    o.processTemplate(data);
+    // Initialize Date control
+    $(".NSR_Date").datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+}
+
+function NSR_RemoveFormUser(UN) {
+    bootbox.confirm("Are you sure to remove information for "+UN+" ???", function (r) {
+        if (r == true) {
+            var url = '/DesktopModules/NS_Registration/rh.asmx/RemoveFormUser';
+            var data = "{'username':'" + UN + "'}";
+            NSR_MakeRequest(url, data, NSR_OnRemoveFormUser);
+        }
+    });
+}
+
+function NSR_OnRemoveFormUser(d) {
+    NS_ListFormUsers();
+    bootbox.alert("Removed successfully");
+}
+function NSR_ParseImageName(d) {
+    if (d.toLowerCase().indexOf("ns_registration") == -1) {
+        return "/images/ns_registration/" + d;
+    }
+    else {
+    	return d;
+    }
 }

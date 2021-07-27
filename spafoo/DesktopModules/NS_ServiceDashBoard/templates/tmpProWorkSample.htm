@@ -1,8 +1,8 @@
-﻿<ul>
+<ul>
     {#foreach $T as S}
     {#if $T.S.OptionText!='/DesktopModules/NS_MakeAppointment/Images/Site/noimg.png'}
         <li>
-            <a class="fancybox" href="{$T.S}" data-fancybox-group="gallery"><img src="{$T.S.OptionText}" alt=""></a>
+            <a class="fancybox" href="{$T.S.OptionText}" data-fancybox-group="gallery"><img src="{$T.S.OptionText}" alt=""></a>
         </li>
     {#/if}
     {#/for}

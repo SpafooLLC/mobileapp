@@ -1,0 +1,24 @@
+﻿<h3>NS_GiftCertificates</h3>
+<p class="Contributor">
+	netsam.com <br />
+	<a href="mailto:matt@netsam.com">matt@netsam.com</a><br />
+	<a href=http://www.netsam.com/>http://www.netsam.com/</a><br />
+	This extension was created using <a href="http://www.christoc.com">Christoc's</a> Module Development Templates for DNN.
+</p>
+<hr/>
+<div class="License">
+	<h3>About the NS_GiftCertificates</h3>
+	<p class="Owner">
+		<b>Version CHANGEME</b><br /><br />
+	</p>
+	<p>Description about version.</p>
+	
+	<h4>Bug Fixes</h4>
+	<ul>
+			<li>List</li>
+			<li>of</li>
+			<li>bug</li>
+			<li>fixes</li>
+	</ul>
+	
+</div>

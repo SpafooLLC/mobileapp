@@ -4,7 +4,8 @@
   .checkbox label {
     display: inline-block;
     vertical-align: middle;
-    position: relative;
+    position: relative; 
+	line-height:21px; 
     padding-left: 5px; }
     .checkbox label::before {
       content: "";
@@ -104,7 +105,7 @@
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    padding-left: 5px; }
+    padding-left: 5px; line-height:22px; }
     .radio label::before {
       content: "";
       display: inline-block;

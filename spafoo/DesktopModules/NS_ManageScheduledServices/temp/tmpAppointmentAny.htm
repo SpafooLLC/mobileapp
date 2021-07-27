@@ -1,0 +1,41 @@
+<link href="/DesktopModules/NS_ServiceDashBoard/Styles/style.css" rel="stylesheet" type="text/css" />
+
+{* This is ADMIN template to see the list of schedules for Any client and ANY provider *}
+<div class="inbody-simple" id="admin-msc">
+    <div class="myschedule">
+        {#foreach $T as S}
+        {#if $T.S.Status==-1}
+        <div class="sce">
+            <a href="#" class="appmfix" onclick="return false;">
+                <div class="left">
+                    <div class="date">{NS_FormatDate($T.S.ForDate,'dd')} <span>{NS_FormatDate($T.S.ForDate,'MM')}</span></div>
+                    <div class="time">{$T.S.AtTime}</div>
+                </div>
+                <div class="right">
+                    <h2><span style="color: #ff0000; font-family:'Balthazar' ,sans-serif; font-size:20px; font-weight:600; line-height: 26px;">{NS_FormatDate($T.S.ForDate,'DD dd MM yy')}</span> <a href="#" onclick="NS_React2Response({$T.S.AppointmentID},1);return false;" class="appacc">Accept</a> <a href="#" onclick="NS_React2Response({$T.S.AppointmentID},0);return false;" class="denacc">Deny</a></h2>
+                    <p>At: <span class="blue">{$T.S.Location.Address}, {$T.S.Location.City}, {$T.S.Location.State}, {$T.S.Location.Zip} </span></p>
+                    <p>Client: <span class="blue">
+			 {NS_GetUserName($T.S.ClientInfo)} {NS_GetPhoneNumber($T.S.ClientInfo)}
+			</span>
+		    </p>
+                    <p>
+					Provider: 
+						<span class="blue">
+						{NS_GetUserName($T.S.ProviderInfo)}		
+						</span>
+					</p>
+                    <p>Requested On: <span class="blue">{NS_GetOrderDate($T.S.ForDate)}</span></p>
+                    <p>
+                        Service(s): <span class="blue">
+                            {#foreach $T.S.Services as C}
+                            {$T.C.ServiceName}{#if $T.C.Qty>1}({$T.C.Qty}){#/if},&nbsp;
+                            {#/for}
+                        </span>
+                    </p>
+                </div>
+            </a>
+        </div>
+        {#/if}
+        {#/for}
+    </div>
+</div>

@@ -25,15 +25,9 @@ animatedcollapse.init()
 <!-- [if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif] -->
-<link href="Skin.css" rel="stylesheet" type="text/css" />
-<div id="jmobileicos"><a href="<%= SkinPath %>#" rel="toggle[pixmenu]"><div id="jmenuico"></div></a></div>
-
-<div class="container">
-  <div class="header">
-    <div class="hfleft">
-      <a href="#reg" class="reg_login">Register to become a new client</a>
-      <div class="tagline">On site hair and body services from your phone.</div>
-    </div>
+<header class="header" id="main_header">
+  <div class="container">
+    <div class="hfleft"><a href="/About-Spafoo" class="qlink">About SpaFoo</a> <span class="hmd">|</span> <a href="/Service-Provider" class="qlink">Become a provider</a></div>
     <div class="xs-logo"><dnn:LOGO runat="server" id="dnnLOGO2" BorderWidth="0" /></div>
     <div class="menuright">
       <div class="titre">
@@ -44,12 +38,16 @@ animatedcollapse.init()
           <div class="container">
             <div class="rmenu">
               <dnn:Menu MenuStyle="DNNStandard" runat="server"></dnn:Menu>
+              
               <div class="hardmenu">
                 <ul>
-                  <li><a href="#" class="mhlink">About Spafoo </a><img src="<%=SkinPath%>Images/mabout.png" /></li>
-                  <li><a href="#" class="mhlink">Share This App with Friends</a><img src="<%=SkinPath%>Images/mshare.png" /></li>
-                  <li><dnn:LOGIN ID="dnnLogin" CssClass="mhlink" runat="server" LegacyMode="true" /><img src="<%=SkinPath%>Images/mlogin.png" /></li>
+                  <!--<li><a href="My-Profile" id="NavNotifiation" class="mhlink">My Account &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div  class="mnotification"><div class="ico"><i class="fa fa-bell fa-2x"></i></div><div class="notification">0</div></div></a></li>-->
+                  <li class="mhlink"><a href="/Customer-Login" class="mhlink">Register</a> / <dnn:LOGIN ID="dnnLogin" CssClass="mhlink" runat="server" LegacyMode="true" /></li>
                 </ul>
+                <ul class="xspps visible-xs">
+                  <li><a href="https://itunes.apple.com/us/app/spafoo/id1182959231?mt=8"><img class="appbadge" src="<%=SkinPath%>Images/apple-badge.svg" /></a></li>
+                  <li><a href='https://play.google.com/store/apps/details?id=com.spafoollc '><img class="gbadge" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a></li>
+                </ul> 
               </div>
             </div>
           </div>
@@ -57,39 +55,66 @@ animatedcollapse.init()
       </div>
     </div>
     <div class="hfright">
-      <ul class="tapps">
-        <li><a href="#"><img src="<%=SkinPath%>Images/app-apple.png" /></a></li>
-        <li><a href="#"><img src="<%=SkinPath%>Images/app-google.png" /></a></li>
+      <ul class="tapps hide1200">
+        <li><a href="https://itunes.apple.com/us/app/spafoo/id1182959231?mt=8"><img class="appbadge" src="<%=SkinPath%>Images/apple-badge.svg" /></a></li>
+        <li><a href='https://play.google.com/store/apps/details?id=com.spafoollc '><img class="gbadge" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a></li>
       </ul> 
-      <div class="downapp">Download the Spafoo app</div>
+      <ul class="tapps show1200">
+        <li><a href="https://itunes.apple.com/us/app/spafoo/id1182959231?mt=8"><img class="appbadge" src="<%=SkinPath%>Images/apple-badge1200.png" /></a></li>
+        <li><a href='https://play.google.com/store/apps/details?id=com.spafoollc '><img class="gbadge" alt='Get it on Google Play' src="<%=SkinPath%>Images/google-badge1200.png" /></a></li>
+      </ul> 
     </div>
   </div>
-  <div class="banner-wrapper">
-    <div class="hbp" id="BannerPane" runat="server"></div>
+</header>
+<div class="hcp" id="BannerPane" runat="server"></div>
+<div class="fulllighblue movedown">
+  <div class="container">
+    <div class="hfp" id="FullPane" runat="server"></div>
   </div>
-  <div class="main-body">
-    <div class="hcp" id="ContentPane" runat="server"></div>
-    <div class="clearfix"></div>
-    <div class="wbox" id="reg">
-      <div class="col-md-7 hlp" id="LeftPane" runat="server"></div>
-      <div class="col-md-5 hrp" id="RightPane" runat="server"></div>
+</div>
+<div class="fulldarkhblue">
+  <div class="hfp" id="FullBluePane" runat="server"></div>
+</div>
+<div class="container">
+<div class="hcp" id="ContentPane" runat="server"></div>
+</div>
+<div class="gbottom">
+  <div class="container">
+    <div class="prefoot">
+      <div class="left">
+        <h3>Download Spafoo today to bring beauty to your door!</h3>
+      </div>
+      <div class="right">
+        <div class="fdload">
+         <ul>
+           <li><a href="https://itunes.apple.com/us/app/spafoo/id1182959231?mt=8"><img alt="" class="appbadge" src="/portals/0/Images/apple-badge.svg" /></a></li>
+           <li><a href="https://play.google.com/store/apps/details?id=com.spafoollc "><img class="gbadge" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" /></a></li>
+         </ul>
+        </div>
+      </div>
     </div>
   </div>
-  
 </div>
-<div class="footer">
-  <div class="container terms_privacy">
-     <p><dnn:LINKS runat="server" id="dnnLINKS" CssClass="bottomlinks" Level="Root" Separator="&nbsp;&nbsp; &#8226; &nbsp;&nbsp;" />&nbsp;&nbsp; &#8226; &nbsp;&nbsp;<dnn:USER CssClass="bottomlinks" ID="dnnUser" runat="server" LegacyMode="true" /></p>
-     <dnn:COPYRIGHT runat="server" id="dnnCOPYRIGHT" CssClass="Copyright" /> | <a href="/Terms-Of-Use" class="terms_privacy">Terms Of Use</a> | <a href="/Privacy-Statement" class="terms_privacy">Privacy Statement</a>
+<div class="efooter">
+  <div class="flogo"><img src="<%=SkinPath%>Images/flogo.png" /></div>
+  <ul class="list social-icons">
+    <li><a target="_blank" title="Facebook" class="facebook" href="https://www.facebook.com/SpaFoo-386817744860145/"></a> </li>
+    <li><a target="_blank" title="Twitter" class="twitter" href="https://twitter.com/spafoo "></a> </li>
+    <li><a target="_blank" title="Instagram" class="instagram" href="http://instagram.com/spafoo/"></a> </li>
+  </ul>
+  <div class="fin">
+    <dnn:COPYRIGHT runat="server" id="dnnCOPYRIGHT" CssClass="Copyright" /> <span class="msepb"></span><span class="hidden-xs">|</span> <a href="/Terms-Of-Use" class="terms_privacy">Terms Of Use</a> | <a href="/Privacy-Statement" class="terms_privacy">Privacy Statement</a>
   </div>
 </div>
-
-
 <dnn:DnnCssInclude runat="server" FilePath="DNNStandard/StandardMenu.css" PathNameAlias="SkinPath" />
 <dnn:DnnJsInclude runat="server" FilePath="DNNStandard/StandardMenu.js" PathNameAlias="SkinPath" />
 <dnn:DnnJsInclude runat="server" FilePath="Scripts/animatedcollapse.js" PathNameAlias="SkinPath" />
 <dnn:DnnJsInclude runat="server" FilePath="~/Resources/Shared/Scripts/jquery/jquery.hoverIntent.min.js" />
 <dnn:DnnJsInclude runat="server" FilePath="Scripts/jquery.cycle.all.js" PathNameAlias="SkinPath" />
+<script src="<%=SkinPath%>Scripts/foundation.js"></script> 
+<script src="<%=SkinPath%>revo-slider/js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
+<script src="<%=SkinPath%>revo-slider/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script> 
+<script src="<%=SkinPath%>Scripts/portal.js"></script> 
 <script type="text/javascript">
 $(document).ready(function() {
     $('.image_trombi').hide();
@@ -103,6 +128,29 @@ $(document).ready(function() {
 });
 });
 </script>
-
-
-
+<script>
+$(document).ready(function(){
+	//on first load, the default height 
+  	$('.bpleft').css ( 'height', '525px') ;
+  });
+  
+ // $(window).resize(function() {
+ // on window resize , 
+ // var  blht = document.getElementById('elheight').offsetHeight; 
+ // $('.bpleft').css ( 'height', blht + 'px') ;
+ // });
+</script>
+<script type="text/javascript">
+function NS_GetUserNotification() {
+    var WBurl = '/DesktopModules/NS_MakeAppointment/rh.asmx/GetUserNotification';
+    $.ajax({
+        type: "POST", dataType: "json", contentType: "application/json; charset=utf-8", url: WBurl,
+        success: function (d, resp) {
+            $(".notification").text(d.d);
+        }
+    });
+}
+$(document).ready(function () {
+    NS_GetUserNotification();
+});
+</script>

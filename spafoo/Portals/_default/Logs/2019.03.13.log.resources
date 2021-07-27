@@ -1,0 +1,8 @@
+2019-03-13 14:08:45,506 [IH-WEB02-DAL][Thread:35][ERROR] DotNetNuke.Modules.Admin.Users.User - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at DotNetNuke.Modules.Admin.Users.ManageUsers.UserUpdateCompleted(Object sender, EventArgs e)
+   at DotNetNuke.Entities.Modules.UserUserControlBase.OnUserUpdateCompleted(EventArgs e)
+   at DotNetNuke.Modules.Admin.Users.User.cmdUpdate_Click(Object sender, EventArgs e)

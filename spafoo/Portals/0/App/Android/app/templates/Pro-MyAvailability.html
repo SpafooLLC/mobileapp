@@ -1,0 +1,65 @@
+<ion-view>
+    <ion-content>
+
+        <div class="bread">
+            <a href="" onClick="window.history.go(-1); return false;" class="pback"><i class="fa fa-angle-left fa-2x"></i></a>
+            <div class="ptitle">My Appointments</div>
+        </div>
+        <div class="inbody mavai">
+            <h3 class="center"><i class="fa green fa-square"></i> &nbsp;I am available</h3>
+            <div class="cal">
+
+                <div ui-calendar="pma.uiConfig.calendar" class="span8 calendar" ng-model="pma.staticEvents1" calendar="myCalendar1"></div>
+
+
+            </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="cdatetime">
+                <tr>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr ng-repeat="p in pma.staticEvents1[0].events">
+
+                    <td>{{p.dateField}}</td>
+                    <td><input type="time" class="form-control" ng-model="p.startTime"></td>
+                    <td><input type="time" class="form-control" ng-model="p.endTime"></td>
+
+                    <td><a ng-click="pma.deleteEvent(p.id,p.proId,$index)" data-dismiss="modal" data-toggle="modal" data-target="#PDone"><i class="fa red fa-trash fa-lg"></i></a></td>
+                    <td><input type="text" hidden ng-model="p.dateFieldHidden" /></td>
+                    <td><input type="text" hidden ng-model="p.proId" /></td>
+
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="fource-bottom center">
+
+            <a class="block-btn" data-ng-click="pma.doUpdate(pma.staticEvents1[0].events)">Update</a>
+        </div>
+        <div class="modal fade" id="PDone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog w90" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="sp-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="center" id="myModalLabel"><i class="fa fa-check-circle fa-3x"></i> </h4>
+                    </div>
+                    <div class="modal-cpbody center">
+                        <p>{{pma.message}}</p>
+                        <div class="cpaction">
+                            <a data-dismiss="modal" data-toggle="modal" class="green-rounded btnblock">Ok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <!-- Time Picker -->
+
+    </ion-content>
+    <script>
+
+    </script>
+</ion-view>

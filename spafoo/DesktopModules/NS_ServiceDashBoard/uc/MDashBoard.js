@@ -1,6 +1,6 @@
-﻿/*
+/*
     Script to handle all the ManageDashboard.ascx related user control features
-     NSR_SDB_MakeRequest(WBurl,WBData,SuccessCB,FailedCB);
+     NS_MakeRequest(WBurl,WBData,SuccessCB,FailedCB);
 */
 var NS_SDB_CurrentServiceID = -1;
 var NS_SDN_CurrentUser = "";
@@ -10,31 +10,55 @@ var NS_SDB_SaveStatus = -1;
 var NS_SDB_CLevel = 1;
 var NS_SDB_lstServices = "";
 var NSD_lstUsers = "";
-var NSD_SourceAddress="";
+var NSD_SourceAddress = "";
+var NSD_MaxMile =30;
 // On Document Ready
 $(document).ready(function () {
+    NS_GetMaxMile();
     NSD_GetMyPosition();
     if ($.cookie('NSProID') != null) {
         var ID = $.cookie('NSProID');
-        $.cookie('NSProID',null); //read and remove cookie
+        $.cookie('NSProID', null); //read and remove cookie
         NSD_GetUserInfo(ID);
         return false;
     }
-    NS_LoadServices(-1);
+    if ($.cookie('NS_AvailPro') == null) {
+        NS_LoadServices(-1);
+    }
+    else {
+        // load the providers for the earlier selected services in the denied appointment
+        NS_LoadOtherProviders();
+    }
 });
+
+function NS_LoadOtherProviders() {
+     var AppID = $.cookie('NS_AvailPro');
+    $.cookie('NS_AvailPro', null);//read and remove cookie
+    var _URL = "/DesktopModules/NS_MakeAppointment/rh.asmx/ListServicesByAppID"
+    var _data = "{'ID':'" + AppID + "'}";
+    NS_MakeRequest(_URL, _data, NS_LoadOtherProviders_SuCB);
+}
+function NS_LoadOtherProviders_SuCB(d) {
+     var sIDs = "";
+    $.each(d, function (i, v) {
+        sIDs += v.ServiceID + ':';
+    })
+     $("#NS_TopBarlblHeader").text('Select Provider');
+    NS_LoadProviders(sIDs);
+}
 
 function NS_LoadServices(SID) {
     $("#NS_dvDBProviderBar").hide(); $("#NS_dvDBProProfile").hide();
-    $("#NS_dvDBServiceBar").show().text('Just a min...');
+    $("#NS_dvDBServiceBar").show().html(NS_Waiting);
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetServicesIn"
     var _data = "{'SID':'" + SID + "'}";
-    NSR_SDB_MakeRequest(_URL, _data, NS_LoadServices_SuCB);
+    NS_MakeRequest(_URL, _data, NS_LoadServices_SuCB);
 }
 function NS_GetService(SID) {
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetService"
     var _data = "{'SID':'" + SID + "'}";
     var oReturn = "";
-    NSR_SDB_MakeRequest(_URL, _data, function (d) {
+    NS_MakeRequest(_URL, _data, function (d) {
         oReturn = d[0];
     }, undefined, false);
     return oReturn;
@@ -44,27 +68,35 @@ function NS_LoadServices_SuCB(d) {
     $("#NS_dvDBServiceBar").show().processTemplate(d);
     if (NS_SDB_lstServices == "") { NS_SDB_lstServices = d; }
 }
+
 function NS_GetSerficeInfo(ID) {
     var oService = NS_GetService(ID);
 }
-function NS_OnServiceClick(id,e) {
-   NS_SDB_LID = id;
+function NS_OnServiceClick(id, e) {
+    NS_SDB_LID = id;
     //CNode = NS_GetService(NS_SDB_lstServices, id);
-   CNode = NS_GetService(id);
-    if (CNode.Children.length>0) {
-    NS_SDB_CurrentServiceID = id;
-// change the header text with the currently selected Service name
-    var ServiceName = $("#NSD_SName_" + id).text();
-    $("#NS_TopBarlblHeader").text(ServiceName);
+    CNode = NS_GetService(id);
+    if (CNode.Children.length > 0) {
+        NS_SDB_CurrentServiceID = id;
+        // change the header text with the currently selected Service name
+        var ServiceName = $("#NSD_SName_" + id).text();
+        $("#NS_TopBarlblHeader").text(ServiceName);
+        NS_SDB_CLevel++; // Increment the Level counter
+        NS_LoadServices(id); // now load the services under the selecte ID
+    }
+    else {
     NS_SDB_CLevel++; // Increment the Level counter
-    NS_LoadServices(id); // now load the services under the selecte ID
-}
-else {// Show Provider list which deal with the choosen service , if user click on level 3
-    NS_LoadProviders(CNode.ServiceID);
-    $("#NS_TopBarlblHeader").text('Select Provider');
+    // Show Provider list which deal with the choosen service , if user click on level 3
+          NS_ShowProviders();
+        //NS_LoadProviders(CNode.ServiceID);
+        $("#NS_TopBarlblHeader").text('Select Provider');
     }
     e.preventDefault();
     return false;
+}
+function NS_ShowProviders() {
+    NS_LoadProviders(CNode.ServiceID);
+   // $("#NS_TopBarlblHeader").text('Select Trainer');
 }
 function NS_OnPreviousClick(e) {
     // if user is on first level, no need to do anything 
@@ -104,23 +136,26 @@ function NS_OnProviderLoaded_SuCB(d) {
 }
 function NS_LoadProviders(id) {// get all the providers who deal with the given service ID
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/ListProvidersByServices";
-    //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
-    var _data = "{'SID':'" + id + "'}";
+    var _data = "{'SIDs':'" + id + "'}";
     $("#NS_dvDBServiceBar").hide();
-    $("#NS_dvDBProviderBar").show().text("Just a min...")
-    NSR_SDB_MakeRequest(_URL, _data, NS_LoadProviders_SuCB);
+    $("#NS_dvDBProviderBar").show().html(NS_Waiting)
+    NS_MakeRequest(_URL, _data, NS_LoadProviders_SuCB);
 }
 
 function NS_LoadProviders_SuCB(d) {
-   d= NSD_ProcessProviderDistance(d);
-   NSD_lstUsers = d;
+    d = NSD_ProcessProviderDistance(d); // Uncomment this line before posting on www.spafoo.com site
+    NSD_lstUsers = d;
     $("#NS_dvDBServiceBar").hide();
     if (d.length > 0) {
         $("#NS_dvDBProProfile").hide();
         $("#NS_dvDBProviderBar").setTemplateURL('/DesktopModules/NS_ServiceDashBoard/templates/tmpProviders.htm?q=' + $.now());
         $("#NS_dvDBProviderBar").show().processTemplate(d);
+        if ($(".prolist").html().trim().length == 0) {
+            $("#NS_dvDBProviderBar").show().text("Sorry, no provider found for the selected service");
+            return;
+        }
         $('.NSD_starRating').barrating({
-            theme: 'fontawesome-stars',readonly :true
+            theme: 'fontawesome-stars', readonly: true
         });
     }
     else {
@@ -139,11 +174,11 @@ function NSD_GetUserInfo(ID) {
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetUser";
     //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
     var _data = "{'UID':'" + ID + "'}";
-    NSR_SDB_MakeRequest(_URL, _data, function (d) {
+    NS_MakeRequest(_URL, _data, function (d) {
         NSD_ShowProInDetail(d);
     }, undefined, false);
 }
-function NSD_ShowProviderDetail(UID,e) {
+function NSD_ShowProviderDetail(UID, e) {
     var oUser = NSD_GetUser(UID);
     if (oUser != "") {
         NS_SDN_CurrentUser = oUser;
@@ -151,6 +186,9 @@ function NSD_ShowProviderDetail(UID,e) {
         $("#NS_TopBarlblHeader").text('Provider');
         $("#NS_dvDBProProfile").setTemplateURL('/DesktopModules/NS_ServiceDashBoard/templates/tmpProvider.htm?q=' + $.now());
         $("#NS_dvDBProProfile").show().processTemplate(oUser);
+        
+       // $("#lblProBio").html(NS_ParseHTML(oUser.Profile.Biography)).page();
+        $("#lblProBio").html(htmlDecode(htmlDecode(oUser.Profile.Biography)));
         $('.NSD_starRating').barrating({
             theme: 'fontawesome-stars'
         });
@@ -176,7 +214,7 @@ function GetUserTagLine(id) {
     var _data = "{'UID':'" + id + "'}";
     var _ID = '#lblUserTagLine_' + id;
     $(_ID).text("Loading...");
-    NSR_SDB_MakeRequest(_URL, _data, function (d) {
+    NS_MakeRequest(_URL, _data, function (d) {
         d = NS_ParseString(d);
         $(_ID).text(d);
         $("#lblUserTagLineID_" + id).text(d);
@@ -184,21 +222,26 @@ function GetUserTagLine(id) {
 }
 function NSD_GetDistance(Street, City, Region, Country, elementID) {
     var destination = Street + ", " + City + ", " + Region + ", " + Country;
+    try{
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': destination }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             // use D I R E C T I O N   S E R V I C E  to calcualte the duration from current position of the user
-          //  var destination = address;
+            //  var destination = address;
             var p1 = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
             var distance = calcDistance(p2, p1);
             $("#NSD_dvUserDistance_" + elementID).html(distance);
             $("#NSD_lblUserDistance_" + elementID).html(distance + " miles from you");
         }
     });
+     } catch (e) {
+
+    }
 }
 
 var p2 = "";
 function NSD_GetMyPosition() {
+ try {
     navigator.geolocation.getCurrentPosition(function (position) {
         p2 = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         var geocoder = new google.maps.Geocoder();
@@ -210,37 +253,63 @@ function NSD_GetMyPosition() {
                 NSD_SourceAddress = (results[0].formatted_address);
             }
         });
-    },function (positionError) {
+    }, function (positionError) {
         //$("#error").text("Error: " + positionError.message);
     },
     {
         enableHighAccuracy: true,
         timeout: 10 * 1000 // 10 seconds
     });
+    }
+    catch (e) { }
 }
 
 function NSD_ProcessProviderDistance(lstUsers) {
     var tmpUsers = JSON.parse(JSON.stringify(lstUsers));;
+     try{
     $.each(lstUsers, function (i, o) {
-        var Lat = o.DisplayName.split(":")[0];
-        var Lng = o.DisplayName.split(":")[1];
-        var p1 = new google.maps.LatLng(Lat, Lng);
-        // to check the distance between Client's & Provider's Lat Lang
-        var distance = calcDistance(p2, p1);
-        if (distance > 50) {
-            o.DisplayName = "D";
+         var Lat = o.VanityUrl.split(":")[0];
+        var Lng = o.VanityUrl.split(":")[1];
+        if (Lat != -1) {// if not invalid Lat:Lng
+            var p1 = new google.maps.LatLng(Lat, Lng);
+            // to check the distance between Client's & Provider's Lat Lang
+            var distance = calcDistance(p2, p1);
+            
+            if ((parseInt(distance) > parseInt(NSD_MaxMile) ) || (distance == 'NaN')) {
+                 o.VanityUrl = "D:0"; //U N C O M M E N T  this line for LIVE 
+                //o.VanityUrl = "A:" + distance; // uncomment for TEST
+                tmpUsers[i] = o;
+            }
+            else {
+                o.VanityUrl = "A:" + distance;
+                tmpUsers[i] = o;
+            }
+        }
+        else {
+            o.VanityUrl = "D:0"; //  "D:0"; FOR Live it should be D:0 and for test A:50
             tmpUsers[i] = o;
         }
     });
+    tmpUsers = tmpUsers.sort(function (a, b) {
+        return (a.VanityUrl.split(":")[1] - b.VanityUrl.split(":")[1])
+    });
+     } catch (e) {
+
+    }
     return tmpUsers;
+}
+
+function NSD_InRange(v, i) {
+    var ary = v.split(':');
+    return ary[i];
 }
 
 function NSD_GetProviderServices(UID) {
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetProviderServices";
     //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
     var _data = "{'UID':'" + UID + "'}";
-    $("#NSD_dvProviderService").show().text("Just a min...")
-    NSR_SDB_MakeRequest(_URL, _data, NSD_GetProviderServices_SuCB);
+    $("#NSD_dvProviderService").show().html(NS_Waiting)
+    NS_MakeRequest(_URL, _data, NSD_GetProviderServices_SuCB);
 }
 function NSD_GetProviderServices_SuCB(d) {
     if (d.length > 0) {
@@ -252,8 +321,8 @@ function NSD_GetProviderSamples(UID) {
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetWorkSamples";
     //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
     var _data = "{'PID':'" + UID + "'}";
-    $("#NSD_dvProviderService").show().text("Just a min...")
-    NSR_SDB_MakeRequest(_URL, _data, NSD_GetProviderSamples_SuCB);
+    $("#NSD_dvProviderService").show().html(NS_Waiting)
+    NS_MakeRequest(_URL, _data, NSD_GetProviderSamples_SuCB);
 }
 function NSD_GetProviderSamples_SuCB(d) {
     if (d.length > 0) {
@@ -264,26 +333,31 @@ function NSD_GetProviderSamples_SuCB(d) {
 }
 function NS_GotoMakeAppointment(e) {
     e.preventDefault();
-    $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text() + ":" + CNode.ServiceID);
-    window.location = NSR_SDB_AppointmentTab;
+    if (!NSR_SDB_IsProvider) {
+        $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text() + ":" + CNode.ServiceID);
+        window.location = NSR_SDB_AppointmentTab;
+    }
+    else {
+        bootbox.alert('Being a provider, you do not have a permission for this.');
+    }
 }
 
-function NS_GetMyRating(ProID,CB) {
+function NS_GetMyRating(ProID, CB) {
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetMyRating";
     //int SID,int STID, string SN, string SD, string Image, int PID, decimal Price, decimal Tax
     var _data = "{'UserID':'" + ProID + "'}";
-    NSR_SDB_MakeRequest(_URL, _data, function (d) {
+    NS_MakeRequest(_URL, _data, function (d) {
         if (d != null) {
             if (CB != undefined) CB(ProID, d.Rating, d.ByPeople);
         }
-   });
+    });
 }
-function NS_GetProRating(ID,R, P) {
+function NS_GetProRating(ID, R, P) {
     if (R > 0) {
         $("#NSD_starRating_" + ID).addClass('ratting-' + R).removeClass('ratting-0');
     }
 }
-function NS_GetIDRating(ID,R, P) {
+function NS_GetIDRating(ID, R, P) {
     if (R > 0) {
         $("#NSD_starRatingID_" + ID).addClass('ratting-' + R).removeClass('ratting-0');
         $("#NSD_lblRatingID_" + ID).text("from " + P + " users");
@@ -291,24 +365,35 @@ function NS_GetIDRating(ID,R, P) {
 }
 function NS_GotoASAP(e) {
     e.preventDefault();
-    $.cookie('NSD_Soonest', "1");
-    $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text());
-    window.location = NSR_SDB_AppointmentTab;
+    if (!NSR_SDB_IsProvider) {
+        $.cookie('NSD_Soonest', "1");
+        $.cookie('NSD_CurrentUser', NS_SDN_CurrentUser.UserID + ":" + $("#NSD_UName_" + NS_SDN_CurrentUser.UserID).text());
+        window.location = NSR_SDB_AppointmentTab;
+    }
+    else {
+        bootbox.alert('Being a provider, you do not have a permission for this.');
+    }
 }
 
 function NS_OpenUserReview() {
     // lblUserView
     var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetMyReview";
     var _data = "{'UserID':'" + NS_SDN_CurrentUser.UserID + "'}";
-    NSR_SDB_MakeRequest(_URL, _data, function (d) {
-        $("#dlgUserReview").setTemplateURL('/DesktopModules/NS_ServiceDashBoard/templates/tmpUserReview.htm?q=' + $.now());
-        $("#dlgUserReview").show().processTemplate(d);
-    });
-    var _title="Past Client Reviews for " + NS_SDN_CurrentUser.FirstName + " " + NS_SDN_CurrentUser.LastName;
+    
+    var _title = "Past Client Reviews for " + NS_SDN_CurrentUser.FirstName + " " + NS_SDN_CurrentUser.LastName;
     bootbox.dialog({
         message: '<div id="dlgUserReview">Please wait while we are loading information.</div>',
         title: _title
     });
-    
-    
+    NS_MakeRequest(_URL, _data, function (d) {
+        $("#dlgUserReview").setTemplateURL('/DesktopModules/NS_ServiceDashBoard/templates/tmpUserReview.htm?q=' + $.now());
+        $("#dlgUserReview").show().processTemplate(d);
+    });
+
+}
+function NS_GetMaxMile() {
+    var _URL = "/DesktopModules/NS_ServiceDashBoard/rh.asmx/GetWithInMile"
+    NS_MakeRequest(_URL, '', function (d) {
+        NSD_MaxMile = d;
+    }, undefined, false);
 }

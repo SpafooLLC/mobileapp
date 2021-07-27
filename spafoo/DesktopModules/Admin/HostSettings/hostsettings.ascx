@@ -43,7 +43,7 @@
                 </div>
                 <div class="dnnFormItem">
                     <dnn:label id="plAvailable" controlname="hypUpgrade" runat="server" />
-                    <asp:HyperLink ID="hypUpgrade" Target="_new" runat="server" />
+                    <asp:HyperLink ID="hypUpgrade" Target="_blank" runat="server" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:label id="plDataProvider" controlname="lblDataProvider" runat="server" />
@@ -147,7 +147,7 @@
                     <asp:CheckBox ID="chkUpgradeForceSSL" runat="server" />
                 </div>
                 <div id="sslDomainRow" class="dnnFormItem">
-                    <dnn:label id="plSSLDomain" controlname="chkUseCustomModuleCssClass"
+                    <dnn:label id="plSSLDomain" controlname="txtSSLDomain"
                         runat="server" />
                     <asp:TextBox ID="txtSSLDomain" runat="server" MaxLength="256" />
                 </div>
@@ -497,9 +497,33 @@
                     <asp:CompareValidator ID="validatorIndexWordMaxLengthCompared" runat="server" ControlToCompare="txtIndexWordMinLength" ControlToValidate="txtIndexWordMaxLength" CssClass="dnnFormMessage dnnFormError"
                         Operator="GreaterThan" Type="Integer" Display="Dynamic" EnableClientScript="True" resourceKey="valIndexWordMaxLengthCompare.Error"></asp:CompareValidator>
                 </div>
+				<div class="dnnFormItem" runat="server" ID="allowLeadingWildcardSettingRow" ControlName="chkAllowLeadingWildcard">
+					<dnn:Label runat="server" ID="lblAllowLeadingWildcard" />
+					<asp:CheckBox runat="server" ID="chkAllowLeadingWildcard" />
+				</div>
                 <div class="dnnFormItem">
                     <dnn:Label ID="plCustomAnalyzer" runat="server" ResourceKey="lblCustomAnalyzer" ControlName="cbCustomAnalyzer" />
                     <dnn:dnncombobox ID="cbCustomAnalyzer" runat="server"></dnn:dnncombobox>
+                </div>
+				<div class="dnnFormItem">
+                    <dnn:Label ID="plTitleBoost" runat="server" ResourceKey="lblTitleBoost" ControlName="txtTitleBoost" />
+                    <asp:TextBox runat="server" ID="txtTitleBoost" CssClass="dnnSliderInput"></asp:TextBox>
+                </div>
+				<div class="dnnFormItem">
+                    <dnn:Label ID="plTagBoost" runat="server" ResourceKey="lblTagBoost"  ControlName="txtTagBoost" />
+                    <asp:TextBox runat="server" ID="txtTagBoost" CssClass="dnnSliderInput"></asp:TextBox>
+                </div>
+				<div class="dnnFormItem">
+                    <dnn:Label ID="plContentBoost" runat="server" ResourceKey="lblContentBoost" ControlName="txtContentBoost"  />
+                    <asp:TextBox runat="server" ID="txtContentBoost" CssClass="dnnSliderInput"></asp:TextBox>
+                </div>
+				<div class="dnnFormItem">
+                    <dnn:Label ID="plDescriptionBoost" runat="server" ResourceKey="lblDescriptionBoost" ControlName="txtDescriptionBoost"  />
+                    <asp:TextBox runat="server" ID="txtDescriptionBoost" CssClass="dnnSliderInput"></asp:TextBox>
+                </div>
+				<div class="dnnFormItem">
+                    <dnn:Label ID="plAuthorBoost" runat="server" ResourceKey="lblAuthorBoost" ControlName="txtAuthorBoost"  />
+                    <asp:TextBox runat="server" ID="txtAuthorBoost" CssClass="dnnSliderInput"></asp:TextBox>
                 </div>
                 <div class="dnnTableHeader">
                     <div class="dnnFormItem">
@@ -781,6 +805,11 @@
                     }
                 }
             }
+
+	        $('.dnnSliderInput').dnnSliderInput({
+	        	max: 50,
+				step: 5
+	        });
         }
 
         $(document).ready(function () {

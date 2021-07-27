@@ -1,0 +1,5 @@
+2018-12-01 03:08:55,475 [THD-01][Thread:20][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at DotNetNuke.Providers.RadEditorProvider.SaveTemplate.Page_Load(Object sender, EventArgs e)
